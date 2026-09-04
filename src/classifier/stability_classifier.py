@@ -29,13 +29,38 @@ from src.classifier.rules import StabilityRuleEngine
 # (bypass cache) to implement the conservative-bias / uncertainty-default
 # principle of the project.
 #
-# Value rationale: the LightweightHeuristicClassifier reports
-#   confidence ≈ 1 − dynamic_score for STABLE predictions.
-# With zero active signals (prior_log_odds = −1.2), dynamic_score ≈ 0.232,
-# so confidence ≈ 0.768 — intentionally below 0.80, meaning zero-signal
-# queries are flipped to DYNAMIC by this guard.  Only queries where the
-# heuristic scores at least +0.2 log-odds net toward STABLE (i.e., the
-# stable cues clearly outweigh dynamic cues) will clear the threshold.
+# Value selection: swept across {0.60, 0.70, 0.75, 0.80, 0.85, 0.90}.
+# The LightweightHeuristicClassifier produces two distinct confidence
+# clusters for STABLE predictions:
+#
+#   • 0.769  — zero-signal queries (prior_log_odds = −1.2 only, dynamic_score ≈ 0.232)
+#              These are the true generalization failures: bare price/role/
+#              weather queries the heuristic has no signal for.
+#   • 0.881  — queries with strong programming-language cues (e.g., `python`
+#              matched by programming_standard_cue at −0.8 weight), driving
+#              dynamic_score down to ≈0.12.
+#
+# Sweep results on the 85-query credibility set (DEV/DIAGNOSTIC):
+#   threshold=0.60/0.70/0.75  →  DER=57.4% (31 FPs) | CER= 0.0%  (no improvement)
+#   threshold=0.80/0.85       →  DER= 5.6%  (3 FPs)  | CER=45.2% (14 FNs)
+#   threshold=0.90            →  DER= 0.0%  (0 FPs)  | CER=54.8% (17 FNs)
+#
+# Chosen value: 0.80.
+# • 0.60–0.75 are ineffective: the zero-signal cluster sits at 0.769 so
+#   thresholds below that never trigger the override.
+# • 0.90 would eliminate the 3 remaining FPs (Python-family queries) but
+#   costs 3 additional FNs (17 total) and introduces brittleness — those
+#   3 FPs are correctly handled by the Sub-stage C software-version rule.
+# • 0.80 is the natural cliff between the two clusters; it eliminates 28
+#   of 31 FPs with 14 FNs, a tradeoff acceptable until Sub-stage C/D reduce
+#   the FN count through improved taxonomy and trained fallback.
+#
+# The 3 remaining FPs at 0.80 (all Stage 2 FALLBACK, 0 Stage 1 RULE):
+#   HUMAN-029  'Python version'          conf=0.881
+#   HUMAN-030  'Latest Python version'   conf=0.881
+#   HUMAN-032  'Has Python changed recently?'  conf=0.881
+# These escape because the `python` programming cue pushes the heuristic
+# strongly toward STABLE. Fix target: Sub-stage C software-version rule.
 #
 # This constant must remain the single authoritative source for this
 # boundary; do not duplicate the check elsewhere.
