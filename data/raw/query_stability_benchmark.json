@@ -1,0 +1,1602 @@
+[
+  {
+    "id": "STAB-001",
+    "query": "How does the Euclidean algorithm find the greatest common divisor of two integers?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Mathematical theorem and algorithm proven in antiquity; invariant across time and computational platforms."
+  },
+  {
+    "id": "STAB-002",
+    "query": "What is the time complexity of binary search on a sorted array?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Logarithmic time complexity O(log n) is a mathematically proven invariant property of comparison-based binary search."
+  },
+  {
+    "id": "STAB-003",
+    "query": "In what year did the Apollo 11 mission land humans on the Moon?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Historical event that occurred on July 20, 1969. Factual record is permanently fixed."
+  },
+  {
+    "id": "STAB-004",
+    "query": "What is the chemical formula for water and how many hydrogen atoms does it contain?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Fundamental chemical composition of water (H2O, two hydrogen atoms) is physically invariant."
+  },
+  {
+    "id": "STAB-005",
+    "query": "What is the current stock price of Apple (AAPL) on NASDAQ?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["market_hours", "realtime_quote_feed"],
+    "rationale": "Financial equity prices fluctuate continuously during trading seconds. Stale response is unusable."
+  },
+  {
+    "id": "STAB-006",
+    "query": "What is the current weather forecast for Tokyo today?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["meteorological_feed", "current_time"],
+    "rationale": "Atmospheric conditions update by the minute and hour. Caching would serve stale meteorological data."
+  },
+  {
+    "id": "STAB-007",
+    "query": "Who is the current Prime Minister of the United Kingdom?",
+    "domain": "history_geography",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "EVENT_DRIVEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["political_office_holder"],
+    "rationale": "Political offices are subject to election cycles, cabinet resignations, and votes of no confidence."
+  },
+  {
+    "id": "STAB-008",
+    "query": "How do I reverse a list in Python using in-place reverse vs slicing?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["python_core_semantics"],
+    "rationale": "Python core list methods (.reverse()) and slice steps ([::-1]) have maintained stable semantics across all Python 2 and 3 releases."
+  },
+  {
+    "id": "STAB-009",
+    "query": "What is the speed of light in a vacuum in meters per second?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Universal physical constant defined exactly as 299,792,458 m/s by SI international consensus."
+  },
+  {
+    "id": "STAB-010",
+    "query": "What is the current version of the React library on npm?",
+    "domain": "computer_science",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["npm_registry"],
+    "rationale": "Software package registries update with patch/minor/major releases frequently."
+  },
+  {
+    "id": "STAB-011",
+    "query": "How does Dijkstra's algorithm compute the shortest path in a weighted graph with non-negative edges?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Dijkstra's shortest-path algorithm is an established graph theory algorithm with invariant mathematical properties."
+  },
+  {
+    "id": "STAB-012",
+    "query": "What is the latest price of Bitcoin in USD?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["crypto_exchange_rate"],
+    "rationale": "Cryptocurrency exchange rates change second-by-second in 24/7 global spot markets."
+  },
+  {
+    "id": "STAB-013",
+    "query": "What is the capital city of Australia?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Canberra has been the designated capital of Australia since 1913; geopolitical changes of this nature are extremely rare and stable."
+  },
+  {
+    "id": "STAB-014",
+    "query": "How do I declare a dictionary with type annotations in Python 3.9+ vs older versions?",
+    "domain": "computer_science",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["python_version_pep585"],
+    "rationale": "Language specification evolution governed by PEP 585; stable within defined version boundaries (builtin dict[] vs typing.Dict[])."
+  },
+  {
+    "id": "STAB-015",
+    "query": "What was the final score of last night's NBA game between the Celtics and Lakers?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "EVENT_DRIVEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["sports_event_schedule", "current_date"],
+    "rationale": "Depends on the relative anchor 'last night' and ongoing sports match scheduling."
+  },
+  {
+    "id": "STAB-016",
+    "query": "What are the core axioms of Peano arithmetic for natural numbers?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Formal mathematical foundational system published in 1889; logically invariant."
+  },
+  {
+    "id": "STAB-017",
+    "query": "How do I configure a static IP address in Ubuntu 22.04 LTS using Netplan?",
+    "domain": "system_operations",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["ubuntu_release_version", "netplan_spec"],
+    "rationale": "Valid and unchanging across the lifetime of Ubuntu 22.04 LTS, but superseded in different OS generations or distributions."
+  },
+  {
+    "id": "STAB-018",
+    "query": "What are the statutory requirements for filing a Form 1040 in the United States?",
+    "domain": "legal_compliance",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["irs_tax_code_year", "us_jurisdiction"],
+    "rationale": "General filing mechanics are stable for periods, but tax brackets, standard deductions, and thresholds adjust annually by statute."
+  },
+  {
+    "id": "STAB-019",
+    "query": "What is the spot exchange rate between Euro and Japanese Yen right now?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["forex_rates"],
+    "rationale": "Foreign exchange currency pairs trade in real-time with millisecond tick changes."
+  },
+  {
+    "id": "STAB-020",
+    "query": "How does the Krebs cycle (citric acid cycle) produce ATP and NADH in cellular respiration?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Biological biochemical metabolic pathway documented across cellular biology literature; timeless scientific fact."
+  },
+  {
+    "id": "STAB-021",
+    "query": "Who is the Chief Executive Officer of OpenAI?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "EVENT_DRIVEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["corporate_governance_roster"],
+    "rationale": "Contains zero explicit temporal markers, yet executive leadership in high-growth technology corporations is volatile and subject to board actions."
+  },
+  {
+    "id": "STAB-022",
+    "query": "Who won the men's FIFA World Cup tournament in Qatar in 2022?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Contains the temporal year 2022 and location Qatar, fixing the historical fact permanently (Argentina won)."
+  },
+  {
+    "id": "STAB-023",
+    "query": "What is the current gas price average per gallon in California?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["commodity_fuel_index", "state_pricing"],
+    "rationale": "Retail fuel prices shift daily with oil spot commodities, state refining capacity, and tax adjustments."
+  },
+  {
+    "id": "STAB-024",
+    "query": "What is the atomic weight and atomic number of Gold on the periodic table?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Atomic number (79) and standard atomic weight (~196.966) are invariant properties of elemental matter."
+  },
+  {
+    "id": "STAB-025",
+    "query": "How do I implement a thread-safe Singleton pattern in Java using double-checked locking?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["java_memory_model"],
+    "rationale": "The Java Memory Model (JSR-133, Java 5+) stabilized volatile semantics and double-checked locking patterns permanently."
+  },
+  {
+    "id": "STAB-026",
+    "query": "What are the latest breaking headlines regarding the United Nations General Assembly session?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["news_wire_feed"],
+    "rationale": "Breaking geopolitical news cycles change hour-by-hour."
+  },
+  {
+    "id": "STAB-027",
+    "query": "What is the difference between TCP and UDP transport protocols?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["ietf_rfc_standards"],
+    "rationale": "RFC 793 (TCP) and RFC 768 (UDP) define fundamental Internet architecture that has remained unchanged for decades."
+  },
+  {
+    "id": "STAB-028",
+    "query": "What are the recommended modern cipher suites for configuring TLS 1.3 in Nginx?",
+    "domain": "system_operations",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["cryptographic_standards", "nist_advisories"],
+    "rationale": "No explicit temporal keywords, but security advisories periodically deprecate cipher algorithms due to cryptanalysis or hardware advances."
+  },
+  {
+    "id": "STAB-029",
+    "query": "What is the formula for calculating compound interest with annual compounding?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "A = P(1 + r/n)^(nt) is a timeless mathematical formula derived from exponential growth principles."
+  },
+  {
+    "id": "STAB-030",
+    "query": "What is the Federal Reserve's current target federal funds interest rate range?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "EVENT_DRIVEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["fomc_monetary_policy"],
+    "rationale": "Monetary policy interest rate targets are adjusted 8 times per year at FOMC meetings."
+  },
+  {
+    "id": "STAB-031",
+    "query": "What were the names of all the signers of the United States Declaration of Independence?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "The 56 historical signers of the 1776 document constitute a static, closed historical record."
+  },
+  {
+    "id": "STAB-032",
+    "query": "How do I resolve a 'git merge conflict' manually in a terminal?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["git_core_porcelain"],
+    "rationale": "Core Git merge markers (<<<<<<<, =======, >>>>>>>) and conflict resolution workflow have remained stable since Git 1.0."
+  },
+  {
+    "id": "STAB-033",
+    "query": "What are the clinical symptoms and diagnostic criteria for Type 1 Diabetes Mellitus?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["medical_pathophysiology"],
+    "rationale": "The underlying pathophysiology (autoimmune beta-cell destruction, polyuria, polydipsia, hyperglycemia) is standard biological pathology."
+  },
+  {
+    "id": "STAB-034",
+    "query": "What is the current flight status of United Airlines Flight UA 244?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["radar_telemetry", "air_traffic_control"],
+    "rationale": "Flight status changes minute by minute (boarding, taxiing, en route, delayed, landed)."
+  },
+  {
+    "id": "STAB-035",
+    "query": "What is the definition of the GDPR 'Right to be Forgotten' under Article 17?",
+    "domain": "legal_compliance",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["eu_regulation_2016_679"],
+    "rationale": "Statutory codified text in EU Regulation 2016/679; stable until European Parliament legislative overhaul."
+  },
+  {
+    "id": "STAB-036",
+    "query": "How does quicksort select a pivot using the median-of-three heuristic?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Classic algorithmic optimization technique for pivot selection; unchanged theory."
+  },
+  {
+    "id": "STAB-037",
+    "query": "What is the current 30-year fixed mortgage rate average in the US?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["freddie_mac_pmms"],
+    "rationale": "Weekly mortgage surveys reflect dynamic macroeconomic debt market yield movements."
+  },
+  {
+    "id": "STAB-038",
+    "query": "What are Newton's three laws of classical motion?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Fundamental laws of Newtonian mechanics formulated in 1687; invariant physical principles."
+  },
+  {
+    "id": "STAB-039",
+    "query": "What is the status of the traffic on the I-405 South freeway right now?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["highway_sensor_feed"],
+    "rationale": "Urban traffic congestion is volatile second-by-second data."
+  },
+  {
+    "id": "STAB-040",
+    "query": "How do I write a Dockerfile for a basic Node.js application?",
+    "domain": "system_operations",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["dockerfile_syntax_v1", "nodejs_runtime"],
+    "rationale": "Core Dockerfile directives (FROM, WORKDIR, COPY, RUN, EXPOSE, CMD) are stable, though best-practice base images drift across LTS versions."
+  },
+  {
+    "id": "STAB-041",
+    "query": "What is the Pythagorean theorem and how is it proven geometrically?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "a^2 + b^2 = c^2 for Euclidean right triangles is an eternal mathematical theorem."
+  },
+  {
+    "id": "STAB-042",
+    "query": "What are the latest updates to the Twitter / X API rate limits?",
+    "domain": "computer_science",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "EVENT_DRIVEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["x_corp_api_policy"],
+    "rationale": "Proprietary platform API tiers and rate limits change at corporate discretion."
+  },
+  {
+    "id": "STAB-043",
+    "query": "Who was the first President of the United States and when did he take office?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "George Washington, 1789; closed historical record."
+  },
+  {
+    "id": "STAB-044",
+    "query": "What is the standard adult dosage of acetaminophen for fever reduction?",
+    "domain": "science_medicine",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["fda_pharmacopeia", "clinical_guidelines"],
+    "rationale": "Standard pharmacological dosing (e.g. 500-1000mg every 4-6 hours, max 3000-4000mg/day) is established in medicine, but subject to clinical safety updates."
+  },
+  {
+    "id": "STAB-045",
+    "query": "What is the live exchange rate for converting 100 USD to Mexican Pesos (MXN)?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["forex_rates"],
+    "rationale": "Real-time foreign exchange calculation."
+  },
+  {
+    "id": "STAB-046",
+    "query": "How does the B-Tree indexing structure maintain balance during key insertions in databases?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "B-tree splitting and node promotion mechanisms are mathematically defined data structure properties."
+  },
+  {
+    "id": "STAB-047",
+    "query": "What is the current air quality index (AQI) in New Delhi?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["pollution_sensor_telemetry"],
+    "rationale": "Air pollution index updates hourly based on PM2.5/PM10 particulate readings."
+  },
+  {
+    "id": "STAB-048",
+    "query": "What does HTTP status code 404 Not Found signify in RFC 7231?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["ietf_rfc7231"],
+    "rationale": "Standardized IETF RFC specification for client error response."
+  },
+  {
+    "id": "STAB-049",
+    "query": "How do I check available disk space on a Linux server using the df command?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["posix_coreutils"],
+    "rationale": "POSIX core utility syntax (`df -h`) has been standard across Unix/Linux systems for 30+ years."
+  },
+  {
+    "id": "STAB-050",
+    "query": "What are the legal elements required to form a valid binding contract under common law?",
+    "domain": "legal_compliance",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["common_law_jurisprudence"],
+    "rationale": "Offer, acceptance, consideration, mutual assent, and capacity are foundational common law contract doctrines."
+  },
+  {
+    "id": "STAB-051",
+    "query": "What is the standard deviation and how is it calculated from a sample dataset?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Standard sample variance and Bessel-corrected standard deviation formulas are mathematical invariants."
+  },
+  {
+    "id": "STAB-052",
+    "query": "What are the trending topics on Twitter / X in the United States right now?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["social_trend_algorithms"],
+    "rationale": "Social media trending topics decay within minutes or hours."
+  },
+  {
+    "id": "STAB-053",
+    "query": "What is the difference between synchronous and asynchronous execution in JavaScript?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["ecmascript_event_loop"],
+    "rationale": "The JavaScript event loop, call stack, and microtask/macrotask queues are fundamental architectural components."
+  },
+  {
+    "id": "STAB-054",
+    "query": "What is the current market capitalization of Microsoft Corporation?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["equity_valuation", "share_float"],
+    "rationale": "Market cap fluctuates continuously with share price movements."
+  },
+  {
+    "id": "STAB-055",
+    "query": "What are the main layers of the OSI model and their respective responsibilities?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["iso_iec_7498"],
+    "rationale": "The 7-layer OSI conceptual model (Physical, Data Link, Network, Transport, Session, Presentation, Application) is an ISO standard."
+  },
+  {
+    "id": "STAB-056",
+    "query": "What were the primary economic causes of the 1929 Great Depression?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Historical economic analysis of 1929 stock market crash, banking panics, and monetary contraction."
+  },
+  {
+    "id": "STAB-057",
+    "query": "What is the recommended antibiotic treatment for uncomplicated streptococcal pharyngitis?",
+    "domain": "science_medicine",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["clinical_infectious_disease_guidelines"],
+    "rationale": "First-line treatments (Penicillin V / Amoxicillin) are stable clinical standards, though resistance monitoring is ongoing."
+  },
+  {
+    "id": "STAB-058",
+    "query": "What is the current wait time for security checkpoint at LAX airport?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["tsa_throughput_telemetry"],
+    "rationale": "TSA airport wait times fluctuate dynamically every 10-15 minutes."
+  },
+  {
+    "id": "STAB-059",
+    "query": "How do I create an index on a PostgreSQL table column to speed up queries?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["sql_standard", "postgres_core"],
+    "rationale": "`CREATE INDEX idx_name ON table_name (column_name);` is standard SQL syntax across all PostgreSQL versions."
+  },
+  {
+    "id": "STAB-060",
+    "query": "What is the current minimum wage in the state of Washington for this calendar year?",
+    "domain": "legal_compliance",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["state_labor_statutes", "cpi_adjustments"],
+    "rationale": "Washington state adjusts minimum wage every January 1st based on inflation indices."
+  },
+  {
+    "id": "STAB-061",
+    "query": "What is the derivative of sin(x) with respect to x?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "d/dx(sin(x)) = cos(x) is an immutable fundamental theorem of calculus."
+  },
+  {
+    "id": "STAB-062",
+    "query": "What is the current price of Brent crude oil per barrel?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["commodity_exchange"],
+    "rationale": "Global petroleum commodity contracts trade continuously."
+  },
+  {
+    "id": "STAB-063",
+    "query": "What are the core differences between symmetric and asymmetric cryptography?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Shared single key vs public/private key pair mathematical principles are timeless."
+  },
+  {
+    "id": "STAB-064",
+    "query": "What is the current version of the Linux kernel mainline branch?",
+    "domain": "system_operations",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["kernel_org_git"],
+    "rationale": "Linus Torvalds tags new mainline Linux kernel releases every 9-10 weeks."
+  },
+  {
+    "id": "STAB-065",
+    "query": "What was the capital of the Byzantine Empire before its fall in 1453?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Constantinople; fixed historical fact."
+  },
+  {
+    "id": "STAB-066",
+    "query": "How does photosynthesis convert carbon dioxide and water into glucose and oxygen?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Light-dependent and light-independent (Calvin cycle) biological chemistry is invariant."
+  },
+  {
+    "id": "STAB-067",
+    "query": "What is the current US Dollar to British Pound exchange rate?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["forex_rates"],
+    "rationale": "Foreign exchange rate volatility."
+  },
+  {
+    "id": "STAB-068",
+    "query": "How do I format an SSD using the ext4 filesystem on Linux?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["e2fsprogs"],
+    "rationale": "`mkfs.ext4 /dev/sdX` command structure and filesystem creation flags have remained invariant."
+  },
+  {
+    "id": "STAB-069",
+    "query": "What are the essential elements of negligence under tort law?",
+    "domain": "legal_compliance",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["tort_jurisprudence"],
+    "rationale": "Duty, Breach, Causation (factual and proximate), and Damages are foundational tort law elements."
+  },
+  {
+    "id": "STAB-070",
+    "query": "What is the sum of angles in a flat Euclidean triangle?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "180 degrees (or pi radians); immutable geometric theorem."
+  },
+  {
+    "id": "STAB-071",
+    "query": "What is the current status of the London Underground Central Line?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["tfl_api_feed"],
+    "rationale": "Transport for London live train delays and signal failures change minute-by-minute."
+  },
+  {
+    "id": "STAB-072",
+    "query": "How does merge sort work and what is its worst-case auxiliary space complexity?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Divide-and-conquer sorting mechanics and O(n) auxiliary space complexity are fixed theoretical computer science facts."
+  },
+  {
+    "id": "STAB-073",
+    "query": "What is the current yield on the US 10-Year Treasury Note?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["treasury_bond_market"],
+    "rationale": "Benchmark government bond yields tick during active trading sessions."
+  },
+  {
+    "id": "STAB-074",
+    "query": "Which country has the largest land area in the world?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Russia (~17.1 million square kilometers) remains by far the largest sovereign territory."
+  },
+  {
+    "id": "STAB-075",
+    "query": "What are the differences between mitosis and meiosis in eukaryotic cells?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Equational vs reductional cell division stages are core biological truths."
+  },
+  {
+    "id": "STAB-076",
+    "query": "Who is playing in the NFL Super Bowl this upcoming Sunday?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "EVENT_DRIVEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["nfl_playoff_schedule", "current_year"],
+    "rationale": "Specific to the current football season schedule."
+  },
+  {
+    "id": "STAB-077",
+    "query": "How do I configure CORS headers in an Express.js web server?",
+    "domain": "computer_science",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["express_framework", "cors_middleware"],
+    "rationale": "Standard express `app.use(cors())` pattern is stable across Express 4.x and 5.x releases."
+  },
+  {
+    "id": "STAB-078",
+    "query": "What are the requirements for patent eligibility under 35 U.S.C. Section 101?",
+    "domain": "legal_compliance",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["us_patent_act", "supreme_court_alice_framework"],
+    "rationale": "Statutory categories and Alice/Mayo judicial exceptions define eligibility, stable pending major statutory reform."
+  },
+  {
+    "id": "STAB-079",
+    "query": "What is the Taylor series expansion of e^x centered at 0?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "sum_{n=0}^infty x^n / n! is a fundamental mathematical identity."
+  },
+  {
+    "id": "STAB-080",
+    "query": "What is the current valuation of the S&P 500 index?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["sp500_market_index"],
+    "rationale": "Index points recalculate in real-time."
+  },
+  {
+    "id": "STAB-081",
+    "query": "How did the printing press invented by Johannes Gutenberg impact European literacy?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Mid-15th century historical event and its societal ramifications are settled historical facts."
+  },
+  {
+    "id": "STAB-082",
+    "query": "What is the normal resting heart rate range for healthy adults?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["human_cardiology_standards"],
+    "rationale": "60 to 100 beats per minute is standard clinical baseline physiology."
+  },
+  {
+    "id": "STAB-083",
+    "query": "What was the headline story on the New York Times front page today?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["daily_news_edition"],
+    "rationale": "News headlines change daily and intra-day."
+  },
+  {
+    "id": "STAB-084",
+    "query": "How do I create a symbolic link in Linux using the ln command?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["posix_filesystem"],
+    "rationale": "`ln -s target linkname` is an invariant POSIX standard command."
+  },
+  {
+    "id": "STAB-085",
+    "query": "What is the difference between a stack and a heap in memory management?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["computer_architecture"],
+    "rationale": "LIFO stack allocation vs dynamic heap allocation are fundamental computer architecture principles."
+  },
+  {
+    "id": "STAB-086",
+    "query": "What are the rules of consideration in English contract law?",
+    "domain": "legal_compliance",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["english_common_law"],
+    "rationale": "Consideration must move from promisee, must be sufficient but need not be adequate; established common law doctrines."
+  },
+  {
+    "id": "STAB-087",
+    "query": "What is the formula for the volume of a sphere of radius r?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "V = (4/3) * pi * r^3 is an invariant mathematical truth."
+  },
+  {
+    "id": "STAB-088",
+    "query": "What is the current discount rate set by the European Central Bank?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "EVENT_DRIVEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["ecb_monetary_policy"],
+    "rationale": "Adjusted periodically by the ECB Governing Council."
+  },
+  {
+    "id": "STAB-089",
+    "query": "When did the Roman Empire fall in the West?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "476 CE (deposition of Romulus Augustulus); standard historical milestone."
+  },
+  {
+    "id": "STAB-090",
+    "query": "What is the mechanism of action of penicillin on bacterial cell walls?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["pharmacology_biochemistry"],
+    "rationale": "Inhibition of bacterial transpeptidase enzymes preventing peptidoglycan cross-linking is an immutable biochemical mechanism."
+  },
+  {
+    "id": "STAB-091",
+    "query": "What is the latest score in the Premier League football match currently underway?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["live_sports_scoreboard"],
+    "rationale": "Live in-progress sporting match scores change instantaneously."
+  },
+  {
+    "id": "STAB-092",
+    "query": "How do I check system memory usage using the free command in Linux?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["procps_ng"],
+    "rationale": "`free -h` or `free -m` utility output parsing is standard across Linux environments."
+  },
+  {
+    "id": "STAB-093",
+    "query": "What is the difference between inner join, left join, and full outer join in SQL?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["relational_algebra_ansi_sql"],
+    "rationale": "Relational algebra set operations standardized in ANSI SQL (SQL-92)."
+  },
+  {
+    "id": "STAB-094",
+    "query": "What are the disclosure obligations under Rule 10b-5 of the US Securities Exchange Act?",
+    "domain": "legal_compliance",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["sec_regulations"],
+    "rationale": "Anti-fraud provisions and materiality standards under Section 10(b) and Rule 10b-5 are settled securities law."
+  },
+  {
+    "id": "STAB-095",
+    "query": "What is Bayes' theorem and what is the formula for posterior probability?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "P(A|B) = [P(B|A) * P(A)] / P(B) is a foundational mathematical probability theorem."
+  },
+  {
+    "id": "STAB-096",
+    "query": "What is the current price per ounce of physical gold on the London bullion market?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["lbma_gold_fix"],
+    "rationale": "Gold spot prices update continuously on world commodities exchanges."
+  },
+  {
+    "id": "STAB-097",
+    "query": "What is the deepest ocean trench on Earth and how deep is it?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Mariana Trench (Challenger Deep, ~10,994 meters) is invariant geographical bathymetry."
+  },
+  {
+    "id": "STAB-098",
+    "query": "What is the difference between active and passive transport in biological cell membranes?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "ATP-dependent against gradient vs diffusion/facilitated with gradient is fundamental cell biology."
+  },
+  {
+    "id": "STAB-099",
+    "query": "What is the five-day weather forecast for Chicago, Illinois?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["meteorological_models", "reference_date"],
+    "rationale": "Lacks the word 'today' or 'current', but 'five-day forecast' implicitly depends on the real-time execution date."
+  },
+  {
+    "id": "STAB-100",
+    "query": "How do I change file permissions in Linux to read-write-execute for owner and read-only for others?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["posix_chmod"],
+    "rationale": "`chmod 744 <filename>` or `chmod u=rwx,go=r <filename>` is standard POSIX permission management."
+  },
+  {
+    "id": "STAB-101",
+    "query": "What is the difference between symmetric multiprocessing (SMP) and asymmetric multiprocessing (AMP)?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Computer architecture classifications of CPU memory and kernel management are invariant."
+  },
+  {
+    "id": "STAB-102",
+    "query": "What are the statutory requirements for copyright protection under the Berne Convention?",
+    "domain": "legal_compliance",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["berne_convention_treaty"],
+    "rationale": "Automatic protection upon fixation without formalities is an international treaty standard."
+  },
+  {
+    "id": "STAB-103",
+    "query": "What is the central limit theorem in statistics?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Convergence of normalized sample means to a standard normal distribution is a proven statistical theorem."
+  },
+  {
+    "id": "STAB-104",
+    "query": "What is the current annual inflation rate in Germany according to Destatis?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["destatis_cpi_releases"],
+    "rationale": "National consumer price index statistics are published monthly."
+  },
+  {
+    "id": "STAB-105",
+    "query": "Who was the monarch of England during the Spanish Armada invasion in 1588?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Queen Elizabeth I; settled historical record."
+  },
+  {
+    "id": "STAB-106",
+    "query": "What is the mechanism of action of ACE inhibitors in reducing blood pressure?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["cardiovascular_pharmacology"],
+    "rationale": "Inhibition of angiotensin-converting enzyme preventing conversion of angiotensin I to II is established pharmacology."
+  },
+  {
+    "id": "STAB-107",
+    "query": "What earthquake activity was recorded in California in the last 24 hours?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["usgs_seismology_feed"],
+    "rationale": "USGS seismic telemetry updates in real-time."
+  },
+  {
+    "id": "STAB-108",
+    "query": "How do I check open TCP listening ports on Linux using ss command?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["iproute2_suite"],
+    "rationale": "`ss -tulpn` syntax in iproute2 has been the standard replacement for netstat for over a decade."
+  },
+  {
+    "id": "STAB-109",
+    "query": "What is the difference between optimistic and pessimistic locking in relational databases?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Version/timestamp validation vs exclusive lock acquisition are timeless database concurrency paradigms."
+  },
+  {
+    "id": "STAB-110",
+    "query": "What is the doctrine of stare decisis in common law legal systems?",
+    "domain": "legal_compliance",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["jurisprudence"],
+    "rationale": "The obligation of courts to adhere to precedent is a foundational legal doctrine dating back centuries."
+  },
+  {
+    "id": "STAB-111",
+    "query": "How do you calculate the eigenvalues and eigenvectors of a 2x2 matrix?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Solving det(A - lambda*I) = 0 is invariant linear algebra."
+  },
+  {
+    "id": "STAB-112",
+    "query": "What is the current price-to-earnings (P/E) ratio of the Vanguard S&P 500 ETF (VOO)?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["fund_portfolio_valuation"],
+    "rationale": "ETF weighted metrics shift daily with underlying holdings prices and earnings adjustments."
+  },
+  {
+    "id": "STAB-113",
+    "query": "What treaty ended the Thirty Years' War in Europe in 1648?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "The Peace of Westphalia (1648); historical fact."
+  },
+  {
+    "id": "STAB-114",
+    "query": "What are the four primary blood groups in the ABO human blood system?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "A, B, AB, and O antigens and antibodies; invariant human hematology."
+  },
+  {
+    "id": "STAB-115",
+    "query": "What is the latest disaster declaration issued by FEMA this week?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "EVENT_DRIVEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["fema_disaster_registry"],
+    "rationale": "Federal emergency and disaster declarations are event-driven real-time government actions."
+  },
+  {
+    "id": "STAB-116",
+    "query": "How do I create a systemd service unit file in Linux to run a background daemon?",
+    "domain": "system_operations",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["systemd_specification"],
+    "rationale": "Unit file structure ([Unit], [Service], [Install], ExecStart) has been standard across modern Linux distros."
+  },
+  {
+    "id": "STAB-117",
+    "query": "What is the difference between process and thread in operating systems?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Independent address space vs shared memory within a process is an invariant OS concept."
+  },
+  {
+    "id": "STAB-118",
+    "query": "What is the statute of frauds and what contracts does it typically cover?",
+    "domain": "legal_compliance",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["common_law_contracts"],
+    "rationale": "Requirement for written evidence in land sales, guarantees, marriage, and contracts over 1 year is standard contract doctrine."
+  },
+  {
+    "id": "STAB-119",
+    "query": "What is Euler's identity and why is it considered mathematically significant?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "e^(i*pi) + 1 = 0 is an immutable mathematical identity connecting five fundamental constants."
+  },
+  {
+    "id": "STAB-120",
+    "query": "What is the current market sentiment index (Fear & Greed Index) today?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["cnn_sentiment_tracker"],
+    "rationale": "Sentiment index updates daily based on volatility, momentum, and options volume."
+  },
+  {
+    "id": "STAB-121",
+    "query": "Which river is the longest in South America?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "The Amazon River; settled physical geography."
+  },
+  {
+    "id": "STAB-122",
+    "query": "How do beta blockers function in lowering heart rate and myocardial contractility?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["pharmacology"],
+    "rationale": "Competitive antagonism of beta-adrenergic receptors is standard pharmacology."
+  },
+  {
+    "id": "STAB-123",
+    "query": "What is the current UV index in Miami Beach right now?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["noaa_uv_radiation_sensor"],
+    "rationale": "UV radiation levels vary by hour and solar angle."
+  },
+  {
+    "id": "STAB-124",
+    "query": "How do I configure SSH key-based authentication on a remote Linux server?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["openssh"],
+    "rationale": "`ssh-copy-id` and `authorized_keys` mechanics have remained invariant in OpenSSH for over 20 years."
+  },
+  {
+    "id": "STAB-125",
+    "query": "What is the difference between pure functions and impure functions in functional programming?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Deterministic output given identical inputs and absence of observable side effects define functional purity."
+  },
+  {
+    "id": "STAB-126",
+    "query": "What is the legal standard of 'beyond a reasonable doubt' in criminal trials?",
+    "domain": "legal_compliance",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["criminal_procedure"],
+    "rationale": "Highest evidentiary standard in common law criminal jurisprudence."
+  },
+  {
+    "id": "STAB-127",
+    "query": "What is the fundamental theorem of algebra?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Every non-zero single-variable polynomial with complex coefficients has at least one complex root; timeless theorem."
+  },
+  {
+    "id": "STAB-128",
+    "query": "What is the current market price of one troy ounce of silver?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["commodities_exchange"],
+    "rationale": "Silver spot prices update continually during global trading sessions."
+  },
+  {
+    "id": "STAB-129",
+    "query": "In what year was the United Nations established in San Francisco?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "1945 (UN Charter signing); historical fact."
+  },
+  {
+    "id": "STAB-130",
+    "query": "How do vaccines stimulate adaptive immunity through antigen presentation?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["immunology"],
+    "rationale": "B-cell and T-cell activation, memory cell generation, and antibody production are invariant immunological mechanisms."
+  },
+  {
+    "id": "STAB-131",
+    "query": "Are there any tornado warnings currently active in Oklahoma County?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["noaa_nws_severe_weather_bulletin"],
+    "rationale": "Severe weather alerts expire within 30-60 minutes."
+  },
+  {
+    "id": "STAB-132",
+    "query": "How do I find all files larger than 100MB on a Linux filesystem using find?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["gnu_findutils"],
+    "rationale": "`find / -type f -size +100M` syntax has been stable in Unix/Linux find utilities for decades."
+  },
+  {
+    "id": "STAB-133",
+    "query": "What is the difference between concurrency and parallelism in computer systems?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Dealing with lots of things at once vs doing lots of things at once (Rob Pike's formulation) is invariant theoretical distinction."
+  },
+  {
+    "id": "STAB-134",
+    "query": "What constitutes fair use under 17 U.S.C. Section 107 of the US Copyright Act?",
+    "domain": "legal_compliance",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["us_copyright_statute"],
+    "rationale": "The four statutory factors (purpose/character, nature, amount/substantiality, market effect) are codified law."
+  },
+  {
+    "id": "STAB-135",
+    "query": "What is the formula for the roots of a quadratic equation ax^2 + bx + c = 0?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "x = (-b +- sqrt(b^2 - 4ac)) / (2a) is an eternal algebraic formula."
+  },
+  {
+    "id": "STAB-136",
+    "query": "What is the current market capital of NVIDIA (NVDA)?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["nasdaq_equities"],
+    "rationale": "Real-time market valuation."
+  },
+  {
+    "id": "STAB-137",
+    "query": "What mountain range separates Europe from Asia in Russia?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "The Ural Mountains; invariant physical geography."
+  },
+  {
+    "id": "STAB-138",
+    "query": "What is the function of hemoglobin in red blood cells?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Reversible oxygen transport from respiratory organs to tissues is invariant biological physiology."
+  },
+  {
+    "id": "STAB-139",
+    "query": "What is the current wildfire danger rating in Boulder County today?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["usda_fire_danger_index"],
+    "rationale": "Fire danger indices update daily with relative humidity and wind gusts."
+  },
+  {
+    "id": "STAB-140",
+    "query": "How do I create a compressed tar.gz archive from a directory in Linux?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["tar_utility"],
+    "rationale": "`tar -czvf archive.tar.gz /path/to/dir` is standard across all Unix systems."
+  },
+  {
+    "id": "STAB-141",
+    "query": "What is the difference between a mutex and a semaphore in synchronization?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Ownership semantics (mutex) vs signaling count (counting semaphore) are timeless synchronization primitives."
+  },
+  {
+    "id": "STAB-142",
+    "query": "What are the Miranda warnings required during custodial police interrogations in the US?",
+    "domain": "legal_compliance",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["miranda_v_arizona_precedent"],
+    "rationale": "Constitutional requirement under Miranda v. Arizona (1966); settled criminal procedure."
+  },
+  {
+    "id": "STAB-143",
+    "query": "What is the definition of a prime number and why is 1 not considered prime?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Definition requiring exactly two distinct positive divisors preserves the unique factorization theorem (Fundamental Theorem of Arithmetic)."
+  },
+  {
+    "id": "STAB-144",
+    "query": "What is the latest consumer sentiment index score published by the University of Michigan?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["umich_surveys_of_consumers"],
+    "rationale": "Monthly economic survey reports."
+  },
+  {
+    "id": "STAB-145",
+    "query": "What ancient civilization constructed the city of Machu Picchu in Peru?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "The Inca Empire (15th century); settled historical fact."
+  },
+  {
+    "id": "STAB-146",
+    "query": "What is the difference between Type 1 and Type 2 error in statistical hypothesis testing?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "False positive (rejecting true null) vs False negative (failing to reject false null) are invariant statistical definitions."
+  },
+  {
+    "id": "STAB-147",
+    "query": "What is the latest version of Node.js currently recommended for production (LTS)?",
+    "domain": "computer_science",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["nodejs_release_schedule"],
+    "rationale": "Node.js LTS schedule rotates every April/October; version answers become obsolete after releases."
+  },
+  {
+    "id": "STAB-148",
+    "query": "What is the current exchange rate between Canadian Dollar and US Dollar?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["forex_markets"],
+    "rationale": "Real-time CAD/USD currency exchange fluctuations."
+  },
+  {
+    "id": "STAB-149",
+    "query": "How does the DNS resolution process work from browser to authoritative nameserver?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["ietf_rfc1034_1035"],
+    "rationale": "Hierarchical DNS resolution (stub resolver, recursive resolver, root, TLD, authoritative server) is established internet architecture."
+  },
+  {
+    "id": "STAB-150",
+    "query": "What were the names of the Allied powers in World War II?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "United States, Great Britain, Soviet Union, France, China; invariant historical record."
+  },
+  {
+    "id": "STAB-151",
+    "query": "What are the symptoms of acute appendicitis and how is McBurney's point tenderness evaluated?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["clinical_anatomy_surgery"],
+    "rationale": "Right lower quadrant anatomical pain localization is standard clinical diagnostic surgery."
+  },
+  {
+    "id": "STAB-152",
+    "query": "What is the current price of Ethereum (ETH) on Binance?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["crypto_ticker_api"],
+    "rationale": "Cryptocurrency exchange spot prices change multiple times per second."
+  },
+  {
+    "id": "STAB-153",
+    "query": "How do I set up a cron job on a Linux server to run a Python script every night at midnight?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["vixie_cron"],
+    "rationale": "`0 0 * * * /usr/bin/python3 /path/to/script.py` in crontab is standard across all Unix systems."
+  },
+  {
+    "id": "STAB-154",
+    "query": "What is the difference between copyright, trademark, and patent protection?",
+    "domain": "legal_compliance",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["intellectual_property_framework"],
+    "rationale": "Distinction between expressive works, commercial brand identifiers, and novel inventions is invariant IP law."
+  },
+  {
+    "id": "STAB-155",
+    "query": "What is the value of Euler's number e to four decimal places?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "2.7182... is a mathematical constant."
+  },
+  {
+    "id": "STAB-156",
+    "query": "What is the current level of water in Lake Mead reservoir?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["usbr_hydrology_sensor"],
+    "rationale": "Reservoir water elevation measurements change daily based on Colorado River inflow and outflow."
+  },
+  {
+    "id": "STAB-157",
+    "query": "How does asymmetric RSA encryption use prime factorization for security?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["number_theory"],
+    "rationale": "Euler's totient function and the difficulty of factoring products of large primes form the invariant basis of RSA mathematics."
+  },
+  {
+    "id": "STAB-158",
+    "query": "What was the year of the Chernobyl nuclear disaster in Ukraine?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "April 26, 1986; historical fact."
+  },
+  {
+    "id": "STAB-159",
+    "query": "What are the stages of cellular mitosis in order?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Prophase, Metaphase, Anaphase, Telophase; invariant cell biology."
+  },
+  {
+    "id": "STAB-160",
+    "query": "What is the current price of crude palm oil per metric ton?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["bursa_malaysia_derivatives"],
+    "rationale": "Commodity agricultural futures price."
+  }
+]
