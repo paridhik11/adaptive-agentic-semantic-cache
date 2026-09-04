@@ -33,13 +33,42 @@ VALID_TAXONOMY_CLASSES = {
 
 
 def test_stability_benchmark_structure_and_counts():
-    """Verify stability benchmark exists, is valid JSON, meets count requirement, and conforms to schema."""
+    """Verify stability benchmark exists, is valid JSON, meets count requirement, and conforms to schema.
+
+    Accepts both the legacy bare-array format AND the Phase 1.1 B.1 metadata-wrapped format:
+      Bare array:    [ { "id": "STAB-001", ... }, ... ]
+      Wrapped:       { "dataset_role": "...", "metadata": {...}, "queries": [ ... ] }
+
+    The heldout and final_test datasets are NOT touched here; their format tests are separate.
+    """
     assert STABILITY_DATASET_PATH.exists(), f"Missing file: {STABILITY_DATASET_PATH}"
     
     with open(STABILITY_DATASET_PATH, "r", encoding="utf-8") as f:
-        data = json.load(f)
+        raw = json.load(f)
     
-    assert isinstance(data, list), "Stability dataset must be a JSON array"
+    # Normalise: support both bare array and metadata-wrapped object
+    if isinstance(raw, list):
+        data = raw
+        dataset_role = None
+    elif isinstance(raw, dict):
+        # Metadata-wrapped format introduced in Phase 1.1 Sub-stage B
+        assert "queries" in raw, (
+            "Metadata-wrapped stability dataset must contain a 'queries' key. "
+            f"Found keys: {list(raw.keys())}"
+        )
+        data = raw["queries"]
+        dataset_role = raw.get("dataset_role")
+        assert isinstance(data, list), "'queries' must be a JSON array"
+        # If dataset_role is present, it must be the canonical dev/diagnostic marker
+        if dataset_role is not None:
+            assert dataset_role == "development_diagnostic_do_not_use_as_final_eval", (
+                f"Unexpected dataset_role value: {dataset_role!r}"
+            )
+    else:
+        raise AssertionError(
+            f"Stability dataset must be a JSON array or metadata-wrapped object, got {type(raw).__name__}"
+        )
+    
     assert len(data) >= 150, f"Expected at least 150 queries, found {len(data)}"
     assert len(data) <= 200, f"Expected at most 200 queries, found {len(data)}"
     
@@ -213,3 +242,138 @@ def test_query_pair_reuse_benchmark_structure_and_counts():
     
     # Quality check: Dynamic/temporal cases represented
     assert temporal_count >= 3, f"Expected at least 3 temporal dynamic unsafe pairs, found {temporal_count}"
+
+
+def test_heldout_stability_benchmark_structure_and_counts():
+    """Verify held-out stability benchmark exists, is valid JSON, and conforms to schema."""
+    heldout_path = DATA_DIR / "query_stability_benchmark_heldout.json"
+    assert heldout_path.exists(), f"Missing file: {heldout_path}"
+
+    with open(heldout_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    assert isinstance(data, list), "Held-out dataset must be a JSON array"
+    assert len(data) >= 50, f"Expected at least 50 held-out queries, found {len(data)}"
+
+    seen_ids = set()
+    domain_counts = {}
+    label_counts = {}
+
+    for item in data:
+        required_keys = {
+            "id",
+            "query",
+            "domain",
+            "stability_label",
+            "temporal_sensitivity",
+            "has_explicit_temporal_marker",
+            "implicit_dependencies",
+            "rationale",
+        }
+        assert required_keys.issubset(item.keys()), f"Missing keys in {item.get('id')}"
+
+        item_id = item["id"]
+        assert item_id.startswith("STAB-"), f"Invalid ID format: {item_id}"
+        assert item_id not in seen_ids, f"Duplicate ID detected: {item_id}"
+        seen_ids.add(item_id)
+
+        assert isinstance(item["query"], str) and len(item["query"].strip()) >= 5
+        domain = item["domain"]
+        assert domain in VALID_DOMAINS, f"Invalid domain '{domain}' in {item_id}"
+        domain_counts[domain] = domain_counts.get(domain, 0) + 1
+
+        label = item["stability_label"]
+        assert label in VALID_STABILITY_LABELS, f"Invalid stability label '{label}' in {item_id}"
+        label_counts[label] = label_counts.get(label, 0) + 1
+
+        temp_sens = item["temporal_sensitivity"]
+        assert temp_sens in VALID_TEMPORAL_SENSITIVITY, f"Invalid temporal sensitivity in {item_id}"
+        assert isinstance(item["has_explicit_temporal_marker"], bool)
+        assert isinstance(item["implicit_dependencies"], list)
+        assert isinstance(item["rationale"], str) and len(item["rationale"].strip()) >= 10
+
+    # Ensure all domains represented
+    assert len(domain_counts) == len(VALID_DOMAINS), "All 8 domains must be represented in held-out dataset"
+    assert label_counts.get("STABLE", 0) >= 15
+    assert label_counts.get("DYNAMIC", 0) >= 15
+
+
+def test_final_test_stability_benchmark_structure_and_counts():
+    """Verify final test stability benchmark exists, is valid JSON, and conforms to schema."""
+    final_test_path = DATA_DIR / "query_stability_benchmark_final_test.json"
+    assert final_test_path.exists(), f"Missing file: {final_test_path}"
+
+    with open(final_test_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    assert isinstance(data, list), "Final test dataset must be a JSON array"
+    assert len(data) >= 50, f"Expected at least 50 final test queries, found {len(data)}"
+
+    seen_ids = set()
+    domain_counts = {}
+    label_counts = {}
+
+    for item in data:
+        required_keys = {
+            "id",
+            "query",
+            "domain",
+            "stability_label",
+            "temporal_sensitivity",
+            "has_explicit_temporal_marker",
+            "implicit_dependencies",
+            "rationale",
+        }
+        assert required_keys.issubset(item.keys()), f"Missing keys in {item.get('id')}"
+
+        item_id = item["id"]
+        assert item_id.startswith("STAB-"), f"Invalid ID format: {item_id}"
+        assert item_id not in seen_ids, f"Duplicate ID detected: {item_id}"
+        seen_ids.add(item_id)
+
+        assert isinstance(item["query"], str) and len(item["query"].strip()) >= 5
+        domain = item["domain"]
+        assert domain in VALID_DOMAINS, f"Invalid domain '{domain}' in {item_id}"
+        domain_counts[domain] = domain_counts.get(domain, 0) + 1
+
+        label = item["stability_label"]
+        assert label in VALID_STABILITY_LABELS, f"Invalid stability label '{label}' in {item_id}"
+        label_counts[label] = label_counts.get(label, 0) + 1
+
+        temp_sens = item["temporal_sensitivity"]
+        assert temp_sens in VALID_TEMPORAL_SENSITIVITY, f"Invalid temporal sensitivity in {item_id}"
+        assert isinstance(item["has_explicit_temporal_marker"], bool)
+        assert isinstance(item["implicit_dependencies"], list)
+        assert isinstance(item["rationale"], str) and len(item["rationale"].strip()) >= 10
+
+    # Ensure all domains represented
+    assert len(domain_counts) == len(VALID_DOMAINS), "All 8 domains must be represented in final test dataset"
+    assert label_counts.get("STABLE", 0) >= 15
+    assert label_counts.get("DYNAMIC", 0) >= 15
+
+
+def test_human_credibility_dataset_structure_and_counts():
+    """Verify human credibility audit dataset exists, is valid metadata-wrapped JSON, and conforms to expected structure."""
+    human_path = DATA_DIR / "query_stability_human_credibility.json"
+    assert human_path.exists(), f"Missing file: {human_path}"
+
+    with open(human_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    assert isinstance(data, dict), "Human credibility dataset must be a metadata-wrapped JSON object"
+    assert "metadata" in data, "Missing 'metadata' key in human credibility dataset"
+    assert "queries" in data, "Missing 'queries' key in human credibility dataset"
+    assert isinstance(data["queries"], list), "'queries' must be a list"
+    assert len(data["queries"]) >= 50, f"Expected at least 50 queries, found {len(data['queries'])}"
+
+    seen_ids = set()
+    for item in data["queries"]:
+        assert isinstance(item, dict)
+        assert "id" in item and item["id"].startswith("HUMAN-")
+        assert item["id"] not in seen_ids
+        seen_ids.add(item["id"])
+        assert "query" in item and isinstance(item["query"], str) and len(item["query"].strip()) >= 3
+        assert "expected_label" in item and item["expected_label"] in ("STABLE", "DYNAMIC", "CONDITIONALLY_STABLE")
+
+
+

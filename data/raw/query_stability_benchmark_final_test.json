@@ -1,0 +1,602 @@
+[
+  {
+    "id": "STAB-301",
+    "query": "Can you explain how solar cells generate electricity and what is the current weather forecast for Phoenix today?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["weather_forecast_feed"],
+    "rationale": "Mixed-intent query combining invariant photovoltaic physics with real-time local weather forecast."
+  },
+  {
+    "id": "STAB-302",
+    "query": "What is the historical origin of the S&P 500 and what is its current index level today?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["index_quote_feed"],
+    "rationale": "Mixed-intent query asking for invariant financial history alongside live equity index valuation."
+  },
+  {
+    "id": "STAB-303",
+    "query": "What is the Pythagorean theorem and how is it used to find the hypotenuse of a right triangle?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Classical mathematical geometric theorem invariant across all space and time."
+  },
+  {
+    "id": "STAB-304",
+    "query": "What is the time complexity of quicksort in the average and worst cases?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Mathematical asymptotic complexity of comparison-based quicksort algorithm."
+  },
+  {
+    "id": "STAB-305",
+    "query": "What is the current price of one share of Tesla (TSLA) on the NASDAQ exchange right now?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["nasdaq_market_feed"],
+    "rationale": "Real-time equity market ticker price fluctuating during trading sessions."
+  },
+  {
+    "id": "STAB-306",
+    "query": "Who was the first emperor of Rome and in what year did his reign begin?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Completed classical historical record (Augustus Caesar, 27 BC)."
+  },
+  {
+    "id": "STAB-307",
+    "query": "What is the legal doctrine of habeas corpus and what does it protect against in constitutional law?",
+    "domain": "legal_compliance",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Fundamental common law and constitutional doctrine protecting against unlawful detention."
+  },
+  {
+    "id": "STAB-308",
+    "query": "How does photosynthesis convert light energy into chemical energy in green plants?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Fundamental biological and biochemical process of oxygenic photosynthesis."
+  },
+  {
+    "id": "STAB-309",
+    "query": "ETH spot price",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["crypto_market_quote"],
+    "rationale": "Ultra-short cryptocurrency market price inquiry."
+  },
+  {
+    "id": "STAB-310",
+    "query": "How do I list all running Docker containers on Linux using the command line?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Standard Docker CLI syntax (docker ps)."
+  },
+  {
+    "id": "STAB-311",
+    "query": "What is the current traffic status on the Golden Gate Bridge heading north right now?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["caltrans_traffic_feed"],
+    "rationale": "Real-time vehicular transit flow and incident reports."
+  },
+  {
+    "id": "STAB-312",
+    "query": "What is the difference between synchronous and asynchronous programming in Python?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Fundamental software engineering concurrency paradigms."
+  },
+  {
+    "id": "STAB-313",
+    "query": "What was the capital of Japan before Tokyo became the imperial capital in 1868?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Historical capital succession record (Kyoto)."
+  },
+  {
+    "id": "STAB-314",
+    "query": "What is the current yield on the 10-year German Bund government bond today?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["sovereign_bond_feed"],
+    "rationale": "European sovereign debt trading yields fluctuating on debt markets."
+  },
+  {
+    "id": "STAB-315",
+    "query": "What are the stages of meiosis and how do they differ from mitosis?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Biological cellular reproduction mechanisms."
+  },
+  {
+    "id": "STAB-316",
+    "query": "What is the legal principle of res judicata in civil litigation?",
+    "domain": "legal_compliance",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Established civil procedure doctrine barring re-litigation of decided matters."
+  },
+  {
+    "id": "STAB-317",
+    "query": "What is the current score of the live tennis match in the Australian Open underway right now?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["sports_live_scoreboard"],
+    "rationale": "Live in-progress athletic match scoring."
+  },
+  {
+    "id": "STAB-318",
+    "query": "How does matrix multiplication work and what is the rule for matrix dimension compatibility?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Linear algebra operational definitions and inner dimension rules."
+  },
+  {
+    "id": "STAB-319",
+    "query": "What is the latest LTS version of Ubuntu Linux currently available for enterprise deployment?",
+    "domain": "system_operations",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["canonical_release_schedule"],
+    "rationale": "Operating system distribution rolling LTS release cycle."
+  },
+  {
+    "id": "STAB-320",
+    "query": "How do breadth-first search and depth-first search explore nodes in a graph?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Standard graph traversal algorithms using queue vs recursion/stack."
+  },
+  {
+    "id": "STAB-321",
+    "query": "What was the magnitude of the 1906 San Francisco earthquake?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Historical seismic geological event in 1906 (estimated ~7.9 magnitude)."
+  },
+  {
+    "id": "STAB-322",
+    "query": "What is the current spot exchange rate between Australian Dollar and US Dollar?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["forex_rates_feed"],
+    "rationale": "Foreign exchange currency trading rate."
+  },
+  {
+    "id": "STAB-323",
+    "query": "What are the diagnostic signs of acute myocardial infarction on a 12-lead ECG?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Standard clinical electrocardiographic interpretation (ST-elevation, pathological Q waves)."
+  },
+  {
+    "id": "STAB-324",
+    "query": "What are the statutory requirements for filing a provisional patent application in the United States?",
+    "domain": "legal_compliance",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["uspto_regulations", "35_usc_111b"],
+    "rationale": "Statutory requirements under federal patent law, stable across regulatory revisions."
+  },
+  {
+    "id": "STAB-325",
+    "query": "Are there any active tsunami advisories in the Pacific Ocean right now?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["noaa_tsunami_warning_center"],
+    "rationale": "Real-time oceanographic warning center emergency alerts."
+  },
+  {
+    "id": "STAB-326",
+    "query": "How does the TCP congestion control algorithm handle packet loss via slow start and congestion avoidance?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "RFC 5681 transport layer congestion control mechanics."
+  },
+  {
+    "id": "STAB-327",
+    "query": "What is the value of the universal gravitational constant G in SI units?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Fundamental physical constant (~6.67430 x 10^-11 m^3 kg^-1 s^-2)."
+  },
+  {
+    "id": "STAB-328",
+    "query": "What is the current commercial mortgage rate for prime office properties in London?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["commercial_lending_rates"],
+    "rationale": "Commercial debt market lending quotes fluctuating with base rate changes."
+  },
+  {
+    "id": "STAB-329",
+    "query": "What is the difference between a process ID (PID) and a parent process ID (PPID) in Unix systems?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "POSIX operating system process tree invariants."
+  },
+  {
+    "id": "STAB-330",
+    "query": "What is the current air quality index in Beijing right now?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["aqi_monitoring_feed"],
+    "rationale": "Continuous particulate matter telemetry."
+  },
+  {
+    "id": "STAB-331",
+    "query": "What was the main purpose of the Marshall Plan enacted by the United States in 1948?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Historical post-WWII economic recovery program in Europe."
+  },
+  {
+    "id": "STAB-332",
+    "query": "What is the formula for calculating standard deviation of a population dataset?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Statistical variance and square root formula invariant."
+  },
+  {
+    "id": "STAB-333",
+    "query": "What is the current version of the Go programming language toolchain available on golang.org?",
+    "domain": "computer_science",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["golang_release_feed"],
+    "rationale": "Software runtime compiler release track."
+  },
+  {
+    "id": "STAB-334",
+    "query": "What is the mechanism by which statins reduce low-density lipoprotein (LDL) cholesterol?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "HMG-CoA reductase competitive inhibition pathway."
+  },
+  {
+    "id": "STAB-335",
+    "query": "What is the current price per metric ton of copper on the London Metal Exchange (LME)?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["lme_commodity_quotes"],
+    "rationale": "Industrial base metal commodity spot quotes."
+  },
+  {
+    "id": "STAB-336",
+    "query": "What are the legal elements required to establish copyright infringement under US law?",
+    "domain": "legal_compliance",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Established intellectual property jurisprudence (valid ownership, copying of constituent elements)."
+  },
+  {
+    "id": "STAB-337",
+    "query": "What is the live flight status for Air France flight AF 006 from Paris to New York?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["flight_status_feed"],
+    "rationale": "Live aircraft flight transponder and schedule data."
+  },
+  {
+    "id": "STAB-338",
+    "query": "What was the capital of the Aztec Empire before the Spanish conquest in 1521?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Historical pre-Columbian city (Tenochtitlan)."
+  },
+  {
+    "id": "STAB-339",
+    "query": "How do I configure log rotation on Linux using logrotate.conf?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Standard Linux system utility configuration."
+  },
+  {
+    "id": "STAB-340",
+    "query": "What is the difference between shallow copy and deep copy in object-oriented programming?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Memory reference vs recursive object structure cloning principles."
+  },
+  {
+    "id": "STAB-341",
+    "query": "What is the current average price of a gallon of regular unleaded gasoline in Texas today?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["aaa_gas_price_survey"],
+    "rationale": "Retail petroleum consumer pricing."
+  },
+  {
+    "id": "STAB-342",
+    "query": "What are Kepler's three laws of planetary motion?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Astrophysical celestial mechanics laws invariant."
+  },
+  {
+    "id": "STAB-343",
+    "query": "What is the current status of the Tokyo subway Ginza line right now?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["tokyo_metro_transit_feed"],
+    "rationale": "Real-time municipal rail transit operations."
+  },
+  {
+    "id": "STAB-344",
+    "query": "What is the difference between permutation and combination in combinatorial mathematics?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Combinatorial definitions regarding order dependence."
+  },
+  {
+    "id": "STAB-345",
+    "query": "What was the date of the Apollo 13 lunar mission launch in 1970?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Fixed historical NASA space mission launch date (April 11, 1970)."
+  },
+  {
+    "id": "STAB-346",
+    "query": "What are the latest updates to the GitHub REST API rate limits for authenticated users?",
+    "domain": "computer_science",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["github_api_documentation"],
+    "rationale": "Cloud API infrastructure policies and rate quotas."
+  },
+  {
+    "id": "STAB-347",
+    "query": "What is the legal standard of strict liability in product liability lawsuits?",
+    "domain": "legal_compliance",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Established tort law doctrine imposing liability without proof of negligence."
+  },
+  {
+    "id": "STAB-348",
+    "query": "What is the current target federal funds rate range established by the FOMC?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["federal_reserve_policy"],
+    "rationale": "Monetary policy target rate range set during FOMC meetings."
+  },
+  {
+    "id": "STAB-349",
+    "query": "What is the function of the ribosome in cellular protein synthesis?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Molecular biology translation machinery invariant."
+  },
+  {
+    "id": "STAB-350",
+    "query": "What were the names of the signatories of the Treaty of Versailles in 1919?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Historical diplomatic treaty document in 1919."
+  },
+  {
+    "id": "STAB-351",
+    "query": "What is the current market price of one ounce of palladium today?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["precious_metals_quotes"],
+    "rationale": "Precious metals spot market trading quotes."
+  },
+  {
+    "id": "STAB-352",
+    "query": "How do I check TCP socket statistics on Linux using the ss -tuln command?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Standard iproute2 networking utility CLI usage."
+  },
+  {
+    "id": "STAB-353",
+    "query": "What is the five-day weather forecast for London, UK?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["met_office_forecast"],
+    "rationale": "Meteorological atmospheric forecasts."
+  },
+  {
+    "id": "STAB-354",
+    "query": "What is the difference between an abstract class and an interface in Java?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Core object-oriented language semantics."
+  },
+  {
+    "id": "STAB-355",
+    "query": "What is the formula for finding the volume of a sphere with radius r?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Geometric solid volume formula V = (4/3) * pi * r^3."
+  },
+  {
+    "id": "STAB-356",
+    "query": "What is the current discount rate for commercial lending set by the Swiss National Bank?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["snb_monetary_policy"],
+    "rationale": "Central bank policy rate benchmark."
+  },
+  {
+    "id": "STAB-357",
+    "query": "What is the difference between systolic and diastolic blood pressure?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Cardiovascular ventricular contraction vs filling pressure definitions."
+  },
+  {
+    "id": "STAB-358",
+    "query": "What was the year of the fall of the Western Roman Empire?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Historical antiquity milestone (476 AD)."
+  },
+  {
+    "id": "STAB-359",
+    "query": "Are there any active tornado watches in Kansas right now?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["noaa_storm_prediction_center"],
+    "rationale": "Severe convective weather storm alerts."
+  },
+  {
+    "id": "STAB-360",
+    "query": "What are the essential elements required to form a legally binding contract?",
+    "domain": "legal_compliance",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Contract law foundational requirements (offer, acceptance, consideration, intent, capacity)."
+  }
+]

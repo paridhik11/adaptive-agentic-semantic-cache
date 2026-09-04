@@ -11,7 +11,11 @@ from __future__ import annotations
 import time
 from typing import Optional
 
-from src.classifier.fallback import BaseFallbackClassifier, LightweightHeuristicClassifier
+from src.classifier.fallback import (
+    BaseFallbackClassifier,
+    LightweightHeuristicClassifier,
+    TrainedLexicalClassifier,
+)
 from src.classifier.models import (
     ClassificationSource,
     ConditionalRoutingPolicy,
@@ -80,11 +84,11 @@ class StabilityClassifier:
 
         Args:
             rule_engine: Optional custom rule engine. Defaults to StabilityRuleEngine.
-            fallback_classifier: Optional custom fallback classifier. Defaults to LightweightHeuristicClassifier.
+            fallback_classifier: Optional custom fallback classifier. Defaults to TrainedLexicalClassifier.
             conditional_policy: Routing policy for CONDITIONALLY_STABLE queries (FORWARD_TO_CACHE_CANDIDATE or CONSERVATIVE_BYPASS).
         """
         self.rule_engine = rule_engine or StabilityRuleEngine()
-        self.fallback_classifier = fallback_classifier or LightweightHeuristicClassifier()
+        self.fallback_classifier = fallback_classifier or TrainedLexicalClassifier()
         self.conditional_policy = conditional_policy
 
     def classify(self, query: str) -> StabilityResult:

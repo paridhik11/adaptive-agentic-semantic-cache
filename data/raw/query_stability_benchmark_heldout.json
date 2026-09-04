@@ -1,0 +1,602 @@
+[
+  {
+    "id": "STAB-201",
+    "query": "How much does a monthly Netflix standard subscription cost in the US?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["streaming_service_pricing", "regional_tier_plans"],
+    "rationale": "Implicit volatility: Subscription prices adjust periodically without explicit temporal keywords."
+  },
+  {
+    "id": "STAB-202",
+    "query": "Who is the starting quarterback for the Kansas City Chiefs?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["nfl_active_roster", "injury_status"],
+    "rationale": "Sports roster personnel changes across seasons, injuries, and trades without overt 'current' keyword."
+  },
+  {
+    "id": "STAB-203",
+    "query": "What is the newest iPhone model available from Apple?",
+    "domain": "computer_science",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["hardware_release_cycles"],
+    "rationale": "Hardware product lines rotate annually; 'newest' implies floating current product cycle."
+  },
+  {
+    "id": "STAB-204",
+    "query": "What was the population of Paris according to the 1900 French census?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Historical demographic census record permanently fixed in historical archives."
+  },
+  {
+    "id": "STAB-205",
+    "query": "Who was the president of the United States in 1865 during the end of the Civil War?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Historical presidency succession record (Lincoln / Andrew Johnson) is fixed."
+  },
+  {
+    "id": "STAB-206",
+    "query": "What was the average US inflation rate during the calendar year 1980?",
+    "domain": "finance_economics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Historical macroeconomic record for a closed calendar year."
+  },
+  {
+    "id": "STAB-207",
+    "query": "Which national soccer team won the 2018 FIFA World Cup in Russia?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Completed international sports tournament (France 2018) is invariant."
+  },
+  {
+    "id": "STAB-208",
+    "query": "BTC price",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["crypto_ticker", "spot_quote"],
+    "rationale": "Ultra-short financial query requesting live market price."
+  },
+  {
+    "id": "STAB-209",
+    "query": "TCP vs UDP",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Fundamental networking protocol comparison invariant over time."
+  },
+  {
+    "id": "STAB-210",
+    "query": "how much is 1 bitcoin worth rn",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["spot_exchange_feed"],
+    "rationale": "Informal shorthand ('rn' = right now) for real-time cryptocurrency valuation."
+  },
+  {
+    "id": "STAB-211",
+    "query": "weather in nyc atm",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["meteorological_station"],
+    "rationale": "Informal abbreviation ('atm' = at the moment) for immediate local weather."
+  },
+  {
+    "id": "STAB-212",
+    "query": "waht is the time complexiti of merge sort",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Noisy typo query asking for standard algorithmic complexity O(n log n)."
+  },
+  {
+    "id": "STAB-213",
+    "query": "Explain what Bitcoin is, how its proof of work functions, and what is its current price on Coinbase?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["crypto_spot_feed"],
+    "rationale": "Mixed-intent query combining stable conceptual explanation with dynamic real-time price request."
+  },
+  {
+    "id": "STAB-214",
+    "query": "What is the definition of gross domestic product and what was Japan's GDP in 1995?",
+    "domain": "finance_economics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Mixed-intent query combining economic definition with closed historical data point."
+  },
+  {
+    "id": "STAB-215",
+    "query": "How do I implement binary search tree insertion in C++?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Core data structure algorithmic implementation invariant."
+  },
+  {
+    "id": "STAB-216",
+    "query": "What is the capital of Canada and when was it chosen as capital?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Settled geographic and historical fact (Ottawa, 1857)."
+  },
+  {
+    "id": "STAB-217",
+    "query": "What are the latest visa appointment wait times for US B1/B2 tourist visas in New Delhi?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["consular_appointment_calendar"],
+    "rationale": "Consular interview wait times fluctuate weekly based on capacity and demand."
+  },
+  {
+    "id": "STAB-218",
+    "query": "What is the current state sales tax rate in California?",
+    "domain": "legal_compliance",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["state_tax_code", "legislative_sessions"],
+    "rationale": "Statutory state sales tax rate remains constant for fiscal years but adjusts via legislation."
+  },
+  {
+    "id": "STAB-219",
+    "query": "How does the human heart conduct electrical signals through the SA node and AV node?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Human cardiac physiological conduction mechanism is invariant."
+  },
+  {
+    "id": "STAB-220",
+    "query": "What is the current air quality index in downtown Seattle right now?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["epa_airnow_feed"],
+    "rationale": "Environmental sensor readings update continuously throughout the day."
+  },
+  {
+    "id": "STAB-221",
+    "query": "What is the mathematical proof that the square root of 2 is irrational?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Classical mathematical proof by contradiction established in antiquity."
+  },
+  {
+    "id": "STAB-222",
+    "query": "What is the current yield on 30-year US Treasury Bonds today?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["bond_market_quotes"],
+    "rationale": "Sovereign bond secondary market trading yields update by the minute."
+  },
+  {
+    "id": "STAB-223",
+    "query": "How do I configure route grouping in FastAPI using APIRouter?",
+    "domain": "computer_science",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["fastapi_version", "python_framework_api"],
+    "rationale": "Standard web framework API pattern stable across major framework versions."
+  },
+  {
+    "id": "STAB-224",
+    "query": "What was the outcome of the Battle of Waterloo in 1815?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Definitive historical military outcome (defeat of Napoleon) in 1815."
+  },
+  {
+    "id": "STAB-225",
+    "query": "What are the first 10 digits of Pi?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Mathematical constant digits (3.1415926535) are invariant."
+  },
+  {
+    "id": "STAB-226",
+    "query": "What is the live flight status for Delta flight DL 88 from Atlanta to Paris?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["flightaware_feed", "radar_track"],
+    "rationale": "Commercial aviation flight schedule and live transponder position."
+  },
+  {
+    "id": "STAB-227",
+    "query": "What is the difference between TCP three-way handshake and TLS 1.3 handshake?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "RFC protocol specifications comparing transport and cryptographic layer handshakes."
+  },
+  {
+    "id": "STAB-228",
+    "query": "How many ounces are in one US liquid gallon?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Standard unit conversion invariant (128 fluid ounces)."
+  },
+  {
+    "id": "STAB-229",
+    "query": "What are the current emergency room wait times at Massachusetts General Hospital?",
+    "domain": "science_medicine",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["hospital_triage_feed"],
+    "rationale": "Hospital clinical triage queue fluctuates minute to minute."
+  },
+  {
+    "id": "STAB-230",
+    "query": "What is the primary mechanism of action of metformin in type 2 diabetes management?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Pharmacological mechanism (inhibition of hepatic gluconeogenesis via AMPK) is established."
+  },
+  {
+    "id": "STAB-231",
+    "query": "What is the current exchange rate from British Pounds (GBP) to Swiss Francs (CHF)?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["forex_spot_feed"],
+    "rationale": "Foreign exchange currency trading rate fluctuating continuously."
+  },
+  {
+    "id": "STAB-232",
+    "query": "How does git rebase differ from git merge conceptually?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Version control foundational concepts and commit DAG algebra."
+  },
+  {
+    "id": "STAB-233",
+    "query": "What is the statutory corporate tax rate under the US Internal Revenue Code for C-corporations?",
+    "domain": "legal_compliance",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["federal_tax_statutes"],
+    "rationale": "Statutory 21% rate enacted under TCJA; stable across tax years until federal tax reform."
+  },
+  {
+    "id": "STAB-234",
+    "query": "What are the latest road closures on Interstate 80 in Wyoming due to snow?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["dot_traffic_feed", "winter_advisories"],
+    "rationale": "Highway condition and weather road closures update continuously during winter storms."
+  },
+  {
+    "id": "STAB-235",
+    "query": "What is the half-life of Carbon-14 and how is it used in radiocarbon dating?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Physical nuclear decay constant (~5730 years) is an invariant law of nature."
+  },
+  {
+    "id": "STAB-236",
+    "query": "What are the trending hashtags on TikTok worldwide right now?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["social_trend_analytics"],
+    "rationale": "Social media engagement algorithms shift hourly."
+  },
+  {
+    "id": "STAB-237",
+    "query": "How does Dijkstra's algorithm find the shortest path in a graph with non-negative edge weights?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Standard graph theory algorithm with invariant mathematical proof of correctness."
+  },
+  {
+    "id": "STAB-238",
+    "query": "What is the current price per gallon of diesel fuel in Germany in Euros?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["fuel_retail_index"],
+    "rationale": "Retail energy prices update daily across gas station networks."
+  },
+  {
+    "id": "STAB-239",
+    "query": "Who holds the men's 100m world sprint record and what was the record time set in 2009?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Historical athletics world record event (Usain Bolt 9.58s in Berlin 2009)."
+  },
+  {
+    "id": "STAB-240",
+    "query": "How do I check active disk space utilization using df -h in Linux?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Standard POSIX command line utility usage."
+  },
+  {
+    "id": "STAB-241",
+    "query": "What is the latest mortgage refinance index reported by the Mortgage Bankers Association this week?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["mba_weekly_survey"],
+    "rationale": "Weekly cyclical macroeconomic industry survey release."
+  },
+  {
+    "id": "STAB-242",
+    "query": "What is the Doppler effect and what is the mathematical formula for observed frequency?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Classical wave mechanics physics invariant."
+  },
+  {
+    "id": "STAB-243",
+    "query": "What are the requirements for HIPAA compliance regarding electronic Protected Health Information (ePHI)?",
+    "domain": "legal_compliance",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["hhs_security_rules"],
+    "rationale": "Federal statutory privacy and security rules stable over multi-year regulatory cycles."
+  },
+  {
+    "id": "STAB-244",
+    "query": "What is the current valuation of the NASDAQ 100 index today?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["nasdaq_market_index"],
+    "rationale": "Securities equity index market pricing changes continuously."
+  },
+  {
+    "id": "STAB-245",
+    "query": "What was the treaty that established the European Coal and Steel Community in 1951?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Historical diplomatic treaty (Treaty of Paris, 1951) is fixed."
+  },
+  {
+    "id": "STAB-246",
+    "query": "How does garbage collection work in the V8 JavaScript engine?",
+    "domain": "computer_science",
+    "stability_label": "CONDITIONALLY_STABLE",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": ["v8_runtime_architecture"],
+    "rationale": "Generational garbage collection (Scavenger / Major MC) architecture in V8."
+  },
+  {
+    "id": "STAB-247",
+    "query": "What is the current seismic magnitude of earthquakes reported in Japan in the past 24 hours?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["jma_seismic_feed"],
+    "rationale": "Real-time geological sensor telemetry."
+  },
+  {
+    "id": "STAB-248",
+    "query": "What is the difference between supervised, unsupervised, and reinforcement learning in machine learning?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Fundamental foundational taxonomies of artificial intelligence paradigms."
+  },
+  {
+    "id": "STAB-249",
+    "query": "What is the current discount rate for commercial banks borrowing from the Bank of England?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["boe_bank_rate"],
+    "rationale": "Monetary policy interest benchmark adjusted periodically by the MPC."
+  },
+  {
+    "id": "STAB-250",
+    "query": "How many chromosomes are present in a typical diploid human somatic cell?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Human biological genetics constant (46 chromosomes / 23 pairs)."
+  },
+  {
+    "id": "STAB-251",
+    "query": "What is the latest active travel advisory level issued by the US State Department for France today?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["state_dept_advisories"],
+    "rationale": "International geopolitical travel advisories update based on current security assessments."
+  },
+  {
+    "id": "STAB-252",
+    "query": "How do I inspect system logs on systemd-based Linux systems using journalctl?",
+    "domain": "system_operations",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Standard Linux sysadmin CLI logging commands."
+  },
+  {
+    "id": "STAB-253",
+    "query": "What were the names of the three ships on Christopher Columbus's first voyage in 1492?",
+    "domain": "history_geography",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [],
+    "rationale": "Historical maritime expedition record (Niña, Pinta, Santa María)."
+  },
+  {
+    "id": "STAB-254",
+    "query": "What is the current price of one gram of platinum in London?",
+    "domain": "finance_economics",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["precious_metals_quotes"],
+    "rationale": "Precious metals spot commodity market trading."
+  },
+  {
+    "id": "STAB-255",
+    "query": "What is the law of conservation of energy and how is it expressed in thermodynamics?",
+    "domain": "science_medicine",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "First law of thermodynamics physical invariance."
+  },
+  {
+    "id": "STAB-256",
+    "query": "What is the current queue length for the Panama Canal vessel transit right now?",
+    "domain": "realtime_news_weather",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "FAST_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["maritime_transit_queue"],
+    "rationale": "Maritime canal congestion and draft restrictions change daily."
+  },
+  {
+    "id": "STAB-257",
+    "query": "What is the difference between a stack and a queue data structure?",
+    "domain": "computer_science",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "LIFO vs FIFO computer science theoretical fundamentals."
+  },
+  {
+    "id": "STAB-258",
+    "query": "What is the definition of negligence in tort law?",
+    "domain": "legal_compliance",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Foundational common law tort doctrine elements (duty, breach, causation, damages)."
+  },
+  {
+    "id": "STAB-259",
+    "query": "What is the latest version of Kubernetes recommended for stable cluster deployments?",
+    "domain": "computer_science",
+    "stability_label": "DYNAMIC",
+    "temporal_sensitivity": "SLOW_DECAY",
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": ["k8s_release_cadence"],
+    "rationale": "Container orchestration version recommended for production rolls three times a year."
+  },
+  {
+    "id": "STAB-260",
+    "query": "What is the formula for calculating compound interest on a principal amount?",
+    "domain": "mathematics",
+    "stability_label": "STABLE",
+    "temporal_sensitivity": "EVERGREEN",
+    "has_explicit_temporal_marker": false,
+    "implicit_dependencies": [],
+    "rationale": "Mathematical financial equation A = P(1 + r/n)^(nt) invariant."
+  }
+]

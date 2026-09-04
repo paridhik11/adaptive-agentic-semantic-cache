@@ -1,0 +1,611 @@
+{
+    "dataset_role": "development_diagnostic_do_not_use_as_final_eval",
+    "metadata": {
+        "name": "Human Credibility Stability Audit",
+        "version": "1.0",
+        "purpose": "Independent human-style adversarial audit of the frozen Phase 1 stability classifier. This dataset must not be used for classifier tuning before evaluation.",
+        "phase_1_1_note": "Re-designated as DEV/DIAGNOSTIC in Phase 1.1 Sub-stage B. Both datasets (160-query benchmark + this 85-query audit) are now permanently development/diagnostic sets and must not be treated as held-out evaluation sources.",
+        "labels": [
+            "STABLE",
+            "DYNAMIC"
+        ],
+        "routing_principle": "When ambiguity could lead to stale real-world information being served from cache, prefer DYNAMIC as a conservative bypass."
+    },
+    "queries": [
+        {
+            "id": "HUMAN-001",
+            "query": "What is recursion?",
+            "expected_label": "STABLE",
+            "category": "evergreen_concept",
+            "reason": "Computer science concept with no time-sensitive state."
+        },
+        {
+            "id": "HUMAN-002",
+            "query": "Explain how a hash table works",
+            "expected_label": "STABLE",
+            "category": "evergreen_concept",
+            "reason": "General conceptual knowledge."
+        },
+        {
+            "id": "HUMAN-003",
+            "query": "What is the difference between TCP and UDP?",
+            "expected_label": "STABLE",
+            "category": "evergreen_concept",
+            "reason": "Stable networking concept."
+        },
+        {
+            "id": "HUMAN-004",
+            "query": "How does binary search work?",
+            "expected_label": "STABLE",
+            "category": "algorithm",
+            "reason": "Evergreen algorithmic knowledge."
+        },
+        {
+            "id": "HUMAN-005",
+            "query": "What is an AVL tree?",
+            "expected_label": "STABLE",
+            "category": "algorithm",
+            "reason": "Stable computer science concept."
+        },
+        {
+            "id": "HUMAN-006",
+            "query": "Why is Python considered easy to learn?",
+            "expected_label": "STABLE",
+            "category": "general_explanation",
+            "reason": "General explanatory question without real-time dependency."
+        },
+        {
+            "id": "HUMAN-007",
+            "query": "What is Big O notation?",
+            "expected_label": "STABLE",
+            "category": "algorithm",
+            "reason": "Evergreen theoretical concept."
+        },
+        {
+            "id": "HUMAN-008",
+            "query": "How does a compiler work?",
+            "expected_label": "STABLE",
+            "category": "evergreen_concept",
+            "reason": "General conceptual knowledge."
+        },
+        {
+            "id": "HUMAN-009",
+            "query": "What causes earthquakes?",
+            "expected_label": "STABLE",
+            "category": "science",
+            "reason": "Scientific explanation."
+        },
+        {
+            "id": "HUMAN-010",
+            "query": "Why is the sky blue?",
+            "expected_label": "STABLE",
+            "category": "science",
+            "reason": "Stable scientific explanation."
+        },
+        {
+            "id": "HUMAN-011",
+            "query": "When did World War II end?",
+            "expected_label": "STABLE",
+            "category": "historical_fact",
+            "reason": "Completed historical event."
+        },
+        {
+            "id": "HUMAN-012",
+            "query": "What happened in India on 15 August 1947?",
+            "expected_label": "STABLE",
+            "category": "historical_fact",
+            "reason": "Explicit historical date."
+        },
+        {
+            "id": "HUMAN-013",
+            "query": "Who was the first person to walk on the Moon?",
+            "expected_label": "STABLE",
+            "category": "historical_fact",
+            "reason": "Completed historical event."
+        },
+        {
+            "id": "HUMAN-014",
+            "query": "Why did the Roman Empire fall?",
+            "expected_label": "STABLE",
+            "category": "history",
+            "reason": "Historical analysis."
+        },
+        {
+            "id": "HUMAN-015",
+            "query": "What caused the Great Depression of 1929?",
+            "expected_label": "STABLE",
+            "category": "historical_fact",
+            "reason": "Explicit historical context."
+        },
+        {
+            "id": "HUMAN-016",
+            "query": "Who won the FIFA World Cup in 2014?",
+            "expected_label": "STABLE",
+            "category": "historical_fact",
+            "reason": "Completed event with explicit past year."
+        },
+        {
+            "id": "HUMAN-017",
+            "query": "What happened during the French Revolution?",
+            "expected_label": "STABLE",
+            "category": "history",
+            "reason": "Historical event."
+        },
+        {
+            "id": "HUMAN-018",
+            "query": "When was the Constitution of India adopted?",
+            "expected_label": "STABLE",
+            "category": "historical_fact",
+            "reason": "Historical fact."
+        },
+        {
+            "id": "HUMAN-019",
+            "query": "What is the weather in Delhi today?",
+            "expected_label": "DYNAMIC",
+            "category": "realtime_weather",
+            "reason": "Explicit current temporal request."
+        },
+        {
+            "id": "HUMAN-020",
+            "query": "Is it raining outside right now?",
+            "expected_label": "DYNAMIC",
+            "category": "realtime_weather",
+            "reason": "Real-time environmental state."
+        },
+        {
+            "id": "HUMAN-021",
+            "query": "What is Bitcoin trading at?",
+            "expected_label": "DYNAMIC",
+            "category": "financial_market",
+            "reason": "Current market price."
+        },
+        {
+            "id": "HUMAN-022",
+            "query": "What is the current price of gold?",
+            "expected_label": "DYNAMIC",
+            "category": "financial_market",
+            "reason": "Explicit current market state."
+        },
+        {
+            "id": "HUMAN-023",
+            "query": "Who won today's cricket match?",
+            "expected_label": "DYNAMIC",
+            "category": "live_sports",
+            "reason": "Today's event."
+        },
+        {
+            "id": "HUMAN-024",
+            "query": "What are the latest news headlines?",
+            "expected_label": "DYNAMIC",
+            "category": "news",
+            "reason": "Explicit latest information."
+        },
+        {
+            "id": "HUMAN-025",
+            "query": "What is the current USD to INR exchange rate?",
+            "expected_label": "DYNAMIC",
+            "category": "financial_market",
+            "reason": "Real-time exchange rate."
+        },
+        {
+            "id": "HUMAN-026",
+            "query": "Is the stock market open right now?",
+            "expected_label": "DYNAMIC",
+            "category": "realtime_state",
+            "reason": "Current market state."
+        },
+        {
+            "id": "HUMAN-027",
+            "query": "What time is it in New York?",
+            "expected_label": "DYNAMIC",
+            "category": "realtime_state",
+            "reason": "Current time."
+        },
+        {
+            "id": "HUMAN-028",
+            "query": "What is Apple's stock price today?",
+            "expected_label": "DYNAMIC",
+            "category": "financial_market",
+            "reason": "Today's stock price."
+        },
+        {
+            "id": "HUMAN-029",
+            "query": "Python version",
+            "expected_label": "DYNAMIC",
+            "category": "ambiguous_version",
+            "reason": "Ambiguous shorthand likely requesting currently relevant version information; conservative bypass."
+        },
+        {
+            "id": "HUMAN-030",
+            "query": "Latest Python version",
+            "expected_label": "DYNAMIC",
+            "category": "software_version",
+            "reason": "Explicit latest version request."
+        },
+        {
+            "id": "HUMAN-031",
+            "query": "Python syntax",
+            "expected_label": "STABLE",
+            "category": "evergreen_concept",
+            "reason": "Generic language syntax request without version qualifier."
+        },
+        {
+            "id": "HUMAN-032",
+            "query": "Has Python changed recently?",
+            "expected_label": "DYNAMIC",
+            "category": "software_change",
+            "reason": "Explicit recent temporal dependency."
+        },
+        {
+            "id": "HUMAN-033",
+            "query": "MacBook price",
+            "expected_label": "DYNAMIC",
+            "category": "product_pricing",
+            "reason": "Pricing is time-sensitive."
+        },
+        {
+            "id": "HUMAN-034",
+            "query": "Why are MacBooks expensive?",
+            "expected_label": "STABLE",
+            "category": "general_explanation",
+            "reason": "General explanatory question rather than a request for current pricing."
+        },
+        {
+            "id": "HUMAN-035",
+            "query": "Why did MacBook prices increase?",
+            "expected_label": "DYNAMIC",
+            "category": "implicit_volatility",
+            "reason": "Unspecified pricing change is temporally ambiguous; conservative bypass."
+        },
+        {
+            "id": "HUMAN-036",
+            "query": "How much does the newest MacBook cost?",
+            "expected_label": "DYNAMIC",
+            "category": "product_pricing",
+            "reason": "Newest product and current price are volatile."
+        },
+        {
+            "id": "HUMAN-037",
+            "query": "India population",
+            "expected_label": "DYNAMIC",
+            "category": "ambiguous_statistic",
+            "reason": "Generic population query normally implies current population."
+        },
+        {
+            "id": "HUMAN-038",
+            "query": "What is the population of India now?",
+            "expected_label": "DYNAMIC",
+            "category": "current_statistic",
+            "reason": "Explicit current statistic."
+        },
+        {
+            "id": "HUMAN-039",
+            "query": "How many people live in India?",
+            "expected_label": "DYNAMIC",
+            "category": "current_statistic",
+            "reason": "Without historical date, likely requests current population."
+        },
+        {
+            "id": "HUMAN-040",
+            "query": "What was India's population in 2011?",
+            "expected_label": "STABLE",
+            "category": "historical_statistic",
+            "reason": "Explicit historical timeframe."
+        },
+        {
+            "id": "HUMAN-041",
+            "query": "Weather",
+            "expected_label": "DYNAMIC",
+            "category": "ambiguous_realtime",
+            "reason": "Realistic shorthand likely requesting current conditions."
+        },
+        {
+            "id": "HUMAN-042",
+            "query": "Delhi weather",
+            "expected_label": "DYNAMIC",
+            "category": "realtime_weather",
+            "reason": "Likely current weather request."
+        },
+        {
+            "id": "HUMAN-043",
+            "query": "Why does weather change?",
+            "expected_label": "STABLE",
+            "category": "science",
+            "reason": "Scientific explanation."
+        },
+        {
+            "id": "HUMAN-044",
+            "query": "What causes rain?",
+            "expected_label": "STABLE",
+            "category": "science",
+            "reason": "Scientific explanation."
+        },
+        {
+            "id": "HUMAN-045",
+            "query": "Bitcoin",
+            "expected_label": "STABLE",
+            "category": "ambiguous_entity",
+            "reason": "Single entity term is ambiguous but does not inherently request current state."
+        },
+        {
+            "id": "HUMAN-046",
+            "query": "What is Bitcoin?",
+            "expected_label": "STABLE",
+            "category": "evergreen_concept",
+            "reason": "Conceptual explanation."
+        },
+        {
+            "id": "HUMAN-047",
+            "query": "BTC price",
+            "expected_label": "DYNAMIC",
+            "category": "financial_shorthand",
+            "reason": "Current market price implied by shorthand."
+        },
+        {
+            "id": "HUMAN-048",
+            "query": "Why did Bitcoin fall?",
+            "expected_label": "DYNAMIC",
+            "category": "implicit_volatility",
+            "reason": "Unspecified market movement is temporally ambiguous."
+        },
+        {
+            "id": "HUMAN-049",
+            "query": "Why did Bitcoin crash in 2022?",
+            "expected_label": "STABLE",
+            "category": "historical_market_event",
+            "reason": "Explicit completed historical event."
+        },
+        {
+            "id": "HUMAN-050",
+            "query": "Explain binary search and tell me today's weather",
+            "expected_label": "DYNAMIC",
+            "category": "mixed_intent",
+            "reason": "Any dynamic sub-request makes whole-query cache reuse unsafe."
+        },
+        {
+            "id": "HUMAN-051",
+            "query": "What is Bitcoin and what is its price right now?",
+            "expected_label": "DYNAMIC",
+            "category": "mixed_intent",
+            "reason": "Contains real-time price request."
+        },
+        {
+            "id": "HUMAN-052",
+            "query": "Explain the history of Apple and tell me its current stock price",
+            "expected_label": "DYNAMIC",
+            "category": "mixed_intent",
+            "reason": "Contains current financial state."
+        },
+        {
+            "id": "HUMAN-053",
+            "query": "What is an AVL tree and who won today's match?",
+            "expected_label": "DYNAMIC",
+            "category": "mixed_intent",
+            "reason": "Contains today's sports result."
+        },
+        {
+            "id": "HUMAN-054",
+            "query": "Explain inflation and tell me the current inflation rate in India",
+            "expected_label": "DYNAMIC",
+            "category": "mixed_intent",
+            "reason": "Contains current economic statistic."
+        },
+        {
+            "id": "HUMAN-055",
+            "query": "What caused the 2008 financial crisis and what is the market doing today?",
+            "expected_label": "DYNAMIC",
+            "category": "mixed_intent",
+            "reason": "Contains current market state."
+        },
+        {
+            "id": "HUMAN-056",
+            "query": "What is Python and what is the latest version?",
+            "expected_label": "DYNAMIC",
+            "category": "mixed_intent",
+            "reason": "Contains latest-version request."
+        },
+        {
+            "id": "HUMAN-057",
+            "query": "Explain how elections work and who is currently the president of the United States?",
+            "expected_label": "DYNAMIC",
+            "category": "mixed_intent",
+            "reason": "Contains current political role."
+        },
+        {
+            "id": "HUMAN-058",
+            "query": "Apple price",
+            "expected_label": "DYNAMIC",
+            "category": "ambiguous_financial",
+            "reason": "Could refer to stock or product pricing; ambiguity with financial state requires conservative bypass."
+        },
+        {
+            "id": "HUMAN-059",
+            "query": "Amazon price",
+            "expected_label": "DYNAMIC",
+            "category": "ambiguous_financial",
+            "reason": "Could refer to stock or product pricing; conservative bypass."
+        },
+        {
+            "id": "HUMAN-060",
+            "query": "Tesla value",
+            "expected_label": "DYNAMIC",
+            "category": "ambiguous_financial",
+            "reason": "Likely current company valuation or stock value."
+        },
+        {
+            "id": "HUMAN-061",
+            "query": "Netflix subscription",
+            "expected_label": "DYNAMIC",
+            "category": "subscription_pricing",
+            "reason": "Plans and pricing can change."
+        },
+        {
+            "id": "HUMAN-062",
+            "query": "ChatGPT price",
+            "expected_label": "DYNAMIC",
+            "category": "product_pricing",
+            "reason": "Current product pricing."
+        },
+        {
+            "id": "HUMAN-063",
+            "query": "iPhone",
+            "expected_label": "STABLE",
+            "category": "ambiguous_entity",
+            "reason": "Entity-only query contains no explicit temporal request."
+        },
+        {
+            "id": "HUMAN-064",
+            "query": "Best laptop",
+            "expected_label": "DYNAMIC",
+            "category": "recommendation",
+            "reason": "Recommendations depend on changing products, prices, and availability."
+        },
+        {
+            "id": "HUMAN-065",
+            "query": "Best programming language",
+            "expected_label": "CONDITIONALLY_STABLE",
+            "category": "recommendation",
+            "reason": "Recommendation depends on user context and changing ecosystem trends; policy-dependent routing."
+        },
+        {
+            "id": "HUMAN-066",
+            "query": "Who is the president?",
+            "expected_label": "DYNAMIC",
+            "category": "current_role",
+            "reason": "Current office holder implied."
+        },
+        {
+            "id": "HUMAN-067",
+            "query": "Prime Minister of India",
+            "expected_label": "DYNAMIC",
+            "category": "current_role",
+            "reason": "Generic role query normally implies current office holder."
+        },
+        {
+            "id": "HUMAN-068",
+            "query": "CEO of Google",
+            "expected_label": "DYNAMIC",
+            "category": "current_role",
+            "reason": "Executive role can change."
+        },
+        {
+            "id": "HUMAN-069",
+            "query": "OpenAI CEO",
+            "expected_label": "DYNAMIC",
+            "category": "current_role",
+            "reason": "Executive role can change."
+        },
+        {
+            "id": "HUMAN-070",
+            "query": "Who was the president of the US in 2000?",
+            "expected_label": "STABLE",
+            "category": "historical_role",
+            "reason": "Explicit historical timeframe."
+        },
+        {
+            "id": "HUMAN-071",
+            "query": "Who is the president of the US?",
+            "expected_label": "DYNAMIC",
+            "category": "current_role",
+            "reason": "Current office holder."
+        },
+        {
+            "id": "HUMAN-072",
+            "query": "What was Apple's stock price in 2010?",
+            "expected_label": "STABLE",
+            "category": "historical_market_data",
+            "reason": "Explicit historical market value."
+        },
+        {
+            "id": "HUMAN-073",
+            "query": "What is Apple's stock price?",
+            "expected_label": "DYNAMIC",
+            "category": "financial_market",
+            "reason": "Current market price implied."
+        },
+        {
+            "id": "HUMAN-074",
+            "query": "What was the weather in Delhi yesterday?",
+            "expected_label": "DYNAMIC",
+            "category": "recent_temporal",
+            "reason": "Relative date changes over time and should not be reused without date resolution."
+        },
+        {
+            "id": "HUMAN-075",
+            "query": "What will the weather be tomorrow?",
+            "expected_label": "DYNAMIC",
+            "category": "forecast",
+            "reason": "Future forecast is time-sensitive."
+        },
+        {
+            "id": "HUMAN-076",
+            "query": "What happened in the stock market in 2008?",
+            "expected_label": "STABLE",
+            "category": "historical_market_event",
+            "reason": "Explicit historical timeframe."
+        },
+        {
+            "id": "HUMAN-077",
+            "query": "What happened in the stock market today?",
+            "expected_label": "DYNAMIC",
+            "category": "financial_market",
+            "reason": "Explicit current timeframe."
+        },
+        {
+            "id": "HUMAN-078",
+            "query": "wat is btc price rn",
+            "expected_label": "DYNAMIC",
+            "category": "typo_shorthand",
+            "reason": "Informal shorthand for current Bitcoin price."
+        },
+        {
+            "id": "HUMAN-079",
+            "query": "whats happening in news atm",
+            "expected_label": "DYNAMIC",
+            "category": "typo_shorthand",
+            "reason": "ATM implies current information."
+        },
+        {
+            "id": "HUMAN-080",
+            "query": "delhi weather tdy",
+            "expected_label": "DYNAMIC",
+            "category": "typo_shorthand",
+            "reason": "TDY implies today."
+        },
+        {
+            "id": "HUMAN-081",
+            "query": "latest iphone??",
+            "expected_label": "DYNAMIC",
+            "category": "product_release",
+            "reason": "Latest product state changes."
+        },
+        {
+            "id": "HUMAN-082",
+            "query": "whos president rn",
+            "expected_label": "DYNAMIC",
+            "category": "typo_shorthand",
+            "reason": "RN explicitly requests current office holder."
+        },
+        {
+            "id": "HUMAN-083",
+            "query": "python ka latest version",
+            "expected_label": "DYNAMIC",
+            "category": "multilingual_shorthand",
+            "reason": "Explicit latest-version request."
+        },
+        {
+            "id": "HUMAN-084",
+            "query": "gold price kya hai",
+            "expected_label": "DYNAMIC",
+            "category": "multilingual_shorthand",
+            "reason": "Generic gold price normally implies current market price."
+        },
+        {
+            "id": "HUMAN-085",
+            "query": "stock market kaisa chal raha hai",
+            "expected_label": "DYNAMIC",
+            "category": "multilingual_shorthand",
+            "reason": "Asks about current market state."
+        }
+    ]
+}
