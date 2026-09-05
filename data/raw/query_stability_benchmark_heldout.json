@@ -6,7 +6,10 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": false,
-    "implicit_dependencies": ["streaming_service_pricing", "regional_tier_plans"],
+    "implicit_dependencies": [
+      "streaming_service_pricing",
+      "regional_tier_plans"
+    ],
     "rationale": "Implicit volatility: Subscription prices adjust periodically without explicit temporal keywords."
   },
   {
@@ -16,7 +19,10 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": false,
-    "implicit_dependencies": ["nfl_active_roster", "injury_status"],
+    "implicit_dependencies": [
+      "nfl_active_roster",
+      "injury_status"
+    ],
     "rationale": "Sports roster personnel changes across seasons, injuries, and trades without overt 'current' keyword."
   },
   {
@@ -26,7 +32,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "SLOW_DECAY",
     "has_explicit_temporal_marker": false,
-    "implicit_dependencies": ["hardware_release_cycles"],
+    "implicit_dependencies": [
+      "hardware_release_cycles"
+    ],
     "rationale": "Hardware product lines rotate annually; 'newest' implies floating current product cycle."
   },
   {
@@ -71,13 +79,16 @@
   },
   {
     "id": "STAB-208",
-    "query": "BTC price",
+    "query": "Ethereum price right now",
     "domain": "finance_economics",
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
-    "has_explicit_temporal_marker": false,
-    "implicit_dependencies": ["crypto_ticker", "spot_quote"],
-    "rationale": "Ultra-short financial query requesting live market price."
+    "has_explicit_temporal_marker": true,
+    "implicit_dependencies": [
+      "crypto_market",
+      "spot_quote"
+    ],
+    "rationale": "The cryptocurrency price is continuously changing and depends on current market data."
   },
   {
     "id": "STAB-209",
@@ -96,7 +107,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["spot_exchange_feed"],
+    "implicit_dependencies": [
+      "spot_exchange_feed"
+    ],
     "rationale": "Informal shorthand ('rn' = right now) for real-time cryptocurrency valuation."
   },
   {
@@ -106,7 +119,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["meteorological_station"],
+    "implicit_dependencies": [
+      "meteorological_station"
+    ],
     "rationale": "Informal abbreviation ('atm' = at the moment) for immediate local weather."
   },
   {
@@ -126,7 +141,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["crypto_spot_feed"],
+    "implicit_dependencies": [
+      "crypto_spot_feed"
+    ],
     "rationale": "Mixed-intent query combining stable conceptual explanation with dynamic real-time price request."
   },
   {
@@ -166,7 +183,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["consular_appointment_calendar"],
+    "implicit_dependencies": [
+      "consular_appointment_calendar"
+    ],
     "rationale": "Consular interview wait times fluctuate weekly based on capacity and demand."
   },
   {
@@ -176,7 +195,10 @@
     "stability_label": "CONDITIONALLY_STABLE",
     "temporal_sensitivity": "SLOW_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["state_tax_code", "legislative_sessions"],
+    "implicit_dependencies": [
+      "state_tax_code",
+      "legislative_sessions"
+    ],
     "rationale": "Statutory state sales tax rate remains constant for fiscal years but adjusts via legislation."
   },
   {
@@ -196,7 +218,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["epa_airnow_feed"],
+    "implicit_dependencies": [
+      "epa_airnow_feed"
+    ],
     "rationale": "Environmental sensor readings update continuously throughout the day."
   },
   {
@@ -216,7 +240,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["bond_market_quotes"],
+    "implicit_dependencies": [
+      "bond_market_quotes"
+    ],
     "rationale": "Sovereign bond secondary market trading yields update by the minute."
   },
   {
@@ -226,7 +252,10 @@
     "stability_label": "CONDITIONALLY_STABLE",
     "temporal_sensitivity": "SLOW_DECAY",
     "has_explicit_temporal_marker": false,
-    "implicit_dependencies": ["fastapi_version", "python_framework_api"],
+    "implicit_dependencies": [
+      "fastapi_version",
+      "python_framework_api"
+    ],
     "rationale": "Standard web framework API pattern stable across major framework versions."
   },
   {
@@ -256,7 +285,10 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["flightaware_feed", "radar_track"],
+    "implicit_dependencies": [
+      "flightaware_feed",
+      "radar_track"
+    ],
     "rationale": "Commercial aviation flight schedule and live transponder position."
   },
   {
@@ -286,7 +318,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["hospital_triage_feed"],
+    "implicit_dependencies": [
+      "hospital_triage_feed"
+    ],
     "rationale": "Hospital clinical triage queue fluctuates minute to minute."
   },
   {
@@ -306,7 +340,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["forex_spot_feed"],
+    "implicit_dependencies": [
+      "forex_spot_feed"
+    ],
     "rationale": "Foreign exchange currency trading rate fluctuating continuously."
   },
   {
@@ -326,7 +362,9 @@
     "stability_label": "CONDITIONALLY_STABLE",
     "temporal_sensitivity": "SLOW_DECAY",
     "has_explicit_temporal_marker": false,
-    "implicit_dependencies": ["federal_tax_statutes"],
+    "implicit_dependencies": [
+      "federal_tax_statutes"
+    ],
     "rationale": "Statutory 21% rate enacted under TCJA; stable across tax years until federal tax reform."
   },
   {
@@ -336,7 +374,10 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["dot_traffic_feed", "winter_advisories"],
+    "implicit_dependencies": [
+      "dot_traffic_feed",
+      "winter_advisories"
+    ],
     "rationale": "Highway condition and weather road closures update continuously during winter storms."
   },
   {
@@ -356,7 +397,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["social_trend_analytics"],
+    "implicit_dependencies": [
+      "social_trend_analytics"
+    ],
     "rationale": "Social media engagement algorithms shift hourly."
   },
   {
@@ -376,7 +419,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["fuel_retail_index"],
+    "implicit_dependencies": [
+      "fuel_retail_index"
+    ],
     "rationale": "Retail energy prices update daily across gas station networks."
   },
   {
@@ -406,7 +451,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["mba_weekly_survey"],
+    "implicit_dependencies": [
+      "mba_weekly_survey"
+    ],
     "rationale": "Weekly cyclical macroeconomic industry survey release."
   },
   {
@@ -426,7 +473,9 @@
     "stability_label": "CONDITIONALLY_STABLE",
     "temporal_sensitivity": "SLOW_DECAY",
     "has_explicit_temporal_marker": false,
-    "implicit_dependencies": ["hhs_security_rules"],
+    "implicit_dependencies": [
+      "hhs_security_rules"
+    ],
     "rationale": "Federal statutory privacy and security rules stable over multi-year regulatory cycles."
   },
   {
@@ -436,7 +485,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["nasdaq_market_index"],
+    "implicit_dependencies": [
+      "nasdaq_market_index"
+    ],
     "rationale": "Securities equity index market pricing changes continuously."
   },
   {
@@ -456,7 +507,9 @@
     "stability_label": "CONDITIONALLY_STABLE",
     "temporal_sensitivity": "SLOW_DECAY",
     "has_explicit_temporal_marker": false,
-    "implicit_dependencies": ["v8_runtime_architecture"],
+    "implicit_dependencies": [
+      "v8_runtime_architecture"
+    ],
     "rationale": "Generational garbage collection (Scavenger / Major MC) architecture in V8."
   },
   {
@@ -466,7 +519,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["jma_seismic_feed"],
+    "implicit_dependencies": [
+      "jma_seismic_feed"
+    ],
     "rationale": "Real-time geological sensor telemetry."
   },
   {
@@ -486,7 +541,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["boe_bank_rate"],
+    "implicit_dependencies": [
+      "boe_bank_rate"
+    ],
     "rationale": "Monetary policy interest benchmark adjusted periodically by the MPC."
   },
   {
@@ -506,7 +563,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["state_dept_advisories"],
+    "implicit_dependencies": [
+      "state_dept_advisories"
+    ],
     "rationale": "International geopolitical travel advisories update based on current security assessments."
   },
   {
@@ -536,7 +595,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["precious_metals_quotes"],
+    "implicit_dependencies": [
+      "precious_metals_quotes"
+    ],
     "rationale": "Precious metals spot commodity market trading."
   },
   {
@@ -556,7 +617,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "FAST_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["maritime_transit_queue"],
+    "implicit_dependencies": [
+      "maritime_transit_queue"
+    ],
     "rationale": "Maritime canal congestion and draft restrictions change daily."
   },
   {
@@ -586,7 +649,9 @@
     "stability_label": "DYNAMIC",
     "temporal_sensitivity": "SLOW_DECAY",
     "has_explicit_temporal_marker": true,
-    "implicit_dependencies": ["k8s_release_cadence"],
+    "implicit_dependencies": [
+      "k8s_release_cadence"
+    ],
     "rationale": "Container orchestration version recommended for production rolls three times a year."
   },
   {

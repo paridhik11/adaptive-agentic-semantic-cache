@@ -375,5 +375,53 @@ def test_human_credibility_dataset_structure_and_counts():
         assert "query" in item and isinstance(item["query"], str) and len(item["query"].strip()) >= 3
         assert "expected_label" in item and item["expected_label"] in ("STABLE", "DYNAMIC", "CONDITIONALLY_STABLE")
 
+def test_no_duplicate_queries_across_stability_datasets():
+    """Ensure evaluation datasets do not leak identical queries across splits."""
+
+    dataset_paths = {
+        "development": DATA_DIR / "query_stability_benchmark.json",
+        "human_credibility": DATA_DIR / "query_stability_human_credibility.json",
+        "heldout": DATA_DIR / "query_stability_benchmark_heldout.json",
+        "final_test": DATA_DIR / "query_stability_benchmark_final_test.json",
+    }
+
+    def load_queries(path):
+        with open(path, "r", encoding="utf-8") as f:
+            raw = json.load(f)
+
+        # Support both bare arrays and metadata-wrapped datasets
+        if isinstance(raw, list):
+            items = raw
+        elif isinstance(raw, dict):
+            items = raw["queries"]
+        else:
+            raise AssertionError(
+                f"Unexpected dataset format in {path}: {type(raw).__name__}"
+            )
+
+        return {
+            item["query"].strip().lower()
+            for item in items
+        }
+
+    datasets = {
+        name: load_queries(path)
+        for name, path in dataset_paths.items()
+    }
+
+    names = list(datasets.keys())
+
+    for i in range(len(names)):
+        for j in range(i + 1, len(names)):
+            left = names[i]
+            right = names[j]
+
+            duplicates = datasets[left] & datasets[right]
+
+            assert not duplicates, (
+                f"Duplicate queries found between '{left}' and '{right}': "
+                f"{sorted(duplicates)}"
+            )
+
 
 
