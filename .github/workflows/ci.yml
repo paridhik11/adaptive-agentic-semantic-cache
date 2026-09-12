@@ -6,8 +6,18 @@ on:
   pull_request:
     branches: [ main, master ]
 
+# Pinned model revision — this key must match MODEL_REVISION in src/cache/embedding.py.
+# Update this value only after re-running the Phase 2 threshold sweep and documenting
+# the old-vs-new results in docs/phase2_walkthrough.md.
+env:
+  MODEL_REVISION: "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+
 jobs:
-  test:
+  # ---------------------------------------------------------------------------
+  # Job 1: Unit tests — network-free, no model loaded
+  # ---------------------------------------------------------------------------
+  unit-tests:
+    name: Unit tests (network-free)
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -28,6 +38,51 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e .[dev]
 
-      - name: Run tests
+      - name: Run unit tests (no model, no network)
+        # The default pytest invocation excludes requires_model tests via pyproject.toml
+        # addopts = "-m 'not requires_model'" — no model loading occurs here.
         run: |
-          pytest
+          pytest -v
+
+  # ---------------------------------------------------------------------------
+  # Job 2: Model integration tests — loads real model, caches by revision hash
+  # ---------------------------------------------------------------------------
+  model-integration-tests:
+    name: Model integration tests (requires_model)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]  # Integration tests only need one Python version
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+
+      - name: Cache HuggingFace model (keyed on pinned revision hash)
+        # Cache key includes MODEL_REVISION so the cache is invalidated automatically
+        # if the pinned revision changes. This prevents stale model weights from being
+        # used after a revision update.
+        uses: actions/cache@v4
+        id: hf-cache
+        with:
+          path: ~/.cache/huggingface
+          key: huggingface-all-MiniLM-L6-v2-${{ env.MODEL_REVISION }}
+          restore-keys: |
+            huggingface-all-MiniLM-L6-v2-
+
+      - name: Run model integration tests
+        # Only tests marked @pytest.mark.requires_model are executed here.
+        # These are the ONLY tests allowed to access the network or load the model.
+        run: |
+          pytest -m requires_model -v

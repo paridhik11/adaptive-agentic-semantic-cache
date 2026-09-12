@@ -28,3 +28,10 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+# By default, exclude tests that load the real SentenceTransformer model.
+# Run model integration tests explicitly: pytest -m requires_model
+# This keeps the default `pytest` invocation network-free and fast.
+addopts = "-m 'not requires_model'"
+markers = [
+    "requires_model: marks tests that load the real all-MiniLM-L6-v2 model (may access network if cache absent). Run with: pytest -m requires_model",
+]

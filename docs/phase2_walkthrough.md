@@ -120,8 +120,9 @@ If no threshold satisfies the criterion: result reported as-is — not adjusted.
 
 ## 5. Threshold Sweep Results
 
-Run with: `python scripts/run_cache_threshold_sweep.py`  
-Model: `all-MiniLM-L6-v2` (FAISS IndexFlatIP, cosine similarity via inner product of L2-normalized vectors)  
+Run with: `python scripts/run_cache_threshold_sweep.py`
+Model: `all-MiniLM-L6-v2`, revision `1110a243fdf4706b3f48f1d95db1a4f5529b4d41` (FAISS IndexFlatIP, cosine similarity via inner product of L2-normalized vectors)
+Revision provenance: **TRACED** — snapshot timestamp 2026-09-05 matches run date; see `docs/phase2_reproducibility_fix.md` §1.
 Mean embed+search latency per pair: **13.9–14.9 ms**
 
 ### Coarse Sweep (step 0.05)
