@@ -28,6 +28,7 @@ import pytest
 from src.cache.embedding import EMBEDDING_DIM
 from src.cache.semantic_cache import CacheDecision, CacheLookupResult
 from src.classifier.models import ClassificationSource, StabilityLabel, StabilityResult
+from src.decision.adaptive_threshold_engine import AdaptiveThresholdEngine
 from src.decision.decision_step import CategoryHistory, DecisionResult, DecisionStep
 from src.decision.tier_router import DEFAULT_BOUNDARIES, Tier, TierRouter, TierBoundaries
 from src.evaluation.cache_evaluator import (
@@ -254,14 +255,14 @@ class TestAutoReuseVerbatimProof:
             rationale="unit test",
         )
 
-        # Use a REAL DecisionStep (so .history is accessible) and spy on .decide()
-        real_decision_step = DecisionStep()
+        # Use a REAL AdaptiveThresholdEngine and spy on .decide()
+        real_engine = AdaptiveThresholdEngine()
 
         evaluator = DecisionEvaluator(
             embedder=mock_embedder,
             classifier=mock_classifier,
             tier_router=TierRouter(boundaries=tight_bounds),
-            decision_step=real_decision_step,
+            threshold_engine=real_engine,
         )
 
         # Build a dataset padded to EXPECTED_RECORD_COUNT; all pairs reuse same vecs
@@ -272,13 +273,13 @@ class TestAutoReuseVerbatimProof:
         path = write_temp_dataset(records)
         try:
             with patch.object(
-                real_decision_step, "decide", wraps=real_decision_step.decide
+                real_engine, "decide", wraps=real_engine.decide
             ) as spy:
                 metrics = evaluator.evaluate(path)
                 # All pairs have score ~1.0 and conf=0.95, both above tight boundaries
                 # (auto_reuse_sim_floor=0.50, auto_reuse_conf_floor=0.50).
                 # TierRouter must route every pair to AUTO_REUSE.
-                # Therefore DecisionStep.decide() must NEVER be called.
+                # Therefore AdaptiveThresholdEngine.decide() must NEVER be called.
                 spy.assert_not_called()
         finally:
             path.unlink(missing_ok=True)
@@ -348,3 +349,248 @@ class TestAutoReuseVerbatimProof:
         # forced AUTO_REUSE + Phase 2 MISS → mismatch detected
         assert metrics.auto_reuse_verbatim_mismatches > 0
         assert metrics.auto_reuse_verbatim_verified is False
+
+
+# ---------------------------------------------------------------------------
+# 5. Ambiguous-tier adaptive threshold engine integration
+# ---------------------------------------------------------------------------
+
+class TestAmbiguousTierDecisionEngine:
+    """Test that AMBIGUOUS-tier queries invoke AdaptiveThresholdEngine."""
+
+    def test_ambiguous_tier_invokes_adaptive_engine(self):
+        """When router returns AMBIGUOUS, evaluator must invoke threshold_engine.decide()."""
+        mock_embedder = MagicMock()
+        mock_embedder.dim = EMBEDDING_DIM
+        mock_embedder.encode.return_value = _unit_vec(1)
+
+        mock_classifier = MagicMock()
+        mock_classifier.classify.return_value = StabilityResult(
+            query="test",
+            predicted_label=StabilityLabel.STABLE,
+            effective_decision=StabilityLabel.STABLE,
+            is_cacheable=True,
+            confidence=0.85,
+            source=ClassificationSource.FALLBACK,
+            matched_rule=None,
+            rationale="test",
+        )
+
+        mock_router = MagicMock()
+        mock_router.route.return_value = Tier.AMBIGUOUS
+
+        engine = AdaptiveThresholdEngine()
+        evaluator = DecisionEvaluator(
+            embedder=mock_embedder,
+            classifier=mock_classifier,
+            tier_router=mock_router,
+            threshold_engine=engine,
+        )
+
+        records = [make_valid_record(f"PAIR-{i:03d}") for i in range(1, EXPECTED_RECORD_COUNT + 1)]
+        path = write_temp_dataset(records)
+        try:
+            with patch.object(engine, "decide", wraps=engine.decide) as spy:
+                metrics = evaluator.evaluate(path)
+                assert spy.call_count == EXPECTED_RECORD_COUNT
+        finally:
+            path.unlink(missing_ok=True)
+
+        assert metrics.ambiguous_count == EXPECTED_RECORD_COUNT
+
+    def test_ambiguous_tier_per_category_differentiation(self):
+        """Pairs with identical similarity in different categories are decided differently
+        based on per-category threshold vs fallback threshold."""
+        # Both pairs have similarity ~ 0.75
+        vec = _unit_vec(1)
+        mock_embedder = MagicMock()
+        mock_embedder.dim = EMBEDDING_DIM
+        mock_embedder.encode.return_value = vec
+
+        mock_classifier = MagicMock()
+        mock_classifier.classify.return_value = StabilityResult(
+            query="test",
+            predicted_label=StabilityLabel.STABLE,
+            effective_decision=StabilityLabel.STABLE,
+            is_cacheable=True,
+            confidence=0.85,
+            source=ClassificationSource.FALLBACK,
+            matched_rule=None,
+            rationale="test",
+        )
+
+        mock_router = MagicMock()
+        mock_router.route.return_value = Tier.AMBIGUOUS
+
+        engine = AdaptiveThresholdEngine()
+        evaluator = DecisionEvaluator(
+            embedder=mock_embedder,
+            classifier=mock_classifier,
+            tier_router=mock_router,
+            threshold_engine=engine,
+        )
+
+        # computer_science operating threshold is ~0.7924 -> score 0.81 >= 0.7924 -> REUSE (HIT)
+        # finance_economics operating threshold is fallback 0.85 -> score 0.81 < 0.85 -> BYPASS (MISS)
+        records = []
+        for i in range(1, EXPECTED_RECORD_COUNT + 1):
+            dom = "computer_science" if i % 2 == 1 else "finance_economics"
+            rec = make_valid_record(f"PAIR-{i:03d}")
+            rec["domain"] = dom
+            records.append(rec)
+
+        # Mock cache lookup to return similarity_score = 0.8100
+        with patch("src.evaluation.decision_evaluator.SemanticCache.lookup") as mock_lookup:
+            mock_lookup.return_value = CacheLookupResult(
+                decision=CacheDecision.MISS,
+                similarity_score=0.8100,
+                threshold=0.85,
+                embed_latency_ms=1.0,
+                search_latency_ms=0.1,
+                total_latency_ms=1.1,
+                store_size=1,
+            )
+            path = write_temp_dataset(records)
+            try:
+                metrics = evaluator.evaluate(path)
+            finally:
+                path.unlink(missing_ok=True)
+
+        cs_results = [r for r in metrics.detailed_results if r["domain"] == "computer_science"]
+        fin_results = [r for r in metrics.detailed_results if r["domain"] == "finance_economics"]
+
+        # All CS should be HIT (0.81 >= 0.7924 operating threshold)
+        assert all(r["predicted"] == "HIT" for r in cs_results)
+        # All Finance should be MISS (0.81 < 0.85 fallback threshold)
+        assert all(r["predicted"] == "MISS" for r in fin_results)
+
+
+# ---------------------------------------------------------------------------
+# 6. Trivial "Bypass All Ambiguous" baseline mode
+# ---------------------------------------------------------------------------
+
+class TestTrivialBypassAllAmbiguousMode:
+    """Validate the trivial baseline that routes all AMBIGUOUS pairs to BYPASS."""
+
+    def test_bypass_all_ambiguous_mode_produces_zero_tp_and_zero_fp_in_ambiguous_tier(self):
+        """When bypass_all_ambiguous=True, AMBIGUOUS tier produces 0 TP and 0 FP by construction."""
+        mock_embedder = MagicMock()
+        mock_embedder.dim = EMBEDDING_DIM
+        mock_embedder.encode.return_value = _unit_vec(1)
+
+        mock_classifier = MagicMock()
+        mock_classifier.classify.return_value = StabilityResult(
+            query="test",
+            predicted_label=StabilityLabel.STABLE,
+            effective_decision=StabilityLabel.STABLE,
+            is_cacheable=True,
+            confidence=0.85,
+            source=ClassificationSource.FALLBACK,
+            matched_rule=None,
+            rationale="test",
+        )
+
+        mock_router = MagicMock()
+        mock_router.route.return_value = Tier.AMBIGUOUS
+
+        evaluator = DecisionEvaluator(
+            embedder=mock_embedder,
+            classifier=mock_classifier,
+            tier_router=mock_router,
+        )
+
+        # 120 pairs: mix of safe and unsafe
+        records = []
+        for i in range(1, EXPECTED_RECORD_COUNT + 1):
+            rec = make_valid_record(f"PAIR-{i:03d}")
+            rec["is_reuse_safe"] = (i % 2 == 1)
+            records.append(rec)
+
+        path = write_temp_dataset(records)
+        try:
+            metrics = evaluator.evaluate(path, bypass_all_ambiguous=True)
+        finally:
+            path.unlink(missing_ok=True)
+
+        amb_tier = metrics.tier_metrics[Tier.AMBIGUOUS.value]
+        # Ambiguous tier MUST produce 0 TP and 0 FP by construction
+        assert amb_tier["tp"] == 0
+        assert amb_tier["fp"] == 0
+        assert amb_tier["irr_cache"] == 0.0
+        assert amb_tier["arr"] == 0.0
+
+        # Safe pairs in ambiguous tier become FN, unsafe become TN
+        assert amb_tier["fn"] == 60
+        assert amb_tier["tn"] == 60
+
+        # Trivial baseline summary fields in DecisionMetrics
+        assert metrics.trivial_bypass_fp == 0
+        assert metrics.trivial_bypass_irr_cache == 0.0
+        assert metrics.trivial_bypass_irr_traffic == 0.0
+
+
+class TestJudgeEvaluationUnit:
+    """Network-free unit tests for DecisionEvaluator judge-call path."""
+
+    def test_evaluator_with_mock_judge_populates_five_way_metrics(self):
+        from src.decision.judge_call import LLMJudge, JudgeOutputSchema, JudgeDecisionEnum
+
+        mock_client = MagicMock()
+        mock_cand = MagicMock()
+        mock_cand.finish_reason = "STOP"
+        mock_parsed = JudgeOutputSchema(
+            decision=JudgeDecisionEnum.REUSE,
+            is_safe=True,
+            confidence=0.95,
+            rationale="Unit test mock safe reuse",
+        )
+        mock_usage = MagicMock(prompt_token_count=200, candidates_token_count=40, total_token_count=240)
+        mock_resp = MagicMock(
+            candidates=[mock_cand],
+            parsed=mock_parsed,
+            usage_metadata=mock_usage,
+            model_version="gemini-2.0-flash",
+        )
+        mock_resp.text = mock_parsed.model_dump_json()
+        mock_client.models.generate_content.return_value = mock_resp
+
+        mock_judge = LLMJudge(client=mock_client)
+
+        evaluator = DecisionEvaluator(
+            embedder=MagicMock(dim=EMBEDDING_DIM, encode=lambda q: _unit_vec(1)),
+            classifier=MagicMock(classify=lambda q: StabilityResult(
+                query=q,
+                predicted_label=StabilityLabel.STABLE,
+                effective_decision=StabilityLabel.STABLE,
+                is_cacheable=True,
+                confidence=0.85,
+                source=ClassificationSource.RULE,
+                matched_rule="test",
+                rationale="test",
+            )),
+            tier_router=MagicMock(route=lambda c, s: Tier.AMBIGUOUS),
+            threshold_engine=AdaptiveThresholdEngine(),
+            judge=mock_judge,
+        )
+
+        records = [make_valid_record(f"PAIR-{i:03d}") for i in range(1, EXPECTED_RECORD_COUNT + 1)]
+        path = write_temp_dataset(records)
+        try:
+            metrics = evaluator.evaluate(path)
+        finally:
+            path.unlink(missing_ok=True)
+
+        assert metrics.judge_available is True
+        assert metrics.judge_calls_count == EXPECTED_RECORD_COUNT
+        assert metrics.judge_total_input_tokens == 200 * EXPECTED_RECORD_COUNT
+        assert metrics.judge_total_output_tokens == 40 * EXPECTED_RECORD_COUNT
+        assert metrics.judge_total_tokens == 240 * EXPECTED_RECORD_COUNT
+        assert metrics.judge_total_cost_usd == 0.0
+        assert metrics.judge_tp == EXPECTED_RECORD_COUNT
+        assert metrics.judge_fp == 0
+        assert metrics.judge_arr == 1.0
+        assert metrics.judge_irr_cache == 0.0
+
+        # Verify print_report does not error
+        evaluator.print_report(metrics)
+

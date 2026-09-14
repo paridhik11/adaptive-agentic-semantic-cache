@@ -13,7 +13,28 @@ Public API:
 """
 
 from src.decision.tier_router import Tier, TierBoundaries, TierRouter
-from src.decision.decision_step import CategoryHistory, DecisionResult, DecisionStep
+from src.decision.decision_step import (
+    CategoryHistory,
+    DecisionResult,
+    DecisionStep,
+    JudgeDecisionResult,
+    JudgeDecisionStep,
+    ProductionDecisionStep,
+)
+from src.decision.adaptive_threshold_engine import (
+    AdaptiveThresholdEngine,
+    CategoryThreshold,
+    ThresholdDecisionResult,
+    MINIMUM_CATEGORY_N,
+    MINIMUM_MINORITY_CLASS_N,
+    FALLBACK_THRESHOLD,
+)
+from src.decision.judge_call import (
+    LLMJudge,
+    JudgeResult,
+    JudgeOutputSchema,
+    JudgeDecisionEnum,
+)
 
 __all__ = [
     "Tier",
@@ -22,4 +43,18 @@ __all__ = [
     "CategoryHistory",
     "DecisionResult",
     "DecisionStep",
+    "JudgeDecisionResult",
+    "JudgeDecisionStep",
+    "ProductionDecisionStep",
+    "AdaptiveThresholdEngine",
+    "CategoryThreshold",
+    "ThresholdDecisionResult",
+    "MINIMUM_CATEGORY_N",
+    "MINIMUM_MINORITY_CLASS_N",
+    "FALLBACK_THRESHOLD",
+    "LLMJudge",
+    "JudgeResult",
+    "JudgeOutputSchema",
+    "JudgeDecisionEnum",
 ]
+

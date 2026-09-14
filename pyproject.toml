@@ -28,10 +28,13 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
-# By default, exclude tests that load the real SentenceTransformer model.
+# By default, exclude tests that load the real SentenceTransformer model
+# or make live external LLM API calls.
 # Run model integration tests explicitly: pytest -m requires_model
-# This keeps the default `pytest` invocation network-free and fast.
-addopts = "-m 'not requires_model'"
+# Run LLM API integration tests explicitly: pytest -m requires_llm_api
+# This keeps the default `pytest` invocation network-free, hermetic, and fast.
+addopts = "-m 'not requires_model and not requires_llm_api'"
 markers = [
     "requires_model: marks tests that load the real all-MiniLM-L6-v2 model (may access network if cache absent). Run with: pytest -m requires_model",
+    "requires_llm_api: marks tests that make live calls to an external LLM API (requires API key and network). Run with: pytest -m requires_llm_api",
 ]

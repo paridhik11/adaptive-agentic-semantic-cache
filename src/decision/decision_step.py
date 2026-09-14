@@ -8,11 +8,15 @@ uses three signals to make a final REUSE or BYPASS decision:
   2. Stability confidence  (from StabilityResult)
   3. Category reuse-history  (from CategoryHistory, keyed by domain)
 
-No LLM judge call is invoked in this implementation.  The optional
-judge-call hook (JudgeCallable) exists in the interface but is None by
-default.  Adding a judge call is explicitly deferred until empirical
-ambiguous-band accuracy on the evaluation dataset demonstrates the non-LLM
-path is inadequate.
+Following comprehensive Phase 3 evaluations against the 120-pair benchmark,
+the non-LLM linear combination (implemented in DecisionStep below) and
+the per-category adaptive threshold engine were both empirically rejected due
+to cache hazard ceiling violations (IRR_cache 52.17% and 23.08% respectively).
+The production decision path for AMBIGUOUS-tier traffic is JudgeDecisionStep
+(aliased as ProductionDecisionStep), routing through LLMJudge (defaulting to
+OpenRouter nvidia/nemotron-3-super-120b-a12b:free), which alone cleared the
+<10% hazard ceiling (IRR_cache = 8.33%). The DecisionStep class is retained
+verbatim as a documented, tested historical baseline.
 
 =============================================================================
 CATEGORY REUSE-HISTORY — DESIGN DECISIONS (written before implementation)
@@ -90,6 +94,7 @@ from typing import Any, Callable, Dict, Optional
 from src.cache.semantic_cache import CacheLookupResult
 from src.classifier.models import StabilityResult
 from src.decision.tier_router import DEFAULT_BOUNDARIES, TierBoundaries
+from src.decision.judge_call import JudgeResult, LLMJudge
 
 
 # ---------------------------------------------------------------------------
@@ -314,6 +319,8 @@ class DecisionStep:
         cache_result: CacheLookupResult,
         stability_result: StabilityResult,
         domain: str,
+        query_a: str = "",
+        query_b: str = "",
     ) -> DecisionResult:
         """Make a REUSE or BYPASS decision for AMBIGUOUS-tier traffic.
 
@@ -325,6 +332,8 @@ class DecisionStep:
             cache_result: Phase 2 CacheLookupResult — read-only.
             stability_result: Phase 1 StabilityResult — read-only.
             domain: Domain string for CategoryHistory lookup (e.g. "computer_science").
+            query_a: Optional cached query text.
+            query_b: Optional incoming query text.
 
         Returns:
             DecisionResult with the decision, component scores, and rationale.
@@ -353,7 +362,14 @@ class DecisionStep:
         judge_called = False
         judge_score: Optional[float] = None
         if self.judge is not None:
-            judge_score = self.judge(sim, conf, domain)
+            if isinstance(self.judge, LLMJudge):
+                judge_score = self.judge(
+                    sim, conf, domain,
+                    query_a=query_a, query_b=query_b,
+                    category_history_rate=hist_rate,
+                )
+            else:
+                judge_score = self.judge(sim, conf, domain)
             judge_called = True
             # When judge is active, blend its score equally with the combined signal.
             # Weights in this branch: 50% judge, 50% (sim+conf+hist combination).
@@ -388,3 +404,127 @@ class DecisionStep:
             judge_score=judge_score,
             rationale=rationale,
         )
+
+
+# ---------------------------------------------------------------------------
+# Dedicated Judge Decision Step
+# ---------------------------------------------------------------------------
+
+@dataclass(frozen=True)
+class JudgeDecisionResult:
+    """Result of an AMBIGUOUS-tier decision from JudgeDecisionStep.
+
+    Attributes:
+        decision: "REUSE" or "BYPASS".
+        is_safe: True if safe for reuse, False if bypass.
+        domain: Domain string.
+        similarity_score: Raw similarity score from cache lookup.
+        stability_confidence: Confidence score from stability classifier.
+        category_history_rate: Running category history success rate.
+        history_count: Number of prior observations for domain.
+        judge_result: Underlying JudgeResult from LLMJudge.
+        rationale: Explanatory reasoning.
+    """
+
+    decision: str
+    is_safe: bool
+    domain: str
+    similarity_score: float
+    stability_confidence: float
+    category_history_rate: float
+    history_count: int
+    judge_result: JudgeResult
+    rationale: str
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Serialize metadata for reporting."""
+        return {
+            "decision": self.decision,
+            "is_safe": self.is_safe,
+            "domain": self.domain,
+            "similarity_score": round(self.similarity_score, 4),
+            "stability_confidence": round(self.stability_confidence, 4),
+            "category_history_rate": round(self.category_history_rate, 4),
+            "history_count": self.history_count,
+            "judge_result": self.judge_result.to_dict(),
+            "rationale": self.rationale,
+        }
+
+
+class JudgeDecisionStep:
+    """Ambiguous-band decision step routing through LLMJudge.
+
+    Given full context (both query texts, similarity score, domain, stability
+    confidence, category history rate), delegates the REUSE/BYPASS decision to
+    an LLM judge.
+
+    CRITICAL SAFETY INVARIANT:
+        Defaults to BYPASS on any judge failure, error, or timeout (fail-closed).
+
+    Args:
+        judge: Optional LLMJudge instance. Defaults to LLMJudge().
+        history: Optional CategoryHistory instance. Defaults to fresh CategoryHistory().
+    """
+
+    def __init__(
+        self,
+        judge: Optional[LLMJudge] = None,
+        history: Optional[CategoryHistory] = None,
+    ) -> None:
+        self.judge = judge or LLMJudge()
+        self.history = history or CategoryHistory()
+
+    def decide(
+        self,
+        query_a: str,
+        query_b: str,
+        cache_result: CacheLookupResult,
+        stability_result: StabilityResult,
+        domain: str,
+    ) -> JudgeDecisionResult:
+        """Evaluate an ambiguous pair using the LLM judge."""
+        sim = cache_result.similarity_score
+        conf = stability_result.confidence
+        hist_rate = self.history.get(domain)
+        hist_count = self.history.observation_count(domain)
+
+        judge_res = self.judge.judge(
+            query_a=query_a,
+            query_b=query_b,
+            domain=domain,
+            similarity_score=sim,
+            stability_confidence=conf,
+            category_history_rate=hist_rate,
+        )
+
+        decision = "REUSE" if judge_res.is_safe else "BYPASS"
+        cold_note = " (cold-start)" if hist_count == 0 else f" (n={hist_count})"
+        rationale = (
+            f"JudgeDecisionStep[{decision}]: judge={judge_res.decision} "
+            f"(safe={judge_res.is_safe}, conf={judge_res.confidence:.2f}, "
+            f"tokens={judge_res.total_tokens}, lat={judge_res.latency_ms:.1f}ms); "
+            f"domain={domain}{cold_note}; rationale={judge_res.rationale}"
+        )
+
+        return JudgeDecisionResult(
+            decision=decision,
+            is_safe=judge_res.is_safe,
+            domain=domain,
+            similarity_score=sim,
+            stability_confidence=conf,
+            category_history_rate=hist_rate,
+            history_count=hist_count,
+            judge_result=judge_res,
+            rationale=rationale,
+        )
+
+
+# ---------------------------------------------------------------------------
+# Production Ambiguous-Tier Decision Step Alias
+# ---------------------------------------------------------------------------
+# Phase 3 Final Production Decision: JudgeDecisionStep (backed by LLMJudge on
+# OpenRouter nvidia/nemotron-3-super-120b-a12b:free) is the live production
+# decision path for the AMBIGUOUS tier. The non-LLM DecisionStep (linear
+# combination) is preserved above as a documented, tested historical alternative.
+ProductionDecisionStep = JudgeDecisionStep
+
