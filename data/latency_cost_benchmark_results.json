@@ -1,0 +1,69 @@
+{
+  "benchmark_timestamp": "2026-09-19T11:59:16Z",
+  "data_source": "C:\\Users\\parid\\Downloads\\Agentic AI\\adaptive-agentic-semantic-cache\\data\\openrouter_synthetic_feedback_telemetry.json",
+  "genuine_records_used": 22,
+  "excluded_fallback_records": 86,
+  "llm_miss_path_latency": {
+    "n": 22,
+    "mean_ms": 4238.72,
+    "median_ms": 2465.94,
+    "p95_ms": 12422.32,
+    "min_ms": 252.69,
+    "max_ms": 15539.06,
+    "stdev_ms": 3928.69,
+    "source": "Real measured wall-clock round-trip times to OpenRouter API (nvidia/nemotron-3-super-120b-a12b:free) during Phase 4 labeling, recorded in data/openrouter_synthetic_feedback_telemetry.json. Not re-measured here -- API quota preserved."
+  },
+  "token_usage": {
+    "n_calls": 22,
+    "mean_prompt_tokens": 582.9,
+    "mean_completion_tokens": 195.2,
+    "mean_total_tokens": 778.1,
+    "total_prompt_tokens": 12824,
+    "total_completion_tokens": 4294,
+    "total_tokens_all_calls": 17118,
+    "source": "Real measured prompt/completion token counts from 22 genuine OpenRouter API calls recorded in data/openrouter_synthetic_feedback_telemetry.json. 86 fallback records (API errors) are excluded -- they have no real token counts."
+  },
+  "cost_projection": {
+    "pricing_model": "gpt-4o-mini",
+    "pricing_url": "https://openai.com/api/pricing/",
+    "pricing_date": "2026-09-19",
+    "cost_per_m_input_tokens_usd": 0.15,
+    "cost_per_m_output_tokens_usd": 0.6,
+    "cost_per_judge_call_input_usd": 8.744e-05,
+    "cost_per_judge_call_output_usd": 0.00011712,
+    "cost_per_judge_call_total_usd": 0.00020455,
+    "aggregate_cost_for_measured_calls_usd": 0.0045,
+    "label": "Cost avoided under gpt-4o-mini's published pricing as of 2026-09-19 (https://openai.com/api/pricing/), applied to real token counts from this repo's API telemetry (22 genuine judge calls in data/openrouter_synthetic_feedback_telemetry.json). NOT an unqualified savings figure: the actual model (nvidia/nemotron-3-super-120b-a12b:free) was used on the free tier (zero dollars billed).",
+    "production_projection": {
+      "hypothetical_queries_per_day": 10000,
+      "phase3_arr": 0.1,
+      "arr_source": "docs/phase3_final_decision.md, OpenRouter LLM Judge, ARR=10.00%",
+      "daily_cache_hits_projected": 1000.0,
+      "daily_cost_avoided_usd": 0.2046,
+      "label": "PROJECTION (not a measured result): at 10,000 queries/day and Phase 3 ARR=10% (source: docs/phase3_final_decision.md), applying the gpt-4o-mini pricing assumption stated above. Every cache HIT avoids one judge call."
+    }
+  },
+  "cache_hit_path_latency": {
+    "n": 50,
+    "mean_ms": 29.021,
+    "median_ms": 28.256,
+    "p95_ms": 42.247,
+    "min_ms": 18.602,
+    "max_ms": 43.999,
+    "stdev_ms": 5.569,
+    "model": "all-MiniLM-L6-v2",
+    "vector_store": "FAISS IndexFlatIP (in-memory, 1 indexed entry)",
+    "measurement_method": "Wall-clock time.perf_counter() over 50 runs after 5 warm-up runs (discarded). Includes: QueryEmbedder.encode() + FlatVectorStore.search() (top-1 FAISS). Excludes: model load time (model already warm)."
+  },
+  "latency_delta": {
+    "hit_mean_ms": 29.021,
+    "miss_mean_ms": 4238.7,
+    "delta_mean_ms": 4209.7,
+    "pct_reduction_mean": 99.3,
+    "hit_median_ms": 28.256,
+    "miss_median_ms": 2465.9,
+    "delta_median_ms": 2437.7,
+    "pct_reduction_median": 98.9,
+    "summary": "A cache hit takes ~29.0ms (mean) vs ~4239ms for a fresh LLM judge call -- a 99% or 4210ms reduction (mean). Median: 28.3ms vs 2466ms (99% reduction). LLM latency derived from real measured telemetry. Cache hit latency measured locally on this machine."
+  }
+}

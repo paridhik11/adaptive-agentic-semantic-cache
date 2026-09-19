@@ -213,10 +213,25 @@ class TestSemanticCacheDecisionLogic:
         assert result.similarity_score == pytest.approx(1.0, abs=1e-5)
 
     def test_score_exactly_at_threshold_is_hit(self):
-        """When score == threshold, must be HIT (>= is the documented comparison)."""
+        """When score >= threshold, must be HIT (>= is the documented comparison).
+
+        FIX NOTE (Part B — test-construction issue):
+        The original test set threshold=actual_score where actual_score was computed
+        via an independent float64 np.dot(vec_a, vec_b). Relying on bit-exact equality
+        between external float64 math and FAISS's internal float32 IndexFlatIP inner
+        product is fragile across BLAS backends/platforms (e.g. 1 ULP delta on numpy 2.5.3).
+
+        Rather than weakening the assertion by subtracting an arbitrary epsilon (which would
+        stop verifying exact equality at the boundary), we derive the threshold directly
+        from the system itself:
+        1. Run a probe lookup with a permissive threshold (0.0) to capture the exact
+           similarity score reported by FAISS/system for this vector pair.
+        2. Set threshold = system_score (in the exact same float32 arithmetic domain used
+           by production lookup).
+        3. Assert that a lookup at this threshold returns HIT and satisfies score == threshold.
+        """
         vec_a = _unit_vec(1)
-        # Create vec_b with a known dot product to vec_a equal to exactly 0.70.
-        # We'll use: vec_b = cos(θ)*vec_a + sin(θ)*perp, where cos(θ)=0.70.
+        # Create vec_b with a dot product to vec_a close to 0.70.
         perp_raw = np.random.default_rng(77).standard_normal(EMBEDDING_DIM).astype(np.float32)
         perp_raw -= perp_raw.dot(vec_a) * vec_a
         perp = (perp_raw / np.linalg.norm(perp_raw)).astype(np.float32)
@@ -225,19 +240,29 @@ class TestSemanticCacheDecisionLogic:
         vec_b = (cos_theta * vec_a + sin_theta * perp).astype(np.float32)
         vec_b = (vec_b / np.linalg.norm(vec_b)).astype(np.float32)
 
-        actual_score = float(np.dot(vec_a, vec_b))
-        # Verify our construction is close enough
-        assert abs(actual_score - 0.70) < 1e-4, (
-            f"Construction error: expected ~0.70, got {actual_score:.6f}"
+        # Probe lookup: query the system with threshold=0.0 to read back the exact
+        # similarity score produced by FAISS/vector store for this vector pair.
+        probe_cache = self._make_cache(threshold=0.0, vec_a=vec_a, vec_b=vec_b)
+        probe_cache.index("indexed query")
+        probe_result = probe_cache.lookup("lookup query")
+        assert probe_result.similarity_score is not None
+        system_score = probe_result.similarity_score
+
+        # Verify construction is approximately around the 0.70 target
+        assert abs(system_score - 0.70) < 1e-4, (
+            f"Construction error: expected ~0.70, got {system_score:.6f}"
         )
 
-        cache = self._make_cache(threshold=actual_score, vec_a=vec_a, vec_b=vec_b)
+        # Exact boundary test: threshold is set exactly to system_score (true score == threshold)
+        cache = self._make_cache(threshold=system_score, vec_a=vec_a, vec_b=vec_b)
         cache.index("indexed query")
         result = cache.lookup("lookup query")
         assert result.decision == CacheDecision.HIT, (
-            f"score == threshold must be HIT; score={result.similarity_score:.6f}, "
-            f"threshold={result.threshold:.6f}"
+            f"score ({result.similarity_score:.8f}) >= threshold ({system_score:.8f}) must be HIT; "
+            f"got decision={result.decision}"
         )
+        assert result.similarity_score == system_score
+        assert result.threshold == system_score
 
     def test_score_just_below_threshold_is_miss(self):
         """When score < threshold, must be MISS."""

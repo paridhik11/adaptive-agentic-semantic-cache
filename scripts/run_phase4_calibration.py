@@ -56,18 +56,51 @@ def load_combined_data() -> Dict[str, List[Tuple[float, bool]]]:
         safe = bool(r["is_reuse_safe"])
         combined.setdefault(dom, []).append((sim, safe))
 
-    # 2. Synthetic Feedback Pairs (N=108)
+    # 2. Synthetic Feedback Pairs — genuine judge calls only
+    # CRITICAL: exclude any record where fallback_triggered=True.
+    # Fallback records are API-error stubs that fail-closed to BYPASS
+    # (judge_decision="BYPASS", judge_is_safe=False) as a production safety
+    # invariant when OpenRouter's free-tier daily quota was exhausted. They
+    # carry *no* real judge signal — consuming them as "judge says unsafe"
+    # labels silently contaminates the threshold sweep with 86 fake negatives.
+    # Only records with a real request_id and non-null raw_response are evidence.
     if not FEEDBACK_TELEMETRY_PATH.exists():
         raise FileNotFoundError(f"Missing feedback telemetry at {FEEDBACK_TELEMETRY_PATH}")
 
     with open(FEEDBACK_TELEMETRY_PATH, "r", encoding="utf-8") as f:
         feedback_data = json.load(f)
 
-    print(f"Loading {len(feedback_data)} synthetic feedback pairs from {FEEDBACK_TELEMETRY_PATH.name}...")
+    genuine_records = [r for r in feedback_data if not r.get("fallback_triggered", False)]
+    excluded_count = len(feedback_data) - len(genuine_records)
+
+    print(f"Loaded {len(feedback_data)} synthetic telemetry records from {FEEDBACK_TELEMETRY_PATH.name}.")
+    print(f"  Genuine judge calls (fallback_triggered=False): {len(genuine_records)}")
+    print(f"  Excluded fallback stubs (API errors, not real judge decisions): {excluded_count}")
+    if excluded_count > 0:
+        print(f"  WARNING: {excluded_count} stub records excluded — re-run label_synthetic_feedback.py")
+        print(f"           across future quota days to obtain real labels for those pairs.")
+
+    # Per-domain genuine counts for transparency
+    domain_genuine: Dict[str, int] = {}
+    domain_excluded: Dict[str, int] = {}
     for r in feedback_data:
         dom = r["domain"]
+        if r.get("fallback_triggered", False):
+            domain_excluded[dom] = domain_excluded.get(dom, 0) + 1
+        else:
+            domain_genuine[dom] = domain_genuine.get(dom, 0) + 1
+    all_doms = sorted(set(list(domain_genuine) + list(domain_excluded)))
+    print(f"  Per-domain genuine/excluded breakdown:")
+    for dom in all_doms:
+        g = domain_genuine.get(dom, 0)
+        e = domain_excluded.get(dom, 0)
+        print(f"    {dom:<28}: genuine={g:>3}, excluded={e:>3}")
+
+    for r in genuine_records:
+        dom = r["domain"]
         sim = float(r["similarity_score"])
-        # Use the LLM judge's decision as the simulated production feedback signal
+        # Use the LLM judge's decision as the simulated production feedback signal.
+        # Only genuine calls with real request_id and raw_response reach here.
         safe = bool(r["judge_is_safe"])
         combined.setdefault(dom, []).append((sim, safe))
 
