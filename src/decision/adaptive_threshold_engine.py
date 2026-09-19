@@ -79,6 +79,7 @@ MINIMUM_CATEGORY_N: int = 20
 MINIMUM_MINORITY_CLASS_N: int = 10
 FALLBACK_THRESHOLD: float = 0.85
 DEFAULT_CONFIDENCE_LEVEL: float = 0.95
+SAFETY_CEILING_IRR: float = 0.10  # Phase 2 safety ceiling: IRR_cache must stay <= 10%
 
 
 # ---------------------------------------------------------------------------
@@ -100,11 +101,16 @@ class CategoryThreshold:
         is_fallback: True if threshold fell back to global default (0.85);
             False if estimated from domain data.
         fallback_reason: Explanation if is_fallback is True, else None.
-        ci_lower: Lower bound of 95% confidence interval (None for fallback).
-        ci_upper: Upper bound of 95% confidence interval (None for fallback).
+        ci_lower: Lower bound of 95% confidence interval on theta (None for fallback).
+        ci_upper: Upper bound of 95% confidence interval on theta (None for fallback).
         standard_error: Standard error of threshold estimate (None for fallback).
         b0: Logistic intercept (None for fallback).
         b1: Logistic slope (None for fallback).
+        irr_cache_ci_lower: Clopper-Pearson exact binomial CI lower bound on hazard rate.
+        irr_cache_ci_upper: Clopper-Pearson exact binomial CI upper bound on hazard rate.
+        irr_cache_at_operating: Empirical hazard rate at operating threshold.
+        hits_at_operating: Total cache hits admitted at operating threshold.
+        selection_rule: Methodological rule applied to select the threshold.
     """
 
     domain: str
@@ -119,6 +125,11 @@ class CategoryThreshold:
     standard_error: Optional[float] = None
     b0: Optional[float] = None
     b1: Optional[float] = None
+    irr_cache_ci_lower: Optional[float] = None
+    irr_cache_ci_upper: Optional[float] = None
+    irr_cache_at_operating: Optional[float] = None
+    hits_at_operating: Optional[int] = None
+    selection_rule: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
         """Serialize metadata for reporting."""
@@ -135,6 +146,67 @@ class CategoryThreshold:
             "standard_error": round(self.standard_error, 4) if self.standard_error is not None else None,
             "b0": round(self.b0, 4) if self.b0 is not None else None,
             "b1": round(self.b1, 4) if self.b1 is not None else None,
+            "irr_cache_ci_lower": round(self.irr_cache_ci_lower, 4) if self.irr_cache_ci_lower is not None else None,
+            "irr_cache_ci_upper": round(self.irr_cache_ci_upper, 4) if self.irr_cache_ci_upper is not None else None,
+            "irr_cache_at_operating": round(self.irr_cache_at_operating, 4) if self.irr_cache_at_operating is not None else None,
+            "hits_at_operating": self.hits_at_operating,
+            "selection_rule": self.selection_rule,
+        }
+
+
+@dataclass(frozen=True)
+class DomainSweepPoint:
+    """Evaluation point in a per-category threshold sweep.
+
+    Attributes:
+        threshold: Candidate similarity cutoff in [0, 1].
+        hits: Count of query pairs with similarity >= threshold (TP + FP).
+        tp: Correct reuses admitted.
+        fp: Cache hazards admitted.
+        fn: Safe reuses missed.
+        tn: Unsafe pairs correctly rejected.
+        arr: Actual Reuse Rate = hits / total_pairs.
+        crr: Correct Reuse Rate = TP / hits (1.0 if hits == 0).
+        irr_cache: Cache Hazard Rate = FP / hits (0.0 if hits == 0).
+        irr_cache_ci_lower: Clopper-Pearson exact binomial 95% CI lower bound on irr_cache.
+        irr_cache_ci_upper: Clopper-Pearson exact binomial 95% CI upper bound on irr_cache.
+        wilson_ci_lower: Wilson score 95% CI lower bound on irr_cache.
+        wilson_ci_upper: Wilson score 95% CI upper bound on irr_cache.
+        clears_safety_ceiling: True if hits > 0 and irr_cache_ci_upper <= safety_ceiling.
+    """
+
+    threshold: float
+    hits: int
+    tp: int
+    fp: int
+    fn: int
+    tn: int
+    arr: float
+    crr: float
+    irr_cache: float
+    irr_cache_ci_lower: float
+    irr_cache_ci_upper: float
+    wilson_ci_lower: float
+    wilson_ci_upper: float
+    clears_safety_ceiling: bool
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Serialize sweep point for telemetry and reporting."""
+        return {
+            "threshold": round(self.threshold, 4),
+            "hits": self.hits,
+            "tp": self.tp,
+            "fp": self.fp,
+            "fn": self.fn,
+            "tn": self.tn,
+            "arr": round(self.arr, 4),
+            "crr": round(self.crr, 4),
+            "irr_cache": round(self.irr_cache, 4),
+            "irr_cache_ci_lower": round(self.irr_cache_ci_lower, 4),
+            "irr_cache_ci_upper": round(self.irr_cache_ci_upper, 4),
+            "wilson_ci_lower": round(self.wilson_ci_lower, 4),
+            "wilson_ci_upper": round(self.wilson_ci_upper, 4),
+            "clears_safety_ceiling": self.clears_safety_ceiling,
         }
 
 
@@ -236,6 +308,271 @@ def fit_logistic_threshold(
     ci_upper = theta + z_crit * se_theta
 
     return theta, se_theta, ci_lower, ci_upper, b0, b1
+
+
+# ---------------------------------------------------------------------------
+# Binomial Proportion CI Helpers (Phase 4 Required Metrics)
+# ---------------------------------------------------------------------------
+
+def clopper_pearson_ci(
+    k: int,
+    n: int,
+    confidence_level: float = DEFAULT_CONFIDENCE_LEVEL,
+) -> Tuple[float, float]:
+    """Compute the exact Clopper-Pearson two-sided binomial confidence interval via scipy.stats.beta.
+
+    Uses beta distribution quantiles:
+      Lower bound: beta.ppf(alpha / 2, k, n - k + 1) if k > 0 else 0.0
+      Upper bound: beta.ppf(1 - alpha / 2, k + 1, n - k) if k < n else 1.0
+
+    Args:
+        k: Number of successes / hazards (FP).
+        n: Number of trials / cache hits (TP + FP).
+        confidence_level: Nominal confidence level (default: 0.95).
+
+    Returns:
+        (ci_lower, ci_upper) in [0.0, 1.0].
+    """
+    if n < 0 or k < 0 or k > n:
+        raise ValueError(f"Invalid binomial counts: k={k}, n={n}")
+    if n == 0:
+        return 0.0, 0.0
+
+    alpha = 1.0 - confidence_level
+
+    lower = 0.0 if k == 0 else float(stats.beta.ppf(alpha / 2.0, k, n - k + 1))
+    upper = 1.0 if k == n else float(stats.beta.ppf(1.0 - alpha / 2.0, k + 1, n - k))
+
+    return max(0.0, lower), min(1.0, upper)
+
+
+def wilson_score_ci(
+    k: int,
+    n: int,
+    confidence_level: float = DEFAULT_CONFIDENCE_LEVEL,
+) -> Tuple[float, float]:
+    """Compute the Wilson score interval for a binomial proportion via scipy.stats.norm.ppf.
+
+    Args:
+        k: Number of successes / hazards.
+        n: Number of trials.
+        confidence_level: Nominal confidence level (default: 0.95).
+
+    Returns:
+        (ci_lower, ci_upper) in [0.0, 1.0].
+    """
+    if n < 0 or k < 0 or k > n:
+        raise ValueError(f"Invalid binomial counts: k={k}, n={n}")
+    if n == 0:
+        return 0.0, 0.0
+
+    alpha = 1.0 - confidence_level
+    z = float(stats.norm.ppf(1.0 - alpha / 2.0))
+    p = k / n
+    denom = 1.0 + (z**2) / n
+    center = (p + (z**2) / (2.0 * n)) / denom
+    margin = (z * math.sqrt((p * (1.0 - p)) / n + (z**2) / (4.0 * (n**2)))) / denom
+
+    return max(0.0, center - margin), min(1.0, center + margin)
+
+
+def sweep_domain_thresholds(
+    similarities: Sequence[float],
+    safe_labels: Sequence[bool | int],
+    safety_ceiling: float = SAFETY_CEILING_IRR,
+    start: float = 0.50,
+    stop: float = 0.95,
+    step: float = 0.01,
+    confidence_level: float = DEFAULT_CONFIDENCE_LEVEL,
+) -> List[DomainSweepPoint]:
+    """Sweep candidate similarity thresholds for a single domain and evaluate CIs.
+
+    Args:
+        similarities: Cosine similarity scores for domain query pairs.
+        safe_labels: Ground truth / feedback labels (True=safe, False=unsafe).
+        safety_ceiling: Maximum permissible upper bound on IRR_cache (default: 0.10).
+        start: Lower similarity bound for sweep.
+        stop: Upper similarity bound for sweep.
+        step: Increment step.
+        confidence_level: Confidence level for Clopper-Pearson and Wilson CIs.
+
+    Returns:
+        List of DomainSweepPoint objects.
+    """
+    sims = np.asarray(similarities, dtype=np.float64)
+    ys = np.asarray(safe_labels, dtype=bool)
+    total_pairs = len(sims)
+
+    points: List[DomainSweepPoint] = []
+    curr = start
+    while curr <= stop + 1e-9:
+        thresh = round(curr, 4)
+        pred_hit = sims >= thresh
+        tp = int(np.sum(pred_hit & ys))
+        fp = int(np.sum(pred_hit & ~ys))
+        fn = int(np.sum(~pred_hit & ys))
+        tn = int(np.sum(~pred_hit & ~ys))
+        hits = tp + fp
+
+        arr = hits / total_pairs if total_pairs > 0 else 0.0
+        crr = tp / hits if hits > 0 else 1.0
+        irr_cache = fp / hits if hits > 0 else 0.0
+
+        cp_low, cp_high = clopper_pearson_ci(fp, hits, confidence_level=confidence_level)
+        w_low, w_high = wilson_score_ci(fp, hits, confidence_level=confidence_level)
+
+        clears = (hits > 0) and (cp_high <= safety_ceiling)
+
+        points.append(
+            DomainSweepPoint(
+                threshold=thresh,
+                hits=hits,
+                tp=tp,
+                fp=fp,
+                fn=fn,
+                tn=tn,
+                arr=arr,
+                crr=crr,
+                irr_cache=irr_cache,
+                irr_cache_ci_lower=cp_low,
+                irr_cache_ci_upper=cp_high,
+                wilson_ci_lower=w_low,
+                wilson_ci_upper=w_high,
+                clears_safety_ceiling=clears,
+            )
+        )
+        curr = round(curr + step, 4)
+
+    return points
+
+
+def calibrate_category_with_feedback(
+    domain: str,
+    pairs: Sequence[Tuple[float, bool]],
+    safety_ceiling: float = SAFETY_CEILING_IRR,
+    minimum_category_n: int = MINIMUM_CATEGORY_N,
+    minimum_minority_class_n: int = MINIMUM_MINORITY_CLASS_N,
+    fallback_threshold: float = FALLBACK_THRESHOLD,
+    confidence_level: float = DEFAULT_CONFIDENCE_LEVEL,
+    sweep_start: float = 0.50,
+    sweep_stop: float = 0.95,
+    sweep_step: float = 0.01,
+) -> Tuple[CategoryThreshold, List[DomainSweepPoint]]:
+    """Calibrate a domain threshold using Phase 4 threshold sweep and Clopper-Pearson CI.
+
+    Decision Rule:
+    1. Verify dual gates: N >= minimum_category_n AND minority_count >= minimum_minority_class_n.
+       If either fails: strictly fallback to fallback_threshold (0.85).
+    2. Run threshold sweep across [sweep_start, sweep_stop].
+    3. Filter candidate thresholds where hits > 0 AND irr_cache_ci_upper <= safety_ceiling.
+    4. If qualifying thresholds exist:
+         Select the LOWEST qualifying threshold t*.
+         Adopt t* as operating_threshold with is_fallback=False.
+       Else:
+         No threshold cleared safety ceiling with sufficient statistical mass:
+         Keep fallback_threshold (0.85) with is_fallback=True.
+    5. In addition, fit logistic regression to compute Delta-method CI on theta for auditability.
+    """
+    n = len(pairs)
+    n_safe = sum(1 for p in pairs if p[1])
+    n_unsafe = n - n_safe
+    minority_count = min(n_safe, n_unsafe)
+
+    sims = [p[0] for p in pairs]
+    ys = [p[1] for p in pairs]
+
+    # Gate 1: Category sample size
+    if n < minimum_category_n:
+        return CategoryThreshold(
+            domain=domain,
+            sample_size=n,
+            minority_count=minority_count,
+            threshold=fallback_threshold,
+            operating_threshold=fallback_threshold,
+            is_fallback=True,
+            fallback_reason=f"Sample size {n} < minimum_n ({minimum_category_n})",
+            selection_rule="FALLBACK_DUAL_GATE_FAILED",
+        ), []
+
+    # Gate 2: Minority class count
+    if minority_count < minimum_minority_class_n:
+        return CategoryThreshold(
+            domain=domain,
+            sample_size=n,
+            minority_count=minority_count,
+            threshold=fallback_threshold,
+            operating_threshold=fallback_threshold,
+            is_fallback=True,
+            fallback_reason=f"Minority class count {minority_count} < minimum_minority_n ({minimum_minority_class_n})",
+            selection_rule="FALLBACK_DUAL_GATE_FAILED",
+        ), []
+
+    # Run threshold sweep
+    sweep_points = sweep_domain_thresholds(
+        similarities=sims,
+        safe_labels=ys,
+        safety_ceiling=safety_ceiling,
+        start=sweep_start,
+        stop=sweep_stop,
+        step=sweep_step,
+        confidence_level=confidence_level,
+    )
+
+    # Fit logistic regression for Delta-method CI on theta
+    theta = None
+    se = None
+    ci_low = None
+    ci_high = None
+    b0 = None
+    b1 = None
+    try:
+        theta, se, ci_low, ci_high, b0, b1 = fit_logistic_threshold(
+            sims, ys, confidence_level=confidence_level
+        )
+    except Exception:
+        pass
+
+    # Find qualifying sweep points
+    qualifying = [pt for pt in sweep_points if pt.clears_safety_ceiling]
+
+    if qualifying:
+        # Select the LOWEST threshold satisfying the safety ceiling
+        best_pt = min(qualifying, key=lambda pt: pt.threshold)
+        return CategoryThreshold(
+            domain=domain,
+            sample_size=n,
+            minority_count=minority_count,
+            threshold=theta if theta is not None else best_pt.threshold,
+            operating_threshold=best_pt.threshold,
+            is_fallback=False,
+            ci_lower=ci_low,
+            ci_upper=ci_high,
+            standard_error=se,
+            b0=b0,
+            b1=b1,
+            irr_cache_ci_lower=best_pt.irr_cache_ci_lower,
+            irr_cache_ci_upper=best_pt.irr_cache_ci_upper,
+            irr_cache_at_operating=best_pt.irr_cache,
+            hits_at_operating=best_pt.hits,
+            selection_rule=f"LOWEST_SWEEP_THRESHOLD_CLEARED_SAFETY_CEILING (t={best_pt.threshold:.4f}, CI_upper={best_pt.irr_cache_ci_upper:.4f} <= {safety_ceiling})",
+        ), sweep_points
+    else:
+        # No threshold cleared the safety ceiling
+        return CategoryThreshold(
+            domain=domain,
+            sample_size=n,
+            minority_count=minority_count,
+            threshold=theta if theta is not None else fallback_threshold,
+            operating_threshold=fallback_threshold,
+            is_fallback=True,
+            fallback_reason=f"No swept threshold cleared safety ceiling (IRR_cache CI upper <= {safety_ceiling:.2f})",
+            ci_lower=ci_low,
+            ci_upper=ci_high,
+            standard_error=se,
+            b0=b0,
+            b1=b1,
+            selection_rule=f"FALLBACK_SAFETY_CEILING_NOT_CLEARED (IRR_cache CI upper > {safety_ceiling})",
+        ), sweep_points
 
 
 # ---------------------------------------------------------------------------
@@ -545,3 +882,69 @@ class AdaptiveThresholdEngine:
             minimum_minority_class_n=minimum_minority_class_n,
             fallback_threshold=fallback_threshold,
         )
+
+    @classmethod
+    def fit_with_feedback_sweep(
+        cls,
+        labeled_data: Sequence[Tuple[str, float, bool]],
+        safety_ceiling: float = SAFETY_CEILING_IRR,
+        minimum_category_n: int = MINIMUM_CATEGORY_N,
+        minimum_minority_class_n: int = MINIMUM_MINORITY_CLASS_N,
+        fallback_threshold: float = FALLBACK_THRESHOLD,
+        confidence_level: float = DEFAULT_CONFIDENCE_LEVEL,
+        sweep_start: float = 0.50,
+        sweep_stop: float = 0.95,
+        sweep_step: float = 0.01,
+    ) -> Tuple["AdaptiveThresholdEngine", Dict[str, List[DomainSweepPoint]]]:
+        """Fit per-category thresholds via Phase 4 CI-upper-bound threshold sweep.
+
+        Replaces Bayes-optimal p*=0.50 with a sweep selecting the lowest threshold
+        where Clopper-Pearson exact binomial CI upper bound on IRR_cache <= safety_ceiling.
+
+        Args:
+            labeled_data: Sequence of (domain, similarity_score, is_reuse_safe).
+            safety_ceiling: Maximum allowed IRR_cache CI upper bound (default: 0.10).
+            minimum_category_n: Total N gate (default: 20).
+            minimum_minority_class_n: Minority N gate (default: 10).
+            fallback_threshold: Reference threshold on fallback (default: 0.85).
+            confidence_level: Confidence level for CIs (default: 0.95).
+            sweep_start: Sweep start similarity (default: 0.50).
+            sweep_stop: Sweep end similarity (default: 0.95).
+            sweep_step: Sweep step size (default: 0.01).
+
+        Returns:
+            (engine, domain_sweep_points_dict)
+        """
+        by_domain: Dict[str, List[Tuple[float, bool]]] = {}
+        for dom, sim, safe in labeled_data:
+            if dom not in by_domain:
+                by_domain[dom] = []
+            by_domain[dom].append((sim, safe))
+
+        thresholds: Dict[str, CategoryThreshold] = {}
+        all_sweep_points: Dict[str, List[DomainSweepPoint]] = {}
+
+        for dom, pairs in by_domain.items():
+            ct, points = calibrate_category_with_feedback(
+                domain=dom,
+                pairs=pairs,
+                safety_ceiling=safety_ceiling,
+                minimum_category_n=minimum_category_n,
+                minimum_minority_class_n=minimum_minority_class_n,
+                fallback_threshold=fallback_threshold,
+                confidence_level=confidence_level,
+                sweep_start=sweep_start,
+                sweep_stop=sweep_stop,
+                sweep_step=sweep_step,
+            )
+            thresholds[dom] = ct
+            all_sweep_points[dom] = points
+
+        engine = cls(
+            thresholds=thresholds,
+            minimum_category_n=minimum_category_n,
+            minimum_minority_class_n=minimum_minority_class_n,
+            fallback_threshold=fallback_threshold,
+        )
+        return engine, all_sweep_points
+
