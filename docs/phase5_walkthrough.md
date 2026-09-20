@@ -8,12 +8,96 @@
 
 ---
 
-## 1. Scope, Architectural Invariants, and Active Production Policy
+## 1. Step 0: StabilityClassifier Evaluation on Final Test Benchmark
+
+> [!NOTE]
+> **First-time execution.** A grep audit confirmed that `query_stability_benchmark_final_test.json` had only ever been used in this project as a leakage-exclusion check (verifying that load-test queries did not overlap it). This is the **first time the trained `StabilityClassifier` has been evaluated against that dataset**. The script [`scripts/step0_final_test_eval.py`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/scripts/step0_final_test_eval.py) ran on 2026-09-21; all numbers below are real measurements.
+
+### 1.1 Dataset
+- **File:** `data/raw/query_stability_benchmark_final_test.json`
+- **Dataset Role (from file metadata):** Final Test (Pristine — operationally untouched)
+- **N:** 60 queries across all 7 domain categories
+- **Label distribution:** 37 STABLE, 23 DYNAMIC
+
+### 1.2 Execution
+The full `StabilityClassifier` (Stage 1 rule engine + Stage 2 `TrainedLexicalClassifier`, including Sub-stage A uncertainty override at confidence < 0.80) was instantiated with default production settings and run sequentially against all 60 queries via `StabilityEvaluator.evaluate_benchmark()`.
+
+### 1.3 Overall Accuracy
+
+$$\text{Accuracy} = \frac{55}{60} = \mathbf{91.67\%}$$
+
+- **Total Queries:** 60
+- **Correct Predictions:** 55
+- **Errors:** 5 (all FN — conservative, not dangerous)
+
+### 1.4 Confusion Matrix
+
+Polarity convention: **Positive = STABLE** (cache candidate), **Negative = DYNAMIC** (bypass).
+
+| | Predicted STABLE | Predicted DYNAMIC |
+| :--- | :---: | :---: |
+| **True STABLE** (N=37) | **TP = 32** | FN = 5 |
+| **True DYNAMIC** (N=23) | FP = **0** | **TN = 23** |
+
+- **FP = 0:** Zero DYNAMIC queries were incorrectly admitted as STABLE. The classifier committed **no dangerous errors** (stale cache hazards) on this dataset.
+- **FN = 5:** Five STABLE queries were conservatively routed to DYNAMIC (unnecessary bypass). This is the expected tradeoff of Sub-stage A's uncertainty override.
+
+### 1.5 Per-Class Precision, Recall, and F1
+
+| Class | Precision | Recall | F1 |
+| :--- | :---: | :---: | :---: |
+| **STABLE** | **100.00%** | **86.49%** | **92.75%** |
+| **DYNAMIC** | **82.14%** | **100.00%** | **90.20%** |
+
+**Interpretation:**
+- **STABLE Precision = 100.0%:** Every query the classifier admitted as cacheable was genuinely stable — zero false admissions. This is the project's primary safety invariant.
+- **STABLE Recall = 86.49%:** The classifier missed 5 of 37 genuinely stable queries (predicted DYNAMIC). These are conservative misses, not safety failures. They increase LLM regeneration cost but do not pollute the cache.
+- **DYNAMIC Recall = 100.0%:** All 23 DYNAMIC queries were correctly flagged for bypass — the classifier let no volatile query slip through.
+
+### 1.6 Safety Metrics
+
+| Metric | Measured Value | Formula |
+| :--- | :---: | :--- |
+| **Dangerous Error Rate** (FP / Total Dynamic) | **0.00%** | $0 / 23 = 0.0\%$ |
+| **Conservative Error Rate** (FN / Total Stable) | **13.51%** | $5 / 37 = 13.51\%$ |
+
+### 1.7 Pipeline Routing Resolution
+
+| Resolution Stage | Count | Percentage |
+| :--- | :---: | :---: |
+| Stage 1 Rule Engine | 40 | **66.7%** |
+| Stage 2 Fallback (TrainedLexicalClassifier) | 20 | **33.3%** |
+
+### 1.8 Latency
+
+| Metric | Value |
+| :--- | :---: |
+| Mean | **2.2875 ms** |
+| P50 (Median) | **0.2517 ms** |
+| P95 | **8.7019 ms** |
+
+> [!NOTE]
+> The high mean vs. median gap (2.29 ms vs. 0.25 ms) is expected: Stage 1 rule matches are sub-millisecond, while Stage 2 `TrainedLexicalClassifier` calls involve scikit-learn inference (TF-IDF + logistic regression), which dominate the tail. Both are well within the sub-10 ms target for a local classifier.
+
+### 1.9 Consistency with pytest Assertion
+
+The test `test_stability_evaluator_final_test_run()` in [`tests/test_stability_evaluation.py`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/tests/test_stability_evaluation.py#L63-L78) asserts:
+```python
+assert metrics.accuracy >= 0.85
+```
+
+**Measured accuracy: 91.67% ≥ 85% → assertion PASSES** with a 6.67 percentage-point margin above threshold.
+
+The measured result is **consistent** with the pytest assertion. The 85% threshold was set as a minimum guard; the actual trained classifier exceeds it by a substantial margin, and critically does so without any dangerous errors (FP = 0) on the 60-query final test set.
+
+---
+
+## 2. Scope, Architectural Invariants, and Active Production Policy
 
 Phase 5 is the first phase to evaluate the **entire production pipeline** working together in concert under sequential synthetic traffic:
 $$\text{User Query} \longrightarrow \text{StabilityClassifier} \longrightarrow \text{SemanticCache} \longrightarrow \text{TierRouter} \longrightarrow \begin{cases} \text{AUTO\_REUSE (Vector Cache Hit)} \\ \text{AMBIGUOUS (LLMJudge via OpenRouter)} \\ \text{BYPASS (Direct LLM / Miss)} \end{cases}$$
 
-### 1.1 Active Production Policy (from Phase 3 and Phase 4)
+### 2.1 Active Production Policy (from Phase 3 and Phase 4)
 As established in `docs/phase3_final_decision.md` and confirmed by Phase 4's complete 108-pair empirical calibration sweep (`docs/phase4_walkthrough.md`):
 - **Decision Step:** `ProductionDecisionStep = JudgeDecisionStep` backed by `LLMJudge` using `nvidia/nemotron-3-super-120b-a12b:free`.
 - **Domain Similarity Thresholds:** Every one of the 7 domain categories operates at the safe global reference fallback of **`0.8500`**. Phase 4's rigorous binomial confidence bounding proved that no category had yet acquired the mathematical sample size ($n \ge 36$ hits with zero errors) to prove an error rate $\le 10.0\%$ at lower thresholds without risking semantic traps.
@@ -259,3 +343,40 @@ The dashboard was verified by running `python dashboard/app.py` in non-interacti
 ### 7.3 Conclusion
 The full end-to-end production pipeline functions exactly as designed: fast vector caching on safe repeats, fast classifier bypass on volatile topics, and safe LLM judge adjudication on ambiguous edge cases.
 All results are empirically grounded, reproducible, and transparently disclosed.
+
+---
+
+## 8. Known Limitations: Absence of a Fully Blind Evaluation Dataset
+
+> [!WARNING]
+> ### Open Design Decision — Not Resolved by This Phase
+> This section documents a structural limitation of the project's evaluation methodology. It is stated plainly rather than papered over. Resolution is scoped to a future phase.
+
+### 8.1 What Is Missing
+
+This project has **no reserved, never-referenced dataset for the cache-reuse decision pipeline specifically**. The pipeline's key decision components — the `SemanticCache` similarity threshold, the `TierRouter` boundary values (0.50/0.85/0.92), and the `LLMJudge` adjudication logic — were calibrated, tuned, and validated entirely on datasets that the pipeline design team could inspect during development. There is no held-out corpus against which the full cache-reuse pipeline (as opposed to the stability classifier) has been evaluated on data that was structurally unavailable to the designers.
+
+### 8.2 The Classifier's Situation
+
+The `StabilityClassifier` is the **only component in this repository that has any held-out evaluation set at all**: `data/raw/query_stability_benchmark_final_test.json` (60 queries). However, even this dataset is not fully blind in the strict sense:
+
+1. **The 85% accuracy threshold in `test_stability_evaluator_final_test_run()` was authored with knowledge that the classifier was expected to pass it.** The test was written as a guard, not as a discovery. The first execution of that assertion (prior to the Step 0 run in this document) constituted an observation that established the dataset's approximate performance range.
+2. **Step 0 above is this project's first direct evaluation** of the classifier against the final test set via `StabilityEvaluator`. However, the pytest assertion had already been run against this same dataset in prior phases, meaning the result (≥85%) was not a completely unseen measurement — it was the first full metric breakdown, but the coarse accuracy floor was already known to pass.
+3. Therefore, the final test set is best characterized as **clean-for-tuning but not strictly blind**: no hyperparameter was tuned specifically against it, but its accuracy envelope was visible through the passing pytest assertion before Step 0 ran.
+
+### 8.3 Implication
+
+For the **cache-reuse decision pipeline** (threshold selection, routing logic, judge integration), the project currently has no held-out validation set at all. All calibration evidence (Phase 3 empirical sweep, Phase 4 binomial confidence bounds, Phase 5 load test) was conducted on data that informed the system's design decisions. This means:
+
+- Reported cache hazard rates and latency figures **describe the system's behavior on traffic similar in character to the design corpus**, not on statistically independent future traffic.
+- The Phase 5 Clopper-Pearson CI ($[0.0\%, 15.44\%]$ at $n=22$ hits) already flags this underpowering, but the root cause goes deeper: even if $n$ were large, the sample is not drawn from a structurally independent source.
+
+### 8.4 Open Decision for a Future Phase
+
+This is an open engineering decision, not something Phase 5 resolves. Options for a future phase include:
+
+1. **Freeze a new, unseen query corpus** drawn from a different generation process or a different annotator, evaluate the full pipeline against it in a single locked run, and report those numbers as the true blind evaluation.
+2. **Deploy a shadow-mode canary** against real (or realistic production-proxy) traffic, accumulate hits over time, and use those hits as a naturally independent test set.
+3. **Formally acknowledge the limitation in the project's top-level README** and scope a blind evaluation to a Phase 6 milestone.
+
+Until one of these is executed, all evaluation numbers in this document — including the 91.67% classifier accuracy and the 0.0% cache hazard rate — should be read as **internal consistency checks**, not as independent generalization measurements.
