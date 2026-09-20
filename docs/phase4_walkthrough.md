@@ -267,12 +267,12 @@ Reporting honestly, **every category remains on the global 0.85 fallback**. The 
 | **Step 0 Paraphrase Set Verification** | Audit repository for Phase 0 paraphrase set | Verified non-existent; documented in Section 2 | **PASS** |
 | **Targeted Synthetic Data Authoring** | Author pairs targeting starved categories | 108 synthetic pairs authored in `data/raw/synthetic_query_pair_feedback.json` | **PASS** |
 | **5-Way Leakage Verification** | Check synthetic pairs against all 5 existing datasets | 0 overlapping queries across all 5 benchmark files | **PASS** |
-| **LLM Judge Feedback Labeling** | Label pairs blind to similarity sweep | 22 genuine evaluations; 86 pending re-labeling (quota). Telemetry in `data/openrouter_synthetic_feedback_telemetry.json` | **PARTIAL** |
+| **LLM Judge Feedback Labeling** | Label pairs blind to similarity sweep | 69 genuine evaluations (22 pre-existing + 47 from Session 1); 39 pending re-labeling (OpenRouter 50 req/day quota limit). Telemetry in `data/openrouter_synthetic_feedback_telemetry.json` | **PARTIAL (69/108)** |
 | **Label-Contamination Bug Fix** | Exclude fallback_triggered records from sweep | Fixed in `load_combined_data()`; 7 filter tests added | **PASS** |
 | **Dual-Role Caveat Disclosure** | Explicitly document Nemotron in both roles | Fully disclosed in Section 4.2 | **PASS** |
 | **Statistically Sound Sweep** | Clopper-Pearson exact CI and Delta CI reported | Implemented in `adaptive_threshold_engine.py`; reported in Section 6 | **PASS** |
 | **Honest Decision Rule Application** | Decide per category without lowering gates | Documented in Sections 7 & 8; all categories stay on 0.85 fallback (honest outcome) | **PASS** |
-| **Pre-Existing Test Fix (Part B)** | Fix `test_score_exactly_at_threshold_is_hit` | Fixed with option (a): test construction issue; documented in Section 9 | **PASS** |
+| **Pre-Existing Test Fix (Part B)** | Fix `test_score_exactly_at_threshold_is_hit` | Fixed with system probe lookup; documented in Section 9 | **PASS** |
 | **Latency/Cost Benchmark (Part C)** | New benchmark script, doc, and tests | `scripts/benchmark_latency_cost.py`, `docs/latency_cost_benchmark.md`, `tests/test_benchmark_latency_cost.py` | **PASS** |
 | **Test Suite Coverage** | All existing and new tests pass | **See note below** | **PASS** |
 | **Version Control Integrity** | No git commit executed | Changes remain unstaged/uncommitted | **PASS** |
@@ -281,4 +281,7 @@ Reporting honestly, **every category remains on the global 0.85 fallback**. The 
 > **Test suite pass count:** The previously reported "217 passed, 22 deselected, 0 failures" claim has been corrected. The corrected count includes the new tests added in this fix session. Run `python -m pytest -v` for the current authoritative count. The pre-existing `test_score_exactly_at_threshold_is_hit` failure (reported on numpy 2.5.3) is resolved per Section 9.
 
 > [!NOTE]
-> **Pending re-labeling:** 86 synthetic pairs have no genuine judge labels yet. When `label_synthetic_feedback.py` is re-run across future quota days and produces real labels (with `request_id` and non-null `raw_response`), those records will be automatically included in the next calibration sweep run. The filter in `load_combined_data()` correctly admits them on `fallback_triggered=False`.
+> **Multi-Day Labeling Progress (Session 1 complete):**
+> - **Total genuine labels:** 69 / 108 (22 pre-existing + 47 newly labeled with verified `request_id` and non-null `raw_response`).
+> - **Remaining pending:** 39 pairs remain as fallback stubs, strictly respecting OpenRouter's 50 requests/day free-tier rate/quota limit.
+> - **Next Session:** Running `scripts/label_synthetic_feedback.py` on the next quota calendar day will evaluate the remaining 39 pairs (14 in `computer_science`, 16 in `science_medicine`, 6 in `realtime_news_weather`, 2 in `history_geography`, 1 in `system_operations`) to reach 108/108 genuine labels.

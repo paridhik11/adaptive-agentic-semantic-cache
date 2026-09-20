@@ -70,15 +70,15 @@ def _make_genuine_records(n: int = 5) -> List[Dict]:
 class TestLoadGenuineTelemetry:
     """The telemetry file must exist and return >= 1 genuine record."""
 
-    def test_real_telemetry_file_returns_22_genuine(self):
-        """Integration check: the real telemetry file yields exactly 22 genuine records."""
+    def test_real_telemetry_file_returns_genuine(self):
+        """Integration check: the real telemetry file yields genuine records."""
         telemetry_path = REPO_ROOT / "data" / "openrouter_synthetic_feedback_telemetry.json"
         if not telemetry_path.exists():
             pytest.skip("Telemetry file not present -- skipping")
 
         genuine = load_genuine_telemetry()
-        assert len(genuine) == 22, (
-            f"Expected 22 genuine records, got {len(genuine)}. "
+        assert len(genuine) == 69, (
+            f"Expected 69 genuine records, got {len(genuine)}. "
             "Run label_synthetic_feedback.py to obtain more real labels."
         )
 

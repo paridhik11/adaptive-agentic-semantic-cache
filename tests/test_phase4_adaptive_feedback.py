@@ -466,12 +466,12 @@ class TestFallbackFilterExcludesFallbackRecords:
         genuine = self._apply_filter(real_data)
         fallbacks = [r for r in real_data if r.get("fallback_triggered", False)]
 
-        assert len(genuine) == 22, (
-            f"Expected 22 genuine records in telemetry, got {len(genuine)}. "
+        assert len(genuine) == 69, (
+            f"Expected 69 genuine records in telemetry, got {len(genuine)}. "
             f"Re-run label_synthetic_feedback.py to obtain more real labels."
         )
-        assert len(fallbacks) == 86, (
-            f"Expected 86 fallback stubs, got {len(fallbacks)}."
+        assert len(fallbacks) == 39, (
+            f"Expected 39 fallback stubs, got {len(fallbacks)}."
         )
         # Confirm mathematics is the only domain with 100% genuine coverage
         math_records = [r for r in real_data if r["domain"] == "mathematics"]

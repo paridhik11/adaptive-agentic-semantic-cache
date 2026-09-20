@@ -34,12 +34,14 @@ OUTPUT_TELEMETRY_PATH = REPO_ROOT / "data" / "openrouter_synthetic_feedback_tele
 def main() -> None:
     target_model = sys.argv[1] if len(sys.argv) > 1 else (os.environ.get("OPENROUTER_MODEL") or DEFAULT_JUDGE_MODEL)
     delay = float(sys.argv[2]) if len(sys.argv) > 2 else 2.5
+    max_calls = int(sys.argv[3]) if len(sys.argv) > 3 else int(os.environ.get("OPENROUTER_MAX_DAILY_CALLS", "50"))
 
     print("=" * 80)
     print("PHASE 4: LLM JUDGE FEEDBACK LABELING (OPENROUTER)")
     print(f"Dataset: {DATASET_PATH}")
     print(f"Model: {target_model}")
     print(f"Inter-call delay: {delay}s")
+    print(f"Daily call cap: {max_calls}")
     print(f"Output: {OUTPUT_TELEMETRY_PATH}")
     print("=" * 80)
 
@@ -72,21 +74,34 @@ def main() -> None:
         print("\nERROR: OPENROUTER_API_KEY is not set.")
         sys.exit(1)
 
-    # Check for existing telemetry to support resuming
+    # Check for existing telemetry to support resuming and merging
     completed_records: Dict[str, Dict[str, Any]] = {}
+    all_records_by_id: Dict[str, Dict[str, Any]] = {}
     if OUTPUT_TELEMETRY_PATH.exists():
         try:
             with open(OUTPUT_TELEMETRY_PATH, "r", encoding="utf-8") as f:
                 saved = json.load(f)
                 if isinstance(saved, list):
                     for r in saved:
-                        if "pair_id" in r and not r.get("fallback_triggered"):
-                            completed_records[r["pair_id"]] = r
-            print(f"Loaded {len(completed_records)} previously completed evaluations from telemetry.")
+                        if "pair_id" in r:
+                            all_records_by_id[r["pair_id"]] = r
+                            if not r.get("fallback_triggered"):
+                                completed_records[r["pair_id"]] = r
+            print(f"Loaded {len(completed_records)} previously completed genuine evaluations from telemetry.")
+            print(f"Total existing records in telemetry: {len(all_records_by_id)}.")
         except Exception as e:
             print(f"Could not load existing telemetry ({e}), starting fresh.")
 
-    results: List[Dict[str, Any]] = []
+    def save_merged_telemetry() -> None:
+        """Write all 108 records preserving dataset ordering and merging genuine updates."""
+        merged_list = [all_records_by_id[p["id"]] for p in pairs if p["id"] in all_records_by_id]
+        with open(OUTPUT_TELEMETRY_PATH, "w", encoding="utf-8") as tf:
+            json.dump(merged_list, tf, indent=2)
+
+    calls_attempted_this_session = 0
+    genuine_labeled_this_session = 0
+    quota_exhausted = False
+    stop_reason = ""
     t_start = time.perf_counter()
 
     for idx, (pair, sim) in enumerate(zip(pairs, pair_sims), start=1):
@@ -97,11 +112,16 @@ def main() -> None:
         authored_safe = pair["is_reuse_safe"]
 
         if pid in completed_records:
-            print(f"[{idx:>3}/{len(pairs)}] {pid} ({dom:<20}): CACHED -> decision={completed_records[pid]['judge_decision']}")
-            results.append(completed_records[pid])
+            print(f"[{idx:>3}/{len(pairs)}] {pid} ({dom:<22}): CACHED -> decision={completed_records[pid]['judge_decision']}")
             continue
 
-        print(f"[{idx:>3}/{len(pairs)}] {pid} ({dom:<20}): Calling OpenRouter (sim={sim:.4f})...", end="", flush=True)
+        if calls_attempted_this_session >= max_calls:
+            quota_exhausted = True
+            stop_reason = f"Daily session cap reached ({max_calls} calls)."
+            print(f"\n[STOP] {stop_reason}")
+            break
+
+        print(f"[{idx:>3}/{len(pairs)}] {pid} ({dom:<22}): Calling OpenRouter (sim={sim:.4f})...", end="", flush=True)
         res = judge.judge(
             query_a=qa,
             query_b=qb,
@@ -110,7 +130,46 @@ def main() -> None:
             stability_confidence=1.0,
             category_history_rate=0.5,
         )
+        calls_attempted_this_session += 1
 
+        if res.fallback_triggered:
+            print(f" -> FALLBACK ({res.error})")
+            # Check if 429 or quota limit hit
+            err_str = str(res.error).lower()
+            if "429" in err_str or "rate" in err_str or "quota" in err_str:
+                quota_exhausted = True
+                stop_reason = f"OpenRouter quota / 429 limit encountered on {pid}: {res.error}"
+                print(f"\n[STOP] {stop_reason}")
+                break
+            else:
+                # Non-quota error, record fallback and continue
+                record = {
+                    "pair_id": pid,
+                    "query_a": qa,
+                    "query_b": qb,
+                    "domain": dom,
+                    "similarity_score": round(sim, 4),
+                    "authored_is_reuse_safe": authored_safe,
+                    "judge_decision": res.decision,
+                    "judge_is_safe": res.is_safe,
+                    "confidence": round(res.confidence, 4),
+                    "rationale": res.rationale,
+                    "prompt_tokens": res.prompt_tokens,
+                    "completion_tokens": res.completion_tokens,
+                    "total_tokens": res.total_tokens,
+                    "latency_ms": round(res.latency_ms, 2),
+                    "model": res.model,
+                    "fallback_triggered": True,
+                    "error": res.error,
+                    "raw_response": res.raw_response,
+                    "retries_used": res.retries_used,
+                    "request_id": res.request_id,
+                }
+                all_records_by_id[pid] = record
+                save_merged_telemetry()
+                continue
+
+        # Genuine call with non-null response and request_id
         record = {
             "pair_id": pid,
             "query_a": qa,
@@ -127,55 +186,57 @@ def main() -> None:
             "total_tokens": res.total_tokens,
             "latency_ms": round(res.latency_ms, 2),
             "model": res.model,
-            "fallback_triggered": res.fallback_triggered,
-            "error": res.error,
+            "fallback_triggered": False,
+            "error": None,
             "raw_response": res.raw_response,
             "retries_used": res.retries_used,
             "request_id": res.request_id,
         }
-        results.append(record)
-        print(f" -> {res.decision:<6} (conf={res.confidence:.2f}, {res.latency_ms:.0f}ms)")
+        all_records_by_id[pid] = record
+        completed_records[pid] = record
+        genuine_labeled_this_session += 1
+        print(f" -> {res.decision:<6} (safe={res.is_safe}, conf={res.confidence:.2f}, {res.latency_ms:.0f}ms, req_id={res.request_id})")
 
-        # Save progress incrementally every 5 pairs
-        if idx % 5 == 0 or idx == len(pairs):
-            with open(OUTPUT_TELEMETRY_PATH, "w", encoding="utf-8") as f:
-                json.dump(results, f, indent=2)
+        # Save merged telemetry incrementally after each successful pair
+        save_merged_telemetry()
 
     total_duration = time.perf_counter() - t_start
+    save_merged_telemetry()
+
+    # Final calculations for session report
+    all_records = [all_records_by_id[p["id"]] for p in pairs if p["id"] in all_records_by_id]
+    total_genuine = sum(1 for r in all_records if not r.get("fallback_triggered", False))
+    total_pending = sum(1 for r in all_records if r.get("fallback_triggered", False))
+
     print("\n" + "=" * 80)
-    print("FEEDBACK LABELING COMPLETED")
-    print(f"Total time: {total_duration:.1f}s ({total_duration/60:.2f} min)")
+    print("SESSION SUMMARY REPORT")
     print("=" * 80)
+    print(f"Session execution time: {total_duration:.1f}s ({total_duration/60:.2f} min)")
+    print(f"Calls attempted this session: {calls_attempted_this_session}")
+    print(f"New genuine labels obtained this session: {genuine_labeled_this_session}")
+    print(f"Total genuine labels in telemetry: {total_genuine} / {len(pairs)}")
+    print(f"Total fallback / pending records remaining: {total_pending} / {len(pairs)}")
+    if stop_reason:
+        print(f"Session termination note: {stop_reason}")
 
-    # Compute agreement summary
-    total = len(results)
-    agreements = sum(1 for r in results if r["authored_is_reuse_safe"] == r["judge_is_safe"])
-    fallbacks = sum(1 for r in results if r.get("fallback_triggered", False))
-
-    print(f"Total pairs evaluated: {total}")
-    print(f"Author-Judge Agreement: {agreements}/{total} ({agreements/total*100:.2f}%)")
-    print(f"Judge Fallbacks / Errors: {fallbacks}")
-
-    # Domain breakdown
-    from collections import Counter
-    by_dom = {}
-    for r in results:
+    # Per-domain breakdown
+    by_dom: Dict[str, List[Dict[str, Any]]] = {}
+    for r in all_records:
         d = r["domain"]
         by_dom.setdefault(d, []).append(r)
 
-    print("\nPer-Domain Judge Label Breakdown:")
+    print("\nPer-Domain Telemetry Breakdown (Genuine vs. Pending):")
+    print(f"{'Domain':<26} | {'Total':>5} | {'Genuine':>7} | {'Pending':>7} | {'Status':<15}")
+    print("-" * 70)
     for dom in sorted(by_dom.keys()):
         d_recs = by_dom[dom]
         d_tot = len(d_recs)
-        d_reuse = sum(1 for r in d_recs if r["judge_decision"] == "REUSE")
-        d_bypass = d_tot - d_reuse
-        d_agree = sum(1 for r in d_recs if r["authored_is_reuse_safe"] == r["judge_is_safe"])
-        print(f"  - {dom:<24}: Total={d_tot:>2} | Judge REUSE={d_reuse:>2} | Judge BYPASS={d_bypass:>2} | Agreement={d_agree}/{d_tot} ({d_agree/d_tot*100:.1f}%)")
+        d_gen = sum(1 for r in d_recs if not r.get("fallback_triggered", False))
+        d_pend = d_tot - d_gen
+        status = "COMPLETE" if d_pend == 0 else f"{d_pend} pending"
+        print(f"{dom:<26} | {d_tot:>5} | {d_gen:>7} | {d_pend:>7} | {status:<15}")
 
-    # Final write to ensure all results saved
-    with open(OUTPUT_TELEMETRY_PATH, "w", encoding="utf-8") as f:
-        json.dump(results, f, indent=2)
-    print(f"\nSaved full telemetry to {OUTPUT_TELEMETRY_PATH}")
+    print(f"\nTelemetry saved to {OUTPUT_TELEMETRY_PATH}")
 
 
 if __name__ == "__main__":
