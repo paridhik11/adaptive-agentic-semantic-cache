@@ -77,8 +77,8 @@ class TestLoadGenuineTelemetry:
             pytest.skip("Telemetry file not present -- skipping")
 
         genuine = load_genuine_telemetry()
-        assert len(genuine) == 69, (
-            f"Expected 69 genuine records, got {len(genuine)}. "
+        assert len(genuine) == 108, (
+            f"Expected 108 genuine records, got {len(genuine)}. "
             "Run label_synthetic_feedback.py to obtain more real labels."
         )
 

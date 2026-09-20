@@ -453,8 +453,8 @@ class TestFallbackFilterExcludesFallbackRecords:
         assert "history_geography" not in filtered_domains
 
     def test_real_telemetry_file_genuine_count(self):
-        """Integration check: the actual telemetry file has exactly 22 genuine records
-        and 86 fallback stubs, confirming the root cause documented in phase4_walkthrough.md.
+        """Integration check: the actual telemetry file has 108 genuine records
+        and 0 fallback stubs, confirming all synthetic pairs have genuine judge labels.
         """
         telemetry_path = REPO_ROOT / "data" / "openrouter_synthetic_feedback_telemetry.json"
         if not telemetry_path.exists():
@@ -466,15 +466,14 @@ class TestFallbackFilterExcludesFallbackRecords:
         genuine = self._apply_filter(real_data)
         fallbacks = [r for r in real_data if r.get("fallback_triggered", False)]
 
-        assert len(genuine) == 69, (
-            f"Expected 69 genuine records in telemetry, got {len(genuine)}. "
-            f"Re-run label_synthetic_feedback.py to obtain more real labels."
+        assert len(genuine) == 108, (
+            f"Expected 108 genuine records in telemetry, got {len(genuine)}. "
         )
-        assert len(fallbacks) == 39, (
-            f"Expected 39 fallback stubs, got {len(fallbacks)}."
+        assert len(fallbacks) == 0, (
+            f"Expected 0 fallback stubs, got {len(fallbacks)}."
         )
-        # Confirm mathematics is the only domain with 100% genuine coverage
-        math_records = [r for r in real_data if r["domain"] == "mathematics"]
-        math_genuine = [r for r in math_records if not r.get("fallback_triggered")]
-        assert len(math_genuine) == 18, f"Expected 18 genuine math records, got {len(math_genuine)}"
-        assert len(math_records) == 18, "mathematics should have 0 fallback records"
+        # Confirm all 7 domains have 100% genuine coverage
+        for domain in ["computer_science", "finance_economics", "history_geography", "mathematics", "realtime_news_weather", "science_medicine", "system_operations"]:
+            dom_records = [r for r in real_data if r["domain"] == domain]
+            dom_genuine = [r for r in dom_records if not r.get("fallback_triggered")]
+            assert len(dom_genuine) == len(dom_records), f"{domain} should have 0 fallback records"
