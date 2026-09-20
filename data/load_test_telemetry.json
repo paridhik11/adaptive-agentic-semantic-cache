@@ -1,0 +1,2456 @@
+[
+  {
+    "query_id": "LT-CS-001",
+    "domain": "computer_science",
+    "query_text": "What is the time complexity of building an AVL tree with n elements?",
+    "query_type": "UNIQUE_SEED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.177,
+      "embed_ms": 56.197,
+      "search_ms": 0.042,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 56.47
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": -Infinity,
+      "matched_cached_query": null,
+      "matched_id": null,
+      "store_size": 0
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-CS-002",
+    "domain": "computer_science",
+    "query_text": "What is the time complexity of building an AVL tree with n elements?",
+    "query_type": "EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.171,
+      "embed_ms": 12.625,
+      "search_ms": 0.155,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 13.012
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 1.0,
+      "matched_cached_query": "What is the time complexity of building an AVL tree with n elements?",
+      "matched_id": "LT-CS-001",
+      "store_size": 1
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-CS-003",
+    "domain": "computer_science",
+    "query_text": "What is the asymptotic time complexity of building an AVL tree with n elements?",
+    "query_type": "NEAR_EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.163,
+      "embed_ms": 14.949,
+      "search_ms": 0.093,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 15.25
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.9567,
+      "matched_cached_query": "What is the time complexity of building an AVL tree with n elements?",
+      "matched_id": "LT-CS-001",
+      "store_size": 1
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-CS-004",
+    "domain": "computer_science",
+    "query_text": "What is the time complexity of Dijkstra algorithm using a priority queue for shortest paths?",
+    "query_type": "UNIQUE_SEED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.166,
+      "embed_ms": 13.457,
+      "search_ms": 0.18,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 13.852
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.4085,
+      "matched_cached_query": "What is the time complexity of building an AVL tree with n elements?",
+      "matched_id": "LT-CS-001",
+      "store_size": 1
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-CS-005",
+    "domain": "computer_science",
+    "query_text": "What is the time complexity of Dijkstra algorithm using a priority queue for shortest paths?",
+    "query_type": "EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.177,
+      "embed_ms": 12.242,
+      "search_ms": 0.1,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 12.574
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 1.0,
+      "matched_cached_query": "What is the time complexity of Dijkstra algorithm using a priority queue for shortest paths?",
+      "matched_id": "LT-CS-004",
+      "store_size": 2
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-CS-006",
+    "domain": "computer_science",
+    "query_text": "What is the difference between TCP congestion window and flow control window?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 7.145,
+      "embed_ms": 10.398,
+      "search_ms": 0.081,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 17.665
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 0.8905,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.134,
+      "matched_cached_query": "What is the time complexity of Dijkstra algorithm using a priority queue for shortest paths?",
+      "matched_id": "LT-CS-004",
+      "store_size": 2
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-CS-007",
+    "domain": "computer_science",
+    "query_text": "What is the current version of the Go compiler released today?",
+    "query_type": "DYNAMIC_QUERY",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.164,
+      "embed_ms": 13.896,
+      "search_ms": 0.105,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 14.212
+    },
+    "classifier_telemetry": {
+      "label": "DYNAMIC",
+      "effective_decision": "DYNAMIC",
+      "confidence": 1.0,
+      "matched_rule": "dynamic_realtime_temporal_marker"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.1149,
+      "matched_cached_query": "What is the time complexity of building an AVL tree with n elements?",
+      "matched_id": "LT-CS-001",
+      "store_size": 3
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-CS-008",
+    "domain": "computer_science",
+    "query_text": "How does Raft consensus elect a leader after a split-vote timeout?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 4.977,
+      "embed_ms": 12.469,
+      "search_ms": 0.087,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 17.582
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 0.874,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.2131,
+      "matched_cached_query": "What is the time complexity of Dijkstra algorithm using a priority queue for shortest paths?",
+      "matched_id": "LT-CS-004",
+      "store_size": 4
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-CS-009",
+    "domain": "computer_science",
+    "query_text": "How does Dijkstra algorithm find single-source shortest paths in weighted graphs using priority queue?",
+    "query_type": "AMBIGUOUS_SAFE_PARAPHRASE",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AMBIGUOUS",
+    "tier": "AMBIGUOUS",
+    "final_decision": "MISS",
+    "outcome_type": "FN",
+    "was_correct": false,
+    "timings_ms": {
+      "classifier_ms": 0.237,
+      "embed_ms": 9.608,
+      "search_ms": 0.118,
+      "judge_ms": 6297.923,
+      "total_pipeline_ms": 6307.97
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_cs_concept"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.7907,
+      "matched_cached_query": "What is the time complexity of Dijkstra algorithm using a priority queue for shortest paths?",
+      "matched_id": "LT-CS-004",
+      "store_size": 5
+    },
+    "judge_telemetry": {
+      "decision": "BYPASS",
+      "is_safe": false,
+      "confidence": 0.96,
+      "rationale": "Query A asks for the time complexity of Dijkstra with a priority queue, while Query B asks for an explanation of how the algorithm finds shortest paths. The cached answer (complexity) does not address the procedural 'how' aspect, so reusing it would be semantically incorrect.",
+      "prompt_tokens": 586,
+      "completion_tokens": 268,
+      "total_tokens": 854,
+      "latency_ms": 3796.46,
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "cost_usd": 0.0,
+      "fallback_triggered": false,
+      "error": null,
+      "raw_response": "{\n  \"decision\": \"BYPASS\",\n  \"is_safe\": false,\n  \"confidence\": 0.96,\n  \"rationale\": \"Query A asks for the time complexity of Dijkstra with a priority queue, while Query B asks for an explanation of how the algorithm finds shortest paths. The cached answer (complexity) does not address the procedural 'how' aspect, so reusing it would be semantically incorrect.\"\n}",
+      "retries_used": 0,
+      "request_id": "gen-1789933641-ZeBYxt8cdQpwOjmL42G0"
+    },
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-CS-010",
+    "domain": "computer_science",
+    "query_text": "What is the time complexity of Prim algorithm for minimum spanning trees using a priority queue?",
+    "query_type": "AMBIGUOUS_UNSAFE_TRAP",
+    "is_reuse_safe_ground_truth": false,
+    "path": "AMBIGUOUS",
+    "tier": "AMBIGUOUS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.511,
+      "embed_ms": 20.935,
+      "search_ms": 0.12,
+      "judge_ms": 18765.865,
+      "total_pipeline_ms": 18787.533
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.6876,
+      "matched_cached_query": "What is the time complexity of Dijkstra algorithm using a priority queue for shortest paths?",
+      "matched_id": "LT-CS-004",
+      "store_size": 6
+    },
+    "judge_telemetry": {
+      "decision": "BYPASS",
+      "is_safe": false,
+      "confidence": 0.96,
+      "rationale": "The cached answer concerns Dijkstra's algorithm for shortest paths, while the query asks about Prim's algorithm for minimum spanning trees; although their time complexities are asymptotically similar, the intent and subject differ, posing a semantic hazard.",
+      "prompt_tokens": 586,
+      "completion_tokens": 653,
+      "total_tokens": 1239,
+      "latency_ms": 16264.83,
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "cost_usd": 0.0,
+      "fallback_triggered": false,
+      "error": null,
+      "raw_response": "{\n  \"decision\": \"BYPASS\",\n  \"is_safe\": false,\n  \"confidence\": 0.96,\n  \"rationale\": \"The cached answer concerns Dijkstra's algorithm for shortest paths, while the query asks about Prim's algorithm for minimum spanning trees; although their time complexities are asymptotically similar, the intent and subject differ, posing a semantic hazard.\"\n}",
+      "retries_used": 0,
+      "request_id": "gen-1789933646-KrGmaBoLj5IrTfWvIzVy"
+    },
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SM-001",
+    "domain": "science_medicine",
+    "query_text": "What is the cellular mechanism of action of acetaminophen in inhibiting prostaglandin synthesis?",
+    "query_type": "UNIQUE_SEED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.42,
+      "embed_ms": 21.755,
+      "search_ms": 0.108,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 22.339
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_science_medicine"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.1056,
+      "matched_cached_query": "How does Dijkstra algorithm find single-source shortest paths in weighted graphs using priority queue?",
+      "matched_id": "LT-CS-009",
+      "store_size": 7
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SM-002",
+    "domain": "science_medicine",
+    "query_text": "What is the cellular mechanism of action of acetaminophen in inhibiting prostaglandin synthesis?",
+    "query_type": "EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.314,
+      "embed_ms": 19.703,
+      "search_ms": 0.107,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 20.184
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_science_medicine"
+    },
+    "cache_telemetry": {
+      "similarity_score": 1.0,
+      "matched_cached_query": "What is the cellular mechanism of action of acetaminophen in inhibiting prostaglandin synthesis?",
+      "matched_id": "LT-SM-001",
+      "store_size": 8
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SM-003",
+    "domain": "science_medicine",
+    "query_text": "What is the exact mechanism of action of acetaminophen in inhibiting cellular prostaglandin synthesis?",
+    "query_type": "NEAR_EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.313,
+      "embed_ms": 25.086,
+      "search_ms": 0.112,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 25.567
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_science_medicine"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.9908,
+      "matched_cached_query": "What is the cellular mechanism of action of acetaminophen in inhibiting prostaglandin synthesis?",
+      "matched_id": "LT-SM-001",
+      "store_size": 8
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SM-004",
+    "domain": "science_medicine",
+    "query_text": "What is the biochemical mechanism of action of RuBisCO enzyme in photosynthesis carbon fixation?",
+    "query_type": "UNIQUE_SEED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.322,
+      "embed_ms": 23.613,
+      "search_ms": 0.099,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 24.085
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_science_medicine"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.4378,
+      "matched_cached_query": "What is the cellular mechanism of action of acetaminophen in inhibiting prostaglandin synthesis?",
+      "matched_id": "LT-SM-001",
+      "store_size": 8
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SM-005",
+    "domain": "science_medicine",
+    "query_text": "What is the biochemical mechanism of action of RuBisCO enzyme in photosynthesis carbon fixation?",
+    "query_type": "EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.261,
+      "embed_ms": 17.424,
+      "search_ms": 0.089,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 17.821
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_science_medicine"
+    },
+    "cache_telemetry": {
+      "similarity_score": 1.0,
+      "matched_cached_query": "What is the biochemical mechanism of action of RuBisCO enzyme in photosynthesis carbon fixation?",
+      "matched_id": "LT-SM-004",
+      "store_size": 9
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SM-006",
+    "domain": "science_medicine",
+    "query_text": "Describe the geological process that creates hydrothermal vents along mid-ocean ridges.",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 4.039,
+      "embed_ms": 14.751,
+      "search_ms": 0.087,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 18.92
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "DYNAMIC",
+      "confidence": 0.6909,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.1121,
+      "matched_cached_query": "What is the biochemical mechanism of action of RuBisCO enzyme in photosynthesis carbon fixation?",
+      "matched_id": "LT-SM-004",
+      "store_size": 9
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SM-007",
+    "domain": "science_medicine",
+    "query_text": "What is the current atmospheric pollen count index in Chicago today?",
+    "query_type": "DYNAMIC_QUERY",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.07,
+      "embed_ms": 9.834,
+      "search_ms": 0.061,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 9.992
+    },
+    "classifier_telemetry": {
+      "label": "DYNAMIC",
+      "effective_decision": "DYNAMIC",
+      "confidence": 1.0,
+      "matched_rule": "dynamic_realtime_temporal_marker"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.1734,
+      "matched_cached_query": "What is the current version of the Go compiler released today?",
+      "matched_id": "LT-CS-007",
+      "store_size": 10
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SM-008",
+    "domain": "science_medicine",
+    "query_text": "How do B-lymphocytes undergo somatic hypermutation inside germinal centers?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 2.524,
+      "embed_ms": 9.256,
+      "search_ms": 0.049,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 11.856
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 0.8944,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.2556,
+      "matched_cached_query": "What is the cellular mechanism of action of acetaminophen in inhibiting prostaglandin synthesis?",
+      "matched_id": "LT-SM-001",
+      "store_size": 11
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SM-009",
+    "domain": "science_medicine",
+    "query_text": "Explain how the RuBisCO enzyme catalyzes ribulose-1,5-bisphosphate carboxylation during photosynthesis.",
+    "query_type": "AMBIGUOUS_SAFE_PARAPHRASE",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AMBIGUOUS",
+    "tier": "AMBIGUOUS",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.136,
+      "embed_ms": 8.456,
+      "search_ms": 0.05,
+      "judge_ms": 6151.071,
+      "total_pipeline_ms": 6159.786
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_science_medicine"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.7569,
+      "matched_cached_query": "What is the biochemical mechanism of action of RuBisCO enzyme in photosynthesis carbon fixation?",
+      "matched_id": "LT-SM-004",
+      "store_size": 12
+    },
+    "judge_telemetry": {
+      "decision": "REUSE",
+      "is_safe": true,
+      "confidence": 0.96,
+      "rationale": "Both queries ask for the biochemical mechanism of RuBisCO in photosynthesis, specifically its carboxylation of ribulose-1,5-bisphosphate; they are semantically equivalent with no inversion or differing constraints.",
+      "prompt_tokens": 678,
+      "completion_tokens": 210,
+      "total_tokens": 888,
+      "latency_ms": 235.0,
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "cost_usd": 0.0,
+      "fallback_triggered": false,
+      "error": null,
+      "raw_response": "{\"decision\": \"REUSE\", \"is_safe\": true, \"confidence\": 0.96, \"rationale\": \"Both queries ask for the biochemical mechanism of RuBisCO in photosynthesis, specifically its carboxylation of ribulose-1,5-bisphosphate; they are semantically equivalent with no inversion or differing constraints.\"}",
+      "retries_used": 0,
+      "request_id": "gen-1789933665-gu9xCnxkTeowAI91O1j2"
+    },
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SM-010",
+    "domain": "science_medicine",
+    "query_text": "What is the half-life of iodine-131 in nuclear medicine thyroid treatment?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.476,
+      "embed_ms": 49.781,
+      "search_ms": 0.153,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 50.494
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_science_medicine"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.2135,
+      "matched_cached_query": "What is the cellular mechanism of action of acetaminophen in inhibiting prostaglandin synthesis?",
+      "matched_id": "LT-SM-001",
+      "store_size": 12
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-MA-001",
+    "domain": "mathematics",
+    "query_text": "State the definition and conditions of the central limit theorem in probability theory.",
+    "query_type": "UNIQUE_SEED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.271,
+      "embed_ms": 15.975,
+      "search_ms": 0.105,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 16.405
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.1432,
+      "matched_cached_query": "How does Raft consensus elect a leader after a split-vote timeout?",
+      "matched_id": "LT-CS-008",
+      "store_size": 13
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-MA-002",
+    "domain": "mathematics",
+    "query_text": "State the definition and conditions of the central limit theorem in probability theory.",
+    "query_type": "EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.271,
+      "embed_ms": 17.627,
+      "search_ms": 0.106,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 18.059
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 1.0,
+      "matched_cached_query": "State the definition and conditions of the central limit theorem in probability theory.",
+      "matched_id": "LT-MA-001",
+      "store_size": 14
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-MA-003",
+    "domain": "mathematics",
+    "query_text": "State the formal definition and conditions of the central limit theorem in probability theory.",
+    "query_type": "NEAR_EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.279,
+      "embed_ms": 17.627,
+      "search_ms": 0.104,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 18.066
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.9795,
+      "matched_cached_query": "State the definition and conditions of the central limit theorem in probability theory.",
+      "matched_id": "LT-MA-001",
+      "store_size": 14
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-MA-004",
+    "domain": "mathematics",
+    "query_text": "What is the time complexity of the classic Euclidean algorithm for greatest common divisor?",
+    "query_type": "UNIQUE_SEED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.274,
+      "embed_ms": 14.208,
+      "search_ms": 0.104,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 14.638
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.3762,
+      "matched_cached_query": "What is the time complexity of Dijkstra algorithm using a priority queue for shortest paths?",
+      "matched_id": "LT-CS-004",
+      "store_size": 14
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-MA-005",
+    "domain": "mathematics",
+    "query_text": "What is the time complexity of the classic Euclidean algorithm for greatest common divisor?",
+    "query_type": "EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.256,
+      "embed_ms": 13.273,
+      "search_ms": 0.096,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 13.673
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 1.0,
+      "matched_cached_query": "What is the time complexity of the classic Euclidean algorithm for greatest common divisor?",
+      "matched_id": "LT-MA-004",
+      "store_size": 15
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-MA-006",
+    "domain": "mathematics",
+    "query_text": "How do you calculate the determinant of a 3x3 matrix using cofactor expansion?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 3.869,
+      "embed_ms": 13.836,
+      "search_ms": 0.093,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 17.842
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 0.8395,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.1385,
+      "matched_cached_query": "What is the time complexity of building an AVL tree with n elements?",
+      "matched_id": "LT-CS-001",
+      "store_size": 15
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-MA-007",
+    "domain": "mathematics",
+    "query_text": "What is the current value of the US dollar prime rate today?",
+    "query_type": "DYNAMIC_QUERY",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.096,
+      "embed_ms": 9.343,
+      "search_ms": 0.086,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 9.562
+    },
+    "classifier_telemetry": {
+      "label": "DYNAMIC",
+      "effective_decision": "DYNAMIC",
+      "confidence": 1.0,
+      "matched_rule": "dynamic_realtime_temporal_marker"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.2895,
+      "matched_cached_query": "What is the current atmospheric pollen count index in Chicago today?",
+      "matched_id": "LT-SM-007",
+      "store_size": 16
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-MA-008",
+    "domain": "mathematics",
+    "query_text": "State the definition of Cauchy-Riemann equations for complex differentiable functions.",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 3.223,
+      "embed_ms": 11.987,
+      "search_ms": 0.086,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 15.339
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 0.8738,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.1292,
+      "matched_cached_query": "What is the difference between TCP congestion window and flow control window?",
+      "matched_id": "LT-CS-006",
+      "store_size": 17
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-MA-009",
+    "domain": "mathematics",
+    "query_text": "Under what mathematical conditions does the central limit theorem guarantee asymptotic normality in statistics?",
+    "query_type": "AMBIGUOUS_SAFE_PARAPHRASE",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AMBIGUOUS",
+    "tier": "AMBIGUOUS",
+    "final_decision": "MISS",
+    "outcome_type": "FN",
+    "was_correct": false,
+    "timings_ms": {
+      "classifier_ms": 0.189,
+      "embed_ms": 9.598,
+      "search_ms": 0.084,
+      "judge_ms": 10987.031,
+      "total_pipeline_ms": 10996.97
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.7676,
+      "matched_cached_query": "State the definition and conditions of the central limit theorem in probability theory.",
+      "matched_id": "LT-MA-001",
+      "store_size": 18
+    },
+    "judge_telemetry": {
+      "decision": "BYPASS",
+      "is_safe": false,
+      "confidence": 0.85,
+      "rationale": "Query B asks for the specific conditions under which the CLT guarantees asymptotic normality in statistics, while Query A seeks a general definition and conditions in probability theory. The differing target (statistics vs. probability theory) introduces a nuance that could affect the completeness of the cached answer, so reuse is not safe.",
+      "prompt_tokens": 579,
+      "completion_tokens": 792,
+      "total_tokens": 1371,
+      "latency_ms": 8485.71,
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "cost_usd": 0.0,
+      "fallback_triggered": false,
+      "error": null,
+      "raw_response": "{\n  \"decision\": \"BYPASS\",\n  \"is_safe\": false,\n  \"confidence\": 0.85,\n  \"rationale\": \"Query B asks for the specific conditions under which the CLT guarantees asymptotic normality in statistics, while Query A seeks a general definition and conditions in probability theory. The differing target (statistics vs. probability theory) introduces a nuance that could affect the completeness of the cached answer, so reuse is not safe.\"\n}",
+      "retries_used": 0,
+      "request_id": "gen-1789933671-X53yBBqA2DpSp4B7qy8U"
+    },
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-MA-010",
+    "domain": "mathematics",
+    "query_text": "State the definition and conditions of the law of large numbers in probability theory.",
+    "query_type": "AMBIGUOUS_UNSAFE_TRAP",
+    "is_reuse_safe_ground_truth": false,
+    "path": "AMBIGUOUS",
+    "tier": "AMBIGUOUS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 5.867,
+      "embed_ms": 20.71,
+      "search_ms": 0.127,
+      "judge_ms": 3594.373,
+      "total_pipeline_ms": 3621.16
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 0.8484,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.6311,
+      "matched_cached_query": "State the definition and conditions of the central limit theorem in probability theory.",
+      "matched_id": "LT-MA-001",
+      "store_size": 19
+    },
+    "judge_telemetry": {
+      "decision": "BYPASS",
+      "is_safe": false,
+      "confidence": 0.96,
+      "rationale": "The central limit theorem and the law of large numbers are distinct probabilistic results with different statements and conditions; serving the CLT definition would not correctly answer a request for the law of large numbers.",
+      "prompt_tokens": 579,
+      "completion_tokens": 131,
+      "total_tokens": 710,
+      "latency_ms": 1093.65,
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "cost_usd": 0.0,
+      "fallback_triggered": false,
+      "error": null,
+      "raw_response": "{\n  \"decision\": \"BYPASS\",\n  \"is_safe\": false,\n  \"confidence\": 0.96,\n  \"rationale\": \"The central limit theorem and the law of large numbers are distinct probabilistic results with different statements and conditions; serving the CLT definition would not correctly answer a request for the law of large numbers.\"\n}",
+      "retries_used": 0,
+      "request_id": "gen-1789933682-rEGJAnRR1LAVV0pvNq66"
+    },
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SO-001",
+    "domain": "system_operations",
+    "query_text": "What is the time complexity and memory overhead of systemctl status in systemd?",
+    "query_type": "UNIQUE_SEED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.294,
+      "embed_ms": 25.242,
+      "search_ms": 0.124,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 25.725
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.372,
+      "matched_cached_query": "What is the time complexity of building an AVL tree with n elements?",
+      "matched_id": "LT-CS-001",
+      "store_size": 20
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SO-002",
+    "domain": "system_operations",
+    "query_text": "What is the time complexity and memory overhead of systemctl status in systemd?",
+    "query_type": "EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.278,
+      "embed_ms": 24.383,
+      "search_ms": 0.128,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 24.854
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 1.0,
+      "matched_cached_query": "What is the time complexity and memory overhead of systemctl status in systemd?",
+      "matched_id": "LT-SO-001",
+      "store_size": 21
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SO-003",
+    "domain": "system_operations",
+    "query_text": "What is the runtime time complexity and memory overhead of systemctl status in systemd?",
+    "query_type": "NEAR_EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.334,
+      "embed_ms": 22.601,
+      "search_ms": 0.116,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 23.111
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.9718,
+      "matched_cached_query": "What is the time complexity and memory overhead of systemctl status in systemd?",
+      "matched_id": "LT-SO-001",
+      "store_size": 21
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SO-004",
+    "domain": "system_operations",
+    "query_text": "What is the time complexity of the Linux kernel memory manager calculating badness score during OOM?",
+    "query_type": "UNIQUE_SEED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.386,
+      "embed_ms": 25.701,
+      "search_ms": 0.143,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 26.295
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.4174,
+      "matched_cached_query": "What is the time complexity and memory overhead of systemctl status in systemd?",
+      "matched_id": "LT-SO-001",
+      "store_size": 21
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SO-005",
+    "domain": "system_operations",
+    "query_text": "What is the time complexity of the Linux kernel memory manager calculating badness score during OOM?",
+    "query_type": "EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.423,
+      "embed_ms": 50.311,
+      "search_ms": 0.133,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 50.934
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 1.0,
+      "matched_cached_query": "What is the time complexity of the Linux kernel memory manager calculating badness score during OOM?",
+      "matched_id": "LT-SO-004",
+      "store_size": 22
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SO-006",
+    "domain": "system_operations",
+    "query_text": "How do you configure a persistent WireGuard VPN tunnel on Ubuntu server?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 5.649,
+      "embed_ms": 38.347,
+      "search_ms": 0.138,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 44.196
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 0.8183,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.1114,
+      "matched_cached_query": "Describe the geological process that creates hydrothermal vents along mid-ocean ridges.",
+      "matched_id": "LT-SM-006",
+      "store_size": 22
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SO-007",
+    "domain": "system_operations",
+    "query_text": "What is the current memory usage of pid 1234 right now?",
+    "query_type": "DYNAMIC_QUERY",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.125,
+      "embed_ms": 19.646,
+      "search_ms": 0.108,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 19.929
+    },
+    "classifier_telemetry": {
+      "label": "DYNAMIC",
+      "effective_decision": "DYNAMIC",
+      "confidence": 1.0,
+      "matched_rule": "dynamic_realtime_temporal_marker"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.4226,
+      "matched_cached_query": "What is the time complexity and memory overhead of systemctl status in systemd?",
+      "matched_id": "LT-SO-001",
+      "store_size": 23
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SO-008",
+    "domain": "system_operations",
+    "query_text": "What iptables rule drops incoming TCP packets on port 22 from a CIDR subnet?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 5.447,
+      "embed_ms": 20.241,
+      "search_ms": 0.127,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 25.872
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "DYNAMIC",
+      "confidence": 0.7709,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.2959,
+      "matched_cached_query": "How do you configure a persistent WireGuard VPN tunnel on Ubuntu server?",
+      "matched_id": "LT-SO-006",
+      "store_size": 24
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SO-009",
+    "domain": "system_operations",
+    "query_text": "Explain how the badness score in Linux OOM killer calculates memory exhaustion with time complexity.",
+    "query_type": "AMBIGUOUS_SAFE_PARAPHRASE",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AMBIGUOUS",
+    "tier": "AMBIGUOUS",
+    "final_decision": "MISS",
+    "outcome_type": "FN",
+    "was_correct": false,
+    "timings_ms": {
+      "classifier_ms": 0.295,
+      "embed_ms": 17.355,
+      "search_ms": 0.111,
+      "judge_ms": 6932.953,
+      "total_pipeline_ms": 6950.802
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.8416,
+      "matched_cached_query": "What is the time complexity of the Linux kernel memory manager calculating badness score during OOM?",
+      "matched_id": "LT-SO-004",
+      "store_size": 25
+    },
+    "judge_telemetry": {
+      "decision": "BYPASS",
+      "is_safe": false,
+      "confidence": 0.96,
+      "rationale": "Query B requests an explanation of how the badness score calculates memory exhaustion, including time complexity, whereas Query A only provides the time complexity. Serving only the time complexity would be incomplete and potentially misleading, constituting a semantic hazard.",
+      "prompt_tokens": 590,
+      "completion_tokens": 438,
+      "total_tokens": 1028,
+      "latency_ms": 4432.11,
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "cost_usd": 0.0,
+      "fallback_triggered": false,
+      "error": null,
+      "raw_response": "{\n  \"decision\": \"BYPASS\",\n  \"is_safe\": false,\n  \"confidence\": 0.96,\n  \"rationale\": \"Query B requests an explanation of how the badness score calculates memory exhaustion, including time complexity, whereas Query A only provides the time complexity. Serving only the time complexity would be incomplete and potentially misleading, constituting a semantic hazard.\"\n}",
+      "retries_used": 0,
+      "request_id": "gen-1789933686-Y1pcwzRJG3IxubyUDdNs"
+    },
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-SO-010",
+    "domain": "system_operations",
+    "query_text": "How do you inspect LVM volume group physical extents using vgdisplay?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 5.644,
+      "embed_ms": 16.693,
+      "search_ms": 0.127,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 22.518
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 0.8118,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.1267,
+      "matched_cached_query": "How do B-lymphocytes undergo somatic hypermutation inside germinal centers?",
+      "matched_id": "LT-SM-008",
+      "store_size": 26
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-HG-001",
+    "domain": "history_geography",
+    "query_text": "What was the capital city of the Byzantine Empire during the reign of Justinian I in 550?",
+    "query_type": "UNIQUE_SEED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.587,
+      "embed_ms": 15.2,
+      "search_ms": 0.108,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 15.948
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "guard_historical_named_event"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.1595,
+      "matched_cached_query": "What is the cellular mechanism of action of acetaminophen in inhibiting prostaglandin synthesis?",
+      "matched_id": "LT-SM-001",
+      "store_size": 27
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-HG-002",
+    "domain": "history_geography",
+    "query_text": "What was the capital city of the Byzantine Empire during the reign of Justinian I in 550?",
+    "query_type": "EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.141,
+      "embed_ms": 17.969,
+      "search_ms": 0.118,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 18.287
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "guard_historical_named_event"
+    },
+    "cache_telemetry": {
+      "similarity_score": 1.0,
+      "matched_cached_query": "What was the capital city of the Byzantine Empire during the reign of Justinian I in 550?",
+      "matched_id": "LT-HG-001",
+      "store_size": 28
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-HG-003",
+    "domain": "history_geography",
+    "query_text": "What was the capital city of the Byzantine Empire during the reign of Justinian I in the year 550?",
+    "query_type": "NEAR_EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.151,
+      "embed_ms": 18.674,
+      "search_ms": 0.109,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 18.99
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "guard_historical_named_event"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.9935,
+      "matched_cached_query": "What was the capital city of the Byzantine Empire during the reign of Justinian I in 550?",
+      "matched_id": "LT-HG-001",
+      "store_size": 28
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-HG-004",
+    "domain": "history_geography",
+    "query_text": "What treaty ended the Thirty Years' War in 1648 across European territories?",
+    "query_type": "UNIQUE_SEED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.139,
+      "embed_ms": 14.716,
+      "search_ms": 0.108,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 15.016
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "guard_historical_past_year"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.2176,
+      "matched_cached_query": "What was the capital city of the Byzantine Empire during the reign of Justinian I in 550?",
+      "matched_id": "LT-HG-001",
+      "store_size": 28
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-HG-005",
+    "domain": "history_geography",
+    "query_text": "What treaty ended the Thirty Years' War in 1648 across European territories?",
+    "query_type": "EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.123,
+      "embed_ms": 14.515,
+      "search_ms": 0.107,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 14.797
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "guard_historical_past_year"
+    },
+    "cache_telemetry": {
+      "similarity_score": 1.0,
+      "matched_cached_query": "What treaty ended the Thirty Years' War in 1648 across European territories?",
+      "matched_id": "LT-HG-004",
+      "store_size": 29
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-HG-006",
+    "domain": "history_geography",
+    "query_text": "Which African lake is the primary reservoir source of the White Nile river?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 4.667,
+      "embed_ms": 14.189,
+      "search_ms": 0.11,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 19.027
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "DYNAMIC",
+      "confidence": 0.5571,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.177,
+      "matched_cached_query": "How does Dijkstra algorithm find single-source shortest paths in weighted graphs using priority queue?",
+      "matched_id": "LT-CS-009",
+      "store_size": 29
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-HG-007",
+    "domain": "history_geography",
+    "query_text": "What is the current political head of state of Japan today?",
+    "query_type": "DYNAMIC_QUERY",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.126,
+      "embed_ms": 14.348,
+      "search_ms": 0.11,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 14.636
+    },
+    "classifier_telemetry": {
+      "label": "DYNAMIC",
+      "effective_decision": "DYNAMIC",
+      "confidence": 1.0,
+      "matched_rule": "dynamic_realtime_temporal_marker"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.194,
+      "matched_cached_query": "What is the current value of the US dollar prime rate today?",
+      "matched_id": "LT-MA-007",
+      "store_size": 30
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-HG-008",
+    "domain": "history_geography",
+    "query_text": "Explain how the Silk Road trade route connected Chang'an to Antioch in antiquity.",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 4.815,
+      "embed_ms": 15.247,
+      "search_ms": 0.108,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 20.22
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "DYNAMIC",
+      "confidence": 0.7559,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.3712,
+      "matched_cached_query": "What was the capital city of the Byzantine Empire during the reign of Justinian I in 550?",
+      "matched_id": "LT-HG-001",
+      "store_size": 31
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-HG-009",
+    "domain": "history_geography",
+    "query_text": "Which historical peace agreement concluded the Thirty Years' War in 1648 in Central Europe?",
+    "query_type": "AMBIGUOUS_SAFE_PARAPHRASE",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AMBIGUOUS",
+    "tier": "AMBIGUOUS",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.137,
+      "embed_ms": 16.368,
+      "search_ms": 0.116,
+      "judge_ms": 5052.217,
+      "total_pipeline_ms": 5068.928
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "guard_historical_past_year"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.894,
+      "matched_cached_query": "What treaty ended the Thirty Years' War in 1648 across European territories?",
+      "matched_id": "LT-HG-004",
+      "store_size": 32
+    },
+    "judge_telemetry": {
+      "decision": "REUSE",
+      "is_safe": true,
+      "confidence": 0.96,
+      "rationale": "Both queries ask for the treaty/peace agreement that ended the Thirty Years' War in 1648; the answer (Peace of Westphalia) satisfies both the broader European scope and the narrower Central Europe focus, with no semantic inversion or differing constraints.",
+      "prompt_tokens": 591,
+      "completion_tokens": 360,
+      "total_tokens": 951,
+      "latency_ms": 2551.16,
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "cost_usd": 0.0,
+      "fallback_triggered": false,
+      "error": null,
+      "raw_response": "{\n  \"decision\": \"REUSE\",\n  \"is_safe\": true,\n  \"confidence\": 0.96,\n  \"rationale\": \"Both queries ask for the treaty/peace agreement that ended the Thirty Years' War in 1648; the answer (Peace of Westphalia) satisfies both the broader European scope and the narrower Central Europe focus, with no semantic inversion or differing constraints.\"\n}",
+      "retries_used": 0,
+      "request_id": "gen-1789933694-4QBqz8IFKXTz4snKLVGS"
+    },
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-HG-010",
+    "domain": "history_geography",
+    "query_text": "What mountain range separates the European and Asian continents in Russia?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.375,
+      "embed_ms": 21.22,
+      "search_ms": 0.134,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 21.783
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_geography"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.233,
+      "matched_cached_query": "Explain how the Silk Road trade route connected Chang'an to Antioch in antiquity.",
+      "matched_id": "LT-HG-008",
+      "store_size": 32
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-FE-001",
+    "domain": "finance_economics",
+    "query_text": "What is the formula and time complexity for computing compound interest over t periods?",
+    "query_type": "UNIQUE_SEED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.293,
+      "embed_ms": 16.483,
+      "search_ms": 0.115,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 16.947
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.4178,
+      "matched_cached_query": "What is the time complexity of building an AVL tree with n elements?",
+      "matched_id": "LT-CS-001",
+      "store_size": 33
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-FE-002",
+    "domain": "finance_economics",
+    "query_text": "What is the formula and time complexity for computing compound interest over t periods?",
+    "query_type": "EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.282,
+      "embed_ms": 15.384,
+      "search_ms": 0.136,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 15.859
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 1.0,
+      "matched_cached_query": "What is the formula and time complexity for computing compound interest over t periods?",
+      "matched_id": "LT-FE-001",
+      "store_size": 34
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-FE-003",
+    "domain": "finance_economics",
+    "query_text": "What is the exact formula and time complexity for computing compound interest over t periods?",
+    "query_type": "NEAR_EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.304,
+      "embed_ms": 15.347,
+      "search_ms": 0.132,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 15.838
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.997,
+      "matched_cached_query": "What is the formula and time complexity for computing compound interest over t periods?",
+      "matched_id": "LT-FE-001",
+      "store_size": 34
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-FE-004",
+    "domain": "finance_economics",
+    "query_text": "What is the time complexity of calculating eigenvalues for portfolio variance covariance matrices?",
+    "query_type": "UNIQUE_SEED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.296,
+      "embed_ms": 15.613,
+      "search_ms": 0.149,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 16.113
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.4066,
+      "matched_cached_query": "What is the formula and time complexity for computing compound interest over t periods?",
+      "matched_id": "LT-FE-001",
+      "store_size": 34
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-FE-005",
+    "domain": "finance_economics",
+    "query_text": "What is the time complexity of calculating eigenvalues for portfolio variance covariance matrices?",
+    "query_type": "EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.301,
+      "embed_ms": 17.309,
+      "search_ms": 0.136,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 17.801
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 1.0,
+      "matched_cached_query": "What is the time complexity of calculating eigenvalues for portfolio variance covariance matrices?",
+      "matched_id": "LT-FE-004",
+      "store_size": 35
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-FE-006",
+    "domain": "finance_economics",
+    "query_text": "What is the difference between liquidity preference and loanable funds interest rate theory?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 5.118,
+      "embed_ms": 16.707,
+      "search_ms": 0.135,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 22.015
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "DYNAMIC",
+      "confidence": 0.7781,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.2079,
+      "matched_cached_query": "What is the difference between TCP congestion window and flow control window?",
+      "matched_id": "LT-CS-006",
+      "store_size": 35
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-FE-007",
+    "domain": "finance_economics",
+    "query_text": "What is the current price of Brent crude oil per barrel today?",
+    "query_type": "DYNAMIC_QUERY",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.166,
+      "embed_ms": 15.733,
+      "search_ms": 0.134,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 16.086
+    },
+    "classifier_telemetry": {
+      "label": "DYNAMIC",
+      "effective_decision": "DYNAMIC",
+      "confidence": 1.0,
+      "matched_rule": "dynamic_realtime_temporal_marker"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.6005,
+      "matched_cached_query": "What is the current value of the US dollar prime rate today?",
+      "matched_id": "LT-MA-007",
+      "store_size": 36
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-FE-008",
+    "domain": "finance_economics",
+    "query_text": "How does quantitative easing expand central bank balance sheet assets?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 5.232,
+      "embed_ms": 14.742,
+      "search_ms": 0.129,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 20.155
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "DYNAMIC",
+      "confidence": 0.785,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.2875,
+      "matched_cached_query": "What is the difference between liquidity preference and loanable funds interest rate theory?",
+      "matched_id": "LT-FE-006",
+      "store_size": 37
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-FE-009",
+    "domain": "finance_economics",
+    "query_text": "How do you calculate eigenvalues for asset variance-covariance matrices in Markowitz portfolio theory?",
+    "query_type": "AMBIGUOUS_SAFE_PARAPHRASE",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AMBIGUOUS",
+    "tier": "AMBIGUOUS",
+    "final_decision": "MISS",
+    "outcome_type": "FN",
+    "was_correct": false,
+    "timings_ms": {
+      "classifier_ms": 0.286,
+      "embed_ms": 15.799,
+      "search_ms": 0.118,
+      "judge_ms": 12591.731,
+      "total_pipeline_ms": 12608.013
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.6942,
+      "matched_cached_query": "What is the time complexity of calculating eigenvalues for portfolio variance covariance matrices?",
+      "matched_id": "LT-FE-004",
+      "store_size": 38
+    },
+    "judge_telemetry": {
+      "decision": "BYPASS",
+      "is_safe": false,
+      "confidence": 0.96,
+      "rationale": "Query A seeks the time complexity of eigenvalue calculation, whereas Query B asks for the procedural method to compute eigenvalues in Markowitz theory; providing complexity does not answer the 'how' question, creating a semantic hazard.",
+      "prompt_tokens": 586,
+      "completion_tokens": 306,
+      "total_tokens": 892,
+      "latency_ms": 10091.03,
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "cost_usd": 0.0,
+      "fallback_triggered": false,
+      "error": null,
+      "raw_response": "{\n  \"decision\": \"BYPASS\",\n  \"is_safe\": false,\n  \"confidence\": 0.96,\n  \"rationale\": \"Query A seeks the time complexity of eigenvalue calculation, whereas Query B asks for the procedural method to compute eigenvalues in Markowitz theory; providing complexity does not answer the 'how' question, creating a semantic hazard.\"\n}",
+      "retries_used": 0,
+      "request_id": "gen-1789933699-0qHD28v6RwFIRTKnxFPn"
+    },
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-FE-010",
+    "domain": "finance_economics",
+    "query_text": "What is the Modigliani-Miller theorem regarding capital structure irrelevance?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 4.721,
+      "embed_ms": 19.89,
+      "search_ms": 0.121,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 24.788
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "DYNAMIC",
+      "confidence": 0.6556,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.2654,
+      "matched_cached_query": "State the definition and conditions of the central limit theorem in probability theory.",
+      "matched_id": "LT-MA-001",
+      "store_size": 39
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-NW-001",
+    "domain": "realtime_news_weather",
+    "query_text": "Explain the time complexity of Doppler radar signal processing algorithms.",
+    "query_type": "UNIQUE_SEED",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.282,
+      "embed_ms": 15.967,
+      "search_ms": 0.112,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 16.414
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.4227,
+      "matched_cached_query": "What is the time complexity of the classic Euclidean algorithm for greatest common divisor?",
+      "matched_id": "LT-MA-004",
+      "store_size": 40
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-NW-002",
+    "domain": "realtime_news_weather",
+    "query_text": "Explain the time complexity of Doppler radar signal processing algorithms.",
+    "query_type": "EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.234,
+      "embed_ms": 14.466,
+      "search_ms": 0.114,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 14.867
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 1.0,
+      "matched_cached_query": "Explain the time complexity of Doppler radar signal processing algorithms.",
+      "matched_id": "LT-NW-001",
+      "store_size": 41
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-NW-003",
+    "domain": "realtime_news_weather",
+    "query_text": "Explain the asymptotic time complexity of Doppler radar signal processing algorithms.",
+    "query_type": "NEAR_EXACT_REPEAT",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AUTO_REUSE",
+    "tier": "AUTO_REUSE",
+    "final_decision": "HIT",
+    "outcome_type": "TP",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.244,
+      "embed_ms": 13.605,
+      "search_ms": 0.115,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 14.02
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 1.0,
+      "matched_rule": "invariant_invariant_math_algorithm"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.9575,
+      "matched_cached_query": "Explain the time complexity of Doppler radar signal processing algorithms.",
+      "matched_id": "LT-NW-001",
+      "store_size": 41
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-NW-004",
+    "domain": "realtime_news_weather",
+    "query_text": "What is the current wind speed and thunderstorm warning in Houston today?",
+    "query_type": "DYNAMIC_QUERY",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.127,
+      "embed_ms": 13.63,
+      "search_ms": 0.126,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 13.933
+    },
+    "classifier_telemetry": {
+      "label": "DYNAMIC",
+      "effective_decision": "DYNAMIC",
+      "confidence": 1.0,
+      "matched_rule": "dynamic_realtime_temporal_marker"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.4517,
+      "matched_cached_query": "What is the current atmospheric pollen count index in Chicago today?",
+      "matched_id": "LT-SM-007",
+      "store_size": 41
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-NW-005",
+    "domain": "realtime_news_weather",
+    "query_text": "What is the breaking international news headline from London right now?",
+    "query_type": "DYNAMIC_QUERY",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.124,
+      "embed_ms": 14.821,
+      "search_ms": 0.113,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 15.107
+    },
+    "classifier_telemetry": {
+      "label": "DYNAMIC",
+      "effective_decision": "DYNAMIC",
+      "confidence": 1.0,
+      "matched_rule": "dynamic_realtime_temporal_marker"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.2928,
+      "matched_cached_query": "What is the current wind speed and thunderstorm warning in Houston today?",
+      "matched_id": "LT-NW-004",
+      "store_size": 42
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-NW-006",
+    "domain": "realtime_news_weather",
+    "query_text": "What is the current air pressure and temperature in Seattle right now?",
+    "query_type": "DYNAMIC_QUERY",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.127,
+      "embed_ms": 19.67,
+      "search_ms": 0.144,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 19.996
+    },
+    "classifier_telemetry": {
+      "label": "DYNAMIC",
+      "effective_decision": "DYNAMIC",
+      "confidence": 1.0,
+      "matched_rule": "dynamic_realtime_temporal_marker"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.562,
+      "matched_cached_query": "What is the current wind speed and thunderstorm warning in Houston today?",
+      "matched_id": "LT-NW-004",
+      "store_size": 43
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-NW-007",
+    "domain": "realtime_news_weather",
+    "query_text": "What is the live stock exchange index update from Tokyo today?",
+    "query_type": "DYNAMIC_QUERY",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.141,
+      "embed_ms": 16.434,
+      "search_ms": 0.115,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 16.741
+    },
+    "classifier_telemetry": {
+      "label": "DYNAMIC",
+      "effective_decision": "DYNAMIC",
+      "confidence": 1.0,
+      "matched_rule": "dynamic_realtime_temporal_marker"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.3988,
+      "matched_cached_query": "What is the breaking international news headline from London right now?",
+      "matched_id": "LT-NW-005",
+      "store_size": 44
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-NW-008",
+    "domain": "realtime_news_weather",
+    "query_text": "What is the current hurricane alert category along the Florida coast right now?",
+    "query_type": "DYNAMIC_QUERY",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.132,
+      "embed_ms": 14.967,
+      "search_ms": 0.112,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 15.26
+    },
+    "classifier_telemetry": {
+      "label": "DYNAMIC",
+      "effective_decision": "DYNAMIC",
+      "confidence": 1.0,
+      "matched_rule": "dynamic_realtime_temporal_marker"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.5599,
+      "matched_cached_query": "What is the current wind speed and thunderstorm warning in Houston today?",
+      "matched_id": "LT-NW-004",
+      "store_size": 45
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-NW-009",
+    "domain": "realtime_news_weather",
+    "query_text": "How is computational complexity evaluated in pulsed Doppler radar signal processing?",
+    "query_type": "AMBIGUOUS_SAFE_PARAPHRASE",
+    "is_reuse_safe_ground_truth": true,
+    "path": "AMBIGUOUS",
+    "tier": "AMBIGUOUS",
+    "final_decision": "MISS",
+    "outcome_type": "FN",
+    "was_correct": false,
+    "timings_ms": {
+      "classifier_ms": 4.623,
+      "embed_ms": 14.736,
+      "search_ms": 0.112,
+      "judge_ms": 13101.395,
+      "total_pipeline_ms": 13120.947
+    },
+    "classifier_telemetry": {
+      "label": "STABLE",
+      "effective_decision": "STABLE",
+      "confidence": 0.8493,
+      "matched_rule": null
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.8888,
+      "matched_cached_query": "Explain the time complexity of Doppler radar signal processing algorithms.",
+      "matched_id": "LT-NW-001",
+      "store_size": 46
+    },
+    "judge_telemetry": {
+      "decision": "BYPASS",
+      "is_safe": false,
+      "confidence": 0.86,
+      "rationale": "Query B asks about computational complexity evaluation specifically for pulsed Doppler radar, while Query A addresses time complexity of Doppler radar signal processing algorithms in general; the added specificity introduces a semantic nuance that could lead to incorrect or incomplete answer if reused.",
+      "prompt_tokens": 579,
+      "completion_tokens": 641,
+      "total_tokens": 1220,
+      "latency_ms": 10600.71,
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "cost_usd": 0.0,
+      "fallback_triggered": false,
+      "error": null,
+      "raw_response": "{\n  \"decision\": \"BYPASS\",\n  \"is_safe\": false,\n  \"confidence\": 0.86,\n  \"rationale\": \"Query B asks about computational complexity evaluation specifically for pulsed Doppler radar, while Query A addresses time complexity of Doppler radar signal processing algorithms in general; the added specificity introduces a semantic nuance that could lead to incorrect or incomplete answer if reused.\"\n}",
+      "retries_used": 0,
+      "request_id": "gen-1789933712-DtqTb7Zti9WfTV7n3ASP"
+    },
+    "fallback_triggered": false
+  },
+  {
+    "query_id": "LT-NW-010",
+    "domain": "realtime_news_weather",
+    "query_text": "What is the breaking earthquake alert status reported in California today?",
+    "query_type": "DYNAMIC_QUERY",
+    "is_reuse_safe_ground_truth": false,
+    "path": "BYPASS",
+    "tier": "BYPASS",
+    "final_decision": "MISS",
+    "outcome_type": "TN",
+    "was_correct": true,
+    "timings_ms": {
+      "classifier_ms": 0.155,
+      "embed_ms": 19.374,
+      "search_ms": 0.142,
+      "judge_ms": 0.0,
+      "total_pipeline_ms": 19.725
+    },
+    "classifier_telemetry": {
+      "label": "DYNAMIC",
+      "effective_decision": "DYNAMIC",
+      "confidence": 1.0,
+      "matched_rule": "dynamic_realtime_temporal_marker"
+    },
+    "cache_telemetry": {
+      "similarity_score": 0.5579,
+      "matched_cached_query": "What is the current hurricane alert category along the Florida coast right now?",
+      "matched_id": "LT-NW-008",
+      "store_size": 47
+    },
+    "judge_telemetry": null,
+    "fallback_triggered": false
+  }
+]

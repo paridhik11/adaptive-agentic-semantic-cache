@@ -1,0 +1,702 @@
+[
+  {
+    "id": "LT-CS-001",
+    "domain": "computer_science",
+    "query": "What is the time complexity of building an AVL tree with n elements?",
+    "query_type": "UNIQUE_SEED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Initial seed; store starts empty or without AVL entries; expected miss"
+  },
+  {
+    "id": "LT-CS-002",
+    "domain": "computer_science",
+    "query": "What is the time complexity of building an AVL tree with n elements?",
+    "query_type": "EXACT_REPEAT",
+    "reference_seed_id": "LT-CS-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Exact verbatim repeat of LT-CS-001; sim=1.0, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-CS-003",
+    "domain": "computer_science",
+    "query": "What is the asymptotic time complexity of building an AVL tree with n elements?",
+    "query_type": "NEAR_EXACT_REPEAT",
+    "reference_seed_id": "LT-CS-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Near-exact paraphrase with stopword; sim>=0.95, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-CS-004",
+    "domain": "computer_science",
+    "query": "What is the time complexity of Dijkstra algorithm using a priority queue for shortest paths?",
+    "query_type": "UNIQUE_SEED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Second seed in domain; distinct topic from AVL tree; expected miss"
+  },
+  {
+    "id": "LT-CS-005",
+    "domain": "computer_science",
+    "query": "What is the time complexity of Dijkstra algorithm using a priority queue for shortest paths?",
+    "query_type": "EXACT_REPEAT",
+    "reference_seed_id": "LT-CS-004",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Exact repeat of LT-CS-004; sim=1.0, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-CS-006",
+    "domain": "computer_science",
+    "query": "What is the difference between TCP congestion window and flow control window?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Unrelated networking query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-CS-007",
+    "domain": "computer_science",
+    "query": "What is the current version of the Go compiler released today?",
+    "query_type": "DYNAMIC_QUERY",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Temporal volatile query ('today'); classifier DYNAMIC; expected BYPASS miss"
+  },
+  {
+    "id": "LT-CS-008",
+    "domain": "computer_science",
+    "query": "How does Raft consensus elect a leader after a split-vote timeout?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Distributed systems query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-CS-009",
+    "domain": "computer_science",
+    "query": "How does Dijkstra algorithm find single-source shortest paths in weighted graphs using priority queue?",
+    "query_type": "AMBIGUOUS_SAFE_PARAPHRASE",
+    "reference_seed_id": "LT-CS-004",
+    "is_reuse_safe": true,
+    "expected_tier": "AMBIGUOUS",
+    "notes": "Paraphrase of LT-CS-004; sim~0.79, conf=1.0; routes to AMBIGUOUS -> judge call"
+  },
+  {
+    "id": "LT-CS-010",
+    "domain": "computer_science",
+    "query": "What is the time complexity of Prim algorithm for minimum spanning trees using a priority queue?",
+    "query_type": "AMBIGUOUS_UNSAFE_TRAP",
+    "reference_seed_id": "LT-CS-004",
+    "is_reuse_safe": false,
+    "expected_tier": "AMBIGUOUS",
+    "notes": "Adversarial trap (Prim MST != Dijkstra shortest path); sim~0.69; routes to AMBIGUOUS -> judge call"
+  },
+  {
+    "id": "LT-SM-001",
+    "domain": "science_medicine",
+    "query": "What is the cellular mechanism of action of acetaminophen in inhibiting prostaglandin synthesis?",
+    "query_type": "UNIQUE_SEED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Initial seed; expected miss"
+  },
+  {
+    "id": "LT-SM-002",
+    "domain": "science_medicine",
+    "query": "What is the cellular mechanism of action of acetaminophen in inhibiting prostaglandin synthesis?",
+    "query_type": "EXACT_REPEAT",
+    "reference_seed_id": "LT-SM-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Exact repeat of LT-SM-001; sim=1.0, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-SM-003",
+    "domain": "science_medicine",
+    "query": "What is the exact mechanism of action of acetaminophen in inhibiting cellular prostaglandin synthesis?",
+    "query_type": "NEAR_EXACT_REPEAT",
+    "reference_seed_id": "LT-SM-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Near-exact repeat; sim>=0.95, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-SM-004",
+    "domain": "science_medicine",
+    "query": "What is the biochemical mechanism of action of RuBisCO enzyme in photosynthesis carbon fixation?",
+    "query_type": "UNIQUE_SEED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Second seed in domain; expected miss"
+  },
+  {
+    "id": "LT-SM-005",
+    "domain": "science_medicine",
+    "query": "What is the biochemical mechanism of action of RuBisCO enzyme in photosynthesis carbon fixation?",
+    "query_type": "EXACT_REPEAT",
+    "reference_seed_id": "LT-SM-004",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Exact repeat of LT-SM-004; sim=1.0, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-SM-006",
+    "domain": "science_medicine",
+    "query": "Describe the geological process that creates hydrothermal vents along mid-ocean ridges.",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Unrelated geology query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-SM-007",
+    "domain": "science_medicine",
+    "query": "What is the current atmospheric pollen count index in Chicago today?",
+    "query_type": "DYNAMIC_QUERY",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Temporal volatile query ('today'); classifier DYNAMIC; expected BYPASS miss"
+  },
+  {
+    "id": "LT-SM-008",
+    "domain": "science_medicine",
+    "query": "How do B-lymphocytes undergo somatic hypermutation inside germinal centers?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Distinct immunology query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-SM-009",
+    "domain": "science_medicine",
+    "query": "Explain how the RuBisCO enzyme catalyzes ribulose-1,5-bisphosphate carboxylation during photosynthesis.",
+    "query_type": "AMBIGUOUS_SAFE_PARAPHRASE",
+    "reference_seed_id": "LT-SM-004",
+    "is_reuse_safe": true,
+    "expected_tier": "AMBIGUOUS",
+    "notes": "Paraphrase of LT-SM-004; sim~0.76, conf=1.0; routes to AMBIGUOUS -> judge call"
+  },
+  {
+    "id": "LT-SM-010",
+    "domain": "science_medicine",
+    "query": "What is the half-life of iodine-131 in nuclear medicine thyroid treatment?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Distinct nuclear medicine query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-MA-001",
+    "domain": "mathematics",
+    "query": "State the definition and conditions of the central limit theorem in probability theory.",
+    "query_type": "UNIQUE_SEED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Initial seed; expected miss"
+  },
+  {
+    "id": "LT-MA-002",
+    "domain": "mathematics",
+    "query": "State the definition and conditions of the central limit theorem in probability theory.",
+    "query_type": "EXACT_REPEAT",
+    "reference_seed_id": "LT-MA-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Exact repeat of LT-MA-001; sim=1.0, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-MA-003",
+    "domain": "mathematics",
+    "query": "State the formal definition and conditions of the central limit theorem in probability theory.",
+    "query_type": "NEAR_EXACT_REPEAT",
+    "reference_seed_id": "LT-MA-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Near-exact repeat; sim>=0.95, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-MA-004",
+    "domain": "mathematics",
+    "query": "What is the time complexity of the classic Euclidean algorithm for greatest common divisor?",
+    "query_type": "UNIQUE_SEED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Second seed; expected miss"
+  },
+  {
+    "id": "LT-MA-005",
+    "domain": "mathematics",
+    "query": "What is the time complexity of the classic Euclidean algorithm for greatest common divisor?",
+    "query_type": "EXACT_REPEAT",
+    "reference_seed_id": "LT-MA-004",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Exact repeat of LT-MA-004; sim=1.0, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-MA-006",
+    "domain": "mathematics",
+    "query": "How do you calculate the determinant of a 3x3 matrix using cofactor expansion?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Distinct algebra query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-MA-007",
+    "domain": "mathematics",
+    "query": "What is the current value of the US dollar prime rate today?",
+    "query_type": "DYNAMIC_QUERY",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Volatile query ('today'); classifier DYNAMIC; expected BYPASS miss"
+  },
+  {
+    "id": "LT-MA-008",
+    "domain": "mathematics",
+    "query": "State the definition of Cauchy-Riemann equations for complex differentiable functions.",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Complex analysis query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-MA-009",
+    "domain": "mathematics",
+    "query": "Under what mathematical conditions does the central limit theorem guarantee asymptotic normality in statistics?",
+    "query_type": "AMBIGUOUS_SAFE_PARAPHRASE",
+    "reference_seed_id": "LT-MA-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AMBIGUOUS",
+    "notes": "Paraphrase of LT-MA-001; sim~0.77, conf=1.0; routes to AMBIGUOUS -> judge call"
+  },
+  {
+    "id": "LT-MA-010",
+    "domain": "mathematics",
+    "query": "State the definition and conditions of the law of large numbers in probability theory.",
+    "query_type": "AMBIGUOUS_UNSAFE_TRAP",
+    "reference_seed_id": "LT-MA-001",
+    "is_reuse_safe": false,
+    "expected_tier": "AMBIGUOUS",
+    "notes": "Adversarial trap (LLN != CLT); sim~0.63, conf=0.85; routes to AMBIGUOUS -> judge call"
+  },
+  {
+    "id": "LT-SO-001",
+    "domain": "system_operations",
+    "query": "What is the time complexity and memory overhead of systemctl status in systemd?",
+    "query_type": "UNIQUE_SEED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Initial seed; expected miss"
+  },
+  {
+    "id": "LT-SO-002",
+    "domain": "system_operations",
+    "query": "What is the time complexity and memory overhead of systemctl status in systemd?",
+    "query_type": "EXACT_REPEAT",
+    "reference_seed_id": "LT-SO-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Exact repeat of LT-SO-001; sim=1.0, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-SO-003",
+    "domain": "system_operations",
+    "query": "What is the runtime time complexity and memory overhead of systemctl status in systemd?",
+    "query_type": "NEAR_EXACT_REPEAT",
+    "reference_seed_id": "LT-SO-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Near-exact repeat; sim>=0.95, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-SO-004",
+    "domain": "system_operations",
+    "query": "What is the time complexity of the Linux kernel memory manager calculating badness score during OOM?",
+    "query_type": "UNIQUE_SEED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Second seed; expected miss"
+  },
+  {
+    "id": "LT-SO-005",
+    "domain": "system_operations",
+    "query": "What is the time complexity of the Linux kernel memory manager calculating badness score during OOM?",
+    "query_type": "EXACT_REPEAT",
+    "reference_seed_id": "LT-SO-004",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Exact repeat of LT-SO-004; sim=1.0, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-SO-006",
+    "domain": "system_operations",
+    "query": "How do you configure a persistent WireGuard VPN tunnel on Ubuntu server?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Unrelated network config query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-SO-007",
+    "domain": "system_operations",
+    "query": "What is the current memory usage of pid 1234 right now?",
+    "query_type": "DYNAMIC_QUERY",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Volatile query ('right now'); classifier DYNAMIC; expected BYPASS miss"
+  },
+  {
+    "id": "LT-SO-008",
+    "domain": "system_operations",
+    "query": "What iptables rule drops incoming TCP packets on port 22 from a CIDR subnet?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Firewall query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-SO-009",
+    "domain": "system_operations",
+    "query": "Explain how the badness score in Linux OOM killer calculates memory exhaustion with time complexity.",
+    "query_type": "AMBIGUOUS_SAFE_PARAPHRASE",
+    "reference_seed_id": "LT-SO-004",
+    "is_reuse_safe": true,
+    "expected_tier": "AMBIGUOUS",
+    "notes": "Paraphrase of LT-SO-004; sim~0.84, conf=1.0; routes to AMBIGUOUS -> judge call"
+  },
+  {
+    "id": "LT-SO-010",
+    "domain": "system_operations",
+    "query": "How do you inspect LVM volume group physical extents using vgdisplay?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Storage query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-HG-001",
+    "domain": "history_geography",
+    "query": "What was the capital city of the Byzantine Empire during the reign of Justinian I in 550?",
+    "query_type": "UNIQUE_SEED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Initial seed; expected miss"
+  },
+  {
+    "id": "LT-HG-002",
+    "domain": "history_geography",
+    "query": "What was the capital city of the Byzantine Empire during the reign of Justinian I in 550?",
+    "query_type": "EXACT_REPEAT",
+    "reference_seed_id": "LT-HG-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Exact repeat of LT-HG-001; sim=1.0, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-HG-003",
+    "domain": "history_geography",
+    "query": "What was the capital city of the Byzantine Empire during the reign of Justinian I in the year 550?",
+    "query_type": "NEAR_EXACT_REPEAT",
+    "reference_seed_id": "LT-HG-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Near-exact repeat; sim>=0.95, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-HG-004",
+    "domain": "history_geography",
+    "query": "What treaty ended the Thirty Years' War in 1648 across European territories?",
+    "query_type": "UNIQUE_SEED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Second seed; expected miss"
+  },
+  {
+    "id": "LT-HG-005",
+    "domain": "history_geography",
+    "query": "What treaty ended the Thirty Years' War in 1648 across European territories?",
+    "query_type": "EXACT_REPEAT",
+    "reference_seed_id": "LT-HG-004",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Exact repeat of LT-HG-004; sim=1.0, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-HG-006",
+    "domain": "history_geography",
+    "query": "Which African lake is the primary reservoir source of the White Nile river?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Geography query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-HG-007",
+    "domain": "history_geography",
+    "query": "What is the current political head of state of Japan today?",
+    "query_type": "DYNAMIC_QUERY",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Volatile query ('today'); classifier DYNAMIC; expected BYPASS miss"
+  },
+  {
+    "id": "LT-HG-008",
+    "domain": "history_geography",
+    "query": "Explain how the Silk Road trade route connected Chang'an to Antioch in antiquity.",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Ancient trade query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-HG-009",
+    "domain": "history_geography",
+    "query": "Which historical peace agreement concluded the Thirty Years' War in 1648 in Central Europe?",
+    "query_type": "AMBIGUOUS_SAFE_PARAPHRASE",
+    "reference_seed_id": "LT-HG-004",
+    "is_reuse_safe": true,
+    "expected_tier": "AMBIGUOUS",
+    "notes": "Paraphrase of LT-HG-004; sim~0.89, conf=1.0; routes to AMBIGUOUS -> judge call"
+  },
+  {
+    "id": "LT-HG-010",
+    "domain": "history_geography",
+    "query": "What mountain range separates the European and Asian continents in Russia?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Geography invariant query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-FE-001",
+    "domain": "finance_economics",
+    "query": "What is the formula and time complexity for computing compound interest over t periods?",
+    "query_type": "UNIQUE_SEED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Initial seed; expected miss"
+  },
+  {
+    "id": "LT-FE-002",
+    "domain": "finance_economics",
+    "query": "What is the formula and time complexity for computing compound interest over t periods?",
+    "query_type": "EXACT_REPEAT",
+    "reference_seed_id": "LT-FE-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Exact repeat of LT-FE-001; sim=1.0, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-FE-003",
+    "domain": "finance_economics",
+    "query": "What is the exact formula and time complexity for computing compound interest over t periods?",
+    "query_type": "NEAR_EXACT_REPEAT",
+    "reference_seed_id": "LT-FE-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Near-exact repeat; sim>=0.95, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-FE-004",
+    "domain": "finance_economics",
+    "query": "What is the time complexity of calculating eigenvalues for portfolio variance covariance matrices?",
+    "query_type": "UNIQUE_SEED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Second seed; expected miss"
+  },
+  {
+    "id": "LT-FE-005",
+    "domain": "finance_economics",
+    "query": "What is the time complexity of calculating eigenvalues for portfolio variance covariance matrices?",
+    "query_type": "EXACT_REPEAT",
+    "reference_seed_id": "LT-FE-004",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Exact repeat of LT-FE-004; sim=1.0, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-FE-006",
+    "domain": "finance_economics",
+    "query": "What is the difference between liquidity preference and loanable funds interest rate theory?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Macroeconomics query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-FE-007",
+    "domain": "finance_economics",
+    "query": "What is the current price of Brent crude oil per barrel today?",
+    "query_type": "DYNAMIC_QUERY",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Volatile commodity query ('today'); classifier DYNAMIC; expected BYPASS miss"
+  },
+  {
+    "id": "LT-FE-008",
+    "domain": "finance_economics",
+    "query": "How does quantitative easing expand central bank balance sheet assets?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Central banking query; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-FE-009",
+    "domain": "finance_economics",
+    "query": "How do you calculate eigenvalues for asset variance-covariance matrices in Markowitz portfolio theory?",
+    "query_type": "AMBIGUOUS_SAFE_PARAPHRASE",
+    "reference_seed_id": "LT-FE-004",
+    "is_reuse_safe": true,
+    "expected_tier": "AMBIGUOUS",
+    "notes": "Paraphrase of LT-FE-004; sim~0.69, conf=1.0; routes to AMBIGUOUS -> judge call"
+  },
+  {
+    "id": "LT-FE-010",
+    "domain": "finance_economics",
+    "query": "What is the Modigliani-Miller theorem regarding capital structure irrelevance?",
+    "query_type": "LOW_SIM_UNRELATED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Corporate finance theorem; sim<0.50; expected BYPASS miss"
+  },
+  {
+    "id": "LT-NW-001",
+    "domain": "realtime_news_weather",
+    "query": "Explain the time complexity of Doppler radar signal processing algorithms.",
+    "query_type": "UNIQUE_SEED",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Initial seed; expected miss"
+  },
+  {
+    "id": "LT-NW-002",
+    "domain": "realtime_news_weather",
+    "query": "Explain the time complexity of Doppler radar signal processing algorithms.",
+    "query_type": "EXACT_REPEAT",
+    "reference_seed_id": "LT-NW-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Exact repeat of LT-NW-001; sim=1.0, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-NW-003",
+    "domain": "realtime_news_weather",
+    "query": "Explain the asymptotic time complexity of Doppler radar signal processing algorithms.",
+    "query_type": "NEAR_EXACT_REPEAT",
+    "reference_seed_id": "LT-NW-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AUTO_REUSE",
+    "notes": "Near-exact repeat; sim>=0.95, conf=1.0; expected AUTO_REUSE hit"
+  },
+  {
+    "id": "LT-NW-004",
+    "domain": "realtime_news_weather",
+    "query": "What is the current wind speed and thunderstorm warning in Houston today?",
+    "query_type": "DYNAMIC_QUERY",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Realtime weather query ('today'); classifier DYNAMIC; expected BYPASS miss"
+  },
+  {
+    "id": "LT-NW-005",
+    "domain": "realtime_news_weather",
+    "query": "What is the breaking international news headline from London right now?",
+    "query_type": "DYNAMIC_QUERY",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Breaking news query ('right now'); classifier DYNAMIC; expected BYPASS miss"
+  },
+  {
+    "id": "LT-NW-006",
+    "domain": "realtime_news_weather",
+    "query": "What is the current air pressure and temperature in Seattle right now?",
+    "query_type": "DYNAMIC_QUERY",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Weather observation ('right now'); classifier DYNAMIC; expected BYPASS miss"
+  },
+  {
+    "id": "LT-NW-007",
+    "domain": "realtime_news_weather",
+    "query": "What is the live stock exchange index update from Tokyo today?",
+    "query_type": "DYNAMIC_QUERY",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Market news ('today'); classifier DYNAMIC; expected BYPASS miss"
+  },
+  {
+    "id": "LT-NW-008",
+    "domain": "realtime_news_weather",
+    "query": "What is the current hurricane alert category along the Florida coast right now?",
+    "query_type": "DYNAMIC_QUERY",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Severe weather alert ('right now'); classifier DYNAMIC; expected BYPASS miss"
+  },
+  {
+    "id": "LT-NW-009",
+    "domain": "realtime_news_weather",
+    "query": "How is computational complexity evaluated in pulsed Doppler radar signal processing?",
+    "query_type": "AMBIGUOUS_SAFE_PARAPHRASE",
+    "reference_seed_id": "LT-NW-001",
+    "is_reuse_safe": true,
+    "expected_tier": "AMBIGUOUS",
+    "notes": "Paraphrase of LT-NW-001; sim~0.89, conf=0.85; routes to AMBIGUOUS -> judge call"
+  },
+  {
+    "id": "LT-NW-010",
+    "domain": "realtime_news_weather",
+    "query": "What is the breaking earthquake alert status reported in California today?",
+    "query_type": "DYNAMIC_QUERY",
+    "reference_seed_id": null,
+    "is_reuse_safe": false,
+    "expected_tier": "BYPASS",
+    "notes": "Breaking emergency report ('today'); classifier DYNAMIC; expected BYPASS miss"
+  }
+]

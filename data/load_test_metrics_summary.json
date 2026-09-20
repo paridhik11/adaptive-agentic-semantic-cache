@@ -1,0 +1,181 @@
+{
+  "metadata": {
+    "total_queries": 70,
+    "run_timestamp": "2026-09-20T19:49:59Z",
+    "source_file": "C:\\Users\\parid\\Downloads\\Agentic AI\\adaptive-agentic-semantic-cache\\data\\load_test_telemetry.json",
+    "disclaimer": "Metrics computed from a single synthetic load-test run, not live customer traffic."
+  },
+  "hit_rate_metrics": {
+    "total_queries": 70,
+    "total_hits": 22,
+    "total_misses": 48,
+    "overall_hit_rate_pct": 31.43,
+    "category_breakdown": {
+      "computer_science": {
+        "total_queries": 10,
+        "hits": 3,
+        "misses": 7,
+        "hit_rate_pct": 30.0,
+        "path_counts": {
+          "AUTO_REUSE": 3,
+          "AMBIGUOUS": 2,
+          "BYPASS": 5
+        }
+      },
+      "finance_economics": {
+        "total_queries": 10,
+        "hits": 3,
+        "misses": 7,
+        "hit_rate_pct": 30.0,
+        "path_counts": {
+          "AUTO_REUSE": 3,
+          "AMBIGUOUS": 1,
+          "BYPASS": 6
+        }
+      },
+      "history_geography": {
+        "total_queries": 10,
+        "hits": 4,
+        "misses": 6,
+        "hit_rate_pct": 40.0,
+        "path_counts": {
+          "AUTO_REUSE": 3,
+          "AMBIGUOUS": 1,
+          "BYPASS": 6
+        }
+      },
+      "mathematics": {
+        "total_queries": 10,
+        "hits": 3,
+        "misses": 7,
+        "hit_rate_pct": 30.0,
+        "path_counts": {
+          "AUTO_REUSE": 3,
+          "AMBIGUOUS": 2,
+          "BYPASS": 5
+        }
+      },
+      "realtime_news_weather": {
+        "total_queries": 10,
+        "hits": 2,
+        "misses": 8,
+        "hit_rate_pct": 20.0,
+        "path_counts": {
+          "AUTO_REUSE": 2,
+          "AMBIGUOUS": 1,
+          "BYPASS": 7
+        }
+      },
+      "science_medicine": {
+        "total_queries": 10,
+        "hits": 4,
+        "misses": 6,
+        "hit_rate_pct": 40.0,
+        "path_counts": {
+          "AUTO_REUSE": 3,
+          "AMBIGUOUS": 1,
+          "BYPASS": 6
+        }
+      },
+      "system_operations": {
+        "total_queries": 10,
+        "hits": 3,
+        "misses": 7,
+        "hit_rate_pct": 30.0,
+        "path_counts": {
+          "AUTO_REUSE": 3,
+          "AMBIGUOUS": 1,
+          "BYPASS": 6
+        }
+      }
+    }
+  },
+  "path_distribution": {
+    "auto_reuse_count": 20,
+    "auto_reuse_pct": 28.57,
+    "ambiguous_count": 9,
+    "ambiguous_pct": 12.86,
+    "bypass_count": 41,
+    "bypass_pct": 58.57,
+    "local_resolution_pct": 87.14
+  },
+  "latency_metrics": {
+    "auto_reuse_path": {
+      "n": 20,
+      "mean_ms": 19.178,
+      "median_ms": 17.811,
+      "p95_ms": 50.934,
+      "min_ms": 12.574,
+      "max_ms": 50.934,
+      "stdev_ms": 8.332
+    },
+    "ambiguous_judge_path": {
+      "n": 9,
+      "mean_ms": 9291.345,
+      "median_ms": 6950.802,
+      "p95_ms": 18787.533,
+      "min_ms": 3621.16,
+      "max_ms": 18787.533,
+      "stdev_ms": 4910.677
+    },
+    "bypass_path": {
+      "n": 41,
+      "mean_ms": 20.383,
+      "median_ms": 17.665,
+      "p95_ms": 44.196,
+      "min_ms": 9.562,
+      "max_ms": 56.47,
+      "stdev_ms": 9.552
+    },
+    "judge_call_component": {
+      "n": 9,
+      "mean_ms": 9274.951,
+      "median_ms": 6932.953,
+      "p95_ms": 18765.865,
+      "min_ms": 3594.373,
+      "max_ms": 18765.865,
+      "stdev_ms": 4909.915
+    },
+    "delta_auto_vs_ambiguous": {
+      "delta_mean_ms": 9272.167,
+      "pct_reduction_mean": 99.79,
+      "speedup_factor": 484.5
+    }
+  },
+  "token_and_cost_metrics": {
+    "judge_calls_count": 9,
+    "total_prompt_tokens": 5354,
+    "total_completion_tokens": 3799,
+    "total_tokens": 9153,
+    "mean_tokens_per_call": 1017.0,
+    "cost_avoided_projection_usd": 0.003083,
+    "actual_billed_usd": 0.0,
+    "pricing_reference": {
+      "model_name": "gpt-4o-mini",
+      "pricing_date": "2026-09-19",
+      "input_cost_per_m_usd": 0.15,
+      "output_cost_per_m_usd": 0.6,
+      "source_url": "https://openai.com/api/pricing/",
+      "label": "Cost avoided under gpt-4o-mini published pricing as of 2026-09-19, applied to real token counts from this repo's API telemetry. PROJECTION ONLY \u2014 OpenRouter free tier billed $0.00."
+    }
+  },
+  "safety_metrics": {
+    "tp": 22,
+    "fp": 0,
+    "tn": 43,
+    "fn": 5,
+    "hit_denominator": 22,
+    "irr_cache": 0.0,
+    "irr_cache_pct": 0.0,
+    "clopper_pearson_95_ci": [
+      0.0,
+      0.1544
+    ],
+    "clopper_pearson_95_ci_pct": [
+      0.0,
+      15.44
+    ],
+    "is_underpowered": true,
+    "power_disclosure": "Sample size n=22 hits < 36. Exact Clopper-Pearson 95% CI upper bound (15.4%) cannot mathematically clear <= 10.0% under finite sample theory (Phase 4 Section 8 mathematical floor: n >= 36 with k=0 required to prove CI upper <= 10.0%). Reported plainly without artificial suppression."
+  }
+}
