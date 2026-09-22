@@ -1,0 +1,4963 @@
+[
+  {
+    "id": "math_001",
+    "query": "Visually stunning math concepts which are easy to explain",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/733754",
+    "pair_id": "math_001",
+    "tags": [
+      "soft-question",
+      "recreational-mathematics",
+      "education",
+      "big-list",
+      "visualization"
+    ],
+    "se_score": 1680,
+    "note": null
+  },
+  {
+    "id": "math_002",
+    "query": "Is $\\frac{\\textrm{d}y}{\\textrm{d}x}$ not a ratio?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/21199",
+    "pair_id": "math_002",
+    "tags": [
+      "calculus",
+      "analysis",
+      "math-history",
+      "nonstandard-analysis"
+    ],
+    "se_score": 1337,
+    "note": null
+  },
+  {
+    "id": "math_003",
+    "query": "If it took 10 minutes to saw a board into 2 pieces, how long will it take to saw another into 3 pieces?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/379927",
+    "pair_id": "math_003",
+    "tags": [
+      "arithmetic",
+      "word-problem"
+    ],
+    "se_score": 1106,
+    "note": null
+  },
+  {
+    "id": "math_004",
+    "query": "The staircase paradox, or why $\\pi\\ne4$",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/12906",
+    "pair_id": "math_004",
+    "tags": [
+      "geometry",
+      "analysis",
+      "convergence-divergence",
+      "pi",
+      "fake-proofs"
+    ],
+    "se_score": 923,
+    "note": null
+  },
+  {
+    "id": "math_005",
+    "query": "Can I use my powers for good?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/71874",
+    "pair_id": "math_005",
+    "tags": [
+      "soft-question",
+      "career-development"
+    ],
+    "se_score": 919,
+    "note": null
+  },
+  {
+    "id": "math_006",
+    "query": "A proof of $\\dim(R[T])=\\dim(R)+1$ without prime ideals?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/358423",
+    "pair_id": "math_006",
+    "tags": [
+      "ring-theory",
+      "commutative-algebra",
+      "noetherian",
+      "krull-dimension",
+      "dimension-theory-algebra"
+    ],
+    "se_score": 902,
+    "note": null
+  },
+  {
+    "id": "math_007",
+    "query": "Different ways to prove $\\sum_{k=1}^\\infty \\frac{1}{k^2}=\\frac{\\pi^2}{6}$ (the Basel problem)",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/8337",
+    "pair_id": "math_007",
+    "tags": [
+      "sequences-and-series",
+      "fourier-analysis",
+      "big-list",
+      "faq",
+      "euler-sums"
+    ],
+    "se_score": 899,
+    "note": null
+  },
+  {
+    "id": "math_008",
+    "query": "How to study math to really understand it and have a healthy lifestyle with free time?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/44704",
+    "pair_id": "math_008",
+    "tags": [
+      "soft-question",
+      "advice"
+    ],
+    "se_score": 867,
+    "note": null
+  },
+  {
+    "id": "math_009",
+    "query": "What's an intuitive way to think about the determinant?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/668",
+    "pair_id": "math_009",
+    "tags": [
+      "linear-algebra",
+      "matrices",
+      "determinant",
+      "intuition"
+    ],
+    "se_score": 851,
+    "note": null
+  },
+  {
+    "id": "math_010",
+    "query": "Does $\\pi$ contain all possible number combinations?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/216343",
+    "pair_id": "math_010",
+    "tags": [
+      "elementary-number-theory",
+      "irrational-numbers",
+      "pi"
+    ],
+    "se_score": 814,
+    "note": null
+  },
+  {
+    "id": "math_011",
+    "query": "Splitting a sandwich and not feeling deceived",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/637728",
+    "pair_id": "math_011",
+    "tags": [
+      "game-theory",
+      "fair-division"
+    ],
+    "se_score": 699,
+    "note": null
+  },
+  {
+    "id": "math_012",
+    "query": "Is there a bijection of $\\mathbb{R}^n$ with itself such that the forward map is connected but the inverse is not?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/952466",
+    "pair_id": "math_012",
+    "tags": [
+      "general-topology",
+      "metric-spaces",
+      "examples-counterexamples",
+      "connectedness"
+    ],
+    "se_score": 681,
+    "note": null
+  },
+  {
+    "id": "math_013",
+    "query": "What was the first bit of mathematics that made you realize that math is beautiful? (For children's book)",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/323334",
+    "pair_id": "math_013",
+    "tags": [
+      "soft-question",
+      "education",
+      "big-list"
+    ],
+    "se_score": 659,
+    "note": null
+  },
+  {
+    "id": "math_014",
+    "query": "Why is $1 - \\frac{1}{1 - \\frac{1}{1 - \\ldots}}$ not real?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/1681993",
+    "pair_id": "math_014",
+    "tags": [
+      "complex-numbers",
+      "recursion",
+      "continued-fractions"
+    ],
+    "se_score": 651,
+    "note": null
+  },
+  {
+    "id": "math_015",
+    "query": "Examples of patterns that eventually fail",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/111440",
+    "pair_id": "math_015",
+    "tags": [
+      "big-list",
+      "examples-counterexamples"
+    ],
+    "se_score": 645,
+    "note": null
+  },
+  {
+    "id": "math_016",
+    "query": "Why can you turn clothing right-side-out?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/2755",
+    "pair_id": "math_016",
+    "tags": [
+      "general-topology",
+      "algebraic-topology"
+    ],
+    "se_score": 641,
+    "note": null
+  },
+  {
+    "id": "math_017",
+    "query": "Integral $\\int_{-1}^1\\frac1x\\sqrt{\\frac{1+x}{1-x}}\\ln\\left(\\frac{2\\,x^2+2\\,x+1}{2\\,x^2-2\\,x+1}\\right) \\mathrm dx$",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/562694",
+    "pair_id": "math_017",
+    "tags": [
+      "calculus",
+      "integration",
+      "definite-integrals",
+      "contour-integration",
+      "closed-form"
+    ],
+    "se_score": 640,
+    "note": null
+  },
+  {
+    "id": "math_018",
+    "query": "Mathematical difference between white and black notes in a piano",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/11669",
+    "pair_id": "math_018",
+    "tags": [
+      "music-theory"
+    ],
+    "se_score": 601,
+    "note": null
+  },
+  {
+    "id": "math_019",
+    "query": "How to prove that $\\lim\\limits_{x\\to0}\\frac{\\sin x}x=1$?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/75130",
+    "pair_id": "math_019",
+    "tags": [
+      "calculus",
+      "limits",
+      "trigonometry",
+      "limits-without-lhopital"
+    ],
+    "se_score": 573,
+    "note": null
+  },
+  {
+    "id": "math_020",
+    "query": "Do complex numbers really exist?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/154",
+    "pair_id": "math_020",
+    "tags": [
+      "soft-question",
+      "complex-numbers",
+      "education",
+      "philosophy-of-mathematics"
+    ],
+    "se_score": 549,
+    "note": null
+  },
+  {
+    "id": "math_021",
+    "query": "Best Sets of Lecture Notes and Articles",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/302023",
+    "pair_id": "math_021",
+    "tags": [
+      "self-learning",
+      "big-list",
+      "learning",
+      "online-resources"
+    ],
+    "se_score": 542,
+    "note": null
+  },
+  {
+    "id": "math_022",
+    "query": "\"The Egg:\" Bizarre behavior of the roots of a family of polynomials.",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/206890",
+    "pair_id": "math_022",
+    "tags": [
+      "abstract-algebra",
+      "complex-analysis",
+      "algebraic-geometry",
+      "numerical-methods",
+      "recreational-mathematics"
+    ],
+    "se_score": 529,
+    "note": null
+  },
+  {
+    "id": "math_023",
+    "query": "What are imaginary numbers?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/199676",
+    "pair_id": "math_023",
+    "tags": [
+      "complex-numbers",
+      "definition"
+    ],
+    "se_score": 527,
+    "note": null
+  },
+  {
+    "id": "math_024",
+    "query": "To sum $1+2+3+\\cdots$ to $-\\frac1{12}$",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/39802",
+    "pair_id": "math_024",
+    "tags": [
+      "analysis",
+      "complex-analysis",
+      "riemann-zeta",
+      "divergent-series"
+    ],
+    "se_score": 472,
+    "note": null
+  },
+  {
+    "id": "math_025",
+    "query": "Is this Batman equation for real?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/54506",
+    "pair_id": "math_025",
+    "tags": [
+      "geometry",
+      "algebra-precalculus",
+      "graphing-functions",
+      "plane-curves"
+    ],
+    "se_score": 466,
+    "note": null
+  },
+  {
+    "id": "math_026",
+    "query": "What is the intuitive relationship between SVD and PCA?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/3869",
+    "pair_id": "math_026",
+    "tags": [
+      "linear-algebra",
+      "matrices",
+      "statistics",
+      "svd",
+      "principal-component-analysis"
+    ],
+    "se_score": 465,
+    "note": null
+  },
+  {
+    "id": "math_027",
+    "query": "Proofs that every mathematician should know.",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/178940",
+    "pair_id": "math_027",
+    "tags": [
+      "soft-question",
+      "big-list"
+    ],
+    "se_score": 460,
+    "note": null
+  },
+  {
+    "id": "math_028",
+    "query": "How can I evaluate $\\sum_{n=0}^\\infty(n+1)x^n$?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/30732",
+    "pair_id": "math_028",
+    "tags": [
+      "sequences-and-series",
+      "convergence-divergence",
+      "power-series",
+      "geometric-series",
+      "faq"
+    ],
+    "se_score": 457,
+    "note": null
+  },
+  {
+    "id": "math_029",
+    "query": "Fourier transform for dummies",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/1002",
+    "pair_id": "math_029",
+    "tags": [
+      "soft-question",
+      "fourier-analysis",
+      "fourier-transform"
+    ],
+    "se_score": 456,
+    "note": null
+  },
+  {
+    "id": "math_030",
+    "query": "On \"familiarity\" (or How to avoid \"going down the Math Rabbit Hole\"?)",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/617625",
+    "pair_id": "math_030",
+    "tags": [
+      "soft-question",
+      "self-learning"
+    ],
+    "se_score": 455,
+    "note": null
+  },
+  {
+    "id": "math_031",
+    "query": "My son's Sum of Some is beautiful! But what is the proof or explanation?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/406099",
+    "pair_id": "math_031",
+    "tags": [
+      "sequences-and-series"
+    ],
+    "se_score": 447,
+    "note": null
+  },
+  {
+    "id": "math_032",
+    "query": "If $AB = I$ then $BA = I$",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/3852",
+    "pair_id": "math_032",
+    "tags": [
+      "linear-algebra",
+      "matrices",
+      "inverse"
+    ],
+    "se_score": 411,
+    "note": null
+  },
+  {
+    "id": "math_033",
+    "query": "Pedagogy: How to cure students of the \"law of universal linearity\"?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/630339",
+    "pair_id": "math_033",
+    "tags": [
+      "algebra-precalculus",
+      "education"
+    ],
+    "se_score": 410,
+    "note": null
+  },
+  {
+    "id": "math_034",
+    "query": "'Obvious' theorems that are actually false",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/820686",
+    "pair_id": "math_034",
+    "tags": [
+      "soft-question",
+      "big-list"
+    ],
+    "se_score": 395,
+    "note": null
+  },
+  {
+    "id": "math_035",
+    "query": "Can every proof by contradiction also be shown without contradiction?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/243770",
+    "pair_id": "math_035",
+    "tags": [
+      "logic",
+      "proof-writing",
+      "propositional-calculus",
+      "proof-theory"
+    ],
+    "se_score": 393,
+    "note": null
+  },
+  {
+    "id": "cs_001",
+    "query": "Why is conditional processing of a sorted array faster than of an unsorted array?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/11227809",
+    "pair_id": "cs_001",
+    "tags": [
+      "java",
+      "c++",
+      "performance",
+      "cpu-architecture",
+      "branch-prediction"
+    ],
+    "se_score": 27548,
+    "note": null
+  },
+  {
+    "id": "cs_002",
+    "query": "How do I undo the most recent local commits in Git?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/927358",
+    "pair_id": "cs_002",
+    "tags": [
+      "git",
+      "version-control",
+      "git-commit",
+      "undo",
+      "git-reset"
+    ],
+    "se_score": 27239,
+    "note": null
+  },
+  {
+    "id": "cs_003",
+    "query": "How do I delete a Git branch locally and remotely?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/2003505",
+    "pair_id": "cs_003",
+    "tags": [
+      "git",
+      "version-control",
+      "git-branch",
+      "git-push",
+      "git-remote"
+    ],
+    "se_score": 20355,
+    "note": null
+  },
+  {
+    "id": "cs_004",
+    "query": "What is the difference between 'git pull' and 'git fetch'?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/292357",
+    "pair_id": "cs_004",
+    "tags": [
+      "git",
+      "version-control",
+      "git-pull",
+      "git-fetch"
+    ],
+    "se_score": 14059,
+    "note": null
+  },
+  {
+    "id": "cs_005",
+    "query": "What does the \"yield\" keyword do in Python?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/231767",
+    "pair_id": "cs_005",
+    "tags": [
+      "python",
+      "iterator",
+      "generator",
+      "yield"
+    ],
+    "se_score": 13135,
+    "note": null
+  },
+  {
+    "id": "cs_006",
+    "query": "How can I remove a specific item from an array in JavaScript?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/5767325",
+    "pair_id": "cs_006",
+    "tags": [
+      "javascript",
+      "arrays"
+    ],
+    "se_score": 12259,
+    "note": null
+  },
+  {
+    "id": "cs_007",
+    "query": "How can I rename a local Git branch?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/6591213",
+    "pair_id": "cs_007",
+    "tags": [
+      "git",
+      "version-control",
+      "git-branch"
+    ],
+    "se_score": 12052,
+    "note": null
+  },
+  {
+    "id": "cs_008",
+    "query": "Which JSON content type do I use?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/477816",
+    "pair_id": "cs_008",
+    "tags": [
+      "json",
+      "mime-types",
+      "content-type"
+    ],
+    "se_score": 11651,
+    "note": null
+  },
+  {
+    "id": "cs_009",
+    "query": "How do I undo 'git add' before commit?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/348170",
+    "pair_id": "cs_009",
+    "tags": [
+      "git",
+      "git-commit",
+      "undo",
+      "git-add"
+    ],
+    "se_score": 11626,
+    "note": null
+  },
+  {
+    "id": "cs_010",
+    "query": "What is the '-->' operator in C/C++?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/1642028",
+    "pair_id": "cs_010",
+    "tags": [
+      "c++",
+      "c",
+      "operators",
+      "code-formatting",
+      "standards-compliance"
+    ],
+    "se_score": 10269,
+    "note": null
+  },
+  {
+    "id": "cs_011",
+    "query": "How do I force \"git pull\" to overwrite local files?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/1125968",
+    "pair_id": "cs_011",
+    "tags": [
+      "git",
+      "version-control",
+      "overwrite",
+      "git-pull",
+      "git-fetch"
+    ],
+    "se_score": 9973,
+    "note": null
+  },
+  {
+    "id": "cs_012",
+    "query": "Can comments be used in JSON?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/244777",
+    "pair_id": "cs_012",
+    "tags": [
+      "json",
+      "comments"
+    ],
+    "se_score": 9814,
+    "note": null
+  },
+  {
+    "id": "cs_013",
+    "query": "What and where are the stack and heap?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/79923",
+    "pair_id": "cs_013",
+    "tags": [
+      "data-structures",
+      "memory-management",
+      "heap-memory",
+      "dynamic-memory-allocation",
+      "stack-memory"
+    ],
+    "se_score": 9576,
+    "note": null
+  },
+  {
+    "id": "cs_014",
+    "query": "Why does HTML think “chucknorris” is a color?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/8318911",
+    "pair_id": "cs_014",
+    "tags": [
+      "html",
+      "browser",
+      "background-color"
+    ],
+    "se_score": 8957,
+    "note": null
+  },
+  {
+    "id": "cs_015",
+    "query": "How can I check out a remote Git branch?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/1783405",
+    "pair_id": "cs_015",
+    "tags": [
+      "git",
+      "git-checkout",
+      "remote-branch"
+    ],
+    "se_score": 8889,
+    "note": null
+  },
+  {
+    "id": "cs_016",
+    "query": "How do I check if an element is hidden in jQuery?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/178325",
+    "pair_id": "cs_016",
+    "tags": [
+      "javascript",
+      "jquery",
+      "dom",
+      "visibility",
+      "display"
+    ],
+    "se_score": 8739,
+    "note": null
+  },
+  {
+    "id": "cs_017",
+    "query": "How do I make Git forget about a file that was tracked, but is now in .gitignore?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/1274057",
+    "pair_id": "cs_017",
+    "tags": [
+      "git",
+      "gitignore",
+      "git-rm"
+    ],
+    "se_score": 8646,
+    "note": null
+  },
+  {
+    "id": "cs_018",
+    "query": "What does \"use strict\" do in JavaScript, and what is the reasoning behind it?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/1335851",
+    "pair_id": "cs_018",
+    "tags": [
+      "javascript",
+      "syntax",
+      "jslint",
+      "use-strict"
+    ],
+    "se_score": 8547,
+    "note": null
+  },
+  {
+    "id": "cs_019",
+    "query": "What does if __name__ == \"__main__\": do?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/419163",
+    "pair_id": "cs_019",
+    "tags": [
+      "python",
+      "namespaces",
+      "program-entry-point",
+      "python-module",
+      "idioms"
+    ],
+    "se_score": 8443,
+    "note": null
+  },
+  {
+    "id": "cs_020",
+    "query": "How do I remove local (untracked) files from the current Git working tree?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/61212",
+    "pair_id": "cs_020",
+    "tags": [
+      "git",
+      "branch",
+      "git-branch"
+    ],
+    "se_score": 8397,
+    "note": null
+  },
+  {
+    "id": "cs_021",
+    "query": "Does Python have a ternary conditional operator?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/394809",
+    "pair_id": "cs_021",
+    "tags": [
+      "python",
+      "operators",
+      "conditional-operator"
+    ],
+    "se_score": 8128,
+    "note": null
+  },
+  {
+    "id": "cs_022",
+    "query": "Is Java \"pass-by-reference\" or \"pass-by-value\"?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/40480",
+    "pair_id": "cs_022",
+    "tags": [
+      "java",
+      "methods",
+      "parameter-passing",
+      "pass-by-reference",
+      "pass-by-value"
+    ],
+    "se_score": 7742,
+    "note": null
+  },
+  {
+    "id": "cs_023",
+    "query": "Find all files containing a specific text (string) on Linux",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/16956810",
+    "pair_id": "cs_023",
+    "tags": [
+      "linux",
+      "text",
+      "grep",
+      "directory",
+      "find"
+    ],
+    "se_score": 7705,
+    "note": null
+  },
+  {
+    "id": "cs_024",
+    "query": "How do I redirect to another webpage?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/503093",
+    "pair_id": "cs_024",
+    "tags": [
+      "javascript",
+      "jquery",
+      "http-redirect"
+    ],
+    "se_score": 7693,
+    "note": null
+  },
+  {
+    "id": "cs_025",
+    "query": "var functionName = function() {} vs function functionName() {}",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/336859",
+    "pair_id": "cs_025",
+    "tags": [
+      "javascript",
+      "function",
+      "methods",
+      "syntax"
+    ],
+    "se_score": 7669,
+    "note": null
+  },
+  {
+    "id": "cs_026",
+    "query": "How to modify existing, unpushed commit messages?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/179123",
+    "pair_id": "cs_026",
+    "tags": [
+      "git",
+      "git-commit",
+      "git-rewrite-history",
+      "git-amend"
+    ],
+    "se_score": 7639,
+    "note": null
+  },
+  {
+    "id": "cs_027",
+    "query": "Why is subtracting these two epoch-milli Times (in year 1927) giving a strange result?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/6841333",
+    "pair_id": "cs_027",
+    "tags": [
+      "java",
+      "date",
+      "timezone"
+    ],
+    "se_score": 7616,
+    "note": null
+  },
+  {
+    "id": "cs_028",
+    "query": "How do JavaScript closures work?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/111102",
+    "pair_id": "cs_028",
+    "tags": [
+      "javascript",
+      "function",
+      "variables",
+      "scope",
+      "closures"
+    ],
+    "se_score": 7608,
+    "note": null
+  },
+  {
+    "id": "cs_029",
+    "query": "How do I revert a Git repository to a previous commit?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/4114095",
+    "pair_id": "cs_029",
+    "tags": [
+      "git",
+      "git-checkout",
+      "git-reset",
+      "git-revert"
+    ],
+    "se_score": 7607,
+    "note": null
+  },
+  {
+    "id": "cs_030",
+    "query": "What is the difference between String and string in C#?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/7074",
+    "pair_id": "cs_030",
+    "tags": [
+      "c#",
+      ".net",
+      "string",
+      "types",
+      "alias"
+    ],
+    "se_score": 7605,
+    "note": null
+  },
+  {
+    "id": "cs_031",
+    "query": "How do I remove a property from a JavaScript object?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/208105",
+    "pair_id": "cs_031",
+    "tags": [
+      "javascript",
+      "object",
+      "properties"
+    ],
+    "se_score": 7584,
+    "note": null
+  },
+  {
+    "id": "cs_032",
+    "query": "What are metaclasses in Python?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/100003",
+    "pair_id": "cs_032",
+    "tags": [
+      "python",
+      "oop",
+      "metaclass",
+      "python-class",
+      "python-datamodel"
+    ],
+    "se_score": 7535,
+    "note": null
+  },
+  {
+    "id": "cs_033",
+    "query": "How to check whether a string contains a substring in JavaScript?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/1789945",
+    "pair_id": "cs_033",
+    "tags": [
+      "javascript",
+      "string",
+      "substring",
+      "string-matching"
+    ],
+    "se_score": 7402,
+    "note": null
+  },
+  {
+    "id": "cs_034",
+    "query": "How do I check whether a file exists without exceptions?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/82831",
+    "pair_id": "cs_034",
+    "tags": [
+      "python",
+      "file",
+      "file-exists"
+    ],
+    "se_score": 7351,
+    "note": null
+  },
+  {
+    "id": "cs_035",
+    "query": "How do I merge two dictionaries in a single expression in Python?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/38987",
+    "pair_id": "cs_035",
+    "tags": [
+      "python",
+      "dictionary",
+      "merge"
+    ],
+    "se_score": 7126,
+    "note": null
+  },
+  {
+    "id": "sys_001",
+    "query": "Our security auditor is an idiot. How do I give him the information he wants?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/293217",
+    "pair_id": "sys_001",
+    "tags": [
+      "security",
+      "pci-dss"
+    ],
+    "se_score": 2513,
+    "note": null
+  },
+  {
+    "id": "sys_002",
+    "query": "How do I make a POST request using curl?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/149329",
+    "pair_id": "sys_002",
+    "tags": [
+      "http",
+      "curl"
+    ],
+    "se_score": 2435,
+    "note": null
+  },
+  {
+    "id": "sys_003",
+    "query": "Why does Windows think that my wireless keyboard is a toaster?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/792607",
+    "pair_id": "sys_003",
+    "tags": [
+      "windows-7",
+      "device-manager"
+    ],
+    "se_score": 2156,
+    "note": null
+  },
+  {
+    "id": "sys_004",
+    "query": "How do I scroll in tmux?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/209437",
+    "pair_id": "sys_004",
+    "tags": [
+      "tmux",
+      "scrolling"
+    ],
+    "se_score": 2099,
+    "note": null
+  },
+  {
+    "id": "sys_005",
+    "query": "What is a Pem file and how does it differ from other OpenSSL Generated Key File Formats?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/9708",
+    "pair_id": "sys_005",
+    "tags": [
+      "certificate",
+      "pki"
+    ],
+    "se_score": 1900,
+    "note": null
+  },
+  {
+    "id": "sys_006",
+    "query": "How can I sort the output of 'ls' by last modified date?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/147027",
+    "pair_id": "sys_006",
+    "tags": [
+      "linux",
+      "unix",
+      "shell",
+      "ls"
+    ],
+    "se_score": 1793,
+    "note": null
+  },
+  {
+    "id": "sys_007",
+    "query": "How do I make a machine \"blank screen\" for a period of time (as a penalty) if certain noise levels are reached?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/545329",
+    "pair_id": "sys_007",
+    "tags": [
+      "linux",
+      "audio",
+      "shell",
+      "parental-controls"
+    ],
+    "se_score": 1582,
+    "note": null
+  },
+  {
+    "id": "sys_008",
+    "query": "How can I sort du -h output by size",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/62411",
+    "pair_id": "sys_008",
+    "tags": [
+      "linux",
+      "bash",
+      "du",
+      "gnu"
+    ],
+    "se_score": 1527,
+    "note": null
+  },
+  {
+    "id": "sys_009",
+    "query": "Getting curl to output HTTP status code?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/272265",
+    "pair_id": "sys_009",
+    "tags": [
+      "http",
+      "curl",
+      "status"
+    ],
+    "se_score": 1520,
+    "note": null
+  },
+  {
+    "id": "sys_010",
+    "query": "Find out which process is locking a file or folder in Windows",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/117902",
+    "pair_id": "sys_010",
+    "tags": [
+      "windows",
+      "filesystems",
+      "process",
+      "community-faq-proposed"
+    ],
+    "se_score": 1337,
+    "note": null
+  },
+  {
+    "id": "sys_011",
+    "query": "How to tell git which private key to use?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/232373",
+    "pair_id": "sys_011",
+    "tags": [
+      "ssh",
+      "git",
+      "authentication",
+      "private-key"
+    ],
+    "se_score": 1186,
+    "note": null
+  },
+  {
+    "id": "sys_012",
+    "query": "How to determine if a bash variable is empty?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/7503",
+    "pair_id": "sys_012",
+    "tags": [
+      "bash",
+      "scripting",
+      "variables"
+    ],
+    "se_score": 1097,
+    "note": null
+  },
+  {
+    "id": "sys_013",
+    "query": "How to clear/flush the DNS cache in Google Chrome?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/203674",
+    "pair_id": "sys_013",
+    "tags": [
+      "google-chrome",
+      "dns",
+      "hosts"
+    ],
+    "se_score": 1079,
+    "note": null
+  },
+  {
+    "id": "sys_014",
+    "query": "What are the Windows A: and B: drives used for?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/231273",
+    "pair_id": "sys_014",
+    "tags": [
+      "windows",
+      "hard-drive"
+    ],
+    "se_score": 1005,
+    "note": null
+  },
+  {
+    "id": "sys_015",
+    "query": "Transatlantic ping faster than sending a pixel to the screen?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/419070",
+    "pair_id": "sys_015",
+    "tags": [
+      "networking",
+      "graphics-card",
+      "ip",
+      "bandwidth"
+    ],
+    "se_score": 868,
+    "note": null
+  },
+  {
+    "id": "sys_016",
+    "query": "Can you ping a specific port of a machine?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/309357",
+    "pair_id": "sys_016",
+    "tags": [
+      "port",
+      "ping"
+    ],
+    "se_score": 840,
+    "note": null
+  },
+  {
+    "id": "sys_017",
+    "query": "What does 'source' do?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/46139",
+    "pair_id": "sys_017",
+    "tags": [
+      "bash",
+      "shell",
+      "documentation"
+    ],
+    "se_score": 838,
+    "note": null
+  },
+  {
+    "id": "sys_018",
+    "query": "How can I display the contents of an environment variable from the command prompt in Windows 7?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/341192",
+    "pair_id": "sys_018",
+    "tags": [
+      "windows-7",
+      "windows",
+      "command-line",
+      "environment-variables"
+    ],
+    "se_score": 836,
+    "note": null
+  },
+  {
+    "id": "sys_019",
+    "query": "Can scp copy directories recursively?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/264595",
+    "pair_id": "sys_019",
+    "tags": [
+      "linux",
+      "scp"
+    ],
+    "se_score": 812,
+    "note": null
+  },
+  {
+    "id": "sys_020",
+    "query": "Is there a built-in checksum utility on Windows 7?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/245775",
+    "pair_id": "sys_020",
+    "tags": [
+      "windows-7",
+      "hashing",
+      "checksum"
+    ],
+    "se_score": 805,
+    "note": null
+  },
+  {
+    "id": "sys_021",
+    "query": "How to recursively chmod all directories except files?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/91935",
+    "pair_id": "sys_021",
+    "tags": [
+      "permissions",
+      "chmod"
+    ],
+    "se_score": 798,
+    "note": null
+  },
+  {
+    "id": "sys_022",
+    "query": "How to automate SSH login with password?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/241588",
+    "pair_id": "sys_022",
+    "tags": [
+      "ssh",
+      "password",
+      "automation"
+    ],
+    "se_score": 783,
+    "note": null
+  },
+  {
+    "id": "sys_023",
+    "query": "Why does macOS keep asking for my SSH passphrase ever since I updated to macOS Sierra (10.12)?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/1127067",
+    "pair_id": "sys_023",
+    "tags": [
+      "macos",
+      "ssh"
+    ],
+    "se_score": 776,
+    "note": null
+  },
+  {
+    "id": "sys_024",
+    "query": "View list of files in ZIP archive on Linux",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/216617",
+    "pair_id": "sys_024",
+    "tags": [
+      "linux",
+      "zip"
+    ],
+    "se_score": 753,
+    "note": null
+  },
+  {
+    "id": "sys_025",
+    "query": "How to copy with cp to include hidden files and hidden directories and their contents?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/61611",
+    "pair_id": "sys_025",
+    "tags": [
+      "unix",
+      "cp",
+      "recursive"
+    ],
+    "se_score": 705,
+    "note": null
+  },
+  {
+    "id": "sys_026",
+    "query": "How do I convert a video to GIF using ffmpeg, with reasonable quality?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/556029",
+    "pair_id": "sys_026",
+    "tags": [
+      "ffmpeg",
+      "gif"
+    ],
+    "se_score": 705,
+    "note": null
+  },
+  {
+    "id": "sys_027",
+    "query": "Why does this PNG image display differently in Chrome & Firefox than in Safari and IE?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/579216",
+    "pair_id": "sys_027",
+    "tags": [
+      "png",
+      "gamma",
+      "cross-browser"
+    ],
+    "se_score": 702,
+    "note": null
+  },
+  {
+    "id": "sys_028",
+    "query": "Permissions on private key in .ssh folder?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/215504",
+    "pair_id": "sys_028",
+    "tags": [
+      "linux",
+      "macos",
+      "permissions",
+      "file-permissions"
+    ],
+    "se_score": 691,
+    "note": null
+  },
+  {
+    "id": "sys_029",
+    "query": "How to stop an automatic redirect from “http://” to “https://” in Chrome",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/565409",
+    "pair_id": "sys_029",
+    "tags": [
+      "google-chrome"
+    ],
+    "se_score": 691,
+    "note": null
+  },
+  {
+    "id": "sys_030",
+    "query": "How are pseudorandom and truly random numbers different and why does it matter?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/712551",
+    "pair_id": "sys_030",
+    "tags": [
+      "security",
+      "random-number-generator"
+    ],
+    "se_score": 684,
+    "note": null
+  },
+  {
+    "id": "sys_031",
+    "query": "How do I reorder tmux windows?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/343572",
+    "pair_id": "sys_031",
+    "tags": [
+      "tmux"
+    ],
+    "se_score": 677,
+    "note": null
+  },
+  {
+    "id": "sys_032",
+    "query": "How to *disable* automatic reboots in Windows 10?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/957267",
+    "pair_id": "sys_032",
+    "tags": [
+      "windows-10",
+      "windows-update",
+      "reboot"
+    ],
+    "se_score": 677,
+    "note": null
+  },
+  {
+    "id": "sys_033",
+    "query": "How to find a directory on linux?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/327762",
+    "pair_id": "sys_033",
+    "tags": [
+      "linux",
+      "command-line"
+    ],
+    "se_score": 665,
+    "note": null
+  },
+  {
+    "id": "sys_034",
+    "query": "How to execute a command whenever a file changes?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://superuser.com/questions/181517",
+    "pair_id": "sys_034",
+    "tags": [
+      "linux",
+      "unix",
+      "shell",
+      "script"
+    ],
+    "se_score": 663,
+    "note": null
+  },
+  {
+    "id": "sys_035",
+    "query": "How do you find what process is holding a file open in Windows?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/1966",
+    "pair_id": "sys_035",
+    "tags": [
+      "windows",
+      "file-sharing"
+    ],
+    "se_score": 652,
+    "note": null
+  },
+  {
+    "id": "fin_001",
+    "query": "Best way to start investing, for a young person just starting their career?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/1625",
+    "pair_id": "fin_001",
+    "tags": [
+      "investing",
+      "savings",
+      "starting-out-investing",
+      "career"
+    ],
+    "se_score": 356,
+    "note": null
+  },
+  {
+    "id": "fin_002",
+    "query": "Who can truly afford luxury cars?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/43967",
+    "pair_id": "fin_002",
+    "tags": [
+      "united-states",
+      "debt",
+      "car",
+      "auto-loan"
+    ],
+    "se_score": 304,
+    "note": null
+  },
+  {
+    "id": "fin_003",
+    "query": "I received $1000 and was asked to send it back. How was this scam meant to work?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/68110",
+    "pair_id": "fin_003",
+    "tags": [
+      "fraud",
+      "scams"
+    ],
+    "se_score": 281,
+    "note": null
+  },
+  {
+    "id": "fin_004",
+    "query": "Why isn't everybody rich?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/94671",
+    "pair_id": "fin_004",
+    "tags": [
+      "stocks",
+      "investing",
+      "financial-literacy",
+      "stock-markets"
+    ],
+    "se_score": 259,
+    "note": null
+  },
+  {
+    "id": "fin_005",
+    "query": "If a stock doesn't pay dividends, then why is the stock worth anything?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/51976",
+    "pair_id": "fin_005",
+    "tags": [
+      "investing",
+      "dividends",
+      "stock-analysis",
+      "stock-valuation"
+    ],
+    "se_score": 254,
+    "note": null
+  },
+  {
+    "id": "fin_006",
+    "query": "Why would a company care about the price of its own shares in the stock market?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/7800",
+    "pair_id": "fin_006",
+    "tags": [
+      "investing",
+      "stocks",
+      "markets",
+      "stock-valuation"
+    ],
+    "se_score": 222,
+    "note": null
+  },
+  {
+    "id": "fin_007",
+    "query": "How smart is it to really be 100% debt free?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/3794",
+    "pair_id": "fin_007",
+    "tags": [
+      "debt",
+      "financial-literacy",
+      "debt-reduction"
+    ],
+    "se_score": 201,
+    "note": null
+  },
+  {
+    "id": "fin_008",
+    "query": "I'm supposedly eligible for an inheritance from a distant relative. Offer appears to be legitimate",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/101935",
+    "pair_id": "fin_008",
+    "tags": [
+      "united-kingdom",
+      "scams",
+      "inheritance"
+    ],
+    "se_score": 193,
+    "note": null
+  },
+  {
+    "id": "fin_009",
+    "query": "What options do I have at 26 years old, with 1.2 million USD?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/86009",
+    "pair_id": "fin_009",
+    "tags": [
+      "starting-out-investing"
+    ],
+    "se_score": 192,
+    "note": null
+  },
+  {
+    "id": "fin_010",
+    "query": "Found a heap of BTC but have no documentation. What do I do?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/81518",
+    "pair_id": "fin_010",
+    "tags": [
+      "united-states",
+      "taxes",
+      "legal",
+      "cryptocurrency"
+    ],
+    "se_score": 189,
+    "note": null
+  },
+  {
+    "id": "fin_011",
+    "query": "Friend was brainwashed by MLM-/ponzi investment scam. What can I do?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/67949",
+    "pair_id": "fin_011",
+    "tags": [
+      "scams"
+    ],
+    "se_score": 188,
+    "note": null
+  },
+  {
+    "id": "fin_012",
+    "query": "What happens to people without any retirement savings?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/79065",
+    "pair_id": "fin_012",
+    "tags": [
+      "united-states",
+      "retirement"
+    ],
+    "se_score": 175,
+    "note": null
+  },
+  {
+    "id": "fin_013",
+    "query": "Can someone explain a stock's \"bid\" vs. \"ask\" price relative to \"current\" price?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/1063",
+    "pair_id": "fin_013",
+    "tags": [
+      "stocks",
+      "investing",
+      "terminology",
+      "price"
+    ],
+    "se_score": 173,
+    "note": null
+  },
+  {
+    "id": "fin_014",
+    "query": "Do I make money in the stock market from other people losing money?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/79717",
+    "pair_id": "fin_014",
+    "tags": [
+      "stocks",
+      "investing",
+      "trading",
+      "financial-literacy"
+    ],
+    "se_score": 168,
+    "note": null
+  },
+  {
+    "id": "fin_015",
+    "query": "For very high-net worth individuals, does it make sense to not have insurance?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/77565",
+    "pair_id": "fin_015",
+    "tags": [
+      "insurance",
+      "health-insurance",
+      "life-insurance",
+      "car-insurance",
+      "net-worth"
+    ],
+    "se_score": 167,
+    "note": null
+  },
+  {
+    "id": "fin_016",
+    "query": "Why do people save so much?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/99235",
+    "pair_id": "fin_016",
+    "tags": [
+      "savings",
+      "retirement",
+      "risk",
+      "compound-interest"
+    ],
+    "se_score": 167,
+    "note": null
+  },
+  {
+    "id": "fin_017",
+    "query": "My friend wants to put my name down for a house he's buying. What risks would I be taking?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/76725",
+    "pair_id": "fin_017",
+    "tags": [
+      "united-kingdom",
+      "debt",
+      "home-loan",
+      "mortgage-qualification",
+      "co-sign"
+    ],
+    "se_score": 165,
+    "note": null
+  },
+  {
+    "id": "fin_018",
+    "query": "Oversimplify it for me: the correct order of investing",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/47856",
+    "pair_id": "fin_018",
+    "tags": [
+      "united-states",
+      "credit-card",
+      "mortgage",
+      "retirement",
+      "starting-out-investing"
+    ],
+    "se_score": 148,
+    "note": null
+  },
+  {
+    "id": "fin_019",
+    "query": "I'm 23 and was given $50k. What should I do?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/54132",
+    "pair_id": "fin_019",
+    "tags": [
+      "united-states",
+      "savings",
+      "starting-out-investing"
+    ],
+    "se_score": 134,
+    "note": null
+  },
+  {
+    "id": "fin_020",
+    "query": "Why does gold have value?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/1767",
+    "pair_id": "fin_020",
+    "tags": [
+      "investing",
+      "financial-literacy",
+      "gold",
+      "precious-metals"
+    ],
+    "se_score": 133,
+    "note": null
+  },
+  {
+    "id": "fin_021",
+    "query": "Is it safe to give out one's bank account number?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/15218",
+    "pair_id": "fin_021",
+    "tags": [
+      "bank-account",
+      "fraud"
+    ],
+    "se_score": 131,
+    "note": null
+  },
+  {
+    "id": "fin_022",
+    "query": "Should I buy my house in cash, or with a mortgage and invest the rest of my money?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/89245",
+    "pair_id": "fin_022",
+    "tags": [
+      "united-states",
+      "mortgage",
+      "housing"
+    ],
+    "se_score": 125,
+    "note": null
+  },
+  {
+    "id": "fin_023",
+    "query": "Why is stock dilution legal?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/58391",
+    "pair_id": "fin_023",
+    "tags": [
+      "united-states",
+      "stocks",
+      "shares",
+      "dilution"
+    ],
+    "se_score": 124,
+    "note": null
+  },
+  {
+    "id": "fin_024",
+    "query": "Tenant claims they paid rent in cash and that it was stolen from a mailbox. What should I do?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/71362",
+    "pair_id": "fin_024",
+    "tags": [
+      "united-states",
+      "real-estate",
+      "insurance",
+      "rent"
+    ],
+    "se_score": 121,
+    "note": null
+  },
+  {
+    "id": "fin_025",
+    "query": "My million-dollar brother wants to retire. Should he?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/97346",
+    "pair_id": "fin_025",
+    "tags": [
+      "united-states",
+      "early-retirement"
+    ],
+    "se_score": 119,
+    "note": null
+  },
+  {
+    "id": "fin_026",
+    "query": "As a 16 year old, how can I keep my money safe from my mother?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/112353",
+    "pair_id": "fin_026",
+    "tags": [
+      "united-states",
+      "financial-literacy",
+      "bank-account",
+      "minor",
+      "utah"
+    ],
+    "se_score": 119,
+    "note": null
+  },
+  {
+    "id": "fin_027",
+    "query": "In the stock market, why is the \"open\" price value never the same as previous day's \"close\"?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/3765",
+    "pair_id": "fin_027",
+    "tags": [
+      "stocks",
+      "stock-exchanges",
+      "price",
+      "technical-analysis"
+    ],
+    "se_score": 116,
+    "note": null
+  },
+  {
+    "id": "fin_028",
+    "query": "Why should we expect stocks to go up in the long term?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/81126",
+    "pair_id": "fin_028",
+    "tags": [
+      "stocks"
+    ],
+    "se_score": 115,
+    "note": null
+  },
+  {
+    "id": "fin_029",
+    "query": "Someone wants me to use my credit card at a card-only gas/petrol pump in return for cash",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/105208",
+    "pair_id": "fin_029",
+    "tags": [
+      "scams",
+      "new-zealand"
+    ],
+    "se_score": 114,
+    "note": null
+  },
+  {
+    "id": "fin_030",
+    "query": "Why is the stock market closed on the weekend?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/8950",
+    "pair_id": "fin_030",
+    "tags": [
+      "stocks",
+      "stock-markets"
+    ],
+    "se_score": 112,
+    "note": null
+  },
+  {
+    "id": "fin_031",
+    "query": "Are lottery tickets ever a wise investment provided the jackpot is large enough?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/57931",
+    "pair_id": "fin_031",
+    "tags": [
+      "investing",
+      "lottery"
+    ],
+    "se_score": 112,
+    "note": null
+  },
+  {
+    "id": "fin_032",
+    "query": "Should I take out a loan to pay off a relative's credit card debt?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/96564",
+    "pair_id": "fin_032",
+    "tags": [
+      "united-states",
+      "credit-card",
+      "debt",
+      "california",
+      "heloc"
+    ],
+    "se_score": 112,
+    "note": null
+  },
+  {
+    "id": "fin_033",
+    "query": "What does it mean for the price of oil to be negative?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/124269",
+    "pair_id": "fin_033",
+    "tags": [
+      "markets",
+      "commodities",
+      "crude-oil"
+    ],
+    "se_score": 109,
+    "note": null
+  },
+  {
+    "id": "fin_034",
+    "query": "Does it make sense to insure something when you could financially bear its loss?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/84411",
+    "pair_id": "fin_034",
+    "tags": [
+      "insurance"
+    ],
+    "se_score": 108,
+    "note": null
+  },
+  {
+    "id": "fin_035",
+    "query": "Isn't \"I bought [blank] as a tax writeoff\" complete nonsense?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/100119",
+    "pair_id": "fin_035",
+    "tags": [
+      "taxes",
+      "tax-deduction"
+    ],
+    "se_score": 108,
+    "note": null
+  },
+  {
+    "id": "hist_001",
+    "query": "Why did Hitler attack the Soviet Union when he was still busy fighting the United Kingdom?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/71",
+    "pair_id": "hist_001",
+    "tags": [
+      "20th-century",
+      "world-war-two",
+      "germany",
+      "soviet-union",
+      "united-kingdom"
+    ],
+    "se_score": 212,
+    "note": null
+  },
+  {
+    "id": "hist_002",
+    "query": "When did people decide that all caps means the writer is shouting?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/41249",
+    "pair_id": "hist_002",
+    "tags": [
+      "cultural-history",
+      "language"
+    ],
+    "se_score": 177,
+    "note": null
+  },
+  {
+    "id": "hist_003",
+    "query": "Why was France granted an equal status among victors of World War II?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/9247",
+    "pair_id": "hist_003",
+    "tags": [
+      "world-war-two",
+      "france",
+      "international-relations"
+    ],
+    "se_score": 147,
+    "note": null
+  },
+  {
+    "id": "hist_004",
+    "query": "Did the ancients or other pre-industrial civilisations engage in unsustainable practices?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/41694",
+    "pair_id": "hist_004",
+    "tags": [
+      "ancient-history",
+      "industrial-revolution",
+      "industrial-history"
+    ],
+    "se_score": 143,
+    "note": null
+  },
+  {
+    "id": "hist_005",
+    "query": "Do historians agree that most wars are caused by religion?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/49646",
+    "pair_id": "hist_005",
+    "tags": [
+      "war",
+      "religion",
+      "historiography"
+    ],
+    "se_score": 134,
+    "note": null
+  },
+  {
+    "id": "hist_006",
+    "query": "How do historians and linguists know how to pronounce the names from non-phonetic scripts?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/42176",
+    "pair_id": "hist_006",
+    "tags": [
+      "cultural-history",
+      "language",
+      "writing"
+    ],
+    "se_score": 130,
+    "note": null
+  },
+  {
+    "id": "hist_007",
+    "query": "Why, in ancient battles, did being encircled mean defeat?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/39723",
+    "pair_id": "hist_007",
+    "tags": [
+      "military",
+      "ancient-history",
+      "ancient-rome",
+      "carthage",
+      "punic-wars"
+    ],
+    "se_score": 124,
+    "note": null
+  },
+  {
+    "id": "hist_008",
+    "query": "Were there women who were against giving women the right to vote?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/30942",
+    "pair_id": "hist_008",
+    "tags": [
+      "political-history",
+      "united-kingdom",
+      "women",
+      "voting"
+    ],
+    "se_score": 123,
+    "note": null
+  },
+  {
+    "id": "hist_009",
+    "query": "Did China ever consider a phonetic writing system?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/46658",
+    "pair_id": "hist_009",
+    "tags": [
+      "china",
+      "language",
+      "writing"
+    ],
+    "se_score": 121,
+    "note": null
+  },
+  {
+    "id": "hist_010",
+    "query": "On 1941 Dec 7, could Japan have targeted the Panama Canal instead of Pearl Harbor in a surprise attack?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/33708",
+    "pair_id": "hist_010",
+    "tags": [
+      "united-states",
+      "world-war-two",
+      "japan",
+      "naval",
+      "ww2-pacific-theater"
+    ],
+    "se_score": 120,
+    "note": null
+  },
+  {
+    "id": "hist_011",
+    "query": "Did Adolf Hitler ever address the fact that his own appearance was almost an exact opposite of what he considered the ideal Aryan appearance?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/50634",
+    "pair_id": "hist_011",
+    "tags": [
+      "hitler",
+      "racism",
+      "nazism"
+    ],
+    "se_score": 119,
+    "note": null
+  },
+  {
+    "id": "hist_012",
+    "query": "Why bother attacking castles at all? Why not go around?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/14325",
+    "pair_id": "hist_012",
+    "tags": [
+      "military",
+      "warfare",
+      "tactics",
+      "castles"
+    ],
+    "se_score": 117,
+    "note": null
+  },
+  {
+    "id": "hist_013",
+    "query": "Why did Native Americans die from European diseases while Europeans didn't catch serious diseases from the New World?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/20603",
+    "pair_id": "hist_013",
+    "tags": [
+      "europe",
+      "colonization",
+      "native-americans",
+      "disease",
+      "age-of-discovery"
+    ],
+    "se_score": 117,
+    "note": null
+  },
+  {
+    "id": "hist_014",
+    "query": "When did the allies find out about the killing of Jews during WW2",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/38636",
+    "pair_id": "hist_014",
+    "tags": [
+      "world-war-two",
+      "nazi-germany",
+      "holocaust"
+    ],
+    "se_score": 114,
+    "note": null
+  },
+  {
+    "id": "hist_015",
+    "query": "Why did the Confederacy think they could win the American Civil War?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/48862",
+    "pair_id": "hist_015",
+    "tags": [
+      "united-states",
+      "american-civil-war",
+      "confederacy"
+    ],
+    "se_score": 111,
+    "note": null
+  },
+  {
+    "id": "hist_016",
+    "query": "Why are Germans referred to so differently in different languages?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/29028",
+    "pair_id": "hist_016",
+    "tags": [
+      "germany",
+      "language",
+      "demonym"
+    ],
+    "se_score": 108,
+    "note": null
+  },
+  {
+    "id": "hist_017",
+    "query": "\"This telegram must be closely paraphrased before being communicated to anyone.\" Why?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/79371",
+    "pair_id": "hist_017",
+    "tags": [
+      "world-war-two",
+      "united-states",
+      "communication"
+    ],
+    "se_score": 107,
+    "note": null
+  },
+  {
+    "id": "hist_018",
+    "query": "Has a sovereign Communist government ever run, and conceded loss, on a fair election?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/51432",
+    "pair_id": "hist_018",
+    "tags": [
+      "political-history",
+      "communism"
+    ],
+    "se_score": 105,
+    "note": null
+  },
+  {
+    "id": "hist_019",
+    "query": "Why did archery not make a comeback when armor was phased out in the 18th century?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/15334",
+    "pair_id": "hist_019",
+    "tags": [
+      "military",
+      "middle-ages",
+      "18th-century"
+    ],
+    "se_score": 104,
+    "note": null
+  },
+  {
+    "id": "hist_020",
+    "query": "Why was Poland spared from the Black Death?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/16699",
+    "pair_id": "hist_020",
+    "tags": [
+      "middle-ages",
+      "europe",
+      "poland",
+      "13th-century",
+      "disease"
+    ],
+    "se_score": 104,
+    "note": null
+  },
+  {
+    "id": "hist_021",
+    "query": "Why China was able to unify and not Europe?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/4336",
+    "pair_id": "hist_021",
+    "tags": [
+      "europe",
+      "china"
+    ],
+    "se_score": 101,
+    "note": null
+  },
+  {
+    "id": "hist_022",
+    "query": "Why didn't Imperial Japan attack the Soviet Union during World War 2?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/27",
+    "pair_id": "hist_022",
+    "tags": [
+      "world-war-two",
+      "20th-century",
+      "soviet-union",
+      "japan",
+      "ww2-pacific-theater"
+    ],
+    "se_score": 99,
+    "note": null
+  },
+  {
+    "id": "hist_023",
+    "query": "What is the origin of 3 meals a day?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/48216",
+    "pair_id": "hist_023",
+    "tags": [
+      "cultural-history",
+      "food"
+    ],
+    "se_score": 99,
+    "note": null
+  },
+  {
+    "id": "hist_024",
+    "query": "Why were old fortifications shaped like stars and not like circles?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/35720",
+    "pair_id": "hist_024",
+    "tags": [
+      "defense",
+      "castles"
+    ],
+    "se_score": 97,
+    "note": null
+  },
+  {
+    "id": "hist_025",
+    "query": "Did medieval scholars believe the Earth was round?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/46161",
+    "pair_id": "hist_025",
+    "tags": [
+      "europe",
+      "science",
+      "early-medieval"
+    ],
+    "se_score": 97,
+    "note": null
+  },
+  {
+    "id": "hist_026",
+    "query": "How would a 16-year-old girl from Cleopatra's era curse?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/48565",
+    "pair_id": "hist_026",
+    "tags": [
+      "language",
+      "ancient-egypt"
+    ],
+    "se_score": 95,
+    "note": null
+  },
+  {
+    "id": "hist_027",
+    "query": "Did the ancient Greeks ever climb Mt. Olympus?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/29195",
+    "pair_id": "hist_027",
+    "tags": [
+      "ancient-greece",
+      "geography",
+      "greek-mythology"
+    ],
+    "se_score": 92,
+    "note": null
+  },
+  {
+    "id": "hist_028",
+    "query": "Why didn't Germany blockade the Strait of Gibraltar during WW2?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/30383",
+    "pair_id": "hist_028",
+    "tags": [
+      "world-war-two",
+      "nazi-germany",
+      "warfare",
+      "ww2-european-theater"
+    ],
+    "se_score": 92,
+    "note": null
+  },
+  {
+    "id": "hist_029",
+    "query": "Why does the United States keep using \"old\" date representations and imperial system, while being in the minority?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/12089",
+    "pair_id": "hist_029",
+    "tags": [
+      "science",
+      "calendar"
+    ],
+    "se_score": 90,
+    "note": null
+  },
+  {
+    "id": "hist_030",
+    "query": "How did people distinguish slaves from free people in Ancient Rome?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/17419",
+    "pair_id": "hist_030",
+    "tags": [
+      "ancient-history",
+      "ancient-rome",
+      "slavery"
+    ],
+    "se_score": 90,
+    "note": null
+  },
+  {
+    "id": "hist_031",
+    "query": "Did Russian winter seriously contribute to German defeat on the Eastern Front in WWII?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/46833",
+    "pair_id": "hist_031",
+    "tags": [
+      "world-war-two",
+      "russia",
+      "germany",
+      "ww2-european-theater"
+    ],
+    "se_score": 89,
+    "note": null
+  },
+  {
+    "id": "hist_032",
+    "query": "Why is the consensus that WW2 started on September 1, 1939 and not July 7, 1937?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/49243",
+    "pair_id": "hist_032",
+    "tags": [
+      "world-war-two",
+      "europe",
+      "asia",
+      "sino-japanese-war"
+    ],
+    "se_score": 89,
+    "note": null
+  },
+  {
+    "id": "hist_033",
+    "query": "How accurate or supported is Jared Diamond's \"Guns, Germs, and Steel\"?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/1095",
+    "pair_id": "hist_033",
+    "tags": [
+      "ancient-history",
+      "technology",
+      "colonization",
+      "historiography"
+    ],
+    "se_score": 88,
+    "note": null
+  },
+  {
+    "id": "hist_034",
+    "query": "Did Bill Gates steal the GUI concept from Steve Jobs?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/31153",
+    "pair_id": "hist_034",
+    "tags": [
+      "technology"
+    ],
+    "se_score": 88,
+    "note": null
+  },
+  {
+    "id": "hist_035",
+    "query": "Why did North America economically prosper, and maintain stable government and South/Central America didn't?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/36248",
+    "pair_id": "hist_035",
+    "tags": [
+      "united-states",
+      "north-america",
+      "canada",
+      "south-america"
+    ],
+    "se_score": 88,
+    "note": null
+  },
+  {
+    "id": "sci_001",
+    "query": "Why do I only breathe out of one nostril?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/21216",
+    "pair_id": "sci_001",
+    "tags": [
+      "human-biology",
+      "human-anatomy",
+      "breathing",
+      "nose"
+    ],
+    "se_score": 309,
+    "note": null
+  },
+  {
+    "id": "sci_002",
+    "query": "Why are so few foods blue?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/56476",
+    "pair_id": "sci_002",
+    "tags": [
+      "evolution",
+      "molecular-biology",
+      "botany",
+      "food",
+      "pigmentation"
+    ],
+    "se_score": 213,
+    "note": null
+  },
+  {
+    "id": "sci_003",
+    "query": "Does DNA have the equivalent of IF-statements, WHILE loops, or function calls? How about GOTO?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/30116",
+    "pair_id": "sci_003",
+    "tags": [
+      "dna",
+      "bioinformatics",
+      "systems-biology"
+    ],
+    "se_score": 208,
+    "note": null
+  },
+  {
+    "id": "sci_004",
+    "query": "How many times did terrestrial life emerge from the ocean?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/937",
+    "pair_id": "sci_004",
+    "tags": [
+      "evolution"
+    ],
+    "se_score": 156,
+    "note": null
+  },
+  {
+    "id": "sci_005",
+    "query": "Do bacteria die of old age?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/21111",
+    "pair_id": "sci_005",
+    "tags": [
+      "bacteriology",
+      "reproduction",
+      "senescence",
+      "life-history"
+    ],
+    "se_score": 141,
+    "note": null
+  },
+  {
+    "id": "sci_006",
+    "query": "Is there a reason why human eyesight and plants make use of the same wavelength of light?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/510",
+    "pair_id": "sci_006",
+    "tags": [
+      "human-biology",
+      "botany",
+      "photosynthesis",
+      "vision",
+      "eyes"
+    ],
+    "se_score": 126,
+    "note": null
+  },
+  {
+    "id": "sci_007",
+    "query": "Why is thymine rather than uracil used in DNA?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/171",
+    "pair_id": "sci_007",
+    "tags": [
+      "biochemistry",
+      "dna",
+      "rna"
+    ],
+    "se_score": 121,
+    "note": null
+  },
+  {
+    "id": "sci_008",
+    "query": "Why do plants have green leaves and not red?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/450",
+    "pair_id": "sci_008",
+    "tags": [
+      "evolution",
+      "botany",
+      "photosynthesis",
+      "speculative",
+      "chloroplasts"
+    ],
+    "se_score": 115,
+    "note": null
+  },
+  {
+    "id": "sci_009",
+    "query": "What is the effect of non-vaccinated people on vaccinated people?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/76096",
+    "pair_id": "sci_009",
+    "tags": [
+      "microbiology",
+      "vaccination"
+    ],
+    "se_score": 115,
+    "note": null
+  },
+  {
+    "id": "sci_010",
+    "query": "Are male and female brains physically different from birth?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/68327",
+    "pair_id": "sci_010",
+    "tags": [
+      "neuroscience",
+      "brain",
+      "neurophysiology",
+      "development",
+      "sex"
+    ],
+    "se_score": 114,
+    "note": null
+  },
+  {
+    "id": "sci_011",
+    "query": "Can HIV be transmitted via mosquitos?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/44868",
+    "pair_id": "sci_011",
+    "tags": [
+      "entomology",
+      "pathology",
+      "hiv",
+      "mosquitoes"
+    ],
+    "se_score": 104,
+    "note": null
+  },
+  {
+    "id": "sci_012",
+    "query": "Do beneficial viruses exist? If so, what examples are there?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/74887",
+    "pair_id": "sci_012",
+    "tags": [
+      "microbiology",
+      "virology",
+      "natural-selection",
+      "fitness"
+    ],
+    "se_score": 104,
+    "note": null
+  },
+  {
+    "id": "sci_013",
+    "query": "What's the evidence against SARS-CoV-2 being engineered by humans?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/90793",
+    "pair_id": "sci_013",
+    "tags": [
+      "genetics",
+      "virology",
+      "infection",
+      "coronavirus"
+    ],
+    "se_score": 103,
+    "note": null
+  },
+  {
+    "id": "sci_014",
+    "query": "Does the string \"...CATCAT...\" appear in the DNA of Felis catus?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/52289",
+    "pair_id": "sci_014",
+    "tags": [
+      "zoology",
+      "dna",
+      "genomes",
+      "feline"
+    ],
+    "se_score": 102,
+    "note": null
+  },
+  {
+    "id": "sci_015",
+    "query": "Why haven’t particular traits that one might consider advantageous to an organism evolved?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/35532",
+    "pair_id": "sci_015",
+    "tags": [
+      "evolution",
+      "natural-selection",
+      "adaptation"
+    ],
+    "se_score": 101,
+    "note": null
+  },
+  {
+    "id": "sci_016",
+    "query": "How could humans have interbred with Neanderthals if we're a different species?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/39664",
+    "pair_id": "sci_016",
+    "tags": [
+      "human-biology",
+      "evolution",
+      "speciation",
+      "species",
+      "human-evolution"
+    ],
+    "se_score": 100,
+    "note": null
+  },
+  {
+    "id": "sci_017",
+    "query": "Why did the process of sleep evolve in many animals? What is its evolutionary advantage?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/324",
+    "pair_id": "sci_017",
+    "tags": [
+      "evolution",
+      "sleep"
+    ],
+    "se_score": 95,
+    "note": null
+  },
+  {
+    "id": "sci_018",
+    "query": "Are humans the only species who drink milk as adults?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/64822",
+    "pair_id": "sci_018",
+    "tags": [
+      "human-biology",
+      "evolution",
+      "human-evolution",
+      "milk"
+    ],
+    "se_score": 90,
+    "note": null
+  },
+  {
+    "id": "sci_019",
+    "query": "Is there an RGB equivalent for smells?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/55286",
+    "pair_id": "sci_019",
+    "tags": [
+      "neuroscience",
+      "neurophysiology",
+      "vision",
+      "sensation",
+      "olfaction"
+    ],
+    "se_score": 87,
+    "note": null
+  },
+  {
+    "id": "sci_020",
+    "query": "Death because of distilled water consumption",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/2250",
+    "pair_id": "sci_020",
+    "tags": [
+      "human-biology",
+      "biochemistry",
+      "experimental"
+    ],
+    "se_score": 86,
+    "note": null
+  },
+  {
+    "id": "sci_021",
+    "query": "Why is the heart not in the middle of the body?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/60718",
+    "pair_id": "sci_021",
+    "tags": [
+      "evolution",
+      "biochemistry",
+      "cardiology",
+      "anatomy",
+      "symmetry"
+    ],
+    "se_score": 85,
+    "note": null
+  },
+  {
+    "id": "sci_022",
+    "query": "What's up with this leaf?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/84738",
+    "pair_id": "sci_022",
+    "tags": [
+      "botany",
+      "entomology"
+    ],
+    "se_score": 85,
+    "note": null
+  },
+  {
+    "id": "sci_023",
+    "query": "Why 20 amino acids instead of 64?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/653",
+    "pair_id": "sci_023",
+    "tags": [
+      "biochemistry",
+      "evolution",
+      "genetics",
+      "amino-acids"
+    ],
+    "se_score": 84,
+    "note": null
+  },
+  {
+    "id": "sci_024",
+    "query": "Do animals exhibit handedness (paw-ness?) preference?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/57361",
+    "pair_id": "sci_024",
+    "tags": [
+      "zoology",
+      "physiology",
+      "brain",
+      "ethology",
+      "behaviour"
+    ],
+    "se_score": 79,
+    "note": null
+  },
+  {
+    "id": "sci_025",
+    "query": "Why shouldn't dogs eat chocolate?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/60654",
+    "pair_id": "sci_025",
+    "tags": [
+      "zoology",
+      "food",
+      "toxicology",
+      "dogs"
+    ],
+    "se_score": 79,
+    "note": null
+  },
+  {
+    "id": "sci_026",
+    "query": "Why do Humans not produce Vitamin C like other mammals?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/401",
+    "pair_id": "sci_026",
+    "tags": [
+      "human-biology",
+      "vitamins"
+    ],
+    "se_score": 76,
+    "note": null
+  },
+  {
+    "id": "sci_027",
+    "query": "Why are there no wheeled animals?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/7932",
+    "pair_id": "sci_027",
+    "tags": [
+      "evolution",
+      "zoology",
+      "speculative"
+    ],
+    "se_score": 76,
+    "note": null
+  },
+  {
+    "id": "sci_028",
+    "query": "How does the brain's energy consumption depend on mental activity?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/839",
+    "pair_id": "sci_028",
+    "tags": [
+      "human-biology",
+      "neuroscience"
+    ],
+    "se_score": 74,
+    "note": null
+  },
+  {
+    "id": "sci_029",
+    "query": "What is the evolutionary advantage of red-green color blindness?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/44140",
+    "pair_id": "sci_029",
+    "tags": [
+      "evolution",
+      "vision",
+      "neurophysiology"
+    ],
+    "se_score": 73,
+    "note": null
+  },
+  {
+    "id": "sci_030",
+    "query": "Can a woman give birth to twins with different fathers?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/23720",
+    "pair_id": "sci_030",
+    "tags": [
+      "twins"
+    ],
+    "se_score": 68,
+    "note": null
+  },
+  {
+    "id": "sci_031",
+    "query": "Is there any evidence that sexual selection may lead to extinction of species?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/239",
+    "pair_id": "sci_031",
+    "tags": [
+      "evolution",
+      "theoretical-biology",
+      "sexual-selection",
+      "palaeontology",
+      "extinction"
+    ],
+    "se_score": 67,
+    "note": null
+  },
+  {
+    "id": "sci_032",
+    "query": "Why does evolution not make our life longer?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/17077",
+    "pair_id": "sci_032",
+    "tags": [
+      "evolution",
+      "senescence",
+      "life",
+      "environment"
+    ],
+    "se_score": 67,
+    "note": null
+  },
+  {
+    "id": "sci_033",
+    "query": "Do ants or other insects sleep, and if so why?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/21159",
+    "pair_id": "sci_033",
+    "tags": [
+      "entomology",
+      "sleep",
+      "behaviour"
+    ],
+    "se_score": 67,
+    "note": null
+  },
+  {
+    "id": "sci_034",
+    "query": "Why don't mammals have more than 4 limbs?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/21772",
+    "pair_id": "sci_034",
+    "tags": [
+      "evolution",
+      "mammals"
+    ],
+    "se_score": 66,
+    "note": null
+  },
+  {
+    "id": "sci_035",
+    "query": "What could cause a forest of bent trees?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/35622",
+    "pair_id": "sci_035",
+    "tags": [
+      "botany"
+    ],
+    "se_score": 66,
+    "note": null
+  },
+  {
+    "id": "math_536",
+    "query": "How do you find the derivative of x squared?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_536",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — derivative"
+  },
+  {
+    "id": "math_537",
+    "query": "How do you find the antiderivative of x squared?",
+    "domain": "mathematics",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_536",
+    "tags": [],
+    "se_score": null,
+    "note": "Opposite operation (integral vs derivative). A cache hit here is wrong."
+  },
+  {
+    "id": "math_538",
+    "query": "What is the limit of sin(x)/x as x approaches zero?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_538",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — limit from the right"
+  },
+  {
+    "id": "math_539",
+    "query": "What is the limit of sin(x)/x as x approaches infinity?",
+    "domain": "mathematics",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_538",
+    "tags": [],
+    "se_score": null,
+    "note": "Different limit point — result is 0, not 1. Surface similarity is extreme."
+  },
+  {
+    "id": "math_542",
+    "query": "What does it mean for a function to be continuous at a point?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_542",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — continuity definition"
+  },
+  {
+    "id": "math_543",
+    "query": "What does it mean for a function to be discontinuous at a point?",
+    "domain": "mathematics",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_542",
+    "tags": [],
+    "se_score": null,
+    "note": "Negation of the same concept — answer is not just a negation of the cached one."
+  },
+  {
+    "id": "math_544",
+    "query": "How many ways can you arrange 5 distinct objects in a row?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_544",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — permutation"
+  },
+  {
+    "id": "math_545",
+    "query": "How many ways can you choose 3 objects from 5 distinct objects?",
+    "domain": "mathematics",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_544",
+    "tags": [],
+    "se_score": null,
+    "note": "Combination vs permutation — different formula and numerical answer."
+  },
+  {
+    "id": "cs_536",
+    "query": "What is the time complexity of binary search?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_536",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — time complexity"
+  },
+  {
+    "id": "cs_537",
+    "query": "What is the space complexity of binary search?",
+    "domain": "computer_science",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_536",
+    "tags": [],
+    "se_score": null,
+    "note": "Different complexity axis — answer differs (O(1) iterative vs O(log n) recursive)."
+  },
+  {
+    "id": "cs_540",
+    "query": "What are the advantages of using TCP over UDP?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_540",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — TCP advantages"
+  },
+  {
+    "id": "cs_541",
+    "query": "What are the advantages of using UDP over TCP?",
+    "domain": "computer_science",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_540",
+    "tags": [],
+    "se_score": null,
+    "note": "Direction of comparison inverted — completely different answer."
+  },
+  {
+    "id": "cs_542",
+    "query": "How do you detect a cycle in a directed graph?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_542",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — cycle detection directed"
+  },
+  {
+    "id": "cs_543",
+    "query": "How do you detect a cycle in an undirected graph?",
+    "domain": "computer_science",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_542",
+    "tags": [],
+    "se_score": null,
+    "note": "Different graph type — DFS approach is structurally different (back-edge definition differs)."
+  },
+  {
+    "id": "cs_544",
+    "query": "What is the difference between a process and a thread?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_544",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — process vs thread"
+  },
+  {
+    "id": "cs_545",
+    "query": "What are the similarities between a process and a thread?",
+    "domain": "computer_science",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_544",
+    "tags": [],
+    "se_score": null,
+    "note": "Differences vs similarities — opposite framing."
+  },
+  {
+    "id": "sys_536",
+    "query": "How do I check disk usage on Linux?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_536",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — disk usage check"
+  },
+  {
+    "id": "sys_537",
+    "query": "How do I free up disk space on Linux?",
+    "domain": "system_operations",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_536",
+    "tags": [],
+    "se_score": null,
+    "note": "Read vs write operation — completely different set of commands."
+  },
+  {
+    "id": "sys_538",
+    "query": "How do I list all running processes on Linux?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_538",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — list processes"
+  },
+  {
+    "id": "sys_539",
+    "query": "How do I kill a specific running process on Linux?",
+    "domain": "system_operations",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_538",
+    "tags": [],
+    "se_score": null,
+    "note": "Read-only list vs destructive action — severe intent difference."
+  },
+  {
+    "id": "sys_540",
+    "query": "How do I add a firewall rule to allow port 443 on Linux?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_540",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — allow rule"
+  },
+  {
+    "id": "sys_541",
+    "query": "How do I add a firewall rule to block port 443 on Linux?",
+    "domain": "system_operations",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_540",
+    "tags": [],
+    "se_score": null,
+    "note": "Allow vs block — opposite security intent."
+  },
+  {
+    "id": "sys_542",
+    "query": "How do I create a new user on Ubuntu?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_542",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — create user"
+  },
+  {
+    "id": "sys_543",
+    "query": "How do I delete an existing user on Ubuntu?",
+    "domain": "system_operations",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_542",
+    "tags": [],
+    "se_score": null,
+    "note": "Create vs delete — opposite destructive action."
+  },
+  {
+    "id": "fin_536",
+    "query": "What are the tax advantages of contributing to a traditional IRA?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_536",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — traditional IRA advantages"
+  },
+  {
+    "id": "fin_537",
+    "query": "What are the tax advantages of contributing to a Roth IRA?",
+    "domain": "finance_economics",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_536",
+    "tags": [],
+    "se_score": null,
+    "note": "Different account type — pre-tax vs post-tax, completely different answer."
+  },
+  {
+    "id": "fin_538",
+    "query": "How does inflation hurt bond investors?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_538",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — inflation hurts bonds"
+  },
+  {
+    "id": "fin_539",
+    "query": "How does inflation help bond issuers?",
+    "domain": "finance_economics",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_538",
+    "tags": [],
+    "se_score": null,
+    "note": "Same economic event, opposite stakeholder perspective — different answer."
+  },
+  {
+    "id": "fin_540",
+    "query": "What happens to stock prices when interest rates rise?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_540",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — rates rise impact"
+  },
+  {
+    "id": "fin_541",
+    "query": "What happens to bond prices when interest rates rise?",
+    "domain": "finance_economics",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_540",
+    "tags": [],
+    "se_score": null,
+    "note": "Stocks vs bonds — bond prices move inversely; stocks is more nuanced."
+  },
+  {
+    "id": "hist_536",
+    "query": "What were the causes of World War I?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "hist_536",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — WWI causes"
+  },
+  {
+    "id": "hist_537",
+    "query": "What were the consequences of World War I?",
+    "domain": "history_geography",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "hist_536",
+    "tags": [],
+    "se_score": null,
+    "note": "Causes vs consequences — different temporal direction, different facts."
+  },
+  {
+    "id": "hist_538",
+    "query": "What countries share a border with France?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "hist_538",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — France borders"
+  },
+  {
+    "id": "hist_539",
+    "query": "What countries share a border with Germany?",
+    "domain": "history_geography",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "hist_538",
+    "tags": [],
+    "se_score": null,
+    "note": "Different country — different answer set."
+  },
+  {
+    "id": "sci_536",
+    "query": "What are the symptoms of type 1 diabetes?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_536",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — T1D symptoms"
+  },
+  {
+    "id": "sci_537",
+    "query": "What are the symptoms of type 2 diabetes?",
+    "domain": "science_medicine",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_536",
+    "tags": [],
+    "se_score": null,
+    "note": "Different disease mechanism — onset pattern and severity differ meaningfully."
+  },
+  {
+    "id": "sci_538",
+    "query": "How does the immune system fight a bacterial infection?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_538",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — immune response bacterial"
+  },
+  {
+    "id": "sci_539",
+    "query": "How does the immune system fight a viral infection?",
+    "domain": "science_medicine",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_538",
+    "tags": [],
+    "se_score": null,
+    "note": "Different pathogen class — adaptive response, T/B cells, antibody role differs."
+  },
+  {
+    "id": "sci_540",
+    "query": "What is the role of mitochondria in eukaryotic cells?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_540",
+    "tags": [],
+    "se_score": null,
+    "note": "Cache anchor — mitochondria role"
+  },
+  {
+    "id": "sci_541",
+    "query": "What is the role of chloroplasts in plant cells?",
+    "domain": "science_medicine",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_540",
+    "tags": [],
+    "se_score": null,
+    "note": "Different organelle with different function — not semantically equivalent."
+  },
+  {
+    "id": "math_546",
+    "query": "What is the quadratic formula for solving ax² + bx + c = 0?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_546",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "math_547",
+    "query": "Give me the formula to find roots of a second-degree polynomial equation.",
+    "domain": "mathematics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_546",
+    "tags": [],
+    "se_score": null,
+    "note": "Quadratic formula paraphrase — 'second-degree polynomial roots' = quadratic roots."
+  },
+  {
+    "id": "math_550",
+    "query": "Is dy/dx a ratio or just a notation?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_550",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "math_551",
+    "query": "Can the Leibniz derivative notation dy/dx actually be treated as a fraction?",
+    "domain": "mathematics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_550",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask whether Leibniz notation dy/dx is a genuine ratio."
+  },
+  {
+    "id": "math_552",
+    "query": "How many different ways are there to prove that the sum of 1/k² equals π²/6?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_552",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "math_553",
+    "query": "What are the various proofs of the Basel problem ∑ 1/n² = π²/6?",
+    "domain": "mathematics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_552",
+    "tags": [],
+    "se_score": null,
+    "note": "Basel problem / ∑1/k² = π²/6 paraphrase."
+  },
+  {
+    "id": "math_554",
+    "query": "Why does the staircase approximation of a diagonal line give a perimeter of 4 instead of √2?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_554",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "math_555",
+    "query": "Why doesn't the taxicab staircase converge to the diagonal length when the steps get infinitely small?",
+    "domain": "mathematics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_554",
+    "tags": [],
+    "se_score": null,
+    "note": "Both are the staircase paradox / Manhattan metric vs Euclidean limit question."
+  },
+  {
+    "id": "math_556",
+    "query": "What are the best visual or intuitive examples of surprising mathematical facts?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_556",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "math_557",
+    "query": "Which mathematical concepts look the most counterintuitive but are actually easy to explain visually?",
+    "domain": "mathematics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "math_556",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask for visually striking / surprising math concepts."
+  },
+  {
+    "id": "cs_546",
+    "query": "Why is iterating over a sorted array faster than an unsorted one in C++?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_546",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "cs_547",
+    "query": "Why does branch prediction make a sorted array loop faster than an unsorted array loop?",
+    "domain": "computer_science",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_546",
+    "tags": [],
+    "se_score": null,
+    "note": "Both reference the branch-prediction / sorted-vs-unsorted loop performance question."
+  },
+  {
+    "id": "cs_548",
+    "query": "How do I undo the last commit in Git without losing my changes?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_548",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "cs_549",
+    "query": "What Git command rolls back the most recent commit while keeping the working directory intact?",
+    "domain": "computer_science",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_548",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask how to undo the latest commit in Git (git reset HEAD~1 / git revert)."
+  },
+  {
+    "id": "cs_550",
+    "query": "How do I delete a Git branch both on my local machine and on the remote?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_550",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "cs_551",
+    "query": "What are the Git commands to remove a branch locally and push that deletion to origin?",
+    "domain": "computer_science",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_550",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask for deleting a branch locally + remotely in Git."
+  },
+  {
+    "id": "cs_552",
+    "query": "What does the yield keyword do in Python?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_552",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "cs_553",
+    "query": "How does a Python generator function using yield differ from a regular function that returns a list?",
+    "domain": "computer_science",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_552",
+    "tags": [],
+    "se_score": null,
+    "note": "Both explain Python's yield / generator semantics."
+  },
+  {
+    "id": "cs_554",
+    "query": "What is the difference between git pull and git fetch?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_554",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "cs_555",
+    "query": "When should I use git fetch instead of git pull when working with a remote repository?",
+    "domain": "computer_science",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_554",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask about fetch vs pull distinction in Git."
+  },
+  {
+    "id": "cs_556",
+    "query": "How do I reverse a linked list in Python?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_556",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "cs_557",
+    "query": "What is the Python code to flip the order of nodes in a singly linked list?",
+    "domain": "computer_science",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "cs_556",
+    "tags": [],
+    "se_score": null,
+    "note": "Reverse = flip order of nodes."
+  },
+  {
+    "id": "sys_544",
+    "query": "How do I make an HTTP POST request with curl?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_544",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "sys_545",
+    "query": "What is the curl command to send a POST request with JSON data?",
+    "domain": "system_operations",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_544",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask for curl POST syntax."
+  },
+  {
+    "id": "sys_546",
+    "query": "How do I find the IP address of my machine on Linux?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_546",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "sys_547",
+    "query": "What command shows the local network address of a Linux server?",
+    "domain": "system_operations",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_546",
+    "tags": [],
+    "se_score": null,
+    "note": "Same intent: display local IP address."
+  },
+  {
+    "id": "sys_548",
+    "query": "How do I scroll up in a tmux session?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_548",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "sys_549",
+    "query": "What key binding lets me view the scrollback buffer in tmux?",
+    "domain": "system_operations",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_548",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask how to scroll in tmux (Ctrl+b then [ enters copy mode)."
+  },
+  {
+    "id": "sys_550",
+    "query": "How can I sort the ls output by modification time in Linux?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_550",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "sys_551",
+    "query": "What ls flag orders files by the date they were last changed?",
+    "domain": "system_operations",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_550",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask about ls -lt / ls -ltr for time-sorted output."
+  },
+  {
+    "id": "sys_552",
+    "query": "How do I get curl to print the HTTP status code from a response?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_552",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "sys_553",
+    "query": "What curl option shows just the response code (e.g. 200, 404) without the body?",
+    "domain": "system_operations",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_552",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask for curl -o /dev/null -w '%{http_code}' pattern."
+  },
+  {
+    "id": "sys_554",
+    "query": "How do I find which process has a file locked on Windows?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_554",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "sys_555",
+    "query": "What tool shows which program is holding a lock on a file in Windows?",
+    "domain": "system_operations",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sys_554",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask for Process Explorer / handle.exe / Resource Monitor on Windows."
+  },
+  {
+    "id": "fin_542",
+    "query": "What is compound interest and how does it differ from simple interest?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_542",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "fin_543",
+    "query": "Can you explain the difference between compounding and simple interest calculations?",
+    "domain": "finance_economics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_542",
+    "tags": [],
+    "se_score": null,
+    "note": "Same concept, different wording."
+  },
+  {
+    "id": "fin_544",
+    "query": "How should a young person just starting their career begin investing?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_544",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "fin_545",
+    "query": "What are good first investment steps for someone in their 20s with a new job?",
+    "domain": "finance_economics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_544",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask for beginner investing advice for young earners."
+  },
+  {
+    "id": "fin_546",
+    "query": "If a company never pays dividends, what makes its stock worth anything?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_546",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "fin_547",
+    "query": "How does a non-dividend-paying stock have any intrinsic value?",
+    "domain": "finance_economics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_546",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask about stock valuation without dividend payments."
+  },
+  {
+    "id": "fin_548",
+    "query": "Why would a company care about the price of its own stock after the IPO?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_548",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "fin_549",
+    "query": "Does a corporation benefit from a high share price even if it isn't issuing new shares?",
+    "domain": "finance_economics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_548",
+    "tags": [],
+    "se_score": null,
+    "note": "Both probe whether a company has ongoing incentive to keep share price high post-IPO."
+  },
+  {
+    "id": "fin_550",
+    "query": "I received $1000 and was asked to send part of it back — is this a scam?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_550",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "fin_551",
+    "query": "Someone sent me money and now wants me to wire some of it back. How does this fraud work?",
+    "domain": "finance_economics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "fin_550",
+    "tags": [],
+    "se_score": null,
+    "note": "Both describe the overpayment / advance-fee scam pattern."
+  },
+  {
+    "id": "hist_540",
+    "query": "Why did Hitler invade the Soviet Union while still at war with Britain?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "hist_540",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "hist_541",
+    "query": "What made Nazi Germany open a second front against the USSR in 1941 before defeating the UK?",
+    "domain": "history_geography",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "hist_540",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask about Operation Barbarossa rationale / two-front war risk."
+  },
+  {
+    "id": "hist_542",
+    "query": "Why was France given the same status as the major Allied victors after World War II?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "hist_542",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "hist_543",
+    "query": "How did France end up as a permanent member of the UN Security Council despite its WWII record?",
+    "domain": "history_geography",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "hist_542",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask why France got great-power status post-WWII despite early defeat."
+  },
+  {
+    "id": "hist_544",
+    "query": "Why did being surrounded or encircled typically mean defeat for an ancient army?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "hist_544",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "hist_545",
+    "query": "In pre-modern warfare, why was a flanking encirclement almost always fatal to the encircled force?",
+    "domain": "history_geography",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "hist_544",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask about the tactical logic of encirclement = collapse in ancient/medieval combat."
+  },
+  {
+    "id": "hist_546",
+    "query": "Were there women who opposed women's suffrage?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "hist_546",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "hist_547",
+    "query": "Did any women actively campaign against giving women the right to vote?",
+    "domain": "history_geography",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "hist_546",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask about female anti-suffragette movements."
+  },
+  {
+    "id": "sci_542",
+    "query": "Why do I alternate between breathing through my left and right nostril?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_542",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "sci_543",
+    "query": "What is the nasal cycle and why does airflow shift between nostrils throughout the day?",
+    "domain": "science_medicine",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_542",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask about the nasal cycle / nostril alternation physiology."
+  },
+  {
+    "id": "sci_544",
+    "query": "Why are almost no natural foods blue?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_544",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "sci_545",
+    "query": "What makes blue such a rare color in edible plants and fruits?",
+    "domain": "science_medicine",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_544",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask about the scarcity of blue pigment in food."
+  },
+  {
+    "id": "sci_546",
+    "query": "Do bacteria age and eventually die of old age?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_546",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "sci_547",
+    "query": "Is there a concept of senescence or aging in single-celled prokaryotes like bacteria?",
+    "domain": "science_medicine",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_546",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask whether bacteria undergo aging/senescence."
+  },
+  {
+    "id": "sci_548",
+    "query": "Why do plant leaves use the same wavelength of light that human eyes are most sensitive to?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_548",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "sci_549",
+    "query": "Is it a coincidence that chlorophyll absorbs green light and human vision peaks in the green-yellow range?",
+    "domain": "science_medicine",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_548",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask about the overlap between plant photosynthesis spectrum and human visual peak."
+  },
+  {
+    "id": "sci_550",
+    "query": "Why does DNA use thymine instead of uracil, unlike RNA?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_550",
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "sci_551",
+    "query": "What is the evolutionary reason thymine replaced uracil in DNA?",
+    "domain": "science_medicine",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "sci_550",
+    "tags": [],
+    "se_score": null,
+    "note": "Both ask about T vs U in DNA — methylation as error-detection mechanism."
+  },
+  {
+    "id": "rt_001",
+    "query": "What is the weather forecast for London this weekend?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": null,
+    "tags": [],
+    "se_score": null,
+    "note": "Requires live weather API; cached answer is stale by definition."
+  },
+  {
+    "id": "rt_002",
+    "query": "What are the top headlines in the US today?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": null,
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "rt_003",
+    "query": "Is it going to rain in New York tomorrow?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": null,
+    "tags": [],
+    "se_score": null,
+    "note": "Short-term forecast — definitionally non-cacheable."
+  },
+  {
+    "id": "rt_004",
+    "query": "What is the current stock price of Apple?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": null,
+    "tags": [],
+    "se_score": null,
+    "note": "Live market data — even a 1-minute-old cache is stale for trading decisions."
+  },
+  {
+    "id": "rt_005",
+    "query": "What major earthquakes happened in the last 24 hours?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": null,
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "rt_006",
+    "query": "Who won the football match last night?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": null,
+    "tags": [],
+    "se_score": null,
+    "note": "Live sports result — answer changes every day."
+  },
+  {
+    "id": "rt_007",
+    "query": "What is the current exchange rate between USD and EUR?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": null,
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "rt_008",
+    "query": "Are there any active hurricane warnings on the US East Coast right now?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": null,
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "rt_009",
+    "query": "What were the COVID-19 case counts reported this week?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": null,
+    "tags": [],
+    "se_score": null,
+    "note": "Epidemiological data that updates weekly."
+  },
+  {
+    "id": "rt_010",
+    "query": "What is the latest news about the Ukraine-Russia conflict?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": null,
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "rt_011",
+    "query": "What is the air quality index in Beijing right now?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": null,
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "rt_012",
+    "query": "What flight delays are happening at JFK airport today?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": null,
+    "tags": [],
+    "se_score": null,
+    "note": null
+  },
+  {
+    "id": "ar_COM_900a",
+    "query": "Why is conditional processing of a sorted array faster than of an unsorted array?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": "https://stackoverflow.com/questions/11227809",
+    "pair_id": "ar_COM_900",
+    "tags": [
+      "auto_reuse_anchor"
+    ],
+    "se_score": null,
+    "note": "AUTO_REUSE anchor; near-exact repeat pair"
+  },
+  {
+    "id": "ar_COM_900b",
+    "query": "Why does processing a sorted array run faster than an unsorted array?",
+    "domain": "computer_science",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "ar_COM_900",
+    "tags": [
+      "auto_reuse_repeat"
+    ],
+    "se_score": null,
+    "note": "AUTO_REUSE repeat; trivial rewrite of anchor"
+  },
+  {
+    "id": "ar_FIN_901a",
+    "query": "Best way to start investing, for a young person just starting their career?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": "https://money.stackexchange.com/questions/1625",
+    "pair_id": "ar_FIN_901",
+    "tags": [
+      "auto_reuse_anchor"
+    ],
+    "se_score": null,
+    "note": "AUTO_REUSE anchor; near-exact repeat pair"
+  },
+  {
+    "id": "ar_FIN_901b",
+    "query": "What is the best way to start investing for a young person just starting their career?",
+    "domain": "finance_economics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "ar_FIN_901",
+    "tags": [
+      "auto_reuse_repeat"
+    ],
+    "se_score": null,
+    "note": "AUTO_REUSE repeat; trivial rewrite of anchor"
+  },
+  {
+    "id": "ar_HIS_902a",
+    "query": "Why did Hitler attack the Soviet Union when he was still busy fighting the British Empire?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": "https://history.stackexchange.com/questions/71",
+    "pair_id": "ar_HIS_902",
+    "tags": [
+      "auto_reuse_anchor"
+    ],
+    "se_score": null,
+    "note": "AUTO_REUSE anchor; near-exact repeat pair"
+  },
+  {
+    "id": "ar_HIS_902b",
+    "query": "Why did Hitler attack the Soviet Union while still fighting the British Empire?",
+    "domain": "history_geography",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "ar_HIS_902",
+    "tags": [
+      "auto_reuse_repeat"
+    ],
+    "se_score": null,
+    "note": "AUTO_REUSE repeat; trivial rewrite of anchor"
+  },
+  {
+    "id": "ar_MAT_903a",
+    "query": "Visually stunning math concepts which are easy to explain",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": "https://math.stackexchange.com/questions/733754",
+    "pair_id": "ar_MAT_903",
+    "tags": [
+      "auto_reuse_anchor"
+    ],
+    "se_score": null,
+    "note": "AUTO_REUSE anchor; near-exact repeat pair"
+  },
+  {
+    "id": "ar_MAT_903b",
+    "query": "What are visually stunning math concepts that are easy to explain?",
+    "domain": "mathematics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "ar_MAT_903",
+    "tags": [
+      "auto_reuse_repeat"
+    ],
+    "se_score": null,
+    "note": "AUTO_REUSE repeat; trivial rewrite of anchor"
+  },
+  {
+    "id": "ar_SCI_904a",
+    "query": "Why do I only breathe out of one nostril?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": "https://biology.stackexchange.com/questions/21216",
+    "pair_id": "ar_SCI_904",
+    "tags": [
+      "auto_reuse_anchor"
+    ],
+    "se_score": null,
+    "note": "AUTO_REUSE anchor; near-exact repeat pair"
+  },
+  {
+    "id": "ar_SCI_904b",
+    "query": "How come I only breathe through one nostril at a time?",
+    "domain": "science_medicine",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "ar_SCI_904",
+    "tags": [
+      "auto_reuse_repeat"
+    ],
+    "se_score": null,
+    "note": "AUTO_REUSE repeat; trivial rewrite of anchor"
+  },
+  {
+    "id": "ar_SYS_905a",
+    "query": "Our security auditor is an idiot. How do I give him the information he wants?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": "https://serverfault.com/questions/293217",
+    "pair_id": "ar_SYS_905",
+    "tags": [
+      "auto_reuse_anchor"
+    ],
+    "se_score": null,
+    "note": "AUTO_REUSE anchor; near-exact repeat pair"
+  },
+  {
+    "id": "ar_SYS_905b",
+    "query": "Our security auditor is an idiot. How can I give him the information he wants?",
+    "domain": "system_operations",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "ar_SYS_905",
+    "tags": [
+      "auto_reuse_repeat"
+    ],
+    "se_score": null,
+    "note": "AUTO_REUSE repeat; trivial rewrite of anchor"
+  }
+]
