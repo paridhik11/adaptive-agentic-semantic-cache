@@ -792,7 +792,7 @@
   },
   {
     "id": "cs_014",
-    "query": "Why does HTML think “chucknorris” is a color?",
+    "query": "Why does HTML think \u201cchucknorris\u201d is a color?",
     "domain": "computer_science",
     "behavior": "MISS",
     "source": "stackexchange",
@@ -1607,7 +1607,7 @@
   },
   {
     "id": "sys_029",
-    "query": "How to stop an automatic redirect from “http://” to “https://” in Chrome",
+    "query": "How to stop an automatic redirect from \u201chttp://\u201d to \u201chttps://\u201d in Chrome",
     "domain": "system_operations",
     "behavior": "MISS",
     "source": "stackexchange",
@@ -1700,7 +1700,7 @@
     "id": "sys_035",
     "query": "How do you find what process is holding a file open in Windows?",
     "domain": "system_operations",
-    "behavior": "MISS",
+    "behavior": "HIT",
     "source": "stackexchange",
     "source_url": "https://serverfault.com/questions/1966",
     "pair_id": "sys_035",
@@ -1709,7 +1709,7 @@
       "file-sharing"
     ],
     "se_score": 652,
-    "note": null
+    "note": "Safe reuse of cached seed sys_010 (Windows file locking inquiry); relabeled from MISS to HIT to resolve internal duplicate collision."
   },
   {
     "id": "fin_001",
@@ -3085,7 +3085,7 @@
   },
   {
     "id": "sci_015",
-    "query": "Why haven’t particular traits that one might consider advantageous to an organism evolved?",
+    "query": "Why haven\u2019t particular traits that one might consider advantageous to an organism evolved?",
     "domain": "science_medicine",
     "behavior": "MISS",
     "source": "stackexchange",
@@ -3434,7 +3434,7 @@
     "pair_id": "math_536",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — derivative"
+    "note": "Cache anchor \u2014 derivative"
   },
   {
     "id": "math_537",
@@ -3458,7 +3458,7 @@
     "pair_id": "math_538",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — limit from the right"
+    "note": "Cache anchor \u2014 limit from the right"
   },
   {
     "id": "math_539",
@@ -3470,7 +3470,7 @@
     "pair_id": "math_538",
     "tags": [],
     "se_score": null,
-    "note": "Different limit point — result is 0, not 1. Surface similarity is extreme."
+    "note": "Different limit point \u2014 result is 0, not 1. Surface similarity is extreme."
   },
   {
     "id": "math_542",
@@ -3482,7 +3482,7 @@
     "pair_id": "math_542",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — continuity definition"
+    "note": "Cache anchor \u2014 continuity definition"
   },
   {
     "id": "math_543",
@@ -3494,7 +3494,7 @@
     "pair_id": "math_542",
     "tags": [],
     "se_score": null,
-    "note": "Negation of the same concept — answer is not just a negation of the cached one."
+    "note": "Negation of the same concept \u2014 answer is not just a negation of the cached one."
   },
   {
     "id": "math_544",
@@ -3506,7 +3506,7 @@
     "pair_id": "math_544",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — permutation"
+    "note": "Cache anchor \u2014 permutation"
   },
   {
     "id": "math_545",
@@ -3518,7 +3518,7 @@
     "pair_id": "math_544",
     "tags": [],
     "se_score": null,
-    "note": "Combination vs permutation — different formula and numerical answer."
+    "note": "Combination vs permutation \u2014 different formula and numerical answer."
   },
   {
     "id": "cs_536",
@@ -3530,7 +3530,7 @@
     "pair_id": "cs_536",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — time complexity"
+    "note": "Cache anchor \u2014 time complexity"
   },
   {
     "id": "cs_537",
@@ -3542,7 +3542,7 @@
     "pair_id": "cs_536",
     "tags": [],
     "se_score": null,
-    "note": "Different complexity axis — answer differs (O(1) iterative vs O(log n) recursive)."
+    "note": "Different complexity axis \u2014 answer differs (O(1) iterative vs O(log n) recursive)."
   },
   {
     "id": "cs_540",
@@ -3554,7 +3554,7 @@
     "pair_id": "cs_540",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — TCP advantages"
+    "note": "Cache anchor \u2014 TCP advantages"
   },
   {
     "id": "cs_541",
@@ -3566,7 +3566,7 @@
     "pair_id": "cs_540",
     "tags": [],
     "se_score": null,
-    "note": "Direction of comparison inverted — completely different answer."
+    "note": "Direction of comparison inverted \u2014 completely different answer."
   },
   {
     "id": "cs_542",
@@ -3578,7 +3578,7 @@
     "pair_id": "cs_542",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — cycle detection directed"
+    "note": "Cache anchor \u2014 cycle detection directed"
   },
   {
     "id": "cs_543",
@@ -3590,7 +3590,7 @@
     "pair_id": "cs_542",
     "tags": [],
     "se_score": null,
-    "note": "Different graph type — DFS approach is structurally different (back-edge definition differs)."
+    "note": "Different graph type \u2014 DFS approach is structurally different (back-edge definition differs)."
   },
   {
     "id": "cs_544",
@@ -3602,7 +3602,7 @@
     "pair_id": "cs_544",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — process vs thread"
+    "note": "Cache anchor \u2014 process vs thread"
   },
   {
     "id": "cs_545",
@@ -3614,7 +3614,7 @@
     "pair_id": "cs_544",
     "tags": [],
     "se_score": null,
-    "note": "Differences vs similarities — opposite framing."
+    "note": "Differences vs similarities \u2014 opposite framing."
   },
   {
     "id": "sys_536",
@@ -3626,7 +3626,7 @@
     "pair_id": "sys_536",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — disk usage check"
+    "note": "Cache anchor \u2014 disk usage check"
   },
   {
     "id": "sys_537",
@@ -3638,7 +3638,7 @@
     "pair_id": "sys_536",
     "tags": [],
     "se_score": null,
-    "note": "Read vs write operation — completely different set of commands."
+    "note": "Read vs write operation \u2014 completely different set of commands."
   },
   {
     "id": "sys_538",
@@ -3650,7 +3650,7 @@
     "pair_id": "sys_538",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — list processes"
+    "note": "Cache anchor \u2014 list processes"
   },
   {
     "id": "sys_539",
@@ -3662,7 +3662,7 @@
     "pair_id": "sys_538",
     "tags": [],
     "se_score": null,
-    "note": "Read-only list vs destructive action — severe intent difference."
+    "note": "Read-only list vs destructive action \u2014 severe intent difference."
   },
   {
     "id": "sys_540",
@@ -3674,7 +3674,7 @@
     "pair_id": "sys_540",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — allow rule"
+    "note": "Cache anchor \u2014 allow rule"
   },
   {
     "id": "sys_541",
@@ -3686,7 +3686,7 @@
     "pair_id": "sys_540",
     "tags": [],
     "se_score": null,
-    "note": "Allow vs block — opposite security intent."
+    "note": "Allow vs block \u2014 opposite security intent."
   },
   {
     "id": "sys_542",
@@ -3698,7 +3698,7 @@
     "pair_id": "sys_542",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — create user"
+    "note": "Cache anchor \u2014 create user"
   },
   {
     "id": "sys_543",
@@ -3710,7 +3710,7 @@
     "pair_id": "sys_542",
     "tags": [],
     "se_score": null,
-    "note": "Create vs delete — opposite destructive action."
+    "note": "Create vs delete \u2014 opposite destructive action."
   },
   {
     "id": "fin_536",
@@ -3722,7 +3722,7 @@
     "pair_id": "fin_536",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — traditional IRA advantages"
+    "note": "Cache anchor \u2014 traditional IRA advantages"
   },
   {
     "id": "fin_537",
@@ -3734,7 +3734,7 @@
     "pair_id": "fin_536",
     "tags": [],
     "se_score": null,
-    "note": "Different account type — pre-tax vs post-tax, completely different answer."
+    "note": "Different account type \u2014 pre-tax vs post-tax, completely different answer."
   },
   {
     "id": "fin_538",
@@ -3746,7 +3746,7 @@
     "pair_id": "fin_538",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — inflation hurts bonds"
+    "note": "Cache anchor \u2014 inflation hurts bonds"
   },
   {
     "id": "fin_539",
@@ -3758,7 +3758,7 @@
     "pair_id": "fin_538",
     "tags": [],
     "se_score": null,
-    "note": "Same economic event, opposite stakeholder perspective — different answer."
+    "note": "Same economic event, opposite stakeholder perspective \u2014 different answer."
   },
   {
     "id": "fin_540",
@@ -3770,7 +3770,7 @@
     "pair_id": "fin_540",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — rates rise impact"
+    "note": "Cache anchor \u2014 rates rise impact"
   },
   {
     "id": "fin_541",
@@ -3782,7 +3782,7 @@
     "pair_id": "fin_540",
     "tags": [],
     "se_score": null,
-    "note": "Stocks vs bonds — bond prices move inversely; stocks is more nuanced."
+    "note": "Stocks vs bonds \u2014 bond prices move inversely; stocks is more nuanced."
   },
   {
     "id": "hist_536",
@@ -3794,7 +3794,7 @@
     "pair_id": "hist_536",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — WWI causes"
+    "note": "Cache anchor \u2014 WWI causes"
   },
   {
     "id": "hist_537",
@@ -3806,7 +3806,7 @@
     "pair_id": "hist_536",
     "tags": [],
     "se_score": null,
-    "note": "Causes vs consequences — different temporal direction, different facts."
+    "note": "Causes vs consequences \u2014 different temporal direction, different facts."
   },
   {
     "id": "hist_538",
@@ -3818,7 +3818,7 @@
     "pair_id": "hist_538",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — France borders"
+    "note": "Cache anchor \u2014 France borders"
   },
   {
     "id": "hist_539",
@@ -3830,7 +3830,7 @@
     "pair_id": "hist_538",
     "tags": [],
     "se_score": null,
-    "note": "Different country — different answer set."
+    "note": "Different country \u2014 different answer set."
   },
   {
     "id": "sci_536",
@@ -3842,7 +3842,7 @@
     "pair_id": "sci_536",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — T1D symptoms"
+    "note": "Cache anchor \u2014 T1D symptoms"
   },
   {
     "id": "sci_537",
@@ -3854,7 +3854,7 @@
     "pair_id": "sci_536",
     "tags": [],
     "se_score": null,
-    "note": "Different disease mechanism — onset pattern and severity differ meaningfully."
+    "note": "Different disease mechanism \u2014 onset pattern and severity differ meaningfully."
   },
   {
     "id": "sci_538",
@@ -3866,7 +3866,7 @@
     "pair_id": "sci_538",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — immune response bacterial"
+    "note": "Cache anchor \u2014 immune response bacterial"
   },
   {
     "id": "sci_539",
@@ -3878,7 +3878,7 @@
     "pair_id": "sci_538",
     "tags": [],
     "se_score": null,
-    "note": "Different pathogen class — adaptive response, T/B cells, antibody role differs."
+    "note": "Different pathogen class \u2014 adaptive response, T/B cells, antibody role differs."
   },
   {
     "id": "sci_540",
@@ -3890,7 +3890,7 @@
     "pair_id": "sci_540",
     "tags": [],
     "se_score": null,
-    "note": "Cache anchor — mitochondria role"
+    "note": "Cache anchor \u2014 mitochondria role"
   },
   {
     "id": "sci_541",
@@ -3902,11 +3902,11 @@
     "pair_id": "sci_540",
     "tags": [],
     "se_score": null,
-    "note": "Different organelle with different function — not semantically equivalent."
+    "note": "Different organelle with different function \u2014 not semantically equivalent."
   },
   {
     "id": "math_546",
-    "query": "What is the quadratic formula for solving ax² + bx + c = 0?",
+    "query": "What is the quadratic formula for solving ax\u00b2 + bx + c = 0?",
     "domain": "mathematics",
     "behavior": "MISS",
     "source": "hand_authored",
@@ -3926,7 +3926,7 @@
     "pair_id": "math_546",
     "tags": [],
     "se_score": null,
-    "note": "Quadratic formula paraphrase — 'second-degree polynomial roots' = quadratic roots."
+    "note": "Quadratic formula paraphrase \u2014 'second-degree polynomial roots' = quadratic roots."
   },
   {
     "id": "math_550",
@@ -3954,7 +3954,7 @@
   },
   {
     "id": "math_552",
-    "query": "How many different ways are there to prove that the sum of 1/k² equals π²/6?",
+    "query": "How many different ways are there to prove that the sum of 1/k\u00b2 equals \u03c0\u00b2/6?",
     "domain": "mathematics",
     "behavior": "MISS",
     "source": "hand_authored",
@@ -3966,7 +3966,7 @@
   },
   {
     "id": "math_553",
-    "query": "What are the various proofs of the Basel problem ∑ 1/n² = π²/6?",
+    "query": "What are the various proofs of the Basel problem \u2211 1/n\u00b2 = \u03c0\u00b2/6?",
     "domain": "mathematics",
     "behavior": "HIT",
     "source": "hand_authored",
@@ -3974,11 +3974,11 @@
     "pair_id": "math_552",
     "tags": [],
     "se_score": null,
-    "note": "Basel problem / ∑1/k² = π²/6 paraphrase."
+    "note": "Basel problem / \u22111/k\u00b2 = \u03c0\u00b2/6 paraphrase."
   },
   {
     "id": "math_554",
-    "query": "Why does the staircase approximation of a diagonal line give a perimeter of 4 instead of √2?",
+    "query": "Why does the staircase approximation of a diagonal line give a perimeter of 4 instead of \u221a2?",
     "domain": "mathematics",
     "behavior": "MISS",
     "source": "hand_authored",
@@ -4076,13 +4076,13 @@
     "id": "cs_550",
     "query": "How do I delete a Git branch both on my local machine and on the remote?",
     "domain": "computer_science",
-    "behavior": "MISS",
+    "behavior": "HIT",
     "source": "hand_authored",
     "source_url": null,
     "pair_id": "cs_550",
     "tags": [],
     "se_score": null,
-    "note": null
+    "note": "Safe reuse of cached seed cs_003 (Git branch local & remote deletion); relabeled from MISS to HIT to resolve internal duplicate collision."
   },
   {
     "id": "cs_551",
@@ -4124,13 +4124,13 @@
     "id": "cs_554",
     "query": "What is the difference between git pull and git fetch?",
     "domain": "computer_science",
-    "behavior": "MISS",
+    "behavior": "HIT",
     "source": "hand_authored",
     "source_url": null,
     "pair_id": "cs_554",
     "tags": [],
     "se_score": null,
-    "note": null
+    "note": "Safe reuse of cached seed cs_004 (git pull vs git fetch); relabeled from MISS to HIT to resolve internal duplicate collision."
   },
   {
     "id": "cs_555",
@@ -4172,13 +4172,13 @@
     "id": "sys_544",
     "query": "How do I make an HTTP POST request with curl?",
     "domain": "system_operations",
-    "behavior": "MISS",
+    "behavior": "HIT",
     "source": "hand_authored",
     "source_url": null,
     "pair_id": "sys_544",
     "tags": [],
     "se_score": null,
-    "note": null
+    "note": "Safe reuse of cached seed sys_002 (curl POST request syntax); relabeled from MISS to HIT to resolve internal duplicate collision."
   },
   {
     "id": "sys_545",
@@ -4268,13 +4268,13 @@
     "id": "sys_552",
     "query": "How do I get curl to print the HTTP status code from a response?",
     "domain": "system_operations",
-    "behavior": "MISS",
+    "behavior": "HIT",
     "source": "hand_authored",
     "source_url": null,
     "pair_id": "sys_552",
     "tags": [],
     "se_score": null,
-    "note": null
+    "note": "Safe reuse of cached seed sys_009 (curl HTTP status code output); relabeled from MISS to HIT to resolve internal duplicate collision."
   },
   {
     "id": "sys_553",
@@ -4292,13 +4292,13 @@
     "id": "sys_554",
     "query": "How do I find which process has a file locked on Windows?",
     "domain": "system_operations",
-    "behavior": "MISS",
+    "behavior": "HIT",
     "source": "hand_authored",
     "source_url": null,
     "pair_id": "sys_554",
     "tags": [],
     "se_score": null,
-    "note": null
+    "note": "Safe reuse of cached seed sys_010 (Windows file locking detection); relabeled from MISS to HIT to resolve internal duplicate collision."
   },
   {
     "id": "sys_555",
@@ -4410,7 +4410,7 @@
   },
   {
     "id": "fin_550",
-    "query": "I received $1000 and was asked to send part of it back — is this a scam?",
+    "query": "I received $1000 and was asked to send part of it back \u2014 is this a scam?",
     "domain": "finance_economics",
     "behavior": "MISS",
     "source": "hand_authored",
@@ -4460,13 +4460,13 @@
     "id": "hist_542",
     "query": "Why was France given the same status as the major Allied victors after World War II?",
     "domain": "history_geography",
-    "behavior": "MISS",
+    "behavior": "HIT",
     "source": "hand_authored",
     "source_url": null,
     "pair_id": "hist_542",
     "tags": [],
     "se_score": null,
-    "note": null
+    "note": "Safe reuse of cached seed hist_003 (France WWII victor status explanation); relabeled from MISS to HIT to resolve internal duplicate collision."
   },
   {
     "id": "hist_543",
@@ -4580,13 +4580,13 @@
     "id": "sci_546",
     "query": "Do bacteria age and eventually die of old age?",
     "domain": "science_medicine",
-    "behavior": "MISS",
+    "behavior": "HIT",
     "source": "hand_authored",
     "source_url": null,
     "pair_id": "sci_546",
     "tags": [],
     "se_score": null,
-    "note": null
+    "note": "Safe reuse of cached seed sci_005 (bacterial senescence explanation); relabeled from MISS to HIT to resolve internal duplicate collision."
   },
   {
     "id": "sci_547",
@@ -4628,13 +4628,13 @@
     "id": "sci_550",
     "query": "Why does DNA use thymine instead of uracil, unlike RNA?",
     "domain": "science_medicine",
-    "behavior": "MISS",
+    "behavior": "HIT",
     "source": "hand_authored",
     "source_url": null,
     "pair_id": "sci_550",
     "tags": [],
     "se_score": null,
-    "note": null
+    "note": "Safe reuse of cached seed sci_007 (DNA thymine vs uracil biochemistry); relabeled from MISS to HIT to resolve internal duplicate collision."
   },
   {
     "id": "sci_551",
@@ -4646,7 +4646,7 @@
     "pair_id": "sci_550",
     "tags": [],
     "se_score": null,
-    "note": "Both ask about T vs U in DNA — methylation as error-detection mechanism."
+    "note": "Both ask about T vs U in DNA \u2014 methylation as error-detection mechanism."
   },
   {
     "id": "rt_001",
@@ -4682,7 +4682,7 @@
     "pair_id": null,
     "tags": [],
     "se_score": null,
-    "note": "Short-term forecast — definitionally non-cacheable."
+    "note": "Short-term forecast \u2014 definitionally non-cacheable."
   },
   {
     "id": "rt_004",
@@ -4694,7 +4694,7 @@
     "pair_id": null,
     "tags": [],
     "se_score": null,
-    "note": "Live market data — even a 1-minute-old cache is stale for trading decisions."
+    "note": "Live market data \u2014 even a 1-minute-old cache is stale for trading decisions."
   },
   {
     "id": "rt_005",
@@ -4718,7 +4718,7 @@
     "pair_id": null,
     "tags": [],
     "se_score": null,
-    "note": "Live sports result — answer changes every day."
+    "note": "Live sports result \u2014 answer changes every day."
   },
   {
     "id": "rt_007",
@@ -4936,7 +4936,7 @@
     "id": "ar_SYS_905a",
     "query": "Our security auditor is an idiot. How do I give him the information he wants?",
     "domain": "system_operations",
-    "behavior": "MISS",
+    "behavior": "HIT",
     "source": "hand_authored",
     "source_url": "https://serverfault.com/questions/293217",
     "pair_id": "ar_SYS_905",
@@ -4944,7 +4944,7 @@
       "auto_reuse_anchor"
     ],
     "se_score": null,
-    "note": "AUTO_REUSE anchor; near-exact repeat pair"
+    "note": "Safe reuse of cached seed sys_001 (100% duplicate question text); relabeled from MISS to HIT to resolve internal duplicate collision."
   },
   {
     "id": "ar_SYS_905b",

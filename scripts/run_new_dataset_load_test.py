@@ -1,4 +1,4 @@
-﻿"""New Dataset Load Test Runner — Phase 5 Step 1b.
+"""New Dataset Load Test Runner — Phase 5 Step 1b.
 
 Executes the full end-to-end production pipeline against data/raw/new_dataset.json:
   StabilityClassifier -> SemanticCache -> TierRouter -> ProductionDecisionStep (LLMJudge)
@@ -37,6 +37,11 @@ import time
 import urllib.request
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
+
+# Reconfigure stdout to UTF-8 on Windows to prevent cp1252 UnicodeEncodeError
+# (harmless on Linux/macOS which already use UTF-8)
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
@@ -139,6 +144,51 @@ def check_leakage(
             overlaps.append(f"{r['id']}: {r['query'][:80]}")
 
     return len(overlaps) == 0, overlaps
+
+
+def check_internal_collisions(
+    dataset_records: List[Dict[str, Any]],
+    similarity_threshold: float = 0.70,
+) -> List[Dict[str, Any]]:
+    """Pairwise similarity check across MISS entries within the dataset to detect internal near-duplicates."""
+    from difflib import SequenceMatcher
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    from sklearn.metrics.pairwise import cosine_similarity
+
+    miss_records = [r for r in dataset_records if r.get("behavior", "").upper() == "MISS"]
+    if not miss_records:
+        return []
+
+    texts = [r["query"] for r in miss_records]
+    vectorizer = TfidfVectorizer(ngram_range=(1, 2), stop_words="english")
+    try:
+        tfidf_matrix = vectorizer.fit_transform(texts)
+        sim_matrix = cosine_similarity(tfidf_matrix)
+    except Exception:
+        sim_matrix = None
+
+    collisions = []
+    n = len(miss_records)
+    for i in range(n):
+        for j in range(i + 1, n):
+            r_i = miss_records[i]
+            r_j = miss_records[j]
+            seq_ratio = SequenceMatcher(None, r_i["query"].lower(), r_j["query"].lower()).ratio()
+            tfidf_sim = float(sim_matrix[i, j]) if sim_matrix is not None else 0.0
+            if tfidf_sim >= similarity_threshold or seq_ratio >= similarity_threshold:
+                collisions.append({
+                    "id_a": r_i["id"],
+                    "id_b": r_j["id"],
+                    "domain_a": r_i["domain"],
+                    "domain_b": r_j["domain"],
+                    "source_a": r_i.get("source"),
+                    "source_b": r_j.get("source"),
+                    "tfidf_sim": round(tfidf_sim, 4),
+                    "fuzzy_ratio": round(seq_ratio, 4),
+                    "query_a": r_i["query"],
+                    "query_b": r_j["query"],
+                })
+    return collisions
 
 
 # ---------------------------------------------------------------------------
@@ -314,7 +364,7 @@ def run_new_dataset_load_test(
             if judge_calls_made >= max_judge_calls:
                 # Budget exhausted — fail-closed to BYPASS
                 print(f"\n[BUDGET] Judge call budget exhausted ({max_judge_calls}). Routing AMBIGUOUS -> BYPASS.")
-                path = "AMBIGUOUS→BYPASS"
+                path = "AMBIGUOUS->BYPASS"
                 final_decision = "MISS"
                 cached_response = None
                 judge_called = False
@@ -373,10 +423,10 @@ def run_new_dataset_load_test(
         judge_str = (
             f"YES ({judge_info['decision']}, {judge_ms:.0f}ms)"
             if judge_called and judge_info
-            else ("YES (budget-cap→BYPASS)" if "→" in path else "NO")
+            else ("YES (budget-cap->BYPASS)" if "->" in path else "NO")
         )
         gt_str = "SAFE" if is_reuse_safe else "NOTSF"
-        ok_str = "✓" if was_correct else "✗"
+        ok_str = "Y" if was_correct else "N"
         print(
             f"{idx:>3} | {qid:<12} | {source:<14} | {dom:<22} | {path:<10} | "
             f"{final_decision:<8} | {gt_str:<6} | {ok_str:<4} | {total_pipeline_ms:>6.1f}ms | {judge_str}"
@@ -394,7 +444,7 @@ def run_new_dataset_load_test(
             "tags": tags,
             # Fields matching original runner schema for evaluate_load_test compatibility
             "query_type": f"{source}_{behavior.lower()}",
-            "path": path.split("→")[0],  # Use canonical path name for evaluator
+            "path": path.split("->")[0],  # Use canonical path name for evaluator
             "tier": tier.value,
             "final_decision": final_decision,
             "outcome_type": outcome_type,
@@ -522,6 +572,10 @@ def main() -> None:
         "--leakage-check-only", action="store_true",
         help="Run 7-way leakage check and exit without executing pipeline"
     )
+    parser.add_argument(
+        "--check-internal-collisions", action="store_true",
+        help="Run internal pairwise collision check across MISS queries and exit"
+    )
 
     args = parser.parse_args()
 
@@ -536,6 +590,16 @@ def main() -> None:
             for o in overlaps:
                 print(f"  {o}")
             sys.exit(1)
+
+    if args.check_internal_collisions:
+        records = load_dataset(args.dataset)
+        collisions = check_internal_collisions(records, similarity_threshold=0.70)
+        print(f"Found {len(collisions)} internal collision candidates (similarity >= 0.70):")
+        for i, c in enumerate(collisions, 1):
+            print(f"  #{i:02d} [{c['id_a']}] ({c['source_a']}) vs [{c['id_b']}] ({c['source_b']}) | TF-IDF={c['tfidf_sim']:.3f}, Fuzzy={c['fuzzy_ratio']:.3f}")
+            print(f"      A: {c['query_a']}")
+            print(f"      B: {c['query_b']}")
+        sys.exit(0)
 
     run_new_dataset_load_test(
         dataset_path=args.dataset,

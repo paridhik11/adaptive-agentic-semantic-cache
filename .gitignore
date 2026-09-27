@@ -70,5 +70,6 @@ data/processed/*
 Thumbs.db
 models/*.joblib
 Adaptive_Agentic_Semantic_Cache_Master_Report.pdf
-  
- 
+
+# Scratch / temporary scripts
+scratch/
