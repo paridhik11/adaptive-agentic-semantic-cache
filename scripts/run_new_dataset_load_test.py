@@ -67,6 +67,8 @@ PRIOR_DATASET_PATHS = [
     REPO_ROOT / "data" / "raw" / "query_stability_human_credibility.json",
     REPO_ROOT / "data" / "raw" / "synthetic_query_pair_feedback.json",
     REPO_ROOT / "data" / "raw" / "load_test_query_stream.json",  # original Phase 5 stream
+    REPO_ROOT / "data" / "raw" / "new_dataset_v3.json",
+    REPO_ROOT / "data" / "raw" / "new_dataset_v2.json",
 ]
 
 
@@ -265,7 +267,7 @@ def run_new_dataset_load_test(
             f"Leakage detected: {len(overlaps)} queries overlap prior datasets.\n"
             + "\n".join(f"  {o}" for o in overlaps[:10])
         )
-    print(f"Leakage check: PASS (0 overlaps across 7 prior datasets on {len(records)} queries)")
+    print(f"Leakage check: PASS (0 overlaps across {len(PRIOR_DATASET_PATHS)} prior datasets on {len(records)} queries)")
 
     # 3. Check and set judge call budget
     from src.decision.judge_call import _resolve_api_key
@@ -583,7 +585,7 @@ def main() -> None:
         records = load_dataset(args.dataset)
         passed, overlaps = check_leakage(records)
         if passed:
-            print(f"PASS: 0 overlaps found across 7 benchmark datasets ({len(records)} queries).")
+            print(f"PASS: 0 overlaps found across {len(PRIOR_DATASET_PATHS)} prior datasets ({len(records)} queries).")
             sys.exit(0)
         else:
             print(f"FAIL: {len(overlaps)} overlaps detected:")

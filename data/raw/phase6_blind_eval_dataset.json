@@ -1,0 +1,2831 @@
+[
+  {
+    "id": "p6_cs_se_001",
+    "query": "How do I plot in real-time in a while loop?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/11874767/how-do-i-plot-in-real-time-in-a-while-loop",
+    "pair_id": "p6_cs_se_001",
+    "tags": [
+      "python",
+      "matplotlib",
+      "while-loop",
+      "real-time"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_002",
+    "query": "How to align texts inside of an input?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/12114570/how-to-align-texts-inside-of-an-input",
+    "pair_id": "p6_cs_se_002",
+    "tags": [
+      "html",
+      "css",
+      "forms",
+      "html-input"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_003",
+    "query": "How do I close an open port from the terminal on the Mac?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/12397175/how-do-i-close-an-open-port-from-the-terminal-on-the-mac",
+    "pair_id": "p6_cs_se_003",
+    "tags": [
+      "macos",
+      "port"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_004",
+    "query": "SQL Server principal \"dbo\" does not exist,",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/13823354/sql-server-principal-dbo-does-not-exist",
+    "pair_id": "p6_cs_se_004",
+    "tags": [
+      "sql-server-2008"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_005",
+    "query": "Converting PKCS#12 certificate into PEM using OpenSSL",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/15144046/converting-pkcs12-certificate-into-pem-using-openssl",
+    "pair_id": "p6_cs_se_005",
+    "tags": [
+      "openssl",
+      "command",
+      "pkcs#12"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_006",
+    "query": "How to send file contents as body entity using cURL",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/15912924/how-to-send-file-contents-as-body-entity-using-curl",
+    "pair_id": "p6_cs_se_006",
+    "tags": [
+      "post",
+      "curl"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_007",
+    "query": "How can I check which version of Angular I'm using?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/16017699/how-can-i-check-which-version-of-angular-im-using",
+    "pair_id": "p6_cs_se_007",
+    "tags": [
+      "angularjs",
+      "angular"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_008",
+    "query": "How to set default font family for entire Android app",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/16404820/how-to-set-default-font-family-for-entire-android-app",
+    "pair_id": "p6_cs_se_008",
+    "tags": [
+      "android",
+      "android-fonts"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_009",
+    "query": "How to run crontab job every week on Sunday",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/16717930/how-to-run-crontab-job-every-week-on-sunday",
+    "pair_id": "p6_cs_se_009",
+    "tags": [
+      "linux",
+      "cron"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_anc_01",
+    "query": "What is the time complexity of QuickSort in the average case?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_cs_pair_01",
+    "tags": [
+      "algorithm",
+      "quicksort",
+      "time-complexity"
+    ],
+    "se_score": null,
+    "note": "Anchor for AUTO_REUSE"
+  },
+  {
+    "id": "p6_cs_anc_02",
+    "query": "How do you detect memory leaks in a C++ application on Linux?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_cs_pair_02",
+    "tags": [
+      "c++",
+      "linux",
+      "memory-leaks",
+      "valgrind"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_cs_anc_03",
+    "query": "What is the difference between synchronous and asynchronous programming?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_cs_pair_03",
+    "tags": [
+      "concurrency",
+      "async",
+      "sync"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_cs_anc_04",
+    "query": "Why is immutability important in functional programming?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_cs_pair_04",
+    "tags": [
+      "functional-programming",
+      "immutability"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_cs_anc_05",
+    "query": "How does symmetric encryption work and what are common symmetric ciphers?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_cs_pair_05",
+    "tags": [
+      "cryptography",
+      "encryption",
+      "security"
+    ],
+    "se_score": null,
+    "note": "Anchor for ADVERSARIAL_TRAP"
+  },
+  {
+    "id": "p6_cs_anc_06",
+    "query": "Explain the difference between call-by-value and call-by-reference.",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_cs_pair_06",
+    "tags": [
+      "compiler",
+      "semantics",
+      "parameter-passing"
+    ],
+    "se_score": null,
+    "note": "Anchor for ADVERSARIAL_TRAP"
+  },
+  {
+    "id": "p6_sys_se_001",
+    "query": "Do systemd unit files have to be reloaded when modified?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/700862/do-systemd-unit-files-have-to-be-reloaded-when-modified",
+    "pair_id": "p6_sys_se_001",
+    "tags": [
+      "systemd"
+    ],
+    "se_score": 289,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_002",
+    "query": "What is archive mode in rsync?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/141773/what-is-archive-mode-in-rsync",
+    "pair_id": "p6_sys_se_002",
+    "tags": [
+      "rsync"
+    ],
+    "se_score": 288,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_003",
+    "query": "How do I add Access-Control-Allow-Origin in NGINX?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/162429/how-do-i-add-access-control-allow-origin-in-nginx",
+    "pair_id": "p6_sys_se_003",
+    "tags": [
+      "nginx",
+      "cors"
+    ],
+    "se_score": 286,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_004",
+    "query": "Can I nohup/screen an already-started process?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/24425/can-i-nohup-screen-an-already-started-process",
+    "pair_id": "p6_sys_se_004",
+    "tags": [
+      "linux",
+      "ssh",
+      "unix",
+      "gnu-screen",
+      "nohup"
+    ],
+    "se_score": 285,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_005",
+    "query": "Can you pass user/pass for HTTP Basic Authentication in URL parameters?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/371907/can-you-pass-user-pass-for-http-basic-authentication-in-url-parameters",
+    "pair_id": "p6_sys_se_005",
+    "tags": [
+      "authentication",
+      "http",
+      "http-basic-authentication"
+    ],
+    "se_score": 279,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_006",
+    "query": "What are the obstacles to providing reliable Internet access and Wi-Fi at large tech conferences?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/72767/what-are-the-obstacles-to-providing-reliable-internet-access-and-wi-fi-at-large",
+    "pair_id": "p6_sys_se_006",
+    "tags": [
+      "wifi",
+      "internet"
+    ],
+    "se_score": 278,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_007",
+    "query": "How to reply with 200 from Nginx, without serving a file?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/196929/how-to-reply-with-200-from-nginx-without-serving-a-file",
+    "pair_id": "p6_sys_se_007",
+    "tags": [
+      "nginx",
+      "http",
+      "html"
+    ],
+    "se_score": 278,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_008",
+    "query": "How to assign permissions to ApplicationPoolIdentity account",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/81165/how-to-assign-permissions-to-applicationpoolidentity-account",
+    "pair_id": "p6_sys_se_008",
+    "tags": [
+      "windows-server-2008",
+      "iis-7",
+      "application-pools"
+    ],
+    "se_score": 277,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_009",
+    "query": "Useful Command-line Commands on Windows",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/3780/useful-command-line-commands-on-windows",
+    "pair_id": "p6_sys_se_009",
+    "tags": [
+      "windows",
+      "command-line-interface",
+      "windows-command-prompt"
+    ],
+    "se_score": 276,
+    "note": null
+  },
+  {
+    "id": "p6_sys_anc_01",
+    "query": "How do I check available disk space in Linux from command line?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sys_pair_01",
+    "tags": [
+      "linux",
+      "bash",
+      "disk-space",
+      "df"
+    ],
+    "se_score": null,
+    "note": "Anchor for AUTO_REUSE"
+  },
+  {
+    "id": "p6_sys_anc_02",
+    "query": "How can I find all files modified in the last 24 hours on Ubuntu?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sys_pair_02",
+    "tags": [
+      "linux",
+      "find",
+      "filesystem"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_sys_anc_03",
+    "query": "What is the purpose of the sticky bit on Linux directory permissions?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sys_pair_03",
+    "tags": [
+      "linux",
+      "permissions",
+      "chmod",
+      "security"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_sys_anc_04",
+    "query": "How do you configure an Nginx reverse proxy to forward client real IP headers?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sys_pair_04",
+    "tags": [
+      "nginx",
+      "reverse-proxy",
+      "http-headers"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_sys_anc_05",
+    "query": "How to enable IP forwarding in Linux kernel using sysctl?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sys_pair_05",
+    "tags": [
+      "linux",
+      "networking",
+      "sysctl",
+      "routing"
+    ],
+    "se_score": null,
+    "note": "Anchor for ADVERSARIAL_TRAP"
+  },
+  {
+    "id": "p6_sys_anc_06",
+    "query": "How to mount an NFS export with read-write permissions on Linux?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sys_pair_06",
+    "tags": [
+      "nfs",
+      "mount",
+      "storage",
+      "linux"
+    ],
+    "se_score": null,
+    "note": "Anchor for ADVERSARIAL_TRAP"
+  },
+  {
+    "id": "p6_math_se_001",
+    "query": "How to read a book in mathematics?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/279079/how-to-read-a-book-in-mathematics",
+    "pair_id": "p6_math_se_001",
+    "tags": [
+      "soft-question"
+    ],
+    "se_score": 279,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_002",
+    "query": "Given an infinite number of monkeys and an infinite amount of time, would one of them write Hamlet?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/17152/given-an-infinite-number-of-monkeys-and-an-infinite-amount-of-time-would-one-of",
+    "pair_id": "p6_math_se_002",
+    "tags": [
+      "probability",
+      "infinity"
+    ],
+    "se_score": 277,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_003",
+    "query": "Derivative of sigmoid function $\\sigma (x) = \\frac{1}{1+e^{-x}}$",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/78575/derivative-of-sigmoid-function-sigma-x-frac11e-x",
+    "pair_id": "p6_math_se_003",
+    "tags": [
+      "calculus",
+      "derivatives"
+    ],
+    "se_score": 277,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_004",
+    "query": "\"Integral milking\": working backward to construct nontrivial integrals",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/2821112/integral-milking-working-backward-to-construct-nontrivial-integrals",
+    "pair_id": "p6_math_se_004",
+    "tags": [
+      "integration",
+      "definite-integrals",
+      "soft-question",
+      "recreational-mathematics",
+      "big-list"
+    ],
+    "se_score": 277,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_005",
+    "query": "Fun but serious mathematics books to gift advanced undergraduates.",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/264371/fun-but-serious-mathematics-books-to-gift-advanced-undergraduates",
+    "pair_id": "p6_math_se_005",
+    "tags": [
+      "reference-request",
+      "soft-question",
+      "big-list"
+    ],
+    "se_score": 275,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_006",
+    "query": "Eigenvectors of real symmetric matrices are orthogonal",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/82467/eigenvectors-of-real-symmetric-matrices-are-orthogonal",
+    "pair_id": "p6_math_se_006",
+    "tags": [
+      "linear-algebra",
+      "matrices",
+      "reference-request",
+      "eigenvalues-eigenvectors",
+      "symmetric-matrices"
+    ],
+    "se_score": 274,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_007",
+    "query": "Why do we care about dual spaces?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/3749/why-do-we-care-about-dual-spaces",
+    "pair_id": "p6_math_se_007",
+    "tags": [
+      "linear-algebra",
+      "soft-question",
+      "intuition",
+      "dual-spaces"
+    ],
+    "se_score": 273,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_008",
+    "query": "What is the difference between linear and affine function?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/275310/what-is-the-difference-between-linear-and-affine-function",
+    "pair_id": "p6_math_se_008",
+    "tags": [
+      "linear-algebra",
+      "affine-geometry"
+    ],
+    "se_score": 272,
+    "note": null
+  },
+  {
+    "id": "p6_math_anc_01",
+    "query": "What is Euler's formula for planar graphs connecting vertices, edges, and faces?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_math_pair_01",
+    "tags": [
+      "graph-theory",
+      "planar-graphs",
+      "topology"
+    ],
+    "se_score": null,
+    "note": "Anchor for AUTO_REUSE"
+  },
+  {
+    "id": "p6_math_anc_02",
+    "query": "How do you find the eigenvalues and eigenvectors of a 2x2 matrix?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_math_pair_02",
+    "tags": [
+      "linear-algebra",
+      "eigenvalues",
+      "matrices"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_math_anc_03",
+    "query": "Can you explain why the harmonic series diverges?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_math_pair_03",
+    "tags": [
+      "calculus",
+      "series",
+      "divergence"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_math_anc_04",
+    "query": "What does it mean for a group to be abelian in abstract algebra?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_math_pair_04",
+    "tags": [
+      "abstract-algebra",
+      "group-theory"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_math_anc_05",
+    "query": "What is the formula to compute the volume of a sphere of radius r?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_math_pair_05",
+    "tags": [
+      "geometry",
+      "sphere",
+      "mensuration"
+    ],
+    "se_score": null,
+    "note": "Anchor for ADVERSARIAL_TRAP"
+  },
+  {
+    "id": "p6_math_anc_06",
+    "query": "How do you determine if a given square matrix is positive definite?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_math_pair_06",
+    "tags": [
+      "linear-algebra",
+      "matrices",
+      "positive-definite"
+    ],
+    "se_score": null,
+    "note": "Anchor for ADVERSARIAL_TRAP"
+  },
+  {
+    "id": "p6_fin_se_001",
+    "query": "Scamming an investor by offering a quick sale of a property at her named price",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/88215/scamming-an-investor-by-offering-a-quick-sale-of-a-property-at-her-named-price",
+    "pair_id": "p6_fin_se_001",
+    "tags": [
+      "fraud",
+      "scams"
+    ],
+    "se_score": 106,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_002",
+    "query": "Debt collector has wrong person and is contacting my employer",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/62782/debt-collector-has-wrong-person-and-is-contacting-my-employer",
+    "pair_id": "p6_fin_se_002",
+    "tags": [
+      "united-states",
+      "debt-collection",
+      "wage-garnishing"
+    ],
+    "se_score": 103,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_003",
+    "query": "Can someone explain the GME short squeeze situation to a non-stock trader?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/135411/can-someone-explain-the-gme-short-squeeze-situation-to-a-non-stock-trader",
+    "pair_id": "p6_fin_se_003",
+    "tags": [
+      "stocks",
+      "options",
+      "stock-valuation",
+      "shorting-securities"
+    ],
+    "se_score": 102,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_004",
+    "query": "Is this person doing illegal money transfers?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/64033/is-this-person-doing-illegal-money-transfers",
+    "pair_id": "p6_fin_se_004",
+    "tags": [
+      "scams",
+      "fraud",
+      "money-laundering"
+    ],
+    "se_score": 101,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_005",
+    "query": "How is Bitcoin useful as a currency if so few services accept it?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/101044/how-is-bitcoin-useful-as-a-currency-if-so-few-services-accept-it",
+    "pair_id": "p6_fin_se_005",
+    "tags": [
+      "cryptocurrency"
+    ],
+    "se_score": 101,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_006",
+    "query": "Should I finance a new home theater at 0% even though I have the cash for it?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/299/should-i-finance-a-new-home-theater-at-0-even-though-i-have-the-cash-for-it",
+    "pair_id": "p6_fin_se_006",
+    "tags": [
+      "credit-card",
+      "interest-rate",
+      "promotion",
+      "financing",
+      "cash-flow"
+    ],
+    "se_score": 100,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_007",
+    "query": "Why does the introduction of chip & pin appear to be so controversial in the United States?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/54772/why-does-the-introduction-of-chip-pin-appear-to-be-so-controversial-in-the-uni",
+    "pair_id": "p6_fin_se_007",
+    "tags": [
+      "united-states",
+      "risk",
+      "fraud",
+      "chip-card"
+    ],
+    "se_score": 98,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_008",
+    "query": "How do scammers retract money, while you can’t?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/107003/how-do-scammers-retract-money-while-you-can-t",
+    "pair_id": "p6_fin_se_008",
+    "tags": [
+      "banking",
+      "scams"
+    ],
+    "se_score": 98,
+    "note": null
+  },
+  {
+    "id": "p6_fin_anc_01",
+    "query": "What is the compound annual growth rate formula and how is CAGR calculated?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_fin_pair_01",
+    "tags": [
+      "investing",
+      "cagr",
+      "returns"
+    ],
+    "se_score": null,
+    "note": "Anchor for AUTO_REUSE"
+  },
+  {
+    "id": "p6_fin_anc_02",
+    "query": "What is the difference between a traditional IRA and a Roth IRA?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_fin_pair_02",
+    "tags": [
+      "retirement",
+      "ira",
+      "taxes"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_fin_anc_03",
+    "query": "How does the discount rate set by a central bank influence commercial bank lending rates?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_fin_pair_03",
+    "tags": [
+      "monetary-policy",
+      "central-banks",
+      "interest-rates"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_fin_anc_04",
+    "query": "How does purchasing power parity explain long-term exchange rate movements?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_fin_pair_04",
+    "tags": [
+      "economics",
+      "foreign-exchange",
+      "parity"
+    ],
+    "se_score": null,
+    "note": "Anchor for ADVERSARIAL_TRAP"
+  },
+  {
+    "id": "p6_fin_anc_05",
+    "query": "What are the rights and payout priority of preferred stock vs common stock?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_fin_pair_05",
+    "tags": [
+      "corporate-finance",
+      "stocks",
+      "bonds"
+    ],
+    "se_score": null,
+    "note": "Anchor for ADVERSARIAL_TRAP"
+  },
+  {
+    "id": "p6_sci_se_001",
+    "query": "Are there organisms with fewer than 1000 neurons?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/57594/are-there-organisms-with-fewer-than-1000-neurons",
+    "pair_id": "p6_sci_se_001",
+    "tags": [
+      "neuroscience",
+      "brain",
+      "neurophysiology",
+      "central-nervous-system",
+      "peripheral-nervous-system"
+    ],
+    "se_score": 66,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_002",
+    "query": "A new species of small bird?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/50432/a-new-species-of-small-bird",
+    "pair_id": "p6_sci_se_002",
+    "tags": [
+      "species-identification"
+    ],
+    "se_score": 65,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_003",
+    "query": "Why does it hurt the next day after doing significant exercise?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/61020/why-does-it-hurt-the-next-day-after-doing-significant-exercise",
+    "pair_id": "p6_sci_se_003",
+    "tags": [
+      "human-biology",
+      "muscles",
+      "exercise"
+    ],
+    "se_score": 65,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_004",
+    "query": "Why do smaller mammals move intermittently?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/34683/why-do-smaller-mammals-move-intermittently",
+    "pair_id": "p6_sci_se_004",
+    "tags": [
+      "neuroscience",
+      "zoology",
+      "muscles",
+      "movement"
+    ],
+    "se_score": 64,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_005",
+    "query": "How come large herbivores have such thin legs?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://biology.stackexchange.com/questions/66664/how-come-large-herbivores-have-such-thin-legs",
+    "pair_id": "p6_sci_se_005",
+    "tags": [
+      "anatomy",
+      "scales"
+    ],
+    "se_score": 62,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_006",
+    "query": "What's the point of Hamiltonian mechanics?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://physics.stackexchange.com/questions/89035/whats-the-point-of-hamiltonian-mechanics",
+    "pair_id": "p6_sci_se_006",
+    "tags": [
+      "classical-mechanics",
+      "lagrangian-formalism",
+      "hamiltonian-formalism"
+    ],
+    "se_score": 218,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_007",
+    "query": "Strange ice found in my garden",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://physics.stackexchange.com/questions/387926/strange-ice-found-in-my-garden",
+    "pair_id": "p6_sci_se_007",
+    "tags": [
+      "everyday-life",
+      "water",
+      "phase-transition",
+      "crystals",
+      "ice"
+    ],
+    "se_score": 217,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_008",
+    "query": "If photons have no mass, how can they have momentum?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://physics.stackexchange.com/questions/2229/if-photons-have-no-mass-how-can-they-have-momentum",
+    "pair_id": "p6_sci_se_008",
+    "tags": [
+      "special-relativity",
+      "electromagnetic-radiation",
+      "photons",
+      "mass",
+      "momentum"
+    ],
+    "se_score": 214,
+    "note": null
+  },
+  {
+    "id": "p6_sci_anc_01",
+    "query": "What is the function of mitochondria in eukaryotic cellular respiration?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sci_pair_01",
+    "tags": [
+      "biology",
+      "cell-biology",
+      "mitochondria"
+    ],
+    "se_score": null,
+    "note": "Anchor for AUTO_REUSE"
+  },
+  {
+    "id": "p6_sci_anc_02",
+    "query": "Why is the sky blue during midday according to physics?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sci_pair_02",
+    "tags": [
+      "physics",
+      "optics",
+      "scattering"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_sci_anc_03",
+    "query": "How do vaccines stimulate the adaptive immune system to produce antibodies?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sci_pair_03",
+    "tags": [
+      "immunology",
+      "vaccines",
+      "medicine"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_sci_anc_04",
+    "query": "What happens during the mitotic phase of somatic cell division?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sci_pair_04",
+    "tags": [
+      "genetics",
+      "mitosis",
+      "meiosis",
+      "cell-division"
+    ],
+    "se_score": null,
+    "note": "Anchor for ADVERSARIAL_TRAP"
+  },
+  {
+    "id": "p6_sci_anc_05",
+    "query": "Explain the difference between exothermic and endothermic chemical reactions.",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sci_pair_05",
+    "tags": [
+      "chemistry",
+      "thermodynamics",
+      "reactions"
+    ],
+    "se_score": null,
+    "note": "Anchor for ADVERSARIAL_TRAP"
+  },
+  {
+    "id": "p6_hist_se_001",
+    "query": "What is the first recorded dog name?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/56034/what-is-the-first-recorded-dog-name",
+    "pair_id": "p6_hist_se_001",
+    "tags": [
+      "names",
+      "animals"
+    ],
+    "se_score": 88,
+    "note": null
+  },
+  {
+    "id": "p6_hist_se_002",
+    "query": "Why did the British scuttle the u-boats surrendered after WWII?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/47405/why-did-the-british-scuttle-the-u-boats-surrendered-after-wwii",
+    "pair_id": "p6_hist_se_002",
+    "tags": [
+      "world-war-two",
+      "naval",
+      "submarine",
+      "ships"
+    ],
+    "se_score": 87,
+    "note": null
+  },
+  {
+    "id": "p6_hist_se_003",
+    "query": "Why do western monotheistic religions seem to be so full of conflict over dogma?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/48634/why-do-western-monotheistic-religions-seem-to-be-so-full-of-conflict-over-dogma",
+    "pair_id": "p6_hist_se_003",
+    "tags": [
+      "religion",
+      "religious-history"
+    ],
+    "se_score": 87,
+    "note": null
+  },
+  {
+    "id": "p6_hist_se_004",
+    "query": "Why were ships-of-the line not supposed to open fire on frigates during fleet actions?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/28179/why-were-ships-of-the-line-not-supposed-to-open-fire-on-frigates-during-fleet-ac",
+    "pair_id": "p6_hist_se_004",
+    "tags": [
+      "warfare",
+      "naval",
+      "age-of-sail"
+    ],
+    "se_score": 85,
+    "note": null
+  },
+  {
+    "id": "p6_hist_se_005",
+    "query": "How much smaller were medieval farm animals in England than today?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/42848/how-much-smaller-were-medieval-farm-animals-in-england-than-today",
+    "pair_id": "p6_hist_se_005",
+    "tags": [
+      "middle-ages",
+      "england",
+      "agriculture"
+    ],
+    "se_score": 84,
+    "note": null
+  },
+  {
+    "id": "p6_hist_se_006",
+    "query": "Why bother to attack in trench warfare?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/47104/why-bother-to-attack-in-trench-warfare",
+    "pair_id": "p6_hist_se_006",
+    "tags": [
+      "world-war-one",
+      "warfare"
+    ],
+    "se_score": 84,
+    "note": null
+  },
+  {
+    "id": "p6_hist_se_007",
+    "query": "What were paper airplanes called before there were real airplanes? (i.e. untethered winged flyers, not kites or balloons)",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/63284/what-were-paper-airplanes-called-before-there-were-real-airplanes-i-e-untethe",
+    "pair_id": "p6_hist_se_007",
+    "tags": [
+      "ancient-history",
+      "aircraft",
+      "inventions",
+      "english-language",
+      "entertainment"
+    ],
+    "se_score": 84,
+    "note": null
+  },
+  {
+    "id": "p6_hist_anc_01",
+    "query": "What were the main causes of the outbreak of the Peloponnesian War?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_hist_pair_01",
+    "tags": [
+      "ancient-history",
+      "greece",
+      "war"
+    ],
+    "se_score": null,
+    "note": "Anchor for AUTO_REUSE"
+  },
+  {
+    "id": "p6_hist_anc_02",
+    "query": "How did the invention of the printing press by Gutenberg impact literacy in Europe?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_hist_pair_02",
+    "tags": [
+      "european-history",
+      "printing-press",
+      "renaissance"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_hist_anc_03",
+    "query": "What geographical factors influenced the development of early Mesopotamian civilization?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_hist_pair_03",
+    "tags": [
+      "geography",
+      "ancient-mesopotamia",
+      "civilization"
+    ],
+    "se_score": null,
+    "note": "Anchor for PARAPHRASE"
+  },
+  {
+    "id": "p6_hist_anc_04",
+    "query": "What were the terms and territorial concessions of the Treaty of Versailles in 1919?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_hist_pair_04",
+    "tags": [
+      "world-war-one",
+      "treaties",
+      "diplomacy"
+    ],
+    "se_score": null,
+    "note": "Anchor for ADVERSARIAL_TRAP"
+  },
+  {
+    "id": "p6_hist_anc_05",
+    "query": "How did plate tectonics create the Himalayan mountain range?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_hist_pair_05",
+    "tags": [
+      "geology",
+      "plate-tectonics",
+      "earth-science"
+    ],
+    "se_score": null,
+    "note": "Anchor for ADVERSARIAL_TRAP"
+  },
+  {
+    "id": "p6_cs_se_010",
+    "query": "How to disable back swipe gesture in UINavigationController on iOS 7",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/17209468/how-to-disable-back-swipe-gesture-in-uinavigationcontroller-on-ios-7",
+    "pair_id": "p6_cs_se_010",
+    "tags": [
+      "ios",
+      "objective-c",
+      "uinavigationcontroller",
+      "uigesturerecognizer",
+      "ios7"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_011",
+    "query": "What is pip's equivalent of `npm install package --save-dev`?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/19135867/what-is-pips-equivalent-of-npm-install-package-save-dev",
+    "pair_id": "p6_cs_se_011",
+    "tags": [
+      "python",
+      "node.js",
+      "pip"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_012",
+    "query": "What is a rune?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/19310700/what-is-a-rune",
+    "pair_id": "p6_cs_se_012",
+    "tags": [
+      "go",
+      "terminology",
+      "rune"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_013",
+    "query": "Best way to check for \"empty or null value\"",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/23766084/best-way-to-check-for-empty-or-null-value",
+    "pair_id": "p6_cs_se_013",
+    "tags": [
+      "sql",
+      "database",
+      "postgresql",
+      "null",
+      "coalesce"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_014",
+    "query": "How to sort a file in-place?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/29244351/how-to-sort-a-file-in-place",
+    "pair_id": "p6_cs_se_014",
+    "tags": [
+      "linux",
+      "bash",
+      "shell",
+      "unix"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_015",
+    "query": "No tests found for given includes Error, when running Parameterized Unit test in Android Studio",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/30474767/no-tests-found-for-given-includes-error-when-running-parameterized-unit-test-in",
+    "pair_id": "p6_cs_se_015",
+    "tags": [
+      "android",
+      "android-studio",
+      "unit-testing",
+      "junit",
+      "parameterized-unit-test"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_016",
+    "query": "Hide .js.map files in Visual Studio Code: File Nesting",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/31587949/hide-js-map-files-in-visual-studio-code-file-nesting",
+    "pair_id": "p6_cs_se_016",
+    "tags": [
+      "typescript",
+      "vs-code"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_017",
+    "query": "Bootstrap 4 - Glyphicons migration?",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/32612690/bootstrap-4-glyphicons-migration",
+    "pair_id": "p6_cs_se_017",
+    "tags": [
+      "twitter-bootstrap",
+      "bootstrap-4",
+      "glyphicons"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_se_018",
+    "query": "This API project is not authorized to use this API. Please ensure that this API is activated in the APIs Console",
+    "domain": "computer_science",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://stackoverflow.com/questions/32994634/this-api-project-is-not-authorized-to-use-this-api-please-ensure-that-this-api",
+    "pair_id": "p6_cs_se_018",
+    "tags": [
+      "google-maps",
+      "google-maps-api-3",
+      "geocoding",
+      "google-geolocation"
+    ],
+    "se_score": 350,
+    "note": null
+  },
+  {
+    "id": "p6_cs_fol_01",
+    "query": "What is the average case time complexity of QuickSort?",
+    "domain": "computer_science",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_cs_pair_01",
+    "tags": [
+      "algorithm",
+      "quicksort",
+      "time-complexity"
+    ],
+    "se_score": null,
+    "note": "Follow-on for AUTO_REUSE (HIT)"
+  },
+  {
+    "id": "p6_cs_fol_02",
+    "query": "What tools or techniques can identify memory leaks in C++ programs under Linux?",
+    "domain": "computer_science",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_cs_pair_02",
+    "tags": [
+      "c++",
+      "linux",
+      "memory-leaks",
+      "valgrind"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_cs_fol_03",
+    "query": "Can you explain how asynchronous execution differs from synchronous execution in programming?",
+    "domain": "computer_science",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_cs_pair_03",
+    "tags": [
+      "concurrency",
+      "async",
+      "sync"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_cs_fol_04",
+    "query": "What advantages does data immutability offer in functional programming paradigms?",
+    "domain": "computer_science",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_cs_pair_04",
+    "tags": [
+      "functional-programming",
+      "immutability"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_cs_fol_05",
+    "query": "How does asymmetric encryption work and what are common asymmetric ciphers?",
+    "domain": "computer_science",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_cs_pair_05",
+    "tags": [
+      "cryptography",
+      "encryption",
+      "security"
+    ],
+    "se_score": null,
+    "note": "Follow-on for ADVERSARIAL_TRAP (BYPASS)"
+  },
+  {
+    "id": "p6_cs_fol_06",
+    "query": "Explain the difference between call-by-name and call-by-need.",
+    "domain": "computer_science",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_cs_pair_06",
+    "tags": [
+      "compiler",
+      "semantics",
+      "parameter-passing"
+    ],
+    "se_score": null,
+    "note": "Follow-on for ADVERSARIAL_TRAP (BYPASS)"
+  },
+  {
+    "id": "p6_sys_se_010",
+    "query": "Why does my hostname appear with the address 127.0.1.1 rather than 127.0.0.1 in /etc/hosts?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/363095/why-does-my-hostname-appear-with-the-address-127-0-1-1-rather-than-127-0-0-1-in",
+    "pair_id": "p6_sys_se_010",
+    "tags": [
+      "linux",
+      "localhost",
+      "hostname",
+      "loopback",
+      "defaults"
+    ],
+    "se_score": 275,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_011",
+    "query": "How can I run Debian stable but install some packages from testing?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/22414/how-can-i-run-debian-stable-but-install-some-packages-from-testing",
+    "pair_id": "p6_sys_se_011",
+    "tags": [
+      "linux",
+      "debian",
+      "package-management",
+      "aptitude"
+    ],
+    "se_score": 274,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_012",
+    "query": "How to see stdout of ansible commands?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/537060/how-to-see-stdout-of-ansible-commands",
+    "pair_id": "p6_sys_se_012",
+    "tags": [
+      "ansible",
+      "debugging",
+      "stdout",
+      "stderr"
+    ],
+    "se_score": 274,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_013",
+    "query": "How to include multiple domains in an spf TXT Record",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/283125/how-to-include-multiple-domains-in-an-spf-txt-record",
+    "pair_id": "p6_sys_se_013",
+    "tags": [
+      "domain-name-system",
+      "spf",
+      "txt-record"
+    ],
+    "se_score": 271,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_014",
+    "query": "Why is \"chmod -R 777 /\" destructive?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/364677/why-is-chmod-r-777-destructive",
+    "pair_id": "p6_sys_se_014",
+    "tags": [
+      "linux",
+      "permissions",
+      "chmod"
+    ],
+    "se_score": 271,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_015",
+    "query": "I've inherited a rat's nest of cabling. What now?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/420877/ive-inherited-a-rats-nest-of-cabling-what-now",
+    "pair_id": "p6_sys_se_015",
+    "tags": [
+      "networking",
+      "datacenter",
+      "server-room",
+      "cable-management"
+    ],
+    "se_score": 271,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_016",
+    "query": "Kubernetes stuck on ContainerCreating",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/728727/kubernetes-stuck-on-containercreating",
+    "pair_id": "p6_sys_se_016",
+    "tags": [
+      "kubernetes"
+    ],
+    "se_score": 271,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_017",
+    "query": "Can anyone explain precisely what IOWait is?",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/12679/can-anyone-explain-precisely-what-iowait-is",
+    "pair_id": "p6_sys_se_017",
+    "tags": [
+      "io",
+      "iowait"
+    ],
+    "se_score": 267,
+    "note": null
+  },
+  {
+    "id": "p6_sys_se_018",
+    "query": "Docker Container time & timezone (will not reflect changes)",
+    "domain": "system_operations",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://serverfault.com/questions/683605/docker-container-time-timezone-will-not-reflect-changes",
+    "pair_id": "p6_sys_se_018",
+    "tags": [
+      "date",
+      "timezone",
+      "docker"
+    ],
+    "se_score": 265,
+    "note": null
+  },
+  {
+    "id": "p6_sys_fol_01",
+    "query": "How to check available disk space in Linux using command line?",
+    "domain": "system_operations",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sys_pair_01",
+    "tags": [
+      "linux",
+      "bash",
+      "disk-space",
+      "df"
+    ],
+    "se_score": null,
+    "note": "Follow-on for AUTO_REUSE (HIT)"
+  },
+  {
+    "id": "p6_sys_fol_02",
+    "query": "What is the command to list files that were changed in the past 24 hours in Ubuntu?",
+    "domain": "system_operations",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sys_pair_02",
+    "tags": [
+      "linux",
+      "find",
+      "filesystem"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_sys_fol_03",
+    "query": "Why is the sticky bit permission set on directories in Linux?",
+    "domain": "system_operations",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sys_pair_03",
+    "tags": [
+      "linux",
+      "permissions",
+      "chmod",
+      "security"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_sys_fol_04",
+    "query": "How can Nginx be configured as a reverse proxy to pass the real client IP address?",
+    "domain": "system_operations",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sys_pair_04",
+    "tags": [
+      "nginx",
+      "reverse-proxy",
+      "http-headers"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_sys_fol_05",
+    "query": "How to disable IP forwarding in Linux kernel using sysctl?",
+    "domain": "system_operations",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sys_pair_05",
+    "tags": [
+      "linux",
+      "networking",
+      "sysctl",
+      "routing"
+    ],
+    "se_score": null,
+    "note": "Follow-on for ADVERSARIAL_TRAP (BYPASS)"
+  },
+  {
+    "id": "p6_sys_fol_06",
+    "query": "How to mount an NFS export in read-only mode on Linux?",
+    "domain": "system_operations",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sys_pair_06",
+    "tags": [
+      "nfs",
+      "mount",
+      "storage",
+      "linux"
+    ],
+    "se_score": null,
+    "note": "Follow-on for ADVERSARIAL_TRAP (BYPASS)"
+  },
+  {
+    "id": "p6_math_se_009",
+    "query": "Why are rings called rings?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/61497/why-are-rings-called-rings",
+    "pair_id": "p6_math_se_009",
+    "tags": [
+      "abstract-algebra",
+      "ring-theory",
+      "terminology",
+      "math-history"
+    ],
+    "se_score": 271,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_010",
+    "query": "Too old to start math",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/237002/too-old-to-start-math",
+    "pair_id": "p6_math_se_010",
+    "tags": [
+      "soft-question",
+      "self-learning",
+      "advice",
+      "learning"
+    ],
+    "se_score": 271,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_011",
+    "query": "What is the maximum volume that can be contained by a sheet of paper?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/2855975/what-is-the-maximum-volume-that-can-be-contained-by-a-sheet-of-paper",
+    "pair_id": "p6_math_se_011",
+    "tags": [
+      "geometry",
+      "optimization",
+      "recreational-mathematics",
+      "volume"
+    ],
+    "se_score": 270,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_012",
+    "query": "\"Which answer in this list is the correct answer to this question?\"",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/2217248/which-answer-in-this-list-is-the-correct-answer-to-this-question",
+    "pair_id": "p6_math_se_012",
+    "tags": [
+      "logic",
+      "soft-question",
+      "puzzle"
+    ],
+    "se_score": 268,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_013",
+    "query": "What books must every math undergraduate read?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/94827/what-books-must-every-math-undergraduate-read",
+    "pair_id": "p6_math_se_013",
+    "tags": [
+      "reference-request",
+      "soft-question",
+      "big-list",
+      "book-recommendation"
+    ],
+    "se_score": 264,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_014",
+    "query": "Is there an elementary proof that $\\sum \\limits_{k=1}^n \\frac1k$ is never an integer?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/2746/is-there-an-elementary-proof-that-sum-limits-k-1n-frac1k-is-never-an-int",
+    "pair_id": "p6_math_se_014",
+    "tags": [
+      "sequences-and-series",
+      "number-theory",
+      "harmonic-numbers"
+    ],
+    "se_score": 263,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_015",
+    "query": "Why study Algebraic Geometry?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/255063/why-study-algebraic-geometry",
+    "pair_id": "p6_math_se_015",
+    "tags": [
+      "algebraic-geometry",
+      "soft-question"
+    ],
+    "se_score": 261,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_016",
+    "query": "What is the importance of the Collatz conjecture?",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/2694/what-is-the-importance-of-the-collatz-conjecture",
+    "pair_id": "p6_math_se_016",
+    "tags": [
+      "number-theory",
+      "elementary-number-theory",
+      "prime-numbers",
+      "soft-question",
+      "collatz-conjecture"
+    ],
+    "se_score": 258,
+    "note": null
+  },
+  {
+    "id": "p6_math_se_017",
+    "query": "Best Fake Proofs? (A M.SE April Fools Day collection)",
+    "domain": "mathematics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://math.stackexchange.com/questions/348198/best-fake-proofs-a-m-se-april-fools-day-collection",
+    "pair_id": "p6_math_se_017",
+    "tags": [
+      "soft-question",
+      "big-list",
+      "fake-proofs"
+    ],
+    "se_score": 258,
+    "note": null
+  },
+  {
+    "id": "p6_math_fol_01",
+    "query": "What is Euler's formula relating vertices, edges, and faces in planar graphs?",
+    "domain": "mathematics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_math_pair_01",
+    "tags": [
+      "graph-theory",
+      "planar-graphs",
+      "topology"
+    ],
+    "se_score": null,
+    "note": "Follow-on for AUTO_REUSE (HIT)"
+  },
+  {
+    "id": "p6_math_fol_02",
+    "query": "What is the procedure for computing the eigenvalues and corresponding eigenvectors for a two by two matrix?",
+    "domain": "mathematics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_math_pair_02",
+    "tags": [
+      "linear-algebra",
+      "eigenvalues",
+      "matrices"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_math_fol_03",
+    "query": "What is a straightforward proof that the sum of 1/n diverges as n goes to infinity?",
+    "domain": "mathematics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_math_pair_03",
+    "tags": [
+      "calculus",
+      "series",
+      "divergence"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_math_fol_04",
+    "query": "In abstract algebra, what is the definition and significance of an abelian group?",
+    "domain": "mathematics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_math_pair_04",
+    "tags": [
+      "abstract-algebra",
+      "group-theory"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_math_fol_05",
+    "query": "What is the formula to compute the surface area of a sphere of radius r?",
+    "domain": "mathematics",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_math_pair_05",
+    "tags": [
+      "geometry",
+      "sphere",
+      "mensuration"
+    ],
+    "se_score": null,
+    "note": "Follow-on for ADVERSARIAL_TRAP (BYPASS)"
+  },
+  {
+    "id": "p6_math_fol_06",
+    "query": "How do you determine if a given square matrix is negative definite?",
+    "domain": "mathematics",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_math_pair_06",
+    "tags": [
+      "linear-algebra",
+      "matrices",
+      "positive-definite"
+    ],
+    "se_score": null,
+    "note": "Follow-on for ADVERSARIAL_TRAP (BYPASS)"
+  },
+  {
+    "id": "p6_fin_se_009",
+    "query": "Scam or Real: A woman from Facebook apparently needs my bank account to send money",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/67941/scam-or-real-a-woman-from-facebook-apparently-needs-my-bank-account-to-send-mon",
+    "pair_id": "p6_fin_se_009",
+    "tags": [
+      "bank-account",
+      "money-transfer",
+      "fraud",
+      "scams",
+      "credit-unions"
+    ],
+    "se_score": 97,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_010",
+    "query": "Do people tend to spend less when using cash than credit cards?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/83755/do-people-tend-to-spend-less-when-using-cash-than-credit-cards",
+    "pair_id": "p6_fin_se_010",
+    "tags": [
+      "credit-card",
+      "budget",
+      "cash"
+    ],
+    "se_score": 97,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_011",
+    "query": "Can saving/investing 15% of your income starting age 25, likely make you a millionaire?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/83278/can-saving-investing-15-of-your-income-starting-age-25-likely-make-you-a-milli",
+    "pair_id": "p6_fin_se_011",
+    "tags": [
+      "savings"
+    ],
+    "se_score": 95,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_012",
+    "query": "Spouse wants to pay all debt in a month but I don’t. Is this a good idea?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/99287/spouse-wants-to-pay-all-debt-in-a-month-but-i-don-t-is-this-a-good-idea",
+    "pair_id": "p6_fin_se_012",
+    "tags": [
+      "loans",
+      "savings",
+      "budget"
+    ],
+    "se_score": 95,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_013",
+    "query": "Why do credit cards have their number and CVC code printed on them for all to see?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/103079/why-do-credit-cards-have-their-number-and-cvc-code-printed-on-them-for-all-to-se",
+    "pair_id": "p6_fin_se_013",
+    "tags": [
+      "credit-card",
+      "debit-card",
+      "security"
+    ],
+    "se_score": 95,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_014",
+    "query": "Found old paper shares of Motorola Inc that has since been broken up",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/111538/found-old-paper-shares-of-motorola-inc-that-has-since-been-broken-up",
+    "pair_id": "p6_fin_se_014",
+    "tags": [
+      "stocks",
+      "shares"
+    ],
+    "se_score": 95,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_015",
+    "query": "how do you value what your leisure time is worth?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/115254/how-do-you-value-what-your-leisure-time-is-worth",
+    "pair_id": "p6_fin_se_015",
+    "tags": [
+      "time-value"
+    ],
+    "se_score": 95,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_016",
+    "query": "Where can I park my rainy-day / emergency fund? Savings accounts don't generate much interest",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/921/where-can-i-park-my-rainy-day-emergency-fund-savings-accounts-dont-generate",
+    "pair_id": "p6_fin_se_016",
+    "tags": [
+      "canada",
+      "savings",
+      "emergency-fund",
+      "interest"
+    ],
+    "se_score": 94,
+    "note": null
+  },
+  {
+    "id": "p6_fin_se_017",
+    "query": "How to deal with the credit card debt from family member that has passed away?",
+    "domain": "finance_economics",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://money.stackexchange.com/questions/84460/how-to-deal-with-the-credit-card-debt-from-family-member-that-has-passed-away",
+    "pair_id": "p6_fin_se_017",
+    "tags": [
+      "united-states",
+      "real-estate",
+      "debt",
+      "debt-collection",
+      "new-jersey"
+    ],
+    "se_score": 94,
+    "note": null
+  },
+  {
+    "id": "p6_fin_fol_01",
+    "query": "What is the formula for calculating Compound Annual Growth Rate (CAGR)?",
+    "domain": "finance_economics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_fin_pair_01",
+    "tags": [
+      "investing",
+      "cagr",
+      "returns"
+    ],
+    "se_score": null,
+    "note": "Follow-on for AUTO_REUSE (HIT)"
+  },
+  {
+    "id": "p6_fin_fol_02",
+    "query": "How do Roth IRAs compare to traditional IRAs regarding tax treatment upon contribution and withdrawal?",
+    "domain": "finance_economics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_fin_pair_02",
+    "tags": [
+      "retirement",
+      "ira",
+      "taxes"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_fin_fol_03",
+    "query": "What is the mechanism by which central bank policy interest rates affect retail interest rates?",
+    "domain": "finance_economics",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_fin_pair_03",
+    "tags": [
+      "monetary-policy",
+      "central-banks",
+      "interest-rates"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_fin_fol_04",
+    "query": "How does interest rate parity explain short-term exchange rate movements?",
+    "domain": "finance_economics",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_fin_pair_04",
+    "tags": [
+      "economics",
+      "foreign-exchange",
+      "parity"
+    ],
+    "se_score": null,
+    "note": "Follow-on for ADVERSARIAL_TRAP (BYPASS)"
+  },
+  {
+    "id": "p6_fin_fol_05",
+    "query": "What are the rights and payout priority of corporate debt vs equity shares in liquidation?",
+    "domain": "finance_economics",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_fin_pair_05",
+    "tags": [
+      "corporate-finance",
+      "stocks",
+      "bonds"
+    ],
+    "se_score": null,
+    "note": "Follow-on for ADVERSARIAL_TRAP (BYPASS)"
+  },
+  {
+    "id": "p6_sci_se_009",
+    "query": "Why doesn't matter pass through other matter if atoms are 99.999% empty space?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://physics.stackexchange.com/questions/126512/why-doesnt-matter-pass-through-other-matter-if-atoms-are-99-999-empty-space",
+    "pair_id": "p6_sci_se_009",
+    "tags": [
+      "particle-physics",
+      "electrons",
+      "atomic-physics",
+      "collision",
+      "matter"
+    ],
+    "se_score": 214,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_010",
+    "query": "How do moving charges produce magnetic fields?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://physics.stackexchange.com/questions/65335/how-do-moving-charges-produce-magnetic-fields",
+    "pair_id": "p6_sci_se_010",
+    "tags": [
+      "electromagnetism",
+      "special-relativity"
+    ],
+    "se_score": 210,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_011",
+    "query": "Why is the detection of gravitational waves so significant?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://physics.stackexchange.com/questions/235248/why-is-the-detection-of-gravitational-waves-so-significant",
+    "pair_id": "p6_sci_se_011",
+    "tags": [
+      "general-relativity",
+      "experimental-physics",
+      "gravitational-waves",
+      "ligo"
+    ],
+    "se_score": 208,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_012",
+    "query": "Are units of angle really dimensionless?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://physics.stackexchange.com/questions/252288/are-units-of-angle-really-dimensionless",
+    "pair_id": "p6_sci_se_012",
+    "tags": [
+      "units",
+      "dimensional-analysis"
+    ],
+    "se_score": 205,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_013",
+    "query": "Why do we bend a book to keep it straight?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://physics.stackexchange.com/questions/473061/why-do-we-bend-a-book-to-keep-it-straight",
+    "pair_id": "p6_sci_se_013",
+    "tags": [
+      "newtonian-mechanics",
+      "forces",
+      "everyday-life",
+      "continuum-mechanics",
+      "stress-strain"
+    ],
+    "se_score": 205,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_014",
+    "query": "Given Newton's third law, why are things capable of moving?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://physics.stackexchange.com/questions/45653/given-newtons-third-law-why-are-things-capable-of-moving",
+    "pair_id": "p6_sci_se_014",
+    "tags": [
+      "newtonian-mechanics",
+      "forces",
+      "everyday-life",
+      "free-body-diagram",
+      "faq"
+    ],
+    "se_score": 204,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_015",
+    "query": "Surviving under water in air bubble",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://physics.stackexchange.com/questions/67970/surviving-under-water-in-air-bubble",
+    "pair_id": "p6_sci_se_015",
+    "tags": [
+      "everyday-life",
+      "water",
+      "diffusion",
+      "popular-science",
+      "bubbles"
+    ],
+    "se_score": 202,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_016",
+    "query": "Why do we not have spin greater than 2?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://physics.stackexchange.com/questions/14932/why-do-we-not-have-spin-greater-than-2",
+    "pair_id": "p6_sci_se_016",
+    "tags": [
+      "quantum-field-theory",
+      "quantum-spin",
+      "unitarity",
+      "s-matrix-theory",
+      "higher-spin"
+    ],
+    "se_score": 201,
+    "note": null
+  },
+  {
+    "id": "p6_sci_se_017",
+    "query": "Why does space expansion not expand matter?",
+    "domain": "science_medicine",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://physics.stackexchange.com/questions/2110/why-does-space-expansion-not-expand-matter",
+    "pair_id": "p6_sci_se_017",
+    "tags": [
+      "cosmology",
+      "space-expansion",
+      "atoms",
+      "popular-science",
+      "matter"
+    ],
+    "se_score": 200,
+    "note": null
+  },
+  {
+    "id": "p6_sci_fol_01",
+    "query": "What role do mitochondria play in cellular respiration in eukaryotic cells?",
+    "domain": "science_medicine",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sci_pair_01",
+    "tags": [
+      "biology",
+      "cell-biology",
+      "mitochondria"
+    ],
+    "se_score": null,
+    "note": "Follow-on for AUTO_REUSE (HIT)"
+  },
+  {
+    "id": "p6_sci_fol_02",
+    "query": "What physical mechanism, such as Rayleigh scattering, causes the sky to appear blue?",
+    "domain": "science_medicine",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sci_pair_02",
+    "tags": [
+      "physics",
+      "optics",
+      "scattering"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_sci_fol_03",
+    "query": "What is the biological mechanism by which immunizations trigger memory B-cell and antibody formation?",
+    "domain": "science_medicine",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sci_pair_03",
+    "tags": [
+      "immunology",
+      "vaccines",
+      "medicine"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_sci_fol_04",
+    "query": "What happens during the meiotic phase of germ cell division?",
+    "domain": "science_medicine",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sci_pair_04",
+    "tags": [
+      "genetics",
+      "mitosis",
+      "meiosis",
+      "cell-division"
+    ],
+    "se_score": null,
+    "note": "Follow-on for ADVERSARIAL_TRAP (BYPASS)"
+  },
+  {
+    "id": "p6_sci_fol_05",
+    "query": "Explain the difference between exergonic and endergonic thermodynamic reactions.",
+    "domain": "science_medicine",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_sci_pair_05",
+    "tags": [
+      "chemistry",
+      "thermodynamics",
+      "reactions"
+    ],
+    "se_score": null,
+    "note": "Follow-on for ADVERSARIAL_TRAP (BYPASS)"
+  },
+  {
+    "id": "p6_hist_se_008",
+    "query": "Did medieval stores have names?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/55213/did-medieval-stores-have-names",
+    "pair_id": "p6_hist_se_008",
+    "tags": [
+      "middle-ages",
+      "shops"
+    ],
+    "se_score": 83,
+    "note": null
+  },
+  {
+    "id": "p6_hist_se_009",
+    "query": "Why exactly did telegraphs have to use \"STOP\" instead of a period and \"QUOTE\" instead of a quotation mark? (Or special codes.)",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/56689/why-exactly-did-telegraphs-have-to-use-stop-instead-of-a-period-and-quote-in",
+    "pair_id": "p6_hist_se_009",
+    "tags": [
+      "communication"
+    ],
+    "se_score": 82,
+    "note": null
+  },
+  {
+    "id": "p6_hist_se_010",
+    "query": "What drugs were used in England during the High Middle Ages?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/54459/what-drugs-were-used-in-england-during-the-high-middle-ages",
+    "pair_id": "p6_hist_se_010",
+    "tags": [
+      "middle-ages",
+      "england",
+      "drugs"
+    ],
+    "se_score": 81,
+    "note": null
+  },
+  {
+    "id": "p6_hist_se_011",
+    "query": "Why, in the US, is Japanese brutality ignored compared with the Nazi brutality in WW2?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/9561/why-in-the-us-is-japanese-brutality-ignored-compared-with-the-nazi-brutality-i",
+    "pair_id": "p6_hist_se_011",
+    "tags": [
+      "united-states",
+      "world-war-two",
+      "20th-century",
+      "nazi-germany",
+      "japan"
+    ],
+    "se_score": 80,
+    "note": null
+  },
+  {
+    "id": "p6_hist_se_012",
+    "query": "Why didn't France and the UK invade Germany in September 1939?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/3042/why-didnt-france-and-the-uk-invade-germany-in-september-1939",
+    "pair_id": "p6_hist_se_012",
+    "tags": [
+      "world-war-two",
+      "20th-century",
+      "france",
+      "united-kingdom",
+      "ww2-european-theater"
+    ],
+    "se_score": 79,
+    "note": null
+  },
+  {
+    "id": "p6_hist_se_013",
+    "query": "Why did Canada not join the American Revolution?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/480/why-did-canada-not-join-the-american-revolution",
+    "pair_id": "p6_hist_se_013",
+    "tags": [
+      "british-empire",
+      "18th-century",
+      "american-revolution",
+      "canada"
+    ],
+    "se_score": 77,
+    "note": null
+  },
+  {
+    "id": "p6_hist_se_014",
+    "query": "Has there ever been a truly multi-sided war?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/10933/has-there-ever-been-a-truly-multi-sided-war",
+    "pair_id": "p6_hist_se_014",
+    "tags": [
+      "war"
+    ],
+    "se_score": 77,
+    "note": null
+  },
+  {
+    "id": "p6_hist_se_015",
+    "query": "Is there any evidence to support the claim that the United States was \"suckered into WW1\" by Zionists, made by Benjamin Freedman in his 1961 speech?",
+    "domain": "history_geography",
+    "behavior": "MISS",
+    "source": "stackexchange",
+    "source_url": "https://history.stackexchange.com/questions/52521/is-there-any-evidence-to-support-the-claim-that-the-united-states-was-suckered",
+    "pair_id": "p6_hist_se_015",
+    "tags": [
+      "united-states",
+      "world-war-one",
+      "zionism"
+    ],
+    "se_score": 77,
+    "note": null
+  },
+  {
+    "id": "p6_hist_fol_01",
+    "query": "What were the primary historical causes of the Peloponnesian War?",
+    "domain": "history_geography",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_hist_pair_01",
+    "tags": [
+      "ancient-history",
+      "greece",
+      "war"
+    ],
+    "se_score": null,
+    "note": "Follow-on for AUTO_REUSE (HIT)"
+  },
+  {
+    "id": "p6_hist_fol_02",
+    "query": "In what ways did Johannes Gutenberg's movable type printing press transform European literacy levels?",
+    "domain": "history_geography",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_hist_pair_02",
+    "tags": [
+      "european-history",
+      "printing-press",
+      "renaissance"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_hist_fol_03",
+    "query": "How did rivers and geography shape the emergence of civilization in ancient Mesopotamia?",
+    "domain": "history_geography",
+    "behavior": "HIT",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_hist_pair_03",
+    "tags": [
+      "geography",
+      "ancient-mesopotamia",
+      "civilization"
+    ],
+    "se_score": null,
+    "note": "Follow-on for PARAPHRASE (HIT)"
+  },
+  {
+    "id": "p6_hist_fol_04",
+    "query": "What were the terms and territorial concessions of the Treaty of Brest-Litovsk in 1918?",
+    "domain": "history_geography",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_hist_pair_04",
+    "tags": [
+      "world-war-one",
+      "treaties",
+      "diplomacy"
+    ],
+    "se_score": null,
+    "note": "Follow-on for ADVERSARIAL_TRAP (BYPASS)"
+  },
+  {
+    "id": "p6_hist_fol_05",
+    "query": "How did plate tectonics create the Marianas trench oceanic depression?",
+    "domain": "history_geography",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_hist_pair_05",
+    "tags": [
+      "geology",
+      "plate-tectonics",
+      "earth-science"
+    ],
+    "se_score": null,
+    "note": "Follow-on for ADVERSARIAL_TRAP (BYPASS)"
+  },
+  {
+    "id": "p6_rt_001",
+    "query": "What is the current temperature and weather forecast for Chicago right now?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_rt_001",
+    "tags": [
+      "weather",
+      "forecast",
+      "realtime"
+    ],
+    "se_score": null,
+    "note": "Temporal weather query requiring fresh fetch"
+  },
+  {
+    "id": "p6_rt_002",
+    "query": "What is the live trading price of Bitcoin in USD at this moment?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_rt_002",
+    "tags": [
+      "cryptocurrency",
+      "realtime",
+      "market-price"
+    ],
+    "se_score": null,
+    "note": "Volatile cryptocurrency market data"
+  },
+  {
+    "id": "p6_rt_003",
+    "query": "Who is currently leading the 2026 Formula 1 World Drivers Championship standings?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_rt_003",
+    "tags": [
+      "sports",
+      "formula1",
+      "standings",
+      "2026"
+    ],
+    "se_score": null,
+    "note": "Live seasonal sports leaderboard query"
+  },
+  {
+    "id": "p6_rt_004",
+    "query": "What are the latest breaking global news headlines reported in the past hour?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_rt_004",
+    "tags": [
+      "breaking-news",
+      "realtime",
+      "world-news"
+    ],
+    "se_score": null,
+    "note": "Temporal breaking news event"
+  },
+  {
+    "id": "p6_rt_005",
+    "query": "What is the current status of traffic delays on the I-95 corridor today?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_rt_005",
+    "tags": [
+      "traffic",
+      "transit",
+      "realtime"
+    ],
+    "se_score": null,
+    "note": "Live roadway transit conditions"
+  },
+  {
+    "id": "p6_rt_006",
+    "query": "What are today's live currency exchange rates between the Euro and Japanese Yen?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_rt_006",
+    "tags": [
+      "forex",
+      "exchange-rate",
+      "realtime"
+    ],
+    "se_score": null,
+    "note": "Intraday foreign exchange rate"
+  },
+  {
+    "id": "p6_rt_007",
+    "query": "Which team won yesterday's Champions League football match?",
+    "domain": "realtime_news_weather",
+    "behavior": "BYPASS",
+    "source": "hand_authored",
+    "source_url": null,
+    "pair_id": "p6_rt_007",
+    "tags": [
+      "sports",
+      "football",
+      "match-results"
+    ],
+    "se_score": null,
+    "note": "Recent sporting event result"
+  }
+]
