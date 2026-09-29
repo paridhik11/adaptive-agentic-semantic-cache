@@ -78,6 +78,38 @@ Evergreen's job: tell the two apart, reuse aggressively and safely on the first 
 - Stability classifier precision/recall (reported separately for "dynamic misclassified as stable" - the costly error - vs. the reverse)
 - Agent invocation rate (should be a small % of total traffic)
 
+## Empirical Results
+
+> **Two sets of numbers are reported below.** Phase 1-5 results were measured on datasets that informed the system's design and tuning at some point during development. Phase 6 was the first **sealed blind evaluation** — the dataset was committed to git before the pipeline ran against it, with zero prior exposure, and the run was executed exactly once. Both sets use real judge calls, real latency measurements, and the identical `evaluate_load_test.py` methodology.
+
+### Phase 5 — Design-Informed Evaluation (N=338, corrected)
+
+Dataset: `data/raw/new_dataset_v3.json` | Run: 2026-09-22 | See: [`docs/phase5_walkthrough.md`](docs/phase5_walkthrough.md)
+
+| Metric | Value |
+| :--- | :---: |
+| **Overall Hit Rate** | 4.14% (14/338) |
+| **IRR_cache (incorrect reuse rate)** | **0.00%** — k=0 FP out of n=14 hits |
+| **95% Clopper-Pearson CI** | [0.00%, 23.16%] |
+| **BYPASS rate** | 86.09% |
+| **AMBIGUOUS judge calls** | 46 |
+| **AUTO_REUSE speedup** | 124.6x over AMBIGUOUS path |
+
+### Phase 6 — Sealed Blind Evaluation (N=175)
+
+Dataset: `data/raw/phase6_blind_eval_dataset.json` (sealed in commit `fc35744` before run) | Run: 2026-09-28 | See: [`docs/phase6_walkthrough.md`](docs/phase6_walkthrough.md)
+
+| Metric | Value |
+| :--- | :---: |
+| **Overall Hit Rate** | 4.57% (8/175) |
+| **IRR_cache (incorrect reuse rate)** | **0.00%** — k=0 FP out of n=8 hits |
+| **95% Clopper-Pearson CI** | [0.00%, 36.94%] — underpowered; n=8 < 36 required floor |
+| **BYPASS rate** | 89.14% |
+| **AMBIGUOUS judge calls** | 18 |
+| **AUTO_REUSE speedup** | 622.7x over AMBIGUOUS path |
+
+**Verdict:** The core safety property (IRR_cache = 0.00%, FP = 0) replicates exactly on blind data. The CI is wider because Phase 6 produced fewer hits (n=8 vs. n=14) due to Sub-stage A's conservative confidence override intercepting academic-phrasing paraphrase queries. No divergence on safety or hit rate was observed. See [`docs/phase6_walkthrough.md`](docs/phase6_walkthrough.md) Section 7 for the plain-language divergence statement.
+
 ## Project status
 
 See `WORKFLOW.md` for the phased build plan and `ANTIGRAVITY_WORKFLOW.md` if building with an agentic dev tool.
