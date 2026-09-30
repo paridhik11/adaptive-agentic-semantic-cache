@@ -39,6 +39,14 @@ venv.bak/
 .env.*
 !.env.example
 
+# Key / certificate files
+*.key
+*.pem
+*.p12
+*.pfx
+*.token
+*.secret
+
 # IDE & Editor settings
 .vscode/
 .idea/
@@ -73,3 +81,12 @@ Adaptive_Agentic_Semantic_Cache_Master_Report.pdf
 
 # Scratch / temporary scripts
 scratch/
+
+# Local telemetry / cache dumps (may embed auth headers)
+*.har
+*.log
+logs/
+telemetry_local/
+cache_dump/
+requests_cache/
+http_cache/
