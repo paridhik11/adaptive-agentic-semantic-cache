@@ -2,7 +2,7 @@
 
 > **Authoritative Fact Source:** Every metric, threshold, latency measurement, and sample count in this repository originates directly from [`docs/FACTS.md`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md). Historical or unverified status reports are not authoritative.
 
-An adaptive semantic response reuse engine designed to eliminate redundant LLM computation safely. While naive similarity caches suffer high false-positive reuse rates by confusing syntactically similar prompts with semantically identical ones, this system guards cache access through a four-stage architecture: a lexical/rule-based **StabilityClassifier** that filters volatile and time-sensitive queries, a dense **SemanticCache** using `all-MiniLM-L6-v2` embeddings in FAISS, a dual-signal **TierRouter** evaluating both similarity and stability confidence, and an **LLMJudge** (`nvidia/nemotron-3-super-120b-a12b:free`) that reasons over ambiguous-tier queries with a strict fail-closed contract.
+An adaptive semantic response reuse engine designed to eliminate redundant LLM computation safely. While naive similarity caches suffer high false-positive reuse rates by confusing syntactically similar prompts with semantically identical ones, this system guards cache access through a gated architecture: a lexical/rule-based **StabilityClassifier** that filters volatile and time-sensitive queries, a dense **SemanticCache** using `all-MiniLM-L6-v2` embeddings in FAISS, a dual-signal **TierRouter** evaluating both similarity and stability confidence, and an **LLMJudge** (`nvidia/nemotron-3-super-120b-a12b:free`) that reasons over ambiguous-tier queries with a strict fail-closed contract.
 
 ---
 
@@ -21,7 +21,7 @@ The table below summarizes measured empirical results across all phases of the p
 | **Phase 5 Scaled Load Test (Initial)** | **Same-set** (design-informed) | 338 | 14 | 10 | 71.43% | [41.90%, 91.61%] | 86.39% | [`P5B-01`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L134), [`P5B-03`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L136), [`D-08`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L59) |
 | **Phase 5 Scaled Load Test (Corrected)** | **Same-set** (collision-audited) | 338 | 14 (1 auto, 13 judge) | 0 | 0.00% | [0.00%, 23.16%] | 86.39% | [`P5B-02`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L135), [`P5B-04`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L137), [`P5B-07`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L140) |
 | **Phase 6 Blind Evaluation** | **Blind** (sealed commit `fc35744`, [`P6-02`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L155)) | 175 | 8 (1 auto, 7 judge) | 0 | **0.00%** | **[0.00%, 36.94%]** | **89.71%** | [`P6-01`..`P6-06`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L154-L159), [`D-09`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L60) |
-| **Pooled Blind + Corrected Pilot** | **Pooled** (Phase 5 corr. + Phase 6 blind) | 513 | 22 | 0 | **0.00%** | **[0.00%, 15.44%]** | — | [`POOL-01`..`POOL-06`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L172-L176) |
+| **Pooled Blind + Corrected Pilot** | **Pooled** (Phase 5 corr. + Phase 6 blind) | — | 22 | 0 | **0.00%** | **[0.00%, 15.44%]** | — | [`POOL-01`..`POOL-06`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L172-L176) |
 
 ---
 
@@ -43,7 +43,7 @@ The table below summarizes measured empirical results across all phases of the p
 
 ### 1. Installation
 
-Requires Python 3.11+. Install dependencies into a virtual environment:
+Install dependencies into a Python virtual environment:
 
 ```bash
 git clone https://github.com/paridhik11/adaptive-agentic-semantic-cache.git
@@ -74,7 +74,7 @@ OPENROUTER_MODEL=nvidia/nemotron-3-super-120b-a12b:free
 
 ### 3. Run Pipeline Demo & Fast Test Suite
 
-Run the default hermetic test suite (263 passed tests, network-free):
+Run the default hermetic test suite (network-free):
 ```bash
 pytest
 ```
