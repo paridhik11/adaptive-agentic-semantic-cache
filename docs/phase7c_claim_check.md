@@ -234,17 +234,52 @@
 
 ---
 
-## 3. Negative Constraints and Rule Compliance Audit
+## 3. demo/SCRIPT.md Claim Verification Matrix
+
+| # | Value / Metric | Location in `demo/SCRIPT.md` | Context / Claim | FACTS.md Row(s) | Verified Value in FACTS.md | Status |
+| :---: | :--- | :--- | :--- | :--- | :--- | :---: |
+| DEMO-01 | `120` pairs | Section 1 (Core Problem) | Fixed threshold sweep benchmark size | [`D-01`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L52), [`P2-06`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L79) | 120 pairs (62 SAFE, 58 UNSAFE) | **PASS** |
+| DEMO-02 | `10%` | Section 1 (Core Problem) | Pre-stated safety ceiling $IRR_{\text{cache}} < 10\%$ | [`P2-02`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L75), [`C-13`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L41) | IRR_cache < 10% | **PASS** |
+| DEMO-03 | `0.85` | Section 1 (Core Problem) | Best fixed similarity threshold | [`P2-01`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L74), [`P2-04`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L77) | Threshold 0.85 | **PASS** |
+| DEMO-04 | `5` FP / `24` hits | Section 1 (Core Problem) | False positives and hits at 0.85 threshold | [`P2-01`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L74) | 5 FP / 24 hits | **PASS** |
+| DEMO-05 | `20.83%` | Section 1 (Core Problem) | Lowest fixed threshold empirical hazard rate | [`P2-01`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L74) | 20.83% | **PASS** |
+| DEMO-06 | `0` | Section 1 (Core Problem) | Number of fixed thresholds satisfying <10% IRR | [`P2-03`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L76) | NO (zero thresholds) | **PASS** |
+| DEMO-07 | `0.92` | Section 2 (Safe Reuse) | TierRouter AUTO_REUSE similarity floor | [`C-06`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L34) | 0.92 | **PASS** |
+| DEMO-08 | `0.90` | Section 2 (Safe Reuse) | TierRouter AUTO_REUSE confidence floor | [`C-07`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L35) | 0.90 | **PASS** |
+| DEMO-09 | `0.50` | Section 2 (Safe Reuse) | TierRouter BYPASS similarity ceiling | [`C-08`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L36) | 0.50 | **PASS** |
+| DEMO-10 | `0.80` | Section 2 (Safe Reuse) | TierRouter BYPASS confidence ceiling | [`C-09`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L37) | 0.80 | **PASS** |
+| DEMO-11 | `0.957` | Section 2 (Safe Reuse) | Query 3 (LT-CS-003) cosine similarity to seed | Telemetry `data/load_test_telemetry.json` idx 2 | sim = 0.957 | **PASS** |
+| DEMO-12 | `1.00` | Section 2 (Safe Reuse) | Query 3 stability confidence | Telemetry `data/load_test_telemetry.json` idx 2 | conf = 1.00 | **PASS** |
+| DEMO-13 | `99.20% to 99.84%` | Section 2 (Safe Reuse) | Latency reduction range across all 3 load test runs | [`LAT-05`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L193) | 99.20% to 99.84% | **PASS** |
+| DEMO-14 | `0.688` | Section 3 (Near-Duplicate) | Query 6 (LT-CS-010) similarity to Dijkstra | Telemetry `data/load_test_telemetry.json` idx 9 | sim = 0.688 | **PASS** |
+| DEMO-15 | `175` | Section 4 (Blind Eval) | Phase 6 blind evaluation dataset size | [`D-09`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L60), [`P6-01`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L154) | 175 entries across 7 domains | **PASS** |
+| DEMO-16 | `7` domains | Section 4 (Blind Eval) | Phase 6 domain coverage | [`D-09`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L60), [`P6-01`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L154) | 7 domains | **PASS** |
+| DEMO-17 | `fc35744` | Section 4 (Blind Eval) | Phase 6 blind dataset seal commit hash | [`P6-02`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L155) | `fc35744` | **PASS** |
+| DEMO-18 | `8` hits (`1` auto, `7` judge) | Section 4 (Blind Eval) | Phase 6 cache hits breakdown | [`P6-03`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L158) | 8 total (1 auto, 7 judge-approved) | **PASS** |
+| DEMO-19 | `0` FP / `0.00%` | Section 4 (Blind Eval) | Phase 6 false positives and hazard rate | [`P6-03`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L158), [`P6-04`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L159) | FP=0, IRR_cache = 0.00% | **PASS** |
+| DEMO-20 | `86.39% to 89.71%` | Section 4 (Blind Eval) | Local resolution rate range across runs | [`LRR-04`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L205) | 86.39% to 89.71% | **PASS** |
+| DEMO-21 | `[0.00%, 36.94%]` | Section 4 (Blind Eval) | Phase 6 exact 95% Clopper-Pearson CI | [`P6-05`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L160) | [0.00%, 36.94%] (k=0, n=8) | **PASS** |
+| DEMO-22 | `338` queries | Section 4 (Blind Eval) | Phase 5 scaled validation dataset size | [`D-08`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L59) | 338 queries | **PASS** |
+| DEMO-23 | `n=14` hits | Section 4 (Blind Eval) | Phase 5 scaled run corrected hits | [`P5B-02`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L135), [`POOL-02`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L175) | n=14 hits | **PASS** |
+| DEMO-24 | `n=22` hits | Section 4 (Blind Eval) | Pooled sample total hit count | [`POOL-02`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L175) | n = 22 | **PASS** |
+| DEMO-25 | `k=0` errors | Section 4 (Blind Eval) | Pooled sample false positive count | [`POOL-01`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L174) | k = 0 | **PASS** |
+| DEMO-26 | `15.44%` | Section 4 (Blind Eval) | Pooled exact 95% Clopper-Pearson upper bound | [`POOL-03`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L176) | 15.44% exact upper bound | **PASS** |
+| DEMO-27 | `n >= 36` hits | Section 4 (Blind Eval) | Mathematical hit floor to clear 10% ceiling | [`P4-04`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L105), [`POOL-06`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L178), [`KL-02`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L214) | n >= 36 hits | **PASS** |
+
+---
+
+## 4. Negative Constraints and Rule Compliance Audit
 
 | Constraint / Rule | Verification Check | Audit Status |
 | :--- | :--- | :---: |
-| **No Stale Reports Cited** | Neither `comprehensive_project_status_report.md` nor `Adaptive_Agentic_Semantic_Cache_Master_Report.pdf` is cited anywhere in `README.md`, `DESIGN.md`, or `docs/phase7c_claim_check.md`. | **COMPLIANT** |
+| **No Stale Reports Cited** | Neither `comprehensive_project_status_report.md` nor `Adaptive_Agentic_Semantic_Cache_Master_Report.pdf` is cited anywhere in `README.md`, `DESIGN.md`, `demo/SCRIPT.md`, or `docs/phase7c_claim_check.md`. | **COMPLIANT** |
 | **Direct Work on `main`** | All commits made directly to `main`; zero branches created or checked out. | **COMPLIANT** |
-| **Omission of 8.04% Sensitivity** | The 8.04% three-run sensitivity figure is completely omitted from `README.md`. | **COMPLIANT** |
+| **Omission of 8.04% Sensitivity** | The 8.04% three-run sensitivity figure is completely omitted from `README.md` and `demo/SCRIPT.md`. | **COMPLIANT** |
 | **Accurate Judge IRR Characterization** | The Phase 3 judge $IRR_{\text{cache}} = 8.33\%$ is explicitly framed as same-set calibration on 120 pairs with CI [0.21%, 38.48%], and is not claimed as a blind safety result. | **COMPLIANT** |
 | **Latency Speedup Range & Ordering** | Latency reduction (99.20% to 99.84%) is stated as the first headline result, directly followed by the $n=1$ AUTO_REUSE caveat ([`LAT-06`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L192)). | **COMPLIANT** |
 | **Blind Safety & Pooled Ceiling** | Blind evaluation 0 FP ($IRR_{\text{cache}} = 0.00\%$, CI [0.00%, 36.94%]) and pooled CI [0.00%, 15.44%] are both stated clearly, with explicit acknowledgement that pooled 15.44% remains above the 10% ceiling. | **COMPLIANT** |
-| **Tier Router Logic As Coded** | TierRouter rules in `DESIGN.md` are documented as coded (`sim >= 0.92` AND `conf >= 0.90` for AUTO_REUSE; bypass ceilings `sim < 0.50` or `conf < 0.80`), rejecting similarity-only routing descriptions. | **COMPLIANT** |
+| **Tier Router Logic As Coded** | TierRouter rules in `DESIGN.md` and `demo/SCRIPT.md` are documented as coded (`sim >= 0.92` AND `conf >= 0.90` for AUTO_REUSE; bypass ceilings `sim < 0.50` or `conf < 0.80`), rejecting similarity-only routing descriptions. | **COMPLIANT** |
 | **Adaptive Mechanism Status** | Stated candidly that per-category thresholds never moved off 0.85 fallback ([`P4-01`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L102), [`KL-11`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L221)) due to the mathematical hit floor ($n \ge 36$; [`P4-04`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L105)). | **COMPLIANT** |
 | **No Unledgered Metrics** | Cost-avoidance and unverified metrics (e.g., test pass counts, fabricated dataset totals) were audited and removed from documentation. | **COMPLIANT** |
 | **Gitleaks Protection Pre-Push** | `gitleaks protect --staged` run and passed with 0 leaks before every git push. | **COMPLIANT** |
+
