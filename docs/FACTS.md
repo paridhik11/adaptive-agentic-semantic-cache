@@ -1,4 +1,4 @@
-﻿# FACTS.md — Verified Fact Ledger
+# FACTS.md — Verified Fact Ledger
 
 > **Purpose:** Single authoritative ledger for `adaptive-agentic-semantic-cache`.
 > Every later document must cite a row from this file by row label.
@@ -39,9 +39,9 @@ Facts verified by recomputation are marked **`[RECOMPUTED]`**.
 | C-11 | Adaptive engine minimum minority class N gate | 10 **`[CODE]`** | `src/decision/adaptive_threshold_engine.py` line 79 | `grep MINIMUM_MINORITY_CLASS_N src/decision/adaptive_threshold_engine.py` |
 | C-12 | Adaptive engine global fallback threshold | 0.85 **`[CODE]`** | `src/decision/adaptive_threshold_engine.py` line 80 | `grep FALLBACK_THRESHOLD src/decision/adaptive_threshold_engine.py` |
 | C-13 | Safety ceiling IRR_cache | 0.10 (10%) **`[CODE]`** | `src/decision/adaptive_threshold_engine.py` line 82 | `grep SAFETY_CEILING_IRR src/decision/adaptive_threshold_engine.py` |
-| C-14 | Production LLM judge model (Phase 3 onward) | `nvidia/nemotron-3-super-120b-a12b:free` via OpenRouter **`[DOC]`** | `docs/phase3_judge_call_walkthrough.md` ss7.2; `docs/phase4_walkthrough.md` ss2 | `grep nemotron src/decision/judge_call.py` |
-| C-15 | Initial judge model attempted then abandoned | `gemini-2.5-flash` (Google AI Studio free tier; 17/32 pairs evaluated before daily RPD=20 quota exhausted) **`[DOC]`** | `docs/phase3_judge_call_walkthrough.md` ss1.1 | Re-read that doc |
-| C-16 | Judge fail-closed fallback | Always returns decision=BYPASS, is_safe=False, confidence=0.0 on any error **`[CODE]`** | `docs/phase3_judge_call_walkthrough.md` ss1.4; `src/decision/judge_call.py` | `grep BYPASS src/decision/judge_call.py` |
+| C-14 | Production LLM judge model (Phase 3 onward) | `nvidia/nemotron-3-super-120b-a12b:free` via OpenRouter **`[CODE]`** | `src/decision/judge_call.py` line 34: `DEFAULT_JUDGE_MODEL: str = "nvidia/nemotron-3-super-120b-a12b:free"` | `grep DEFAULT_JUDGE_MODEL src/decision/judge_call.py` |
+| C-15 | Initial judge model attempted then abandoned | `gemini-2.5-flash` (Google AI Studio free tier; 17/32 pairs evaluated before daily RPD=20 quota exhausted) **`[CODE]`** | `src/decision/judge_call.py` line 36: `GEMINI_DEFAULT_JUDGE_MODEL: str = "gemini-2.5-flash"` | `grep GEMINI_DEFAULT_JUDGE_MODEL src/decision/judge_call.py` |
+| C-16 | Judge fail-closed fallback | On ANY failure, returns `decision=BYPASS`, `is_safe=False`, `confidence=0.0`, `fallback_triggered=True`. Never fails open. **`[CODE]`** | `src/decision/judge_call.py` lines 8–14 (docstring invariant); line 356 (runtime contract); lines 391–405 (missing-key return path) | `grep -n "fallback_triggered=True" src/decision/judge_call.py` |
 
 ---
 
@@ -84,12 +84,12 @@ Facts verified by recomputation are marked **`[RECOMPUTED]`**.
 
 | # | Fact | Claim / Value | Source file + location | How to re-run |
 | :---: | :--- | :--- | :--- | :--- |
-| P3-01 | Phase 3 non-LLM decision step overall IRR_cache (same-set N=120) | **52.17%** (12 FP / 23 hits) — DISASTROUS FAILURE **`[DOC]`** | `docs/phase3_walkthrough.md` ss3.2 table | re-run phase 3 evaluation |
+| P3-01 | Phase 3 non-LLM decision step overall IRR_cache (same-set N=120) | **52.17%** (12 FP / 23 hits) — non-LLM linear combination proved inadequate **`[DOC]`** | `docs/phase3_walkthrough.md` ss3.2 table | re-run phase 3 evaluation |
 | P3-02 | Phase 3 AMBIGUOUS-tier IRR_cache (non-LLM) | **57.1%** (12 FP / 21 hits in AMBIGUOUS band) **`[DOC]`** | `docs/phase3_walkthrough.md` ss3.3 | Same as P3-01 |
 | P3-03 | Phase 3 AUTO-REUSE tier IRR_cache | **0.00%** (TP=2, FP=0) **`[DOC]`** | `docs/phase3_walkthrough.md` ss3.3 | Same as P3-01 |
 | P3-04 | Phase 3 Gemini judge (gemini-2.5-flash) overall IRR_cache (partial: 17/32 evaluated, N=120) | **0.00%** (FP=0 / 5 hits; 15 pairs fell back to BYPASS on daily quota) **`[DOC]`** | `docs/phase3_judge_call_walkthrough.md` ss2 and ss6.1 | Blocked by RPD=20 daily quota |
 | P3-05 | Phase 3 Gemini judge overall ARR (N=120) | **4.17%** (5 hits / 120 pairs) **`[DOC]`** | `docs/phase3_judge_call_walkthrough.md` ss2 comparison table | — |
-| P3-06 | Phase 3 OpenRouter judge (nemotron-3-super-120b:free) overall IRR_cache (full 32/32, N=120) | **8.33%** (1 FP / 12 hits) — clears <10% ceiling **`[DOC]`** | `docs/phase3_judge_call_walkthrough.md` ss2 comparison table and ss7.8 | `scripts/run_openrouter_eval.py` (requires valid key) |
+| P3-06 | Phase 3 OpenRouter judge (nemotron-3-super-120b:free) overall IRR_cache (full 32/32, N=120) | **8.33%** (1 FP / 12 hits) — clears <10% ceiling; 95% CP CI **[0.21%, 38.48%]** (k=1, n=12, recomputed); same-set point estimate, not blind **`[DOC][RECOMPUTED]`** | `docs/phase3_judge_call_walkthrough.md` ss2 comparison table and ss7.8; CI recomputed via scipy | `python -c "from scipy.stats import beta; print(beta.ppf(0.025,1,12)*100, beta.ppf(0.975,2,11)*100)"` |
 | P3-07 | Phase 3 OpenRouter judge overall ARR (N=120) | **10.00%** (12 hits / 120 pairs) **`[DOC]`** | `docs/phase3_judge_call_walkthrough.md` ss2 comparison table | Same as P3-06 |
 | P3-08 | Tier distribution on 120 pairs (Phase 3) | AUTO_REUSE=2 (1.7%), AMBIGUOUS=32 (26.7%), BYPASS=86 (71.7%) **`[DOC]`** | `docs/phase3_walkthrough.md` ss3.1 | Same as P3-01 |
 
@@ -112,18 +112,22 @@ Facts verified by recomputation are marked **`[RECOMPUTED]`**.
 
 ### 6.1 — N=70 Pilot Run
 
+Telemetry source: `data/load_test_telemetry.json` (raw, reconciled). AUTO_REUSE TP=20, AMBIGUOUS TP=2, total TP=22, FP=0.
+
 | # | Fact | Claim / Value | Source file + location | How to re-run |
 | :---: | :--- | :--- | :--- | :--- |
 | P5A-01 | Total queries | 70 **`[DOC]`** | `docs/phase5_walkthrough.md` ss3.2 | `python scripts/run_load_test.py` |
-| P5A-02 | Cache hits (n) | **22** (TP=22, FP=0) **`[DOC]`** | `docs/phase5_walkthrough.md` ss4.5 | Same |
+| P5A-02 | Cache hits (n); breakdown by path | **22** total (AUTO_REUSE TP=20, AMBIGUOUS judge-approved TP=2), FP=0 **`[RECOMPUTED]`** | `data/load_test_telemetry.json` outcome_type and tier counts | `python -c "import json; d=json.load(open('data/load_test_telemetry.json')); from collections import Counter; print(Counter((e['tier'],e['outcome_type']) for e in d if e['outcome_type']=='TP'))"` |
 | P5A-03 | Empirical IRR_cache | **0.00%** (k=0 FP / n=22 hits) **`[DOC]`** | `docs/phase5_walkthrough.md` ss4.5 | Same |
 | P5A-04 | 95% Clopper-Pearson CI on IRR_cache | **[0.00%, 15.44%]** (k=0, n=22) **`[DOC][RECOMPUTED]`** | `docs/phase5_walkthrough.md` ss4.5; scipy: beta.ppf(0.975, 1, 22) = 0.1544 | `python -c "from scipy.stats import beta; print(f'{beta.ppf(0.975,1,22)*100:.2f}%')"` |
 | P5A-05 | Local resolution rate | **87.14%** (61/70 without remote judge call) **`[DOC]`** | `docs/phase5_walkthrough.md` ss4.2 | Same |
-| P5A-06 | AUTO_REUSE mean latency | **19.18 ms** **`[DOC]`** | `docs/phase5_walkthrough.md` ss4.3 | Same |
+| P5A-06 | AUTO_REUSE mean latency | **19.18 ms** (n=20) **`[DOC]`** | `docs/phase5_walkthrough.md` ss4.3 | Same |
 | P5A-07 | AMBIGUOUS judge mean latency | **9,291.35 ms** **`[DOC]`** | `docs/phase5_walkthrough.md` ss4.3 | Same |
-| P5A-08 | Latency speedup (AUTO_REUSE vs AMBIGUOUS) | **484.5x** (99.79% reduction) **`[DOC]`** | `docs/phase5_walkthrough.md` ss4.3 | Same |
+| P5A-08 | Latency speedup (AUTO_REUSE vs AMBIGUOUS) | **484.5x** (99.79% reduction; 1 − 19.18/9291.35) **`[DOC][RECOMPUTED]`** | `docs/phase5_walkthrough.md` ss4.3 | Same |
 
 ### 6.2 — N=338 Scaled Run (new_dataset_v3.json)
+
+Telemetry source: `data/scaled_load_test_telemetry_corrected.json` (raw, reconciled). AUTO_REUSE TP=1, AMBIGUOUS TP=13, total TP=14, FP=0.
 
 | # | Fact | Claim / Value | Source file + location | How to re-run |
 | :---: | :--- | :--- | :--- | :--- |
@@ -136,25 +140,28 @@ Facts verified by recomputation are marked **`[RECOMPUTED]`**.
 | P5B-07 | Local resolution rate (N=338) | **86.39%** (292/338 without remote judge) **`[DOC]`** | `docs/phase5_walkthrough.md` ss9.3 | — |
 | P5B-08 | AUTO_REUSE mean latency (N=338, n=1 only) | **61.91 ms** **`[DOC]`** | `docs/phase5_walkthrough.md` ss9.4 | — |
 | P5B-09 | AMBIGUOUS judge mean latency (N=338) | **7,715.62 ms** (46 calls) **`[DOC]`** | `docs/phase5_walkthrough.md` ss9.4 | — |
-| P5B-10 | Latency speedup (N=338) | **124.6x** **`[DOC]`** | `docs/phase5_walkthrough.md` ss9.4 | — |
+| P5B-10 | Latency speedup (N=338) | **124.6x** (99.20% reduction; 1 − 61.91/7715.62) **`[DOC][RECOMPUTED]`** | `docs/phase5_walkthrough.md` ss9.4 | — |
 
 ---
 
 ## 7. Phase 6 — Blind Evaluation
 
+Telemetry source: `data/phase6_telemetry.json` (raw, reconciled). AUTO_REUSE TP=1, AMBIGUOUS judge-approved TP=7, total TP=8, FP=0.
+AMBIGUOUS tier invoked 18 times. **DISPUTED:** walkthrough ss6 says AMBIGUOUS breakdown TP=6, TN=10, FN=2, FP=0; raw telemetry shows TP=7, TN=9, FN=2, FP=0. Total hit count n=8 is consistent in both. Row P6-08 reflects raw telemetry.
+
 | # | Fact | Claim / Value | Source file + location | How to re-run |
 | :---: | :--- | :--- | :--- | :--- |
 | P6-01 | N | **175** entries across 7 domains **`[DOC]`** | `docs/phase6_walkthrough.md` ss1.1 | `python -c "import json; d=json.load(open('data/raw/phase6_blind_eval_dataset.json')); print(len(d))"` |
 | P6-02 | Seal commit hash (dataset committed before run) | `fc35744` **`[DOC]`** | `docs/phase6_walkthrough.md` ss1.1 | `git show fc35744 --stat` |
-| P6-03 | Hit count (n) | **8** (TP=8, FP=0) **`[DOC]`** | `docs/phase6_walkthrough.md` ss3.5 | `python scripts/run_new_dataset_load_test.py --dataset data/raw/phase6_blind_eval_dataset.json --output data/phase6_telemetry.json` |
+| P6-03 | Hit count (n); breakdown by path | **8** total (AUTO_REUSE TP=1 → p6_cs_fol_01; AMBIGUOUS judge-approved TP=7), FP=0 **`[RECOMPUTED]`** | `data/phase6_telemetry.json` outcome_type and tier counts | `python -c "import json; d=json.load(open('data/phase6_telemetry.json')); print(sum(1 for e in d if e['outcome_type']=='TP'))"` |
 | P6-04 | Empirical IRR_cache | **0.00%** (k=0 FP / n=8 hits) **`[DOC]`** | `docs/phase6_walkthrough.md` ss3.5 | Same as P6-03 |
 | P6-05 | 95% CP CI on IRR_cache | **[0.00%, 36.94%]** (k=0, n=8) **`[DOC][RECOMPUTED]`** | `docs/phase6_walkthrough.md` ss3.5; scipy: beta.ppf(0.975, 1, 8) = 0.3694 | `python -c "from scipy.stats import beta; print(f'{beta.ppf(0.975,1,8)*100:.2f}%')"` |
 | P6-06 | Local resolution rate | **89.71%** (no judge call) **`[DOC]`** | `docs/phase6_walkthrough.md` ss3.1 | Same as P6-03 |
-| P6-07 | Judge calls invoked | **18** (of 27 potential AMBIGUOUS pairs) **`[DOC]`** | `docs/phase6_walkthrough.md` ss3.1 | Same as P6-03 |
-| P6-08 | Judge FP on AMBIGUOUS batch (18 calls) | **0** (TP=6, TN=10, FN=2, FP=0) **`[DOC]`** | `docs/phase6_walkthrough.md` ss6 | Same as P6-03 |
-| P6-09 | AUTO_REUSE mean latency | **10.56 ms** (n=1) **`[DOC]`** | `docs/phase6_walkthrough.md` ss3.3 | Same as P6-03 |
+| P6-07 | Judge calls invoked (AMBIGUOUS tier entries) | **18** (raw telemetry: 18 AMBIGUOUS-tier entries; of 27 potential AMBIGUOUS pairs) **`[RECOMPUTED]`** | `data/phase6_telemetry.json` tier counts | `python -c "import json; d=json.load(open('data/phase6_telemetry.json')); print(sum(1 for e in d if e['tier']=='AMBIGUOUS'))"` |
+| P6-08 | Judge-tier outcome breakdown (18 calls) **DISPUTED** | Raw telemetry: TP=7, TN=9, FN=2, FP=0. Walkthrough ss6: TP=6, TN=10, FN=2, FP=0. Hit count n=8 consistent. **DISPUTED between raw and walkthrough on TP/TN split.** **`[RECOMPUTED]`** | `data/phase6_telemetry.json` vs `docs/phase6_walkthrough.md` ss6 | See tier reconciliation above |
+| P6-09 | AUTO_REUSE mean latency | **10.56 ms** (n=1; query p6_cs_fol_01) **`[DOC][RECOMPUTED]`** | `docs/phase6_walkthrough.md` ss3.3; confirmed by `data/phase6_telemetry.json` | Same as P6-03 |
 | P6-10 | AMBIGUOUS judge mean latency | **6,577.94 ms** (n=18) **`[DOC]`** | `docs/phase6_walkthrough.md` ss3.3 | Same as P6-03 |
-| P6-11 | Latency speedup (AUTO_REUSE vs AMBIGUOUS) | **622.7x** (99.84% reduction) **`[DOC]`** | `docs/phase6_walkthrough.md` ss3.3 | — |
+| P6-11 | Latency speedup (AUTO_REUSE vs AMBIGUOUS) | **622.7x** (99.84% reduction; 1 − 10.56/6577.94) **`[DOC][RECOMPUTED]`** | `docs/phase6_walkthrough.md` ss3.3 | — |
 
 ---
 
@@ -164,23 +171,25 @@ Facts verified by recomputation are marked **`[RECOMPUTED]`**.
 | :---: | :--- | :--- | :--- | :--- |
 | POOL-01 | Pooled k (total FP: Phase 5 corrected N=338 + Phase 6 blind) | **k = 0** **`[DOC]`** | `docs/phase6_walkthrough.md` ss7.2; `docs/phase5_walkthrough.md` ss9.6 corrected | — |
 | POOL-02 | Pooled n (Phase 5 corrected n=14 + Phase 6 n=8) | **n = 22** **`[DOC]`** | `docs/phase6_walkthrough.md` ss7.2 | — |
-| POOL-03 | Pooled 95% CI upper bound (Clopper-Pearson exact, k=0, n=22) | **15.44%** **`[RECOMPUTED]`** | scipy.stats.beta.ppf(0.975, 1, 22) = 0.15438 -> 15.44%. Computed 2026-10-01. | `python -c "from scipy.stats import beta; print(f'{beta.ppf(0.975,1,22)*100:.2f}%')"` |
-| POOL-04 | Agreement with user independent calculation | **CONFIRMED** — user gives 15.44%; scipy gives 15.44%. Exact agreement. | — | — |
-| POOL-05 | CI method | Exact two-sided 95% Clopper-Pearson (Beta distribution inversion). CI_upper = Beta_quantile(0.975, k+1, n-k). CI_lower = 0.00% trivially since k=0. **`[DOC]`** | `docs/phase4_walkthrough.md` ss5.1 formula | — |
-| POOL-06 | Does pooled CI clear the 10% safety ceiling? | **NO** — 15.44% > 10%. n >= 36 hits with k=0 required. **`[DOC][RECOMPUTED]`** | `docs/phase4_walkthrough.md` ss8; `docs/phase5_walkthrough.md` ss4.5 | — |
+| POOL-03 | Pooled 95% CI upper bound (Clopper-Pearson exact, k=0, n=22) | **15.44%** **`[RECOMPUTED]`** | scipy.stats.beta.ppf(0.975, 1, 22) = 0.15438. Computed 2026-10-01. | `python -c "from scipy.stats import beta; print(f'{beta.ppf(0.975,1,22)*100:.2f}%')"` |
+| POOL-04 | CI method | Exact two-sided 95% Clopper-Pearson (Beta distribution inversion). CI_upper = Beta_quantile(0.975, k+1, n-k). CI_lower = 0.00% trivially since k=0. **`[DOC]`** | `docs/phase4_walkthrough.md` ss5.1 formula | — |
+| POOL-05 | Does pooled CI clear the 10% safety ceiling? | **NO** — 15.44% > 10%. n >= 36 hits with k=0 required to reach the ceiling. **`[DOC][RECOMPUTED]`** | `docs/phase4_walkthrough.md` ss8; `docs/phase5_walkthrough.md` ss4.5 | — |
+| POOL-06 | Sensitivity: all three runs pooled (N=70 pilot + N=338 corrected + Phase 6 blind), k=0, n=44 | **CI_upper = 8.04%** (clears 10% ceiling) **NOT BLIND: pilot was development-stage; not a headline figure.** **`[RECOMPUTED]`** | `data/load_test_telemetry.json` (n=22) + `data/scaled_load_test_telemetry_corrected.json` (n=14) + `data/phase6_telemetry.json` (n=8) | `python -c "from scipy.stats import beta; print(f'{beta.ppf(0.975,1,44)*100:.2f}%')"` |
 
 ---
 
 ## 9. Latency Reduction Range Across All Three Runs
 
-| # | Run | AUTO_REUSE mean latency | AMBIGUOUS judge mean latency | Speedup | Source |
-| :---: | :--- | :---: | :---: | :---: | :--- |
-| LAT-01 | Phase 5 N=70 pilot | 19.18 ms | 9,291.35 ms | **484.5x** | `docs/phase5_walkthrough.md` ss4.3 |
-| LAT-02 | Phase 5 N=338 scaled | 61.91 ms (n=1) | 7,715.62 ms | **124.6x** | `docs/phase5_walkthrough.md` ss9.4 |
-| LAT-03 | Phase 6 blind N=175 | 10.56 ms (n=1) | 6,577.94 ms | **622.7x** | `docs/phase6_walkthrough.md` ss3.3 |
-| LAT-04 | Speedup range across all three runs | — | — | **124.6x to 622.7x** | Rows LAT-01 to LAT-03 |
-| LAT-05 | Latency reduction percentage range | — | — | **99.79% to 99.84%** | From speedup factors |
-| LAT-06 | Caveat: AUTO_REUSE n=1 in scaled runs | N=338 and N=175 each produced exactly 1 AUTO_REUSE hit; single-point latency is unstable. Treat N=70 (n=20) mean as most reliable estimate. | — | — | `docs/phase5_walkthrough.md` ss9.3; `docs/phase6_walkthrough.md` ss3.2 |
+Reduction % computed as `1 - (AUTO_REUSE_mean_ms / AMBIGUOUS_mean_ms)` from raw walkthrough means. N=338 walkthrough cited 99.79% (matching N=70); corrected value is 99.20%.
+
+| # | Run | AUTO_REUSE mean | AMBIGUOUS mean | Speedup | Reduction % | Source |
+| :---: | :--- | :---: | :---: | :---: | :---: | :--- |
+| LAT-01 | Phase 5 N=70 pilot | 19.18 ms (n=20) | 9,291.35 ms | **484.5x** | **99.79%** | `docs/phase5_walkthrough.md` ss4.3 |
+| LAT-02 | Phase 5 N=338 scaled | 61.91 ms (n=1) | 7,715.62 ms | **124.6x** | **99.20%** | `docs/phase5_walkthrough.md` ss9.4 |
+| LAT-03 | Phase 6 blind N=175 | 10.56 ms (n=1) | 6,577.94 ms | **622.7x** | **99.84%** | `docs/phase6_walkthrough.md` ss3.3 |
+| LAT-04 | Speedup range across all three runs | — | — | **124.6x to 622.7x** | — | Rows LAT-01 to LAT-03 |
+| LAT-05 | Latency reduction % range (corrected) | — | — | — | **99.20% to 99.84%** | Recomputed from LAT-01..03 raw means; N=338 corrected from prior 99.79% |
+| LAT-06 | Caveat: AUTO_REUSE n=1 in scaled runs | N=338 and N=175 each produced exactly 1 AUTO_REUSE hit (confirmed by raw telemetry). N=70 produced n=20 AUTO_REUSE hits and is the most reliable latency estimate. | — | — | — | `data/scaled_load_test_telemetry_corrected.json`; `data/phase6_telemetry.json`; `docs/phase5_walkthrough.md` ss9.3 |
 
 ---
 
@@ -200,8 +209,8 @@ Facts verified by recomputation are marked **`[RECOMPUTED]`**.
 | # | Limitation | Detail | Source |
 | :---: | :--- | :--- | :--- |
 | KL-01 | **6 uncorrected near-duplicate collisions in new_dataset_v3.json** | Phase 5 ss9.8 identified 27 pairwise collision candidates. 10 were surfaced as FPs and relabeled. Six additional near-duplicates remained undetected during execution (masked by BYPASS or StabilityClassifier uncertainty override): cs_552/cs_005, fin_548/fin_006, fin_550/fin_003, sys_548/sys_004, sci_544/sci_002, fin_546/fin_005. These were classified TN and not relabeled. The uncorrected records remain in data/raw/new_dataset_v3.json. | `docs/phase5_walkthrough.md` ss9.8 |
-| KL-02 | **Underpowered CIs throughout** | Minimum n >= 36 hits with k=0 FP is required to prove IRR_cache <= 10% at 95% Clopper-Pearson confidence. No single run achieved this: N=70 has n=22, N=338 corrected has n=14, Phase 6 has n=8, pooled has n=22. All CIs are mathematically underpowered and cannot certify the 10% safety ceiling. | `docs/phase4_walkthrough.md` ss8; `docs/phase5_walkthrough.md` ss4.5; `docs/phase6_walkthrough.md` ss3.5 |
-| KL-03 | **Free-tier judge model** | All production LLM judge calls use nvidia/nemotron-3-super-120b-a12b:free via OpenRouter free tier. Subject to: (a) 50 RPD account limit, (b) provider-level edge caching (12 of 46 calls in Phase 5 N=338 returned sub-300ms from cache, not counted in OpenRouter billing dashboard), (c) possible model version updates at OpenRouter without notice. Paid-tier or self-hosted models were not evaluated. | `docs/phase3_judge_call_walkthrough.md` ss7.3; `docs/phase4_walkthrough.md` ss4.3; `docs/phase5_walkthrough.md` ss9.2 |
+| KL-02 | **Underpowered CIs throughout** | Minimum n >= 36 hits with k=0 FP is required to prove IRR_cache <= 10% at 95% Clopper-Pearson confidence. No single blind run achieved this: N=338 corrected has n=14, Phase 6 has n=8, pooled blind-only has n=22. All blind CIs are underpowered. The three-run sensitivity (POOL-06, n=44) clears the ceiling but includes the development-stage N=70 pilot and is not a headline figure. | `docs/phase4_walkthrough.md` ss8; `docs/phase5_walkthrough.md` ss4.5; `docs/phase6_walkthrough.md` ss3.5 |
+| KL-03 | **Free-tier judge model** | All production LLM judge calls use nvidia/nemotron-3-super-120b-a12b:free via OpenRouter free tier. Subject to: (a) 50 RPD account limit, (b) provider-level edge caching, (c) possible model version updates at OpenRouter without notice. Paid-tier or self-hosted models were not evaluated. | `docs/phase3_judge_call_walkthrough.md` ss7.3; `docs/phase4_walkthrough.md` ss4.3; `docs/phase5_walkthrough.md` ss9.2 |
 | KL-04 | **Dual-role bias** | nvidia/nemotron-3-super-120b-a12b:free was used both as the production ambiguous-tier decision judge (Phase 3 onward) AND as the ground-truth label generator for Phase 4 calibration data. Any systematic inductive bias propagates into both production inference and the training signal, without an independent external referee. | `docs/phase4_walkthrough.md` ss4.2 |
 | KL-05 | **No blind held-out set for the cache-reuse pipeline** | The StabilityClassifier has a held-out final test set (n=60). The cache-reuse decision pipeline (TierRouter thresholds, similarity threshold, LLMJudge logic) had never been evaluated on data structurally unavailable to its designers before Phase 6. Phase 6 is the first genuinely blind evaluation but uses structured synthetic benchmarks, not organic query logs. | `docs/phase5_walkthrough.md` ss8; `docs/phase6_walkthrough.md` ss7.3 |
 | KL-06 | **Same-set evaluation for Phases 2 to 4** | All of Phase 2, Phase 3, and Phase 4 were evaluated on query_pair_reuse_benchmark.json (N=120), which also informed boundary selection and calibration decisions. Results describe within-sample consistency, not generalization. | `docs/phase3_walkthrough.md` ss2 framing rule; `docs/phase3_judge_call_walkthrough.md` ss1 framing rule |
@@ -213,30 +222,30 @@ Facts verified by recomputation are marked **`[RECOMPUTED]`**.
 
 ## Appendix A — Recomputed Clopper-Pearson Summary
 
-All values computed 2026-10-01 with scipy.stats.beta.ppf.
-Method: exact two-sided 95% CI, upper bound = Beta_quantile(0.975, k+1, n-k).
+All values computed 2026-10-01 with `scipy.stats.beta.ppf`.
+Method: exact two-sided 95% CI, upper bound = `Beta_quantile(0.975, k+1, n-k)`.
 
-`	ext
+```text
 scipy.stats.beta.ppf(0.975, k+1, n-k) with k=0:
 
   n= 8  -> CI_upper = 36.94%  (Phase 6 blind)
   n=14  -> CI_upper = 23.16%  (Phase 5 N=338 corrected)
-  n=22  -> CI_upper = 15.44%  (Phase 5 N=70 pilot; also pooled Phase5+Phase6)
-  n=30  -> CI_upper = 11.57%  (hypothetical simple sum n=22+8, NOT the documented pooled claim)
+  n=22  -> CI_upper = 15.44%  (pooled: Phase 5 corrected n=14 + Phase 6 n=8)
+  n=44  -> CI_upper =  8.04%  (three-run sensitivity: all runs pooled; NOT BLIND)
 
-Pooled n=22 (Phase 5 corrected n=14 + Phase 6 n=8), k=0:
-  CI_upper = 15.44%
-
-User independent calculation: 15.44%
-Scipy result:                  15.44%
-STATUS: CONFIRMED — exact agreement.
-`
+P3-06 Clopper-Pearson CI for k=1, n=12 (OpenRouter same-set):
+  lower = beta.ppf(0.025, k,   n-k+1) = beta.ppf(0.025, 1, 12) = 0.21%
+  upper = beta.ppf(0.975, k+1, n-k  ) = beta.ppf(0.975, 2, 11) = 38.48%
+  CI = [0.21%, 38.48%]
+```
 
 > [!NOTE]
 > The "pooled n=22" follows Phase 6 ss7.2 definition: Phase 5 N=338 corrected (n=14 hits)
 > + Phase 6 blind (n=8 hits) = 22 total hits. This is NOT the same experiment as the
 > Phase 5 N=70 pilot (which also happened to produce n=22 hits). Both give CI_upper=15.44%
 > because the formula depends only on n and k, but they are distinct experiments.
+> The N=70 pilot was a development-stage run (design-informed, not blind) and is NOT
+> included in the headline pooled CI (POOL-02/03).
 
 ---
 
