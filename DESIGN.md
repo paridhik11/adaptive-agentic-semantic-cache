@@ -12,7 +12,7 @@ In naive implementations, similarity-only semantic caching relies entirely on th
 
 Naive semantic caching fails due to fundamental hazards:
 
-1. **Temporal Volatility:** Queries concerning real-time information (e.g., weather conditions, stock quotations, system operational metrics) may achieve near-perfect (or exact 1.00) cosine similarity with previous queries. Reusing cached answers serves stale or invalid data to autonomous agents, risking silent cascading failures.
+1. **Temporal Volatility:** Queries concerning real-time information (e.g., weather conditions, stock quotations, system operational metrics) may achieve near-perfect or identical cosine similarity with previous queries. Reusing cached answers serves stale or invalid data to autonomous agents, risking silent cascading failures.
 2. **Semantic Inversion and Traps:** Embeddings (such as sentence-transformers) capture lexical and thematic overlap, but frequently fail to distinguish polarity inversions or parameter reversals. For example, contrasting units (`radians -> degrees` versus `degrees -> radians`) can produce high cosine similarities exceeding the AUTO_REUSE floor (0.92, [`FACTS.md` row C-06](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L34)) despite requiring completely opposite responses.
 3. **Failure of Global Fixed Thresholds:** In our Phase 2 sweep across the 120-pair reuse benchmark ([`FACTS.md` row D-01](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L52)), every fixed threshold producing any cache hits violated the pre-stated safety criterion of $IRR_{\text{cache}} < 10\%$ ([`FACTS.md` row P2-02](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L75)). The lowest hazard rate observed was **20.83%** (5 false positives out of 24 hits; [`FACTS.md` row P2-01](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L74)) at threshold 0.85 ([`FACTS.md` row P2-04](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L77)). Fixed thresholds cannot separate safe paraphrases from hazardous semantic traps.
 
@@ -40,7 +40,7 @@ flowchart TD
     
     TR -- "AUTO_REUSE Tier\nsim >= 0.92 AND conf >= 0.90\nAND effective_decision == STABLE" --> Hit[REUSE Cached Response\nZero LLM Calls\n10.56–61.91 ms Latency\n(n=1 caveat, LAT-06)]
     
-    TR -- "AMBIGUOUS Tier\nBorderline similarity or confidence\n0.50 <= sim < 0.92 OR 0.80 <= conf < 0.90" --> PDS[ProductionDecisionStep\nJudgeDecisionStep / LLMJudge\nnvidia/nemotron-3-super-120b-a12b:free]
+    TR -- "AMBIGUOUS Tier\nStable query, sim >= 0.50 and conf >= 0.80,\nnot meeting both AUTO_REUSE floors\n(sim >= 0.92 and conf >= 0.90)" --> PDS[ProductionDecisionStep\nJudgeDecisionStep / LLMJudge\nnvidia/nemotron-3-super-120b-a12b:free]
     
     PDS -- "Judge approves: is_safe == True\ndecision == REUSE" --> Hit
     PDS -- "Judge rejects: is_safe == False\ndecision == BYPASS" --> BYPASS
@@ -90,7 +90,7 @@ The exact routing implementation in `TierRouter.route()` (`src/decision/tier_rou
    - Stability confidence floor: `auto_reuse_conf_floor = 0.90` ([`FACTS.md` row C-07](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L35))
    - Effective stability: guaranteed `STABLE` by line 296.
 3. **AMBIGUOUS Tier (`src/decision/tier_router.py` line 316):**
-   - All queries passing the BYPASS ceilings but failing either the similarity floor (0.92) or the confidence floor (0.90).
+   - Stable query, similarity >= 0.50 and confidence >= 0.80, but not meeting both AUTO_REUSE floors (similarity >= 0.92 and confidence >= 0.90).
    - Routed directly to `ProductionDecisionStep` ([`src/decision/decision_step.py`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/src/decision/decision_step.py#L529)), which invokes `LLMJudge` using `nvidia/nemotron-3-super-120b-a12b:free` via OpenRouter ([`FACTS.md` row C-14](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L42)).
 4. **Fail-Closed Production Invariant (`src/decision/judge_call.py` lines 356, 391–405):**
    - On any network timeout, model hallucination, JSON parsing failure, missing API key, or quota exhaustion, `judge_call.py` returns `decision=BYPASS`, `is_safe=False`, `confidence=0.0`, and `fallback_triggered=True` ([`FACTS.md` row C-16](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L44)). The system never fails open.
