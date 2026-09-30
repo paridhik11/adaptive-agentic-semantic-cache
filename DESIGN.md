@@ -10,10 +10,10 @@ Semantic caching aims to mitigate the high latency and cost of Large Language Mo
 
 In naive implementations, similarity-only semantic caching relies entirely on this single scalar metric. In agentic and enterprise environments, this approach produces **false-positive reuse ($IRR_{\text{cache}}$)**—admitting cached answers that are syntactically or semantically similar in embedding space but factually invalid, stale, or contradictory.
 
-Naive semantic caching fails due to three fundamental hazards:
+Naive semantic caching fails due to fundamental hazards:
 
 1. **Temporal Volatility:** Queries concerning real-time information (e.g., weather conditions, stock quotations, system operational metrics) may achieve near-perfect (or exact 1.00) cosine similarity with previous queries. Reusing cached answers serves stale or invalid data to autonomous agents, risking silent cascading failures.
-2. **Semantic Inversion and Traps:** Embeddings (such as sentence-transformers) capture lexical and thematic overlap, but frequently fail to distinguish polarity inversions or parameter reversals. For example, contrasting units (`radians -> degrees` versus `degrees -> radians`) can produce cosine similarities above 0.95 despite requiring completely opposite responses.
+2. **Semantic Inversion and Traps:** Embeddings (such as sentence-transformers) capture lexical and thematic overlap, but frequently fail to distinguish polarity inversions or parameter reversals. For example, contrasting units (`radians -> degrees` versus `degrees -> radians`) can produce high cosine similarities exceeding the AUTO_REUSE floor (0.92, [`FACTS.md` row C-06](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L34)) despite requiring completely opposite responses.
 3. **Failure of Global Fixed Thresholds:** In our Phase 2 sweep across the 120-pair reuse benchmark ([`FACTS.md` row D-01](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L52)), every fixed threshold producing any cache hits violated the pre-stated safety criterion of $IRR_{\text{cache}} < 10\%$ ([`FACTS.md` row P2-02](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L75)). The lowest hazard rate observed was **20.83%** (5 false positives out of 24 hits; [`FACTS.md` row P2-01](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L74)) at threshold 0.85 ([`FACTS.md` row P2-04](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L77)). Fixed thresholds cannot separate safe paraphrases from hazardous semantic traps.
 
 In an agentic loop, false-positive reuse is far more dangerous than a cache miss: a miss incurs latency, but a false hit injects false premises into an autonomous execution chain.
@@ -22,7 +22,7 @@ In an agentic loop, false-positive reuse is far more dangerous than a cache miss
 
 ## 2. Architecture
 
-The system implements a four-stage pipeline designed to gate and inspect query reusability before any cached content is served.
+The system implements a gated pipeline designed to gate and inspect query reusability before any cached content is served.
 
 ### 2.1 Pipeline Flow Diagram
 
@@ -90,12 +90,11 @@ The term "adaptive" must be stated directly and accurately without overstatement
    
    However, **this mechanism has never fired in production**: all 7 categories stayed on the 0.85 global fallback ([`FACTS.md` row P4-01](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L102), [`FACTS.md` row KL-11](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L221)).
 3. **Why It Never Fired ([`FACTS.md` row KL-02](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L212), [`FACTS.md` row P4-04](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L105)):**
-   Under Clopper-Pearson exact binomial confidence intervals at 95% confidence, proving an upper bound $IRR_{\text{cache}} \le 10\%$ when zero false positives are observed ($k=0$) requires at least:
-   $$n \ge \frac{\ln(0.025)}{\ln(0.90)} \approx 35.01 \implies n \ge 36 \text{ admitted hits}$$
+   Under Clopper-Pearson exact binomial confidence intervals at 95% confidence, proving an upper bound $IRR_{\text{cache}} \le 10\%$ when zero false positives are observed ($k=0$) requires at least **$n \ge 36$ admitted hits** ([`FACTS.md` row P4-04](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L105)).
    
-   In calibration across 228 total labeled pairs (120 historical + 108 synthetic), admitted hits at similarities $\ge 0.80$ ranged from only 2 to 17 pairs per category. No category observed sufficient hit volume to mathematically clear the 10% safety ceiling. Lowering the similarity threshold to artificially force hit accumulation admitted semantic traps and prompt inversions, triggering immediate safety violations.
+   In calibration across the 120 historical benchmark pairs ([`FACTS.md` row D-01](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L52)) and 108 synthetic pairs ([`FACTS.md` row D-06](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L57)), no category observed sufficient admitted hits to mathematically clear the 10% safety ceiling ([`FACTS.md` row C-13](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L41)). Lowering the similarity threshold to artificially force hit accumulation admitted semantic traps and prompt inversions, triggering immediate safety violations.
    
-   The system adhered strictly to its design invariant: **fail-closed to the safe fallback threshold (0.85) when statistical evidence is insufficient**.
+   The system adhered strictly to its design invariant: **fail-closed to the safe fallback threshold (0.85) when statistical evidence is insufficient** ([`FACTS.md` row C-12](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L40), [`FACTS.md` row P4-03](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L104)).
 
 ---
 
