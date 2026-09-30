@@ -217,6 +217,23 @@ Reduction % computed as `1 - (AUTO_REUSE_mean_ms / AMBIGUOUS_mean_ms)` from raw 
 | KL-07 | **FAISS index is non-persistent, in-memory only** | FlatVectorStore resets between pair evaluations and does not persist across process restarts. Production deployments require index serialization. | `src/cache/vector_store.py` line 107-110 |
 | KL-08 | **Synthetic workload distributions, not organic traffic** | All load tests (N=70, N=338, N=175) use hand-crafted or StackExchange-sourced queries with intentional splits. Phase 6 ss7.3 states: "whether these distributions match any specific production deployment is unknown and unverified." | `docs/phase6_walkthrough.md` ss7.3 |
 | KL-09 | **Leakage between development set and pair dataset** | 3 query strings overlap between query_stability_benchmark.json (dev/diagnostic, N=160) and query_pair_reuse_benchmark.json. Zero overlap with any pristine evaluation set. Documented and tested but not corrected. | `docs/phase2_walkthrough.md` ss2 Leakage Check |
+| KL-10 | **Classifier final test set "seen" once by pytest assertion before formal evaluation** | The classifier final test set's accuracy was "seen" once by a pytest assertion (`assert metrics.accuracy >= 0.85`) in `tests/test_stability_evaluation.py` (line 74) before the formal evaluation in `scripts/step0_final_test_eval.py`. The dataset was clean for hyperparameter tuning (no model weights or thresholds were fitted to it), but it was not strictly blind. | `tests/test_stability_evaluation.py` line 74; `docs/phase5_walkthrough.md` ss1 |
+| KL-11 | **Adaptive threshold mechanism never fired** | All 7 categories stayed on the 0.85 fallback throughout calibration and evaluation. The per-category threshold fitting mechanism never lowered or altered an operating threshold in production (cite P4-01). | `docs/phase4_walkthrough.md` ss7.3, ss11.1; `docs/FACTS.md` P4-01 |
+
+---
+
+## 12. Dataset Roles
+
+| # | Dataset Role | Dataset File | N | Composition / Breakdown | Evaluation Nature | Source / Citations |
+| :---: | :--- | :--- | :---: | :--- | :--- | :--- |
+| DROLE-01 | **Classifier Train / Dev** | `data/raw/query_stability_benchmark.json` + `data/raw/query_stability_human_credibility.json` | **245** | 160 dev queries + 85 human credibility queries | Same-set development and diagnostic tuning | D-02, D-05; `docs/phase2_walkthrough.md` ss2 table |
+| DROLE-02 | **Held-Out Challenge** | `data/raw/query_stability_benchmark_heldout.json` | **60** | 31 STABLE, 24 DYNAMIC, 5 CONDITIONALLY_STABLE | Held-out challenge (unseen during prompt/rule tuning) | D-03, P1-03, P1-04; `docs/phase5_walkthrough.md` ss1B.2 |
+| DROLE-03 | **Final Test** | `data/raw/query_stability_benchmark_final_test.json` | **60** | 37 STABLE, 23 DYNAMIC | Clean for tuning; seen once by pytest (KL-10) | D-04, P1-01, P1-02, KL-10; `docs/phase5_walkthrough.md` ss1.1 |
+| DROLE-04 | **Cache Pipeline Calibration** | `data/raw/query_pair_reuse_benchmark.json` | **120 pairs** | 62 SAFE, 58 UNSAFE | Same-set baseline sweep & Phase 3 evaluation | D-01, P2-01..P2-06, P3-01..P3-08, KL-06; `docs/phase2_walkthrough.md` ss2 table |
+| DROLE-05 | **Cache Pipeline Calibration** | `data/raw/synthetic_query_pair_feedback.json` | **108 pairs** | 108 targeted synthetic pairs across 7 domains | Same-set calibration for adaptive threshold sweep | D-06, P4-02; `docs/phase4_walkthrough.md` ss3.1 |
+| DROLE-06 | **Design-Informed Pilot** | `data/raw/load_test_query_stream.json` | **70 queries** | Hand-crafted pilot stream | Same-set / design-informed pilot run | D-07, P5A-01..P5A-08; `docs/phase5_walkthrough.md` ss2.1 |
+| DROLE-07 | **Design-Informed Pilot** | `data/raw/new_dataset_v3.json` | **338 queries** | 210 StackExchange cold seeds + 128 hand-authored | Scaled pilot (design-informed, contains collisions) | D-08, P5B-01..P5B-10, KL-01; `docs/phase5_walkthrough.md` ss9.1 |
+| DROLE-08 | **Blind Evaluation** | `data/raw/phase6_blind_eval_dataset.json` | **175 entries** | 175 entries across 7 domains (sealed commit `fc35744`) | Strictly blind evaluation (unseen by pipeline/prompts) | D-09, P6-01..P6-11; `docs/phase6_walkthrough.md` ss1.1 |
 
 ---
 
