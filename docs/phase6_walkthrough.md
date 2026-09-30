@@ -6,6 +6,10 @@
 > ### Blindness Guarantee
 > Phases 1-5 all evaluated on data that had, at some point, informed the system's design, tuning, or debugging. Phase 5's N=338 `new_dataset_v3.json` was designed to stress-test specific pipeline behaviors that had already been observed and discussed. Phase 6 closes that gap: the sealed dataset (`data/raw/phase6_blind_eval_dataset.json`) was authored, internally collision-checked, and externally leakage-verified — and then committed to git — **before** the pipeline ever ran against it. No partial results were inspected mid-run. The run was executed exactly once.
 
+> [!NOTE]
+> ### Erratum (2026-10-01)
+> Section 6 states the ambiguous judge evaluation breakdown as TP=6, TN=10. Raw `data/phase6_telemetry.json` gives **TP=7, TN=9** (FN=2, FP=0, across 18 calls; total cache hit count $n=8$ is consistent). Corrected values: **TP=7, TN=9**. See [`FACTS.md` row P6-08](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md).
+
 ---
 
 ## 1. Dataset: Sealed Before Any Run
