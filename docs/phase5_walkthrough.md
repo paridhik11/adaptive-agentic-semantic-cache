@@ -6,6 +6,10 @@
 > ### Empirical Grounding & Non-Simulation Guarantee
 > Every single metric, latency timing, token count, and request identifier in this document originates from a **real, measured execution of this repository's actual code** and live API calls to OpenRouter (`nvidia/nemotron-3-super-120b-a12b:free`). Zero outcomes, latencies, or token usages have been simulated or fabricated. All cost savings are explicitly labeled as **projections** using dated, cited pricing models.
 
+> [!NOTE]
+> ### Erratum (2026-10-01)
+> For the N=338 scaled run (Section 9.4), the exact latency reduction of `AUTO_REUSE` over ambiguous judge evaluation is **99.20%** ($1 - 61.91 / 7715.62$), not 99.79%. See [`FACTS.md` row LAT-05](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md).
+
 ---
 
 ## 1. Step 0: StabilityClassifier Evaluation on Final Test Benchmark
