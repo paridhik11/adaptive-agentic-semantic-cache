@@ -147,7 +147,7 @@ Telemetry source: `data/scaled_load_test_telemetry_corrected.json` (raw, reconci
 ## 7. Phase 6 — Blind Evaluation
 
 Telemetry source: `data/phase6_telemetry.json` (raw, reconciled). AUTO_REUSE TP=1, AMBIGUOUS judge-approved TP=7, total TP=8, FP=0.
-AMBIGUOUS tier invoked 18 times. **DISPUTED:** walkthrough ss6 says AMBIGUOUS breakdown TP=6, TN=10, FN=2, FP=0; raw telemetry shows TP=7, TN=9, FN=2, FP=0. Total hit count n=8 is consistent in both. Row P6-08 reflects raw telemetry.
+AMBIGUOUS tier invoked 18 times. **RESOLVED:** raw telemetry is source of truth with TP=7, TN=9, FN=2, FP=0 (walkthrough ss6 originally stated TP=6, TN=10; corrected via Erratum (2026-10-01) in `docs/phase6_walkthrough.md`). Total hit count n=8 is consistent in both.
 
 | # | Fact | Claim / Value | Source file + location | How to re-run |
 | :---: | :--- | :--- | :--- | :--- |
@@ -158,7 +158,7 @@ AMBIGUOUS tier invoked 18 times. **DISPUTED:** walkthrough ss6 says AMBIGUOUS br
 | P6-05 | 95% CP CI on IRR_cache | **[0.00%, 36.94%]** (k=0, n=8) **`[DOC][RECOMPUTED]`** | `docs/phase6_walkthrough.md` ss3.5; scipy: beta.ppf(0.975, 1, 8) = 0.3694 | `python -c "from scipy.stats import beta; print(f'{beta.ppf(0.975,1,8)*100:.2f}%')"` |
 | P6-06 | Local resolution rate | **89.71%** (no judge call) **`[DOC]`** | `docs/phase6_walkthrough.md` ss3.1 | Same as P6-03 |
 | P6-07 | Judge calls invoked (AMBIGUOUS tier entries) | **18** (raw telemetry: 18 AMBIGUOUS-tier entries; of 27 potential AMBIGUOUS pairs) **`[RECOMPUTED]`** | `data/phase6_telemetry.json` tier counts | `python -c "import json; d=json.load(open('data/phase6_telemetry.json')); print(sum(1 for e in d if e['tier']=='AMBIGUOUS'))"` |
-| P6-08 | Judge-tier outcome breakdown (18 calls) **DISPUTED** | Raw telemetry: TP=7, TN=9, FN=2, FP=0. Walkthrough ss6: TP=6, TN=10, FN=2, FP=0. Hit count n=8 consistent. **DISPUTED between raw and walkthrough on TP/TN split.** **`[RECOMPUTED]`** | `data/phase6_telemetry.json` vs `docs/phase6_walkthrough.md` ss6 | See tier reconciliation above |
+| P6-08 | Judge-tier outcome breakdown (18 calls) | **TP=7, TN=9, FN=2, FP=0** (**RESOLVED:** raw telemetry is source of truth; walkthrough ss6 corrected via Erratum (2026-10-01)) **`[RECOMPUTED]`** | `data/phase6_telemetry.json` and `docs/phase6_walkthrough.md` Erratum | See tier reconciliation above |
 | P6-09 | AUTO_REUSE mean latency | **10.56 ms** (n=1; query p6_cs_fol_01) **`[DOC][RECOMPUTED]`** | `docs/phase6_walkthrough.md` ss3.3; confirmed by `data/phase6_telemetry.json` | Same as P6-03 |
 | P6-10 | AMBIGUOUS judge mean latency | **6,577.94 ms** (n=18) **`[DOC]`** | `docs/phase6_walkthrough.md` ss3.3 | Same as P6-03 |
 | P6-11 | Latency speedup (AUTO_REUSE vs AMBIGUOUS) | **622.7x** (99.84% reduction; 1 − 10.56/6577.94) **`[DOC][RECOMPUTED]`** | `docs/phase6_walkthrough.md` ss3.3 | — |
