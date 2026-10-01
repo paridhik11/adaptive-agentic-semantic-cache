@@ -14,10 +14,10 @@
 
 - **Document Audited:** [`docs/MASTER_REPORT.md`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/MASTER_REPORT.md)
 - **Authoritative Fact Ledger:** [`docs/FACTS.md`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md)
-- **Unique Numeric Tokens in `docs/MASTER_REPORT.md`:** 132 unique tokens
-- **Unique Numeric Tokens in `docs/FACTS.md`:** 163 unique tokens
+- **Unique Numeric Tokens in `docs/MASTER_REPORT.md`:** 159 unique tokens
+- **Unique Numeric Tokens in `docs/FACTS.md`:** 190 unique tokens
 - **Unledgered Numeric Tokens (Set Difference):** **0** (Strictly PASS)
-- **Total Key Claims Verified in Matrix:** 110 claims (100% PASS)
+- **Total Key Claims Verified in Matrix:** 124 claims (100% PASS)
 - **Negative Constraints & Invariants Verified:** 10 rules (100% COMPLIANT)
 
 ---
@@ -136,6 +136,20 @@
 | MR-108 | `622.7x` / `99.84%` | Section 4 (Phase 6) | Blind evaluation speedup and latency reduction | [`LAT-03`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L191), [`P6-11`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L166) | 622.7x (99.84% reduction) | **PASS** |
 | MR-109 | `k=0` / `n=22` | Section 4 (Phase 6) | Pooled Phase 5 corrected + Phase 6 blind sample | [`POOL-01`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L174), [`POOL-02`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L175) | k=0, n=22 hits | **PASS** |
 | MR-110 | `k=0` / `n=44` / `8.04%` | Section 4 (Phase 6) | Multi-run sensitivity analysis (NOT BLIND) | [`POOL-07`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L179) | k=0, n=44, CI_upper = 8.04% | **PASS** |
+| MR-111 | `2.29 ms` / `0.25 ms` / `8.70 ms` | Section 4 (Phase 1) | Classifier latency percentiles on final test set | [`P1-07`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L74) | mean 2.29 ms, median 0.25 ms, P95 8.70 ms | **PASS** |
+| MR-112 | `40` (66.7%) / `20` (33.3%) | Section 4 (Phase 1) | Classifier routing resolution on final test set | [`P1-08`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L75) | Stage 1 Rule 40 (66.7%), Stage 2 Fallback 20 (33.3%) | **PASS** |
+| MR-113 | `69.35%` / `43/62` | Section 4 (Phase 2) | False Rejection Rate at threshold 0.85 | [`P2-07`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L82) | FRR=69.35% (FN=43/62 missed safe reuses) | **PASS** |
+| MR-114 | `23.08%` / `3 FP / 13 hits` | Section 4 (Phase 3) | Phase 3 adaptive threshold engine hazard rate | [`P3-09`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L96) | 23.08% (3 FP / 13 hits; failed 10% ceiling) | **PASS** |
+| MR-115 | `10.83%` ARR / `76.92%` CRR | Section 4 (Phase 3) | Phase 3 adaptive threshold engine reuse rate and precision | [`P3-10`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L97) | 10.83% ARR, 76.92% CRR | **PASS** |
+| MR-116 | `0.00%` / `0 FP / 2 hits` | Section 4 (Phase 3) | Trivial bypass-all ambiguous baseline hazard rate | [`P3-11`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L98) | 0.00% (0 FP / 2 hits) | **PASS** |
+| MR-117 | `1.67%` ARR / `100.00%` CRR | Section 4 (Phase 3) | Trivial bypass-all ambiguous baseline reuse rate and precision | [`P3-12`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L99) | 1.67% ARR, 100.00% CRR | **PASS** |
+| MR-118 | `12 hits (11 true, 1 FP) vs 2 hits` | Section 4 (Phase 3) | Comparison of OpenRouter hits vs trivial baseline | [`P3-06`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L92), [`P3-11`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L98) | 12 hits (11 true, 1 FP) vs 2 hits same-set | **PASS** |
+| MR-119 | `22`, `47 (69 total)`, `39 (108 total)` | Section 4 (Phase 4) | Multi-session labeling progress breakdown | [`P4-07`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L108) | Session 0 (22), Session 1 (47), Session 2 (39) | **PASS** |
+| MR-120 | `[7.13%, 42.15%]` | Section 8 (Hazard Reduction) | Phase 2 threshold 0.85 95% Clopper-Pearson CI | [`HR-01`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L254) | [7.13%, 42.15%] (5/24 hits) | **PASS** |
+| MR-121 | `12.50 percentage points` | Section 8 (Hazard Reduction) | Absolute difference in hazard rate | [`HR-02`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L255) | 12.50 percentage points | **PASS** |
+| MR-122 | `60.00%` | Section 8 (Hazard Reduction) | Relative hazard reduction | [`HR-03`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L256) | 60.00% ((20.83% - 8.33%) / 20.83%) | **PASS** |
+| MR-123 | `same-set, CIs overlap` | Section 8 (Hazard Reduction) | Statistical significance status of hazard reduction | [`HR-04`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L257) | CIs overlap; difference not statistically established | **PASS** |
+| MR-124 | `4681031`, `5914533`, `7194993`, `9591101` | Section 6 (Timeline) | Digit-only 7-character commit hashes | [`SHA-01`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L267)–[`SHA-04`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L270) | Normalized 7-character commit identifiers | **PASS** |
 
 ---
 
@@ -145,11 +159,11 @@
 | :--- | :--- | :---: |
 | **No Stale Reports Cited** | Neither `comprehensive_project_status_report.md` nor `Adaptive_Agentic_Semantic_Cache_Master_Report.pdf` is cited anywhere in `MASTER_REPORT.md`. | **COMPLIANT** |
 | **Direct Work on `main`** | All documentation produced directly on `main`; zero branches created or checked out. | **COMPLIANT** |
-| **Accurate Evaluation Labeling** | Every metric is explicitly tagged with its evaluation nature (`same-set`, `held-out`, `design-informed`, or `blind`). | **COMPLIANT** |
-| **Accurate Judge IRR Characterization** | The Phase 3 judge $IRR_{\text{cache}} = 8.33\%$ is framed strictly as same-set calibration on 120 pairs with CI [0.21%, 38.48%], never as a blind safety result. | **COMPLIANT** |
+| **Accurate Evaluation Labeling** | Every metric is explicitly tagged with its evaluation nature (`same-set`, `held-out`, `design-informed`, `design-informed + blind`, or `blind`). The pooled Phase 5 corrected + Phase 6 blind result is strictly labeled `design-informed + blind` (not `blind-only` or `held-out`). | **COMPLIANT** |
+| **Accurate Judge IRR Characterization** | The Phase 3 judge $IRR_{\text{cache}} = 8.33\%$ is framed strictly as same-set calibration on 120 pairs with CI [0.21%, 38.48%], plainly stating that it does not certify the 10% ceiling. Executive summary finding 3 was moved out of top 5 findings into a dedicated baseline finding. | **COMPLIANT** |
 | **Latency Speedup Caveat** | The latency reduction range (99.20% to 99.84%) explicitly discloses the $n=1$ sample size in the scaled and blind runs ([`LAT-06`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L194)). | **COMPLIANT** |
 | **Blind Safety & Finite Sample Power** | The blind evaluation 0 FP ($IRR_{\text{cache}} = 0.00\%$, CI [0.00%, 36.94%]) and pooled CI [0.00%, 15.44%] are clearly stated, with honest admission that 15.44% remains above the 10% ceiling ([`POOL-06`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L178)). | **COMPLIANT** |
-| **Tier Router Logic As Coded** | Documented exactly as coded (`sim >= 0.92` AND `conf >= 0.90` for AUTO_REUSE; bypass ceilings `sim < 0.50` or `conf < 0.80`), citing [`C-06`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L34)–[`C-09`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L37). | **COMPLIANT** |
+| **Tier Router Logic As Coded** | Documented exactly as coded (`TierRouter.route()`; `sim >= 0.92` AND `conf >= 0.90` for AUTO_REUSE; bypass ceilings `sim < 0.50` or `conf < 0.80`), citing [`C-06`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L34)–[`C-09`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L37). | **COMPLIANT** |
 | **Adaptive Mechanism Status** | Stated candidly that per-category thresholds never moved off 0.85 fallback ([`P4-01`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L102), [`KL-11`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L223)) due to the mathematical hit floor ($n \ge 36$; [`P4-04`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L105)). | **COMPLIANT** |
 | **Strict Token-Level Ledger Verification** | Token-level set difference between `docs/MASTER_REPORT.md` and `docs/FACTS.md` yielded **0 missing tokens**. | **COMPLIANT** |
 | **Gitleaks Pre-Push Verification** | Gitleaks scan run on staged changes prior to push. | **COMPLIANT** |
@@ -169,3 +183,47 @@ Missing tokens count: 0
 Status: All numeric tokens in docs/MASTER_REPORT.md are strictly verified against docs/FACTS.md.
 OVERALL RESULT: PASS (0 unledgered numeric tokens across all audited claims)
 ```
+
+---
+
+## 4. Claims Without a FACTS Row Audit Pass
+
+An automated pass was executed across all sentences in `docs/MASTER_REPORT.md` containing numeric tokens, percentages, latencies, or statistical thresholds. Every metric sentence was matched against [`docs/FACTS.md`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md) to guarantee that zero metric claims exist without an explicit FACTS row ID:
+
+| Section in `MASTER_REPORT.md` | Metric Sentence / Claim Content | Cited FACTS ID(s) | Verification Status |
+| :--- | :--- | :--- | :---: |
+| Executive Summary (#1) | Latency reduction 99.20% to 99.84%, speedup 124.6x to 622.7x, AUTO_REUSE 10.56–61.91 ms vs remote judge 6,577.94–9,291.35 ms | `LAT-01`..`LAT-05` | Verified |
+| Executive Summary (#1 Caveat) | N=338 and N=175 produced n=1 AUTO_REUSE hit; N=70 pilot produced n=20 hits (mean 19.18 ms) | `LAT-06`, `P5A-02`, `P5A-06` | Verified |
+| Executive Summary (#2) | Blind eval: 0 FP across 8 hits ($k=0, n=8$), IRR=0.00%, 95% CP CI [0.00%, 36.94%] on 175 entries across 7 domains | `P6-01`, `P6-03`, `P6-04`, `P6-05` | Verified |
+| Executive Summary (#3) | Held-out challenge: 91.67% accuracy (55/60), 0 dangerous errors on 24 dynamic queries | `P1-03`, `P1-04` | Verified |
+| Executive Summary (#4) | Final test set: 91.67% accuracy (55/60), 0 dangerous errors on 23 dynamic queries, 13.51% false rejection rate (5/37) | `P1-01`, `P1-02`, `P1-05` | Verified |
+| Executive Summary (#5) | Local resolution rate: 86.39% to 89.71% (87.14% pilot, 86.39% scaled, 89.71% blind) resolved without judge call | `LRR-01`..`LRR-04` | Verified |
+| Executive Summary (Baseline) | Same-set judge point estimate: 8.33% IRR (1 FP / 12 hits, CI [0.21%, 38.48%]), 10.00% ARR vs baseline 20.83% IRR (5/24) | `P2-01`, `P3-06`, `P3-07` | Verified |
+| Executive Summary (Limitations) | Hit threshold $n \ge 36$ hits for 10% ceiling; blind $n=8$ (36.94%), pooled $n=22$ (15.44%) | `P4-04`, `P6-05`, `POOL-03`, `KL-02` | Verified |
+| Executive Summary (Limitations) | 0 of 7 categories off 0.85 fallback; 6 uncorrected near-duplicates; 50 RPD quota | `P4-01`, `KL-11`, `P5B-06`, `KL-01`, `KL-03` | Verified |
+| Section 2 (System Overview) | TierRouter rules: sim >= 0.92, conf >= 0.90, sim < 0.50, conf < 0.80, fail-closed conf=0.0 | `C-06`..`C-09`, `C-16` | Verified |
+| Section 2 (System Overview) | Key constants: MiniLM dimension 384, IndexFlatIP, stability floor 0.80, min N 20, min minority 10, fallback 0.85, ceiling 10% | `C-01`..`C-05`, `C-10`..`C-13` | Verified |
+| Section 2 (System Overview) | Models: Nemotron judge, Gemini abandoned after 17/32 on RPD=20 quota | `C-14`, `C-15` | Verified |
+| Section 3 (Dataset Roles) | Dev 160 + Cred 85 = 245; Challenge 60 (31/24/5); Final test 60 (37/23); Pair 120 (62/58); Feedback 108; Pilot 70; Scaled 338; Blind 175 (seal `fc35744`) | `DROLE-01`..`DROLE-08`, `D-01`..`D-09` | Verified |
+| Section 4 (Phase 1) | Final test 91.67% (55/60), FP=0, FN=13.51% (5/37); latency mean 2.29 ms, median 0.25 ms, P95 8.70 ms; rule 40 (66.7%), fallback 20 (33.3%) | `P1-01`, `P1-02`, `P1-05`, `P1-07`, `P1-08` | Verified |
+| Section 4 (Phase 1) | Held-out challenge 91.67% (55/60), FP=0, FN=13.89% (5/36); uncertainty override 0.80 | `P1-03`, `P1-04`, `P1-06`, `C-05` | Verified |
+| Section 4 (Phase 2) | Best fixed 20.83% (5/24) at 0.85; ARR=20.00%, CRR=79.17%, FRR=69.35% (43/62), embed latency 13.9–14.9 ms on 120 pairs | `P2-01`..`P2-07` | Verified |
+| Section 4 (Phase 3) | Traffic: Ambiguous 32 (26.7%), Auto 2 (1.7%), Bypass 86 (71.7%); Auto IRR 0.00% (2/0) | `P3-08`, `P3-03` | Verified |
+| Section 4 (Phase 3) | Linear combo IRR 52.17% (12/23), ambiguous 57.1% (12/21) | `P3-01`, `P3-02` | Verified |
+| Section 4 (Phase 3) | Adaptive fix IRR 23.08% (3/13), ARR 10.83%, CRR 76.92%; Trivial bypass IRR 0.00% (0/2), ARR 1.67%, CRR 100.00% | `P3-09`..`P3-12` | Verified |
+| Section 4 (Phase 3) | Gemini IRR 0.00% (0/5, 17/32 eval); OpenRouter IRR 8.33% (1/12, CI [0.21%, 38.48%]), ARR 10.00%; 12 hits (11 true) vs 2 baseline | `P3-04`..`P3-07`, `P3-11` | Verified |
+| Section 4 (Phase 4) | 0 of 7 off 0.8500 fallback; 108/108 genuine labels across 3 sessions (22, 47, 39); n >= 36 hit floor; 86 stub fix | `P4-01`..`P4-07` | Verified |
+| Section 4 (Phase 5) | Pilot: 22 hits (20 auto + 2 judge), IRR 0.00% (CI [0.00%, 15.44%]), LRR 87.14%, auto latency 19.18 ms vs judge 9,291.35 ms (484.5x, 99.79%) | `P5A-01`..`P5A-08` | Verified |
+| Section 4 (Phase 5) | Scaled pre-fix: IRR 71.43% (10/14, CI [41.90%, 91.61%]); post-fix: IRR 0.00% (14 hits: 1 auto + 13 judge, CI [0.00%, 23.16%]), 10/10 relabeled | `P5B-01`..`P5B-05` | Verified |
+| Section 4 (Phase 5) | Scaled LRR 86.39%; auto latency 61.91 ms vs judge 7,715.62 ms (124.6x, 99.20%); 6 uncorrected collisions | `P5B-06`..`P5B-10` | Verified |
+| Section 4 (Phase 6) | Blind: 8 hits (1 auto + 7 judge), IRR 0.00% (CI [0.00%, 36.94%]), LRR 89.71%, 18 judge calls (TP=7, TN=9, FN=2, FP=0) | `P6-01`..`P6-08` | Verified |
+| Section 4 (Phase 6) | Blind latency: auto 10.56 ms vs judge 6,577.94 ms (622.7x, 99.84%) | `P6-09`..`P6-11` | Verified |
+| Section 4 (Phase 6) | Pooled Phase 5 + 6: k=0, n=22, CI upper 15.44% (design-informed + blind); sensitivity n=44, CI 8.04% | `POOL-01`..`POOL-07` | Verified |
+| Section 5 (Audit Log) | Discarded fabricated Phase 3 results (auditor notes); 86 stub fix; 10 collisions; 99.20% latency erratum; Phase 6 TP=7 erratum; API key hygiene | `P4-05`, `P5B-01`..`05`, `LAT-02`, `P6-08` | Verified |
+| Section 6 (Timeline) | Commit history across Phases 1–7; 4 digit-only SHAs normalized to 7 chars (`4681031`, `5914533`, `7194993`, `9591101`) | `SHA-01`..`SHA-04` | Verified |
+| Section 7 (Table) | All 25 consolidated metrics mapped to exact FACTS row IDs and labeled by evaluation type | All cited rows | Verified |
+| Section 8 (Candidates) | Hazard reduction: Phase 2 CI [7.13%, 42.15%], Phase 3 CI [0.21%, 38.48%], diff 12.50 pts, rel red 60.00%, same-set CIs overlap | `HR-01`..`HR-04` | Verified |
+| Section 9 (Limitations) | 11 limitations (KL-01 to KL-11) mapped with exact resolution roadmap | `KL-01`..`KL-11` | Verified |
+| Section 10 (Reproduction) | All CLI commands verified and cited against FACTS rows | All cited rows | Verified |
+| **Audit Result** | **Every sentence containing a metric strictly maps to a verified FACTS row ID. Zero unledgered metric claims.** | — | **100% PASS** |
+
