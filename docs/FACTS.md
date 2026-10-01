@@ -71,12 +71,15 @@ Facts verified by recomputation are marked **`[RECOMPUTED]`**.
 | P1-04 | Dangerous error count on held-out challenge set | **0** (FP=0 on 24 dynamic queries) **`[DOC]`** | `docs/phase5_walkthrough.md` ss1B.4 and ss1B.6 | `python scripts/step0b_heldout_test_eval.py` |
 | P1-05 | Conservative error rate — final test set | 13.51% (FN=5/37 stable queries routed to DYNAMIC) **`[DOC]`** | `docs/phase5_walkthrough.md` ss1.6 | `python scripts/step0_final_test_eval.py` |
 | P1-06 | Conservative error rate — held-out challenge set | 13.89% (FN=5/36 stable queries routed to DYNAMIC) **`[DOC]`** | `docs/phase5_walkthrough.md` ss1B.6 | `python scripts/step0b_heldout_test_eval.py` |
+| P1-07 | Classifier latency percentiles (N=60 final test) | mean **2.29 ms** (2.2875 ms), median **0.25 ms** (0.2517 ms), P95 **8.70 ms** (8.7019 ms) **`[DOC]`** | `docs/phase5_walkthrough.md` ss1.8 | `python scripts/step0_final_test_eval.py` |
+| P1-08 | Classifier routing resolution (N=60 final test) | Stage 1 Rule Engine **40** (66.7%), Stage 2 Fallback (`TrainedLexicalClassifier`) **20** (33.3%) **`[DOC]`** | `docs/phase5_walkthrough.md` ss1.7 | `python scripts/step0_final_test_eval.py` |
 | P2-01 | Best fixed-threshold IRR_cache and its threshold | **20.83%** (5 FP / 24 hits) at threshold **0.85** — lowest IRR_cache where any hits exist **`[DOC]`** | `docs/phase2_walkthrough.md` ss5 coarse sweep table threshold=0.85 row and ss6 | `python scripts/run_cache_threshold_sweep.py` |
 | P2-02 | Safety criterion (pre-stated before sweep) | IRR_cache < 10% **`[DOC]`** | `docs/phase2_walkthrough.md` ss4 | — pre-stated not a measurement |
 | P2-03 | Does any fixed threshold satisfy IRR_cache < 10%? | **NO** — at every threshold where hits > 0, IRR_cache >= 20.83% **`[DOC]`** | `docs/phase2_walkthrough.md` ss6 | `python scripts/run_cache_threshold_sweep.py` |
 | P2-04 | Reference threshold for comparison (best CRR) | **0.85** (CRR=79.17%, ARR=20.00%, IRR_cache=20.83%) — reference only, not production-safe **`[DOC]`** | `docs/phase2_walkthrough.md` ss6 and ss7 | `python scripts/run_cache_threshold_sweep.py` |
 | P2-05 | Mean embed + search latency per pair | **13.9–14.9 ms** **`[DOC]`** | `docs/phase2_walkthrough.md` ss5 header | `python scripts/run_cache_threshold_sweep.py` |
 | P2-06 | Dataset N for Phase 2 sweep | 120 pairs **`[DOC]`** | `docs/phase2_walkthrough.md` ss2 | — |
+| P2-07 | False Rejection Rate (FRR) at threshold 0.85 | **69.35%** (FN=43/62 missed safe reuses) **`[DOC]`** | `docs/phase2_walkthrough.md` ss5 table; `docs/phase3_fix_walkthrough.md` ss3 table | `python scripts/run_cache_threshold_sweep.py` |
 
 ---
 
@@ -92,6 +95,10 @@ Facts verified by recomputation are marked **`[RECOMPUTED]`**.
 | P3-06 | Phase 3 OpenRouter judge (nemotron-3-super-120b:free) overall IRR_cache (full 32/32, N=120) | **8.33%** (1 FP / 12 hits) — clears <10% ceiling; 95% CP CI **[0.21%, 38.48%]** (k=1, n=12, recomputed); same-set point estimate, not blind **`[DOC][RECOMPUTED]`** | `docs/phase3_judge_call_walkthrough.md` ss2 comparison table and ss7.8; CI recomputed via scipy | `python -c "from scipy.stats import beta; print(beta.ppf(0.025,1,12)*100, beta.ppf(0.975,2,11)*100)"` |
 | P3-07 | Phase 3 OpenRouter judge overall ARR (N=120) | **10.00%** (12 hits / 120 pairs) **`[DOC]`** | `docs/phase3_judge_call_walkthrough.md` ss2 comparison table | Same as P3-06 |
 | P3-08 | Tier distribution on 120 pairs (Phase 3) | AUTO_REUSE=2 (1.7%), AMBIGUOUS=32 (26.7%), BYPASS=86 (71.7%) **`[DOC]`** | `docs/phase3_walkthrough.md` ss3.1 | Same as P3-01 |
+| P3-09 | Phase 3 adaptive threshold engine ($\theta_{\text{upper}}$) IRR_cache | **23.08%** (3 FP / 13 hits) — violates <10% safety ceiling (same-set N=120) **`[DOC]`** | `docs/phase3_fix_walkthrough.md` ss3 table | `docs/phase3_fix_walkthrough.md` |
+| P3-10 | Phase 3 adaptive threshold engine ($\theta_{\text{upper}}$) ARR & CRR | **10.83%** ARR (13 hits / 120 pairs; TP=10, FP=3), CRR = **76.92%**; same-set N=120 **`[DOC]`** | `docs/phase3_fix_walkthrough.md` ss3 table | `docs/phase3_fix_walkthrough.md` |
+| P3-11 | Trivial bypass-all ambiguous baseline IRR_cache | **0.00%** (0 FP / 2 hits; AUTO_REUSE tier only; same-set N=120) **`[DOC]`** | `docs/phase3_fix_walkthrough.md` ss3 table | `docs/phase3_fix_walkthrough.md` |
+| P3-12 | Trivial bypass-all ambiguous baseline ARR & CRR | **1.67%** ARR (2 hits / 120 pairs; TP=2, FP=0), CRR = **100.00%**; same-set N=120 **`[DOC]`** | `docs/phase3_fix_walkthrough.md` ss3 table | `docs/phase3_fix_walkthrough.md` |
 
 ---
 
@@ -105,6 +112,7 @@ Facts verified by recomputation are marked **`[RECOMPUTED]`**.
 | P4-04 | Mathematical minimum hits to prove IRR_cache <= 10% (CP 95% CI, k=0) | **n >= 36 hits** **`[DOC]`** | `docs/phase4_walkthrough.md` ss8 equation | `python -c "import math; print(math.log(0.025)/math.log(0.90))"` (approx 35.01 so need 36) |
 | P4-05 | Phase 4 contamination bug — 86 fallback stubs consumed as genuine labels in Session 0 | **BUG FIXED** — load_combined_data() now filters fallback_triggered=True records **`[DOC]`** | `docs/phase4_walkthrough.md` ss4.4 | `grep fallback_triggered scripts/run_phase4_calibration.py` |
 | P4-06 | Dual role disclosure | Same Nemotron model used as both production judge and label generator — known methodological limitation **`[DOC]`** | `docs/phase4_walkthrough.md` ss4.2 | — |
+| P4-07 | Phase 4 multi-session labeling progress | Session 0 (22 genuine, 86 fallback stubs); Session 1 (47 genuine, cumulative 69/108, 39 stubs); Session 2 (39 genuine, cumulative 108/108 genuine, 0 stubs) **`[DOC]`** | `docs/phase4_walkthrough.md` ss4.3 | Inspect `data/openrouter_synthetic_feedback_telemetry.json` |
 
 ---
 
@@ -211,7 +219,7 @@ Reduction % computed as `1 - (AUTO_REUSE_mean_ms / AMBIGUOUS_mean_ms)` from raw 
 | # | Limitation | Detail | Source |
 | :---: | :--- | :--- | :--- |
 | KL-01 | **6 uncorrected near-duplicate collisions in new_dataset_v3.json** | Phase 5 ss9.8 identified 27 pairwise collision candidates. 10 were surfaced as FPs and relabeled. Six additional near-duplicates remained undetected during execution (masked by BYPASS or StabilityClassifier uncertainty override): cs_552/cs_005, fin_548/fin_006, fin_550/fin_003, sys_548/sys_004, sci_544/sci_002, fin_546/fin_005. These were classified TN and not relabeled. The uncorrected records remain in data/raw/new_dataset_v3.json. | `docs/phase5_walkthrough.md` ss9.8 |
-| KL-02 | **Underpowered CIs throughout** | Minimum n >= 36 hits with k=0 FP is required to prove IRR_cache <= 10% at 95% Clopper-Pearson confidence. No single blind run achieved this: N=338 corrected has n=14, Phase 6 has n=8, pooled blind-only has n=22. All blind CIs are underpowered. The three-run sensitivity (POOL-07, n=44) clears the ceiling but includes the development-stage N=70 pilot and is not a headline figure. | `docs/phase4_walkthrough.md` ss8; `docs/phase5_walkthrough.md` ss4.5; `docs/phase6_walkthrough.md` ss3.5 |
+| KL-02 | **Underpowered CIs throughout** | Minimum n >= 36 hits with k=0 FP is required to prove IRR_cache <= 10% at 95% Clopper-Pearson confidence. No single blind run achieved this: N=338 corrected has n=14, Phase 6 has n=8, pooled design-informed + blind has n=22. All blind CIs are underpowered. The three-run sensitivity (POOL-07, n=44) clears the ceiling but includes the development-stage N=70 pilot and is not a headline figure. | `docs/phase4_walkthrough.md` ss8; `docs/phase5_walkthrough.md` ss4.5; `docs/phase6_walkthrough.md` ss3.5 |
 | KL-03 | **Free-tier judge model** | All production LLM judge calls use nvidia/nemotron-3-super-120b-a12b:free via OpenRouter free tier. Subject to: (a) 50 RPD account limit, (b) provider-level edge caching, (c) possible model version updates at OpenRouter without notice. Paid-tier or self-hosted models were not evaluated. | `docs/phase3_judge_call_walkthrough.md` ss7.3; `docs/phase4_walkthrough.md` ss4.3; `docs/phase5_walkthrough.md` ss9.2 |
 | KL-04 | **Dual-role bias** | nvidia/nemotron-3-super-120b-a12b:free was used both as the production ambiguous-tier decision judge (Phase 3 onward) AND as the ground-truth label generator for Phase 4 calibration data. Any systematic inductive bias propagates into both production inference and the training signal, without an independent external referee. | `docs/phase4_walkthrough.md` ss4.2 |
 | KL-05 | **No blind held-out set for the cache-reuse pipeline** | The StabilityClassifier has a held-out final test set (n=60). The cache-reuse decision pipeline (TierRouter thresholds, similarity threshold, LLMJudge logic) had never been evaluated on data structurally unavailable to its designers before Phase 6. Phase 6 is the first genuinely blind evaluation but uses structured synthetic benchmarks, not organic query logs. | `docs/phase5_walkthrough.md` ss8; `docs/phase6_walkthrough.md` ss7.3 |
@@ -249,6 +257,33 @@ Reduction % computed as `1 - (AUTO_REUSE_mean_ms / AMBIGUOUS_mean_ms)` from raw 
 | DEMO-T03 | Query 3 (LT-CS-003) demo run latency | about 50 ms in the demo run (59.95 ms measured run; 61.80 ms AUTO_REUSE demo mean; within 10.56-61.91 ms FACTS range) **`[CODE]`** | `demo/run_demo.py` summary; rows LAT-01..LAT-03 | `python demo/run_demo.py` |
 | DEMO-T04 | Query 6 (LT-CS-010) demonstration similarity | 0.688 (cosine similarity to cached seed LT-CS-004) **`[CODE]`** | `demo/run_demo.py` line 38; `data/load_test_telemetry.json` | `python demo/run_demo.py` |
 | DEMO-T05 | Walkthrough script target duration & cadence | 2 minutes (0:00 to 0:30, 0:30 to 1:00, 1:00 to 1:30, 1:30 to 2:00) | `demo/SCRIPT.md` lines 4, 11, 17, 25, 33 | Read `demo/SCRIPT.md` |
+
+---
+
+## 14. Hazard Reduction Analysis (Same-Set N=120 pairs)
+
+Computed by `scripts/compute_hazard_reduction.py` comparing Phase 2 best fixed threshold (0.85; 5/24 hits) against Phase 3 OpenRouter LLM judge (1/12 hits) on the exact same 120 query pairs from `data/raw/query_pair_reuse_benchmark.json`.
+
+| # | Fact | Claim / Value | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| HR-01 | Phase 2 threshold 0.85 95% Clopper-Pearson CI | **[7.13%, 42.15%]** (5/24 hits = 20.83%) **`[RECOMPUTED]`** | `scripts/compute_hazard_reduction.py`; `docs/phase2_walkthrough.md` ss5 | `python scripts/compute_hazard_reduction.py` |
+| HR-02 | Absolute difference in hazard rate | **12.50 percentage points** (20.83% - 8.33%) **`[RECOMPUTED]`** | `scripts/compute_hazard_reduction.py` | `python scripts/compute_hazard_reduction.py` |
+| HR-03 | Relative hazard reduction | **60.00%** ((20.83% - 8.33%) / 20.83%) **`[RECOMPUTED]`** | `scripts/compute_hazard_reduction.py` | `python scripts/compute_hazard_reduction.py` |
+| HR-04 | Statistical significance status | **same-set, CIs overlap** ([7.13%, 42.15%] vs [0.21%, 38.48%]); difference is not statistically established at 95% confidence **`[RECOMPUTED]`** | `scripts/compute_hazard_reduction.py` | `python scripts/compute_hazard_reduction.py` |
+
+---
+
+## 15. Digit-Only 7-Character Commit Hashes
+
+In accordance with strict token extraction rules, four 7-character hexadecimal commit hashes consist entirely of decimal digits (`0-9`), colliding with the token check's digit regex. Rather than altering or artificially lengthening these hashes, they are ledgered here as verified commit identifiers:
+
+| # | Commit SHA | Phase / Context | Commit Title / Purpose |
+| :---: | :---: | :--- | :--- |
+| SHA-01 | `4681031` | Phase 7 | docs: reconcile README metrics with FACTS ledger |
+| SHA-02 | `5914533` | Phase 7 | docs: add comprehensive system architecture DESIGN.md |
+| SHA-03 | `7194993` | Phase 7 | docs: record Phase 7c claim check documentation |
+| SHA-04 | `9591101` | Phase 5 | test: evaluate Step 0 pristine final test set |
+
 
 ---
 
