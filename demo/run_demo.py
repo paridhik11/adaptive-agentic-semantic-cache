@@ -277,6 +277,8 @@ def run_demo(live: bool = False, judge_model: str = DEFAULT_JUDGE_MODEL) -> None
         elif tier == Tier.BYPASS:
             if stab_res.predicted_label.value == "DYNAMIC":
                 print(f"      -> Trapped by Stability Gate: volatile temporal query routed to BYPASS")
+            elif cache_res.store_size == 0 or sim_score == float("-inf"):
+                print(f"      -> Empty cache: routed to BYPASS")
             else:
                 print(f"      -> Low similarity ({format_sim(sim_score)} < 0.50): routed to BYPASS")
 
