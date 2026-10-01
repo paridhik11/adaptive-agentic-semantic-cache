@@ -49,9 +49,9 @@ flowchart TD
 
 ### 2.2 Tier Rules as Coded (`src/decision/tier_router.py`)
 
-Routing does **not** evaluate similarity in isolation. As coded in [`src/decision/tier_router.py`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/src/decision/tier_router.py#L210-L215) and [`src/decision/tier_router.py`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/src/decision/tier_router.py#L289-L317), the routing logic combines `CacheLookupResult.similarity_score` with `StabilityResult.confidence` and `StabilityResult.effective_decision`.
+Routing does **not** evaluate similarity in isolation. As coded in `TierRouter.route()` ([`src/decision/tier_router.py`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/src/decision/tier_router.py)), the routing logic combines `CacheLookupResult.similarity_score` with `StabilityResult.confidence` and `StabilityResult.effective_decision`.
 
-The exact routing implementation in `TierRouter.route()` (`src/decision/tier_router.py` lines 294–317) executes as follows:
+The exact routing implementation in `TierRouter.route()` executes as follows:
 
 ```python
         # ── Immediate BYPASS conditions ────────────────────────────────────
@@ -79,20 +79,20 @@ The exact routing implementation in `TierRouter.route()` (`src/decision/tier_rou
         return Tier.AMBIGUOUS
 ```
 
-1. **Immediate BYPASS Conditions (`src/decision/tier_router.py` lines 294–310):**
-   - Volatile stability classification (lines 296–297): `if effective != StabilityLabel.STABLE: return Tier.BYPASS`
-   - Empty store or invalid similarity (lines 300–301): `if cache_result.store_size == 0 or sim == float("-inf"): return Tier.BYPASS`
-   - Similarity below bypass floor (lines 304–305): `if sim < b.bypass_sim_ceiling: return Tier.BYPASS` (**0.50**, [`FACTS.md` row C-08](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L36))
-   - Stability confidence below bypass floor (lines 308–309): `if conf < b.bypass_conf_ceiling: return Tier.BYPASS` (**0.80**, [`FACTS.md` row C-09](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L37))
-2. **AUTO_REUSE Conditions (`src/decision/tier_router.py` lines 312–313):**
+1. **Immediate BYPASS Conditions in `TierRouter.route()`:**
+   - Volatile stability classification: `if effective != StabilityLabel.STABLE: return Tier.BYPASS`
+   - Empty store or invalid similarity: `if cache_result.store_size == 0 or sim == float("-inf"): return Tier.BYPASS`
+   - Similarity below bypass floor: `if sim < b.bypass_sim_ceiling: return Tier.BYPASS` (**0.50**, [`FACTS.md` row C-08](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L36))
+   - Stability confidence below bypass floor: `if conf < b.bypass_conf_ceiling: return Tier.BYPASS` (**0.80**, [`FACTS.md` row C-09](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L37))
+2. **AUTO_REUSE Conditions in `TierRouter.route()`:**
    - Safe zone evaluation: `if sim >= b.auto_reuse_sim_floor and conf >= b.auto_reuse_conf_floor: return Tier.AUTO_REUSE`
    - Similarity floor: `auto_reuse_sim_floor = 0.92` ([`FACTS.md` row C-06](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L34))
    - Stability confidence floor: `auto_reuse_conf_floor = 0.90` ([`FACTS.md` row C-07](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L35))
-   - Effective stability: guaranteed `STABLE` by line 296.
-3. **AMBIGUOUS Tier (`src/decision/tier_router.py` line 316):**
+   - Effective stability: guaranteed `STABLE` by the prior bypass check.
+3. **AMBIGUOUS Tier in `TierRouter.route()`:**
    - Stable query, similarity >= 0.50 and confidence >= 0.80, but not meeting both AUTO_REUSE floors (similarity >= 0.92 and confidence >= 0.90).
-   - Routed directly to `ProductionDecisionStep` ([`src/decision/decision_step.py`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/src/decision/decision_step.py#L529)), which invokes `LLMJudge` using `nvidia/nemotron-3-super-120b-a12b:free` via OpenRouter ([`FACTS.md` row C-14](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L42)).
-4. **Fail-Closed Production Invariant (`src/decision/judge_call.py` lines 356, 391–405):**
+   - Routed directly to `ProductionDecisionStep` ([`src/decision/decision_step.py`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/src/decision/decision_step.py)), which invokes `LLMJudge` using `nvidia/nemotron-3-super-120b-a12b:free` via OpenRouter ([`FACTS.md` row C-14](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L42)).
+4. **Fail-Closed Production Invariant (`LLMJudge.judge()` / `LLMJudge._judge_openrouter()`):**
    - On any network timeout, model hallucination, JSON parsing failure, missing API key, or quota exhaustion, `judge_call.py` returns `decision=BYPASS`, `is_safe=False`, `confidence=0.0`, and `fallback_triggered=True` ([`FACTS.md` row C-16](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L44)). The system never fails open.
 
 ---

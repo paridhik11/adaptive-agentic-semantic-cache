@@ -50,12 +50,7 @@ git clone https://github.com/paridhik11/adaptive-agentic-semantic-cache.git
 cd adaptive-agentic-semantic-cache
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-pip install -e .
-```
-
-To include development and test dependencies:
-```bash
-pip install -e .[dev]
+pip install -e ".[dev]"
 ```
 
 ### 2. Environment Configuration
@@ -65,7 +60,7 @@ Copy the example environment configuration:
 cp .env.example .env
 ```
 
-Edit `.env` to provide your OpenRouter API key for remote judge evaluation:
+Edit `.env` to provide your OpenRouter API key for remote judge evaluation (optional for replay demo and fast tests):
 ```env
 OPENROUTER_API_KEY=sk-or-v1-your-key-here
 OPENROUTER_MODEL=nvidia/nemotron-3-super-120b-a12b:free
@@ -73,6 +68,11 @@ OPENROUTER_MODEL=nvidia/nemotron-3-super-120b-a12b:free
 *(If unset or invalid, the pipeline adheres to its fail-closed invariant and routes ambiguous queries safely to BYPASS.)*
 
 ### 3. Run Pipeline Demo & Fast Test Suite
+
+Run the interactive demonstration in replay mode (no API key required):
+```bash
+python demo/run_demo.py
+```
 
 Run the default hermetic test suite (network-free):
 ```bash
