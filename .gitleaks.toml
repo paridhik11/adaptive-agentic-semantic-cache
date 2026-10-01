@@ -1,0 +1,7 @@
+﻿[allowlist]
+description = "Ignore virtual environment and local environment files"
+paths = [
+    '''(?i)[/\\]\.venv[/\\]''',
+    '''^\.venv''',
+    '''^\.env$'''
+]
