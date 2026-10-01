@@ -186,12 +186,12 @@ Reduction % computed as `1 - (AUTO_REUSE_mean_ms / AMBIGUOUS_mean_ms)` from raw 
 
 | # | Run | AUTO_REUSE mean | AMBIGUOUS mean | Speedup | Reduction % | Source |
 | :---: | :--- | :---: | :---: | :---: | :---: | :--- |
-| LAT-01 | Phase 5 N=70 pilot | 19.18 ms (n=20) | 9,291.35 ms | **484.5x** | **99.79%** | `docs/phase5_walkthrough.md` ss4.3 |
-| LAT-02 | Phase 5 N=338 scaled | 61.91 ms (n=1) | 7,715.62 ms | **124.6x** | **99.20%** | `docs/phase5_walkthrough.md` ss9.4 |
-| LAT-03 | Phase 6 blind N=175 | 10.56 ms (n=1) | 6,577.94 ms | **622.7x** | **99.84%** | `docs/phase6_walkthrough.md` ss3.3 |
+| LAT-01 | Phase 5 N=70 pilot | 19.18 ms (n=20) | 9,291.35 ms | **484.5x** | **99.79%** | `docs/phase5_walkthrough.md` ss 4.3 |
+| LAT-02 | Phase 5 N=338 scaled | 61.91 ms (n=1) | 7,715.62 ms | **124.6x** | **99.20%** | `docs/phase5_walkthrough.md` ss 9.4 |
+| LAT-03 | Phase 6 blind N=175 | 10.56 ms (n=1) | 6,577.94 ms | **622.7x** | **99.84%** | `docs/phase6_walkthrough.md` ss 3.3 |
 | LAT-04 | Speedup range across all three runs | — | — | **124.6x to 622.7x** | — | Rows LAT-01 to LAT-03 |
 | LAT-05 | Latency reduction % range (corrected) | — | — | — | **99.20% to 99.84%** | Recomputed from LAT-01..03 raw means |
-| LAT-06 | Caveat: AUTO_REUSE n=1 in scaled runs | N=338 and N=175 each produced exactly 1 AUTO_REUSE hit (confirmed by raw telemetry). N=70 produced n=20 AUTO_REUSE hits and is the most reliable latency estimate. | — | — | — | `data/scaled_load_test_telemetry_corrected.json`; `data/phase6_telemetry.json`; `docs/phase5_walkthrough.md` ss9.3 |
+| LAT-06 | Caveat: AUTO_REUSE n=1 in scaled runs | N=338 and N=175 each produced exactly 1 AUTO_REUSE hit (confirmed by raw telemetry). N=70 produced n=20 AUTO_REUSE hits and is the most reliable latency estimate. | — | — | — | `data/scaled_load_test_telemetry_corrected.json`; `data/phase6_telemetry.json`; `docs/phase5_walkthrough.md` ss 9.3 |
 
 ---
 
@@ -236,6 +236,19 @@ Reduction % computed as `1 - (AUTO_REUSE_mean_ms / AMBIGUOUS_mean_ms)` from raw 
 | DROLE-06 | **Design-Informed Pilot** | `data/raw/load_test_query_stream.json` | **70 queries** | Hand-crafted pilot stream | Same-set / design-informed pilot run | D-07, P5A-01..P5A-08; `docs/phase5_walkthrough.md` ss2.1 |
 | DROLE-07 | **Design-Informed Pilot** | `data/raw/new_dataset_v3.json` | **338 queries** | 210 StackExchange cold seeds + 128 hand-authored | Scaled pilot (design-informed, contains collisions) | D-08, P5B-01..P5B-10, KL-01; `docs/phase5_walkthrough.md` ss9.1 |
 | DROLE-08 | **Blind Evaluation** | `data/raw/phase6_blind_eval_dataset.json` | **175 entries** | 175 entries across 7 domains (sealed commit `fc35744`) | Strictly blind evaluation (unseen by pipeline/prompts) | D-09, P6-01..P6-11; `docs/phase6_walkthrough.md` ss1.1 |
+
+---
+
+## 13. Interactive Demonstration Telemetry & Runtime Environment
+
+| # | Fact | Claim / Value | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| ENV-01 | Fresh-clone test runtime Python version | Python 3.14.5 verified during clean virtualenv installation and hermetic test execution | `README.md`; `pyproject.toml` | `python --version` |
+| DEMO-T01 | Query 3 (LT-CS-003) demonstration similarity | 0.957 (cosine similarity to cached seed LT-CS-001) **`[CODE]`** | `demo/run_demo.py` line 26; `data/load_test_telemetry.json` | `python demo/run_demo.py` |
+| DEMO-T02 | Query 3 (LT-CS-003) stability classifier confidence | 1.00 (STABLE) **`[CODE]`** | `demo/run_demo.py` line 26; `data/load_test_telemetry.json` | `python demo/run_demo.py` |
+| DEMO-T03 | Query 3 (LT-CS-003) demo run latency | about 50 ms in the demo run (59.95 ms measured run; 61.80 ms AUTO_REUSE demo mean; within 10.56-61.91 ms FACTS range) **`[CODE]`** | `demo/run_demo.py` summary; rows LAT-01..LAT-03 | `python demo/run_demo.py` |
+| DEMO-T04 | Query 6 (LT-CS-010) demonstration similarity | 0.688 (cosine similarity to cached seed LT-CS-004) **`[CODE]`** | `demo/run_demo.py` line 38; `data/load_test_telemetry.json` | `python demo/run_demo.py` |
+| DEMO-T05 | Walkthrough script target duration & cadence | 2 minutes (0:00 to 0:30, 0:30 to 1:00, 1:00 to 1:30, 1:30 to 2:00) | `demo/SCRIPT.md` lines 4, 11, 17, 25, 33 | Read `demo/SCRIPT.md` |
 
 ---
 

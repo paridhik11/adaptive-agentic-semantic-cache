@@ -43,7 +43,7 @@ The table below summarizes measured empirical results across all phases of the p
 
 ### 1. Installation
 
-Install dependencies into a Python virtual environment:
+Install dependencies into a Python virtual environment (tested and verified with Python 3.14.5 in fresh-clone test):
 
 ```bash
 git clone https://github.com/paridhik11/adaptive-agentic-semantic-cache.git

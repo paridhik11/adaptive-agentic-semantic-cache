@@ -24,7 +24,7 @@ In an agentic loop, false-positive reuse is far more dangerous than a cache miss
 
 The system implements a gated pipeline designed to gate and inspect query reusability before any cached content is served.
 
-### 2.1 Pipeline Flow Diagram
+### Pipeline Flow Diagram
 
 ```mermaid
 flowchart TD
@@ -38,7 +38,7 @@ flowchart TD
     
     TR -- "Immediate BYPASS\nsim < 0.50 OR conf < 0.80\nOR store_size == 0" --> BYPASS
     
-    TR -- "AUTO_REUSE Tier\nsim >= 0.92 AND conf >= 0.90\nAND effective_decision == STABLE" --> Hit[REUSE Cached Response\nZero LLM Calls\n10.56–61.91 ms Latency\n(n=1 caveat, LAT-06)]
+    TR -- "AUTO_REUSE Tier\nsim >= 0.92 AND conf >= 0.90\nAND effective_decision == STABLE" --> Hit["REUSE Cached Response<br/>Zero LLM Calls<br/>10.56–61.91 ms Latency<br/>(n=1 caveat, LAT-06)"]
     
     TR -- "AMBIGUOUS Tier\nStable query, sim >= 0.50 and conf >= 0.80,\nnot meeting both AUTO_REUSE floors\n(sim >= 0.92 and conf >= 0.90)" --> PDS[ProductionDecisionStep\nJudgeDecisionStep / LLMJudge\nnvidia/nemotron-3-super-120b-a12b:free]
     
@@ -47,7 +47,7 @@ flowchart TD
     PDS -- "Error / Timeout / Quota Exhaustion\nFail-Closed Invariant\nfallback_triggered == True" --> BYPASS
 ```
 
-### 2.2 Tier Rules as Coded (`src/decision/tier_router.py`)
+### Tier Rules as Coded (`src/decision/tier_router.py`)
 
 Routing does **not** evaluate similarity in isolation. As coded in `TierRouter.route()` ([`src/decision/tier_router.py`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/src/decision/tier_router.py)), the routing logic combines `CacheLookupResult.similarity_score` with `StabilityResult.confidence` and `StabilityResult.effective_decision`.
 
@@ -129,7 +129,7 @@ The term "adaptive" must be stated directly and accurately without overstatement
 
 ## 5. Validation Methodology
 
-### 5.1 Dataset Roles Table
+### Dataset Roles Table
 
 All datasets used across the project and their validation roles are formally cataloged in [`docs/FACTS.md` Section 12](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L223-L236):
 
@@ -144,7 +144,7 @@ All datasets used across the project and their validation roles are formally cat
 | **Design-Informed Pilot** | `data/raw/new_dataset_v3.json` | **338 queries** | 210 StackExchange cold seeds + 128 hand-authored | Scaled pilot (design-informed, contains collisions) | [`DROLE-07`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L233), [`D-08`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L59), [`P5B-01`..`P5B-10`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L134-L143), [`KL-01`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L211) |
 | **Blind Evaluation** | `data/raw/phase6_blind_eval_dataset.json` | **175 entries** | 175 entries across 7 domains (sealed commit `fc35744`) | Strictly blind evaluation (unseen by pipeline/prompts) | [`DROLE-08`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L234), [`D-09`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L60), [`P6-01`..`P6-11`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md#L154-L164) |
 
-### 5.2 Split of Results: Same-Set vs. Held-Out vs. Blind
+### Split of Results: Same-Set vs. Held-Out vs. Blind
 
 Results must be evaluated strictly within the context of their data exposure:
 
