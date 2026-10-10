@@ -245,11 +245,11 @@ class LocalEquivalenceDecisionStep:
 
         # 4. Fallback check
         if self.fallback_to_llm and self.judge is not None:
-            jr = self.judge.evaluate(
+            jr = self.judge.judge(
                 query_a=query_a,
                 query_b=query_b,
-                similarity_score=similarity_score,
                 domain=domain,
+                similarity_score=similarity_score,
                 stability_confidence=stability_confidence,
             )
             decision = "REUSE" if jr.is_safe else "BYPASS"

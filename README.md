@@ -56,6 +56,7 @@ The table below summarizes measured empirical results across all phases of the p
 | **Phase 5 Scaled Load Test (Corrected)** | **Same-set** (collision-audited) | 338 | 14 (1 auto, 13 judge) | 0 | 0.00% | [0.00%, 23.16%] | 86.39% | [`P5B-02`](docs/FACTS.md), [`P5B-04`](docs/FACTS.md), [`P5B-07`](docs/FACTS.md) |
 | **Phase 6 Blind Evaluation** | **Blind** (sealed commit `fc35744`, [`P6-02`](docs/FACTS.md)) | 175 | 8 (1 auto, 7 judge) | 0 | **0.00%** | **[0.00%, 36.94%]** | **89.71%** | [`P6-01`..`P6-06`](docs/FACTS.md), [`D-09`](docs/FACTS.md) |
 | **Pooled Blind + Corrected Pilot** | **Design-informed + blind** (Phase 5 corr. + Phase 6 blind) | — | 22 | 0 | **0.00%** | **[0.00%, 15.44%]** | — | [`POOL-01`..`POOL-06`](docs/FACTS.md) |
+| **Phase 8 Real-Data Evaluation** | **Blind sealed stream** (commit `325d4c6`, hash `fbcf1437`; QQP/PAWS/MS MARCO; [`P8-D05`](docs/FACTS.md)) | 230 | 50 (41 canonical, 3 auto, 6 local) | 3 | **6.0%** | **[1.3%, 16.5%]** | **100%** | [`P8-R04`](docs/FACTS.md), [`P8-P01`..`P8-P04`](docs/FACTS.md) |
 
 ---
 

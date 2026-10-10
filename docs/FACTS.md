@@ -316,4 +316,83 @@ P3-06 Clopper-Pearson CI for k=1, n=12 (OpenRouter same-set):
 
 ---
 
-*Last updated: 2026-10-01. Author: Antigravity agent. Commit: see git log.*
+## 16. Phase 8 — Local Equivalence Layer & Real-Data Evaluation
+
+### 16.1 — System Architecture, Models, and Hardware Constants
+
+| # | Fact | Claim / Value | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| P8-C01 | Normalizer module | `src/cache/normalizer.py` (lowercase, punctuation, interchangeable question frames) **`[CODE]`** | `src/cache/normalizer.py` | `python tests/test_normalizer.py` |
+| P8-C02 | Primary local pairwise CrossEncoder model | `cross-encoder/quora-distilroberta-base` **`[CODE]`** | `src/decision/local_equivalence.py` line 33 | `grep DEFAULT_CROSS_ENCODER_MODEL src/decision/local_equivalence.py` |
+| P8-C03 | Primary local model revision | `f62e7a4b20b97195c2868e53ec59126df5eac743` **`[CODE]`** | `src/decision/local_equivalence.py` line 34 | `grep DEFAULT_CROSS_ENCODER_REVISION src/decision/local_equivalence.py` |
+| P8-C04 | Primary local model training data | Quora Question Pairs (QQP) training split; zero-shot transfer evaluated on validation split & PAWS | Hugging Face model card (`cross-encoder/quora-distilroberta-base`) | Inspect model card |
+| P8-C05 | Alternative local pairwise CrossEncoder model | `cross-encoder/ms-marco-MiniLM-L-6-v2` **`[CODE]`** | `src/decision/local_equivalence.py` line 35 | `grep MS_MARCO_CROSS_ENCODER_MODEL src/decision/local_equivalence.py` |
+| P8-C06 | Alternative local model revision | `233902d25c440f23af6f7d6e94d2946bac0bee0a` **`[CODE]`** | `src/decision/local_equivalence.py` line 36 | `grep MS_MARCO_CROSS_ENCODER_REVISION src/decision/local_equivalence.py` |
+| P8-C07 | Calibrated local equivalence threshold $\theta_{\text{local}}$ | **0.8500** (calibrated on validation split only) **`[CODE]`** | `scripts/tune_local_threshold.py` | `python scripts/tune_local_threshold.py` |
+| P8-C08 | Deterministic rule guards | Strict number equality, negation polarity match, entity token match **`[CODE]`** | `src/decision/local_equivalence.py` | `python tests/test_local_equivalence.py` |
+| P8-C09 | Remote LLM judge fallback status | Flag `fallback_to_llm=False` (disabled by default; 100% local resolution) **`[CODE]`** | `src/decision/local_equivalence.py` line 184 | `grep fallback_to_llm src/decision/local_equivalence.py` |
+| P8-C10 | Evaluation hardware | Intel(R) Core(TM) Ultra 7 155U (12 cores, 14 logical processors), 32 GB RAM, Windows 11 **`[DOC]`** | Local system benchmark | Inspect system properties |
+
+### 16.2 — Public Datasets and Splits
+
+| # | Dataset / Split | Source / License | Size / Composition | SHA-256 Checksum |
+| :---: | :--- | :--- | :--- | :--- |
+| P8-D01 | PAWS validation split | Google Research / CC-BY-SA 4.0 (`google-research-datasets/paws`, `labeled_final`) | 8,000 rows | `7760d829453764ba342a6f562809a8ed21c2c3eec3fd9ffa544089f145d42f6d` |
+| P8-D02 | QQP validation split | GLUE / NYU MLL / Quora Terms (`nyu-mll/glue`, `qqp`) | 40,430 rows | `efd86a539c412d74874ee451573d7bd142f56c47fe36de033b9f367d8bb0fa71` |
+| P8-D03 | MS MARCO validation split | Microsoft Research License / CC-BY 4.0 (`microsoft/ms_marco`, `v1.1`) | 10,047 rows | `67aca2e1b2fffe418a6bd317142887c90973c9c98dd8d940eaae3f8521daed7c` |
+| P8-D04 | Tuning validation split | `data/phase8_tuning_val.json` | 160 pairs (60 QQP pos, 40 PAWS neg, 30 QQP neg, 30 MS MARCO neg) | `3782fa16b1dc9d8469adfe2bb8e1a1e127394aa52ca1714bfa4911d35a51da03` |
+| P8-D05 | Sealed evaluation test stream | `data/raw/phase8_sealed_test_stream.json` | **230 queries** (80 safe reuse, 150 miss/unsafe); committed before run at commit `325d4c6` | `fbcf1437aa91797942363f8faa58d6b6eef51d9df7f1d776fce556221dd900af` |
+
+### 16.3 — Baseline Real LLM Generation Measurements
+
+Measured on sample $n = 10$ queries from sealed stream using `nvidia/nemotron-3-super-120b-a12b:free` via OpenRouter (temp=0.0, max_tokens=128):
+
+| # | Metric | Measured Value | Source file + location |
+| :---: | :--- | :--- | :--- |
+| P8-B01 | Baseline LLM mean latency | **1505.56 ms** (1505.6 ms) | `data/baseline_llm_measurements.json` |
+| P8-B02 | Baseline LLM median (p50) latency | **1235.5 ms** | `data/baseline_llm_measurements.json` |
+| P8-B03 | Baseline LLM p95 latency | **2239.32 ms** (2239.3 ms) | `data/baseline_llm_measurements.json` |
+| P8-B04 | Baseline LLM mean prompt tokens | **36.3 tokens** | `data/baseline_llm_measurements.json` |
+| P8-B05 | Baseline LLM mean completion tokens | **139.8 tokens** | `data/baseline_llm_measurements.json` |
+| P8-B06 | Baseline LLM mean total tokens | **176.1 tokens** | `data/baseline_llm_measurements.json` |
+
+### 16.4 — Four-Arm Simulation Results (N=230 Sealed Real-Query Stream)
+
+Executed once on sealed test stream (`fbcf1437aa91797942363f8faa58d6b6eef51d9df7f1d776fce556221dd900af`):
+
+| # | Arm | Hits ($n$) | Hit Rate (95% CI) | IRR (95% CI) | LLM Calls | p50 Latency | p95 Latency |
+| :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| P8-R01 | (a) No Cache | 0 | **0.0%** [0.0%, 1.6%] | N/A (0 hits) | 230 | 1235.5 ms | 2239.3 ms |
+| P8-R02 | (b) Fixed Cosine (0.85) | 90 | **39.1%** [32.8%, 45.8%] | **34.4%** [24.7%, 45.2%] (FP=31) | 140 | 48.4 ms | 74.2 ms |
+| P8-R03 | (c) Current Pipeline | 16 | **7.0%** [4.0%, 11.1%] | **18.8%** [4.0%, 45.6%] (FP=3) | 21 (remote judge) | 50.6 ms | 6928.7 ms |
+| P8-R04 | (d) New Pipeline (Phase 8) | **50** | **21.7%** [16.6%, 27.6%] | **6.0%** [1.3%, 16.5%] (FP=3) | **0** (100% local) | **37.8 ms** | **62.2 ms** |
+
+### 16.5 — New Pipeline Breakdown, Path Latencies, and Workload Avoidance
+
+| # | Metric / Sub-path | Measured Value | Notes / Citations |
+| :---: | :--- | :--- | :--- |
+| P8-P01 | Arm (d) Total Hits | **50 hits** (TP=47, FP=3) | `data/phase8_simulation_telemetry.json` |
+| P8-P02 | Arm (d) Canonical Exact Hits | **41 hits** (82.0% of all cache hits) | Stage 0 normalizer folded exact/canonical frames |
+| P8-P03 | Arm (d) Vector Store AUTO_REUSE Hits | **3 hits** | Stage 1-3 embedding similarity $\ge 0.92$, conf $\ge 0.90$ |
+| P8-P04 | Arm (d) Local Equivalence Model Approved | **6 hits** | Stage 3 borderline band approved by CrossEncoder ($\ge 0.85$) |
+| P8-P05 | CANONICAL_EXACT latency (n=41) | mean **0.02 ms**, p50 **0.01 ms**, p95 **0.02 ms** | Instant in-memory lookup without embedding |
+| P8-P06 | AUTO_REUSE latency (n=3) | mean **36.72 ms**, p50 **36.03 ms**, p95 **41.37 ms** | Embedding + FAISS vector search |
+| P8-P07 | LOCAL_EQUIVALENCE latency (n=14) | mean **390.07 ms**, p50 **68.00 ms**, p95 **1665.89 ms** | CrossEncoder CPU pairwise inference |
+| P8-P08 | BYPASS latency (n=172) | mean **40.38 ms**, p50 **39.15 ms**, p95 **58.03 ms** | Missed / rejected query path |
+| P8-P09 | LLM calls avoided per 1,000 queries | **217.4 calls** | (50 hits / 230 queries) * 1,000 |
+| P8-P10 | Tokens avoided per 1,000 queries | **38,282.6 tokens** | 217.4 calls * 176.1 tokens/generation |
+| P8-P11 | Estimated cost avoided per 1,000 queries | **$0.011** (at $0.30/1M tokens, OpenAI published price Oct 2024, estimate) | Optional cited estimate: 38,282.6 * $0.30 / 1,000,000 |
+
+### 16.6 — Component Ablation Table
+
+| # | Ablation Stage | Hits | Hit Rate | FP | IRR | p50 Latency |
+| :---: | :--- | :---: | :---: | :---: | :---: | :---: |
+| P8-A01 | 1. Normalizer only | 41 | 17.8% | 0 | 0.0% | 0.01 ms |
+| P8-A02 | 2. + Embedding (Cosine 0.85) | 90 | 39.1% | 31 | 34.4% | 34.02 ms |
+| P8-A03 | 3. + Local Equivalence Model (Arm d) | 50 | 21.7% | 3 | 6.0% | 37.82 ms |
+| P8-A04 | 4. + Remote Judge (Current pipeline) | 16 | 7.0% | 3 | 18.8% | 50.65 ms |
+
+---
+
+*Last updated: 2026-10-11. Author: Antigravity agent. Commit: see git log.*
+

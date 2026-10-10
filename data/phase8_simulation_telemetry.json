@@ -1,0 +1,6588 @@
+{
+  "dataset": "phase8_sealed_test_stream.json",
+  "N": 230,
+  "hardware": "Intel(R) Core(TM) Ultra 7 155U (12 cores, 14 logical processors), 32 GB RAM, Windows 11",
+  "baseline_llm": {
+    "n_calls": 10,
+    "latencies_ms": [
+      1750.7,
+      2382.1,
+      1031.4,
+      2064.8,
+      1186.6,
+      1911.3,
+      1224.3,
+      1246.7,
+      1120.7,
+      1137.0
+    ],
+    "mean_latency_ms": 1505.56,
+    "median_latency_ms": 1235.5,
+    "p95_latency_ms": 2239.32,
+    "mean_prompt_tokens": 36.3,
+    "mean_completion_tokens": 139.8,
+    "mean_total_tokens": 176.1
+  },
+  "arm_a_no_cache": {
+    "hits": 0,
+    "misses": 230,
+    "tp": 0,
+    "fp": 0,
+    "fn": 80,
+    "tn": 150,
+    "llm_calls": 230,
+    "latencies_ms": [
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56,
+      1505.56
+    ]
+  },
+  "arm_b_fixed_cosine": {
+    "hits": 90,
+    "tp": 59,
+    "fp": 31,
+    "fn": 21,
+    "tn": 119,
+    "hit_rate": 0.391304347826087,
+    "hr_ci": [
+      0.3278270143737874,
+      0.4576218423014041
+    ],
+    "irr": 0.34444444444444444,
+    "irr_ci": [
+      0.24740428540812143,
+      0.452039998334117
+    ],
+    "p50_ms": 48.364999999999995,
+    "p95_ms": 74.20886499999999,
+    "telemetry": [
+      {
+        "id": "P8-SEED-001",
+        "query": "What should I do to make life worth living?",
+        "decision": "MISS",
+        "similarity": -Infinity,
+        "latency_ms": 70.2429,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-002",
+        "query": "How can I specifically improve my English?",
+        "decision": "MISS",
+        "similarity": 0.16492009162902832,
+        "latency_ms": 64.9461,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-003",
+        "query": "How can I stop eating junk and processed food addiction and stay healthy?",
+        "decision": "MISS",
+        "similarity": 0.2877338230609894,
+        "latency_ms": 56.6163,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-004",
+        "query": "What can I do to improve my English speaking?",
+        "decision": "HIT",
+        "similarity": 0.8726829290390015,
+        "latency_ms": 78.4427,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-SEED-005",
+        "query": "How can we eradicate corruption?",
+        "decision": "MISS",
+        "similarity": 0.23912689089775085,
+        "latency_ms": 52.5644,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-006",
+        "query": "What are the movies one should see?",
+        "decision": "MISS",
+        "similarity": 0.17133976519107819,
+        "latency_ms": 59.9066,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-007",
+        "query": "What is an accurate way to calculate your IQ?",
+        "decision": "MISS",
+        "similarity": 0.24889077246189117,
+        "latency_ms": 44.717,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-008",
+        "query": "Is our PM Modi doing the correct thing with 500 and 1000 Rs notes?",
+        "decision": "MISS",
+        "similarity": 0.08607245981693268,
+        "latency_ms": 59.2071,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-009",
+        "query": "Is it possible to choose your dreams?",
+        "decision": "MISS",
+        "similarity": 0.22036373615264893,
+        "latency_ms": 58.1603,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-010",
+        "query": "Why is the firm's marginal cost curve equal supply curve?",
+        "decision": "MISS",
+        "similarity": 0.04021061956882477,
+        "latency_ms": 50.5781,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-011",
+        "query": "How can I see someone's private instagram account?",
+        "decision": "MISS",
+        "similarity": 0.09198621660470963,
+        "latency_ms": 59.8483,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-012",
+        "query": "What would happen if America became a communist country?",
+        "decision": "MISS",
+        "similarity": 0.24980896711349487,
+        "latency_ms": 55.4586,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-013",
+        "query": "What song do you like to sing along to most?",
+        "decision": "MISS",
+        "similarity": 0.20690307021141052,
+        "latency_ms": 53.9295,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-014",
+        "query": "I have a drug test at 3 next tuesday, its friday. I stopped smoking meth today. will I pass my urine test?",
+        "decision": "MISS",
+        "similarity": 0.15084026753902435,
+        "latency_ms": 57.0518,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-015",
+        "query": "Why do so many people ask questions on Quora.com when they could easily find the answers themselves online?",
+        "decision": "MISS",
+        "similarity": 0.1371949315071106,
+        "latency_ms": 70.7453,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-016",
+        "query": "What is the age when a person should ideally retire?",
+        "decision": "MISS",
+        "similarity": 0.29606732726097107,
+        "latency_ms": 51.4399,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-017",
+        "query": "How safe are the neighborhoods of Boston?",
+        "decision": "MISS",
+        "similarity": 0.16017794609069824,
+        "latency_ms": 42.5824,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-018",
+        "query": "What is the best book for learning Java?",
+        "decision": "MISS",
+        "similarity": 0.18767616152763367,
+        "latency_ms": 48.5984,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-019",
+        "query": "What's the difference between cd and DVD?",
+        "decision": "MISS",
+        "similarity": 0.15275031328201294,
+        "latency_ms": 55.0424,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-020",
+        "query": "How can I lose weight effectively?",
+        "decision": "MISS",
+        "similarity": 0.4636191129684448,
+        "latency_ms": 47.9466,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-021",
+        "query": "How much does a MRI or CT scan of a head cost?",
+        "decision": "MISS",
+        "similarity": 0.19290360808372498,
+        "latency_ms": 52.9894,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-022",
+        "query": "Does masturbation causes pimples?",
+        "decision": "MISS",
+        "similarity": 0.12586668133735657,
+        "latency_ms": 42.7117,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-023",
+        "query": "How do I merge Informatica Code?",
+        "decision": "MISS",
+        "similarity": 0.12024307996034622,
+        "latency_ms": 50.1244,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-024",
+        "query": "What should I do to earn money online?",
+        "decision": "MISS",
+        "similarity": 0.4272455871105194,
+        "latency_ms": 42.6314,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-025",
+        "query": "What are the best techniques for off-page SEO?",
+        "decision": "MISS",
+        "similarity": 0.28704366087913513,
+        "latency_ms": 60.9218,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-026",
+        "query": "What are the best home remedies to get rid of cockroaches?",
+        "decision": "MISS",
+        "similarity": 0.2316536009311676,
+        "latency_ms": 53.4538,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-027",
+        "query": "What makes India different from all other countries in the world?",
+        "decision": "MISS",
+        "similarity": 0.19324809312820435,
+        "latency_ms": 61.7918,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-028",
+        "query": "Why do we forget dreams so quickly?",
+        "decision": "MISS",
+        "similarity": 0.5049608945846558,
+        "latency_ms": 46.149,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-029",
+        "query": "If you are told that you have only 24 hours to live how you will spend it? With whom?",
+        "decision": "MISS",
+        "similarity": 0.39453279972076416,
+        "latency_ms": 55.7506,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-030",
+        "query": "Why is my puppy vomiting white foam?",
+        "decision": "MISS",
+        "similarity": 0.2881149649620056,
+        "latency_ms": 55.2116,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-031",
+        "query": "Does Mike Wazowski blink or wink?",
+        "decision": "MISS",
+        "similarity": 0.14777109026908875,
+        "latency_ms": 47.6441,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-032",
+        "query": "How do you start a private equity firm?",
+        "decision": "MISS",
+        "similarity": 0.21664617955684662,
+        "latency_ms": 48.8869,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-033",
+        "query": "How was Chinese and Japanese look before the nuclear attack?",
+        "decision": "MISS",
+        "similarity": 0.24328532814979553,
+        "latency_ms": 49.8109,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-034",
+        "query": "How can you make money with Instagram?",
+        "decision": "MISS",
+        "similarity": 0.5360175371170044,
+        "latency_ms": 46.7386,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-035",
+        "query": "How do I post a question in quora?",
+        "decision": "MISS",
+        "similarity": 0.35608071088790894,
+        "latency_ms": 46.4527,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-036",
+        "query": "How can I continue to improve my English?",
+        "decision": "HIT",
+        "similarity": 0.9038605093955994,
+        "latency_ms": 52.8206,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-SEED-037",
+        "query": "Why making a Time Machine is Impossible?",
+        "decision": "MISS",
+        "similarity": 0.2066504955291748,
+        "latency_ms": 50.2409,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-038",
+        "query": "Do you believe in ghosts? And why?",
+        "decision": "MISS",
+        "similarity": 0.17475944757461548,
+        "latency_ms": 44.6434,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-039",
+        "query": "I'm 27, is it too late for me to go to medical school?",
+        "decision": "MISS",
+        "similarity": 0.2809337079524994,
+        "latency_ms": 51.0872,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-040",
+        "query": "How can I upgrade my English Writing skills?",
+        "decision": "MISS",
+        "similarity": 0.6979608535766602,
+        "latency_ms": 128.6527,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-041",
+        "query": "What does Hillary Clinton think of high-skill immigration?",
+        "decision": "MISS",
+        "similarity": 0.16697397828102112,
+        "latency_ms": 55.3217,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-042",
+        "query": "You are president of the United States. What will you do in the 4 or 8 years of your presidency?",
+        "decision": "MISS",
+        "similarity": 0.31578296422958374,
+        "latency_ms": 64.7712,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-043",
+        "query": "What are some amazing facts about Vladimir Putin?",
+        "decision": "MISS",
+        "similarity": 0.2046385407447815,
+        "latency_ms": 118.3456,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-044",
+        "query": "How can I upload my profile picture in Quora?",
+        "decision": "MISS",
+        "similarity": 0.503116250038147,
+        "latency_ms": 54.2397,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-045",
+        "query": "Why is my period four days late?",
+        "decision": "MISS",
+        "similarity": 0.21741217374801636,
+        "latency_ms": 55.7331,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-046",
+        "query": "Are/were mermaids/mermen real?",
+        "decision": "MISS",
+        "similarity": 0.25875425338745117,
+        "latency_ms": 85.379,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-047",
+        "query": "What is the best Alabama SEO Company?",
+        "decision": "MISS",
+        "similarity": 0.3890279531478882,
+        "latency_ms": 36.2689,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-048",
+        "query": "Why has Quora banned my real name account as fake?",
+        "decision": "MISS",
+        "similarity": 0.32746273279190063,
+        "latency_ms": 47.465,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-049",
+        "query": "What is the best way to encourage 4-5 year olds to play chess?",
+        "decision": "MISS",
+        "similarity": 0.17959630489349365,
+        "latency_ms": 43.3658,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-050",
+        "query": "How can I become an investment banker in India?",
+        "decision": "MISS",
+        "similarity": 0.47117486596107483,
+        "latency_ms": 39.6383,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-REP-001",
+        "query": "What should I do to make life worth living?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 32.8875,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-002",
+        "query": "How can I specifically improve my English?",
+        "decision": "HIT",
+        "similarity": 0.9999999403953552,
+        "latency_ms": 34.3655,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-003",
+        "query": "How can I stop eating junk and processed food addiction and stay healthy?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 49.6298,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-004",
+        "query": "What can I do to improve my English speaking?",
+        "decision": "HIT",
+        "similarity": 0.8726829290390015,
+        "latency_ms": 56.4291,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-005",
+        "query": "How can we eradicate corruption?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 52.227,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-006",
+        "query": "What are the movies one should see?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 33.2182,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-007",
+        "query": "What is an accurate way to calculate your IQ?",
+        "decision": "HIT",
+        "similarity": 1.0000001192092896,
+        "latency_ms": 38.6918,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-008",
+        "query": "Is our PM Modi doing the correct thing with 500 and 1000 Rs notes?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 52.3189,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-009",
+        "query": "Is it possible to choose your dreams?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 37.8712,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-010",
+        "query": "Why is the firm's marginal cost curve equal supply curve?",
+        "decision": "HIT",
+        "similarity": 0.9999999403953552,
+        "latency_ms": 49.1049,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-011",
+        "query": "How can I see someone's private instagram account?",
+        "decision": "HIT",
+        "similarity": 1.0000001192092896,
+        "latency_ms": 40.8782,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-012",
+        "query": "What would happen if America became a communist country?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 36.164,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-013",
+        "query": "What song do you like to sing along to most?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 35.1284,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-014",
+        "query": "I have a drug test at 3 next tuesday, its friday. I stopped smoking meth today. will I pass my urine test?",
+        "decision": "HIT",
+        "similarity": 1.0000001192092896,
+        "latency_ms": 42.9345,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-015",
+        "query": "Why do so many people ask questions on Quora.com when they could easily find the answers themselves online?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 40.5664,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-016",
+        "query": "What is the age when a person should ideally retire?",
+        "decision": "HIT",
+        "similarity": 1.0000001192092896,
+        "latency_ms": 37.9453,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-017",
+        "query": "How safe are the neighborhoods of Boston?",
+        "decision": "HIT",
+        "similarity": 1.000000238418579,
+        "latency_ms": 32.9924,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-018",
+        "query": "What is the best book for learning Java?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 31.6669,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-019",
+        "query": "What's the difference between cd and DVD?",
+        "decision": "HIT",
+        "similarity": 1.0000001192092896,
+        "latency_ms": 35.6617,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-020",
+        "query": "How can I lose weight effectively?",
+        "decision": "HIT",
+        "similarity": 1.000000238418579,
+        "latency_ms": 30.4851,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-021",
+        "query": "How much does a MRI or CT scan of a head cost?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 36.8358,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-022",
+        "query": "Does masturbation causes pimples?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 39.0062,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-023",
+        "query": "How do I merge Informatica Code?",
+        "decision": "HIT",
+        "similarity": 1.0000001192092896,
+        "latency_ms": 36.788,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-024",
+        "query": "What should I do to earn money online?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 33.4837,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-025",
+        "query": "What are the best techniques for off-page SEO?",
+        "decision": "HIT",
+        "similarity": 1.000000238418579,
+        "latency_ms": 37.6106,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-026",
+        "query": "What are the best home remedies to get rid of cockroaches?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 42.8803,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-027",
+        "query": "What makes India different from all other countries in the world?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 36.9995,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-028",
+        "query": "Why do we forget dreams so quickly?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 35.4928,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-029",
+        "query": "If you are told that you have only 24 hours to live how you will spend it? With whom?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 42.7719,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-030",
+        "query": "Why is my puppy vomiting white foam?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 41.3864,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-031",
+        "query": "Does Mike Wazowski blink or wink?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 33.9065,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-032",
+        "query": "How do you start a private equity firm?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 48.1659,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-033",
+        "query": "How was Chinese and Japanese look before the nuclear attack?",
+        "decision": "HIT",
+        "similarity": 1.0000001192092896,
+        "latency_ms": 39.1057,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-034",
+        "query": "How can you make money with Instagram?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 37.5172,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-035",
+        "query": "How do I post a question in quora?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 31.7729,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-036",
+        "query": "How can I continue to improve my English?",
+        "decision": "HIT",
+        "similarity": 0.9038605093955994,
+        "latency_ms": 30.8476,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-037",
+        "query": "Why making a Time Machine is Impossible?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 30.4463,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-038",
+        "query": "Do you believe in ghosts? And why?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 34.1767,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-039",
+        "query": "I'm 27, is it too late for me to go to medical school?",
+        "decision": "HIT",
+        "similarity": 1.0,
+        "latency_ms": 40.2887,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-040",
+        "query": "How can I upgrade my English Writing skills?",
+        "decision": "HIT",
+        "similarity": 0.9999999403953552,
+        "latency_ms": 37.5921,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-001",
+        "query": "What makes life worth living?",
+        "decision": "MISS",
+        "similarity": 0.8239899277687073,
+        "latency_ms": 38.1609,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-002",
+        "query": "How do I learn spoken English?",
+        "decision": "MISS",
+        "similarity": 0.762719988822937,
+        "latency_ms": 33.9349,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-003",
+        "query": "How do I stop my cravings for junk food?",
+        "decision": "MISS",
+        "similarity": 0.7677688598632812,
+        "latency_ms": 44.4614,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-004",
+        "query": "How can I improve in English?",
+        "decision": "HIT",
+        "similarity": 0.8930891156196594,
+        "latency_ms": 45.2712,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-005",
+        "query": "How can people\u2019s participation eradicate corruption?",
+        "decision": "MISS",
+        "similarity": 0.8307718634605408,
+        "latency_ms": 41.123,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-006",
+        "query": "What are the greatest movies I have to see?",
+        "decision": "MISS",
+        "similarity": 0.8264236450195312,
+        "latency_ms": 40.033,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-007",
+        "query": "What's the most accurate way to test my IQ?",
+        "decision": "HIT",
+        "similarity": 0.8762306571006775,
+        "latency_ms": 45.0625,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-008",
+        "query": "What do you think about ban on Rs. 500 and Rs. 1000 currency notes?",
+        "decision": "MISS",
+        "similarity": 0.6676205396652222,
+        "latency_ms": 46.9582,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-009",
+        "query": "How can I manipulate my dreams?",
+        "decision": "MISS",
+        "similarity": 0.6468093991279602,
+        "latency_ms": 42.9712,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-010",
+        "query": "How can supply curve tell about marginal cost?",
+        "decision": "MISS",
+        "similarity": 0.8291898965835571,
+        "latency_ms": 49.6907,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-011",
+        "query": "How do I view someones's private instagram pictures?",
+        "decision": "HIT",
+        "similarity": 0.8988794088363647,
+        "latency_ms": 46.8637,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-012",
+        "query": "What would happen if the USA became a communist country?",
+        "decision": "HIT",
+        "similarity": 0.9769669771194458,
+        "latency_ms": 44.4999,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-013",
+        "query": "What is one song you can't help but sing along to when it comes on?",
+        "decision": "MISS",
+        "similarity": 0.734105110168457,
+        "latency_ms": 42.1012,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-014",
+        "query": "I've been smoking meth for about a year. How long will it be before I can pass a blood test?",
+        "decision": "MISS",
+        "similarity": 0.7513604164123535,
+        "latency_ms": 86.9165,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-015",
+        "query": "Why do people ask basic questions instead of searching them?",
+        "decision": "MISS",
+        "similarity": 0.6501076221466064,
+        "latency_ms": 86.3165,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-016",
+        "query": "What do you think is the best age to retire?",
+        "decision": "HIT",
+        "similarity": 0.9144264459609985,
+        "latency_ms": 49.855,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-017",
+        "query": "How safe is Boston?",
+        "decision": "HIT",
+        "similarity": 0.8671759366989136,
+        "latency_ms": 49.3565,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-018",
+        "query": "What would be the best book to begin with for Java?",
+        "decision": "HIT",
+        "similarity": 0.9294115304946899,
+        "latency_ms": 71.0907,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-019",
+        "query": "What is difference between CD and DVD?",
+        "decision": "HIT",
+        "similarity": 0.9957722425460815,
+        "latency_ms": 50.2573,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-020",
+        "query": "How do I lose weight from 70 to 50?",
+        "decision": "MISS",
+        "similarity": 0.6698267459869385,
+        "latency_ms": 47.8962,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-021",
+        "query": "How much does a CT scan for the head cost?",
+        "decision": "HIT",
+        "similarity": 0.9339301586151123,
+        "latency_ms": 45.5858,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-022",
+        "query": "How bad is masturbation and what are the bad effects?",
+        "decision": "MISS",
+        "similarity": 0.5804569721221924,
+        "latency_ms": 59.706,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-023",
+        "query": "How do I merge code in Informatica?",
+        "decision": "HIT",
+        "similarity": 0.9841223359107971,
+        "latency_ms": 41.059,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-024",
+        "query": "I'm 18. How can I make money online?",
+        "decision": "MISS",
+        "similarity": 0.7836676836013794,
+        "latency_ms": 35.0078,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-025",
+        "query": "What are the best techniques used in Off Page SEO?",
+        "decision": "HIT",
+        "similarity": 0.9641250371932983,
+        "latency_ms": 47.3774,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-026",
+        "query": "What is the best home remedy to get rid of cockroaches?",
+        "decision": "HIT",
+        "similarity": 0.9831632971763611,
+        "latency_ms": 31.1881,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-027",
+        "query": "Why is India unique? What does India have that other countries don't?",
+        "decision": "MISS",
+        "similarity": 0.8402149081230164,
+        "latency_ms": 38.8391,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-028",
+        "query": "Why do we forget our dreams so quickly?",
+        "decision": "HIT",
+        "similarity": 0.9882386922836304,
+        "latency_ms": 31.0803,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-029",
+        "query": "If you had only 24 hours left to live, what would you do?",
+        "decision": "MISS",
+        "similarity": 0.6298757791519165,
+        "latency_ms": 48.4049,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-030",
+        "query": "What should I do if my puppy throws up white foam?",
+        "decision": "HIT",
+        "similarity": 0.8927954435348511,
+        "latency_ms": 57.0755,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-031",
+        "query": "Does Mike Wazowski blinks or wink?",
+        "decision": "HIT",
+        "similarity": 0.9949349761009216,
+        "latency_ms": 44.5803,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-032",
+        "query": "How do I start a successful private equity firm?",
+        "decision": "HIT",
+        "similarity": 0.9490664005279541,
+        "latency_ms": 49.8982,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-033",
+        "query": "How was Chinese and Japanese look like before the nuclear attack?",
+        "decision": "HIT",
+        "similarity": 0.969190776348114,
+        "latency_ms": 55.9368,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-034",
+        "query": "How do people make money from Instagram?",
+        "decision": "HIT",
+        "similarity": 0.9461160898208618,
+        "latency_ms": 53.0866,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-035",
+        "query": "How can I ask my question on Quora?",
+        "decision": "MISS",
+        "similarity": 0.8273820877075195,
+        "latency_ms": 47.1369,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-036",
+        "query": "How can I improve fluency in English?",
+        "decision": "MISS",
+        "similarity": 0.8498055934906006,
+        "latency_ms": 61.3235,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-037",
+        "query": "Can the idea of time machine be ever achieved in real?",
+        "decision": "MISS",
+        "similarity": 0.7703489661216736,
+        "latency_ms": 41.4323,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-038",
+        "query": "Do you believe in ghosts, Why?",
+        "decision": "HIT",
+        "similarity": 0.9792375564575195,
+        "latency_ms": 62.5988,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-039",
+        "query": "How old is too old to start medical school?",
+        "decision": "MISS",
+        "similarity": 0.7735298871994019,
+        "latency_ms": 44.9317,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-040",
+        "query": "How can I improve my English vocabulary and writing skills?",
+        "decision": "MISS",
+        "similarity": 0.8386639356613159,
+        "latency_ms": 41.5881,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-ADV-SEED-001",
+        "query": "His father died in his youth , and his mother , Samuel Adams , married Catherine A. Fagan in 1842 , who two years later became the governor of Arkansas .",
+        "decision": "MISS",
+        "similarity": 0.11785779893398285,
+        "latency_ms": 58.5764,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-001",
+        "query": "His father died during his youth and his mother , Catherine A. Fagan , in 1842 married Samuel Adams , who became Governor of Arkansas two years later .",
+        "decision": "HIT",
+        "similarity": 0.9920831918716431,
+        "latency_ms": 52.0544,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-002",
+        "query": "Also Cai Feng had a son , Cai Mao .",
+        "decision": "MISS",
+        "similarity": 0.35392698645591736,
+        "latency_ms": 32.8304,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-002",
+        "query": "Cai Mao also had a son , Cai Feng .",
+        "decision": "HIT",
+        "similarity": 0.9831726551055908,
+        "latency_ms": 47.761,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-003",
+        "query": "Although interchangeable , the body pieces on the 2 cars are not similar .",
+        "decision": "MISS",
+        "similarity": 0.147478386759758,
+        "latency_ms": 49.1826,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-003",
+        "query": "Although similar , the body parts are not interchangeable on the 2 cars .",
+        "decision": "HIT",
+        "similarity": 0.9477077722549438,
+        "latency_ms": 37.8526,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-004",
+        "query": "It originated in the eastern half of the counties of Norfolk and Suffolk and is also represented in Essex and Hertfordshire .",
+        "decision": "MISS",
+        "similarity": 0.1321428120136261,
+        "latency_ms": 48.6421,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-004",
+        "query": "It outcrops in the eastern half of the counties of Norfolk and Suffolk , and is also represented in Essex and Hertfordshire .",
+        "decision": "MISS",
+        "similarity": 0.7565947771072388,
+        "latency_ms": 53.7997,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-005",
+        "query": "He died in Milwaukee , Wisconsin , where on 5 May 1903 he retired .",
+        "decision": "MISS",
+        "similarity": 0.39675742387771606,
+        "latency_ms": 51.3542,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-005",
+        "query": "He retired in Milwaukee , Wisconsin , where he died on May 5 , 1903 .",
+        "decision": "HIT",
+        "similarity": 0.9920333623886108,
+        "latency_ms": 43.2275,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-006",
+        "query": "Its leaves are shaped alternately along the branches and have lance-arranged , egg-shaped or almost circular and are a stalk long .",
+        "decision": "MISS",
+        "similarity": 0.1881200224161148,
+        "latency_ms": 47.2216,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-006",
+        "query": "Its leaves are arranged alternately along the branches and are lance-shaped , egg-shaped or almost circular and have a long stem .",
+        "decision": "HIT",
+        "similarity": 0.9527576565742493,
+        "latency_ms": 49.3586,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-007",
+        "query": "This expanded the area of conflict between Massachusetts and the province of Rhode Island .",
+        "decision": "MISS",
+        "similarity": 0.29597145318984985,
+        "latency_ms": 49.7651,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-007",
+        "query": "This widened the area of conflict between Rhode Island and the province of Massachusetts .",
+        "decision": "HIT",
+        "similarity": 0.9667269587516785,
+        "latency_ms": 42.3287,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-008",
+        "query": "Slough High School was a girls selective grammar school in Berkshire , now Slough , Buckinghamshire .",
+        "decision": "MISS",
+        "similarity": 0.31153303384780884,
+        "latency_ms": 47.6666,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-008",
+        "query": "Slough High School was a selective girls ' grammar school in Slough , Buckinghamshire , now Berkshire .",
+        "decision": "HIT",
+        "similarity": 0.9939698576927185,
+        "latency_ms": 56.2349,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-009",
+        "query": "After Independence , the institution was sanctioned by the new government and gained its current name .",
+        "decision": "MISS",
+        "similarity": 0.18625524640083313,
+        "latency_ms": 47.032,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-009",
+        "query": "After independence , the institution was sanctioned by the current government and received its new name .",
+        "decision": "HIT",
+        "similarity": 0.9845960736274719,
+        "latency_ms": 117.5776,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-010",
+        "query": "The river Geam\u0103rt\u0103lui is a tributary of the Breaza River in Romania .",
+        "decision": "MISS",
+        "similarity": 0.12316872924566269,
+        "latency_ms": 66.8283,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-010",
+        "query": "The River Breaza is a tributary of the River Geam\u0103rt\u0103lui in Romania .",
+        "decision": "HIT",
+        "similarity": 0.9686887264251709,
+        "latency_ms": 52.4684,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-011",
+        "query": "It is close to Lough Corrib , on the N59 road to Oughterard and Clifden , in Connemara .",
+        "decision": "MISS",
+        "similarity": 0.2617639899253845,
+        "latency_ms": 55.8063,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-011",
+        "query": "It is near Oughterard and Clifden , on the N59 road to Lough Corrib , in Connemara .",
+        "decision": "HIT",
+        "similarity": 0.9759640693664551,
+        "latency_ms": 86.2917,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-012",
+        "query": "The manuscript was added to the list of manuscripts of the New Testament by Caspar Ren\u00e9 Gregory ( 278 ) and Frederick Henry Ambrose Scrivener ( Number 329 ) .",
+        "decision": "MISS",
+        "similarity": 0.25145527720451355,
+        "latency_ms": 46.8721,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-012",
+        "query": "The manuscript was added to the list of New Testament manuscripts by Frederick Henry Ambrose Scrivener ( 278 ) and Caspar Ren\u00e9 Gregory ( number 329 ) .",
+        "decision": "HIT",
+        "similarity": 0.9866827726364136,
+        "latency_ms": 64.8537,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-013",
+        "query": "While the exclusion of black players was not a written rule , no African-American had played in the National Football League since 1933 .",
+        "decision": "MISS",
+        "similarity": 0.11575309187173843,
+        "latency_ms": 66.3681,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-013",
+        "query": "While the exclusion of African players was not a written rule , no black American player in the National Football League had played since 1933 .",
+        "decision": "HIT",
+        "similarity": 0.9895205497741699,
+        "latency_ms": 45.7519,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-014",
+        "query": "Muawiyah came to power after the death of Ali and established a dynasty .",
+        "decision": "MISS",
+        "similarity": 0.3773609399795532,
+        "latency_ms": 45.6154,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-014",
+        "query": "After the death of Muawiyah , Ali came to power and founded a dynasty .",
+        "decision": "HIT",
+        "similarity": 0.9532495141029358,
+        "latency_ms": 49.614,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-015",
+        "query": "He was appointed Prosecutor for Seneca County in 1824 , for Williams County in 1826 , and Sandusky County in 1827 .",
+        "decision": "MISS",
+        "similarity": 0.27044233679771423,
+        "latency_ms": 66.7518,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-015",
+        "query": "He was appointed prosecuting attorney for Williams County in 1824 , for Seneca County in 1826 and for Sandusky County in 1827 .",
+        "decision": "HIT",
+        "similarity": 0.9500923156738281,
+        "latency_ms": 56.5036,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-016",
+        "query": "A UK tour started in May 1983 , featuring additional guitarist Robin George for live performances .",
+        "decision": "MISS",
+        "similarity": 0.16140587627887726,
+        "latency_ms": 56.1763,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-016",
+        "query": "In May 1983 , a UK tour with the live guitarist Robin George started for additional performances .",
+        "decision": "HIT",
+        "similarity": 0.9836330413818359,
+        "latency_ms": 48.3251,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-017",
+        "query": "`` Hymenaea stiginocarpa '' occurs in northern , central , and eastern Brazil and in Paraguay .",
+        "decision": "MISS",
+        "similarity": 0.2736203670501709,
+        "latency_ms": 73.9645,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-017",
+        "query": "`` Hymenaea stiginocarpa '' comes in northern , central and eastern Paraguay and in Brazil .",
+        "decision": "HIT",
+        "similarity": 0.9649161100387573,
+        "latency_ms": 45.0314,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-018",
+        "query": "ACVM is headquartered in Edinburgh and has offices in Glasgow , Aberdeen , Newcastle , Manchester and Milton Keynes .",
+        "decision": "MISS",
+        "similarity": 0.28980857133865356,
+        "latency_ms": 47.2767,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-018",
+        "query": "ACVM is based in Glasgow and has subsidiaries in Edinburgh , Aberdeen , Newcastle , Manchester and Milton Keynes .",
+        "decision": "HIT",
+        "similarity": 0.9676289558410645,
+        "latency_ms": 48.8721,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-019",
+        "query": "To create the map for Hoth , the designers received as much source material as possible from `` The Empire beats back '' to develop an authentic reproduction .",
+        "decision": "MISS",
+        "similarity": 0.21063047647476196,
+        "latency_ms": 53.8748,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-019",
+        "query": "To develop the map for Hoth , the designers obtained as much source material from `` The Empire Strikes Back '' as possible so to create an authentic reproduction .",
+        "decision": "HIT",
+        "similarity": 0.9341713190078735,
+        "latency_ms": 58.4483,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-020",
+        "query": "Cordell Crockett played the bass on 5 songs , with Ugly Kid Joe bassist Nathan Slade playing bass on the rest .",
+        "decision": "MISS",
+        "similarity": 0.22783681750297546,
+        "latency_ms": 58.0571,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-020",
+        "query": "Nathan Slade played the bass on five songs , with Ugly Kid Joe Bassist Cordell Crockett on the rest bass .",
+        "decision": "HIT",
+        "similarity": 0.9663457274436951,
+        "latency_ms": 51.4915,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-021",
+        "query": "Frederick Brown was President of the Council , Henry Wrixon was chairman of the committees .",
+        "decision": "MISS",
+        "similarity": 0.23591348528862,
+        "latency_ms": 74.4088,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-021",
+        "query": "Henry Wrixon was President of the Council ; Frederick Brown was Chairman of Committees .",
+        "decision": "HIT",
+        "similarity": 0.9926308393478394,
+        "latency_ms": 47.4025,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-022",
+        "query": "It is shorter and much lighter in length -- a necessary design parameter given its placement in the compact cars .",
+        "decision": "MISS",
+        "similarity": 0.3847397565841675,
+        "latency_ms": 50.4307,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-022",
+        "query": "It is lighter and much shorter in length -- a necessary design parameter considering its placement in compact cars .",
+        "decision": "HIT",
+        "similarity": 0.9737682342529297,
+        "latency_ms": 47.0607,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-023",
+        "query": "Like many ethnic communities in Uganda , including the Langi , Acholi , and Luo , the Alur do not practice the ritual circumcision of males as initiation .",
+        "decision": "MISS",
+        "similarity": 0.24690847098827362,
+        "latency_ms": 59.9748,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-023",
+        "query": "Like many ethnic communities in Uganda , including the Langi , Acholi , and Alur , the Luo do not practice the ritual circumcision of men as initiative .",
+        "decision": "HIT",
+        "similarity": 0.8837282657623291,
+        "latency_ms": 56.3996,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-024",
+        "query": "In 1993 , when Peter Joseph Whelihan opened his second restaurant in Allentown , he changed the name to P. J. Whelihan 's to honor his grandfather .",
+        "decision": "MISS",
+        "similarity": 0.26014459133148193,
+        "latency_ms": 59.1251,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-024",
+        "query": "When Platzer opened his second restaurant in Allentown in 1993 , he changed the name to P. J. Whelihan 's to honor his grandfather , Peter Joseph Whelihan .",
+        "decision": "HIT",
+        "similarity": 0.8808416724205017,
+        "latency_ms": 54.3981,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-025",
+        "query": "In 2008 , Folayan won the Precious Award for `` Inspiring Leader within the Workplace '' .",
+        "decision": "MISS",
+        "similarity": 0.17787189781665802,
+        "latency_ms": 48.657,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-025",
+        "query": "In 2008 , Folayan won an Inspiring Award for the `` Precious Leader within the Workplace '' .",
+        "decision": "HIT",
+        "similarity": 0.9738885164260864,
+        "latency_ms": 49.7383,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-026",
+        "query": "The event was attended by Boutique @ hs Ambassador , Teresa Palmer Michala Banas and the Australian actress Kyly Clarke .",
+        "decision": "MISS",
+        "similarity": 0.23224517703056335,
+        "latency_ms": 47.1439,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-026",
+        "query": "The event was attended by Boutique @ hs Ambassador Kyly Clarke , Australian actress Teresa Palmer and Michala Banas .",
+        "decision": "HIT",
+        "similarity": 0.9926528334617615,
+        "latency_ms": 48.4713,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-027",
+        "query": "In early 2016 , Senator Chris Widener was appointed to the Senate of Ohio in order to succeed Senator Bob Hackett , who resigned .",
+        "decision": "MISS",
+        "similarity": 0.24548853933811188,
+        "latency_ms": 55.8241,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-027",
+        "query": "In early 2016 , Senator Bob Hackett was appointed to the Senate of Ohio in order to succeed Senator Chris Widener , who resigned .",
+        "decision": "HIT",
+        "similarity": 0.9875147342681885,
+        "latency_ms": 52.7634,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-028",
+        "query": "He was born on December 21 , 1965 in Oxon Hill , Maryland , and attended High School in New Haven , Connecticut .",
+        "decision": "MISS",
+        "similarity": 0.3511054515838623,
+        "latency_ms": 51.1441,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-028",
+        "query": "He was born on 21 December 1965 in New Haven , Connecticut , and attended the Oxon Hill High School in Oxon Hill , Maryland .",
+        "decision": "HIT",
+        "similarity": 0.9840964078903198,
+        "latency_ms": 44.6401,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-029",
+        "query": "The `` working model '' is 78 cm high and 79 long .",
+        "decision": "MISS",
+        "similarity": 0.38362956047058105,
+        "latency_ms": 42.5033,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-029",
+        "query": "The `` Working Model '' is 78 cm long and 79 & nspb ; high .",
+        "decision": "HIT",
+        "similarity": 0.9796421527862549,
+        "latency_ms": 57.9539,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-030",
+        "query": "She is praised by Richard Gibson and the court painter Peter Lely and is considered as successful as Joan Carlile .",
+        "decision": "MISS",
+        "similarity": 0.32639557123184204,
+        "latency_ms": 50.9741,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-030",
+        "query": "Praised by Richard Gibson and the court painter Joan Carlile , she is considered to be as successful as Peter Lely .",
+        "decision": "HIT",
+        "similarity": 0.9651962518692017,
+        "latency_ms": 56.3543,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-MS-001",
+        "query": "what is a captor",
+        "decision": "MISS",
+        "similarity": 0.14865335822105408,
+        "latency_ms": 45.4249,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-002",
+        "query": "how to oven roast brussel sprouts",
+        "decision": "MISS",
+        "similarity": 0.1849086880683899,
+        "latency_ms": 45.3592,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-003",
+        "query": "is chase website down today",
+        "decision": "MISS",
+        "similarity": 0.23386503756046295,
+        "latency_ms": 46.0844,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-004",
+        "query": "what does the surname holt mean",
+        "decision": "MISS",
+        "similarity": 0.2311229407787323,
+        "latency_ms": 46.8993,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-005",
+        "query": "new oil furnace should cost",
+        "decision": "MISS",
+        "similarity": 0.276049941778183,
+        "latency_ms": 44.1858,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-006",
+        "query": "what is progressive reform",
+        "decision": "MISS",
+        "similarity": 0.20405173301696777,
+        "latency_ms": 92.1558,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-007",
+        "query": "who invented the first vehicle",
+        "decision": "MISS",
+        "similarity": 0.27082952857017517,
+        "latency_ms": 1220.2253,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-008",
+        "query": "why do my eyes look squinty in pictures",
+        "decision": "MISS",
+        "similarity": 0.21093052625656128,
+        "latency_ms": 57.9861,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-009",
+        "query": "what is cabaret music",
+        "decision": "MISS",
+        "similarity": 0.2632805109024048,
+        "latency_ms": 65.0168,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-010",
+        "query": "how much does an mri cost in dallas",
+        "decision": "MISS",
+        "similarity": 0.6414334774017334,
+        "latency_ms": 48.8501,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-011",
+        "query": "ainsley name meaning",
+        "decision": "MISS",
+        "similarity": 0.2920915186405182,
+        "latency_ms": 48.887,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-012",
+        "query": "what is a bandog",
+        "decision": "MISS",
+        "similarity": 0.3165639042854309,
+        "latency_ms": 50.6154,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-013",
+        "query": "what is craic mean",
+        "decision": "MISS",
+        "similarity": 0.16653776168823242,
+        "latency_ms": 48.2813,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-014",
+        "query": "do you have to be smart to be an ultrasound tech",
+        "decision": "MISS",
+        "similarity": 0.368591845035553,
+        "latency_ms": 61.4887,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-015",
+        "query": "where is the parietal lobe located",
+        "decision": "MISS",
+        "similarity": 0.32227030396461487,
+        "latency_ms": 92.2402,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-016",
+        "query": "what is functional constipation",
+        "decision": "MISS",
+        "similarity": 0.2118530124425888,
+        "latency_ms": 40.5847,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-017",
+        "query": "what causes a hoarse voice",
+        "decision": "MISS",
+        "similarity": 0.23926851153373718,
+        "latency_ms": 54.295,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-018",
+        "query": "what is a bear's hand called",
+        "decision": "MISS",
+        "similarity": 0.14085647463798523,
+        "latency_ms": 54.3026,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-019",
+        "query": "what is mediastinal mass",
+        "decision": "MISS",
+        "similarity": 0.18033352494239807,
+        "latency_ms": 36.356,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-020",
+        "query": "what group does the squirrel monkey belong to",
+        "decision": "MISS",
+        "similarity": 0.22981129586696625,
+        "latency_ms": 47.7748,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-021",
+        "query": "what does the name carmel mean",
+        "decision": "MISS",
+        "similarity": 0.23815025389194489,
+        "latency_ms": 71.8239,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-022",
+        "query": "nike name meaning",
+        "decision": "MISS",
+        "similarity": 0.27468934655189514,
+        "latency_ms": 45.0407,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-023",
+        "query": "peripheral nervous is part of what system",
+        "decision": "MISS",
+        "similarity": 0.19366773962974548,
+        "latency_ms": 45.7524,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-024",
+        "query": "where was chayanne born",
+        "decision": "MISS",
+        "similarity": 0.4147142171859741,
+        "latency_ms": 50.3914,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-025",
+        "query": "cost to install a deck",
+        "decision": "MISS",
+        "similarity": 0.3684622645378113,
+        "latency_ms": 43.8488,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-026",
+        "query": "qualification of a registered biomedical scientist",
+        "decision": "MISS",
+        "similarity": 0.35963642597198486,
+        "latency_ms": 48.607,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-027",
+        "query": "what is astrocyte function",
+        "decision": "MISS",
+        "similarity": 0.2619938254356384,
+        "latency_ms": 33.9178,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-028",
+        "query": "where was laura ingalls wilder born",
+        "decision": "MISS",
+        "similarity": 0.28605222702026367,
+        "latency_ms": 54.808,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-029",
+        "query": "where is Serotonin made in the body",
+        "decision": "MISS",
+        "similarity": 0.21277689933776855,
+        "latency_ms": 47.5403,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-030",
+        "query": "weighted average price",
+        "decision": "MISS",
+        "similarity": 0.2875065207481384,
+        "latency_ms": 52.6008,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-031",
+        "query": "what is austenitic and martensitic",
+        "decision": "MISS",
+        "similarity": 0.2079823762178421,
+        "latency_ms": 42.1668,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-032",
+        "query": "can other fish be placed with bala sharks",
+        "decision": "MISS",
+        "similarity": 0.2401599884033203,
+        "latency_ms": 60.0439,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-033",
+        "query": "how often is cal grant disbursed",
+        "decision": "MISS",
+        "similarity": 0.13109588623046875,
+        "latency_ms": 46.3403,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-034",
+        "query": "why was the napoleonic code significant",
+        "decision": "MISS",
+        "similarity": 0.20062761008739471,
+        "latency_ms": 47.796,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-035",
+        "query": "what is thick waxy coating means in microbiology",
+        "decision": "MISS",
+        "similarity": 0.16825498640537262,
+        "latency_ms": 43.107,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-036",
+        "query": "what evidence does dna show",
+        "decision": "MISS",
+        "similarity": 0.253415584564209,
+        "latency_ms": 32.3343,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-037",
+        "query": "scarlett johansson comic book movie roles",
+        "decision": "MISS",
+        "similarity": 0.335316002368927,
+        "latency_ms": 42.753,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-038",
+        "query": "what is adobo chicken",
+        "decision": "MISS",
+        "similarity": 0.23648475110530853,
+        "latency_ms": 45.2984,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-039",
+        "query": "where do zebras live",
+        "decision": "MISS",
+        "similarity": 0.2938123047351837,
+        "latency_ms": 47.4096,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-040",
+        "query": "what kind of climate do truffles grow in",
+        "decision": "MISS",
+        "similarity": 0.31428682804107666,
+        "latency_ms": 60.9092,
+        "outcome": "TN"
+      }
+    ]
+  },
+  "arm_c_current_pipeline": {
+    "hits": 16,
+    "tp": 13,
+    "fp": 3,
+    "fn": 67,
+    "tn": 147,
+    "hit_rate": 0.06956521739130435,
+    "hr_ci": [
+      0.040282605096574615,
+      0.11051286368621396
+    ],
+    "irr": 0.1875,
+    "irr_ci": [
+      0.0404737339059459,
+      0.4564565462316117
+    ],
+    "judge_calls": 21,
+    "p50_ms": 50.64904998289421,
+    "p95_ms": 6928.671404992926,
+    "telemetry": [
+      {
+        "id": "P8-SEED-001",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": -Infinity,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 43.98600000422448,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-002",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.16492009162902832,
+        "confidence": 0.7998159202666396,
+        "judge_used": false,
+        "latency_ms": 191.0430999705568,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-003",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2877338230609894,
+        "confidence": 0.8235771309467141,
+        "judge_used": false,
+        "latency_ms": 81.00130001548678,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-004",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.8726829290390015,
+        "confidence": 0.7716335646056687,
+        "judge_used": false,
+        "latency_ms": 72.2230999963358,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-005",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.23912689089775085,
+        "confidence": 0.8293508646626263,
+        "judge_used": false,
+        "latency_ms": 68.30090004950762,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-006",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.17133976519107819,
+        "confidence": 0.7846117131805264,
+        "judge_used": false,
+        "latency_ms": 56.30249995738268,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-007",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.24889077246189117,
+        "confidence": 0.5763872515590593,
+        "judge_used": false,
+        "latency_ms": 47.66429995652288,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-008",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.08607245981693268,
+        "confidence": 0.6056311906252032,
+        "judge_used": false,
+        "latency_ms": 64.02269995305687,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-009",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.22036373615264893,
+        "confidence": 0.6238597797899281,
+        "judge_used": false,
+        "latency_ms": 53.91559994313866,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-010",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.04021061956882477,
+        "confidence": 0.5415951891472799,
+        "judge_used": false,
+        "latency_ms": 63.64800001028925,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-011",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.09198621660470963,
+        "confidence": 0.8017334340890581,
+        "judge_used": false,
+        "latency_ms": 52.28099995292723,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-012",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.24980896711349487,
+        "confidence": 0.6989694184362264,
+        "judge_used": false,
+        "latency_ms": 45.87210004683584,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-013",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.20690307021141052,
+        "confidence": 0.7275993586026457,
+        "judge_used": false,
+        "latency_ms": 50.31880002934486,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-014",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.15084026753902435,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 57.85469990223646,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-015",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.1371949315071106,
+        "confidence": 0.7125562103889926,
+        "judge_used": false,
+        "latency_ms": 73.22850008495152,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-016",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.29606732726097107,
+        "confidence": 0.6993380321483137,
+        "judge_used": false,
+        "latency_ms": 59.76920004468411,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-017",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.16017794609069824,
+        "confidence": 0.7977684608983,
+        "judge_used": false,
+        "latency_ms": 62.961299903690815,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-018",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.18767616152763367,
+        "confidence": 0.5001641099915238,
+        "judge_used": false,
+        "latency_ms": 53.254300029948354,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-019",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.15275031328201294,
+        "confidence": 0.9224396938056187,
+        "judge_used": false,
+        "latency_ms": 64.61860006675124,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-020",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.4636191129684448,
+        "confidence": 0.733694772793428,
+        "judge_used": false,
+        "latency_ms": 39.78389990516007,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-021",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.19290360808372498,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 41.8299000011757,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-022",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.12586668133735657,
+        "confidence": 0.851590663920516,
+        "judge_used": false,
+        "latency_ms": 51.19240004569292,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-023",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.12024307996034622,
+        "confidence": 0.8634941440242724,
+        "judge_used": false,
+        "latency_ms": 52.39440000150353,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-024",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.4272455871105194,
+        "confidence": 0.7562284363584815,
+        "judge_used": false,
+        "latency_ms": 51.31319991778582,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-025",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.28704366087913513,
+        "confidence": 0.7314392205046043,
+        "judge_used": false,
+        "latency_ms": 52.432100055739284,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-026",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2316536009311676,
+        "confidence": 0.7352424271031917,
+        "judge_used": false,
+        "latency_ms": 51.15339998155832,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-027",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.19324809312820435,
+        "confidence": 0.7233448548782067,
+        "judge_used": false,
+        "latency_ms": 40.58709996752441,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-028",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.5049608945846558,
+        "confidence": 0.7951999647662362,
+        "judge_used": false,
+        "latency_ms": 55.53059990052134,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-029",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.39453279972076416,
+        "confidence": 0.6224477780395328,
+        "judge_used": false,
+        "latency_ms": 50.52719998639077,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-030",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2881149649620056,
+        "confidence": 0.7052180852509875,
+        "judge_used": false,
+        "latency_ms": 43.02460001781583,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-031",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.14777109026908875,
+        "confidence": 0.7733256043360547,
+        "judge_used": false,
+        "latency_ms": 55.041100014932454,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-032",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.21664617955684662,
+        "confidence": 0.8325249440040374,
+        "judge_used": false,
+        "latency_ms": 50.745900021865964,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-033",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.24328532814979553,
+        "confidence": 0.7317843363250958,
+        "judge_used": false,
+        "latency_ms": 60.51280000247061,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-034",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.5360175371170044,
+        "confidence": 0.7768311118648111,
+        "judge_used": false,
+        "latency_ms": 54.302699980326,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-035",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.35608071088790894,
+        "confidence": 0.9176669456009579,
+        "judge_used": false,
+        "latency_ms": 57.21030000131577,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-036",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9038605093955994,
+        "confidence": 0.7906912377063952,
+        "judge_used": false,
+        "latency_ms": 51.1255000019446,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-037",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2066504955291748,
+        "confidence": 0.5755682073256072,
+        "judge_used": false,
+        "latency_ms": 57.99909995403141,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-038",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.17475944757461548,
+        "confidence": 0.7947119385764643,
+        "judge_used": false,
+        "latency_ms": 54.565200000070035,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-039",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2809337079524994,
+        "confidence": 0.5495154549231265,
+        "judge_used": false,
+        "latency_ms": 68.94759996794164,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-040",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.7220281958580017,
+        "confidence": 0.7902238642449181,
+        "judge_used": false,
+        "latency_ms": 81.60439995117486,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-041",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.16697397828102112,
+        "confidence": 0.7873098612167239,
+        "judge_used": false,
+        "latency_ms": 79.01530002709478,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-042",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.31578296422958374,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 68.14210000447929,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-043",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2046385407447815,
+        "confidence": 0.769597145205416,
+        "judge_used": false,
+        "latency_ms": 66.30790000781417,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-044",
+        "decision": "BYPASS",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.503116250038147,
+        "confidence": 0.8800806210542362,
+        "judge_used": true,
+        "latency_ms": 15362.900299951434,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-045",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.21741217374801636,
+        "confidence": 0.6277488065355632,
+        "judge_used": false,
+        "latency_ms": 61.9590999558568,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-046",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.25875425338745117,
+        "confidence": 0.7358883213751857,
+        "judge_used": false,
+        "latency_ms": 55.65579992253333,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-047",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.3890279531478882,
+        "confidence": 0.5106266856737917,
+        "judge_used": false,
+        "latency_ms": 58.885599952191114,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-048",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.32746273279190063,
+        "confidence": 0.6475031907313487,
+        "judge_used": false,
+        "latency_ms": 69.73370001651347,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-049",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.17959630489349365,
+        "confidence": 0.5172441585853776,
+        "judge_used": false,
+        "latency_ms": 69.64030000381172,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-050",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.47117486596107483,
+        "confidence": 0.6398338858890518,
+        "judge_used": false,
+        "latency_ms": 78.82769999559969,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-REP-001",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 70.53290004841983,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-002",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9999999403953552,
+        "confidence": 0.7998159202666396,
+        "judge_used": false,
+        "latency_ms": 68.90750001184642,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-003",
+        "decision": "REUSE",
+        "tier": "AMBIGUOUS",
+        "similarity": 1.0,
+        "confidence": 0.8235771309467141,
+        "judge_used": true,
+        "latency_ms": 6374.593700049445,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-004",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0000001192092896,
+        "confidence": 0.7716335646056687,
+        "judge_used": false,
+        "latency_ms": 45.8275000564754,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-005",
+        "decision": "REUSE",
+        "tier": "AMBIGUOUS",
+        "similarity": 1.0,
+        "confidence": 0.8293508646626263,
+        "judge_used": true,
+        "latency_ms": 6108.581400010735,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-006",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.7846117131805264,
+        "judge_used": false,
+        "latency_ms": 104.83229998499155,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-007",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0000001192092896,
+        "confidence": 0.5763872515590593,
+        "judge_used": false,
+        "latency_ms": 59.87420002929866,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-008",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.6056311906252032,
+        "judge_used": false,
+        "latency_ms": 57.62139998842031,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-009",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.6238597797899281,
+        "judge_used": false,
+        "latency_ms": 74.05260007362813,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-010",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9999999403953552,
+        "confidence": 0.5415951891472799,
+        "judge_used": false,
+        "latency_ms": 69.60899999830872,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-011",
+        "decision": "REUSE",
+        "tier": "AMBIGUOUS",
+        "similarity": 1.0000001192092896,
+        "confidence": 0.8017334340890581,
+        "judge_used": true,
+        "latency_ms": 7007.46870005969,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-012",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.6989694184362264,
+        "judge_used": false,
+        "latency_ms": 54.492600029334426,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-013",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.7275993586026457,
+        "judge_used": false,
+        "latency_ms": 49.465499934740365,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-014",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0000001192092896,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 53.44149994198233,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-015",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.7125562103889926,
+        "judge_used": false,
+        "latency_ms": 60.02159998752177,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-016",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0000001192092896,
+        "confidence": 0.6993380321483137,
+        "judge_used": false,
+        "latency_ms": 53.58049995265901,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-017",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.000000238418579,
+        "confidence": 0.7977684608983,
+        "judge_used": false,
+        "latency_ms": 52.557399962097406,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-018",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.5001641099915238,
+        "judge_used": false,
+        "latency_ms": 46.51649994775653,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-019",
+        "decision": "REUSE",
+        "tier": "AUTO_REUSE",
+        "similarity": 1.0000001192092896,
+        "confidence": 0.9224396938056187,
+        "judge_used": false,
+        "latency_ms": 49.81560003943741,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-020",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.000000238418579,
+        "confidence": 0.733694772793428,
+        "judge_used": false,
+        "latency_ms": 48.461199970915914,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-021",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 45.54860002826899,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-022",
+        "decision": "REUSE",
+        "tier": "AMBIGUOUS",
+        "similarity": 1.0,
+        "confidence": 0.851590663920516,
+        "judge_used": true,
+        "latency_ms": 6030.561399995349,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-023",
+        "decision": "REUSE",
+        "tier": "AMBIGUOUS",
+        "similarity": 1.0000001192092896,
+        "confidence": 0.8634941440242724,
+        "judge_used": true,
+        "latency_ms": 6367.333799949847,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-024",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.7562284363584815,
+        "judge_used": false,
+        "latency_ms": 44.92079990450293,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-025",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.000000238418579,
+        "confidence": 0.7314392205046043,
+        "judge_used": false,
+        "latency_ms": 40.77150009106845,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-026",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.7352424271031917,
+        "judge_used": false,
+        "latency_ms": 55.93459994997829,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-027",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.7233448548782067,
+        "judge_used": false,
+        "latency_ms": 50.1255999552086,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-028",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.7951999647662362,
+        "judge_used": false,
+        "latency_ms": 43.850400019437075,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-029",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.6224477780395328,
+        "judge_used": false,
+        "latency_ms": 53.3910000231117,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-030",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.7052180852509875,
+        "judge_used": false,
+        "latency_ms": 56.20220000855625,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-031",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.7733256043360547,
+        "judge_used": false,
+        "latency_ms": 44.05530006624758,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-032",
+        "decision": "REUSE",
+        "tier": "AMBIGUOUS",
+        "similarity": 1.0,
+        "confidence": 0.8325249440040374,
+        "judge_used": true,
+        "latency_ms": 6181.294500012882,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-033",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0000001192092896,
+        "confidence": 0.7317843363250958,
+        "judge_used": false,
+        "latency_ms": 62.16410000342876,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-034",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.7768311118648111,
+        "judge_used": false,
+        "latency_ms": 73.99379997514188,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-035",
+        "decision": "REUSE",
+        "tier": "AUTO_REUSE",
+        "similarity": 1.0,
+        "confidence": 0.9176669456009579,
+        "judge_used": false,
+        "latency_ms": 53.64210007246584,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-036",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.7906912377063952,
+        "judge_used": false,
+        "latency_ms": 55.81159994471818,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-037",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.5755682073256072,
+        "judge_used": false,
+        "latency_ms": 61.70439999550581,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-038",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.7947119385764643,
+        "judge_used": false,
+        "latency_ms": 85.49319999292493,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-039",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 1.0,
+        "confidence": 0.5495154549231265,
+        "judge_used": false,
+        "latency_ms": 48.64119994454086,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-REP-040",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9999999403953552,
+        "confidence": 0.7902238642449181,
+        "judge_used": false,
+        "latency_ms": 44.93239999283105,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-001",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.8239899277687073,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 59.13419998250902,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-002",
+        "decision": "REUSE",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.7783103585243225,
+        "confidence": 0.8408027243268457,
+        "judge_used": true,
+        "latency_ms": 6129.4385000364855,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-003",
+        "decision": "REUSE",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.7677688598632812,
+        "confidence": 0.8821078657708409,
+        "judge_used": true,
+        "latency_ms": 8563.47359996289,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-004",
+        "decision": "BYPASS",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.8930891156196594,
+        "confidence": 0.8061321479021656,
+        "judge_used": true,
+        "latency_ms": 12876.83660001494,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-005",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.8307718634605408,
+        "confidence": 0.6931590643056191,
+        "judge_used": false,
+        "latency_ms": 71.22559996787459,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-006",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.8264236450195312,
+        "confidence": 0.7137424527260248,
+        "judge_used": false,
+        "latency_ms": 43.24639996048063,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-007",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.8762306571006775,
+        "confidence": 0.530698516761458,
+        "judge_used": false,
+        "latency_ms": 48.29469998367131,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-008",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.6676205396652222,
+        "confidence": 0.609767116601966,
+        "judge_used": false,
+        "latency_ms": 52.378199994564056,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-009",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.6468093991279602,
+        "confidence": 0.7924735215214591,
+        "judge_used": false,
+        "latency_ms": 49.635899951681495,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-010",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.8291898965835571,
+        "confidence": 0.5168538256508322,
+        "judge_used": false,
+        "latency_ms": 41.6825000429526,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-011",
+        "decision": "REUSE",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.8988794088363647,
+        "confidence": 0.8715643899550182,
+        "judge_used": true,
+        "latency_ms": 7333.972400054336,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-012",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9769669771194458,
+        "confidence": 0.6776124025605863,
+        "judge_used": false,
+        "latency_ms": 53.350099944509566,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-013",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.734105110168457,
+        "confidence": 0.7552686709982986,
+        "judge_used": false,
+        "latency_ms": 60.745000024326146,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-014",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.7513604164123535,
+        "confidence": 0.7773963773734558,
+        "judge_used": false,
+        "latency_ms": 73.9019000902772,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-015",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.6501076221466064,
+        "confidence": 0.7291121692820464,
+        "judge_used": false,
+        "latency_ms": 53.33820008672774,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-016",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9144264459609985,
+        "confidence": 0.6186891540252271,
+        "judge_used": false,
+        "latency_ms": 53.110399981960654,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-017",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.8671759366989136,
+        "confidence": 0.7346443596378145,
+        "judge_used": false,
+        "latency_ms": 49.47389999870211,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-018",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9294115304946899,
+        "confidence": 0.6414666603179204,
+        "judge_used": false,
+        "latency_ms": 61.54870009049773,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-019",
+        "decision": "REUSE",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.9957722425460815,
+        "confidence": 0.8970037517805968,
+        "judge_used": true,
+        "latency_ms": 6665.103200008161,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-020",
+        "decision": "BYPASS",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.6698267459869385,
+        "confidence": 0.8463004637056203,
+        "judge_used": true,
+        "latency_ms": 9257.23929994274,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-021",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9339301586151123,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 94.02320010121912,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-022",
+        "decision": "BYPASS",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.5804569721221924,
+        "confidence": 0.8410075683389581,
+        "judge_used": true,
+        "latency_ms": 6832.363599911332,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-023",
+        "decision": "BYPASS",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.9841223359107971,
+        "confidence": 0.8797559190192898,
+        "judge_used": true,
+        "latency_ms": 19962.946699932218,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-024",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.7836676836013794,
+        "confidence": 0.7939326339635694,
+        "judge_used": false,
+        "latency_ms": 53.16550005227327,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-025",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9641250371932983,
+        "confidence": 0.7224390228779336,
+        "judge_used": false,
+        "latency_ms": 37.60330006480217,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-026",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9831632971763611,
+        "confidence": 0.5240118372044915,
+        "judge_used": false,
+        "latency_ms": 52.96709993854165,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-027",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.8402149081230164,
+        "confidence": 0.601878803287285,
+        "judge_used": false,
+        "latency_ms": 41.724400012753904,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-028",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9882386922836304,
+        "confidence": 0.7913580379313562,
+        "judge_used": false,
+        "latency_ms": 41.054400033317506,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-029",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.6298757791519165,
+        "confidence": 0.5886913540918943,
+        "judge_used": false,
+        "latency_ms": 42.19109995756298,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-030",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.8927954435348511,
+        "confidence": 0.761614233235702,
+        "judge_used": false,
+        "latency_ms": 38.525299984030426,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-031",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9949349761009216,
+        "confidence": 0.7832263775530774,
+        "judge_used": false,
+        "latency_ms": 36.572700017131865,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-032",
+        "decision": "BYPASS",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.9490664005279541,
+        "confidence": 0.8996111660475768,
+        "judge_used": true,
+        "latency_ms": 17991.748499916866,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-033",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.969190776348114,
+        "confidence": 0.7261844809478808,
+        "judge_used": false,
+        "latency_ms": 42.703800019808114,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-034",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9461160898208618,
+        "confidence": 0.7880077651881189,
+        "judge_used": false,
+        "latency_ms": 32.640399993397295,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-035",
+        "decision": "REUSE",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.8273820877075195,
+        "confidence": 0.8109122379103526,
+        "judge_used": true,
+        "latency_ms": 6295.315399998799,
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-036",
+        "decision": "BYPASS",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.8858639597892761,
+        "confidence": 0.8055173725549971,
+        "judge_used": true,
+        "latency_ms": 9359.211400034837,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-037",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.7703489661216736,
+        "confidence": 0.6122023031049667,
+        "judge_used": false,
+        "latency_ms": 48.80879994016141,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-038",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9792375564575195,
+        "confidence": 0.7578283439187459,
+        "judge_used": false,
+        "latency_ms": 47.899400000460446,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-039",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.7735298871994019,
+        "confidence": 0.7508483358345943,
+        "judge_used": false,
+        "latency_ms": 41.24170006252825,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-040",
+        "decision": "BYPASS",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.8386639356613159,
+        "confidence": 0.8314181048218956,
+        "judge_used": true,
+        "latency_ms": 7286.458000075072,
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-ADV-SEED-001",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.11785779893398285,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 44.647500035353005,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-001",
+        "decision": "REUSE",
+        "tier": "AUTO_REUSE",
+        "similarity": 0.9920831918716431,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 52.37619997933507,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-002",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.37351924180984497,
+        "confidence": 0.6344067927028707,
+        "judge_used": false,
+        "latency_ms": 46.8363999389112,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-002",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9831726551055908,
+        "confidence": 0.6344067927028707,
+        "judge_used": false,
+        "latency_ms": 45.82939995452762,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-003",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.147478386759758,
+        "confidence": 0.7143876904371476,
+        "judge_used": false,
+        "latency_ms": 50.71859993040562,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-003",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9477077722549438,
+        "confidence": 0.7193023820163085,
+        "judge_used": false,
+        "latency_ms": 45.773199992254376,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-004",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.1321428120136261,
+        "confidence": 0.7778196384491924,
+        "judge_used": false,
+        "latency_ms": 50.57950003538281,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-004",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.7565947771072388,
+        "confidence": 0.7750285746877495,
+        "judge_used": false,
+        "latency_ms": 43.71739993803203,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-005",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.39675742387771606,
+        "confidence": 0.7721295193202503,
+        "judge_used": false,
+        "latency_ms": 40.41640006471425,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-005",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9920333623886108,
+        "confidence": 0.7710548084442026,
+        "judge_used": false,
+        "latency_ms": 45.11589999310672,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-006",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.1881200224161148,
+        "confidence": 0.7630346966467668,
+        "judge_used": false,
+        "latency_ms": 52.89119994267821,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-006",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9527576565742493,
+        "confidence": 0.768172802586846,
+        "judge_used": false,
+        "latency_ms": 45.11489998549223,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-007",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.29597145318984985,
+        "confidence": 0.755545898592009,
+        "judge_used": false,
+        "latency_ms": 45.89910001959652,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-007",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9667269587516785,
+        "confidence": 0.7483187193813743,
+        "judge_used": false,
+        "latency_ms": 41.29109997302294,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-008",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.31153303384780884,
+        "confidence": 0.6931082129418268,
+        "judge_used": false,
+        "latency_ms": 43.497600010596216,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-008",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9939698576927185,
+        "confidence": 0.6960444993806589,
+        "judge_used": false,
+        "latency_ms": 35.05300008691847,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-009",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.18625524640083313,
+        "confidence": 0.5526703470900105,
+        "judge_used": false,
+        "latency_ms": 35.756500088609755,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-009",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9845960736274719,
+        "confidence": 0.6098306688682631,
+        "judge_used": false,
+        "latency_ms": 32.363299978896976,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-010",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.1445320099592209,
+        "confidence": 0.6959105512165846,
+        "judge_used": false,
+        "latency_ms": 36.75890003796667,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-010",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9686887264251709,
+        "confidence": 0.6959105512165846,
+        "judge_used": false,
+        "latency_ms": 36.54040000401437,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-011",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2617639899253845,
+        "confidence": 0.7140849551867781,
+        "judge_used": false,
+        "latency_ms": 54.51679998077452,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-011",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9759640693664551,
+        "confidence": 0.7033504154104364,
+        "judge_used": false,
+        "latency_ms": 48.29099995549768,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-012",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.26840800046920776,
+        "confidence": 0.6334079570708736,
+        "judge_used": false,
+        "latency_ms": 46.4784000068903,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-012",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9866827726364136,
+        "confidence": 0.6402698416941166,
+        "judge_used": false,
+        "latency_ms": 44.205899932421744,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-013",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.11575309187173843,
+        "confidence": 0.722157330887918,
+        "judge_used": false,
+        "latency_ms": 45.566700049676,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-013",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9895205497741699,
+        "confidence": 0.7146478690539948,
+        "judge_used": false,
+        "latency_ms": 48.48999995738268,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-014",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.3773609399795532,
+        "confidence": 0.7329778331674144,
+        "judge_used": false,
+        "latency_ms": 44.53690000809729,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-014",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9532495141029358,
+        "confidence": 0.741427298615654,
+        "judge_used": false,
+        "latency_ms": 40.72289995383471,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-015",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.27044233679771423,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 40.924199973233044,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-015",
+        "decision": "REUSE",
+        "tier": "AUTO_REUSE",
+        "similarity": 0.9500923156738281,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 32.123300014063716,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-016",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.16140587627887726,
+        "confidence": 0.753918629139077,
+        "judge_used": false,
+        "latency_ms": 47.44539991952479,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-016",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9836330413818359,
+        "confidence": 0.753908168643228,
+        "judge_used": false,
+        "latency_ms": 49.25839998759329,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-017",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2779376804828644,
+        "confidence": 0.743623002845266,
+        "judge_used": false,
+        "latency_ms": 41.14359989762306,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-017",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9649161100387573,
+        "confidence": 0.7662746805244071,
+        "judge_used": false,
+        "latency_ms": 45.786900096572936,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-018",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2941201329231262,
+        "confidence": 0.7051908444033207,
+        "judge_used": false,
+        "latency_ms": 42.42840001825243,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-018",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9676289558410645,
+        "confidence": 0.6879832235645584,
+        "judge_used": false,
+        "latency_ms": 42.77519998140633,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-019",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2211349457502365,
+        "confidence": 0.7920102833499398,
+        "judge_used": false,
+        "latency_ms": 46.27710010390729,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-019",
+        "decision": "BYPASS",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.9341713190078735,
+        "confidence": 0.8072641733315155,
+        "judge_used": true,
+        "latency_ms": 8923.636300023645,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-020",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.23225656151771545,
+        "confidence": 0.581433545524964,
+        "judge_used": false,
+        "latency_ms": 44.3797999760136,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-020",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9663457274436951,
+        "confidence": 0.6015289951239988,
+        "judge_used": false,
+        "latency_ms": 38.89800002798438,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-021",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.23591348528862,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 40.52479995880276,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-021",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9926308393478394,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 40.86459998507053,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-022",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.3847397565841675,
+        "confidence": 0.7244986549344081,
+        "judge_used": false,
+        "latency_ms": 47.06789995543659,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-022",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9737682342529297,
+        "confidence": 0.769027320429996,
+        "judge_used": false,
+        "latency_ms": 41.719699976965785,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-023",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.252746045589447,
+        "confidence": 0.7834113833678352,
+        "judge_used": false,
+        "latency_ms": 47.677300055511296,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-023",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.8837282657623291,
+        "confidence": 0.7701963510286639,
+        "judge_used": false,
+        "latency_ms": 50.29869999270886,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-024",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2605563700199127,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 41.11409990582615,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-024",
+        "decision": "BYPASS",
+        "tier": "AMBIGUOUS",
+        "similarity": 0.8808416724205017,
+        "confidence": 1.0,
+        "judge_used": true,
+        "latency_ms": 8023.8506000023335,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-025",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.17787189781665802,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 38.90520008280873,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-025",
+        "decision": "REUSE",
+        "tier": "AUTO_REUSE",
+        "similarity": 0.9738885164260864,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 45.788299990817904,
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-026",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.23421061038970947,
+        "confidence": 0.7015090589480921,
+        "judge_used": false,
+        "latency_ms": 53.0062000034377,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-026",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9926528334617615,
+        "confidence": 0.7038534150779394,
+        "judge_used": false,
+        "latency_ms": 49.30129996500909,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-027",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2520887851715088,
+        "confidence": 0.7074278233244876,
+        "judge_used": false,
+        "latency_ms": 66.15139998029917,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-027",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9875147342681885,
+        "confidence": 0.7074278233244876,
+        "judge_used": false,
+        "latency_ms": 94.8857000330463,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-028",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.3535393476486206,
+        "confidence": 0.7358467417350107,
+        "judge_used": false,
+        "latency_ms": 83.7150999577716,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-028",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9840964078903198,
+        "confidence": 0.728132746460368,
+        "judge_used": false,
+        "latency_ms": 89.99939996283501,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-029",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.38362956047058105,
+        "confidence": 0.6733154707458617,
+        "judge_used": false,
+        "latency_ms": 91.39960003085434,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-029",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9796421527862549,
+        "confidence": 0.6752877577727496,
+        "judge_used": false,
+        "latency_ms": 72.56309990771115,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-030",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.32639557123184204,
+        "confidence": 0.715899715830669,
+        "judge_used": false,
+        "latency_ms": 110.60610006097704,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-030",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.9651962518692017,
+        "confidence": 0.7079817028270108,
+        "judge_used": false,
+        "latency_ms": 71.5343999909237,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-001",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.14865335822105408,
+        "confidence": 0.56286786765783,
+        "judge_used": false,
+        "latency_ms": 56.43780005630106,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-002",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.1722748577594757,
+        "confidence": 0.7744473446719456,
+        "judge_used": false,
+        "latency_ms": 48.81000006571412,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-003",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.23386503756046295,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 27.001299895346165,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-004",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2311229407787323,
+        "confidence": 0.7551573007596935,
+        "judge_used": false,
+        "latency_ms": 31.36400005314499,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-005",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.276049941778183,
+        "confidence": 0.5797617047766455,
+        "judge_used": false,
+        "latency_ms": 51.717599970288575,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-006",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.20405173301696777,
+        "confidence": 0.6466525082815512,
+        "judge_used": false,
+        "latency_ms": 46.915599959902465,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-007",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.27082952857017517,
+        "confidence": 0.636818196309817,
+        "judge_used": false,
+        "latency_ms": 50.30900007113814,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-008",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.21093052625656128,
+        "confidence": 0.8316029903965496,
+        "judge_used": false,
+        "latency_ms": 50.96560006495565,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-009",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2632805109024048,
+        "confidence": 0.578587505516441,
+        "judge_used": false,
+        "latency_ms": 39.91719998884946,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-010",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.6414334774017334,
+        "confidence": 1.0,
+        "judge_used": false,
+        "latency_ms": 51.87529989052564,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-011",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2920915186405182,
+        "confidence": 0.5937954086351631,
+        "judge_used": false,
+        "latency_ms": 49.743000068701804,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-012",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.3165639042854309,
+        "confidence": 0.5959963671440527,
+        "judge_used": false,
+        "latency_ms": 41.72800004016608,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-013",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.16653776168823242,
+        "confidence": 0.5543141098483402,
+        "judge_used": false,
+        "latency_ms": 34.51070003211498,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-014",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.368591845035553,
+        "confidence": 0.7175670783091024,
+        "judge_used": false,
+        "latency_ms": 50.480399979278445,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-015",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.32227030396461487,
+        "confidence": 0.5486323418298,
+        "judge_used": false,
+        "latency_ms": 42.33289998956025,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-016",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2118530124425888,
+        "confidence": 0.736374687595516,
+        "judge_used": false,
+        "latency_ms": 52.53169999923557,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-017",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.23926851153373718,
+        "confidence": 0.7825858800752304,
+        "judge_used": false,
+        "latency_ms": 47.1471999771893,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-018",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.14085647463798523,
+        "confidence": 0.6514013842163218,
+        "judge_used": false,
+        "latency_ms": 47.36199998296797,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-019",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.18033352494239807,
+        "confidence": 0.548953401168355,
+        "judge_used": false,
+        "latency_ms": 50.52589997649193,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-020",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.22981129586696625,
+        "confidence": 0.7612048923073934,
+        "judge_used": false,
+        "latency_ms": 47.48429998289794,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-021",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.23815025389194489,
+        "confidence": 0.7658017839074363,
+        "judge_used": false,
+        "latency_ms": 48.1017999118194,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-022",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.27468934655189514,
+        "confidence": 0.560095111212465,
+        "judge_used": false,
+        "latency_ms": 43.24250004719943,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-023",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.19366773962974548,
+        "confidence": 0.6836977914184648,
+        "judge_used": false,
+        "latency_ms": 41.48480005096644,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-024",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.4147142171859741,
+        "confidence": 0.6923775243873224,
+        "judge_used": false,
+        "latency_ms": 42.79940004926175,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-025",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.3684622645378113,
+        "confidence": 0.6235998878095411,
+        "judge_used": false,
+        "latency_ms": 52.409399999305606,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-026",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.35963642597198486,
+        "confidence": 0.7270090382630836,
+        "judge_used": false,
+        "latency_ms": 62.38170003052801,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-027",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2619938254356384,
+        "confidence": 0.6946289020158907,
+        "judge_used": false,
+        "latency_ms": 47.289000009186566,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-028",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.28605222702026367,
+        "confidence": 0.7017060426584953,
+        "judge_used": false,
+        "latency_ms": 31.09140007290989,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-029",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.21277689933776855,
+        "confidence": 0.6472616363033392,
+        "judge_used": false,
+        "latency_ms": 32.15530002489686,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-030",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2875065207481384,
+        "confidence": 0.7133283280021321,
+        "judge_used": false,
+        "latency_ms": 45.05529999732971,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-031",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2079823762178421,
+        "confidence": 0.7219799733793746,
+        "judge_used": false,
+        "latency_ms": 55.55000004824251,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-032",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2401599884033203,
+        "confidence": 0.6643799343733741,
+        "judge_used": false,
+        "latency_ms": 48.702299944125116,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-033",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.1362997144460678,
+        "confidence": 0.7835039177293323,
+        "judge_used": false,
+        "latency_ms": 43.61870000138879,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-034",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.20062761008739471,
+        "confidence": 0.7660514244879578,
+        "judge_used": false,
+        "latency_ms": 49.67510001733899,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-035",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.16825498640537262,
+        "confidence": 0.706148365840449,
+        "judge_used": false,
+        "latency_ms": 36.850000033155084,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-036",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.256032258272171,
+        "confidence": 0.8461513136690731,
+        "judge_used": false,
+        "latency_ms": 31.479199999012053,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-037",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.335316002368927,
+        "confidence": 0.6644481398601276,
+        "judge_used": false,
+        "latency_ms": 48.49710001144558,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-038",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.23648475110530853,
+        "confidence": 0.5134821997113086,
+        "judge_used": false,
+        "latency_ms": 47.16049996204674,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-039",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.2938123047351837,
+        "confidence": 0.6369091236030673,
+        "judge_used": false,
+        "latency_ms": 42.86440007854253,
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-040",
+        "decision": "BYPASS",
+        "tier": "BYPASS",
+        "similarity": 0.31428682804107666,
+        "confidence": 0.8523547715284778,
+        "judge_used": false,
+        "latency_ms": 38.12629997264594,
+        "outcome": "TN"
+      }
+    ]
+  },
+  "arm_d_new_pipeline": {
+    "hits": 50,
+    "tp": 47,
+    "fp": 3,
+    "fn": 33,
+    "tn": 147,
+    "canonical_hits": 41,
+    "vector_auto_hits": 3,
+    "local_model_hits": 6,
+    "hit_rate": 0.21739130434782608,
+    "hr_ci": [
+      0.16586838227159825,
+      0.27635472669348526
+    ],
+    "irr": 0.06,
+    "irr_ci": [
+      0.012548587835334064,
+      0.16548194660377288
+    ],
+    "p50_ms": 37.817649950738996,
+    "p95_ms": 62.225219991523765,
+    "path_latencies": {
+      "CANONICAL_EXACT": {
+        "mean": 0.015278040181572845,
+        "p50": 0.013599987141788006,
+        "p95": 0.023400061763823032
+      },
+      "AUTO_REUSE": {
+        "mean": 36.720533350793026,
+        "p50": 36.027400055900216,
+        "p95": 41.372680000495166
+      },
+      "LOCAL_EQUIVALENCE": {
+        "mean": 390.0655356950925,
+        "p50": 68.00079997628927,
+        "p95": 1665.8868799568138
+      },
+      "BYPASS": {
+        "mean": 40.382481389949746,
+        "p50": 39.14955002255738,
+        "p95": 58.027710026362904
+      }
+    },
+    "telemetry": [
+      {
+        "id": "P8-SEED-001",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 33.93940010573715,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-002",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 44.52939995098859,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-003",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 58.40159999206662,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-004",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 38.208300014957786,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-005",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 40.80449999310076,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-006",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 40.07190000265837,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-007",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 35.98489996511489,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-008",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 45.66720000002533,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-009",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 37.4862999888137,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-010",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 49.67989993747324,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-011",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 68.70049994904548,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-012",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 54.57330006174743,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-013",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 44.536500005051494,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-014",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 30.476000043563545,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-015",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 31.188299995847046,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-016",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 34.47140008211136,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-017",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 38.740399992093444,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-018",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 39.37659994699061,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-019",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 39.24720000941306,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-020",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 43.547699926421046,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-021",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 43.41269994620234,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-022",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 37.50420000869781,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-023",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 38.87579997535795,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-024",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 95.87140008807182,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-025",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 62.041299999691546,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-026",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 55.30509992968291,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-027",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 44.189600041136146,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-028",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 48.9847999997437,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-029",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 47.60259995236993,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-030",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 42.567100026644766,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-031",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 28.911700006574392,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-032",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 57.72180005442351,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-033",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 56.1708000022918,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-034",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 61.407199944369495,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-035",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 47.164799994789064,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-036",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 30.541400075890124,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-037",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 49.29110000375658,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-038",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 28.633099980652332,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-039",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 29.970800038427114,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-040",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 26.384999975562096,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-041",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 31.474399962462485,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-042",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 50.02520000562072,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-043",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 49.68259995803237,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-044",
+        "decision": "BYPASS",
+        "path": "LOCAL_EQUIVALENCE",
+        "latency_ms": 41.424699942581356,
+        "local_score": 0.0,
+        "guard_reason": "ENTITY_MISMATCH: differing_entities=['quora']",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-045",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 43.350699939765036,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-046",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 27.543499949388206,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-047",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 37.36839990597218,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-048",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 36.89879993908107,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-049",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 39.869299973361194,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-SEED-050",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 46.42759996932,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-REP-001",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.019299914129078388,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-002",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.015900004655122757,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-003",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.019900035113096237,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-004",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.013199984095990658,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-005",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.011199968867003918,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-006",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.018900027498602867,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-007",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.01759990118443966,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-008",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.018700025975704193,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-009",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.011699972674250603,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-010",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.015099998563528061,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-011",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.012599979527294636,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-012",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.013599987141788006,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-013",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.01279998105019331,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-014",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.02659996971487999,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-015",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.023399945348501205,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-016",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.04449998959898949,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-017",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.011299969628453255,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-018",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.01580000389367342,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-019",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.014999997802078724,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-020",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.010699965059757233,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-021",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.013699987903237343,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-022",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.010699965059757233,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-023",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.009999959729611874,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-024",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.011299969628453255,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-025",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.016600009985268116,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-026",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.019300030544400215,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-027",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.015500001609325409,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-028",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.011100084520876408,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-029",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.021700048819184303,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-030",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.01079996582120657,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-031",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.009699957445263863,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-032",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.010899966582655907,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-033",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.014299992471933365,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-034",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.010800082236528397,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-035",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.009900075383484364,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-036",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.010999967344105244,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-037",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.010999967344105244,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-038",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.010299962013959885,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-039",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.015199999324977398,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-REP-040",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.011399970389902592,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-001",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 37.02389996033162,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-002",
+        "decision": "REUSE",
+        "path": "LOCAL_EQUIVALENCE",
+        "latency_ms": 4564.914699993096,
+        "local_score": 0.9957612156867981,
+        "guard_reason": "GUARDS_PASSED",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-003",
+        "decision": "REUSE",
+        "path": "LOCAL_EQUIVALENCE",
+        "latency_ms": 104.87189993727952,
+        "local_score": 0.9962326884269714,
+        "guard_reason": "GUARDS_PASSED",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-004",
+        "decision": "REUSE",
+        "path": "LOCAL_EQUIVALENCE",
+        "latency_ms": 95.00029997434467,
+        "local_score": 0.9970760345458984,
+        "guard_reason": "GUARDS_PASSED",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-005",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 40.762800024822354,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-006",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 46.39079992193729,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-007",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 43.7299000332132,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-008",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 43.5591998975724,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-009",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 42.416200041770935,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-010",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 36.94680007174611,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-011",
+        "decision": "REUSE",
+        "path": "LOCAL_EQUIVALENCE",
+        "latency_ms": 104.50679995119572,
+        "local_score": 0.9962020516395569,
+        "guard_reason": "GUARDS_PASSED",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-012",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 34.76969990879297,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-013",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 52.307400037534535,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-014",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 46.18360009044409,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-015",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 42.036900063976645,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-016",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 34.436400048434734,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-017",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 35.154800047166646,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-018",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 43.2079000165686,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-019",
+        "decision": "REUSE",
+        "path": "CANONICAL_EXACT",
+        "latency_ms": 0.023400061763823032,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-020",
+        "decision": "BYPASS",
+        "path": "LOCAL_EQUIVALENCE",
+        "latency_ms": 39.71589996945113,
+        "local_score": 0.0,
+        "guard_reason": "NUMBER_MISMATCH: query_a=[] vs query_b=['50', '70']",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-021",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 26.148000033572316,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-022",
+        "decision": "BYPASS",
+        "path": "LOCAL_EQUIVALENCE",
+        "latency_ms": 103.99640002287924,
+        "local_score": 0.05871109291911125,
+        "guard_reason": "GUARDS_PASSED",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-023",
+        "decision": "BYPASS",
+        "path": "LOCAL_EQUIVALENCE",
+        "latency_ms": 43.3796999277547,
+        "local_score": 0.0,
+        "guard_reason": "ENTITY_MISMATCH: differing_entities=['code']",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-024",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 40.845699957571924,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-025",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 51.26009997911751,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-026",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 43.31999993883073,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-027",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 43.58109994791448,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-028",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 39.0313999960199,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-029",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 38.17079996224493,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-030",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 31.878900015726686,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-031",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 36.962700076401234,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-032",
+        "decision": "REUSE",
+        "path": "LOCAL_EQUIVALENCE",
+        "latency_ms": 103.96600002422929,
+        "local_score": 0.9521239399909973,
+        "guard_reason": "GUARDS_PASSED",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-033",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 41.40340001322329,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-034",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 32.05450007226318,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-035",
+        "decision": "BYPASS",
+        "path": "LOCAL_EQUIVALENCE",
+        "latency_ms": 37.50189999118447,
+        "local_score": 0.0,
+        "guard_reason": "ENTITY_MISMATCH: differing_entities=['quora']",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-036",
+        "decision": "REUSE",
+        "path": "LOCAL_EQUIVALENCE",
+        "latency_ms": 86.23909996822476,
+        "local_score": 0.9986536502838135,
+        "guard_reason": "GUARDS_PASSED",
+        "outcome": "TP"
+      },
+      {
+        "id": "P8-PARA-037",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 38.861599983647466,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-038",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 40.35459994338453,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-039",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 95.76479997485876,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-PARA-040",
+        "decision": "BYPASS",
+        "path": "LOCAL_EQUIVALENCE",
+        "latency_ms": 48.095300095155835,
+        "local_score": 0.0,
+        "guard_reason": "ENTITY_MISMATCH: differing_entities=['writing']",
+        "outcome": "FN"
+      },
+      {
+        "id": "P8-ADV-SEED-001",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 61.55310000758618,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-001",
+        "decision": "REUSE",
+        "path": "AUTO_REUSE",
+        "latency_ms": 41.96659999433905,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-002",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 41.61380010191351,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-002",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 45.64340005163103,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-003",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 47.340699937194586,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-003",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 70.65250002779067,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-004",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 41.367199970409274,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-004",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 41.41239996533841,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-005",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 36.667500040493906,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-005",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 31.571800005622208,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-006",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 39.05190003570169,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-006",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 46.10769997816533,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-007",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 41.75620002206415,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-007",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 35.00419994816184,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-008",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 37.27249999064952,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-008",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 41.490199975669384,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-009",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 39.65509997215122,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-009",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 36.520899971947074,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-010",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 38.90839999075979,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-010",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 39.96939992066473,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-011",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 40.44779995456338,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-011",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 36.83610004372895,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-012",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 44.86269992776215,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-012",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 39.371300023049116,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-013",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 47.88440000265837,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-013",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 40.37389997392893,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-014",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 38.14239997882396,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-014",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 41.43989994190633,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-015",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 36.20490001048893,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-015",
+        "decision": "REUSE",
+        "path": "AUTO_REUSE",
+        "latency_ms": 32.16760000213981,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-016",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 40.89440009556711,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-016",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 38.211099919863045,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-017",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 40.900700027123094,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-017",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 34.35380000155419,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-018",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 40.623200009576976,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-018",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 35.6486999662593,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-019",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 45.90769996866584,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-019",
+        "decision": "BYPASS",
+        "path": "LOCAL_EQUIVALENCE",
+        "latency_ms": 37.54229994956404,
+        "local_score": 0.0,
+        "guard_reason": "ENTITY_MISMATCH: differing_entities=['back', 'strikes']",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-020",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 41.644600103609264,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-020",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 44.091899995692074,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-021",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 40.805500000715256,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-021",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 31.457599950954318,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-022",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 44.12490001413971,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-022",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 38.58509997371584,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-023",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 43.543700012378395,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-023",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 44.331599958240986,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-024",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 42.53539990168065,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-024",
+        "decision": "BYPASS",
+        "path": "LOCAL_EQUIVALENCE",
+        "latency_ms": 49.76249998435378,
+        "local_score": 0.0,
+        "guard_reason": "ENTITY_MISMATCH: differing_entities=['platzer']",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-025",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 41.7489999672398,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-025",
+        "decision": "REUSE",
+        "path": "AUTO_REUSE",
+        "latency_ms": 36.027400055900216,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "FP"
+      },
+      {
+        "id": "P8-ADV-SEED-026",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 38.43129996675998,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-026",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 40.92329996638,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-027",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 33.84729998651892,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-027",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 39.60199991706759,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-028",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 39.64179998729378,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-028",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 42.108200024813414,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-029",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 38.195200031623244,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-029",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 35.230099922046065,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-SEED-030",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 40.414499933831394,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-ADV-PROBE-030",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 37.140100030228496,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-001",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 32.82459999900311,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-002",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 38.40159997344017,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-003",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 33.76740007661283,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-004",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 36.23359999619424,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-005",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 31.229999964125454,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-006",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 36.719299969263375,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-007",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 35.196100012399256,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-008",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 33.647899981588125,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-009",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 31.11530002206564,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-010",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 36.561000044457614,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-011",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 37.0852000778541,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-012",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 26.4894999563694,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-013",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 34.41039996687323,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-014",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 37.84339991398156,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-015",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 35.65869992598891,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-016",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 36.786200013011694,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-017",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 37.77599998284131,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-018",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 36.66679991874844,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-019",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 38.80660003051162,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-020",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 31.21300006750971,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-021",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 41.217299993149936,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-022",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 27.26890007033944,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-023",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 37.791899987496436,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-024",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 30.963800032623112,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-025",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 29.769200016744435,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-026",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 29.326600022614002,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-027",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 22.554900031536818,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-028",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 25.875200051814318,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-029",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 27.730099973268807,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-030",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 22.176799946464598,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-031",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 25.25409997906536,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-032",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 25.21999995224178,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-033",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 27.570500038564205,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-034",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 30.852199997752905,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-035",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 62.37569998484105,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-036",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 43.402999988757074,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-037",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 49.28290005773306,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-038",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 41.11599992029369,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-039",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 33.56330003589392,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      },
+      {
+        "id": "P8-MS-040",
+        "decision": "BYPASS",
+        "path": "BYPASS",
+        "latency_ms": 36.58880002330989,
+        "local_score": 0.0,
+        "guard_reason": "N/A",
+        "outcome": "TN"
+      }
+    ]
+  },
+  "ablation": {
+    "normalizer_only": {
+      "hits": 41,
+      "fp": 0,
+      "p50_ms": 0.009150011464953423
+    },
+    "normalizer_embedding": {
+      "hits": 90,
+      "fp": 31,
+      "p50_ms": 34.020100021734834
+    },
+    "normalizer_embedding_local": {
+      "hits": 50,
+      "fp": 3,
+      "p50_ms": 37.817649950738996
+    },
+    "normalizer_embedding_judge": {
+      "hits": 16,
+      "fp": 3,
+      "p50_ms": 50.64904998289421
+    }
+  }
+}

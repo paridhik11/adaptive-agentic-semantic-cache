@@ -1,0 +1,21 @@
+{
+  "n_calls": 10,
+  "latencies_ms": [
+    1750.7,
+    2382.1,
+    1031.4,
+    2064.8,
+    1186.6,
+    1911.3,
+    1224.3,
+    1246.7,
+    1120.7,
+    1137.0
+  ],
+  "mean_latency_ms": 1505.56,
+  "median_latency_ms": 1235.5,
+  "p95_latency_ms": 2239.32,
+  "mean_prompt_tokens": 36.3,
+  "mean_completion_tokens": 139.8,
+  "mean_total_tokens": 176.1
+}
