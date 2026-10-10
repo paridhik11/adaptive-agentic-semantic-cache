@@ -30,8 +30,10 @@ from sentence_transformers import CrossEncoder
 
 from src.decision.judge_call import JudgeResult, LLMJudge
 
-DEFAULT_CROSS_ENCODER_MODEL: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
-DEFAULT_CROSS_ENCODER_REVISION: str = "233902d25c440f23af6f7d6e94d2946bac0bee0a"
+DEFAULT_CROSS_ENCODER_MODEL: str = "cross-encoder/quora-distilroberta-base"
+DEFAULT_CROSS_ENCODER_REVISION: str = "f62e7a4b20b97195c2868e53ec59126df5eac743"
+MS_MARCO_CROSS_ENCODER_MODEL: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+MS_MARCO_CROSS_ENCODER_REVISION: str = "233902d25c440f23af6f7d6e94d2946bac0bee0a"
 
 # Common negation terms and contractions
 NEGATION_TOKENS: Set[str] = {
