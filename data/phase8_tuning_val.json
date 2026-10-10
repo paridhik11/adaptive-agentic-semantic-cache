@@ -1,0 +1,1282 @@
+[
+  {
+    "id": "tune_qqp_pos_000",
+    "query_a": "Is there a reason why we should travel alone?",
+    "query_b": "What are some reasons to travel alone?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_001",
+    "query_a": "I am 25 year old guy and never had a girlfriend. Is this weird?",
+    "query_b": "I am 25 years old. I have never had a girlfriend. Is something wrong with me?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_002",
+    "query_a": "\"What does a good answer on Quora look like? What does it mean to \"\"be helpful\"\"?\"",
+    "query_b": "How do you write a good answer on Quora?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_003",
+    "query_a": "What are the best things to do in Hong Kong?",
+    "query_b": "What is the best thing in Hong Kong?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_004",
+    "query_a": "Which is the best gaming laptop under 40k?",
+    "query_b": "Which is the best gaming laptop under 40,000 rs?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_005",
+    "query_a": "What was the deadliest battle in history?",
+    "query_b": "What was the bloodiest battle in history?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_006",
+    "query_a": "What are your views about demonetisation in India?",
+    "query_b": "What do you think about the ban on 500 and 1000 denomination notes in India?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_007",
+    "query_a": "Is it a bad time to buy a condo or a house in the Bay Area in 2017?",
+    "query_b": "Would 2017 be a good time to buy a house in Bay Area?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_008",
+    "query_a": "What is the Sahara, and how do the average temperatures there compare to the ones in the Patagonian Desert?",
+    "query_b": "What is the Sahara, and how do the average temperatures there compare to the ones in the Registan Desert?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_009",
+    "query_a": "What books should I read as an aspiring entrepreneur?",
+    "query_b": "What are the top books an aspiring teen entrepreneur should read?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_010",
+    "query_a": "If universe is expanding without a limit and dark and vacuum energy are created as it expands\u2026?",
+    "query_b": "If universe can expand without limit and it creates dark/vacuum/gravitational energy with it,then is the potential energy infinite?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_011",
+    "query_a": "What people who you've never met have influenced your life the most?",
+    "query_b": "Who are people you have never met who have had the greatest influence on your life?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_012",
+    "query_a": "Are vacuum fluctuations occuring because the energy in vacuum? Are these virtual particles?",
+    "query_b": "Do virtual particles and energy in vacuum really exist? Can we observe them? Where? When?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_013",
+    "query_a": "I'm going to be US President one day. What should I start doing now to achieve this?",
+    "query_b": "I'm 16 and I want to become the US president someday. What should I start doing?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_014",
+    "query_a": "Why MS Dhoni leave captaincy of ODI & T-20?",
+    "query_b": "Why does M.S Dhoni left captaincy for ODI and T20?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_015",
+    "query_a": "are aliens real or are they fake ?",
+    "query_b": "Do aliens exists?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_016",
+    "query_a": "Where can I buy special flavor cupcake at Gold Coast?",
+    "query_b": "Where can I found different flavours for cupcakes at Gold Coast?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_017",
+    "query_a": "Does marijuana cause cancer?",
+    "query_b": "How can smoking marijuana give you lung cancer?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_018",
+    "query_a": "What are the procedures for becoming an actuary?",
+    "query_b": "What is the procedure of becoming an actuary?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_019",
+    "query_a": "How do smart and successful people control their emotions?",
+    "query_b": "How can I control my emotions?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_020",
+    "query_a": "What are the best tips for outlining/planning a novel?",
+    "query_b": "How do I best outline my novel?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_021",
+    "query_a": "What will happen if Donald Trump became the president of America?",
+    "query_b": "What will happen now that President-elect Donald Trump has won the election?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_022",
+    "query_a": "What is one of the biggest misconceptions people have about you?",
+    "query_b": "What do you perceive to be the biggest misconception people have about you? Why do you think this misconception exists?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_023",
+    "query_a": "Why didn't Ned Stark bring more men to the Tower of Joy?",
+    "query_b": "Why did Ned Stark go to the Tower of Joy with so few men? Why not bring a small guard (say 20 more men) of loyal and discreet northerners?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_024",
+    "query_a": "How can I introduce the surface area of cuboid by using real life situations?",
+    "query_b": "What are the applications of surface area in real life?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_025",
+    "query_a": "How do you get better grades?",
+    "query_b": "How can I dramatically improve my grades?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_026",
+    "query_a": "What is operational research?",
+    "query_b": "What is operations research?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_027",
+    "query_a": "What is your new year resolution, short term and long term goal for 2017?",
+    "query_b": "What will be your New Year's resolution for 2017?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_028",
+    "query_a": "Is WIMPs incorrect? Will wave-particle duality ever be understood to be a particle and its associated wave in the strongly interacting dark matter?",
+    "query_b": "Would Einstein and de Broglie have realized a strongly interacting dark matter is the medium for gravitational and wave-particle duality waves?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_029",
+    "query_a": "What will happen to the next Star Wars movies after Carrie Fisher's death?",
+    "query_b": "What will Carrie Fisher's death mean for the next Star Wars movies?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_030",
+    "query_a": "What is an analogy for a smooth ER?",
+    "query_b": "What is an analogy for smooth ER?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_031",
+    "query_a": "What is the market size of live chat support software?",
+    "query_b": "What's the size of the live chat industry globally?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_032",
+    "query_a": "What is the best business to start in Bangalore?",
+    "query_b": "What is the best business in Bangalore to start up with?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_033",
+    "query_a": "When and how did you become an atheist?",
+    "query_b": "When did you become an atheist?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_034",
+    "query_a": "Why does gst bill is important?",
+    "query_b": "What is the effect of GST bill on a common man?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_035",
+    "query_a": "Which aircraft was superior - the Douglas DC8 or the Boeing 707?",
+    "query_b": "Was the Douglas DC8 a superior aircraft to the Boeing 707?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_036",
+    "query_a": "How can I expand my IQ?",
+    "query_b": "What can I do to increase my IQ?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_037",
+    "query_a": "What does it mean when a girl take a day to reply to your text?",
+    "query_b": "What does it mean when girls reply to a text a day after?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_038",
+    "query_a": "How can I stop myself from watching too much of porn?",
+    "query_b": "How shall I stop watching porn?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_039",
+    "query_a": "What will be the effect of banning 500 and 1000 Rs notes on real estate sector in India? Can we expect sharp fall in prices in short/long term?",
+    "query_b": "What will the real estate look like now after the 500 and 1000 scraping?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_040",
+    "query_a": "Is it worth it to pay for PhD from my pocket?",
+    "query_b": "Is it foolish to pay for your PhD out of your own pocket?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_041",
+    "query_a": "What is the maximum file size that can be uploaded in Whatsapp?",
+    "query_b": "What is the maximum file size on WhatsApp?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_042",
+    "query_a": "What are the best ways to learn to cook?",
+    "query_b": "How do I learn to cook?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_043",
+    "query_a": "Can a F1 student visa holder become a Uber driver in USA?",
+    "query_b": "Can I drive for Uber with my H1-B work visa or F1 student visa in the US?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_044",
+    "query_a": "What was first word spoken by human?",
+    "query_b": "What is the first word ever spoken?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_045",
+    "query_a": "Should I give my JEE Main exam offline or online?",
+    "query_b": "Which mode is best for JEE MAIN 2017 online exam or offline?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_046",
+    "query_a": "How do men last longer in bed?",
+    "query_b": "How do I last longer in sex?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_047",
+    "query_a": "Is literally infinite number of unique human DNAs possible?",
+    "query_b": "What is the maximum number of genetically unique individuals that human genome allows?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_048",
+    "query_a": "What is motive of Mulayam Singh Yadav behind expelling Akhilesh Yadav from Samajwadi party?",
+    "query_b": "Why did Mulayam Singh Yadav expel Akhilesh Yadav from the Samajwadi Party for 6 years?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_049",
+    "query_a": "What do you think of the decision by the Indian Government to demonetize 500 and 1000 rupee notes?",
+    "query_b": "Why is the government abruptly banning the 500 Rupees and the 1000 rupees currency notes in India?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_050",
+    "query_a": "Jim Morrison: What is so great about Jim Morrison?",
+    "query_b": "What are some rare facts about Jim Morrison?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_051",
+    "query_a": "Why do we need to philosophize?",
+    "query_b": "Why do we need to philosophize with others?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_052",
+    "query_a": "Does sperm count decreases due to masturbation?",
+    "query_b": "Do sperm count decreases after masturbating?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_053",
+    "query_a": "Is there any way to recover e-mails that were deleted from a Gmail account?",
+    "query_b": "Is there anyway to retrieve my deleted emails from my Gmail account?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_054",
+    "query_a": "Is universal health care good? Why or why not?",
+    "query_b": "Should the U.S. implement a universal health care? Why or why not?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_055",
+    "query_a": "How do I find my own gmail accounts list?",
+    "query_b": "How can you find all of your Gmail accounts?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_056",
+    "query_a": "Where can I get sparkling and well maintained cleaning service in Sydney?",
+    "query_b": "Where can I get cleaning services in Sydney?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_057",
+    "query_a": "Can Fast and Furious 7 gross $1 billion worldwide?",
+    "query_b": "Will Furious 7 be the first movie in the franchise to gross a billion dollars?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_058",
+    "query_a": "Do cruise missiles really exist, or are they a hoax?",
+    "query_b": "Do cruise missiles exist?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_qqp_pos_059",
+    "query_a": "Which is the best book for learning language c++?",
+    "query_b": "What is a good book for learning the basics of C++ programming?",
+    "is_equivalent": true,
+    "dataset": "qqp",
+    "original_label": 1
+  },
+  {
+    "id": "tune_paws_neg_000",
+    "query_a": "Bradd Crellin represented BARLA Cumbria on a tour of Australia with 6 other players representing Britain , also on a tour of Australia .",
+    "query_b": "Bradd Crellin also represented BARLA Great Britain on a tour through Australia on a tour through Australia with 6 other players representing Cumbria .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_001",
+    "query_a": "Most of these hotels were built along Biddle Avenue from Oak Street to Pine Street .",
+    "query_b": "Most of these homes were built along Biddle Avenue from Oak Street to Pine Street .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_002",
+    "query_a": "The river Valea Sterminoas\u0103 is a tributary of the River Boia Mic\u0103a in Romania .",
+    "query_b": "The River Boia Mic\u0103 is a tributary of the River Valea Sterminoas\u0103 in Romania .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_003",
+    "query_a": "The Tabaci River is a tributary of the River Leurda in Romania .",
+    "query_b": "The Leurda River is a tributary of the River Tabaci in Romania .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_004",
+    "query_a": "Cook Pond , also known as the South Watuppa Pond , is located south east of Laurel Lake and west of the Taunton River .",
+    "query_b": "Cook Pond , also formerly known as Laurel Lake , is located south east of the Taunton River and west of the South Watuppa Pond .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_005",
+    "query_a": "`` Taunton Castle '' was on August 1 in Rio de Janeiro and on October 31 in Penang .",
+    "query_b": "`` Taunton Castle '' was at Penang on 1 August and Rio de Janeiro on 31 October .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_006",
+    "query_a": "Madiun is situated on the main road to Yogyakarta and Jakarta .",
+    "query_b": "Yogyakarta and Jakarta is situated on the main road to Madiun .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_007",
+    "query_a": "He played with the A-level Kane County Cougars in 1993 and the AA Portland Sea Dogs .",
+    "query_b": "He played in 1993 with the A - Level Portland Sea Dogs and the AA Kane County Cougars .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_008",
+    "query_a": "They are overlaid with sparse live orchestral music and consist of vague , almost deliberately colorless sounds .",
+    "query_b": "They are overlaid with colourless , live played music and consist of vague , almost consciously sparse orchestral sounds .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_009",
+    "query_a": "She was only a few months in French service when she met some British frigates in 1809 .",
+    "query_b": "She was only in British service for a few months , when in 1809 , she encountered some French frigates .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_010",
+    "query_a": "The Hudson County , New Jersey , also spelled as `` Macpelah Cemetery '' , or `` Macphelah Cemetery '' , is a cemetery in Machpelah Cemetery .",
+    "query_b": "The Machpelah Cemetery , also spelled as '' Macpelah Cemetery `` or '' Macphelah Cemetery `` , is a graveyard in Hudson County , New Jersey .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_011",
+    "query_a": "In 1938 he became the government anthropologist of the anglo-Egyptian Sudan and led fieldwork with the Nuba .",
+    "query_b": "In 1938 he became the Government Anthropologist of the Egyptian-Anglo Sudan and conducted fieldwork with the Nuba .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_012",
+    "query_a": "Billy Billy Batson appeared in the first four issues of `` Black Adam '' , published between late 2008 and early 2009 .",
+    "query_b": "Black Adam appeared in the first four issues of `` Billy Batson '' , published between late 2008 and early 2009 .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_013",
+    "query_a": "Aamir Khan has agreed to play immediately after reading Mehra 's script in `` Rang De Basanti '' .",
+    "query_b": "Mehra agreed to act in `` Rang De Basanti '' immediately after reading Aamir Khan 's script .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_014",
+    "query_a": "The film had a limited release in Thailand cinemas on October 18 , 2007 , and released in Singapore on October 25 .",
+    "query_b": "The film had a limited publication in cinemas in Singapore on 18 October 2007 and was released in Thailand on 25 October .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_015",
+    "query_a": "In the reviews below will be the highest rating for the show in red , and the lowest evaluation for the show will be in blue episode .",
+    "query_b": "In the reviews below will be the lowest rating for the show in red , and the highest rating for the show will be in blue sequence .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_016",
+    "query_a": "Christopher Harris was the second son of William Harris . His elder brother , Harris , was MP for Okehampton .",
+    "query_b": "William Harris was the second son of William Harris , his elder brother Christopher Harris was MP for Okehampton .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_017",
+    "query_a": "They are overlaid with sparse live orchestral music and consist of vague , almost deliberately colorless sounds .",
+    "query_b": "They are overlaid with colour-free , live played music and consist of vague , almost deliberately sparse orchestral sounds .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_018",
+    "query_a": "The team responded to the changes in the next game the same evening on 19 February .",
+    "query_b": "The team responded to the changes in the same game that next February 19 evening .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_019",
+    "query_a": "The Nashua Silver Knights , part of a current summer league , is the collegiate team of the city .",
+    "query_b": "The Nashua Silver Knights , part of a summer collegiate league , is the current team of the city .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_020",
+    "query_a": "Somatherapy ( or Soma ) was created by the Wilhelm Reich in the 1970s as a group therapy , based on the research of the psychoanalyst Freire .",
+    "query_b": "Soma therapy ( or Soma ) was created in the 1970s by Freire as a group therapy based on the research of the psychoanalyst Wilhelm Reich .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_021",
+    "query_a": "Jacob Markell ( May 8 , 1770 -- November 26 , 1852 ) was a New York representative of Henry Markell 's father .",
+    "query_b": "Henry Markell ( May 8 , 1770 -- November 26 , 1852 ) was a U.S. Representative from New York , father of Jacob Markell .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_022",
+    "query_a": "The tracks were produced by Tommy Lee , and feature Michael Beinhorn on drums .",
+    "query_b": "The tracks were produced by Michael Beinhorn and have Tommy Lee on drums .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_023",
+    "query_a": "When Jack Nitzsche first heard `` Stubborn Kind of Fellow '' he was so excited he lost control of his car while driving down Sunset Boulevard with Phil Spector .",
+    "query_b": "When Phil Spector first listened to `` Stubborn Kind of Fellow '' , he was so excited that he lost control of his car while driving down the Sunset Boulevard with Jack Nitzsche .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_024",
+    "query_a": "The canal is one of the oldest navigable canals in Europe and in Belgium .",
+    "query_b": "The canal is one of the oldest navigable canals in Belgium and indeed in Europe .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_025",
+    "query_a": "He died of stomach cancer in Claremore , Oklahoma , New York City , where the Lynn Riggs Memorial is located on June 30 , 1954 .",
+    "query_b": "He died on June 30 , 1954 , of stomach cancer in New York City . Claremore , Oklahoma is home to the Lynn Riggs Memorial .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_026",
+    "query_a": "Jeff Francisco managed the custom installation business and retail store where he studied product development and developed custom systems for the company .",
+    "query_b": "Jeff Francisco developed the Custom Installation Business and Retail Store , where he studied product development and headed custom systems for the company .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_027",
+    "query_a": "A multiverse is a collection of alternative universes with a similar nature and universal hierarchy .",
+    "query_b": "A multiverse is a collection of alternative universes with universal nature and a similar hierarchy .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_028",
+    "query_a": "The station was established in 1947 by the British Falkland Islands Dependencies Survey as Station F or `` Winter Island '' in the Argentine islands .",
+    "query_b": "The station was founded in 1947 by the British Falkland Islands Dependencies Survey as Station F or `` Argentine Island '' on Winter Island .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_029",
+    "query_a": "Slough High School was a girls selective grammar school in Slough , Buckinghamshire , now Berkshire .",
+    "query_b": "Slough High School was a selective girls ' school in Berkshire , now Slough , Buckinghamshire .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_030",
+    "query_a": "In the new TV-series '' Dead Gorgeous '' , Alexandra Coppinger played the role of the youngest sister Hazel .",
+    "query_b": "Hazel played the role of Alexandra Coppinger , the youngest sister , in the new TV series `` Dead Gorgeous '' .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_031",
+    "query_a": "Lucas Dumbrell Motorsport replaced Aaren Russell with Alex Davison for this event and the following .",
+    "query_b": "Lucas Dumbrell Motorsport replaced Alex Davison with Aaren Russell for this and the following event .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_032",
+    "query_a": "His large sculptures can be seen in public spaces in New Zealand , from Kaitaia to Wanaka and many localities in between .",
+    "query_b": "His large sculptures can be seen in public spaces in Wanaka , from New Zealand to Kaitaia and many places in between .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_033",
+    "query_a": "Was born Martins Pena in Rio de Janeiro , Jo\u00e3o Martins Pena and Francisca de Paula Julieta Pena .",
+    "query_b": "Jo\u00e3o Martins Pena and Francisca de Paula Julieta Pena was born in Rio de Janeiro , to Martins Pena .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_034",
+    "query_a": "`` Angel Eyes '' is a 1946 popular song composed by Matt Dennis , with lyrics by Earl Brent .",
+    "query_b": "`` Angel Eyes '' is a popular song composed by Earl Brent in 1946 , with texts by Matt Dennis .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_035",
+    "query_a": "Jonathan Erlich and Andy Ram won the title and defeated Mark Knowles and Daniel Nestor 5 -- 3 , 5 -- 4 in the final .",
+    "query_b": "Mark Knowles and Daniel Nestor won the title , defeating Jonathan Erlich and Andy Ram in the final with 5 : 3 , 5 : 4 .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_036",
+    "query_a": "Example milestones are beating a World Series champion team , beating historical teams and playing other players head to head .",
+    "query_b": "Example milestones are beating a World Series Champion team , playing historic teams and beating other players head to head .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_037",
+    "query_a": "The magazine was published by Paul Cassirer in 1910 , revived by his Pan-Presse .",
+    "query_b": "The magazine was revived in 1910 by Paul Cassirer , published by his pan-press .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_038",
+    "query_a": "The first section , from Hokitika to Ruatapu , was completed on 9 November 1906 , and on 1 April 1909 the complete line was opened for Ross .",
+    "query_b": "The first section , from Hokitika to Ruatapu , was opened on 9 November 1906 , and the full line to Ross was completed on 1 April 1909 .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_paws_neg_039",
+    "query_a": "The racial Rubber Bowl was used by the National Guard of the United States as a base during the historical Wooster Avenue Riots of 1968 .",
+    "query_b": "The historic Rubber Bowl was used by the National Guard of the United States as the base during the racist Wooster Avenue Riots of 1968 .",
+    "is_equivalent": false,
+    "dataset": "paws",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_000",
+    "query_a": "Why are African-Americans so beautiful?",
+    "query_b": "Why are hispanics so beautiful?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_001",
+    "query_a": "I want to pursue PhD in Computer Science about social network,what is the open problem in social networks?",
+    "query_b": "I handle social media for a non-profit. Should I start going to social media networking events? Are there any good ones in the bay area?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_002",
+    "query_a": "Why are people so obsessed with having a girlfriend/boyfriend?",
+    "query_b": "How can a single male have a child?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_003",
+    "query_a": "What are some good baby girl names starting with D?",
+    "query_b": "What are some good baby girl names starting with D or H?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_004",
+    "query_a": "Why is my life getting so complicated?",
+    "query_b": "Why is my life so complicated?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_005",
+    "query_a": "Why should I crack Jee?",
+    "query_b": "Is it possible to get into IIMs with low marks in graduation and 12th?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_006",
+    "query_a": "Can you TRANSLATE these to English language?",
+    "query_b": "Can you translate this from Bengali to English language?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_007",
+    "query_a": "Can anyone tell shall mi mix mobile should be purchased or not?",
+    "query_b": "\"What did Voltaire mean when he said, \"\"God is a comedian playing to an audience that is too afraid to laugh\"\"?\"",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_008",
+    "query_a": "Why Tamil Nadu Universities are no good?",
+    "query_b": "Why are the 10th students able to score 100% in Tamil Nadu?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_009",
+    "query_a": "What is an easy way to clean toothpaste stains from a shirt without washing it?",
+    "query_b": "What are some ways to remove hard water stains from dishes?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_010",
+    "query_a": "What are the difference between polyester 210T and 210D?",
+    "query_b": "What is the difference between cotton and polyester?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_011",
+    "query_a": "Is FMS Delhi a good option for a MBA executive program?",
+    "query_b": "Is FMS a good choice for an MBA in HR? Why and why not?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_012",
+    "query_a": "How is vanilla extract made?",
+    "query_b": "How do you make sugar cookies without vanilla extract?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_013",
+    "query_a": "Why was the Roman Empire so successful?",
+    "query_b": "What are some of the rarely known facts about the Roman Empire?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_014",
+    "query_a": "Is it advisable to sent your cv to a professor with whom you are trying to make contact for graduate admission?",
+    "query_b": "How does contacting a professor before applying factor into graduate admissions?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_015",
+    "query_a": "Does a RainTPL syntax extension for Sublime Text exist? Where can I download it?",
+    "query_b": "How do I hide the find/replace bar in Sublime Text 2?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_016",
+    "query_a": "What is the average salary of a microbiologist in India?",
+    "query_b": "What is the salary for a psychologist in india?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_017",
+    "query_a": "How do you close a Bank of America account?",
+    "query_b": "How can one close a bank account online?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_018",
+    "query_a": "How can I create the most popular question on Quora?",
+    "query_b": "Which are the most popular questions on Quora presently that also create the most discussions?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_019",
+    "query_a": "What are the requirements to become president in the United States and how are the requirements different in Tanzania?",
+    "query_b": "What are the requirements to become president in the United States and how are the requirements different in France?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_020",
+    "query_a": "\"Who is the Adam the lyrics to Blink-182's \"\"Adam's Song\"\" are written about?\"",
+    "query_b": "\"Which Blink-182 band member wrote the lyrics to \"\"Adam's Song\"\"?\"",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_021",
+    "query_a": "Why does a rainbow lorikeet make a good pet?",
+    "query_b": "Can lorikeets be good pets? What are some ways to take good care of them?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_022",
+    "query_a": "Which sector (i.e. primary, secondary, tertiary) contributes the most to the GDP of India? Why?",
+    "query_b": "What is my contribution to the GDP?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_023",
+    "query_a": "How is India preparing for war against Pakistan?",
+    "query_b": "Is India preparing for a war?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_024",
+    "query_a": "Why we do study computer fundamental in software engineering.?",
+    "query_b": "Do we get to chose only one computer language when we are studying engineering?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_025",
+    "query_a": "What is the smartest question besides this question?",
+    "query_b": "What are the smartest questions that you have heard?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_026",
+    "query_a": "What is a good text editor?",
+    "query_b": "What are the best text editor plugins?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_027",
+    "query_a": "How much weed did Bob Marley smoke a day?",
+    "query_b": "How much weed should you smoke?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_028",
+    "query_a": "What is the next number of this sequence? 5\u2026..17\u2026\u202637\u2026..89\u2026..??",
+    "query_b": "What is the next number in the sequence?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_qqp_neg_029",
+    "query_a": "Which website is good for downloading Android (.apk) files?",
+    "query_b": "Android Application Development: Which software is used to develop APK files?",
+    "is_equivalent": false,
+    "dataset": "qqp",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_000",
+    "query_a": "walgreens store sales average",
+    "query_b": "how much do bartenders make",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_001",
+    "query_a": "what is a furuncle boil",
+    "query_b": "what can urinalysis detect",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_002",
+    "query_a": "what is vitamin a used for",
+    "query_b": "what causes genetic alterations in normal cells",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_003",
+    "query_a": "cost to frame basement",
+    "query_b": "erudite divergent definition",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_004",
+    "query_a": "why is albumin normally absent in urine",
+    "query_b": "where was movie the birds filmed",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_005",
+    "query_a": "cost to file bankruptcy in virginia",
+    "query_b": "what is a hummingbird moth",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_006",
+    "query_a": "what does a western blot detect",
+    "query_b": "what is vegetable bouillon",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_007",
+    "query_a": "salary sacrifice super limits",
+    "query_b": "want is tom cruise doing now",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_008",
+    "query_a": "what means irie",
+    "query_b": "what is baseball twine made of",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_009",
+    "query_a": "What Does Lop means",
+    "query_b": "how much do tuna fishers first mates make",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_010",
+    "query_a": "how to start gypsophila elegans seeds",
+    "query_b": "how long to get masters degree",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_011",
+    "query_a": "what is treatment for jaundice",
+    "query_b": "replacing permanent resident card canada",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_012",
+    "query_a": "what is a purified phytochemical",
+    "query_b": "definition of IBR disease",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_013",
+    "query_a": "what landform makes a u shaped valley",
+    "query_b": "ovulation usually occurs on day _____ of a woman's cycle",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_014",
+    "query_a": "what kind of tick has rocky mountain spotted fever",
+    "query_b": "how long can you keep chicken salad in your fridge",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_015",
+    "query_a": "bulimia nervosa age range",
+    "query_b": "how much does an rn make in florida",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_016",
+    "query_a": "who is discovered silk",
+    "query_b": "how long does it take to boil beets",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_017",
+    "query_a": "what is consumer capitalism",
+    "query_b": "at what age do males hit puberty",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_018",
+    "query_a": "how does laser measure distance",
+    "query_b": "what is the statue of on the capitol building",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_019",
+    "query_a": "hakan what does oil do",
+    "query_b": "sustainability is also referred to as",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_020",
+    "query_a": "what type of enzyme is aldolase",
+    "query_b": "what are the two main functions of the skeletal system",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_021",
+    "query_a": "what is gold formed in",
+    "query_b": "lakes around michigan",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_022",
+    "query_a": "training and qualifications needed to be a social worker",
+    "query_b": "what is an example of a psychological need",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_023",
+    "query_a": "how long to study lpn school",
+    "query_b": "is the pharynx located before the mouth ?",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_024",
+    "query_a": "why do we have different time zones",
+    "query_b": "cyndi lauper goonies lyrics",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_025",
+    "query_a": "where do roseate spoonbills live",
+    "query_b": "meaning of the name darcy",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_026",
+    "query_a": "how much is a heater core replacement",
+    "query_b": "where is energy located in the atp molecule",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_027",
+    "query_a": "what does TD stand for in catholic parlance",
+    "query_b": "definition of diminution",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_028",
+    "query_a": "what type of chemical bond has the most potential energy stored in it",
+    "query_b": "is ginkgo biloba good for vertigo",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  },
+  {
+    "id": "tune_ms_neg_029",
+    "query_a": "how tall is a redwood tree",
+    "query_b": "what is the meaning of the decameron",
+    "is_equivalent": false,
+    "dataset": "ms_marco",
+    "original_label": 0
+  }
+]
