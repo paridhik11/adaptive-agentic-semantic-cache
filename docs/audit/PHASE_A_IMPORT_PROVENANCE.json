@@ -1,0 +1,26 @@
+{
+  "source": "user-supplied phase-a-handoff.bundle",
+  "publication_method": "GitHub connector replay with original source commit trailers; commit metadata differs; source trees verified identical",
+  "commits": [
+    {
+      "original": "d1f9d9772513b20249242fd70cc531dacca625f7",
+      "published": "5a5cc7ddc146ff93e4b9e9b9e91f2aab1feff9b7",
+      "tree": "e1f792d2532f8c27e23c9900f8121056548820d2"
+    },
+    {
+      "original": "bd3dfe9fc235c0d1ce17f8f56af8d853272db3ee",
+      "published": "46a5ff92cc604ecc988759b6b0cf9bcf8f613335",
+      "tree": "75f760fbcd0c30be99aa8cffaddc24e7e149315e"
+    },
+    {
+      "original": "f159ee060e5c7f1299b6f8a651a10d2d2aa6b10d",
+      "published": "93ebd848a46140d42aa764cf1374f52289616f32",
+      "tree": "91349e62026ec2fcbfcf4dacd6ce2be52040db5c"
+    },
+    {
+      "original": "a373e7e9b0b6b51617661f44192a1b16c3e8e731",
+      "published": "91087592115d8f93639c73c68edb512ca92064bd",
+      "tree": "979aab04b56fa0a17d5f186c509d80eefe050fc7"
+    }
+  ]
+}

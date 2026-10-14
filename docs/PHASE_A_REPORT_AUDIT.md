@@ -2,14 +2,14 @@
 
 Reviewed 2026-10-14. Sources: user-supplied `Pasted markdown.md` (FACTS ledger last updated 2026-10-01) and `Pasted markdown (2).md` (Phase A walkthrough dated 2026-10-12).
 
-These are reports, not a source snapshot or event-level evidence. This audit checks reported arithmetic and interpretation; it does not certify execution, split isolation, hash verification, model provenance, or the reported 281-test result. The referenced preregistration commit `d1f9d97` was not available in the previously fetched public repository.
+These are reports, not a source snapshot or event-level evidence. This audit checks reported arithmetic and interpretation; it does not certify execution, split isolation, hash verification, model provenance, or the reported 281-test result. The referenced preregistration commit `d1f9d97` was not available in the previously fetched public repository. The later supplied git bundle now provides that commit, the runner, and saved telemetry; see `audit/PHASE_A_SOURCE_AUDIT.md` for the superseding source-level findings.
 
 ## Findings
 
 | Finding | Evidence and consequence |
 | --- | --- |
 | Gate A failed | The report gives 21 incorrect non-exact hits among 75 accepted non-exact hits: 28%, with reported exact 95% interval 18.24–39.56%. Both the 10% point ceiling and minimum 100-hit volume fail. |
-| Canonical reuse also requires repair | Overall TP/FP are 60/26; non-exact TP/FP are 54/21. Subtraction implies canonical TP/FP are 6/5 among 11 hits. This inference depends on those categories partitioning the same accepted-hit population. Canonical normalization cannot be assumed safe. |
+| Canonical reuse also requires repair | Overall TP/FP are 60/26; non-exact TP/FP are 54/21. Subtraction implies canonical TP/FP are 6/5 among 11 hits. This inference depends on those categories partitioning the same accepted-hit population. These are report-label counts, not independently established wrong answers. The subsequent telemetry audit shows all five FP-labeled canonical hits retrieved identical text from another seed, exposing candidate-label misattribution. Canonical normalization still requires separate validation. |
 | Seed and probe denominators differ | TP + FP + FN + TN = 1,000, consistent with 1,000 probes and 1,200 cold seeds. The 2,200-event hit rate and 1,000-probe confusion matrix must be labeled separately. |
 | Useful hits are lower than accepted hits | Accepted hits: 86/2,200 = 3.91%. Report-labeled correct hits: 60/2,200 = 2.73%. Neither establishes actual cached-answer correctness without answer-level evidence. |
 | Zero accepted hits have undefined incorrect-reuse rate | WildChat reports zero hits and 0.0% IRR. With no accepted hits the denominator is zero: report N/A, not a demonstrated zero error rate. |

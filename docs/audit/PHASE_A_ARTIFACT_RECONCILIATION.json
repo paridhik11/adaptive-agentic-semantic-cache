@@ -1,0 +1,144 @@
+{
+  "audit_kind": "offline_artifact_reconciliation_not_new_evaluation",
+  "historical_counts_reconcile": true,
+  "summary_mismatches": {},
+  "denominators": {
+    "stream_events": 2200,
+    "seeds": 1200,
+    "probes": 1000
+  },
+  "historical_outcomes": {
+    "SEED_INDEXED": 1200,
+    "FN": 476,
+    "TN": 438,
+    "FP": 26,
+    "TP": 60
+  },
+  "historical_non_exact": {
+    "hits": 75,
+    "tp": 54,
+    "fp": 21,
+    "irr": 0.28
+  },
+  "canonical_path_outcomes": {
+    "TP": 6,
+    "FP": 5,
+    "SEED_INDEXED": 19
+  },
+  "source_counts": {
+    "paws_test": {
+      "events": 600,
+      "probes": 300,
+      "hits": 43,
+      "tp": 22,
+      "fp": 21,
+      "non_exact_hits": 34,
+      "non_exact_fp": 16,
+      "historical_irr": 0.4883720930232558
+    },
+    "cqadupstack_heldout": {
+      "events": 400,
+      "probes": 200,
+      "hits": 1,
+      "tp": 1,
+      "fp": 0,
+      "non_exact_hits": 1,
+      "non_exact_fp": 0,
+      "historical_irr": 0.0
+    },
+    "qqp_heldout": {
+      "events": 1000,
+      "probes": 500,
+      "hits": 42,
+      "tp": 37,
+      "fp": 5,
+      "non_exact_hits": 40,
+      "non_exact_fp": 5,
+      "historical_irr": 0.11904761904761904
+    },
+    "wildchat_traffic": {
+      "events": 200,
+      "probes": 0,
+      "hits": 0,
+      "tp": 0,
+      "fp": 0,
+      "non_exact_hits": 0,
+      "non_exact_fp": 0,
+      "historical_irr": null
+    }
+  },
+  "seed_decisions_reusing_existing_cache": 27,
+  "accepted_candidate_partitions": {
+    "designated_seed": 67,
+    "identical_text_other_candidate": 10,
+    "unlabeled_other_candidate": 9
+  },
+  "unlabeled_candidate_event_ids": [
+    "PA-SEALED-0811",
+    "PA-SEALED-1059",
+    "PA-SEALED-1076",
+    "PA-SEALED-1229",
+    "PA-SEALED-1230",
+    "PA-SEALED-1764",
+    "PA-SEALED-1818",
+    "PA-SEALED-1865",
+    "PA-SEALED-1943"
+  ],
+  "historical_canonical_fp_event_ids": [
+    "PA-SEALED-0741",
+    "PA-SEALED-0843",
+    "PA-SEALED-1284",
+    "PA-SEALED-1796",
+    "PA-SEALED-1841"
+  ],
+  "historical_fp_with_identical_retrieved_text_ids": [
+    "PA-SEALED-0741",
+    "PA-SEALED-0843",
+    "PA-SEALED-1284",
+    "PA-SEALED-1796",
+    "PA-SEALED-1841"
+  ],
+  "legacy_nonfinite_numeric_fields": [
+    {
+      "id": "PA-SEALED-0001",
+      "field": "similarity"
+    }
+  ],
+  "overlap_check_normalization": "strip_and_casefold_unordered_pairs",
+  "training_pair_overlap_probe_ids": [],
+  "validation_pair_overlap_probe_ids": [],
+  "training_text_overlap_event_ids": [
+    "PA-SEALED-0336",
+    "PA-SEALED-0671",
+    "PA-SEALED-0764",
+    "PA-SEALED-0840",
+    "PA-SEALED-0945",
+    "PA-SEALED-1259",
+    "PA-SEALED-1524",
+    "PA-SEALED-1614",
+    "PA-SEALED-1709",
+    "PA-SEALED-1723",
+    "PA-SEALED-1769",
+    "PA-SEALED-1808",
+    "PA-SEALED-1883"
+  ],
+  "validation_text_overlap_event_ids": [
+    "PA-SEALED-1638"
+  ],
+  "actual_answer_safety_measured": false,
+  "candidate_aware_safety_certified": false,
+  "stream_hash_audit": {
+    "declared": "0e7aff256e4d8ee715a0b55f2007422cd99be9040765683799669f2f4861d991",
+    "variants": {
+      "checked_out_bytes": "f685beccb75c5544dd8d786402e7e20c52cf83bb2520fe5c31ccf22811c17b44",
+      "lf": "f685beccb75c5544dd8d786402e7e20c52cf83bb2520fe5c31ccf22811c17b44",
+      "crlf": "0e7aff256e4d8ee715a0b55f2007422cd99be9040765683799669f2f4861d991"
+    },
+    "matching_variants": [
+      "crlf"
+    ],
+    "historical_file_not_modified": true
+  },
+  "checkpoint_weights_present": false,
+  "sealed_inference_rerun": false
+}

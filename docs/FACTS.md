@@ -516,3 +516,16 @@ savings. Historical experiment rows above are preserved.
 | PA-RUNTIME-TEST | Exact-response runtime regression suite | **50 passed**; **hermetic test fixtures**; no real provider/model execution and no semantic-safety inference | `tests/test_response_cache.py` | `python -m pytest tests/test_response_cache.py -q` |
 | PA-RUNTIME-SUITE | Default regression suite after recovery additions and mocked-runner isolation repair | **329 passed**, **22 deselected**; model/API integration tests excluded by the existing configuration; executed with offline model flags, not a new workload evaluation | `tests/`; `pyproject.toml` | `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m pytest -q` |
 
+
+## Source-level Phase A Reconciliation (2026-10-15)
+
+The following are offline artifact-audit findings, not a new sealed inference run
+or actual-answer safety measurements. Historical results remain unchanged.
+
+| ID | Fact | Value and evidence | Source | Recompute |
+| --- | --- | --- | --- | --- |
+| PA-AUDIT-COUNTS | Saved artifacts reconcile | 2,200 events; 1,200 seeds; 1,000 probes; 60 TP, 26 FP, 476 FN, 438 TN by designated-pair labels | `docs/audit/PHASE_A_ARTIFACT_RECONCILIATION.json` | `python scripts/audit_phase_a_artifacts.py` |
+| PA-AUDIT-CANDIDATES | Accepted candidate partitions | 67 designated-seed matches, 10 identical-text other candidates, 9 unlabeled nonidentical other candidates among 86 accepted probe hits | Same | Same |
+| PA-AUDIT-CANONICAL | Canonical-path reconciliation | 30 path events: 19 seeds and 11 probe hits; probe label counts 6 TP and 5 FP. All 5 FP-labeled records retrieve identical text from another candidate; these are label-attribution contradictions, not demonstrated wrong answers | Same | Same |
+| PA-AUDIT-OVERLAP | Split overlap under strip/casefold normalization | 0 identical train pairs and 0 identical validation pairs; 13 stream events share training text and 1 shares validation text. Does not certify thread/group isolation | Same | Same |
+| PA-AUDIT-SUITE | Integrated default offline regression suite | 354 passed, 22 deselected; CPU torch 2.5.1, sentence-transformers 3.4.1, transformers 4.48.3; model/API integration excluded; no sealed inference rerun | `tests/`, `pyproject.toml` | `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m pytest -q` |
