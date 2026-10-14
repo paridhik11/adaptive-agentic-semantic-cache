@@ -57,6 +57,56 @@ def test_miss_generates_and_hit_returns_complete_stored_answer():
     assert first.total_latency_ms >= 0 and second.total_latency_ms >= 0
 
 
+def test_response_byte_budget_evicts_even_below_entry_limit():
+    cache = ScopedResponseCache(eligibility=stable, max_entries=10, max_bytes=400)
+    provider = Provider(response("a" * 100))
+    first = request()
+    second = {**request(), "seed": 2}
+    assert run(cache, first, provider).stored
+    assert run(cache, second, provider).stored
+    assert cache.size == 1
+    assert run(cache, second, provider).status == "HIT"
+    assert run(cache, first, provider).status == "MISS"
+
+
+def test_byte_budget_counts_utf8_and_does_not_admit_oversized_response():
+    cache = ScopedResponseCache(eligibility=stable, max_bytes=400)
+    provider = Provider(response("界" * 100))
+    assert not run(cache, request(), provider).stored
+    assert cache.size == 0
+    assert run(cache, request(), provider).status == "MISS"
+
+
+def test_invalidation_and_expiry_release_payload_budget():
+    now = [0.0]
+    cache = ScopedResponseCache(eligibility=stable, max_bytes=400, ttl_seconds=1, clock=lambda: now[0])
+    provider = Provider(response("a" * 100))
+    assert run(cache, request(), provider).stored
+    assert cache.invalidate() == 1
+    assert run(cache, request(), provider).stored
+    now[0] = 2.0
+    assert cache.size == 0
+    assert run(cache, request(), provider).stored
+    assert run(cache, request(), provider).status == "HIT"
+
+
+def test_client_bypass_never_reads_or_admits_cache():
+    cache = ScopedResponseCache(eligibility=stable)
+    provider = Provider()
+    assert run(cache, request(), provider).stored
+    bypassed = cache.process(request(), tenant_id="tenant-a", provider=provider, bypass=True)
+    assert bypassed.status == "BYPASS" and bypassed.provider_calls == 1
+    assert run(cache, request(), provider).status == "HIT"
+    with pytest.raises(ValueError):
+        cache.process(request(), tenant_id="tenant-a", provider=provider, bypass="true")
+
+
+@pytest.mark.parametrize("budget", [0, -1, True, 1.5])
+def test_invalid_byte_budget_is_rejected(budget):
+    with pytest.raises(ValueError):
+        ScopedResponseCache(eligibility=stable, max_bytes=budget)
+
+
 def test_tenants_never_share_even_identical_requests():
     cache = ScopedResponseCache(eligibility=stable)
     a = Provider(response("Tenant A's answer"))

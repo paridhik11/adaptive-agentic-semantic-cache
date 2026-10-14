@@ -48,6 +48,7 @@ class _Entry:
     tenant_id: str
     response_json: str
     expires_at: float
+    payload_bytes: int
 
 
 def _serialize(value: Any) -> str:
@@ -75,6 +76,7 @@ class ScopedResponseCache:
         eligibility: Callable[[JsonObject], EligibilityDecision],
         ttl_seconds: float = 3600.0,
         max_entries: int = 1024,
+        max_bytes: int = 64 * 1024 * 1024,
         temperature_cap: float = 0.2,
         clock: Callable[[], float] = time.monotonic,
     ) -> None:
@@ -84,11 +86,15 @@ class ScopedResponseCache:
             raise ValueError("ttl_seconds must be finite and positive")
         if isinstance(max_entries, bool) or not isinstance(max_entries, int) or max_entries < 1:
             raise ValueError("max_entries must be a positive integer")
+        if type(max_bytes) is not int or max_bytes < 1:
+            raise ValueError("max_bytes must be a positive integer")
         if isinstance(temperature_cap, bool) or not math.isfinite(temperature_cap) or not 0 <= temperature_cap <= 2:
             raise ValueError("temperature_cap must be finite and in [0, 2]")
         self._eligibility = eligibility
         self._ttl_seconds = ttl_seconds
         self._max_entries = max_entries
+        self._max_bytes = max_bytes
+        self._payload_bytes = 0
         self._temperature_cap = temperature_cap
         self._clock = clock
         self._entries: OrderedDict[str, _Entry] = OrderedDict()
@@ -143,6 +149,7 @@ class ScopedResponseCache:
         *,
         tenant_id: str,
         provider: Callable[[JsonObject], Mapping[str, Any]],
+        bypass: bool = False,
     ) -> ResponseCacheResult:
         """Return a stored answer or execute the supplied provider exactly once.
 
@@ -151,6 +158,8 @@ class ScopedResponseCache:
         ``provider_calls`` distinguishes a hit from newly consumed work.
         """
         started = time.perf_counter()
+        if type(bypass) is not bool:
+            raise ValueError("bypass must be a boolean")
         if not isinstance(tenant_id, str) or not tenant_id.strip():
             raise ValueError("a trusted non-empty tenant_id is required")
         body = json.loads(_serialize(dict(request)))  # snapshot caller-owned data
@@ -175,7 +184,7 @@ class ScopedResponseCache:
                 raise TypeError("provider must return a response mapping")
             return copy.deepcopy(dict(response))
 
-        reason = self._eligibility_reason(body)
+        reason = "cache_disabled_by_caller" if bypass else self._eligibility_reason(body)
         if reason is not None:
             return result(generate(), "BYPASS", reason, 1, False)
 
@@ -193,6 +202,7 @@ class ScopedResponseCache:
                     self._entries.move_to_end(key)
                     return result(json.loads(entry.response_json), "HIT", "scoped_exact_hit", 0, False)
                 if entry is not None:
+                    self._payload_bytes -= entry.payload_bytes
                     del self._entries[key]
                 epoch = self._epoch
 
@@ -207,13 +217,16 @@ class ScopedResponseCache:
                 except (TypeError, ValueError):
                     pass
             stored = False
+            payload_bytes = len(response_json.encode("utf-8")) if response_json is not None else 0
             with self._lock:
-                if response_json is not None and epoch == self._epoch:
+                if response_json is not None and payload_bytes <= self._max_bytes and epoch == self._epoch:
                     self._entries[key] = _Entry(tenant_id, response_json,
-                                               self._clock() + self._ttl_seconds)
+                                               self._clock() + self._ttl_seconds, payload_bytes)
+                    self._payload_bytes += payload_bytes
                     self._entries.move_to_end(key)
-                    while len(self._entries) > self._max_entries:
-                        self._entries.popitem(last=False)
+                    while len(self._entries) > self._max_entries or self._payload_bytes > self._max_bytes:
+                        _, evicted = self._entries.popitem(last=False)
+                        self._payload_bytes -= evicted.payload_bytes
                     stored = True
             return result(response, "MISS", "generated_and_stored" if stored else "response_not_admitted", 1, stored)
 
@@ -226,6 +239,7 @@ class ScopedResponseCache:
             keys = [key for key, entry in self._entries.items()
                     if tenant_id is None or entry.tenant_id == tenant_id]
             for key in keys:
+                self._payload_bytes -= self._entries[key].payload_bytes
                 del self._entries[key]
             return len(keys)
 
@@ -235,5 +249,6 @@ class ScopedResponseCache:
             now = self._clock()
             expired = [key for key, entry in self._entries.items() if entry.expires_at <= now]
             for key in expired:
+                self._payload_bytes -= self._entries[key].payload_bytes
                 del self._entries[key]
             return len(self._entries)
