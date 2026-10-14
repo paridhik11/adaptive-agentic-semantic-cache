@@ -21,7 +21,7 @@ be stored, and a later eligible identical request returns that response.
   count are admitted. Errors, partial outputs, tool calls, refusals and empty
   content are not cached.
 - Expiry is checked on lookup. TTL starts after provider completion. Capacity
-  is bounded with least-recently-used eviction.
+  is bounded by both entry count and serialized UTF-8 response payload bytes with least-recently-used eviction. Oversized responses are returned without admission.
 - Identical concurrent eligible misses are coordinated. Invalidation prevents
   an already-running provider call from repopulating the invalidated cache.
 - Caller/provider mutation cannot change stored requests or responses.
@@ -52,16 +52,17 @@ required by this component itself; the provider adapter owns authentication.
 ## Verification
 
 Run `python -m pytest tests/test_response_cache.py -q`.
-The result is ledgered as PA-RUNTIME-TEST in `FACTS.md`. Tests use fixture
+The original result is ledgered as PA-RUNTIME-TEST and the expanded gateway suite as PB-GATEWAY-TEST in `FACTS.md`. Tests use fixture
 providers and establish application invariants, not measured cost savings,
 semantic precision or real-provider throughput. Default configuration is
 ledgered as PA-RUNTIME-CONFIG.
 
 ## Remaining work
 
-Storage is process-local. Persistence, cross-process coordination, the HTTP
-gateway, streaming, authenticated tenant integration and broader workload
-evaluation remain outstanding. Canonical and semantic lookup are deliberately
+An authenticated HTTP gateway and provider adapter now wrap this runtime; see
+`gateway.md`. Storage remains process-local. Persistence, cross-process
+coordination, streaming and broader real-provider workload evaluation remain
+outstanding. Canonical and semantic lookup are deliberately
 absent from this runtime until validated. The historical normalizer/router and
 their experiment outputs remain intact for comparison; this addition does not
 make their unsafe paths safe or revise their measurements.

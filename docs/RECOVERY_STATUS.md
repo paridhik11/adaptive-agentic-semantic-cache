@@ -11,6 +11,12 @@
 - Offline Phase A artifact auditor and candidate-label integrity regressions.
   See `audit/PHASE_A_SOURCE_AUDIT.md` and the separate reconciliation JSON.
 
+- Runnable authenticated non-streaming HTTP gateway, live HTTP adapter, explicit
+  simulated provider, tenant invalidation, concurrency limits, and Prometheus
+  work counters. Entry and UTF-8 payload budgets bound stored responses.
+- Gateway tests and a loopback HTTP smoke test with a barrier-synchronized
+  50-client burst pass. These are fixture checks, not real-model savings.
+
 ## Evidence limits
 
 Saved Phase A counts reconcile, but off-seed labels, repeated seed requests,
@@ -22,7 +28,7 @@ semantic accuracy, answer quality, or measured workload savings.
 
 ## Next implementation work
 
-- Build provider adapter and gateway, persistence, streaming, and observability.
+- Extend the gateway with persistence, streaming, deployment packaging, and a dashboard.
 - Develop candidate-bound, answer-aware evaluation with explicit lineage.
 - Repair semantic matching on development data before a new frozen evaluation.
 - Measure complete-answer latency and net generation/verification work.

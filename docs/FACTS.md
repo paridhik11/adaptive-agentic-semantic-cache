@@ -529,3 +529,16 @@ or actual-answer safety measurements. Historical results remain unchanged.
 | PA-AUDIT-CANONICAL | Canonical-path reconciliation | 30 path events: 19 seeds and 11 probe hits; probe label counts 6 TP and 5 FP. All 5 FP-labeled records retrieve identical text from another candidate; these are label-attribution contradictions, not demonstrated wrong answers | Same | Same |
 | PA-AUDIT-OVERLAP | Split overlap under strip/casefold normalization | 0 identical train pairs and 0 identical validation pairs; 13 stream events share training text and 1 shares validation text. Does not certify thread/group isolation | Same | Same |
 | PA-AUDIT-SUITE | Integrated default offline regression suite | 354 passed, 22 deselected; CPU torch 2.5.1, sentence-transformers 3.4.1, transformers 4.48.3; model/API integration excluded; no sealed inference rerun | `tests/`, `pyproject.toml` | `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m pytest -q` |
+
+## Gateway Foundation — Functional Evidence (2026-10-15)
+
+These rows describe the exact-response gateway foundation. Gate A remains failed
+and Gate B is not complete. Functional fixture work must not be presented as
+real-model latency savings or semantic accuracy.
+
+| ID | Fact | Value and evidence | Source | Recompute |
+| --- | --- | --- | --- | --- |
+| PB-GATEWAY-CONFIG | Gateway defaults | Entry TTL 3600 seconds; 1024 entries; 67108864 serialized UTF-8 response bytes; 32 processing slots; maximum requested output 4096 tokens; 65536 request bytes; 10-second body-read timeout; upstream socket timeout 60 seconds; upstream response bound 4194304 bytes. Default cache policy bypass. Configuration, not calibrated values | `src/api/gateway.py`, `src/api/providers.py`, `src/api/service.py`, `src/policy/response_cache.py` | Inspect constructors and environment factory |
+| PB-GATEWAY-TEST | Focused gateway/runtime regressions | 104 passed; includes real loopback HTTP adapter fixtures, authentication, isolation, error accounting, byte limits, concurrent coordination and no implicit retries | `tests/test_gateway.py`, `tests/test_http_provider.py`, `tests/test_response_cache.py` | `python -m pytest tests/test_gateway.py tests/test_http_provider.py tests/test_response_cache.py -q` |
+| PB-GATEWAY-SUITE | Full default offline suite | 408 passed, 22 deselected; live model/API integration excluded. Tested with FastAPI 0.143.1, Starlette 1.8.0 and uvicorn 0.54.0 | `tests/`, `pyproject.toml` | `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m pytest -q` |
+| PB-GATEWAY-SMOKE | Running HTTP gateway functional smoke | **simulated_functional_smoke**: 56 authenticated completion requests; 50 client threads released through a barrier (server peak concurrency not measured); 3 MISS, 52 HIT, 1 BYPASS; 4 fixture upstream attempts; 0 external model calls. Tenant isolation/invalidation and authentication passed | `docs/audit/GATEWAY_CONCURRENT_SMOKE.json` | `python scripts/smoke_gateway.py` |

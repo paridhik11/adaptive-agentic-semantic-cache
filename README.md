@@ -1,17 +1,29 @@
 # Adaptive Agentic Semantic Cache
 
-> **Authoritative Documentation:** For the comprehensive project report, see [`docs/MASTER_REPORT.md`](docs/MASTER_REPORT.md). For Phase A out-of-sample verification results, see [`docs/phaseA_walkthrough.md`](docs/phaseA_walkthrough.md) and [`Phase A (in progress)`](docs/STATUS.md). Every metric, threshold, latency measurement, and sample count in this repository originates directly from the authoritative ledger in [`docs/FACTS.md`](docs/FACTS.md). Historical or unverified status reports are not authoritative.
+> **Current engineering status:** A runnable authenticated exact-response gateway is available; semantic reuse remains disabled and the historical Phase A safety gate failed. Start with [`docs/gateway.md`](docs/gateway.md), [`docs/RECOVERY_STATUS.md`](docs/RECOVERY_STATUS.md), and the [source-level Phase A audit](docs/audit/PHASE_A_SOURCE_AUDIT.md). Historical reports and [`docs/FACTS.md`](docs/FACTS.md) retain earlier experiments; a ledger entry alone does not certify a claim.
 
 An adaptive semantic response reuse engine designed to eliminate redundant LLM computation safely. While naive similarity caches suffer high false-positive reuse rates by confusing syntactically similar prompts with semantically identical ones, this system guards cache access through a gated architecture: a lexical/rule-based **StabilityClassifier** that filters volatile and time-sensitive queries, a dense **SemanticCache** using `all-MiniLM-L6-v2` embeddings in FAISS, a dual-signal **TierRouter** evaluating both similarity and stability confidence, and an **LLMJudge** (`nvidia/nemotron-3-super-120b-a12b:free`) that reasons over ambiguous-tier queries with a strict fail-closed contract.
 
 ---
 
-## Key Results
+## Run the gateway
 
-The five strongest empirical findings from the consolidated metrics table in [`docs/MASTER_REPORT.md`](docs/MASTER_REPORT.md), ordered strictly by evidentiary strength. Every metric preserves its verified evaluation nature label:
+```bash
+python -m pip install -e ".[dev,gateway]"
+python scripts/smoke_gateway.py
+```
 
-1. **Massive Latency Reduction on Cache Hits** (**design-informed** & **blind**; [`LAT-05`](docs/FACTS.md))
-   When queries meet high-confidence cache reuse criteria (`AUTO_REUSE`), vector retrieval delivers an end-to-end response in **10.56–61.91 ms** compared to **6,577.94–9,291.35 ms** for ambiguous-tier remote LLM judge calls, yielding a **99.20% to 99.84% latency reduction** (**124.6x to 622.7x speedup**) across all three load test runs ([`LAT-01`..`LAT-05`](docs/FACTS.md)).
+This starts and tests a local HTTP server with an explicitly **simulated fixture**
+provider, then shuts it down. See the [gateway guide](docs/gateway.md) for a
+persistent local server, live-provider configuration, supported request fields,
+and accounting limits. The smoke test does not measure real-model savings.
+
+## Historical experimental results
+
+Selected historical findings from the consolidated metrics table in [`docs/MASTER_REPORT.md`](docs/MASTER_REPORT.md), ordered strictly by evidentiary strength. Every metric preserves its verified evaluation nature label:
+
+1. **Decision-Path Latency Comparison** (**design-informed** & **blind**; [`LAT-05`](docs/FACTS.md))
+   When queries meet high-confidence cache reuse criteria (`AUTO_REUSE`), the recorded lookup/routing path completes in **10.56–61.91 ms** compared to **6,577.94–9,291.35 ms** for ambiguous-tier remote LLM judge calls, yielding a **99.20% to 99.84% difference between these decision paths** (**124.6x to 622.7x speedup**) across all three load test runs ([`LAT-01`..`LAT-05`](docs/FACTS.md)). This compares lookup/routing with remote judge calls; it does not measure end-to-end cached answering against fresh generation.
    > *Sample Size Caveat ([`LAT-06`](docs/FACTS.md)):* In the scaled $N=338$ and blind $N=175$ runs, exactly $n=1$ query triggered the `AUTO_REUSE` path in each run (61.91 ms and 10.56 ms, respectively). The Phase 5 $N=70$ pilot produced $n=20$ `AUTO_REUSE` hits (mean 19.18 ms) and represents our most statistically reliable latency distribution.
 
 2. **Zero False Positives on Sealed Blind Evaluation** (**blind**; [`P6-04`](docs/FACTS.md))

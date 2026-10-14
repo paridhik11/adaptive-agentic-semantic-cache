@@ -1,0 +1,21 @@
+{
+  "evaluation_mode": "simulated_functional_smoke",
+  "transport": "loopback HTTP with uvicorn",
+  "provider": "deterministic fixture, not an LLM",
+  "external_model_calls": 0,
+  "authenticated_completion_requests": 56,
+  "concurrent_clients": 50,
+  "concurrency_method": "50 client threads released through a barrier; server peak concurrency not measured",
+  "cache_status_counts": {
+    "MISS": 3,
+    "HIT": 52,
+    "BYPASS": 1
+  },
+  "fixture_upstream_attempts": 4,
+  "tenant_isolation": "passed",
+  "tenant_invalidation": "passed",
+  "authentication": "passed",
+  "admin_metrics_access": "passed",
+  "semantic_accuracy_measured": false,
+  "real_model_savings_measured": false
+}
