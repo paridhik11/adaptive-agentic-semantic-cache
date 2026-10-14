@@ -1,0 +1,144 @@
+{
+  "timestamp": "2026-10-12T01:30:00+05:30",
+  "stream_checksum": "0e7aff256e4d8ee715a0b55f2007422cd99be9040765683799669f2f4861d991",
+  "n_queries": 2200,
+  "primary_endpoint_non_exact_irr": {
+    "non_exact_hits": 75,
+    "non_exact_tp": 54,
+    "non_exact_fp": 21,
+    "point_estimate": 0.28,
+    "ci_95": [
+      0.1824,
+      0.3956
+    ],
+    "target_point_estimate_ceiling": 0.1,
+    "cleared_point_estimate": false,
+    "cleared_ci_upper_bound": false
+  },
+  "secondary_endpoints": {
+    "total_hits": 86,
+    "total_tp": 60,
+    "total_fp": 26,
+    "total_fn": 476,
+    "total_tn": 438,
+    "hit_rate": 0.0391,
+    "hit_rate_ci": [
+      0.0314,
+      0.0481
+    ],
+    "overall_irr": 0.3023,
+    "overall_irr_ci": [
+      0.2079,
+      0.4108
+    ],
+    "exact_canonical_hits": 11,
+    "calls_avoided_per_1000": 39.1,
+    "tokens_avoided_per_1000": 2850.5,
+    "break_even_hit_rate": 0.00198,
+    "repeat_curve": [
+      {
+        "repeat_share": 0.0,
+        "projected_hit_rate": 0.0,
+        "projected_p50_ms": 8169.31
+      },
+      {
+        "repeat_share": 0.1,
+        "projected_hit_rate": 0.0086,
+        "projected_p50_ms": 8099.19
+      },
+      {
+        "repeat_share": 0.2,
+        "projected_hit_rate": 0.0172,
+        "projected_p50_ms": 8029.07
+      },
+      {
+        "repeat_share": 0.4,
+        "projected_hit_rate": 0.0344,
+        "projected_p50_ms": 7888.82
+      },
+      {
+        "repeat_share": 0.6,
+        "projected_hit_rate": 0.0516,
+        "projected_p50_ms": 7748.58
+      }
+    ]
+  },
+  "path_resolution": {
+    "counts": {
+      "CANONICAL_EXACT": 30,
+      "AUTO_REUSE": 43,
+      "LOCAL_EQUIVALENCE": 181,
+      "BYPASS": 1946
+    },
+    "latencies_ms": {
+      "CANONICAL_EXACT": {
+        "count": 30,
+        "mean": 0.06,
+        "p50": 0.04,
+        "p95": 0.16
+      },
+      "AUTO_REUSE": {
+        "count": 43,
+        "mean": 14.28,
+        "p50": 14.36,
+        "p95": 17.75
+      },
+      "LOCAL_EQUIVALENCE": {
+        "count": 181,
+        "mean": 33.72,
+        "p50": 34.54,
+        "p95": 66.03
+      },
+      "BYPASS": {
+        "count": 1946,
+        "mean": 16.65,
+        "p50": 15.58,
+        "p95": 26.07
+      }
+    }
+  },
+  "latency_comparison_vs_baseline": {
+    "baseline_model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "baseline_p50_ms": 8153.5,
+    "baseline_p95_ms": 12763.96,
+    "decision_p50_ms": 15.81,
+    "decision_p95_ms": 37.11,
+    "e2e_simulated_p50_ms": 8169.03,
+    "e2e_simulated_p95_ms": 8184.04
+  },
+  "source_breakdown": {
+    "paws_test": {
+      "hits": 43,
+      "tp": 22,
+      "fp": 21,
+      "non_exact_hits": 34,
+      "non_exact_fp": 16
+    },
+    "cqadupstack_heldout": {
+      "hits": 1,
+      "tp": 1,
+      "fp": 0,
+      "non_exact_hits": 1,
+      "non_exact_fp": 0
+    },
+    "qqp_heldout": {
+      "hits": 42,
+      "tp": 37,
+      "fp": 5,
+      "non_exact_hits": 40,
+      "non_exact_fp": 5
+    },
+    "wildchat_traffic": {
+      "hits": 0,
+      "tp": 0,
+      "fp": 0,
+      "non_exact_hits": 0,
+      "non_exact_fp": 0
+    }
+  },
+  "gate_a": {
+    "passed": false,
+    "non_exact_hits_ge_100": false,
+    "non_exact_irr_le_10_percent": false
+  }
+}
