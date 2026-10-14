@@ -394,5 +394,19 @@ Executed once on sealed test stream (`fbcf1437aa91797942363f8faa58d6b6eef51d9df7
 
 ---
 
-*Last updated: 2026-10-11. Author: Antigravity agent. Commit: see git log.*
+*Historical ledger update: 2026-10-11. Author: Antigravity agent. Recovery additions follow below.*
+
+---
+
+## Recovery Runtime — Application Invariants
+
+These rows describe code contracts and hermetic regression tests. They are not
+held-out semantic-accuracy results, real-provider measurements, or workload
+savings. Historical experiment rows above are preserved.
+
+| ID | Fact | Value and evidence | Source | Recompute |
+| --- | --- | --- | --- | --- |
+| PA-RUNTIME-CONFIG | Exact-response runtime defaults | TTL **3600.0 seconds**, capacity **1024 entries**, explicit temperature cap **0.2**, **64** bounded coordination lock stripes; **code configuration**, not calibrated operating values | `src/policy/response_cache.py`, `ScopedResponseCache.__init__` | Inspect the constructor defaults and stripe construction |
+| PA-RUNTIME-TEST | Exact-response runtime regression suite | **50 passed**; **hermetic test fixtures**; no real provider/model execution and no semantic-safety inference | `tests/test_response_cache.py` | `python -m pytest tests/test_response_cache.py -q` |
+| PA-RUNTIME-SUITE | Default regression suite after recovery additions and mocked-runner isolation repair | **329 passed**, **22 deselected**; model/API integration tests excluded by the existing configuration; executed with offline model flags, not a new workload evaluation | `tests/`; `pyproject.toml` | `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m pytest -q` |
 
