@@ -46,11 +46,14 @@ def main() -> int:
     
     print(f"Loaded {len(facts_set)} unique numeric tokens from {facts_file.name}.\n")
     
-    target_rel_paths = [
-        Path("README.md"),
-        Path("DESIGN.md"),
-        Path("demo") / "SCRIPT.md",
-    ]
+    if len(sys.argv) > 1:
+        target_rel_paths = [Path(p) for p in sys.argv[1:]]
+    else:
+        target_rel_paths = [
+            Path("README.md"),
+            Path("DESIGN.md"),
+            Path("demo") / "SCRIPT.md",
+        ]
     
     total_violations = 0
     

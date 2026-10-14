@@ -42,6 +42,7 @@ Facts verified by recomputation are marked **`[RECOMPUTED]`**.
 | C-14 | Production LLM judge model (Phase 3 onward) | `nvidia/nemotron-3-super-120b-a12b:free` via OpenRouter **`[CODE]`** | `src/decision/judge_call.py` line 34: `DEFAULT_JUDGE_MODEL: str = "nvidia/nemotron-3-super-120b-a12b:free"` | `grep DEFAULT_JUDGE_MODEL src/decision/judge_call.py` |
 | C-15 | Initial judge model attempted then abandoned | `gemini-2.5-flash` (Google AI Studio free tier; 17/32 pairs evaluated before daily RPD=20 quota exhausted) **`[CODE]`** | `src/decision/judge_call.py` line 36: `GEMINI_DEFAULT_JUDGE_MODEL: str = "gemini-2.5-flash"` | `grep GEMINI_DEFAULT_JUDGE_MODEL src/decision/judge_call.py` |
 | C-16 | Judge fail-closed fallback | On ANY failure, returns `decision=BYPASS`, `is_safe=False`, `confidence=0.0`, `fallback_triggered=True`. Never fails open. **`[CODE]`** | `src/decision/judge_call.py` lines 8–14 (docstring invariant); line 356 (runtime contract); lines 391–405 (missing-key return path) | `grep -n "fallback_triggered=True" src/decision/judge_call.py` |
+| C-17 | Preflight Unit Test Suite Size | 281 tests passing **`[CODE]`** | `tests/` | `pytest tests/` |
 
 ---
 
@@ -391,6 +392,111 @@ Executed once on sealed test stream (`fbcf1437aa91797942363f8faa58d6b6eef51d9df7
 | P8-A02 | 2. + Embedding (Cosine 0.85) | 90 | 39.1% | 31 | 34.4% | 34.02 ms |
 | P8-A03 | 3. + Local Equivalence Model (Arm d) | 50 | 21.7% | 3 | 6.0% | 37.82 ms |
 | P8-A04 | 4. + Remote Judge (Current pipeline) | 16 | 7.0% | 3 | 18.8% | 50.65 ms |
+
+---
+
+## 17. Phase A — Ground-Truth Facts, Baseline Re-measurements & Errata
+
+### 17.1 — Real LLM Generation Baseline (n=100 Re-measured on Local Hardware)
+
+Hardware: Intel(R) Core(TM) Ultra 7 155U (12 cores, 14 logical processors), 32 GB RAM, Windows 11.
+Model: Qwen/Qwen2.5-0.5B-Instruct (local PyTorch CPU inference, temp=0.0, max_new_tokens=64, do_sample=False). Date: 2026-10-12.
+
+| # | Fact | Measured Value | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| PA-B01 | Baseline LLM local model | **Qwen/Qwen2.5-0.5B-Instruct** (CPU, n=100) | `data/baseline_llm_measurements_n100.json` | `python scripts/measure_real_llm_baseline.py` |
+| PA-B02 | Baseline LLM local mean latency | **8997.49 ms** | `data/baseline_llm_measurements_n100.json` | `python -c "import json; print(json.load(open('data/baseline_llm_measurements_n100.json'))['primary_baseline_n100']['mean_latency_ms'])"` |
+| PA-B03 | Baseline LLM local median (p50) latency | **8153.50 ms** (8153.5 ms) | `data/baseline_llm_measurements_n100.json` | `python -c "import json; print(json.load(open('data/baseline_llm_measurements_n100.json'))['primary_baseline_n100']['median_latency_ms'])"` |
+| PA-B04 | Baseline LLM local p95 latency | **12763.96 ms** | `data/baseline_llm_measurements_n100.json` | `python -c "import json; print(json.load(open('data/baseline_llm_measurements_n100.json'))['primary_baseline_n100']['p95_latency_ms'])"` |
+| PA-B05 | Baseline LLM local mean prompt tokens | **11.05 tokens** | `data/baseline_llm_measurements_n100.json` | `python -c "import json; print(json.load(open('data/baseline_llm_measurements_n100.json'))['primary_baseline_n100']['mean_prompt_tokens'])"` |
+| PA-B06 | Baseline LLM local mean completion tokens | **61.87 tokens** | `data/baseline_llm_measurements_n100.json` | `python -c "import json; print(json.load(open('data/baseline_llm_measurements_n100.json'))['primary_baseline_n100']['mean_completion_tokens'])"` |
+| PA-B07 | Baseline LLM local mean total tokens | **72.92 tokens** | `data/baseline_llm_measurements_n100.json` | `python -c "import json; print(json.load(open('data/baseline_llm_measurements_n100.json'))['primary_baseline_n100']['mean_total_tokens'])"` |
+| PA-B08 | Auxiliary remote baseline (n=20 live OpenRouter) | mean **2002.11 ms**, p50 **1346.64 ms**, p95 **3759.78 ms**, mean tokens **164.25** | `data/baseline_llm_measurements_n100.json` | `python -c "import json; print(json.load(open('data/baseline_llm_measurements_n100.json'))['auxiliary_remote_baseline']['mean_latency_ms'])"` |
+
+### 17.2 — Phase 8 Repairs, Category Breakdown, and Errata
+
+| # | Fact | Value / Finding | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| PA-E01 | Phase 8 Ceiling Erratum | Point estimate **6.0%** IRR carried 95% Clopper-Pearson CI **[1.3%, 16.5%]**. Because the upper bound (16.5%) exceeds 10%, the data did not formally establish the 10% safety ceiling. Retracted unanchored $0.011/1k estimate. Avoided workload strictly: **38,282.6 tokens** and **217.4 calls** per 1k. | `docs/DECISIONS.md` D-20261012-01; `docs/STATUS.md` | `python scripts/check_numeric_tokens.py` |
+| PA-FP01 | Phase 8 3 False Positives Source | All 3 false positives (`P8-ADV-PROBE-001`, `P8-ADV-PROBE-015`, `P8-ADV-PROBE-025`) originated in category **ADVERSARIAL_TRAP** (PAWS validation) via vector store **AUTO_REUSE** (cosine sim >= 0.92, conf >= 0.90), completely bypassing CrossEncoder and rule guards. | `data/phase8_simulation_telemetry.json` | `python scripts/analyze_phase8_stream.py` |
+| PA-VAL01 | Validation Set vs Test Stream Divergence | Validation set (N=160, IRR=**39.62%** [26.5%, 54.0%]) had 40 PAWS word scrambles (25% of all pairs, 40% of true negatives) with identical token multisets that defeat bag-of-words bi-encoders. In test stream, 41/50 hits (82%) were exact/canonical folds with 0% error; non-exact test IRR was 3/9 = **33.33%**, aligning with validation error rate. | `data/phase8_tuning_val.json` | `python scripts/analyze_validation_guards.py` |
+| PA-G01 | Generative-Request Guard Benchmark | Evaluated on hand-built labeled benchmark (`data/generative_prompts_benchmark.json`, N=100: 50 generative, 50 factual). Achieved **100.0% accuracy**, **100.0% precision**, **100.0% recall**, **0 false alarms**. | `data/generative_prompts_benchmark.json` | `python scripts/check_generative_guard.py` |
+
+### 17.3 — Candidate Semantic Matchers Comparison (Validation Set N=160)
+
+| # | Fact | Value / Finding | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| PA-M01 | Candidate a (Off-the-shelf DistilRoBERTa, no guards) | Hits: **79**, Hit Rate: **49.38%** [41.39%, 57.38%], TP: **45**, FP: **34** (all 34 PAWS), Precision: **56.96%** [45.33%, 68.06%], Recall: **75.0%** (75.00%) [62.14%, 85.28%], IRR: **43.04%** [31.94%, 54.67%] | `data/phaseA_candidate_comparison.json` | `python -c "import json; print(json.load(open('data/phaseA_candidate_comparison.json'))['validation_benchmark']['candidate_a_off_the_shelf_no_guards'])"` |
+| PA-M02 | Candidate b (Fine-tuned on QQP+PAWS, no guards) | Hits: **59**, Hit Rate: **36.88%** [29.39%, 44.85%], TP: **56**, FP: **3** (0 PAWS, 3 QQP), Precision: **94.92%** [85.85%, 98.94%], Recall: **93.33%** [83.80%, 98.15%], IRR: **5.08%** [1.06%, 14.15%] | `data/phaseA_candidate_comparison.json` | `python -c "import json; print(json.load(open('data/phaseA_candidate_comparison.json'))['validation_benchmark']['candidate_b_finetuned_no_guards'])"` |
+| PA-M03 | Candidate c (Fine-tuned + Rule & Generative Guards) | Hits: **40**, Hit Rate: **25.0%** (25.00%) [18.50%, 32.45%], TP: **39**, FP: **1** (0 PAWS, 1 QQP), FN: **21**, TN: **99**, Precision: **97.5%** (97.50%) [86.84%, 99.94%], Recall: **65.0%** (65.00%) [51.60%, 76.87%], IRR: **2.5%** (2.50%) [0.06%, 13.16%] | `data/phaseA_candidate_comparison.json` | `python -c "import json; print(json.load(open('data/phaseA_candidate_comparison.json'))['validation_benchmark']['candidate_c_finetuned_with_guards'])"` |
+| PA-M04 | Candidate b Fine-Tuning Execution | Training pairs: **2000**, Epochs: **1**, Batch size: **16**, Learning rate: **2e-05**, Duration: **449.57 s**, Hardware: Intel Core Ultra 7 155U CPU | `data/phaseA_candidate_comparison.json` | `python -c "import json; print(json.load(open('data/phaseA_candidate_comparison.json'))['training'])"` |
+
+### 17.4 — Domain-Level Calibration on CQADupStack (12 Subforums)
+
+| # | Fact | Value / Finding | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| PA-C01 | CQADupStack Retrieval Dataset & License | **mteb/cqadupstack-retrieval**, License: **CC BY-SA 3.0 / 4.0**. 12 subforums analyzed, 50 pairs/subforum (25 positive, 25 negative). | `data/phaseA_cqadupstack_calibration.json` | `python -c "import json; print(json.load(open('data/phaseA_cqadupstack_calibration.json'))['license'])"` |
+| PA-C02 | Subforum Logistic Gate Clearance | All **12** subforums passed sample size gate ($N=50 \ge 20$) and minority class gate ($25 \ge 10$). Subforums using global fallback (0.85): **0**. | `data/phaseA_cqadupstack_calibration.json` | `python -c "import json; print(json.load(open('data/phaseA_cqadupstack_calibration.json'))['subforums_fitted'])"` |
+| PA-C03 | Domain Operating Thresholds Range | Spanned from **0.1087** (physics, point estimate 0.0076) to **0.3854** (programmers, point estimate 0.3236). | `data/phaseA_cqadupstack_calibration.json` | `python -c "import json; print(json.load(open('data/phaseA_cqadupstack_calibration.json'))['domain_thresholds']['physics'])"` |
+
+### 17.5 — Real Chat Traffic Natural Repeat Rates on WildChat (N=5,000)
+
+| # | Fact | Value / Finding | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| PA-W01 | WildChat Dataset & License | **allenai/WildChat**, License: **Open Data Commons Attribution License (ODC-By)**. Sample: **5000** first user turns. | `data/phaseA_wildchat_repeat_rates.json` | `python -c "import json; print(json.load(open('data/phaseA_wildchat_repeat_rates.json'))['license'])"` |
+| PA-W02 | WildChat Exact String Repeats | **490 / 5000** queries (**9.80%**, 9.8%, 0.098). | `data/phaseA_wildchat_repeat_rates.json` | `python -c "import json; print(json.load(open('data/phaseA_wildchat_repeat_rates.json'))['exact_string_repeats'])"` |
+| PA-W03 | WildChat Canonical Folded Repeats | **529 / 5000** queries (**10.58%**, 10.6%, 0.1058). Incremental canonical lift: 39 queries (+0.78%). | `data/phaseA_wildchat_repeat_rates.json` | `python -c "import json; print(json.load(open('data/phaseA_wildchat_repeat_rates.json'))['canonical_repeats'])"` |
+| PA-W04 | WildChat Guarded Semantic Matches (sim >= 0.85) | **986 / 5000** queries (**19.72%**, 19.7%, 0.1972) guarded vs **1398** (**27.96%**, 28.0%, 0.2796) raw ungoverned. | `data/phaseA_wildchat_repeat_rates.json` | `python -c "import json; print(json.load(open('data/phaseA_wildchat_repeat_rates.json'))['semantic_guarded_counts']['0.85'])"` |
+| PA-W05 | WildChat Guarded Semantic Matches (sim >= 0.92) | **777 / 5000** queries (**15.54%**, 15.5%, 0.1554) guarded vs **1063** (**21.26%**, 21.3%, 0.2126) raw ungoverned. | `data/phaseA_wildchat_repeat_rates.json` | `python -c "import json; print(json.load(open('data/phaseA_wildchat_repeat_rates.json'))['semantic_guarded_counts']['0.92'])"` |
+| PA-W06 | Human Audit Sample Export | **100** sampled queries exported to `data/review/pa_human_audit.csv` with empty human_label column. | `data/phaseA_wildchat_repeat_rates.json` | `python -c "import json; print(json.load(open('data/phaseA_wildchat_repeat_rates.json'))['audit_sample_size'])"` |
+
+### 17.6 — Sealed Test Stream Single-Run Evaluation (N=2,200)
+
+| # | Fact | Value / Finding | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| PA-S01 | Sealed Stream Cryptographic Hashes | Stream SHA-256: `0e7aff256e4d8ee715a0b55f2007422cd99be9040765683799669f2f4861d991`. Frozen config SHA-256: `a1e0dc2a0a2e89e8c29a357597264f2d47fbf556f3f531b9a0b5c760f2fd8466`. Git commit: `d1f9d97`. | `docs/phaseA_preregistration.md` | `python scripts/run_phaseA_sealed_evaluation.py` |
+| PA-S02 | Sealed Stream Query Composition | Total: **2200** queries. Sources: **1000** QQP held-out, **600** PAWS test, **400** CQADupStack held-out, **200** WildChat. Roles: **536** safe non-exact, **464** adversarial negatives, **1200** cold seeds. | `data/phaseA_frozen_config.json` | `python -c "import json; print(json.load(open('data/phaseA_frozen_config.json'))['sealed_stream'])"` |
+| PA-S03 | Sealed Execution Duration | Single execution: **66.64 s** (1.11 min) on local CPU. | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['timestamp'])"` |
+| PA-S04 | Total Cache Hits and Confusion Matrix | Total Hits: **86** (Hit Rate: **3.91%** [3.14%, 4.81%], 0.0391). TP: **60**, FP: **26**, FN: **476**, TN: **438**. Overall IRR: **30.23%** [20.79%, 41.08%] (0.3023). | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['secondary_endpoints'])"` |
+| PA-S05 | Primary Endpoint: Non-Exact Matches | Non-exact Hits: **75** / 86 (TP: **54**, FP: **21**). Point estimate non-exact IRR: **28.0%** (28.00%, 0.28) with 95% Clopper-Pearson CI **[18.24%, 39.56%]**. | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['primary_endpoint_non_exact_irr'])"` |
+| PA-S06 | Gate A Verification Outcome | **GATE A FAILED**. Fails Criteria: (1) Non-exact hits = 75 (< 100 target); (2) Non-exact IRR point estimate = 28.00% (> 10.0% target). Upper CI bound = 39.56%. | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['gate_a'])"` |
+| PA-S07 | Exact Canonical Matches on Sealed Stream | Canonical hits: **11** / 30 exact routing queries. | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['secondary_endpoints']['exact_canonical_hits'])"` |
+
+### 17.7 — Path Latencies, Workload Avoided, and Break-Even Curve
+
+| # | Fact | Value / Finding | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| PA-L01 | CANONICAL_EXACT Path Latency (n=30) | Mean: **0.06 ms**, p50: **0.04 ms**, p95: **0.16 ms**. | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['path_resolution']['latencies_ms']['CANONICAL_EXACT'])"` |
+| PA-L02 | AUTO_REUSE Path Latency (n=43) | Mean: **14.28 ms**, p50: **14.36 ms**, p95: **17.75 ms**. | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['path_resolution']['latencies_ms']['AUTO_REUSE'])"` |
+| PA-L03 | LOCAL_EQUIVALENCE Path Latency (n=181) | Mean: **33.72 ms**, p50: **34.54 ms**, p95: **66.03 ms**. | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['path_resolution']['latencies_ms']['LOCAL_EQUIVALENCE'])"` |
+| PA-L04 | BYPASS Path Latency (n=1946) | Mean: **16.65 ms**, p50: **15.58 ms**, p95: **26.07 ms**. | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['path_resolution']['latencies_ms']['BYPASS'])"` |
+| PA-L05 | Decision Overhead vs Baseline LLM | Decision p50: **15.81 ms**, p95: **37.11 ms**. End-to-end simulated latency: p50 **8169.03 ms** (vs baseline 8153.50 ms), p95 **8184.04 ms** (vs baseline 12763.96 ms). | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['latency_comparison_vs_baseline'])"` |
+| PA-L06 | Workload Avoided per 1,000 Queries | Avoided calls: **39.1 calls** / 1k. Avoided tokens: **2850.5 tokens** / 1k (based on baseline mean 72.92 tokens). | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['secondary_endpoints']['calls_avoided_per_1000'])"` |
+| PA-L07 | Break-Even Hit Rate | **0.1976%** (0.00198). Point where decision path overhead (15.81 ms) equals avoided LLM latency (8153.50 ms). | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['secondary_endpoints']['break_even_hit_rate'])"` |
+
+### 17.8 — Source Breakdown on Sealed Stream
+
+| # | Fact | Value / Finding | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| PA-SB01 | PAWS Test Stream Breakdown | Hits: **43**, TP: **22**, FP: **21**. Non-exact hits: **34**, Non-exact FP: **16** (Non-exact IRR: **47.06%** [29.84%, 64.89%]). | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['source_breakdown']['paws_test'])"` |
+| PA-SB02 | QQP Held-Out Stream Breakdown | Hits: **42**, TP: **37**, FP: **5**. Non-exact hits: **40**, Non-exact FP: **5** (Non-exact IRR: **12.5%** (12.50%) [4.19%, 26.80%]). | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['source_breakdown']['qqp_heldout'])"` |
+| PA-SB03 | CQADupStack Held-Out Stream Breakdown | Hits: **1**, TP: **1**, FP: **0**. Non-exact hits: **1**, Non-exact FP: **0**. | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['source_breakdown']['cqadupstack_heldout'])"` |
+| PA-SB04 | WildChat Traffic Breakdown | Hits: **0**, TP: **0**, FP: **0**, Non-exact hits: **0**, Non-exact FP: **0**. | `data/phaseA_sealed_evaluation_summary.json` | `python -c "import json; print(json.load(open('data/phaseA_sealed_evaluation_summary.json'))['source_breakdown']['wildchat_traffic'])"` |
+
+### 17.9 — Projected Hit-Rate vs Repeat-Share Curve
+
+| # | Fact | Repeat Share | Projected Hit Rate | Projected End-to-End p50 |
+| :---: | :--- | :---: | :---: | :---: |
+| PA-RC01 | Zero Repeat Baseline | **0.0%** (0.0) | **0.0%** (0.0) | **8169.31 ms** |
+| PA-RC02 | 10% Repeat Traffic | **10.0%** (10.0, 0.1) | **0.86%** (0.0086) | **8099.19 ms** |
+| PA-RC03 | 20% Repeat Traffic | **20.0%** (20.0, 0.2) | **1.72%** (0.0172) | **8029.07 ms** |
+| PA-RC04 | 40% Repeat Traffic | **40.0%** (40.0, 0.4) | **3.44%** (0.0344) | **7888.82 ms** |
+| PA-RC05 | 60% Repeat Traffic | **60.0%** (60.0, 0.6) | **5.16%** (0.0516) | **7748.58 ms** |
+
+---
+
+*Last updated: 2026-10-12. Author: Antigravity agent. Commit: see git log.*
+
 
 ---
 

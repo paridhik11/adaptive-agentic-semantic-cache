@@ -1,0 +1,58 @@
+{
+  "phase": "A",
+  "pipeline_name": "Phase A Local Equivalence Verified Pipeline",
+  "frozen_at": "2026-10-12T01:25:00+05:30",
+  "bi_encoder": {
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "embedding_dimension": 384,
+    "similarity_metric": "cosine"
+  },
+  "normalizer": {
+    "enabled": true,
+    "strategy": "definitional_frame_stripping_and_edge_punct",
+    "class": "CanonicalCache"
+  },
+  "rule_guards": {
+    "number_guard": true,
+    "negation_guard": true,
+    "entity_guard": true,
+    "long_prompt_guard": {
+      "enabled": true,
+      "max_tokens": 128,
+      "fallback_policy": "exact_or_canonical_only"
+    },
+    "generative_request_guard": {
+      "enabled": true,
+      "benchmark_precision": 1.0,
+      "policy": "fail_closed_bypass"
+    }
+  },
+  "tier_router": {
+    "auto_reuse_threshold": 0.92,
+    "auto_reuse_requires_guards": true,
+    "ambiguous_lower_bound": 0.50,
+    "bypass_below": 0.50
+  },
+  "cross_encoder": {
+    "model_path": "models/phaseA_cross_encoder_finetuned",
+    "base_architecture": "cross-encoder/quora-distilroberta-base",
+    "decision_threshold": 0.85,
+    "requires_guards": true,
+    "fallback_to_llm": false
+  },
+  "sealed_stream": {
+    "path": "data/raw/phaseA_sealed_test_stream.json",
+    "sha256": "0e7aff256e4d8ee715a0b55f2007422cd99be9040765683799669f2f4861d991",
+    "query_count": 2200,
+    "safe_non_exact_targets": 536,
+    "adversarial_negative_targets": 464
+  },
+  "baseline_generation_reference": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "n_samples": 100,
+    "mean_latency_ms": 8997.49,
+    "median_latency_ms": 8153.5,
+    "p95_latency_ms": 12763.96,
+    "mean_tokens": 72.92
+  }
+}

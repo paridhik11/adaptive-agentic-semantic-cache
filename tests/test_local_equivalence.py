@@ -8,6 +8,8 @@ from src.decision.local_equivalence import (
     extract_numbers,
     extract_negations,
     extract_proper_entities,
+    is_generative_request,
+    evaluate_long_prompt_guard,
     LocalEquivalenceDecisionStep,
     LocalEquivalenceResult,
 )
@@ -116,3 +118,41 @@ def test_local_equivalence_mock_model():
     assert res_low.decision == "BYPASS"
     assert res_low.is_safe is False
     assert res_low.fallback_to_llm_used is False
+
+
+def test_generative_request_rule_guard():
+    """Generative requests are forced to BYPASS regardless of query similarity."""
+    assert is_generative_request("Write a poem about autumn leaves.") is True
+    assert is_generative_request("Give me 5 creative ideas for a startup tagline") is True
+    assert is_generative_request("What is the capital of France?") is False
+
+    ok, reason = evaluate_rule_guards(
+        "Write a poem about autumn leaves",
+        "Compose a poem about autumn leaves"
+    )
+    assert ok is False
+    assert "GENERATIVE_REQUEST" in reason
+
+
+def test_long_prompt_rule_guard():
+    """Prompts exceeding embedding max window bypass unless canonically identical."""
+    short_q = "What is the speed of light?"
+    ok, reason = evaluate_long_prompt_guard(short_q, short_q, max_tokens=10)
+    assert ok is True
+
+    # Construct prompt exceeding window (e.g. 15 tokens when limit is 10)
+    words = ["word" + str(i) for i in range(15)]
+    long_q1 = " ".join(words)
+    long_q2 = " ".join(words[:-1]) + " different"
+
+    # Differing long prompts -> fail closed
+    ok, reason = evaluate_long_prompt_guard(long_q1, long_q2, max_tokens=10)
+    assert ok is False
+    assert "LONG_PROMPT_UNSAFE" in reason
+
+    # Canonical match long prompts -> pass
+    long_q_frame = "what is " + " ".join(words)
+    long_q_plain = " ".join(words) + "?"
+    ok, reason = evaluate_long_prompt_guard(long_q_frame, long_q_plain, max_tokens=10)
+    assert ok is True
+    assert "CANONICAL_MATCH" in reason

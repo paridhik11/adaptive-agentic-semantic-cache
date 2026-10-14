@@ -1,0 +1,72 @@
+# Architectural and Empirical Decisions Ledger
+
+This file records all architectural decisions, assumptions, dataset selections, and protocol clarifications across Phases A, B, and C as required by `docs/ROADMAP_ABC.md` (Autonomy Rules).
+
+---
+
+## Decision D-20261012-01: Baseline Generation Re-measurement Protocol (n >= 100)
+- **Date:** 2026-10-12
+- **Context:** Roadmap section A0.6 requires re-measuring the no-cache baseline with $n \ge 100$ real LLM calls. OpenRouter free tier enforces a strict 50 requests/day quota across all models (with only 28 requests remaining on 2026-10-12).
+- **Decision / Assumption:**
+  1. Primary baseline ($n = 100$): Evaluated using `Qwen/Qwen2.5-0.5B-Instruct` directly on the benchmark host hardware (Intel Core Ultra 7 155U, 32 GB RAM, Windows 11) with `temperature=0.0`, `max_new_tokens=64`, measuring exact wall-clock latency per call, prompt tokens, and completion tokens.
+  2. Auxiliary remote baseline ($n = 20$): Evaluated using `nvidia/nemotron-3-super-120b-a12b:free` via OpenRouter to track remote network latency distribution without exhausting the daily quota.
+- **Reason:** Satisfies the $n \ge 100$ sample size requirement truthfully and reproducibly without violating daily API quotas or delaying execution across multiple days.
+
+---
+
+## Decision D-20261012-02: Public Benchmark Datasets Selection & Licenses
+- **Date:** 2026-10-12
+- **Context:** Roadmap sections A1, A2, A3 require real public datasets for fine-tuning, domain calibration, and chat repeat rates.
+- **Decision:**
+  1. **CQADupStack (`BeIR/cqadupstack-qrels` / `mteb/cqadupstack-retrieval`):** 12 StackExchange subforums (e.g. android, english, gaming, gis, mathematica, physics, programmers, stats, tex, unix, webmasters, wordpress). License: CC-BY-SA 3.0 / 4.0. Used for multi-domain calibration (A2) and sealed stream domain queries.
+  2. **WildChat (`allenai/WildChat` / `allenai/WildChat-1M`):** Real user-ChatGPT conversation logs. License: AI2 Open Data Commons Attribution License (ODC-By 1.0). Used for measuring organic first-turn natural repeat rates (A3).
+  3. **QQP (`nyu-mll/glue`, `qqp`):** Quora Question Pairs. Quora Terms of Service for research. Used for paraphrase validation and training pairs.
+  4. **PAWS (`google-research-datasets/paws`, `labeled_final`):** Paraphrase Adversaries from Word Scrambling. License: CC-BY-SA 4.0. Used for hard adversarial negative evaluation and training.
+- **Reason:** All datasets are publicly accessible, strictly non-gated, properly licensed for research evaluation, and representative of organic human traffic.
+
+---
+
+## Decision D-20261012-03: Long-Prompt Guard and Generative-Request Guard Invariants
+- **Date:** 2026-10-12
+- **Context:** Section A1.2 and A1.3 introduce long-prompt and generative-request guards.
+- **Decision:**
+  1. **Long-Prompt Guard:** The base embedder (`all-MiniLM-L6-v2`) has a maximum context window of 256 wordpiece tokens (~150 whitespace words). If either query exceeds 150 words or 600 characters, semantic embedding similarity is deemed truncated and untrustworthy; the guard computes a full-text SHA-256 and checks trailing tail equality. If not identically equal, it triggers fail-closed `LONG_PROMPT_BYPASS`.
+  2. **Generative-Request Guard:** Prompts requesting open-ended creative generation (e.g. poems, essays, stories, brainstorming, open suggestions) have high inherent entropy and diverse user intent. They are deterministically flagged and routed to `GENERATIVE_REQUEST_BYPASS`. Evaluated on a 100-prompt benchmark (`data/generative_prompts_benchmark.json`).
+- **Reason:** Guarantees semantic safety against embedding truncation hazards and preserves creative variation for generative requests.
+
+---
+
+## Decision D-20261012-04: Semantic Matcher Selection (Candidate c)
+- **Date:** 2026-10-12
+- **Context:** Section A1 benchmarks three candidates on the validation split ($N=160$ pairs): (a) off-the-shelf `cross-encoder/quora-distilroberta-base`, (b) fine-tuned on QQP train + PAWS hard negatives, and (c) fine-tuned + All Guards.
+- **Decision:** Candidate (c) is selected as the production matcher for Phase A.
+- **Reason / Findings:**
+  1. Candidate (a) yielded 43.04% IRR (95% CI [31.9%, 54.7%]); all 34 false positives were PAWS word scrambles.
+  2. Candidate (b) fine-tuned on 2,000 pairs (1 epoch, 449.57 s on CPU) dropped PAWS false positives from 34 to 0, achieving 5.08% IRR [1.1%, 14.1%].
+  3. Candidate (c) adding rule guards (numbers, negations, entities, long-prompt, generative) achieved 2.50% IRR [0.1%, 13.2%] with only 1 false positive remaining and 97.50% precision. Candidate (c) provides the strongest safety margin.
+
+---
+
+## Decision D-20261012-05: CQADupStack Multi-Domain Calibration (12 Subforums)
+- **Date:** 2026-10-12
+- **Context:** Section A2 requires evaluating whether per-category thresholds can actually fire on multi-domain data without weakening gates ($N \ge 20$, minority $\ge 10$).
+- **Decision:** Evaluated all 12 subforums in `mteb/cqadupstack-retrieval` with 50 validation pairs each (25 positive duplicate threads, 25 negative distinct questions).
+- **Findings:**
+  - All 12 subforums passed both gates ($N=50 \ge 20$, minority count $25 \ge 10$).
+  - All 12 subforums successfully moved off the 0.85 fallback and calibrated domain operating thresholds bounded by the Delta method 95% CI upper bound (operating thresholds ranged from 0.1087 for physics to 0.3854 for programmers).
+  - Confirms that with sufficient domain traffic, the adaptive threshold engine operates as intended without manual tuning or gate relaxation.
+
+---
+
+## Decision D-20261012-06: Sealed Stream Construction and Pre-Registration
+- **Date:** 2026-10-12
+- **Context:** Section A4 requires a sealed test stream of $\ge 2,000$ queries with $\ge 200$ non-exact hits possible, built from public held-out slices, committed alongside pre-registration before evaluation.
+- **Decision:**
+  - Sealed stream of $N=2,200$ queries is constructed from:
+    1. QQP held-out partition ($N=1,000$ queries: 500 seeds + 500 follow-ups).
+    2. PAWS test split ($N=600$ queries: 300 seeds + 300 follow-ups, containing 150 paraphrases and 150 hard adversarial negatives).
+    3. CQADupStack held-out threads ($N=400$ queries: 200 duplicate threads across 12 subforums).
+    4. WildChat real traffic ($N=200$ organic user queries).
+  - Primary endpoint: Incorrect-Reuse Rate (IRR) among non-exact hits with exact 95% Clopper-Pearson CI.
+  - Frozen configuration: Hash of models, thresholds, and guards committed in git prior to single evaluation run.
+

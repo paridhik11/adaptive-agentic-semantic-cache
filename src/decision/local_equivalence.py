@@ -20,6 +20,7 @@ SAFETY INVARIANTS:
 
 from __future__ import annotations
 
+import hashlib
 import re
 import time
 from dataclasses import dataclass, field
@@ -28,6 +29,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 import torch
 from sentence_transformers import CrossEncoder
 
+from src.cache.normalizer import normalize_query
 from src.decision.judge_call import JudgeResult, LLMJudge
 
 DEFAULT_CROSS_ENCODER_MODEL: str = "cross-encoder/quora-distilroberta-base"
@@ -58,6 +60,29 @@ NEGATION_TOKENS: Set[str] = {
 
 _NUMERIC_RE = re.compile(r"(?<![A-Za-z0-9_])\d+(?:\.\d+)*(?![A-Za-z0-9_])")
 _WORD_RE = re.compile(r"\b[A-Za-z0-9_'/-]+\b")
+
+GENERATIVE_PATTERNS = [
+    re.compile(r"\b(?:write|compose|draft)\b.*\b(?:poem|poetry|haiku|sonnet|limerick|song|lyrics|rap|rhyme|story|tale|fiction|play|screenplay|script|speech|toast|ballad|monologue|essay|micro-fiction|verse|passage|paragraph|novel|article|entry|scene)\b", re.I),
+    re.compile(r"\b(?:give me|come up with|brainstorm|suggest)\b.*\b(?:ideas?|concepts?|suggestions?|taglines?|titles?|names?|tricks?|puns?|riddles?|angles?|topics?|comeback|themes?|icebreaker|questions?)\b", re.I),
+    re.compile(r"\b(?:invent|create|make up|draft)\b.*\b(?:fictional|imaginary|original|new|creative|whimsical|dialogue|monologue|fairy tale|sports game|recipe|spells?)\b", re.I),
+    re.compile(r"\b(?:generate|outline)\b.*\b(?:fictional|lore|mythology|ideas?|suggestions?)\b", re.I),
+    re.compile(r"\b(?:tell me a story|write me a|compose a|brainstorm|ideate)\b", re.I),
+]
+
+
+def is_generative_request(text: str) -> bool:
+    """Check if query is asking for open-ended or creative generation."""
+    return any(p.search(text) for p in GENERATIVE_PATTERNS)
+
+
+def evaluate_generative_request_guard(query_a: str, query_b: str) -> Tuple[bool, str]:
+    """Evaluate generative request guard pairwise.
+    
+    Returns (False, reason) if either query is open-ended or creative generation.
+    """
+    if is_generative_request(query_a) or is_generative_request(query_b):
+        return False, "GENERATIVE_REQUEST: open-ended creative generation must bypass semantic cache"
+    return True, "NOT_GENERATIVE_REQUEST"
 
 
 def extract_numbers(text: str) -> Set[str]:
@@ -93,30 +118,66 @@ def extract_proper_entities(text: str) -> Set[str]:
     return entities
 
 
+def evaluate_long_prompt_guard(query_a: str, query_b: str, max_tokens: int = 128) -> Tuple[bool, str]:
+    """Evaluate long-prompt guard.
+
+    If either prompt exceeds the embedding model's input window (e.g. 128 tokens),
+    compare full-text SHA-256 and canonical form, and only allow reuse on exact or canonical equality.
+    """
+    tokens_a = len(query_a.split())
+    tokens_b = len(query_b.split())
+    if tokens_a <= max_tokens and tokens_b <= max_tokens:
+        return True, "WINDOW_WITHIN_LIMIT"
+
+    # Exceeds window: check exact or canonical equality
+    hash_a = hashlib.sha256(query_a.encode("utf-8")).hexdigest()
+    hash_b = hashlib.sha256(query_b.encode("utf-8")).hexdigest()
+    if hash_a == hash_b:
+        return True, "LONG_PROMPT_EXACT_SHA256_MATCH"
+
+    norm_a = normalize_query(query_a)
+    norm_b = normalize_query(query_b)
+    if norm_a and norm_a == norm_b:
+        return True, "LONG_PROMPT_CANONICAL_MATCH"
+
+    return False, f"LONG_PROMPT_UNSAFE: prompt length exceeds window ({max(tokens_a, tokens_b)} > {max_tokens} tokens) and inputs differ canonically"
+
+
 def evaluate_rule_guards(query_a: str, query_b: str) -> Tuple[bool, str]:
     """Evaluate deterministic rule guards between two queries.
 
     Checks:
-      1. Number match: All numeric tokens must match exactly.
-      2. Negation match: Polarity must match (same negation presence).
-      3. Entity match: Proper noun entities must not disagree.
+      1. Generative request guard: Creative/open-ended generation requests must bypass.
+      2. Long-prompt guard: Inputs exceeding embedding window require canonical equality.
+      3. Number match: All numeric tokens must match exactly.
+      4. Negation match: Polarity must match (same negation presence).
+      5. Entity match: Proper noun entities must not disagree.
 
     Returns:
       (passed: bool, reason: str)
     """
-    # 1. Number guard
+    # 1. Generative request guard
+    if is_generative_request(query_a) or is_generative_request(query_b):
+        return False, "GENERATIVE_REQUEST: open-ended creative generation must bypass semantic cache"
+
+    # 2. Long-prompt guard
+    long_ok, long_reason = evaluate_long_prompt_guard(query_a, query_b)
+    if not long_ok:
+        return False, long_reason
+
+    # 3. Number guard
     nums_a = extract_numbers(query_a)
     nums_b = extract_numbers(query_b)
     if nums_a != nums_b:
         return False, f"NUMBER_MISMATCH: query_a={sorted(nums_a)} vs query_b={sorted(nums_b)}"
 
-    # 2. Negation guard
+    # 4. Negation guard
     negs_a = extract_negations(query_a)
     negs_b = extract_negations(query_b)
     if bool(negs_a) != bool(negs_b):
         return False, f"NEGATION_MISMATCH: query_a={sorted(negs_a)} vs query_b={sorted(negs_b)}"
 
-    # 3. Entity guard
+    # 5. Entity guard
     ents_a = extract_proper_entities(query_a)
     ents_b = extract_proper_entities(query_b)
     if ents_a and ents_b and ents_a != ents_b:

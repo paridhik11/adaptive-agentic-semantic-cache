@@ -90,3 +90,10 @@ telemetry_local/
 cache_dump/
 requests_cache/
 http_cache/
+
+# Large binary datasets & weights (Roadmap rule: commit download scripts + SHA-256)
+*.parquet
+*.safetensors
+*.bin
+data/wildchat/
+data/cqadupstack/

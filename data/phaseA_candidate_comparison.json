@@ -1,0 +1,119 @@
+{
+  "timestamp": "2026-10-12T01:00:00+05:30",
+  "training": {
+    "dataset": "data/candidate_b_train_pairs.json",
+    "n_samples": 2000,
+    "seed": 42,
+    "epochs": 1,
+    "batch_size": 16,
+    "learning_rate": 2e-05,
+    "duration_seconds": 449.57,
+    "output_checkpoint": "C:\\Users\\parid\\Downloads\\Agentic AI\\adaptive-agentic-semantic-cache\\models\\phaseA_cross_encoder_finetuned"
+  },
+  "validation_benchmark": {
+    "dataset": "data/phase8_tuning_val.json",
+    "n_pairs": 160,
+    "candidate_a_off_the_shelf_no_guards": {
+      "threshold": 0.85,
+      "use_guards": false,
+      "hits": 79,
+      "tp": 45,
+      "fp": 34,
+      "fn": 15,
+      "tn": 66,
+      "fp_categories": {
+        "paws": 34,
+        "qqp": 0,
+        "ms_marco": 0
+      },
+      "hit_rate": 0.4938,
+      "hit_rate_ci": [
+        0.4139,
+        0.5738
+      ],
+      "precision": 0.5696,
+      "precision_ci": [
+        0.4533,
+        0.6806
+      ],
+      "recall": 0.75,
+      "recall_ci": [
+        0.6214,
+        0.8528
+      ],
+      "irr": 0.4304,
+      "irr_ci": [
+        0.3194,
+        0.5467
+      ]
+    },
+    "candidate_b_finetuned_no_guards": {
+      "threshold": 0.85,
+      "use_guards": false,
+      "hits": 59,
+      "tp": 56,
+      "fp": 3,
+      "fn": 4,
+      "tn": 97,
+      "fp_categories": {
+        "paws": 0,
+        "qqp": 3,
+        "ms_marco": 0
+      },
+      "hit_rate": 0.3688,
+      "hit_rate_ci": [
+        0.2939,
+        0.4485
+      ],
+      "precision": 0.9492,
+      "precision_ci": [
+        0.8585,
+        0.9894
+      ],
+      "recall": 0.9333,
+      "recall_ci": [
+        0.838,
+        0.9815
+      ],
+      "irr": 0.0508,
+      "irr_ci": [
+        0.0106,
+        0.1415
+      ]
+    },
+    "candidate_c_finetuned_with_guards": {
+      "threshold": 0.85,
+      "use_guards": true,
+      "hits": 40,
+      "tp": 39,
+      "fp": 1,
+      "fn": 21,
+      "tn": 99,
+      "fp_categories": {
+        "paws": 0,
+        "qqp": 1,
+        "ms_marco": 0
+      },
+      "hit_rate": 0.25,
+      "hit_rate_ci": [
+        0.185,
+        0.3245
+      ],
+      "precision": 0.975,
+      "precision_ci": [
+        0.8684,
+        0.9994
+      ],
+      "recall": 0.65,
+      "recall_ci": [
+        0.516,
+        0.7687
+      ],
+      "irr": 0.025,
+      "irr_ci": [
+        0.0006,
+        0.1316
+      ]
+    }
+  }
+}

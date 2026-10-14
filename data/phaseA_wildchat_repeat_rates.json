@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-10-12T01:20:00+05:30",
+  "dataset": "allenai/WildChat",
+  "license": "Open Data Commons Attribution License (ODC-By)",
+  "sample_size": 5000,
+  "exact_string_repeats": 490,
+  "exact_string_repeat_rate": 0.098,
+  "canonical_repeats": 529,
+  "canonical_repeat_rate": 0.1058,
+  "semantic_raw_counts": {
+    "0.85": 1398,
+    "0.9": 1154,
+    "0.92": 1063,
+    "0.95": 932
+  },
+  "semantic_raw_rates": {
+    "0.85": 0.2796,
+    "0.9": 0.2308,
+    "0.92": 0.2126,
+    "0.95": 0.1864
+  },
+  "semantic_guarded_counts": {
+    "0.85": 986,
+    "0.9": 840,
+    "0.92": 777,
+    "0.95": 716
+  },
+  "semantic_guarded_rates": {
+    "0.85": 0.1972,
+    "0.9": 0.168,
+    "0.92": 0.1554,
+    "0.95": 0.1432
+  },
+  "audit_csv_path": "C:\\Users\\parid\\Downloads\\Agentic AI\\adaptive-agentic-semantic-cache\\data\\review\\pa_human_audit.csv",
+  "audit_sample_size": 100
+}
