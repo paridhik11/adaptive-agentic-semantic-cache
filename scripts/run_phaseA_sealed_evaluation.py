@@ -43,7 +43,7 @@ from src.decision.local_equivalence import (
     LocalEquivalenceResult,
     evaluate_rule_guards,
 )
-from src.decision.tier_router import Tier, TierRouter
+from src.decision.tier_router import Tier, TierRouter, TierBoundaries
 
 FROZEN_CONFIG_PATH = REPO_ROOT / "data" / "phaseA_frozen_config.json"
 SEALED_STREAM_PATH = REPO_ROOT / "data" / "raw" / "phaseA_sealed_test_stream.json"
@@ -96,10 +96,11 @@ def main() -> None:
     classifier = StabilityClassifier()
     vstore = FlatVectorStore(dim=frozen_cfg["bi_encoder"]["embedding_dimension"])
     cache = SemanticCache(threshold=0.85, embedder=embedder, vector_store=vstore)
-    router = TierRouter(
-        auto_reuse_threshold=frozen_cfg["tier_router"]["auto_reuse_threshold"],
-        bypass_below_threshold=frozen_cfg["tier_router"]["bypass_below"],
+    boundaries = TierBoundaries(
+        auto_reuse_sim_floor=frozen_cfg["tier_router"]["auto_reuse_threshold"],
+        bypass_sim_ceiling=frozen_cfg["tier_router"]["bypass_below"],
     )
+    router = TierRouter(boundaries=boundaries)
     cross_encoder = CrossEncoder(str(FINETUNED_MODEL_DIR))
     local_step = LocalEquivalenceDecisionStep(
         threshold=frozen_cfg["cross_encoder"]["decision_threshold"],
