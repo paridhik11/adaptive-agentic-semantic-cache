@@ -15,6 +15,7 @@ from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
+import numpy as np
 
 from scripts.evaluate_load_test import (
     calculate_latency_percentiles,
@@ -209,8 +210,25 @@ class TestPipelineRunnerMockedIntegration:
         with open(stream_file, "w", encoding="utf-8") as f:
             json.dump(mini_stream, f)
 
-        # Run with mock quota
-        with patch("scripts.run_load_test.check_openrouter_quota", return_value={"free_model_daily_requests": {"used": 0, "limit": 50, "remaining": 50}}):
+        # This test checks stream orchestration, not a pretrained model.
+        # Identical queries receive the same unit vector so FAISS still
+        # exercises the real empty-store and exact-repeat behavior.
+        embedder = MagicMock()
+        embedder.dim = 384
+        vector = np.zeros(embedder.dim, dtype=np.float32)
+        vector[0] = 1.0
+        embedder.encode.return_value = vector
+        judge = MagicMock()
+        judge.judge.side_effect = AssertionError("this stream must not call a judge")
+
+        # Mock construction, not .encode() on an already-loaded real model.
+        # No API credentials, network quota probe, or live judge is needed.
+        with (
+            patch("scripts.run_load_test.QueryEmbedder", return_value=embedder),
+            patch("scripts.run_load_test.LLMJudge", return_value=judge),
+            patch("src.decision.judge_call._resolve_api_key", return_value=None),
+            patch("scripts.run_load_test.check_openrouter_quota", return_value=None),
+        ):
             telemetry = run_load_test(
                 stream_path=stream_file,
                 output_path=telemetry_file,
@@ -223,3 +241,4 @@ class TestPipelineRunnerMockedIntegration:
         assert telemetry[1]["path"] == "AUTO_REUSE"
         assert telemetry[1]["final_decision"] == "HIT"
         assert telemetry_file.exists()
+        judge.judge.assert_not_called()
