@@ -394,5 +394,35 @@ Executed once on sealed test stream (`fbcf1437aa91797942363f8faa58d6b6eef51d9df7
 
 ---
 
-*Last updated: 2026-10-11. Author: Antigravity agent. Commit: see git log.*
+## 17. Phase A — Ground-Truth Facts, Baseline Re-measurements & Errata
+
+### 17.1 — Real LLM Generation Baseline (n=100 Re-measured on Local Hardware)
+
+Hardware: Intel(R) Core(TM) Ultra 7 155U (12 cores, 14 logical processors), 32 GB RAM, Windows 11.
+Model: Qwen/Qwen2.5-0.5B-Instruct (local PyTorch CPU inference, temp=0.0, max_new_tokens=64, do_sample=False). Date: 2026-10-12.
+
+| # | Fact | Measured Value | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| PA-B01 | Baseline LLM local model | **Qwen/Qwen2.5-0.5B-Instruct** (CPU, n=100) | `data/baseline_llm_measurements_n100.json` | `python scripts/measure_real_llm_baseline.py` |
+| PA-B02 | Baseline LLM local mean latency | **8997.49 ms** | `data/baseline_llm_measurements_n100.json` | `python -c "import json; print(json.load(open('data/baseline_llm_measurements_n100.json'))['primary_baseline_n100']['mean_latency_ms'])"` |
+| PA-B03 | Baseline LLM local median (p50) latency | **8153.50 ms** (8153.5 ms) | `data/baseline_llm_measurements_n100.json` | `python -c "import json; print(json.load(open('data/baseline_llm_measurements_n100.json'))['primary_baseline_n100']['median_latency_ms'])"` |
+| PA-B04 | Baseline LLM local p95 latency | **12763.96 ms** | `data/baseline_llm_measurements_n100.json` | `python -c "import json; print(json.load(open('data/baseline_llm_measurements_n100.json'))['primary_baseline_n100']['p95_latency_ms'])"` |
+| PA-B05 | Baseline LLM local mean prompt tokens | **11.05 tokens** | `data/baseline_llm_measurements_n100.json` | `python -c "import json; print(json.load(open('data/baseline_llm_measurements_n100.json'))['primary_baseline_n100']['mean_prompt_tokens'])"` |
+| PA-B06 | Baseline LLM local mean completion tokens | **61.87 tokens** | `data/baseline_llm_measurements_n100.json` | `python -c "import json; print(json.load(open('data/baseline_llm_measurements_n100.json'))['primary_baseline_n100']['mean_completion_tokens'])"` |
+| PA-B07 | Baseline LLM local mean total tokens | **72.92 tokens** | `data/baseline_llm_measurements_n100.json` | `python -c "import json; print(json.load(open('data/baseline_llm_measurements_n100.json'))['primary_baseline_n100']['mean_total_tokens'])"` |
+| PA-B08 | Auxiliary remote baseline (n=20 live OpenRouter) | mean **2002.11 ms**, p50 **1346.64 ms**, p95 **3759.78 ms**, mean tokens **164.25** | `data/baseline_llm_measurements_n100.json` | `python -c "import json; print(json.load(open('data/baseline_llm_measurements_n100.json'))['auxiliary_remote_baseline']['mean_latency_ms'])"` |
+
+### 17.2 — Phase 8 Repairs, Category Breakdown, and Errata
+
+| # | Fact | Value / Finding | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| PA-E01 | Phase 8 Ceiling Erratum | Point estimate **6.0%** IRR carried 95% Clopper-Pearson CI **[1.3%, 16.5%]**. Because the upper bound (16.5%) exceeds 10%, the data did not formally establish the 10% safety ceiling. Retracted unanchored $0.011/1k estimate. Avoided workload strictly: **38,282.6 tokens** and **217.4 calls** per 1k. | `docs/DECISIONS.md` D-20261012-01; `docs/STATUS.md` | `python scripts/check_numeric_tokens.py` |
+| PA-FP01 | Phase 8 3 False Positives Source | All 3 false positives (`P8-ADV-PROBE-001`, `P8-ADV-PROBE-015`, `P8-ADV-PROBE-025`) originated in category **ADVERSARIAL_TRAP** (PAWS validation) via vector store **AUTO_REUSE** (cosine sim >= 0.92, conf >= 0.90), completely bypassing CrossEncoder and rule guards. | `data/phase8_simulation_telemetry.json` | `python scripts/analyze_phase8_stream.py` |
+| PA-VAL01 | Validation Set vs Test Stream Divergence | Validation set (N=160, IRR=**39.62%** [26.5%, 54.0%]) had 40 PAWS word scrambles (25% of all pairs, 40% of true negatives) with identical token multisets that defeat bag-of-words bi-encoders. In test stream, 41/50 hits (82%) were exact/canonical folds with 0% error; non-exact test IRR was 3/9 = **33.33%**, aligning with validation error rate. | `data/phase8_tuning_val.json` | `python scripts/analyze_validation_guards.py` |
+| PA-G01 | Generative-Request Guard Benchmark | Evaluated on hand-built labeled benchmark (`data/generative_prompts_benchmark.json`, N=100: 50 generative, 50 factual). Achieved **100.0% accuracy**, **100.0% precision**, **100.0% recall**, **0 false alarms**. | `data/generative_prompts_benchmark.json` | `python scripts/check_generative_guard.py` |
+
+---
+
+*Last updated: 2026-10-12. Author: Antigravity agent. Commit: see git log.*
+
 

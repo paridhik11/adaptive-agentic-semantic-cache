@@ -1,0 +1,219 @@
+{
+  "timestamp": "2026-10-12T01:15:00+05:30",
+  "dataset": "mteb/cqadupstack-retrieval",
+  "license": "CC BY-SA 3.0 / 4.0",
+  "gates": {
+    "minimum_category_n": 20,
+    "minimum_minority_class_n": 10,
+    "fallback_threshold": 0.85
+  },
+  "total_subforums": 12,
+  "subforums_fitted": 12,
+  "subforums_fallback": 0,
+  "domain_thresholds": {
+    "android": {
+      "sample_size": 50,
+      "minority_count": 25,
+      "is_fallback": false,
+      "operating_threshold": 0.3607,
+      "point_estimate": 0.301,
+      "ci_lower": 0.2412,
+      "ci_upper": 0.3607,
+      "fallback_reason": null,
+      "pair_stats": {
+        "n_pairs": 50,
+        "n_positives": 25,
+        "n_negatives": 25,
+        "mean_sim_positive": 0.5497,
+        "mean_sim_negative": 0.1362
+      }
+    },
+    "english": {
+      "sample_size": 50,
+      "minority_count": 25,
+      "is_fallback": false,
+      "operating_threshold": 0.2319,
+      "point_estimate": 0.1505,
+      "ci_lower": 0.0691,
+      "ci_upper": 0.2319,
+      "fallback_reason": null,
+      "pair_stats": {
+        "n_pairs": 50,
+        "n_positives": 25,
+        "n_negatives": 25,
+        "mean_sim_positive": 0.598,
+        "mean_sim_negative": 0.0237
+      }
+    },
+    "gaming": {
+      "sample_size": 50,
+      "minority_count": 25,
+      "is_fallback": false,
+      "operating_threshold": 0.28,
+      "point_estimate": 0.1998,
+      "ci_lower": 0.1196,
+      "ci_upper": 0.28,
+      "fallback_reason": null,
+      "pair_stats": {
+        "n_pairs": 50,
+        "n_positives": 25,
+        "n_negatives": 25,
+        "mean_sim_positive": 0.4958,
+        "mean_sim_negative": 0.0461
+      }
+    },
+    "gis": {
+      "sample_size": 50,
+      "minority_count": 25,
+      "is_fallback": false,
+      "operating_threshold": 0.3123,
+      "point_estimate": 0.2427,
+      "ci_lower": 0.1731,
+      "ci_upper": 0.3123,
+      "fallback_reason": null,
+      "pair_stats": {
+        "n_pairs": 50,
+        "n_positives": 25,
+        "n_negatives": 25,
+        "mean_sim_positive": 0.4872,
+        "mean_sim_negative": 0.0745
+      }
+    },
+    "mathematica": {
+      "sample_size": 50,
+      "minority_count": 25,
+      "is_fallback": false,
+      "operating_threshold": 0.297,
+      "point_estimate": 0.2537,
+      "ci_lower": 0.2104,
+      "ci_upper": 0.297,
+      "fallback_reason": null,
+      "pair_stats": {
+        "n_pairs": 50,
+        "n_positives": 25,
+        "n_negatives": 25,
+        "mean_sim_positive": 0.4955,
+        "mean_sim_negative": 0.0851
+      }
+    },
+    "physics": {
+      "sample_size": 50,
+      "minority_count": 25,
+      "is_fallback": false,
+      "operating_threshold": 0.1087,
+      "point_estimate": 0.1024,
+      "ci_lower": 0.0961,
+      "ci_upper": 0.1087,
+      "fallback_reason": null,
+      "pair_stats": {
+        "n_pairs": 50,
+        "n_positives": 25,
+        "n_negatives": 25,
+        "mean_sim_positive": 0.5003,
+        "mean_sim_negative": 0.0111
+      }
+    },
+    "programmers": {
+      "sample_size": 50,
+      "minority_count": 25,
+      "is_fallback": false,
+      "operating_threshold": 0.3854,
+      "point_estimate": 0.311,
+      "ci_lower": 0.2366,
+      "ci_upper": 0.3854,
+      "fallback_reason": null,
+      "pair_stats": {
+        "n_pairs": 50,
+        "n_positives": 25,
+        "n_negatives": 25,
+        "mean_sim_positive": 0.5484,
+        "mean_sim_negative": 0.1416
+      }
+    },
+    "stats": {
+      "sample_size": 50,
+      "minority_count": 25,
+      "is_fallback": false,
+      "operating_threshold": 0.2994,
+      "point_estimate": 0.2484,
+      "ci_lower": 0.1973,
+      "ci_upper": 0.2994,
+      "fallback_reason": null,
+      "pair_stats": {
+        "n_pairs": 50,
+        "n_positives": 25,
+        "n_negatives": 25,
+        "mean_sim_positive": 0.5508,
+        "mean_sim_negative": 0.0791
+      }
+    },
+    "tex": {
+      "sample_size": 50,
+      "minority_count": 25,
+      "is_fallback": false,
+      "operating_threshold": 0.3095,
+      "point_estimate": 0.2473,
+      "ci_lower": 0.1852,
+      "ci_upper": 0.3095,
+      "fallback_reason": null,
+      "pair_stats": {
+        "n_pairs": 50,
+        "n_positives": 25,
+        "n_negatives": 25,
+        "mean_sim_positive": 0.5797,
+        "mean_sim_negative": 0.0311
+      }
+    },
+    "unix": {
+      "sample_size": 50,
+      "minority_count": 25,
+      "is_fallback": false,
+      "operating_threshold": 0.2504,
+      "point_estimate": 0.1714,
+      "ci_lower": 0.0925,
+      "ci_upper": 0.2504,
+      "fallback_reason": null,
+      "pair_stats": {
+        "n_pairs": 50,
+        "n_positives": 25,
+        "n_negatives": 25,
+        "mean_sim_positive": 0.5416,
+        "mean_sim_negative": 0.0105
+      }
+    },
+    "webmasters": {
+      "sample_size": 50,
+      "minority_count": 25,
+      "is_fallback": false,
+      "operating_threshold": 0.3242,
+      "point_estimate": 0.2754,
+      "ci_lower": 0.2265,
+      "ci_upper": 0.3242,
+      "fallback_reason": null,
+      "pair_stats": {
+        "n_pairs": 50,
+        "n_positives": 25,
+        "n_negatives": 25,
+        "mean_sim_positive": 0.5604,
+        "mean_sim_negative": 0.0779
+      }
+    },
+    "wordpress": {
+      "sample_size": 50,
+      "minority_count": 25,
+      "is_fallback": false,
+      "operating_threshold": 0.3399,
+      "point_estimate": 0.2201,
+      "ci_lower": 0.1003,
+      "ci_upper": 0.3399,
+      "fallback_reason": null,
+      "pair_stats": {
+        "n_pairs": 50,
+        "n_positives": 25,
+        "n_negatives": 25,
+        "mean_sim_positive": 0.587,
+        "mean_sim_negative": 0.0086
+      }
+    }
+  }
+}

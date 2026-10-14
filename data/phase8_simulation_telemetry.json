@@ -280,15 +280,15 @@
       0.24740428540812143,
       0.452039998334117
     ],
-    "p50_ms": 48.364999999999995,
-    "p95_ms": 74.20886499999999,
+    "p50_ms": 14.339300000000001,
+    "p95_ms": 30.631699999999995,
     "telemetry": [
       {
         "id": "P8-SEED-001",
         "query": "What should I do to make life worth living?",
         "decision": "MISS",
         "similarity": -Infinity,
-        "latency_ms": 70.2429,
+        "latency_ms": 38.5555,
         "outcome": "TN"
       },
       {
@@ -296,7 +296,7 @@
         "query": "How can I specifically improve my English?",
         "decision": "MISS",
         "similarity": 0.16492009162902832,
-        "latency_ms": 64.9461,
+        "latency_ms": 17.8931,
         "outcome": "TN"
       },
       {
@@ -304,7 +304,7 @@
         "query": "How can I stop eating junk and processed food addiction and stay healthy?",
         "decision": "MISS",
         "similarity": 0.2877338230609894,
-        "latency_ms": 56.6163,
+        "latency_ms": 17.1093,
         "outcome": "TN"
       },
       {
@@ -312,7 +312,7 @@
         "query": "What can I do to improve my English speaking?",
         "decision": "HIT",
         "similarity": 0.8726829290390015,
-        "latency_ms": 78.4427,
+        "latency_ms": 18.0329,
         "outcome": "FP"
       },
       {
@@ -320,7 +320,7 @@
         "query": "How can we eradicate corruption?",
         "decision": "MISS",
         "similarity": 0.23912689089775085,
-        "latency_ms": 52.5644,
+        "latency_ms": 15.0678,
         "outcome": "TN"
       },
       {
@@ -328,7 +328,7 @@
         "query": "What are the movies one should see?",
         "decision": "MISS",
         "similarity": 0.17133976519107819,
-        "latency_ms": 59.9066,
+        "latency_ms": 14.0201,
         "outcome": "TN"
       },
       {
@@ -336,7 +336,7 @@
         "query": "What is an accurate way to calculate your IQ?",
         "decision": "MISS",
         "similarity": 0.24889077246189117,
-        "latency_ms": 44.717,
+        "latency_ms": 15.7285,
         "outcome": "TN"
       },
       {
@@ -344,7 +344,7 @@
         "query": "Is our PM Modi doing the correct thing with 500 and 1000 Rs notes?",
         "decision": "MISS",
         "similarity": 0.08607245981693268,
-        "latency_ms": 59.2071,
+        "latency_ms": 16.4628,
         "outcome": "TN"
       },
       {
@@ -352,7 +352,7 @@
         "query": "Is it possible to choose your dreams?",
         "decision": "MISS",
         "similarity": 0.22036373615264893,
-        "latency_ms": 58.1603,
+        "latency_ms": 23.1356,
         "outcome": "TN"
       },
       {
@@ -360,7 +360,7 @@
         "query": "Why is the firm's marginal cost curve equal supply curve?",
         "decision": "MISS",
         "similarity": 0.04021061956882477,
-        "latency_ms": 50.5781,
+        "latency_ms": 17.6921,
         "outcome": "TN"
       },
       {
@@ -368,7 +368,7 @@
         "query": "How can I see someone's private instagram account?",
         "decision": "MISS",
         "similarity": 0.09198621660470963,
-        "latency_ms": 59.8483,
+        "latency_ms": 15.1984,
         "outcome": "TN"
       },
       {
@@ -376,7 +376,7 @@
         "query": "What would happen if America became a communist country?",
         "decision": "MISS",
         "similarity": 0.24980896711349487,
-        "latency_ms": 55.4586,
+        "latency_ms": 13.7878,
         "outcome": "TN"
       },
       {
@@ -384,7 +384,7 @@
         "query": "What song do you like to sing along to most?",
         "decision": "MISS",
         "similarity": 0.20690307021141052,
-        "latency_ms": 53.9295,
+        "latency_ms": 12.9339,
         "outcome": "TN"
       },
       {
@@ -392,7 +392,7 @@
         "query": "I have a drug test at 3 next tuesday, its friday. I stopped smoking meth today. will I pass my urine test?",
         "decision": "MISS",
         "similarity": 0.15084026753902435,
-        "latency_ms": 57.0518,
+        "latency_ms": 20.4435,
         "outcome": "TN"
       },
       {
@@ -400,7 +400,7 @@
         "query": "Why do so many people ask questions on Quora.com when they could easily find the answers themselves online?",
         "decision": "MISS",
         "similarity": 0.1371949315071106,
-        "latency_ms": 70.7453,
+        "latency_ms": 18.2417,
         "outcome": "TN"
       },
       {
@@ -408,7 +408,7 @@
         "query": "What is the age when a person should ideally retire?",
         "decision": "MISS",
         "similarity": 0.29606732726097107,
-        "latency_ms": 51.4399,
+        "latency_ms": 12.6634,
         "outcome": "TN"
       },
       {
@@ -416,7 +416,7 @@
         "query": "How safe are the neighborhoods of Boston?",
         "decision": "MISS",
         "similarity": 0.16017794609069824,
-        "latency_ms": 42.5824,
+        "latency_ms": 10.7061,
         "outcome": "TN"
       },
       {
@@ -424,7 +424,7 @@
         "query": "What is the best book for learning Java?",
         "decision": "MISS",
         "similarity": 0.18767616152763367,
-        "latency_ms": 48.5984,
+        "latency_ms": 15.5642,
         "outcome": "TN"
       },
       {
@@ -432,7 +432,7 @@
         "query": "What's the difference between cd and DVD?",
         "decision": "MISS",
         "similarity": 0.15275031328201294,
-        "latency_ms": 55.0424,
+        "latency_ms": 13.6159,
         "outcome": "TN"
       },
       {
@@ -440,7 +440,7 @@
         "query": "How can I lose weight effectively?",
         "decision": "MISS",
         "similarity": 0.4636191129684448,
-        "latency_ms": 47.9466,
+        "latency_ms": 9.8508,
         "outcome": "TN"
       },
       {
@@ -448,7 +448,7 @@
         "query": "How much does a MRI or CT scan of a head cost?",
         "decision": "MISS",
         "similarity": 0.19290360808372498,
-        "latency_ms": 52.9894,
+        "latency_ms": 12.9582,
         "outcome": "TN"
       },
       {
@@ -456,7 +456,7 @@
         "query": "Does masturbation causes pimples?",
         "decision": "MISS",
         "similarity": 0.12586668133735657,
-        "latency_ms": 42.7117,
+        "latency_ms": 11.495,
         "outcome": "TN"
       },
       {
@@ -464,7 +464,7 @@
         "query": "How do I merge Informatica Code?",
         "decision": "MISS",
         "similarity": 0.12024307996034622,
-        "latency_ms": 50.1244,
+        "latency_ms": 11.2605,
         "outcome": "TN"
       },
       {
@@ -472,7 +472,7 @@
         "query": "What should I do to earn money online?",
         "decision": "MISS",
         "similarity": 0.4272455871105194,
-        "latency_ms": 42.6314,
+        "latency_ms": 10.5893,
         "outcome": "TN"
       },
       {
@@ -480,7 +480,7 @@
         "query": "What are the best techniques for off-page SEO?",
         "decision": "MISS",
         "similarity": 0.28704366087913513,
-        "latency_ms": 60.9218,
+        "latency_ms": 13.6981,
         "outcome": "TN"
       },
       {
@@ -488,7 +488,7 @@
         "query": "What are the best home remedies to get rid of cockroaches?",
         "decision": "MISS",
         "similarity": 0.2316536009311676,
-        "latency_ms": 53.4538,
+        "latency_ms": 10.8077,
         "outcome": "TN"
       },
       {
@@ -496,7 +496,7 @@
         "query": "What makes India different from all other countries in the world?",
         "decision": "MISS",
         "similarity": 0.19324809312820435,
-        "latency_ms": 61.7918,
+        "latency_ms": 10.1969,
         "outcome": "TN"
       },
       {
@@ -504,7 +504,7 @@
         "query": "Why do we forget dreams so quickly?",
         "decision": "MISS",
         "similarity": 0.5049608945846558,
-        "latency_ms": 46.149,
+        "latency_ms": 9.4043,
         "outcome": "TN"
       },
       {
@@ -512,7 +512,7 @@
         "query": "If you are told that you have only 24 hours to live how you will spend it? With whom?",
         "decision": "MISS",
         "similarity": 0.39453279972076416,
-        "latency_ms": 55.7506,
+        "latency_ms": 11.3149,
         "outcome": "TN"
       },
       {
@@ -520,7 +520,7 @@
         "query": "Why is my puppy vomiting white foam?",
         "decision": "MISS",
         "similarity": 0.2881149649620056,
-        "latency_ms": 55.2116,
+        "latency_ms": 8.9295,
         "outcome": "TN"
       },
       {
@@ -528,7 +528,7 @@
         "query": "Does Mike Wazowski blink or wink?",
         "decision": "MISS",
         "similarity": 0.14777109026908875,
-        "latency_ms": 47.6441,
+        "latency_ms": 9.1451,
         "outcome": "TN"
       },
       {
@@ -536,7 +536,7 @@
         "query": "How do you start a private equity firm?",
         "decision": "MISS",
         "similarity": 0.21664617955684662,
-        "latency_ms": 48.8869,
+        "latency_ms": 8.3352,
         "outcome": "TN"
       },
       {
@@ -544,7 +544,7 @@
         "query": "How was Chinese and Japanese look before the nuclear attack?",
         "decision": "MISS",
         "similarity": 0.24328532814979553,
-        "latency_ms": 49.8109,
+        "latency_ms": 8.7958,
         "outcome": "TN"
       },
       {
@@ -552,7 +552,7 @@
         "query": "How can you make money with Instagram?",
         "decision": "MISS",
         "similarity": 0.5360175371170044,
-        "latency_ms": 46.7386,
+        "latency_ms": 7.9542,
         "outcome": "TN"
       },
       {
@@ -560,7 +560,7 @@
         "query": "How do I post a question in quora?",
         "decision": "MISS",
         "similarity": 0.35608071088790894,
-        "latency_ms": 46.4527,
+        "latency_ms": 9.2358,
         "outcome": "TN"
       },
       {
@@ -568,7 +568,7 @@
         "query": "How can I continue to improve my English?",
         "decision": "HIT",
         "similarity": 0.9038605093955994,
-        "latency_ms": 52.8206,
+        "latency_ms": 8.7525,
         "outcome": "FP"
       },
       {
@@ -576,7 +576,7 @@
         "query": "Why making a Time Machine is Impossible?",
         "decision": "MISS",
         "similarity": 0.2066504955291748,
-        "latency_ms": 50.2409,
+        "latency_ms": 8.2308,
         "outcome": "TN"
       },
       {
@@ -584,7 +584,7 @@
         "query": "Do you believe in ghosts? And why?",
         "decision": "MISS",
         "similarity": 0.17475944757461548,
-        "latency_ms": 44.6434,
+        "latency_ms": 9.1433,
         "outcome": "TN"
       },
       {
@@ -592,7 +592,7 @@
         "query": "I'm 27, is it too late for me to go to medical school?",
         "decision": "MISS",
         "similarity": 0.2809337079524994,
-        "latency_ms": 51.0872,
+        "latency_ms": 10.4706,
         "outcome": "TN"
       },
       {
@@ -600,7 +600,7 @@
         "query": "How can I upgrade my English Writing skills?",
         "decision": "MISS",
         "similarity": 0.6979608535766602,
-        "latency_ms": 128.6527,
+        "latency_ms": 9.4276,
         "outcome": "TN"
       },
       {
@@ -608,7 +608,7 @@
         "query": "What does Hillary Clinton think of high-skill immigration?",
         "decision": "MISS",
         "similarity": 0.16697397828102112,
-        "latency_ms": 55.3217,
+        "latency_ms": 11.1172,
         "outcome": "TN"
       },
       {
@@ -616,7 +616,7 @@
         "query": "You are president of the United States. What will you do in the 4 or 8 years of your presidency?",
         "decision": "MISS",
         "similarity": 0.31578296422958374,
-        "latency_ms": 64.7712,
+        "latency_ms": 20.8085,
         "outcome": "TN"
       },
       {
@@ -624,7 +624,7 @@
         "query": "What are some amazing facts about Vladimir Putin?",
         "decision": "MISS",
         "similarity": 0.2046385407447815,
-        "latency_ms": 118.3456,
+        "latency_ms": 22.0915,
         "outcome": "TN"
       },
       {
@@ -632,7 +632,7 @@
         "query": "How can I upload my profile picture in Quora?",
         "decision": "MISS",
         "similarity": 0.503116250038147,
-        "latency_ms": 54.2397,
+        "latency_ms": 26.086,
         "outcome": "TN"
       },
       {
@@ -640,7 +640,7 @@
         "query": "Why is my period four days late?",
         "decision": "MISS",
         "similarity": 0.21741217374801636,
-        "latency_ms": 55.7331,
+        "latency_ms": 18.1382,
         "outcome": "TN"
       },
       {
@@ -648,7 +648,7 @@
         "query": "Are/were mermaids/mermen real?",
         "decision": "MISS",
         "similarity": 0.25875425338745117,
-        "latency_ms": 85.379,
+        "latency_ms": 13.6577,
         "outcome": "TN"
       },
       {
@@ -656,7 +656,7 @@
         "query": "What is the best Alabama SEO Company?",
         "decision": "MISS",
         "similarity": 0.3890279531478882,
-        "latency_ms": 36.2689,
+        "latency_ms": 18.8645,
         "outcome": "TN"
       },
       {
@@ -664,7 +664,7 @@
         "query": "Why has Quora banned my real name account as fake?",
         "decision": "MISS",
         "similarity": 0.32746273279190063,
-        "latency_ms": 47.465,
+        "latency_ms": 12.8831,
         "outcome": "TN"
       },
       {
@@ -672,7 +672,7 @@
         "query": "What is the best way to encourage 4-5 year olds to play chess?",
         "decision": "MISS",
         "similarity": 0.17959630489349365,
-        "latency_ms": 43.3658,
+        "latency_ms": 16.048,
         "outcome": "TN"
       },
       {
@@ -680,7 +680,7 @@
         "query": "How can I become an investment banker in India?",
         "decision": "MISS",
         "similarity": 0.47117486596107483,
-        "latency_ms": 39.6383,
+        "latency_ms": 24.1121,
         "outcome": "TN"
       },
       {
@@ -688,7 +688,7 @@
         "query": "What should I do to make life worth living?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 32.8875,
+        "latency_ms": 15.8472,
         "outcome": "TP"
       },
       {
@@ -696,7 +696,7 @@
         "query": "How can I specifically improve my English?",
         "decision": "HIT",
         "similarity": 0.9999999403953552,
-        "latency_ms": 34.3655,
+        "latency_ms": 13.0826,
         "outcome": "TP"
       },
       {
@@ -704,7 +704,7 @@
         "query": "How can I stop eating junk and processed food addiction and stay healthy?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 49.6298,
+        "latency_ms": 15.2225,
         "outcome": "TP"
       },
       {
@@ -712,7 +712,7 @@
         "query": "What can I do to improve my English speaking?",
         "decision": "HIT",
         "similarity": 0.8726829290390015,
-        "latency_ms": 56.4291,
+        "latency_ms": 19.7885,
         "outcome": "TP"
       },
       {
@@ -720,7 +720,7 @@
         "query": "How can we eradicate corruption?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 52.227,
+        "latency_ms": 15.2591,
         "outcome": "TP"
       },
       {
@@ -728,7 +728,7 @@
         "query": "What are the movies one should see?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 33.2182,
+        "latency_ms": 19.1073,
         "outcome": "TP"
       },
       {
@@ -736,7 +736,7 @@
         "query": "What is an accurate way to calculate your IQ?",
         "decision": "HIT",
         "similarity": 1.0000001192092896,
-        "latency_ms": 38.6918,
+        "latency_ms": 16.0966,
         "outcome": "TP"
       },
       {
@@ -744,7 +744,7 @@
         "query": "Is our PM Modi doing the correct thing with 500 and 1000 Rs notes?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 52.3189,
+        "latency_ms": 16.5765,
         "outcome": "TP"
       },
       {
@@ -752,7 +752,7 @@
         "query": "Is it possible to choose your dreams?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 37.8712,
+        "latency_ms": 18.3514,
         "outcome": "TP"
       },
       {
@@ -760,7 +760,7 @@
         "query": "Why is the firm's marginal cost curve equal supply curve?",
         "decision": "HIT",
         "similarity": 0.9999999403953552,
-        "latency_ms": 49.1049,
+        "latency_ms": 12.5108,
         "outcome": "TP"
       },
       {
@@ -768,7 +768,7 @@
         "query": "How can I see someone's private instagram account?",
         "decision": "HIT",
         "similarity": 1.0000001192092896,
-        "latency_ms": 40.8782,
+        "latency_ms": 11.7336,
         "outcome": "TP"
       },
       {
@@ -776,7 +776,7 @@
         "query": "What would happen if America became a communist country?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 36.164,
+        "latency_ms": 9.4402,
         "outcome": "TP"
       },
       {
@@ -784,7 +784,7 @@
         "query": "What song do you like to sing along to most?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 35.1284,
+        "latency_ms": 11.4987,
         "outcome": "TP"
       },
       {
@@ -792,7 +792,7 @@
         "query": "I have a drug test at 3 next tuesday, its friday. I stopped smoking meth today. will I pass my urine test?",
         "decision": "HIT",
         "similarity": 1.0000001192092896,
-        "latency_ms": 42.9345,
+        "latency_ms": 14.8609,
         "outcome": "TP"
       },
       {
@@ -800,7 +800,7 @@
         "query": "Why do so many people ask questions on Quora.com when they could easily find the answers themselves online?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 40.5664,
+        "latency_ms": 13.0139,
         "outcome": "TP"
       },
       {
@@ -808,7 +808,7 @@
         "query": "What is the age when a person should ideally retire?",
         "decision": "HIT",
         "similarity": 1.0000001192092896,
-        "latency_ms": 37.9453,
+        "latency_ms": 8.5852,
         "outcome": "TP"
       },
       {
@@ -816,7 +816,7 @@
         "query": "How safe are the neighborhoods of Boston?",
         "decision": "HIT",
         "similarity": 1.000000238418579,
-        "latency_ms": 32.9924,
+        "latency_ms": 10.0356,
         "outcome": "TP"
       },
       {
@@ -824,7 +824,7 @@
         "query": "What is the best book for learning Java?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 31.6669,
+        "latency_ms": 9.0138,
         "outcome": "TP"
       },
       {
@@ -832,7 +832,7 @@
         "query": "What's the difference between cd and DVD?",
         "decision": "HIT",
         "similarity": 1.0000001192092896,
-        "latency_ms": 35.6617,
+        "latency_ms": 10.6877,
         "outcome": "TP"
       },
       {
@@ -840,7 +840,7 @@
         "query": "How can I lose weight effectively?",
         "decision": "HIT",
         "similarity": 1.000000238418579,
-        "latency_ms": 30.4851,
+        "latency_ms": 12.2874,
         "outcome": "TP"
       },
       {
@@ -848,7 +848,7 @@
         "query": "How much does a MRI or CT scan of a head cost?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 36.8358,
+        "latency_ms": 9.2821,
         "outcome": "TP"
       },
       {
@@ -856,7 +856,7 @@
         "query": "Does masturbation causes pimples?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 39.0062,
+        "latency_ms": 9.9337,
         "outcome": "TP"
       },
       {
@@ -864,7 +864,7 @@
         "query": "How do I merge Informatica Code?",
         "decision": "HIT",
         "similarity": 1.0000001192092896,
-        "latency_ms": 36.788,
+        "latency_ms": 11.601,
         "outcome": "TP"
       },
       {
@@ -872,7 +872,7 @@
         "query": "What should I do to earn money online?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 33.4837,
+        "latency_ms": 8.2351,
         "outcome": "TP"
       },
       {
@@ -880,7 +880,7 @@
         "query": "What are the best techniques for off-page SEO?",
         "decision": "HIT",
         "similarity": 1.000000238418579,
-        "latency_ms": 37.6106,
+        "latency_ms": 10.9898,
         "outcome": "TP"
       },
       {
@@ -888,7 +888,7 @@
         "query": "What are the best home remedies to get rid of cockroaches?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 42.8803,
+        "latency_ms": 8.9442,
         "outcome": "TP"
       },
       {
@@ -896,7 +896,7 @@
         "query": "What makes India different from all other countries in the world?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 36.9995,
+        "latency_ms": 10.1723,
         "outcome": "TP"
       },
       {
@@ -904,7 +904,7 @@
         "query": "Why do we forget dreams so quickly?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 35.4928,
+        "latency_ms": 10.9307,
         "outcome": "TP"
       },
       {
@@ -912,7 +912,7 @@
         "query": "If you are told that you have only 24 hours to live how you will spend it? With whom?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 42.7719,
+        "latency_ms": 9.6743,
         "outcome": "TP"
       },
       {
@@ -920,7 +920,7 @@
         "query": "Why is my puppy vomiting white foam?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 41.3864,
+        "latency_ms": 11.0462,
         "outcome": "TP"
       },
       {
@@ -928,7 +928,7 @@
         "query": "Does Mike Wazowski blink or wink?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 33.9065,
+        "latency_ms": 8.0308,
         "outcome": "TP"
       },
       {
@@ -936,7 +936,7 @@
         "query": "How do you start a private equity firm?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 48.1659,
+        "latency_ms": 9.7608,
         "outcome": "TP"
       },
       {
@@ -944,7 +944,7 @@
         "query": "How was Chinese and Japanese look before the nuclear attack?",
         "decision": "HIT",
         "similarity": 1.0000001192092896,
-        "latency_ms": 39.1057,
+        "latency_ms": 11.096,
         "outcome": "TP"
       },
       {
@@ -952,7 +952,7 @@
         "query": "How can you make money with Instagram?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 37.5172,
+        "latency_ms": 9.0379,
         "outcome": "TP"
       },
       {
@@ -960,7 +960,7 @@
         "query": "How do I post a question in quora?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 31.7729,
+        "latency_ms": 11.9433,
         "outcome": "TP"
       },
       {
@@ -968,7 +968,7 @@
         "query": "How can I continue to improve my English?",
         "decision": "HIT",
         "similarity": 0.9038605093955994,
-        "latency_ms": 30.8476,
+        "latency_ms": 8.0197,
         "outcome": "TP"
       },
       {
@@ -976,7 +976,7 @@
         "query": "Why making a Time Machine is Impossible?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 30.4463,
+        "latency_ms": 10.6552,
         "outcome": "TP"
       },
       {
@@ -984,7 +984,7 @@
         "query": "Do you believe in ghosts? And why?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 34.1767,
+        "latency_ms": 10.9385,
         "outcome": "TP"
       },
       {
@@ -992,7 +992,7 @@
         "query": "I'm 27, is it too late for me to go to medical school?",
         "decision": "HIT",
         "similarity": 1.0,
-        "latency_ms": 40.2887,
+        "latency_ms": 8.8325,
         "outcome": "TP"
       },
       {
@@ -1000,7 +1000,7 @@
         "query": "How can I upgrade my English Writing skills?",
         "decision": "HIT",
         "similarity": 0.9999999403953552,
-        "latency_ms": 37.5921,
+        "latency_ms": 9.8146,
         "outcome": "TP"
       },
       {
@@ -1008,7 +1008,7 @@
         "query": "What makes life worth living?",
         "decision": "MISS",
         "similarity": 0.8239899277687073,
-        "latency_ms": 38.1609,
+        "latency_ms": 8.1184,
         "outcome": "FN"
       },
       {
@@ -1016,7 +1016,7 @@
         "query": "How do I learn spoken English?",
         "decision": "MISS",
         "similarity": 0.762719988822937,
-        "latency_ms": 33.9349,
+        "latency_ms": 8.2837,
         "outcome": "FN"
       },
       {
@@ -1024,7 +1024,7 @@
         "query": "How do I stop my cravings for junk food?",
         "decision": "MISS",
         "similarity": 0.7677688598632812,
-        "latency_ms": 44.4614,
+        "latency_ms": 11.8056,
         "outcome": "FN"
       },
       {
@@ -1032,7 +1032,7 @@
         "query": "How can I improve in English?",
         "decision": "HIT",
         "similarity": 0.8930891156196594,
-        "latency_ms": 45.2712,
+        "latency_ms": 12.7891,
         "outcome": "TP"
       },
       {
@@ -1040,7 +1040,7 @@
         "query": "How can people\u2019s participation eradicate corruption?",
         "decision": "MISS",
         "similarity": 0.8307718634605408,
-        "latency_ms": 41.123,
+        "latency_ms": 11.8228,
         "outcome": "FN"
       },
       {
@@ -1048,7 +1048,7 @@
         "query": "What are the greatest movies I have to see?",
         "decision": "MISS",
         "similarity": 0.8264236450195312,
-        "latency_ms": 40.033,
+        "latency_ms": 12.4024,
         "outcome": "FN"
       },
       {
@@ -1056,7 +1056,7 @@
         "query": "What's the most accurate way to test my IQ?",
         "decision": "HIT",
         "similarity": 0.8762306571006775,
-        "latency_ms": 45.0625,
+        "latency_ms": 12.5168,
         "outcome": "TP"
       },
       {
@@ -1064,7 +1064,7 @@
         "query": "What do you think about ban on Rs. 500 and Rs. 1000 currency notes?",
         "decision": "MISS",
         "similarity": 0.6676205396652222,
-        "latency_ms": 46.9582,
+        "latency_ms": 27.1647,
         "outcome": "FN"
       },
       {
@@ -1072,7 +1072,7 @@
         "query": "How can I manipulate my dreams?",
         "decision": "MISS",
         "similarity": 0.6468093991279602,
-        "latency_ms": 42.9712,
+        "latency_ms": 10.7614,
         "outcome": "FN"
       },
       {
@@ -1080,7 +1080,7 @@
         "query": "How can supply curve tell about marginal cost?",
         "decision": "MISS",
         "similarity": 0.8291898965835571,
-        "latency_ms": 49.6907,
+        "latency_ms": 30.4931,
         "outcome": "FN"
       },
       {
@@ -1088,7 +1088,7 @@
         "query": "How do I view someones's private instagram pictures?",
         "decision": "HIT",
         "similarity": 0.8988794088363647,
-        "latency_ms": 46.8637,
+        "latency_ms": 14.9988,
         "outcome": "TP"
       },
       {
@@ -1096,7 +1096,7 @@
         "query": "What would happen if the USA became a communist country?",
         "decision": "HIT",
         "similarity": 0.9769669771194458,
-        "latency_ms": 44.4999,
+        "latency_ms": 17.9702,
         "outcome": "TP"
       },
       {
@@ -1104,7 +1104,7 @@
         "query": "What is one song you can't help but sing along to when it comes on?",
         "decision": "MISS",
         "similarity": 0.734105110168457,
-        "latency_ms": 42.1012,
+        "latency_ms": 17.9755,
         "outcome": "FN"
       },
       {
@@ -1112,7 +1112,7 @@
         "query": "I've been smoking meth for about a year. How long will it be before I can pass a blood test?",
         "decision": "MISS",
         "similarity": 0.7513604164123535,
-        "latency_ms": 86.9165,
+        "latency_ms": 18.6785,
         "outcome": "FN"
       },
       {
@@ -1120,7 +1120,7 @@
         "query": "Why do people ask basic questions instead of searching them?",
         "decision": "MISS",
         "similarity": 0.6501076221466064,
-        "latency_ms": 86.3165,
+        "latency_ms": 22.9339,
         "outcome": "FN"
       },
       {
@@ -1128,7 +1128,7 @@
         "query": "What do you think is the best age to retire?",
         "decision": "HIT",
         "similarity": 0.9144264459609985,
-        "latency_ms": 49.855,
+        "latency_ms": 15.7484,
         "outcome": "TP"
       },
       {
@@ -1136,7 +1136,7 @@
         "query": "How safe is Boston?",
         "decision": "HIT",
         "similarity": 0.8671759366989136,
-        "latency_ms": 49.3565,
+        "latency_ms": 18.3455,
         "outcome": "TP"
       },
       {
@@ -1144,7 +1144,7 @@
         "query": "What would be the best book to begin with for Java?",
         "decision": "HIT",
         "similarity": 0.9294115304946899,
-        "latency_ms": 71.0907,
+        "latency_ms": 19.3861,
         "outcome": "TP"
       },
       {
@@ -1152,7 +1152,7 @@
         "query": "What is difference between CD and DVD?",
         "decision": "HIT",
         "similarity": 0.9957722425460815,
-        "latency_ms": 50.2573,
+        "latency_ms": 15.0863,
         "outcome": "TP"
       },
       {
@@ -1160,7 +1160,7 @@
         "query": "How do I lose weight from 70 to 50?",
         "decision": "MISS",
         "similarity": 0.6698267459869385,
-        "latency_ms": 47.8962,
+        "latency_ms": 16.4144,
         "outcome": "FN"
       },
       {
@@ -1168,7 +1168,7 @@
         "query": "How much does a CT scan for the head cost?",
         "decision": "HIT",
         "similarity": 0.9339301586151123,
-        "latency_ms": 45.5858,
+        "latency_ms": 18.4709,
         "outcome": "TP"
       },
       {
@@ -1176,7 +1176,7 @@
         "query": "How bad is masturbation and what are the bad effects?",
         "decision": "MISS",
         "similarity": 0.5804569721221924,
-        "latency_ms": 59.706,
+        "latency_ms": 16.2349,
         "outcome": "FN"
       },
       {
@@ -1184,7 +1184,7 @@
         "query": "How do I merge code in Informatica?",
         "decision": "HIT",
         "similarity": 0.9841223359107971,
-        "latency_ms": 41.059,
+        "latency_ms": 16.3797,
         "outcome": "TP"
       },
       {
@@ -1192,7 +1192,7 @@
         "query": "I'm 18. How can I make money online?",
         "decision": "MISS",
         "similarity": 0.7836676836013794,
-        "latency_ms": 35.0078,
+        "latency_ms": 14.9992,
         "outcome": "FN"
       },
       {
@@ -1200,7 +1200,7 @@
         "query": "What are the best techniques used in Off Page SEO?",
         "decision": "HIT",
         "similarity": 0.9641250371932983,
-        "latency_ms": 47.3774,
+        "latency_ms": 18.2871,
         "outcome": "TP"
       },
       {
@@ -1208,7 +1208,7 @@
         "query": "What is the best home remedy to get rid of cockroaches?",
         "decision": "HIT",
         "similarity": 0.9831632971763611,
-        "latency_ms": 31.1881,
+        "latency_ms": 18.6519,
         "outcome": "TP"
       },
       {
@@ -1216,7 +1216,7 @@
         "query": "Why is India unique? What does India have that other countries don't?",
         "decision": "MISS",
         "similarity": 0.8402149081230164,
-        "latency_ms": 38.8391,
+        "latency_ms": 17.5894,
         "outcome": "FN"
       },
       {
@@ -1224,7 +1224,7 @@
         "query": "Why do we forget our dreams so quickly?",
         "decision": "HIT",
         "similarity": 0.9882386922836304,
-        "latency_ms": 31.0803,
+        "latency_ms": 15.6179,
         "outcome": "TP"
       },
       {
@@ -1232,7 +1232,7 @@
         "query": "If you had only 24 hours left to live, what would you do?",
         "decision": "MISS",
         "similarity": 0.6298757791519165,
-        "latency_ms": 48.4049,
+        "latency_ms": 11.336,
         "outcome": "FN"
       },
       {
@@ -1240,7 +1240,7 @@
         "query": "What should I do if my puppy throws up white foam?",
         "decision": "HIT",
         "similarity": 0.8927954435348511,
-        "latency_ms": 57.0755,
+        "latency_ms": 12.3674,
         "outcome": "TP"
       },
       {
@@ -1248,7 +1248,7 @@
         "query": "Does Mike Wazowski blinks or wink?",
         "decision": "HIT",
         "similarity": 0.9949349761009216,
-        "latency_ms": 44.5803,
+        "latency_ms": 8.1967,
         "outcome": "TP"
       },
       {
@@ -1256,7 +1256,7 @@
         "query": "How do I start a successful private equity firm?",
         "decision": "HIT",
         "similarity": 0.9490664005279541,
-        "latency_ms": 49.8982,
+        "latency_ms": 10.2173,
         "outcome": "TP"
       },
       {
@@ -1264,7 +1264,7 @@
         "query": "How was Chinese and Japanese look like before the nuclear attack?",
         "decision": "HIT",
         "similarity": 0.969190776348114,
-        "latency_ms": 55.9368,
+        "latency_ms": 13.2864,
         "outcome": "TP"
       },
       {
@@ -1272,7 +1272,7 @@
         "query": "How do people make money from Instagram?",
         "decision": "HIT",
         "similarity": 0.9461160898208618,
-        "latency_ms": 53.0866,
+        "latency_ms": 9.4774,
         "outcome": "TP"
       },
       {
@@ -1280,7 +1280,7 @@
         "query": "How can I ask my question on Quora?",
         "decision": "MISS",
         "similarity": 0.8273820877075195,
-        "latency_ms": 47.1369,
+        "latency_ms": 12.3175,
         "outcome": "FN"
       },
       {
@@ -1288,7 +1288,7 @@
         "query": "How can I improve fluency in English?",
         "decision": "MISS",
         "similarity": 0.8498055934906006,
-        "latency_ms": 61.3235,
+        "latency_ms": 7.8207,
         "outcome": "FN"
       },
       {
@@ -1296,7 +1296,7 @@
         "query": "Can the idea of time machine be ever achieved in real?",
         "decision": "MISS",
         "similarity": 0.7703489661216736,
-        "latency_ms": 41.4323,
+        "latency_ms": 10.2217,
         "outcome": "FN"
       },
       {
@@ -1304,7 +1304,7 @@
         "query": "Do you believe in ghosts, Why?",
         "decision": "HIT",
         "similarity": 0.9792375564575195,
-        "latency_ms": 62.5988,
+        "latency_ms": 11.6901,
         "outcome": "TP"
       },
       {
@@ -1312,7 +1312,7 @@
         "query": "How old is too old to start medical school?",
         "decision": "MISS",
         "similarity": 0.7735298871994019,
-        "latency_ms": 44.9317,
+        "latency_ms": 7.1816,
         "outcome": "FN"
       },
       {
@@ -1320,7 +1320,7 @@
         "query": "How can I improve my English vocabulary and writing skills?",
         "decision": "MISS",
         "similarity": 0.8386639356613159,
-        "latency_ms": 41.5881,
+        "latency_ms": 7.9079,
         "outcome": "FN"
       },
       {
@@ -1328,7 +1328,7 @@
         "query": "His father died in his youth , and his mother , Samuel Adams , married Catherine A. Fagan in 1842 , who two years later became the governor of Arkansas .",
         "decision": "MISS",
         "similarity": 0.11785779893398285,
-        "latency_ms": 58.5764,
+        "latency_ms": 12.6925,
         "outcome": "TN"
       },
       {
@@ -1336,7 +1336,7 @@
         "query": "His father died during his youth and his mother , Catherine A. Fagan , in 1842 married Samuel Adams , who became Governor of Arkansas two years later .",
         "decision": "HIT",
         "similarity": 0.9920831918716431,
-        "latency_ms": 52.0544,
+        "latency_ms": 13.072,
         "outcome": "FP"
       },
       {
@@ -1344,7 +1344,7 @@
         "query": "Also Cai Feng had a son , Cai Mao .",
         "decision": "MISS",
         "similarity": 0.35392698645591736,
-        "latency_ms": 32.8304,
+        "latency_ms": 10.7506,
         "outcome": "TN"
       },
       {
@@ -1352,7 +1352,7 @@
         "query": "Cai Mao also had a son , Cai Feng .",
         "decision": "HIT",
         "similarity": 0.9831726551055908,
-        "latency_ms": 47.761,
+        "latency_ms": 10.0395,
         "outcome": "FP"
       },
       {
@@ -1360,7 +1360,7 @@
         "query": "Although interchangeable , the body pieces on the 2 cars are not similar .",
         "decision": "MISS",
         "similarity": 0.147478386759758,
-        "latency_ms": 49.1826,
+        "latency_ms": 8.8375,
         "outcome": "TN"
       },
       {
@@ -1368,7 +1368,7 @@
         "query": "Although similar , the body parts are not interchangeable on the 2 cars .",
         "decision": "HIT",
         "similarity": 0.9477077722549438,
-        "latency_ms": 37.8526,
+        "latency_ms": 13.5589,
         "outcome": "FP"
       },
       {
@@ -1376,7 +1376,7 @@
         "query": "It originated in the eastern half of the counties of Norfolk and Suffolk and is also represented in Essex and Hertfordshire .",
         "decision": "MISS",
         "similarity": 0.1321428120136261,
-        "latency_ms": 48.6421,
+        "latency_ms": 14.1466,
         "outcome": "TN"
       },
       {
@@ -1384,7 +1384,7 @@
         "query": "It outcrops in the eastern half of the counties of Norfolk and Suffolk , and is also represented in Essex and Hertfordshire .",
         "decision": "MISS",
         "similarity": 0.7565947771072388,
-        "latency_ms": 53.7997,
+        "latency_ms": 14.1309,
         "outcome": "TN"
       },
       {
@@ -1392,7 +1392,7 @@
         "query": "He died in Milwaukee , Wisconsin , where on 5 May 1903 he retired .",
         "decision": "MISS",
         "similarity": 0.39675742387771606,
-        "latency_ms": 51.3542,
+        "latency_ms": 11.95,
         "outcome": "TN"
       },
       {
@@ -1400,7 +1400,7 @@
         "query": "He retired in Milwaukee , Wisconsin , where he died on May 5 , 1903 .",
         "decision": "HIT",
         "similarity": 0.9920333623886108,
-        "latency_ms": 43.2275,
+        "latency_ms": 14.8171,
         "outcome": "FP"
       },
       {
@@ -1408,7 +1408,7 @@
         "query": "Its leaves are shaped alternately along the branches and have lance-arranged , egg-shaped or almost circular and are a stalk long .",
         "decision": "MISS",
         "similarity": 0.1881200224161148,
-        "latency_ms": 47.2216,
+        "latency_ms": 15.693,
         "outcome": "TN"
       },
       {
@@ -1416,7 +1416,7 @@
         "query": "Its leaves are arranged alternately along the branches and are lance-shaped , egg-shaped or almost circular and have a long stem .",
         "decision": "HIT",
         "similarity": 0.9527576565742493,
-        "latency_ms": 49.3586,
+        "latency_ms": 14.4929,
         "outcome": "FP"
       },
       {
@@ -1424,7 +1424,7 @@
         "query": "This expanded the area of conflict between Massachusetts and the province of Rhode Island .",
         "decision": "MISS",
         "similarity": 0.29597145318984985,
-        "latency_ms": 49.7651,
+        "latency_ms": 8.5369,
         "outcome": "TN"
       },
       {
@@ -1432,7 +1432,7 @@
         "query": "This widened the area of conflict between Rhode Island and the province of Massachusetts .",
         "decision": "HIT",
         "similarity": 0.9667269587516785,
-        "latency_ms": 42.3287,
+        "latency_ms": 8.7709,
         "outcome": "FP"
       },
       {
@@ -1440,7 +1440,7 @@
         "query": "Slough High School was a girls selective grammar school in Berkshire , now Slough , Buckinghamshire .",
         "decision": "MISS",
         "similarity": 0.31153303384780884,
-        "latency_ms": 47.6666,
+        "latency_ms": 10.6832,
         "outcome": "TN"
       },
       {
@@ -1448,7 +1448,7 @@
         "query": "Slough High School was a selective girls ' grammar school in Slough , Buckinghamshire , now Berkshire .",
         "decision": "HIT",
         "similarity": 0.9939698576927185,
-        "latency_ms": 56.2349,
+        "latency_ms": 9.9895,
         "outcome": "FP"
       },
       {
@@ -1456,7 +1456,7 @@
         "query": "After Independence , the institution was sanctioned by the new government and gained its current name .",
         "decision": "MISS",
         "similarity": 0.18625524640083313,
-        "latency_ms": 47.032,
+        "latency_ms": 10.2552,
         "outcome": "TN"
       },
       {
@@ -1464,7 +1464,7 @@
         "query": "After independence , the institution was sanctioned by the current government and received its new name .",
         "decision": "HIT",
         "similarity": 0.9845960736274719,
-        "latency_ms": 117.5776,
+        "latency_ms": 15.7437,
         "outcome": "FP"
       },
       {
@@ -1472,7 +1472,7 @@
         "query": "The river Geam\u0103rt\u0103lui is a tributary of the Breaza River in Romania .",
         "decision": "MISS",
         "similarity": 0.12316872924566269,
-        "latency_ms": 66.8283,
+        "latency_ms": 22.5464,
         "outcome": "TN"
       },
       {
@@ -1480,7 +1480,7 @@
         "query": "The River Breaza is a tributary of the River Geam\u0103rt\u0103lui in Romania .",
         "decision": "HIT",
         "similarity": 0.9686887264251709,
-        "latency_ms": 52.4684,
+        "latency_ms": 13.2702,
         "outcome": "FP"
       },
       {
@@ -1488,7 +1488,7 @@
         "query": "It is close to Lough Corrib , on the N59 road to Oughterard and Clifden , in Connemara .",
         "decision": "MISS",
         "similarity": 0.2617639899253845,
-        "latency_ms": 55.8063,
+        "latency_ms": 15.4268,
         "outcome": "TN"
       },
       {
@@ -1496,7 +1496,7 @@
         "query": "It is near Oughterard and Clifden , on the N59 road to Lough Corrib , in Connemara .",
         "decision": "HIT",
         "similarity": 0.9759640693664551,
-        "latency_ms": 86.2917,
+        "latency_ms": 22.0052,
         "outcome": "FP"
       },
       {
@@ -1504,7 +1504,7 @@
         "query": "The manuscript was added to the list of manuscripts of the New Testament by Caspar Ren\u00e9 Gregory ( 278 ) and Frederick Henry Ambrose Scrivener ( Number 329 ) .",
         "decision": "MISS",
         "similarity": 0.25145527720451355,
-        "latency_ms": 46.8721,
+        "latency_ms": 46.8884,
         "outcome": "TN"
       },
       {
@@ -1512,7 +1512,7 @@
         "query": "The manuscript was added to the list of New Testament manuscripts by Frederick Henry Ambrose Scrivener ( 278 ) and Caspar Ren\u00e9 Gregory ( number 329 ) .",
         "decision": "HIT",
         "similarity": 0.9866827726364136,
-        "latency_ms": 64.8537,
+        "latency_ms": 20.1337,
         "outcome": "FP"
       },
       {
@@ -1520,7 +1520,7 @@
         "query": "While the exclusion of black players was not a written rule , no African-American had played in the National Football League since 1933 .",
         "decision": "MISS",
         "similarity": 0.11575309187173843,
-        "latency_ms": 66.3681,
+        "latency_ms": 19.7078,
         "outcome": "TN"
       },
       {
@@ -1528,7 +1528,7 @@
         "query": "While the exclusion of African players was not a written rule , no black American player in the National Football League had played since 1933 .",
         "decision": "HIT",
         "similarity": 0.9895205497741699,
-        "latency_ms": 45.7519,
+        "latency_ms": 26.1614,
         "outcome": "FP"
       },
       {
@@ -1536,7 +1536,7 @@
         "query": "Muawiyah came to power after the death of Ali and established a dynasty .",
         "decision": "MISS",
         "similarity": 0.3773609399795532,
-        "latency_ms": 45.6154,
+        "latency_ms": 18.2404,
         "outcome": "TN"
       },
       {
@@ -1544,7 +1544,7 @@
         "query": "After the death of Muawiyah , Ali came to power and founded a dynasty .",
         "decision": "HIT",
         "similarity": 0.9532495141029358,
-        "latency_ms": 49.614,
+        "latency_ms": 17.7131,
         "outcome": "FP"
       },
       {
@@ -1552,7 +1552,7 @@
         "query": "He was appointed Prosecutor for Seneca County in 1824 , for Williams County in 1826 , and Sandusky County in 1827 .",
         "decision": "MISS",
         "similarity": 0.27044233679771423,
-        "latency_ms": 66.7518,
+        "latency_ms": 19.923,
         "outcome": "TN"
       },
       {
@@ -1560,7 +1560,7 @@
         "query": "He was appointed prosecuting attorney for Williams County in 1824 , for Seneca County in 1826 and for Sandusky County in 1827 .",
         "decision": "HIT",
         "similarity": 0.9500923156738281,
-        "latency_ms": 56.5036,
+        "latency_ms": 22.0348,
         "outcome": "FP"
       },
       {
@@ -1568,7 +1568,7 @@
         "query": "A UK tour started in May 1983 , featuring additional guitarist Robin George for live performances .",
         "decision": "MISS",
         "similarity": 0.16140587627887726,
-        "latency_ms": 56.1763,
+        "latency_ms": 16.9837,
         "outcome": "TN"
       },
       {
@@ -1576,7 +1576,7 @@
         "query": "In May 1983 , a UK tour with the live guitarist Robin George started for additional performances .",
         "decision": "HIT",
         "similarity": 0.9836330413818359,
-        "latency_ms": 48.3251,
+        "latency_ms": 20.4491,
         "outcome": "FP"
       },
       {
@@ -1584,7 +1584,7 @@
         "query": "`` Hymenaea stiginocarpa '' occurs in northern , central , and eastern Brazil and in Paraguay .",
         "decision": "MISS",
         "similarity": 0.2736203670501709,
-        "latency_ms": 73.9645,
+        "latency_ms": 16.8663,
         "outcome": "TN"
       },
       {
@@ -1592,7 +1592,7 @@
         "query": "`` Hymenaea stiginocarpa '' comes in northern , central and eastern Paraguay and in Brazil .",
         "decision": "HIT",
         "similarity": 0.9649161100387573,
-        "latency_ms": 45.0314,
+        "latency_ms": 10.8392,
         "outcome": "FP"
       },
       {
@@ -1600,7 +1600,7 @@
         "query": "ACVM is headquartered in Edinburgh and has offices in Glasgow , Aberdeen , Newcastle , Manchester and Milton Keynes .",
         "decision": "MISS",
         "similarity": 0.28980857133865356,
-        "latency_ms": 47.2767,
+        "latency_ms": 11.7356,
         "outcome": "TN"
       },
       {
@@ -1608,7 +1608,7 @@
         "query": "ACVM is based in Glasgow and has subsidiaries in Edinburgh , Aberdeen , Newcastle , Manchester and Milton Keynes .",
         "decision": "HIT",
         "similarity": 0.9676289558410645,
-        "latency_ms": 48.8721,
+        "latency_ms": 11.0586,
         "outcome": "FP"
       },
       {
@@ -1616,7 +1616,7 @@
         "query": "To create the map for Hoth , the designers received as much source material as possible from `` The Empire beats back '' to develop an authentic reproduction .",
         "decision": "MISS",
         "similarity": 0.21063047647476196,
-        "latency_ms": 53.8748,
+        "latency_ms": 12.3506,
         "outcome": "TN"
       },
       {
@@ -1624,7 +1624,7 @@
         "query": "To develop the map for Hoth , the designers obtained as much source material from `` The Empire Strikes Back '' as possible so to create an authentic reproduction .",
         "decision": "HIT",
         "similarity": 0.9341713190078735,
-        "latency_ms": 58.4483,
+        "latency_ms": 11.7027,
         "outcome": "FP"
       },
       {
@@ -1632,7 +1632,7 @@
         "query": "Cordell Crockett played the bass on 5 songs , with Ugly Kid Joe bassist Nathan Slade playing bass on the rest .",
         "decision": "MISS",
         "similarity": 0.22783681750297546,
-        "latency_ms": 58.0571,
+        "latency_ms": 14.1307,
         "outcome": "TN"
       },
       {
@@ -1640,7 +1640,7 @@
         "query": "Nathan Slade played the bass on five songs , with Ugly Kid Joe Bassist Cordell Crockett on the rest bass .",
         "decision": "HIT",
         "similarity": 0.9663457274436951,
-        "latency_ms": 51.4915,
+        "latency_ms": 9.7953,
         "outcome": "FP"
       },
       {
@@ -1648,7 +1648,7 @@
         "query": "Frederick Brown was President of the Council , Henry Wrixon was chairman of the committees .",
         "decision": "MISS",
         "similarity": 0.23591348528862,
-        "latency_ms": 74.4088,
+        "latency_ms": 9.8684,
         "outcome": "TN"
       },
       {
@@ -1656,7 +1656,7 @@
         "query": "Henry Wrixon was President of the Council ; Frederick Brown was Chairman of Committees .",
         "decision": "HIT",
         "similarity": 0.9926308393478394,
-        "latency_ms": 47.4025,
+        "latency_ms": 10.4477,
         "outcome": "FP"
       },
       {
@@ -1664,7 +1664,7 @@
         "query": "It is shorter and much lighter in length -- a necessary design parameter given its placement in the compact cars .",
         "decision": "MISS",
         "similarity": 0.3847397565841675,
-        "latency_ms": 50.4307,
+        "latency_ms": 10.5168,
         "outcome": "TN"
       },
       {
@@ -1672,7 +1672,7 @@
         "query": "It is lighter and much shorter in length -- a necessary design parameter considering its placement in compact cars .",
         "decision": "HIT",
         "similarity": 0.9737682342529297,
-        "latency_ms": 47.0607,
+        "latency_ms": 12.0733,
         "outcome": "FP"
       },
       {
@@ -1680,7 +1680,7 @@
         "query": "Like many ethnic communities in Uganda , including the Langi , Acholi , and Luo , the Alur do not practice the ritual circumcision of males as initiation .",
         "decision": "MISS",
         "similarity": 0.24690847098827362,
-        "latency_ms": 59.9748,
+        "latency_ms": 14.0022,
         "outcome": "TN"
       },
       {
@@ -1688,7 +1688,7 @@
         "query": "Like many ethnic communities in Uganda , including the Langi , Acholi , and Alur , the Luo do not practice the ritual circumcision of men as initiative .",
         "decision": "HIT",
         "similarity": 0.8837282657623291,
-        "latency_ms": 56.3996,
+        "latency_ms": 10.9428,
         "outcome": "FP"
       },
       {
@@ -1696,7 +1696,7 @@
         "query": "In 1993 , when Peter Joseph Whelihan opened his second restaurant in Allentown , he changed the name to P. J. Whelihan 's to honor his grandfather .",
         "decision": "MISS",
         "similarity": 0.26014459133148193,
-        "latency_ms": 59.1251,
+        "latency_ms": 11.8605,
         "outcome": "TN"
       },
       {
@@ -1704,7 +1704,7 @@
         "query": "When Platzer opened his second restaurant in Allentown in 1993 , he changed the name to P. J. Whelihan 's to honor his grandfather , Peter Joseph Whelihan .",
         "decision": "HIT",
         "similarity": 0.8808416724205017,
-        "latency_ms": 54.3981,
+        "latency_ms": 11.4901,
         "outcome": "FP"
       },
       {
@@ -1712,7 +1712,7 @@
         "query": "In 2008 , Folayan won the Precious Award for `` Inspiring Leader within the Workplace '' .",
         "decision": "MISS",
         "similarity": 0.17787189781665802,
-        "latency_ms": 48.657,
+        "latency_ms": 11.1105,
         "outcome": "TN"
       },
       {
@@ -1720,7 +1720,7 @@
         "query": "In 2008 , Folayan won an Inspiring Award for the `` Precious Leader within the Workplace '' .",
         "decision": "HIT",
         "similarity": 0.9738885164260864,
-        "latency_ms": 49.7383,
+        "latency_ms": 9.4873,
         "outcome": "FP"
       },
       {
@@ -1728,7 +1728,7 @@
         "query": "The event was attended by Boutique @ hs Ambassador , Teresa Palmer Michala Banas and the Australian actress Kyly Clarke .",
         "decision": "MISS",
         "similarity": 0.23224517703056335,
-        "latency_ms": 47.1439,
+        "latency_ms": 10.3101,
         "outcome": "TN"
       },
       {
@@ -1736,7 +1736,7 @@
         "query": "The event was attended by Boutique @ hs Ambassador Kyly Clarke , Australian actress Teresa Palmer and Michala Banas .",
         "decision": "HIT",
         "similarity": 0.9926528334617615,
-        "latency_ms": 48.4713,
+        "latency_ms": 14.1857,
         "outcome": "FP"
       },
       {
@@ -1744,7 +1744,7 @@
         "query": "In early 2016 , Senator Chris Widener was appointed to the Senate of Ohio in order to succeed Senator Bob Hackett , who resigned .",
         "decision": "MISS",
         "similarity": 0.24548853933811188,
-        "latency_ms": 55.8241,
+        "latency_ms": 24.6283,
         "outcome": "TN"
       },
       {
@@ -1752,7 +1752,7 @@
         "query": "In early 2016 , Senator Bob Hackett was appointed to the Senate of Ohio in order to succeed Senator Chris Widener , who resigned .",
         "decision": "HIT",
         "similarity": 0.9875147342681885,
-        "latency_ms": 52.7634,
+        "latency_ms": 24.1751,
         "outcome": "FP"
       },
       {
@@ -1760,7 +1760,7 @@
         "query": "He was born on December 21 , 1965 in Oxon Hill , Maryland , and attended High School in New Haven , Connecticut .",
         "decision": "MISS",
         "similarity": 0.3511054515838623,
-        "latency_ms": 51.1441,
+        "latency_ms": 23.8906,
         "outcome": "TN"
       },
       {
@@ -1768,7 +1768,7 @@
         "query": "He was born on 21 December 1965 in New Haven , Connecticut , and attended the Oxon Hill High School in Oxon Hill , Maryland .",
         "decision": "HIT",
         "similarity": 0.9840964078903198,
-        "latency_ms": 44.6401,
+        "latency_ms": 23.1724,
         "outcome": "FP"
       },
       {
@@ -1776,7 +1776,7 @@
         "query": "The `` working model '' is 78 cm high and 79 long .",
         "decision": "MISS",
         "similarity": 0.38362956047058105,
-        "latency_ms": 42.5033,
+        "latency_ms": 19.4051,
         "outcome": "TN"
       },
       {
@@ -1784,7 +1784,7 @@
         "query": "The `` Working Model '' is 78 cm long and 79 & nspb ; high .",
         "decision": "HIT",
         "similarity": 0.9796421527862549,
-        "latency_ms": 57.9539,
+        "latency_ms": 23.6027,
         "outcome": "FP"
       },
       {
@@ -1792,7 +1792,7 @@
         "query": "She is praised by Richard Gibson and the court painter Peter Lely and is considered as successful as Joan Carlile .",
         "decision": "MISS",
         "similarity": 0.32639557123184204,
-        "latency_ms": 50.9741,
+        "latency_ms": 21.2672,
         "outcome": "TN"
       },
       {
@@ -1800,7 +1800,7 @@
         "query": "Praised by Richard Gibson and the court painter Joan Carlile , she is considered to be as successful as Peter Lely .",
         "decision": "HIT",
         "similarity": 0.9651962518692017,
-        "latency_ms": 56.3543,
+        "latency_ms": 24.7369,
         "outcome": "FP"
       },
       {
@@ -1808,7 +1808,7 @@
         "query": "what is a captor",
         "decision": "MISS",
         "similarity": 0.14865335822105408,
-        "latency_ms": 45.4249,
+        "latency_ms": 16.9402,
         "outcome": "TN"
       },
       {
@@ -1816,7 +1816,7 @@
         "query": "how to oven roast brussel sprouts",
         "decision": "MISS",
         "similarity": 0.1849086880683899,
-        "latency_ms": 45.3592,
+        "latency_ms": 20.051,
         "outcome": "TN"
       },
       {
@@ -1824,7 +1824,7 @@
         "query": "is chase website down today",
         "decision": "MISS",
         "similarity": 0.23386503756046295,
-        "latency_ms": 46.0844,
+        "latency_ms": 18.208,
         "outcome": "TN"
       },
       {
@@ -1832,7 +1832,7 @@
         "query": "what does the surname holt mean",
         "decision": "MISS",
         "similarity": 0.2311229407787323,
-        "latency_ms": 46.8993,
+        "latency_ms": 18.7235,
         "outcome": "TN"
       },
       {
@@ -1840,7 +1840,7 @@
         "query": "new oil furnace should cost",
         "decision": "MISS",
         "similarity": 0.276049941778183,
-        "latency_ms": 44.1858,
+        "latency_ms": 20.5568,
         "outcome": "TN"
       },
       {
@@ -1848,7 +1848,7 @@
         "query": "what is progressive reform",
         "decision": "MISS",
         "similarity": 0.20405173301696777,
-        "latency_ms": 92.1558,
+        "latency_ms": 18.126,
         "outcome": "TN"
       },
       {
@@ -1856,7 +1856,7 @@
         "query": "who invented the first vehicle",
         "decision": "MISS",
         "similarity": 0.27082952857017517,
-        "latency_ms": 1220.2253,
+        "latency_ms": 17.4517,
         "outcome": "TN"
       },
       {
@@ -1864,7 +1864,7 @@
         "query": "why do my eyes look squinty in pictures",
         "decision": "MISS",
         "similarity": 0.21093052625656128,
-        "latency_ms": 57.9861,
+        "latency_ms": 17.3813,
         "outcome": "TN"
       },
       {
@@ -1872,7 +1872,7 @@
         "query": "what is cabaret music",
         "decision": "MISS",
         "similarity": 0.2632805109024048,
-        "latency_ms": 65.0168,
+        "latency_ms": 15.5677,
         "outcome": "TN"
       },
       {
@@ -1880,7 +1880,7 @@
         "query": "how much does an mri cost in dallas",
         "decision": "MISS",
         "similarity": 0.6414334774017334,
-        "latency_ms": 48.8501,
+        "latency_ms": 17.4179,
         "outcome": "TN"
       },
       {
@@ -1888,7 +1888,7 @@
         "query": "ainsley name meaning",
         "decision": "MISS",
         "similarity": 0.2920915186405182,
-        "latency_ms": 48.887,
+        "latency_ms": 19.4495,
         "outcome": "TN"
       },
       {
@@ -1896,7 +1896,7 @@
         "query": "what is a bandog",
         "decision": "MISS",
         "similarity": 0.3165639042854309,
-        "latency_ms": 50.6154,
+        "latency_ms": 19.9597,
         "outcome": "TN"
       },
       {
@@ -1904,7 +1904,7 @@
         "query": "what is craic mean",
         "decision": "MISS",
         "similarity": 0.16653776168823242,
-        "latency_ms": 48.2813,
+        "latency_ms": 18.882,
         "outcome": "TN"
       },
       {
@@ -1912,7 +1912,7 @@
         "query": "do you have to be smart to be an ultrasound tech",
         "decision": "MISS",
         "similarity": 0.368591845035553,
-        "latency_ms": 61.4887,
+        "latency_ms": 22.5168,
         "outcome": "TN"
       },
       {
@@ -1920,7 +1920,7 @@
         "query": "where is the parietal lobe located",
         "decision": "MISS",
         "similarity": 0.32227030396461487,
-        "latency_ms": 92.2402,
+        "latency_ms": 23.9789,
         "outcome": "TN"
       },
       {
@@ -1928,7 +1928,7 @@
         "query": "what is functional constipation",
         "decision": "MISS",
         "similarity": 0.2118530124425888,
-        "latency_ms": 40.5847,
+        "latency_ms": 21.4967,
         "outcome": "TN"
       },
       {
@@ -1936,7 +1936,7 @@
         "query": "what causes a hoarse voice",
         "decision": "MISS",
         "similarity": 0.23926851153373718,
-        "latency_ms": 54.295,
+        "latency_ms": 23.1434,
         "outcome": "TN"
       },
       {
@@ -1944,7 +1944,7 @@
         "query": "what is a bear's hand called",
         "decision": "MISS",
         "similarity": 0.14085647463798523,
-        "latency_ms": 54.3026,
+        "latency_ms": 22.6804,
         "outcome": "TN"
       },
       {
@@ -1952,7 +1952,7 @@
         "query": "what is mediastinal mass",
         "decision": "MISS",
         "similarity": 0.18033352494239807,
-        "latency_ms": 36.356,
+        "latency_ms": 26.9278,
         "outcome": "TN"
       },
       {
@@ -1960,7 +1960,7 @@
         "query": "what group does the squirrel monkey belong to",
         "decision": "MISS",
         "similarity": 0.22981129586696625,
-        "latency_ms": 47.7748,
+        "latency_ms": 23.3188,
         "outcome": "TN"
       },
       {
@@ -1968,7 +1968,7 @@
         "query": "what does the name carmel mean",
         "decision": "MISS",
         "similarity": 0.23815025389194489,
-        "latency_ms": 71.8239,
+        "latency_ms": 36.3503,
         "outcome": "TN"
       },
       {
@@ -1976,7 +1976,7 @@
         "query": "nike name meaning",
         "decision": "MISS",
         "similarity": 0.27468934655189514,
-        "latency_ms": 45.0407,
+        "latency_ms": 37.8421,
         "outcome": "TN"
       },
       {
@@ -1984,7 +1984,7 @@
         "query": "peripheral nervous is part of what system",
         "decision": "MISS",
         "similarity": 0.19366773962974548,
-        "latency_ms": 45.7524,
+        "latency_ms": 39.9736,
         "outcome": "TN"
       },
       {
@@ -1992,7 +1992,7 @@
         "query": "where was chayanne born",
         "decision": "MISS",
         "similarity": 0.4147142171859741,
-        "latency_ms": 50.3914,
+        "latency_ms": 30.4661,
         "outcome": "TN"
       },
       {
@@ -2000,7 +2000,7 @@
         "query": "cost to install a deck",
         "decision": "MISS",
         "similarity": 0.3684622645378113,
-        "latency_ms": 43.8488,
+        "latency_ms": 26.6061,
         "outcome": "TN"
       },
       {
@@ -2008,7 +2008,7 @@
         "query": "qualification of a registered biomedical scientist",
         "decision": "MISS",
         "similarity": 0.35963642597198486,
-        "latency_ms": 48.607,
+        "latency_ms": 29.7956,
         "outcome": "TN"
       },
       {
@@ -2016,7 +2016,7 @@
         "query": "what is astrocyte function",
         "decision": "MISS",
         "similarity": 0.2619938254356384,
-        "latency_ms": 33.9178,
+        "latency_ms": 30.7451,
         "outcome": "TN"
       },
       {
@@ -2024,7 +2024,7 @@
         "query": "where was laura ingalls wilder born",
         "decision": "MISS",
         "similarity": 0.28605222702026367,
-        "latency_ms": 54.808,
+        "latency_ms": 26.1183,
         "outcome": "TN"
       },
       {
@@ -2032,7 +2032,7 @@
         "query": "where is Serotonin made in the body",
         "decision": "MISS",
         "similarity": 0.21277689933776855,
-        "latency_ms": 47.5403,
+        "latency_ms": 29.1331,
         "outcome": "TN"
       },
       {
@@ -2040,7 +2040,7 @@
         "query": "weighted average price",
         "decision": "MISS",
         "similarity": 0.2875065207481384,
-        "latency_ms": 52.6008,
+        "latency_ms": 24.9523,
         "outcome": "TN"
       },
       {
@@ -2048,7 +2048,7 @@
         "query": "what is austenitic and martensitic",
         "decision": "MISS",
         "similarity": 0.2079823762178421,
-        "latency_ms": 42.1668,
+        "latency_ms": 31.8583,
         "outcome": "TN"
       },
       {
@@ -2056,7 +2056,7 @@
         "query": "can other fish be placed with bala sharks",
         "decision": "MISS",
         "similarity": 0.2401599884033203,
-        "latency_ms": 60.0439,
+        "latency_ms": 33.8376,
         "outcome": "TN"
       },
       {
@@ -2064,7 +2064,7 @@
         "query": "how often is cal grant disbursed",
         "decision": "MISS",
         "similarity": 0.13109588623046875,
-        "latency_ms": 46.3403,
+        "latency_ms": 31.9392,
         "outcome": "TN"
       },
       {
@@ -2072,7 +2072,7 @@
         "query": "why was the napoleonic code significant",
         "decision": "MISS",
         "similarity": 0.20062761008739471,
-        "latency_ms": 47.796,
+        "latency_ms": 27.4495,
         "outcome": "TN"
       },
       {
@@ -2080,7 +2080,7 @@
         "query": "what is thick waxy coating means in microbiology",
         "decision": "MISS",
         "similarity": 0.16825498640537262,
-        "latency_ms": 43.107,
+        "latency_ms": 29.8335,
         "outcome": "TN"
       },
       {
@@ -2088,7 +2088,7 @@
         "query": "what evidence does dna show",
         "decision": "MISS",
         "similarity": 0.253415584564209,
-        "latency_ms": 32.3343,
+        "latency_ms": 31.1189,
         "outcome": "TN"
       },
       {
@@ -2096,7 +2096,7 @@
         "query": "scarlett johansson comic book movie roles",
         "decision": "MISS",
         "similarity": 0.335316002368927,
-        "latency_ms": 42.753,
+        "latency_ms": 32.7318,
         "outcome": "TN"
       },
       {
@@ -2104,7 +2104,7 @@
         "query": "what is adobo chicken",
         "decision": "MISS",
         "similarity": 0.23648475110530853,
-        "latency_ms": 45.2984,
+        "latency_ms": 33.3957,
         "outcome": "TN"
       },
       {
@@ -2112,7 +2112,7 @@
         "query": "where do zebras live",
         "decision": "MISS",
         "similarity": 0.2938123047351837,
-        "latency_ms": 47.4096,
+        "latency_ms": 26.3815,
         "outcome": "TN"
       },
       {
@@ -2120,30 +2120,30 @@
         "query": "what kind of climate do truffles grow in",
         "decision": "MISS",
         "similarity": 0.31428682804107666,
-        "latency_ms": 60.9092,
+        "latency_ms": 25.2949,
         "outcome": "TN"
       }
     ]
   },
   "arm_c_current_pipeline": {
-    "hits": 16,
-    "tp": 13,
+    "hits": 18,
+    "tp": 15,
     "fp": 3,
-    "fn": 67,
+    "fn": 65,
     "tn": 147,
-    "hit_rate": 0.06956521739130435,
+    "hit_rate": 0.0782608695652174,
     "hr_ci": [
-      0.040282605096574615,
-      0.11051286368621396
+      0.04704053186322361,
+      0.12086673434642116
     ],
-    "irr": 0.1875,
+    "irr": 0.16666666666666666,
     "irr_ci": [
-      0.0404737339059459,
-      0.4564565462316117
+      0.03578508312157469,
+      0.41417749139477406
     ],
     "judge_calls": 21,
-    "p50_ms": 50.64904998289421,
-    "p95_ms": 6928.671404992926,
+    "p50_ms": 36.662350001279265,
+    "p95_ms": 7608.5084050195255,
     "telemetry": [
       {
         "id": "P8-SEED-001",
@@ -2152,7 +2152,7 @@
         "similarity": -Infinity,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 43.98600000422448,
+        "latency_ms": 33.06799998972565,
         "outcome": "TN"
       },
       {
@@ -2162,7 +2162,7 @@
         "similarity": 0.16492009162902832,
         "confidence": 0.7998159202666396,
         "judge_used": false,
-        "latency_ms": 191.0430999705568,
+        "latency_ms": 69.74299997091293,
         "outcome": "TN"
       },
       {
@@ -2172,7 +2172,7 @@
         "similarity": 0.2877338230609894,
         "confidence": 0.8235771309467141,
         "judge_used": false,
-        "latency_ms": 81.00130001548678,
+        "latency_ms": 36.45479993429035,
         "outcome": "TN"
       },
       {
@@ -2182,7 +2182,7 @@
         "similarity": 0.8726829290390015,
         "confidence": 0.7716335646056687,
         "judge_used": false,
-        "latency_ms": 72.2230999963358,
+        "latency_ms": 45.12939997948706,
         "outcome": "TN"
       },
       {
@@ -2192,7 +2192,7 @@
         "similarity": 0.23912689089775085,
         "confidence": 0.8293508646626263,
         "judge_used": false,
-        "latency_ms": 68.30090004950762,
+        "latency_ms": 32.47099998407066,
         "outcome": "TN"
       },
       {
@@ -2202,7 +2202,7 @@
         "similarity": 0.17133976519107819,
         "confidence": 0.7846117131805264,
         "judge_used": false,
-        "latency_ms": 56.30249995738268,
+        "latency_ms": 35.59719992335886,
         "outcome": "TN"
       },
       {
@@ -2212,7 +2212,7 @@
         "similarity": 0.24889077246189117,
         "confidence": 0.5763872515590593,
         "judge_used": false,
-        "latency_ms": 47.66429995652288,
+        "latency_ms": 35.8426000457257,
         "outcome": "TN"
       },
       {
@@ -2222,7 +2222,7 @@
         "similarity": 0.08607245981693268,
         "confidence": 0.6056311906252032,
         "judge_used": false,
-        "latency_ms": 64.02269995305687,
+        "latency_ms": 43.39409992098808,
         "outcome": "TN"
       },
       {
@@ -2232,7 +2232,7 @@
         "similarity": 0.22036373615264893,
         "confidence": 0.6238597797899281,
         "judge_used": false,
-        "latency_ms": 53.91559994313866,
+        "latency_ms": 41.90419998485595,
         "outcome": "TN"
       },
       {
@@ -2242,7 +2242,7 @@
         "similarity": 0.04021061956882477,
         "confidence": 0.5415951891472799,
         "judge_used": false,
-        "latency_ms": 63.64800001028925,
+        "latency_ms": 44.53890002332628,
         "outcome": "TN"
       },
       {
@@ -2252,7 +2252,7 @@
         "similarity": 0.09198621660470963,
         "confidence": 0.8017334340890581,
         "judge_used": false,
-        "latency_ms": 52.28099995292723,
+        "latency_ms": 42.177299968898296,
         "outcome": "TN"
       },
       {
@@ -2262,7 +2262,7 @@
         "similarity": 0.24980896711349487,
         "confidence": 0.6989694184362264,
         "judge_used": false,
-        "latency_ms": 45.87210004683584,
+        "latency_ms": 46.61449999548495,
         "outcome": "TN"
       },
       {
@@ -2272,7 +2272,7 @@
         "similarity": 0.20690307021141052,
         "confidence": 0.7275993586026457,
         "judge_used": false,
-        "latency_ms": 50.31880002934486,
+        "latency_ms": 41.42770008184016,
         "outcome": "TN"
       },
       {
@@ -2282,7 +2282,7 @@
         "similarity": 0.15084026753902435,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 57.85469990223646,
+        "latency_ms": 42.87469992414117,
         "outcome": "TN"
       },
       {
@@ -2292,7 +2292,7 @@
         "similarity": 0.1371949315071106,
         "confidence": 0.7125562103889926,
         "judge_used": false,
-        "latency_ms": 73.22850008495152,
+        "latency_ms": 37.863300065509975,
         "outcome": "TN"
       },
       {
@@ -2302,7 +2302,7 @@
         "similarity": 0.29606732726097107,
         "confidence": 0.6993380321483137,
         "judge_used": false,
-        "latency_ms": 59.76920004468411,
+        "latency_ms": 42.916200007312,
         "outcome": "TN"
       },
       {
@@ -2312,7 +2312,7 @@
         "similarity": 0.16017794609069824,
         "confidence": 0.7977684608983,
         "judge_used": false,
-        "latency_ms": 62.961299903690815,
+        "latency_ms": 37.571200053207576,
         "outcome": "TN"
       },
       {
@@ -2322,7 +2322,7 @@
         "similarity": 0.18767616152763367,
         "confidence": 0.5001641099915238,
         "judge_used": false,
-        "latency_ms": 53.254300029948354,
+        "latency_ms": 40.73050001170486,
         "outcome": "TN"
       },
       {
@@ -2332,7 +2332,7 @@
         "similarity": 0.15275031328201294,
         "confidence": 0.9224396938056187,
         "judge_used": false,
-        "latency_ms": 64.61860006675124,
+        "latency_ms": 35.703200032003224,
         "outcome": "TN"
       },
       {
@@ -2342,7 +2342,7 @@
         "similarity": 0.4636191129684448,
         "confidence": 0.733694772793428,
         "judge_used": false,
-        "latency_ms": 39.78389990516007,
+        "latency_ms": 34.37040001153946,
         "outcome": "TN"
       },
       {
@@ -2352,7 +2352,7 @@
         "similarity": 0.19290360808372498,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 41.8299000011757,
+        "latency_ms": 30.068799969740212,
         "outcome": "TN"
       },
       {
@@ -2362,7 +2362,7 @@
         "similarity": 0.12586668133735657,
         "confidence": 0.851590663920516,
         "judge_used": false,
-        "latency_ms": 51.19240004569292,
+        "latency_ms": 36.89180000219494,
         "outcome": "TN"
       },
       {
@@ -2372,7 +2372,7 @@
         "similarity": 0.12024307996034622,
         "confidence": 0.8634941440242724,
         "judge_used": false,
-        "latency_ms": 52.39440000150353,
+        "latency_ms": 32.3243000311777,
         "outcome": "TN"
       },
       {
@@ -2382,7 +2382,7 @@
         "similarity": 0.4272455871105194,
         "confidence": 0.7562284363584815,
         "judge_used": false,
-        "latency_ms": 51.31319991778582,
+        "latency_ms": 37.53120009787381,
         "outcome": "TN"
       },
       {
@@ -2392,7 +2392,7 @@
         "similarity": 0.28704366087913513,
         "confidence": 0.7314392205046043,
         "judge_used": false,
-        "latency_ms": 52.432100055739284,
+        "latency_ms": 39.1556000104174,
         "outcome": "TN"
       },
       {
@@ -2402,7 +2402,7 @@
         "similarity": 0.2316536009311676,
         "confidence": 0.7352424271031917,
         "judge_used": false,
-        "latency_ms": 51.15339998155832,
+        "latency_ms": 42.69560007378459,
         "outcome": "TN"
       },
       {
@@ -2412,7 +2412,7 @@
         "similarity": 0.19324809312820435,
         "confidence": 0.7233448548782067,
         "judge_used": false,
-        "latency_ms": 40.58709996752441,
+        "latency_ms": 36.55209997668862,
         "outcome": "TN"
       },
       {
@@ -2422,7 +2422,7 @@
         "similarity": 0.5049608945846558,
         "confidence": 0.7951999647662362,
         "judge_used": false,
-        "latency_ms": 55.53059990052134,
+        "latency_ms": 32.148699974641204,
         "outcome": "TN"
       },
       {
@@ -2432,7 +2432,7 @@
         "similarity": 0.39453279972076416,
         "confidence": 0.6224477780395328,
         "judge_used": false,
-        "latency_ms": 50.52719998639077,
+        "latency_ms": 39.70419999677688,
         "outcome": "TN"
       },
       {
@@ -2442,7 +2442,7 @@
         "similarity": 0.2881149649620056,
         "confidence": 0.7052180852509875,
         "judge_used": false,
-        "latency_ms": 43.02460001781583,
+        "latency_ms": 36.00740002002567,
         "outcome": "TN"
       },
       {
@@ -2452,7 +2452,7 @@
         "similarity": 0.14777109026908875,
         "confidence": 0.7733256043360547,
         "judge_used": false,
-        "latency_ms": 55.041100014932454,
+        "latency_ms": 34.43050000350922,
         "outcome": "TN"
       },
       {
@@ -2462,7 +2462,7 @@
         "similarity": 0.21664617955684662,
         "confidence": 0.8325249440040374,
         "judge_used": false,
-        "latency_ms": 50.745900021865964,
+        "latency_ms": 39.95420003775507,
         "outcome": "TN"
       },
       {
@@ -2472,7 +2472,7 @@
         "similarity": 0.24328532814979553,
         "confidence": 0.7317843363250958,
         "judge_used": false,
-        "latency_ms": 60.51280000247061,
+        "latency_ms": 40.83890002220869,
         "outcome": "TN"
       },
       {
@@ -2482,7 +2482,7 @@
         "similarity": 0.5360175371170044,
         "confidence": 0.7768311118648111,
         "judge_used": false,
-        "latency_ms": 54.302699980326,
+        "latency_ms": 50.06079992745072,
         "outcome": "TN"
       },
       {
@@ -2492,7 +2492,7 @@
         "similarity": 0.35608071088790894,
         "confidence": 0.9176669456009579,
         "judge_used": false,
-        "latency_ms": 57.21030000131577,
+        "latency_ms": 54.99410000629723,
         "outcome": "TN"
       },
       {
@@ -2502,7 +2502,7 @@
         "similarity": 0.9038605093955994,
         "confidence": 0.7906912377063952,
         "judge_used": false,
-        "latency_ms": 51.1255000019446,
+        "latency_ms": 40.26809998322278,
         "outcome": "TN"
       },
       {
@@ -2512,7 +2512,7 @@
         "similarity": 0.2066504955291748,
         "confidence": 0.5755682073256072,
         "judge_used": false,
-        "latency_ms": 57.99909995403141,
+        "latency_ms": 43.82490005809814,
         "outcome": "TN"
       },
       {
@@ -2522,7 +2522,7 @@
         "similarity": 0.17475944757461548,
         "confidence": 0.7947119385764643,
         "judge_used": false,
-        "latency_ms": 54.565200000070035,
+        "latency_ms": 38.68070000316948,
         "outcome": "TN"
       },
       {
@@ -2532,7 +2532,7 @@
         "similarity": 0.2809337079524994,
         "confidence": 0.5495154549231265,
         "judge_used": false,
-        "latency_ms": 68.94759996794164,
+        "latency_ms": 52.8263000305742,
         "outcome": "TN"
       },
       {
@@ -2542,7 +2542,7 @@
         "similarity": 0.7220281958580017,
         "confidence": 0.7902238642449181,
         "judge_used": false,
-        "latency_ms": 81.60439995117486,
+        "latency_ms": 72.11680000182241,
         "outcome": "TN"
       },
       {
@@ -2552,7 +2552,7 @@
         "similarity": 0.16697397828102112,
         "confidence": 0.7873098612167239,
         "judge_used": false,
-        "latency_ms": 79.01530002709478,
+        "latency_ms": 72.72079994436353,
         "outcome": "TN"
       },
       {
@@ -2562,7 +2562,7 @@
         "similarity": 0.31578296422958374,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 68.14210000447929,
+        "latency_ms": 51.92320002242923,
         "outcome": "TN"
       },
       {
@@ -2572,7 +2572,7 @@
         "similarity": 0.2046385407447815,
         "confidence": 0.769597145205416,
         "judge_used": false,
-        "latency_ms": 66.30790000781417,
+        "latency_ms": 40.606900001876056,
         "outcome": "TN"
       },
       {
@@ -2582,7 +2582,7 @@
         "similarity": 0.503116250038147,
         "confidence": 0.8800806210542362,
         "judge_used": true,
-        "latency_ms": 15362.900299951434,
+        "latency_ms": 11596.111200051382,
         "outcome": "TN"
       },
       {
@@ -2592,7 +2592,7 @@
         "similarity": 0.21741217374801636,
         "confidence": 0.6277488065355632,
         "judge_used": false,
-        "latency_ms": 61.9590999558568,
+        "latency_ms": 34.860000014305115,
         "outcome": "TN"
       },
       {
@@ -2602,7 +2602,7 @@
         "similarity": 0.25875425338745117,
         "confidence": 0.7358883213751857,
         "judge_used": false,
-        "latency_ms": 55.65579992253333,
+        "latency_ms": 29.931799974292517,
         "outcome": "TN"
       },
       {
@@ -2612,7 +2612,7 @@
         "similarity": 0.3890279531478882,
         "confidence": 0.5106266856737917,
         "judge_used": false,
-        "latency_ms": 58.885599952191114,
+        "latency_ms": 36.49530000984669,
         "outcome": "TN"
       },
       {
@@ -2622,7 +2622,7 @@
         "similarity": 0.32746273279190063,
         "confidence": 0.6475031907313487,
         "judge_used": false,
-        "latency_ms": 69.73370001651347,
+        "latency_ms": 47.38579993136227,
         "outcome": "TN"
       },
       {
@@ -2632,7 +2632,7 @@
         "similarity": 0.17959630489349365,
         "confidence": 0.5172441585853776,
         "judge_used": false,
-        "latency_ms": 69.64030000381172,
+        "latency_ms": 39.02380005456507,
         "outcome": "TN"
       },
       {
@@ -2642,7 +2642,7 @@
         "similarity": 0.47117486596107483,
         "confidence": 0.6398338858890518,
         "judge_used": false,
-        "latency_ms": 78.82769999559969,
+        "latency_ms": 35.0266998866573,
         "outcome": "TN"
       },
       {
@@ -2652,7 +2652,7 @@
         "similarity": 1.0,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 70.53290004841983,
+        "latency_ms": 33.54179998859763,
         "outcome": "FN"
       },
       {
@@ -2662,7 +2662,7 @@
         "similarity": 0.9999999403953552,
         "confidence": 0.7998159202666396,
         "judge_used": false,
-        "latency_ms": 68.90750001184642,
+        "latency_ms": 32.57430007215589,
         "outcome": "FN"
       },
       {
@@ -2672,7 +2672,7 @@
         "similarity": 1.0,
         "confidence": 0.8235771309467141,
         "judge_used": true,
-        "latency_ms": 6374.593700049445,
+        "latency_ms": 11299.598400015384,
         "outcome": "TP"
       },
       {
@@ -2682,7 +2682,7 @@
         "similarity": 1.0000001192092896,
         "confidence": 0.7716335646056687,
         "judge_used": false,
-        "latency_ms": 45.8275000564754,
+        "latency_ms": 51.978499977849424,
         "outcome": "FN"
       },
       {
@@ -2692,7 +2692,7 @@
         "similarity": 1.0,
         "confidence": 0.8293508646626263,
         "judge_used": true,
-        "latency_ms": 6108.581400010735,
+        "latency_ms": 6525.533400010318,
         "outcome": "TP"
       },
       {
@@ -2702,7 +2702,7 @@
         "similarity": 1.0,
         "confidence": 0.7846117131805264,
         "judge_used": false,
-        "latency_ms": 104.83229998499155,
+        "latency_ms": 75.70649997796863,
         "outcome": "FN"
       },
       {
@@ -2712,7 +2712,7 @@
         "similarity": 1.0000001192092896,
         "confidence": 0.5763872515590593,
         "judge_used": false,
-        "latency_ms": 59.87420002929866,
+        "latency_ms": 43.10539993457496,
         "outcome": "FN"
       },
       {
@@ -2722,7 +2722,7 @@
         "similarity": 1.0,
         "confidence": 0.6056311906252032,
         "judge_used": false,
-        "latency_ms": 57.62139998842031,
+        "latency_ms": 61.87480001244694,
         "outcome": "FN"
       },
       {
@@ -2732,7 +2732,7 @@
         "similarity": 1.0,
         "confidence": 0.6238597797899281,
         "judge_used": false,
-        "latency_ms": 74.05260007362813,
+        "latency_ms": 46.27749999053776,
         "outcome": "FN"
       },
       {
@@ -2742,7 +2742,7 @@
         "similarity": 0.9999999403953552,
         "confidence": 0.5415951891472799,
         "judge_used": false,
-        "latency_ms": 69.60899999830872,
+        "latency_ms": 39.475199999287724,
         "outcome": "FN"
       },
       {
@@ -2752,7 +2752,7 @@
         "similarity": 1.0000001192092896,
         "confidence": 0.8017334340890581,
         "judge_used": true,
-        "latency_ms": 7007.46870005969,
+        "latency_ms": 14087.855199933983,
         "outcome": "TP"
       },
       {
@@ -2762,7 +2762,7 @@
         "similarity": 1.0,
         "confidence": 0.6989694184362264,
         "judge_used": false,
-        "latency_ms": 54.492600029334426,
+        "latency_ms": 39.81509990990162,
         "outcome": "FN"
       },
       {
@@ -2772,7 +2772,7 @@
         "similarity": 1.0,
         "confidence": 0.7275993586026457,
         "judge_used": false,
-        "latency_ms": 49.465499934740365,
+        "latency_ms": 34.48469995055348,
         "outcome": "FN"
       },
       {
@@ -2782,7 +2782,7 @@
         "similarity": 1.0000001192092896,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 53.44149994198233,
+        "latency_ms": 39.82000006362796,
         "outcome": "FN"
       },
       {
@@ -2792,7 +2792,7 @@
         "similarity": 1.0,
         "confidence": 0.7125562103889926,
         "judge_used": false,
-        "latency_ms": 60.02159998752177,
+        "latency_ms": 38.70189993176609,
         "outcome": "FN"
       },
       {
@@ -2802,7 +2802,7 @@
         "similarity": 1.0000001192092896,
         "confidence": 0.6993380321483137,
         "judge_used": false,
-        "latency_ms": 53.58049995265901,
+        "latency_ms": 39.518500096164644,
         "outcome": "FN"
       },
       {
@@ -2812,7 +2812,7 @@
         "similarity": 1.000000238418579,
         "confidence": 0.7977684608983,
         "judge_used": false,
-        "latency_ms": 52.557399962097406,
+        "latency_ms": 36.8087999522686,
         "outcome": "FN"
       },
       {
@@ -2822,7 +2822,7 @@
         "similarity": 1.0,
         "confidence": 0.5001641099915238,
         "judge_used": false,
-        "latency_ms": 46.51649994775653,
+        "latency_ms": 33.605200005695224,
         "outcome": "FN"
       },
       {
@@ -2832,7 +2832,7 @@
         "similarity": 1.0000001192092896,
         "confidence": 0.9224396938056187,
         "judge_used": false,
-        "latency_ms": 49.81560003943741,
+        "latency_ms": 32.054100069217384,
         "outcome": "TP"
       },
       {
@@ -2842,7 +2842,7 @@
         "similarity": 1.000000238418579,
         "confidence": 0.733694772793428,
         "judge_used": false,
-        "latency_ms": 48.461199970915914,
+        "latency_ms": 32.79259998816997,
         "outcome": "FN"
       },
       {
@@ -2852,7 +2852,7 @@
         "similarity": 1.0,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 45.54860002826899,
+        "latency_ms": 29.807399958372116,
         "outcome": "FN"
       },
       {
@@ -2862,7 +2862,7 @@
         "similarity": 1.0,
         "confidence": 0.851590663920516,
         "judge_used": true,
-        "latency_ms": 6030.561399995349,
+        "latency_ms": 6510.067300056107,
         "outcome": "TP"
       },
       {
@@ -2872,7 +2872,7 @@
         "similarity": 1.0000001192092896,
         "confidence": 0.8634941440242724,
         "judge_used": true,
-        "latency_ms": 6367.333799949847,
+        "latency_ms": 6453.520499984734,
         "outcome": "TP"
       },
       {
@@ -2882,7 +2882,7 @@
         "similarity": 1.0,
         "confidence": 0.7562284363584815,
         "judge_used": false,
-        "latency_ms": 44.92079990450293,
+        "latency_ms": 39.20470003504306,
         "outcome": "FN"
       },
       {
@@ -2892,7 +2892,7 @@
         "similarity": 1.000000238418579,
         "confidence": 0.7314392205046043,
         "judge_used": false,
-        "latency_ms": 40.77150009106845,
+        "latency_ms": 34.32600002270192,
         "outcome": "FN"
       },
       {
@@ -2902,7 +2902,7 @@
         "similarity": 1.0,
         "confidence": 0.7352424271031917,
         "judge_used": false,
-        "latency_ms": 55.93459994997829,
+        "latency_ms": 35.2207999676466,
         "outcome": "FN"
       },
       {
@@ -2912,7 +2912,7 @@
         "similarity": 1.0,
         "confidence": 0.7233448548782067,
         "judge_used": false,
-        "latency_ms": 50.1255999552086,
+        "latency_ms": 41.38440010137856,
         "outcome": "FN"
       },
       {
@@ -2922,7 +2922,7 @@
         "similarity": 1.0,
         "confidence": 0.7951999647662362,
         "judge_used": false,
-        "latency_ms": 43.850400019437075,
+        "latency_ms": 34.100999939255416,
         "outcome": "FN"
       },
       {
@@ -2932,7 +2932,7 @@
         "similarity": 1.0,
         "confidence": 0.6224477780395328,
         "judge_used": false,
-        "latency_ms": 53.3910000231117,
+        "latency_ms": 36.134200054220855,
         "outcome": "FN"
       },
       {
@@ -2942,7 +2942,7 @@
         "similarity": 1.0,
         "confidence": 0.7052180852509875,
         "judge_used": false,
-        "latency_ms": 56.20220000855625,
+        "latency_ms": 29.28509993944317,
         "outcome": "FN"
       },
       {
@@ -2952,7 +2952,7 @@
         "similarity": 1.0,
         "confidence": 0.7733256043360547,
         "judge_used": false,
-        "latency_ms": 44.05530006624758,
+        "latency_ms": 33.67819997947663,
         "outcome": "FN"
       },
       {
@@ -2962,7 +2962,7 @@
         "similarity": 1.0,
         "confidence": 0.8325249440040374,
         "judge_used": true,
-        "latency_ms": 6181.294500012882,
+        "latency_ms": 6379.114700015634,
         "outcome": "TP"
       },
       {
@@ -2972,7 +2972,7 @@
         "similarity": 1.0000001192092896,
         "confidence": 0.7317843363250958,
         "judge_used": false,
-        "latency_ms": 62.16410000342876,
+        "latency_ms": 37.40029991604388,
         "outcome": "FN"
       },
       {
@@ -2982,7 +2982,7 @@
         "similarity": 1.0,
         "confidence": 0.7768311118648111,
         "judge_used": false,
-        "latency_ms": 73.99379997514188,
+        "latency_ms": 35.23579996544868,
         "outcome": "FN"
       },
       {
@@ -2992,7 +2992,7 @@
         "similarity": 1.0,
         "confidence": 0.9176669456009579,
         "judge_used": false,
-        "latency_ms": 53.64210007246584,
+        "latency_ms": 32.41879993584007,
         "outcome": "TP"
       },
       {
@@ -3002,7 +3002,7 @@
         "similarity": 1.0,
         "confidence": 0.7906912377063952,
         "judge_used": false,
-        "latency_ms": 55.81159994471818,
+        "latency_ms": 34.57610006444156,
         "outcome": "FN"
       },
       {
@@ -3012,7 +3012,7 @@
         "similarity": 1.0,
         "confidence": 0.5755682073256072,
         "judge_used": false,
-        "latency_ms": 61.70439999550581,
+        "latency_ms": 30.0006999168545,
         "outcome": "FN"
       },
       {
@@ -3022,7 +3022,7 @@
         "similarity": 1.0,
         "confidence": 0.7947119385764643,
         "judge_used": false,
-        "latency_ms": 85.49319999292493,
+        "latency_ms": 31.221000012010336,
         "outcome": "FN"
       },
       {
@@ -3032,7 +3032,7 @@
         "similarity": 1.0,
         "confidence": 0.5495154549231265,
         "judge_used": false,
-        "latency_ms": 48.64119994454086,
+        "latency_ms": 36.298800026997924,
         "outcome": "FN"
       },
       {
@@ -3042,7 +3042,7 @@
         "similarity": 0.9999999403953552,
         "confidence": 0.7902238642449181,
         "judge_used": false,
-        "latency_ms": 44.93239999283105,
+        "latency_ms": 36.660099984146655,
         "outcome": "FN"
       },
       {
@@ -3052,7 +3052,7 @@
         "similarity": 0.8239899277687073,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 59.13419998250902,
+        "latency_ms": 25.568600045517087,
         "outcome": "FN"
       },
       {
@@ -3062,28 +3062,28 @@
         "similarity": 0.7783103585243225,
         "confidence": 0.8408027243268457,
         "judge_used": true,
-        "latency_ms": 6129.4385000364855,
+        "latency_ms": 9930.59300002642,
         "outcome": "TP"
       },
       {
         "id": "P8-PARA-003",
-        "decision": "REUSE",
+        "decision": "BYPASS",
         "tier": "AMBIGUOUS",
         "similarity": 0.7677688598632812,
         "confidence": 0.8821078657708409,
         "judge_used": true,
-        "latency_ms": 8563.47359996289,
-        "outcome": "TP"
+        "latency_ms": 17940.929000033066,
+        "outcome": "FN"
       },
       {
         "id": "P8-PARA-004",
-        "decision": "BYPASS",
+        "decision": "REUSE",
         "tier": "AMBIGUOUS",
         "similarity": 0.8930891156196594,
         "confidence": 0.8061321479021656,
         "judge_used": true,
-        "latency_ms": 12876.83660001494,
-        "outcome": "FN"
+        "latency_ms": 8047.095499932766,
+        "outcome": "TP"
       },
       {
         "id": "P8-PARA-005",
@@ -3092,7 +3092,7 @@
         "similarity": 0.8307718634605408,
         "confidence": 0.6931590643056191,
         "judge_used": false,
-        "latency_ms": 71.22559996787459,
+        "latency_ms": 42.020399938337505,
         "outcome": "FN"
       },
       {
@@ -3102,7 +3102,7 @@
         "similarity": 0.8264236450195312,
         "confidence": 0.7137424527260248,
         "judge_used": false,
-        "latency_ms": 43.24639996048063,
+        "latency_ms": 31.221999903209507,
         "outcome": "FN"
       },
       {
@@ -3112,7 +3112,7 @@
         "similarity": 0.8762306571006775,
         "confidence": 0.530698516761458,
         "judge_used": false,
-        "latency_ms": 48.29469998367131,
+        "latency_ms": 40.00170005019754,
         "outcome": "FN"
       },
       {
@@ -3122,7 +3122,7 @@
         "similarity": 0.6676205396652222,
         "confidence": 0.609767116601966,
         "judge_used": false,
-        "latency_ms": 52.378199994564056,
+        "latency_ms": 37.498699966818094,
         "outcome": "FN"
       },
       {
@@ -3132,7 +3132,7 @@
         "similarity": 0.6468093991279602,
         "confidence": 0.7924735215214591,
         "judge_used": false,
-        "latency_ms": 49.635899951681495,
+        "latency_ms": 35.50969995558262,
         "outcome": "FN"
       },
       {
@@ -3142,7 +3142,7 @@
         "similarity": 0.8291898965835571,
         "confidence": 0.5168538256508322,
         "judge_used": false,
-        "latency_ms": 41.6825000429526,
+        "latency_ms": 35.00140004325658,
         "outcome": "FN"
       },
       {
@@ -3152,7 +3152,7 @@
         "similarity": 0.8988794088363647,
         "confidence": 0.8715643899550182,
         "judge_used": true,
-        "latency_ms": 7333.972400054336,
+        "latency_ms": 10290.497099980712,
         "outcome": "TP"
       },
       {
@@ -3162,7 +3162,7 @@
         "similarity": 0.9769669771194458,
         "confidence": 0.6776124025605863,
         "judge_used": false,
-        "latency_ms": 53.350099944509566,
+        "latency_ms": 35.39959993213415,
         "outcome": "FN"
       },
       {
@@ -3172,7 +3172,7 @@
         "similarity": 0.734105110168457,
         "confidence": 0.7552686709982986,
         "judge_used": false,
-        "latency_ms": 60.745000024326146,
+        "latency_ms": 34.100999939255416,
         "outcome": "FN"
       },
       {
@@ -3182,7 +3182,7 @@
         "similarity": 0.7513604164123535,
         "confidence": 0.7773963773734558,
         "judge_used": false,
-        "latency_ms": 73.9019000902772,
+        "latency_ms": 42.895999969914556,
         "outcome": "FN"
       },
       {
@@ -3192,7 +3192,7 @@
         "similarity": 0.6501076221466064,
         "confidence": 0.7291121692820464,
         "judge_used": false,
-        "latency_ms": 53.33820008672774,
+        "latency_ms": 40.469500003382564,
         "outcome": "FN"
       },
       {
@@ -3202,7 +3202,7 @@
         "similarity": 0.9144264459609985,
         "confidence": 0.6186891540252271,
         "judge_used": false,
-        "latency_ms": 53.110399981960654,
+        "latency_ms": 37.956199957989156,
         "outcome": "FN"
       },
       {
@@ -3212,7 +3212,7 @@
         "similarity": 0.8671759366989136,
         "confidence": 0.7346443596378145,
         "judge_used": false,
-        "latency_ms": 49.47389999870211,
+        "latency_ms": 43.31049998290837,
         "outcome": "FN"
       },
       {
@@ -3222,7 +3222,7 @@
         "similarity": 0.9294115304946899,
         "confidence": 0.6414666603179204,
         "judge_used": false,
-        "latency_ms": 61.54870009049773,
+        "latency_ms": 37.61240001767874,
         "outcome": "FN"
       },
       {
@@ -3232,7 +3232,7 @@
         "similarity": 0.9957722425460815,
         "confidence": 0.8970037517805968,
         "judge_used": true,
-        "latency_ms": 6665.103200008161,
+        "latency_ms": 7711.653399979696,
         "outcome": "TP"
       },
       {
@@ -3242,7 +3242,7 @@
         "similarity": 0.6698267459869385,
         "confidence": 0.8463004637056203,
         "judge_used": true,
-        "latency_ms": 9257.23929994274,
+        "latency_ms": 7482.4423000682145,
         "outcome": "FN"
       },
       {
@@ -3252,7 +3252,7 @@
         "similarity": 0.9339301586151123,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 94.02320010121912,
+        "latency_ms": 218.17329991608858,
         "outcome": "FN"
       },
       {
@@ -3262,18 +3262,18 @@
         "similarity": 0.5804569721221924,
         "confidence": 0.8410075683389581,
         "judge_used": true,
-        "latency_ms": 6832.363599911332,
+        "latency_ms": 12193.86180001311,
         "outcome": "FN"
       },
       {
         "id": "P8-PARA-023",
-        "decision": "BYPASS",
+        "decision": "REUSE",
         "tier": "AMBIGUOUS",
         "similarity": 0.9841223359107971,
         "confidence": 0.8797559190192898,
         "judge_used": true,
-        "latency_ms": 19962.946699932218,
-        "outcome": "FN"
+        "latency_ms": 6874.29379997775,
+        "outcome": "TP"
       },
       {
         "id": "P8-PARA-024",
@@ -3282,7 +3282,7 @@
         "similarity": 0.7836676836013794,
         "confidence": 0.7939326339635694,
         "judge_used": false,
-        "latency_ms": 53.16550005227327,
+        "latency_ms": 51.54500005301088,
         "outcome": "FN"
       },
       {
@@ -3292,7 +3292,7 @@
         "similarity": 0.9641250371932983,
         "confidence": 0.7224390228779336,
         "judge_used": false,
-        "latency_ms": 37.60330006480217,
+        "latency_ms": 40.52030004095286,
         "outcome": "FN"
       },
       {
@@ -3302,7 +3302,7 @@
         "similarity": 0.9831632971763611,
         "confidence": 0.5240118372044915,
         "judge_used": false,
-        "latency_ms": 52.96709993854165,
+        "latency_ms": 44.95919996406883,
         "outcome": "FN"
       },
       {
@@ -3312,7 +3312,7 @@
         "similarity": 0.8402149081230164,
         "confidence": 0.601878803287285,
         "judge_used": false,
-        "latency_ms": 41.724400012753904,
+        "latency_ms": 51.66599992662668,
         "outcome": "FN"
       },
       {
@@ -3322,7 +3322,7 @@
         "similarity": 0.9882386922836304,
         "confidence": 0.7913580379313562,
         "judge_used": false,
-        "latency_ms": 41.054400033317506,
+        "latency_ms": 37.43740008212626,
         "outcome": "FN"
       },
       {
@@ -3332,7 +3332,7 @@
         "similarity": 0.6298757791519165,
         "confidence": 0.5886913540918943,
         "judge_used": false,
-        "latency_ms": 42.19109995756298,
+        "latency_ms": 48.17690001800656,
         "outcome": "FN"
       },
       {
@@ -3342,7 +3342,7 @@
         "similarity": 0.8927954435348511,
         "confidence": 0.761614233235702,
         "judge_used": false,
-        "latency_ms": 38.525299984030426,
+        "latency_ms": 41.3391999900341,
         "outcome": "FN"
       },
       {
@@ -3352,7 +3352,7 @@
         "similarity": 0.9949349761009216,
         "confidence": 0.7832263775530774,
         "judge_used": false,
-        "latency_ms": 36.572700017131865,
+        "latency_ms": 40.89479998219758,
         "outcome": "FN"
       },
       {
@@ -3362,7 +3362,7 @@
         "similarity": 0.9490664005279541,
         "confidence": 0.8996111660475768,
         "judge_used": true,
-        "latency_ms": 17991.748499916866,
+        "latency_ms": 6826.572899939492,
         "outcome": "FN"
       },
       {
@@ -3372,7 +3372,7 @@
         "similarity": 0.969190776348114,
         "confidence": 0.7261844809478808,
         "judge_used": false,
-        "latency_ms": 42.703800019808114,
+        "latency_ms": 52.89599997922778,
         "outcome": "FN"
       },
       {
@@ -3382,7 +3382,7 @@
         "similarity": 0.9461160898208618,
         "confidence": 0.7880077651881189,
         "judge_used": false,
-        "latency_ms": 32.640399993397295,
+        "latency_ms": 57.96569993253797,
         "outcome": "FN"
       },
       {
@@ -3392,18 +3392,18 @@
         "similarity": 0.8273820877075195,
         "confidence": 0.8109122379103526,
         "judge_used": true,
-        "latency_ms": 6295.315399998799,
+        "latency_ms": 7380.917300004512,
         "outcome": "TP"
       },
       {
         "id": "P8-PARA-036",
-        "decision": "BYPASS",
+        "decision": "REUSE",
         "tier": "AMBIGUOUS",
-        "similarity": 0.8858639597892761,
+        "similarity": 0.8515865802764893,
         "confidence": 0.8055173725549971,
         "judge_used": true,
-        "latency_ms": 9359.211400034837,
-        "outcome": "FN"
+        "latency_ms": 7089.642700040713,
+        "outcome": "TP"
       },
       {
         "id": "P8-PARA-037",
@@ -3412,7 +3412,7 @@
         "similarity": 0.7703489661216736,
         "confidence": 0.6122023031049667,
         "judge_used": false,
-        "latency_ms": 48.80879994016141,
+        "latency_ms": 37.26360003929585,
         "outcome": "FN"
       },
       {
@@ -3422,7 +3422,7 @@
         "similarity": 0.9792375564575195,
         "confidence": 0.7578283439187459,
         "judge_used": false,
-        "latency_ms": 47.899400000460446,
+        "latency_ms": 39.3663999857381,
         "outcome": "FN"
       },
       {
@@ -3432,7 +3432,7 @@
         "similarity": 0.7735298871994019,
         "confidence": 0.7508483358345943,
         "judge_used": false,
-        "latency_ms": 41.24170006252825,
+        "latency_ms": 32.14009990915656,
         "outcome": "FN"
       },
       {
@@ -3442,7 +3442,7 @@
         "similarity": 0.8386639356613159,
         "confidence": 0.8314181048218956,
         "judge_used": true,
-        "latency_ms": 7286.458000075072,
+        "latency_ms": 8365.175599930808,
         "outcome": "FN"
       },
       {
@@ -3452,7 +3452,7 @@
         "similarity": 0.11785779893398285,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 44.647500035353005,
+        "latency_ms": 40.37980001885444,
         "outcome": "TN"
       },
       {
@@ -3462,7 +3462,7 @@
         "similarity": 0.9920831918716431,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 52.37619997933507,
+        "latency_ms": 42.59149997960776,
         "outcome": "FP"
       },
       {
@@ -3472,7 +3472,7 @@
         "similarity": 0.37351924180984497,
         "confidence": 0.6344067927028707,
         "judge_used": false,
-        "latency_ms": 46.8363999389112,
+        "latency_ms": 33.77580002415925,
         "outcome": "TN"
       },
       {
@@ -3482,7 +3482,7 @@
         "similarity": 0.9831726551055908,
         "confidence": 0.6344067927028707,
         "judge_used": false,
-        "latency_ms": 45.82939995452762,
+        "latency_ms": 33.88809994794428,
         "outcome": "TN"
       },
       {
@@ -3492,7 +3492,7 @@
         "similarity": 0.147478386759758,
         "confidence": 0.7143876904371476,
         "judge_used": false,
-        "latency_ms": 50.71859993040562,
+        "latency_ms": 35.350200021639466,
         "outcome": "TN"
       },
       {
@@ -3502,7 +3502,7 @@
         "similarity": 0.9477077722549438,
         "confidence": 0.7193023820163085,
         "judge_used": false,
-        "latency_ms": 45.773199992254376,
+        "latency_ms": 34.98649992980063,
         "outcome": "TN"
       },
       {
@@ -3512,7 +3512,7 @@
         "similarity": 0.1321428120136261,
         "confidence": 0.7778196384491924,
         "judge_used": false,
-        "latency_ms": 50.57950003538281,
+        "latency_ms": 39.47969991713762,
         "outcome": "TN"
       },
       {
@@ -3522,7 +3522,7 @@
         "similarity": 0.7565947771072388,
         "confidence": 0.7750285746877495,
         "judge_used": false,
-        "latency_ms": 43.71739993803203,
+        "latency_ms": 36.664600018411875,
         "outcome": "TN"
       },
       {
@@ -3532,7 +3532,7 @@
         "similarity": 0.39675742387771606,
         "confidence": 0.7721295193202503,
         "judge_used": false,
-        "latency_ms": 40.41640006471425,
+        "latency_ms": 40.621699998155236,
         "outcome": "TN"
       },
       {
@@ -3542,7 +3542,7 @@
         "similarity": 0.9920333623886108,
         "confidence": 0.7710548084442026,
         "judge_used": false,
-        "latency_ms": 45.11589999310672,
+        "latency_ms": 35.159199964255095,
         "outcome": "TN"
       },
       {
@@ -3552,7 +3552,7 @@
         "similarity": 0.1881200224161148,
         "confidence": 0.7630346966467668,
         "judge_used": false,
-        "latency_ms": 52.89119994267821,
+        "latency_ms": 44.05440005939454,
         "outcome": "TN"
       },
       {
@@ -3562,7 +3562,7 @@
         "similarity": 0.9527576565742493,
         "confidence": 0.768172802586846,
         "judge_used": false,
-        "latency_ms": 45.11489998549223,
+        "latency_ms": 41.02889995556325,
         "outcome": "TN"
       },
       {
@@ -3572,7 +3572,7 @@
         "similarity": 0.29597145318984985,
         "confidence": 0.755545898592009,
         "judge_used": false,
-        "latency_ms": 45.89910001959652,
+        "latency_ms": 36.653999937698245,
         "outcome": "TN"
       },
       {
@@ -3582,7 +3582,7 @@
         "similarity": 0.9667269587516785,
         "confidence": 0.7483187193813743,
         "judge_used": false,
-        "latency_ms": 41.29109997302294,
+        "latency_ms": 38.43870002310723,
         "outcome": "TN"
       },
       {
@@ -3592,7 +3592,7 @@
         "similarity": 0.31153303384780884,
         "confidence": 0.6931082129418268,
         "judge_used": false,
-        "latency_ms": 43.497600010596216,
+        "latency_ms": 34.07880000304431,
         "outcome": "TN"
       },
       {
@@ -3602,7 +3602,7 @@
         "similarity": 0.9939698576927185,
         "confidence": 0.6960444993806589,
         "judge_used": false,
-        "latency_ms": 35.05300008691847,
+        "latency_ms": 41.50569997727871,
         "outcome": "TN"
       },
       {
@@ -3612,7 +3612,7 @@
         "similarity": 0.18625524640083313,
         "confidence": 0.5526703470900105,
         "judge_used": false,
-        "latency_ms": 35.756500088609755,
+        "latency_ms": 35.48249998129904,
         "outcome": "TN"
       },
       {
@@ -3622,7 +3622,7 @@
         "similarity": 0.9845960736274719,
         "confidence": 0.6098306688682631,
         "judge_used": false,
-        "latency_ms": 32.363299978896976,
+        "latency_ms": 31.95970004890114,
         "outcome": "TN"
       },
       {
@@ -3632,7 +3632,7 @@
         "similarity": 0.1445320099592209,
         "confidence": 0.6959105512165846,
         "judge_used": false,
-        "latency_ms": 36.75890003796667,
+        "latency_ms": 33.7019000435248,
         "outcome": "TN"
       },
       {
@@ -3642,7 +3642,7 @@
         "similarity": 0.9686887264251709,
         "confidence": 0.6959105512165846,
         "judge_used": false,
-        "latency_ms": 36.54040000401437,
+        "latency_ms": 35.79999995417893,
         "outcome": "TN"
       },
       {
@@ -3652,7 +3652,7 @@
         "similarity": 0.2617639899253845,
         "confidence": 0.7140849551867781,
         "judge_used": false,
-        "latency_ms": 54.51679998077452,
+        "latency_ms": 39.595199981704354,
         "outcome": "TN"
       },
       {
@@ -3662,7 +3662,7 @@
         "similarity": 0.9759640693664551,
         "confidence": 0.7033504154104364,
         "judge_used": false,
-        "latency_ms": 48.29099995549768,
+        "latency_ms": 41.00899992045015,
         "outcome": "TN"
       },
       {
@@ -3672,7 +3672,7 @@
         "similarity": 0.26840800046920776,
         "confidence": 0.6334079570708736,
         "judge_used": false,
-        "latency_ms": 46.4784000068903,
+        "latency_ms": 36.76729998551309,
         "outcome": "TN"
       },
       {
@@ -3682,7 +3682,7 @@
         "similarity": 0.9866827726364136,
         "confidence": 0.6402698416941166,
         "judge_used": false,
-        "latency_ms": 44.205899932421744,
+        "latency_ms": 39.26570003386587,
         "outcome": "TN"
       },
       {
@@ -3692,7 +3692,7 @@
         "similarity": 0.11575309187173843,
         "confidence": 0.722157330887918,
         "judge_used": false,
-        "latency_ms": 45.566700049676,
+        "latency_ms": 38.22079999372363,
         "outcome": "TN"
       },
       {
@@ -3702,7 +3702,7 @@
         "similarity": 0.9895205497741699,
         "confidence": 0.7146478690539948,
         "judge_used": false,
-        "latency_ms": 48.48999995738268,
+        "latency_ms": 37.19689999707043,
         "outcome": "TN"
       },
       {
@@ -3712,7 +3712,7 @@
         "similarity": 0.3773609399795532,
         "confidence": 0.7329778331674144,
         "judge_used": false,
-        "latency_ms": 44.53690000809729,
+        "latency_ms": 31.56379994470626,
         "outcome": "TN"
       },
       {
@@ -3722,7 +3722,7 @@
         "similarity": 0.9532495141029358,
         "confidence": 0.741427298615654,
         "judge_used": false,
-        "latency_ms": 40.72289995383471,
+        "latency_ms": 36.36989998631179,
         "outcome": "TN"
       },
       {
@@ -3732,7 +3732,7 @@
         "similarity": 0.27044233679771423,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 40.924199973233044,
+        "latency_ms": 28.43469998333603,
         "outcome": "TN"
       },
       {
@@ -3742,7 +3742,7 @@
         "similarity": 0.9500923156738281,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 32.123300014063716,
+        "latency_ms": 29.991599963977933,
         "outcome": "FP"
       },
       {
@@ -3752,7 +3752,7 @@
         "similarity": 0.16140587627887726,
         "confidence": 0.753918629139077,
         "judge_used": false,
-        "latency_ms": 47.44539991952479,
+        "latency_ms": 31.853700056672096,
         "outcome": "TN"
       },
       {
@@ -3762,7 +3762,7 @@
         "similarity": 0.9836330413818359,
         "confidence": 0.753908168643228,
         "judge_used": false,
-        "latency_ms": 49.25839998759329,
+        "latency_ms": 39.579000091180205,
         "outcome": "TN"
       },
       {
@@ -3772,7 +3772,7 @@
         "similarity": 0.2779376804828644,
         "confidence": 0.743623002845266,
         "judge_used": false,
-        "latency_ms": 41.14359989762306,
+        "latency_ms": 34.812700003385544,
         "outcome": "TN"
       },
       {
@@ -3782,7 +3782,7 @@
         "similarity": 0.9649161100387573,
         "confidence": 0.7662746805244071,
         "judge_used": false,
-        "latency_ms": 45.786900096572936,
+        "latency_ms": 35.15809995587915,
         "outcome": "TN"
       },
       {
@@ -3792,7 +3792,7 @@
         "similarity": 0.2941201329231262,
         "confidence": 0.7051908444033207,
         "judge_used": false,
-        "latency_ms": 42.42840001825243,
+        "latency_ms": 90.23950004484504,
         "outcome": "TN"
       },
       {
@@ -3802,7 +3802,7 @@
         "similarity": 0.9676289558410645,
         "confidence": 0.6879832235645584,
         "judge_used": false,
-        "latency_ms": 42.77519998140633,
+        "latency_ms": 72.23799999337643,
         "outcome": "TN"
       },
       {
@@ -3812,7 +3812,7 @@
         "similarity": 0.2211349457502365,
         "confidence": 0.7920102833499398,
         "judge_used": false,
-        "latency_ms": 46.27710010390729,
+        "latency_ms": 62.327399966306984,
         "outcome": "TN"
       },
       {
@@ -3822,7 +3822,7 @@
         "similarity": 0.9341713190078735,
         "confidence": 0.8072641733315155,
         "judge_used": true,
-        "latency_ms": 8923.636300023645,
+        "latency_ms": 12907.32380002737,
         "outcome": "TN"
       },
       {
@@ -3832,7 +3832,7 @@
         "similarity": 0.23225656151771545,
         "confidence": 0.581433545524964,
         "judge_used": false,
-        "latency_ms": 44.3797999760136,
+        "latency_ms": 38.245400064624846,
         "outcome": "TN"
       },
       {
@@ -3842,7 +3842,7 @@
         "similarity": 0.9663457274436951,
         "confidence": 0.6015289951239988,
         "judge_used": false,
-        "latency_ms": 38.89800002798438,
+        "latency_ms": 38.58370007947087,
         "outcome": "TN"
       },
       {
@@ -3852,7 +3852,7 @@
         "similarity": 0.23591348528862,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 40.52479995880276,
+        "latency_ms": 27.82170008867979,
         "outcome": "TN"
       },
       {
@@ -3862,7 +3862,7 @@
         "similarity": 0.9926308393478394,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 40.86459998507053,
+        "latency_ms": 35.1041000103578,
         "outcome": "TN"
       },
       {
@@ -3872,7 +3872,7 @@
         "similarity": 0.3847397565841675,
         "confidence": 0.7244986549344081,
         "judge_used": false,
-        "latency_ms": 47.06789995543659,
+        "latency_ms": 36.79819998797029,
         "outcome": "TN"
       },
       {
@@ -3882,7 +3882,7 @@
         "similarity": 0.9737682342529297,
         "confidence": 0.769027320429996,
         "judge_used": false,
-        "latency_ms": 41.719699976965785,
+        "latency_ms": 35.03000002820045,
         "outcome": "TN"
       },
       {
@@ -3892,7 +3892,7 @@
         "similarity": 0.252746045589447,
         "confidence": 0.7834113833678352,
         "judge_used": false,
-        "latency_ms": 47.677300055511296,
+        "latency_ms": 43.065400095656514,
         "outcome": "TN"
       },
       {
@@ -3902,7 +3902,7 @@
         "similarity": 0.8837282657623291,
         "confidence": 0.7701963510286639,
         "judge_used": false,
-        "latency_ms": 50.29869999270886,
+        "latency_ms": 42.27879992686212,
         "outcome": "TN"
       },
       {
@@ -3912,7 +3912,7 @@
         "similarity": 0.2605563700199127,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 41.11409990582615,
+        "latency_ms": 44.593799975700676,
         "outcome": "TN"
       },
       {
@@ -3922,7 +3922,7 @@
         "similarity": 0.8808416724205017,
         "confidence": 1.0,
         "judge_used": true,
-        "latency_ms": 8023.8506000023335,
+        "latency_ms": 10371.563900029287,
         "outcome": "TN"
       },
       {
@@ -3932,7 +3932,7 @@
         "similarity": 0.17787189781665802,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 38.90520008280873,
+        "latency_ms": 28.273000032640994,
         "outcome": "TN"
       },
       {
@@ -3942,7 +3942,7 @@
         "similarity": 0.9738885164260864,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 45.788299990817904,
+        "latency_ms": 27.226699981838465,
         "outcome": "FP"
       },
       {
@@ -3952,7 +3952,7 @@
         "similarity": 0.23421061038970947,
         "confidence": 0.7015090589480921,
         "judge_used": false,
-        "latency_ms": 53.0062000034377,
+        "latency_ms": 45.148100005462766,
         "outcome": "TN"
       },
       {
@@ -3962,7 +3962,7 @@
         "similarity": 0.9926528334617615,
         "confidence": 0.7038534150779394,
         "judge_used": false,
-        "latency_ms": 49.30129996500909,
+        "latency_ms": 35.80720000900328,
         "outcome": "TN"
       },
       {
@@ -3972,7 +3972,7 @@
         "similarity": 0.2520887851715088,
         "confidence": 0.7074278233244876,
         "judge_used": false,
-        "latency_ms": 66.15139998029917,
+        "latency_ms": 37.40320005454123,
         "outcome": "TN"
       },
       {
@@ -3982,7 +3982,7 @@
         "similarity": 0.9875147342681885,
         "confidence": 0.7074278233244876,
         "judge_used": false,
-        "latency_ms": 94.8857000330463,
+        "latency_ms": 34.16609996929765,
         "outcome": "TN"
       },
       {
@@ -3992,7 +3992,7 @@
         "similarity": 0.3535393476486206,
         "confidence": 0.7358467417350107,
         "judge_used": false,
-        "latency_ms": 83.7150999577716,
+        "latency_ms": 32.819799962453544,
         "outcome": "TN"
       },
       {
@@ -4002,7 +4002,7 @@
         "similarity": 0.9840964078903198,
         "confidence": 0.728132746460368,
         "judge_used": false,
-        "latency_ms": 89.99939996283501,
+        "latency_ms": 35.05800000857562,
         "outcome": "TN"
       },
       {
@@ -4012,7 +4012,7 @@
         "similarity": 0.38362956047058105,
         "confidence": 0.6733154707458617,
         "judge_used": false,
-        "latency_ms": 91.39960003085434,
+        "latency_ms": 32.93009998742491,
         "outcome": "TN"
       },
       {
@@ -4022,7 +4022,7 @@
         "similarity": 0.9796421527862549,
         "confidence": 0.6752877577727496,
         "judge_used": false,
-        "latency_ms": 72.56309990771115,
+        "latency_ms": 33.38919999077916,
         "outcome": "TN"
       },
       {
@@ -4032,7 +4032,7 @@
         "similarity": 0.32639557123184204,
         "confidence": 0.715899715830669,
         "judge_used": false,
-        "latency_ms": 110.60610006097704,
+        "latency_ms": 32.62469999026507,
         "outcome": "TN"
       },
       {
@@ -4042,7 +4042,7 @@
         "similarity": 0.9651962518692017,
         "confidence": 0.7079817028270108,
         "judge_used": false,
-        "latency_ms": 71.5343999909237,
+        "latency_ms": 33.4030999802053,
         "outcome": "TN"
       },
       {
@@ -4052,7 +4052,7 @@
         "similarity": 0.14865335822105408,
         "confidence": 0.56286786765783,
         "judge_used": false,
-        "latency_ms": 56.43780005630106,
+        "latency_ms": 26.534199947491288,
         "outcome": "TN"
       },
       {
@@ -4062,7 +4062,7 @@
         "similarity": 0.1722748577594757,
         "confidence": 0.7744473446719456,
         "judge_used": false,
-        "latency_ms": 48.81000006571412,
+        "latency_ms": 28.109399951063097,
         "outcome": "TN"
       },
       {
@@ -4072,7 +4072,7 @@
         "similarity": 0.23386503756046295,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 27.001299895346165,
+        "latency_ms": 25.866299984045327,
         "outcome": "TN"
       },
       {
@@ -4082,7 +4082,7 @@
         "similarity": 0.2311229407787323,
         "confidence": 0.7551573007596935,
         "judge_used": false,
-        "latency_ms": 31.36400005314499,
+        "latency_ms": 24.64779990259558,
         "outcome": "TN"
       },
       {
@@ -4092,7 +4092,7 @@
         "similarity": 0.276049941778183,
         "confidence": 0.5797617047766455,
         "judge_used": false,
-        "latency_ms": 51.717599970288575,
+        "latency_ms": 33.53859996423125,
         "outcome": "TN"
       },
       {
@@ -4102,7 +4102,7 @@
         "similarity": 0.20405173301696777,
         "confidence": 0.6466525082815512,
         "judge_used": false,
-        "latency_ms": 46.915599959902465,
+        "latency_ms": 23.94560002721846,
         "outcome": "TN"
       },
       {
@@ -4112,7 +4112,7 @@
         "similarity": 0.27082952857017517,
         "confidence": 0.636818196309817,
         "judge_used": false,
-        "latency_ms": 50.30900007113814,
+        "latency_ms": 26.375799905508757,
         "outcome": "TN"
       },
       {
@@ -4122,7 +4122,7 @@
         "similarity": 0.21093052625656128,
         "confidence": 0.8316029903965496,
         "judge_used": false,
-        "latency_ms": 50.96560006495565,
+        "latency_ms": 30.123500037007034,
         "outcome": "TN"
       },
       {
@@ -4132,7 +4132,7 @@
         "similarity": 0.2632805109024048,
         "confidence": 0.578587505516441,
         "judge_used": false,
-        "latency_ms": 39.91719998884946,
+        "latency_ms": 26.810499955900013,
         "outcome": "TN"
       },
       {
@@ -4142,7 +4142,7 @@
         "similarity": 0.6414334774017334,
         "confidence": 1.0,
         "judge_used": false,
-        "latency_ms": 51.87529989052564,
+        "latency_ms": 21.468800026923418,
         "outcome": "TN"
       },
       {
@@ -4152,7 +4152,7 @@
         "similarity": 0.2920915186405182,
         "confidence": 0.5937954086351631,
         "judge_used": false,
-        "latency_ms": 49.743000068701804,
+        "latency_ms": 28.412300045602024,
         "outcome": "TN"
       },
       {
@@ -4162,7 +4162,7 @@
         "similarity": 0.3165639042854309,
         "confidence": 0.5959963671440527,
         "judge_used": false,
-        "latency_ms": 41.72800004016608,
+        "latency_ms": 27.498099952936172,
         "outcome": "TN"
       },
       {
@@ -4172,7 +4172,7 @@
         "similarity": 0.16653776168823242,
         "confidence": 0.5543141098483402,
         "judge_used": false,
-        "latency_ms": 34.51070003211498,
+        "latency_ms": 25.591299985535443,
         "outcome": "TN"
       },
       {
@@ -4182,7 +4182,7 @@
         "similarity": 0.368591845035553,
         "confidence": 0.7175670783091024,
         "judge_used": false,
-        "latency_ms": 50.480399979278445,
+        "latency_ms": 31.322899973019958,
         "outcome": "TN"
       },
       {
@@ -4192,7 +4192,7 @@
         "similarity": 0.32227030396461487,
         "confidence": 0.5486323418298,
         "judge_used": false,
-        "latency_ms": 42.33289998956025,
+        "latency_ms": 30.08850000333041,
         "outcome": "TN"
       },
       {
@@ -4202,7 +4202,7 @@
         "similarity": 0.2118530124425888,
         "confidence": 0.736374687595516,
         "judge_used": false,
-        "latency_ms": 52.53169999923557,
+        "latency_ms": 27.37869997508824,
         "outcome": "TN"
       },
       {
@@ -4212,7 +4212,7 @@
         "similarity": 0.23926851153373718,
         "confidence": 0.7825858800752304,
         "judge_used": false,
-        "latency_ms": 47.1471999771893,
+        "latency_ms": 24.843199993483722,
         "outcome": "TN"
       },
       {
@@ -4222,7 +4222,7 @@
         "similarity": 0.14085647463798523,
         "confidence": 0.6514013842163218,
         "judge_used": false,
-        "latency_ms": 47.36199998296797,
+        "latency_ms": 26.316999923437834,
         "outcome": "TN"
       },
       {
@@ -4232,7 +4232,7 @@
         "similarity": 0.18033352494239807,
         "confidence": 0.548953401168355,
         "judge_used": false,
-        "latency_ms": 50.52589997649193,
+        "latency_ms": 22.457299986854196,
         "outcome": "TN"
       },
       {
@@ -4242,7 +4242,7 @@
         "similarity": 0.22981129586696625,
         "confidence": 0.7612048923073934,
         "judge_used": false,
-        "latency_ms": 47.48429998289794,
+        "latency_ms": 24.56800010986626,
         "outcome": "TN"
       },
       {
@@ -4252,7 +4252,7 @@
         "similarity": 0.23815025389194489,
         "confidence": 0.7658017839074363,
         "judge_used": false,
-        "latency_ms": 48.1017999118194,
+        "latency_ms": 23.73870008159429,
         "outcome": "TN"
       },
       {
@@ -4262,7 +4262,7 @@
         "similarity": 0.27468934655189514,
         "confidence": 0.560095111212465,
         "judge_used": false,
-        "latency_ms": 43.24250004719943,
+        "latency_ms": 24.418900022283196,
         "outcome": "TN"
       },
       {
@@ -4272,7 +4272,7 @@
         "similarity": 0.19366773962974548,
         "confidence": 0.6836977914184648,
         "judge_used": false,
-        "latency_ms": 41.48480005096644,
+        "latency_ms": 22.73809991311282,
         "outcome": "TN"
       },
       {
@@ -4282,7 +4282,7 @@
         "similarity": 0.4147142171859741,
         "confidence": 0.6923775243873224,
         "judge_used": false,
-        "latency_ms": 42.79940004926175,
+        "latency_ms": 26.438600034452975,
         "outcome": "TN"
       },
       {
@@ -4292,7 +4292,7 @@
         "similarity": 0.3684622645378113,
         "confidence": 0.6235998878095411,
         "judge_used": false,
-        "latency_ms": 52.409399999305606,
+        "latency_ms": 25.690199923701584,
         "outcome": "TN"
       },
       {
@@ -4302,7 +4302,7 @@
         "similarity": 0.35963642597198486,
         "confidence": 0.7270090382630836,
         "judge_used": false,
-        "latency_ms": 62.38170003052801,
+        "latency_ms": 32.84839994739741,
         "outcome": "TN"
       },
       {
@@ -4312,7 +4312,7 @@
         "similarity": 0.2619938254356384,
         "confidence": 0.6946289020158907,
         "judge_used": false,
-        "latency_ms": 47.289000009186566,
+        "latency_ms": 21.552399965003133,
         "outcome": "TN"
       },
       {
@@ -4322,7 +4322,7 @@
         "similarity": 0.28605222702026367,
         "confidence": 0.7017060426584953,
         "judge_used": false,
-        "latency_ms": 31.09140007290989,
+        "latency_ms": 25.909899966791272,
         "outcome": "TN"
       },
       {
@@ -4332,7 +4332,7 @@
         "similarity": 0.21277689933776855,
         "confidence": 0.6472616363033392,
         "judge_used": false,
-        "latency_ms": 32.15530002489686,
+        "latency_ms": 26.61709999665618,
         "outcome": "TN"
       },
       {
@@ -4342,7 +4342,7 @@
         "similarity": 0.2875065207481384,
         "confidence": 0.7133283280021321,
         "judge_used": false,
-        "latency_ms": 45.05529999732971,
+        "latency_ms": 21.934099961072206,
         "outcome": "TN"
       },
       {
@@ -4352,7 +4352,7 @@
         "similarity": 0.2079823762178421,
         "confidence": 0.7219799733793746,
         "judge_used": false,
-        "latency_ms": 55.55000004824251,
+        "latency_ms": 30.251599964685738,
         "outcome": "TN"
       },
       {
@@ -4362,7 +4362,7 @@
         "similarity": 0.2401599884033203,
         "confidence": 0.6643799343733741,
         "judge_used": false,
-        "latency_ms": 48.702299944125116,
+        "latency_ms": 29.152999981306493,
         "outcome": "TN"
       },
       {
@@ -4372,7 +4372,7 @@
         "similarity": 0.1362997144460678,
         "confidence": 0.7835039177293323,
         "judge_used": false,
-        "latency_ms": 43.61870000138879,
+        "latency_ms": 27.641699998639524,
         "outcome": "TN"
       },
       {
@@ -4382,7 +4382,7 @@
         "similarity": 0.20062761008739471,
         "confidence": 0.7660514244879578,
         "judge_used": false,
-        "latency_ms": 49.67510001733899,
+        "latency_ms": 28.76120002474636,
         "outcome": "TN"
       },
       {
@@ -4392,7 +4392,7 @@
         "similarity": 0.16825498640537262,
         "confidence": 0.706148365840449,
         "judge_used": false,
-        "latency_ms": 36.850000033155084,
+        "latency_ms": 24.38099996652454,
         "outcome": "TN"
       },
       {
@@ -4402,7 +4402,7 @@
         "similarity": 0.256032258272171,
         "confidence": 0.8461513136690731,
         "judge_used": false,
-        "latency_ms": 31.479199999012053,
+        "latency_ms": 25.853300001472235,
         "outcome": "TN"
       },
       {
@@ -4412,7 +4412,7 @@
         "similarity": 0.335316002368927,
         "confidence": 0.6644481398601276,
         "judge_used": false,
-        "latency_ms": 48.49710001144558,
+        "latency_ms": 21.470300038345158,
         "outcome": "TN"
       },
       {
@@ -4422,7 +4422,7 @@
         "similarity": 0.23648475110530853,
         "confidence": 0.5134821997113086,
         "judge_used": false,
-        "latency_ms": 47.16049996204674,
+        "latency_ms": 24.580599972978234,
         "outcome": "TN"
       },
       {
@@ -4432,7 +4432,7 @@
         "similarity": 0.2938123047351837,
         "confidence": 0.6369091236030673,
         "judge_used": false,
-        "latency_ms": 42.86440007854253,
+        "latency_ms": 21.18979999795556,
         "outcome": "TN"
       },
       {
@@ -4442,7 +4442,7 @@
         "similarity": 0.31428682804107666,
         "confidence": 0.8523547715284778,
         "judge_used": false,
-        "latency_ms": 38.12629997264594,
+        "latency_ms": 27.40069990977645,
         "outcome": "TN"
       }
     ]
@@ -4466,28 +4466,28 @@
       0.012548587835334064,
       0.16548194660377288
     ],
-    "p50_ms": 37.817649950738996,
-    "p95_ms": 62.225219991523765,
+    "p50_ms": 26.85140003450215,
+    "p95_ms": 51.708754926221395,
     "path_latencies": {
       "CANONICAL_EXACT": {
-        "mean": 0.015278040181572845,
-        "p50": 0.013599987141788006,
-        "p95": 0.023400061763823032
+        "mean": 0.014714635454299973,
+        "p50": 0.014100107364356518,
+        "p95": 0.02329994458705187
       },
       "AUTO_REUSE": {
-        "mean": 36.720533350793026,
-        "p50": 36.027400055900216,
-        "p95": 41.372680000495166
+        "mean": 25.227799972829718,
+        "p50": 25.834299973212183,
+        "p95": 29.105979949235916
       },
       "LOCAL_EQUIVALENCE": {
-        "mean": 390.0655356950925,
-        "p50": 68.00079997628927,
-        "p95": 1665.8868799568138
+        "mean": 423.5410000047913,
+        "p50": 49.36505004297942,
+        "p95": 1911.09251998714
       },
       "BYPASS": {
-        "mean": 40.382481389949746,
-        "p50": 39.14955002255738,
-        "p95": 58.027710026362904
+        "mean": 30.043166281038157,
+        "p50": 28.0720999580808,
+        "p95": 42.377184989163645
       }
     },
     "telemetry": [
@@ -4495,7 +4495,7 @@
         "id": "P8-SEED-001",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 33.93940010573715,
+        "latency_ms": 76.01890002842993,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4504,7 +4504,7 @@
         "id": "P8-SEED-002",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 44.52939995098859,
+        "latency_ms": 46.2871000636369,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4513,7 +4513,7 @@
         "id": "P8-SEED-003",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 58.40159999206662,
+        "latency_ms": 24.312700028531253,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4522,7 +4522,7 @@
         "id": "P8-SEED-004",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 38.208300014957786,
+        "latency_ms": 28.78779999446124,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4531,7 +4531,7 @@
         "id": "P8-SEED-005",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 40.80449999310076,
+        "latency_ms": 24.054300040006638,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4540,7 +4540,7 @@
         "id": "P8-SEED-006",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 40.07190000265837,
+        "latency_ms": 22.29380002245307,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4549,7 +4549,7 @@
         "id": "P8-SEED-007",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 35.98489996511489,
+        "latency_ms": 29.146799934096634,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4558,7 +4558,7 @@
         "id": "P8-SEED-008",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 45.66720000002533,
+        "latency_ms": 26.87649999279529,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4567,7 +4567,7 @@
         "id": "P8-SEED-009",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 37.4862999888137,
+        "latency_ms": 31.671699951402843,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4576,7 +4576,7 @@
         "id": "P8-SEED-010",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 49.67989993747324,
+        "latency_ms": 31.372099998407066,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4585,7 +4585,7 @@
         "id": "P8-SEED-011",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 68.70049994904548,
+        "latency_ms": 35.42109997943044,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4594,7 +4594,7 @@
         "id": "P8-SEED-012",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 54.57330006174743,
+        "latency_ms": 38.07420004159212,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4603,7 +4603,7 @@
         "id": "P8-SEED-013",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 44.536500005051494,
+        "latency_ms": 25.132999988272786,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4612,7 +4612,7 @@
         "id": "P8-SEED-014",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 30.476000043563545,
+        "latency_ms": 41.143099893815815,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4621,7 +4621,7 @@
         "id": "P8-SEED-015",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 31.188299995847046,
+        "latency_ms": 31.27669997047633,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4630,7 +4630,7 @@
         "id": "P8-SEED-016",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 34.47140008211136,
+        "latency_ms": 26.195300044491887,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4639,7 +4639,7 @@
         "id": "P8-SEED-017",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 38.740399992093444,
+        "latency_ms": 23.0407000053674,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4648,7 +4648,7 @@
         "id": "P8-SEED-018",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 39.37659994699061,
+        "latency_ms": 26.56649996060878,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4657,7 +4657,7 @@
         "id": "P8-SEED-019",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 39.24720000941306,
+        "latency_ms": 28.838899917900562,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4666,7 +4666,7 @@
         "id": "P8-SEED-020",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 43.547699926421046,
+        "latency_ms": 36.68330004438758,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4675,7 +4675,7 @@
         "id": "P8-SEED-021",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 43.41269994620234,
+        "latency_ms": 23.889900068752468,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4684,7 +4684,7 @@
         "id": "P8-SEED-022",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 37.50420000869781,
+        "latency_ms": 25.810800027102232,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4693,7 +4693,7 @@
         "id": "P8-SEED-023",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 38.87579997535795,
+        "latency_ms": 25.872300029732287,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4702,7 +4702,7 @@
         "id": "P8-SEED-024",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 95.87140008807182,
+        "latency_ms": 39.57630007062107,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4711,7 +4711,7 @@
         "id": "P8-SEED-025",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 62.041299999691546,
+        "latency_ms": 40.947900037281215,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4720,7 +4720,7 @@
         "id": "P8-SEED-026",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 55.30509992968291,
+        "latency_ms": 34.439199953339994,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4729,7 +4729,7 @@
         "id": "P8-SEED-027",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 44.189600041136146,
+        "latency_ms": 33.09799998532981,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4738,7 +4738,7 @@
         "id": "P8-SEED-028",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 48.9847999997437,
+        "latency_ms": 26.62879996933043,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4747,7 +4747,7 @@
         "id": "P8-SEED-029",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 47.60259995236993,
+        "latency_ms": 30.176299973390996,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4756,7 +4756,7 @@
         "id": "P8-SEED-030",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 42.567100026644766,
+        "latency_ms": 27.411799994297326,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4765,7 +4765,7 @@
         "id": "P8-SEED-031",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 28.911700006574392,
+        "latency_ms": 24.892200017347932,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4774,7 +4774,7 @@
         "id": "P8-SEED-032",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 57.72180005442351,
+        "latency_ms": 21.947900066152215,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4783,7 +4783,7 @@
         "id": "P8-SEED-033",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 56.1708000022918,
+        "latency_ms": 25.705299922265112,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4792,7 +4792,7 @@
         "id": "P8-SEED-034",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 61.407199944369495,
+        "latency_ms": 30.876300064846873,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4801,7 +4801,7 @@
         "id": "P8-SEED-035",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 47.164799994789064,
+        "latency_ms": 25.535000022500753,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4810,7 +4810,7 @@
         "id": "P8-SEED-036",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 30.541400075890124,
+        "latency_ms": 23.428999935276806,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4819,7 +4819,7 @@
         "id": "P8-SEED-037",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 49.29110000375658,
+        "latency_ms": 24.505400098860264,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4828,7 +4828,7 @@
         "id": "P8-SEED-038",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 28.633099980652332,
+        "latency_ms": 26.574599905870855,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4837,7 +4837,7 @@
         "id": "P8-SEED-039",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 29.970800038427114,
+        "latency_ms": 26.978200068697333,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4846,7 +4846,7 @@
         "id": "P8-SEED-040",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 26.384999975562096,
+        "latency_ms": 26.73410007264465,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4855,7 +4855,7 @@
         "id": "P8-SEED-041",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 31.474399962462485,
+        "latency_ms": 26.822400046512485,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4864,7 +4864,7 @@
         "id": "P8-SEED-042",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 50.02520000562072,
+        "latency_ms": 22.026199963875115,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4873,7 +4873,7 @@
         "id": "P8-SEED-043",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 49.68259995803237,
+        "latency_ms": 26.063199969939888,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4882,7 +4882,7 @@
         "id": "P8-SEED-044",
         "decision": "BYPASS",
         "path": "LOCAL_EQUIVALENCE",
-        "latency_ms": 41.424699942581356,
+        "latency_ms": 24.543600040487945,
         "local_score": 0.0,
         "guard_reason": "ENTITY_MISMATCH: differing_entities=['quora']",
         "outcome": "TN"
@@ -4891,7 +4891,7 @@
         "id": "P8-SEED-045",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 43.350699939765036,
+        "latency_ms": 26.926200021989644,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4900,7 +4900,7 @@
         "id": "P8-SEED-046",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 27.543499949388206,
+        "latency_ms": 26.290700072422624,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4909,7 +4909,7 @@
         "id": "P8-SEED-047",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 37.36839990597218,
+        "latency_ms": 24.29520001169294,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4918,7 +4918,7 @@
         "id": "P8-SEED-048",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 36.89879993908107,
+        "latency_ms": 23.769799969159067,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4927,7 +4927,7 @@
         "id": "P8-SEED-049",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 39.869299973361194,
+        "latency_ms": 28.844599961303174,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4936,7 +4936,7 @@
         "id": "P8-SEED-050",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 46.42759996932,
+        "latency_ms": 25.957099976949394,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -4945,7 +4945,7 @@
         "id": "P8-REP-001",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.019299914129078388,
+        "latency_ms": 0.02189993392676115,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -4954,7 +4954,7 @@
         "id": "P8-REP-002",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.015900004655122757,
+        "latency_ms": 0.01610000617802143,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -4963,7 +4963,7 @@
         "id": "P8-REP-003",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.019900035113096237,
+        "latency_ms": 0.020200037397444248,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -4972,7 +4972,7 @@
         "id": "P8-REP-004",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.013199984095990658,
+        "latency_ms": 0.013299984857439995,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -4981,7 +4981,7 @@
         "id": "P8-REP-005",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.011199968867003918,
+        "latency_ms": 0.011299969628453255,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -4990,7 +4990,7 @@
         "id": "P8-REP-006",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.018900027498602867,
+        "latency_ms": 0.018499908037483692,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -4999,7 +4999,7 @@
         "id": "P8-REP-007",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.01759990118443966,
+        "latency_ms": 0.018000020645558834,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5008,7 +5008,7 @@
         "id": "P8-REP-008",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.018700025975704193,
+        "latency_ms": 0.01810002140700817,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5017,7 +5017,7 @@
         "id": "P8-REP-009",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.011699972674250603,
+        "latency_ms": 0.01179997343569994,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5026,7 +5026,7 @@
         "id": "P8-REP-010",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.015099998563528061,
+        "latency_ms": 0.015300000086426735,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5035,7 +5035,7 @@
         "id": "P8-REP-011",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.012599979527294636,
+        "latency_ms": 0.012800097465515137,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5044,7 +5044,7 @@
         "id": "P8-REP-012",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.013599987141788006,
+        "latency_ms": 0.014100107364356518,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5053,7 +5053,7 @@
         "id": "P8-REP-013",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.01279998105019331,
+        "latency_ms": 0.013300101272761822,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5062,7 +5062,7 @@
         "id": "P8-REP-014",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.02659996971487999,
+        "latency_ms": 0.027000089175999165,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5071,7 +5071,7 @@
         "id": "P8-REP-015",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.023399945348501205,
+        "latency_ms": 0.023799948394298553,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5080,7 +5080,7 @@
         "id": "P8-REP-016",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.04449998959898949,
+        "latency_ms": 0.01810002140700817,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5089,7 +5089,7 @@
         "id": "P8-REP-017",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.011299969628453255,
+        "latency_ms": 0.01100008375942707,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5098,7 +5098,7 @@
         "id": "P8-REP-018",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.01580000389367342,
+        "latency_ms": 0.015099998563528061,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5107,7 +5107,7 @@
         "id": "P8-REP-019",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.014999997802078724,
+        "latency_ms": 0.014699995517730713,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5116,7 +5116,7 @@
         "id": "P8-REP-020",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.010699965059757233,
+        "latency_ms": 0.0100000761449337,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5125,7 +5125,7 @@
         "id": "P8-REP-021",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.013699987903237343,
+        "latency_ms": 0.014199991710484028,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5134,7 +5134,7 @@
         "id": "P8-REP-022",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.010699965059757233,
+        "latency_ms": 0.009300070814788342,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5143,7 +5143,7 @@
         "id": "P8-REP-023",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.009999959729611874,
+        "latency_ms": 0.01009996049106121,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5152,7 +5152,7 @@
         "id": "P8-REP-024",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.011299969628453255,
+        "latency_ms": 0.010899966582655907,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5161,7 +5161,7 @@
         "id": "P8-REP-025",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.016600009985268116,
+        "latency_ms": 0.015600002370774746,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5170,7 +5170,7 @@
         "id": "P8-REP-026",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.019300030544400215,
+        "latency_ms": 0.019200029782950878,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5179,7 +5179,7 @@
         "id": "P8-REP-027",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.015500001609325409,
+        "latency_ms": 0.015499885194003582,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5188,7 +5188,7 @@
         "id": "P8-REP-028",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.011100084520876408,
+        "latency_ms": 0.011199968867003918,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5197,7 +5197,7 @@
         "id": "P8-REP-029",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.021700048819184303,
+        "latency_ms": 0.021600048057734966,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5206,7 +5206,7 @@
         "id": "P8-REP-030",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.01079996582120657,
+        "latency_ms": 0.010699965059757233,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5215,7 +5215,7 @@
         "id": "P8-REP-031",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.009699957445263863,
+        "latency_ms": 0.009999959729611874,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5224,7 +5224,7 @@
         "id": "P8-REP-032",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.010899966582655907,
+        "latency_ms": 0.011599971912801266,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5233,7 +5233,7 @@
         "id": "P8-REP-033",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.014299992471933365,
+        "latency_ms": 0.014699995517730713,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5242,7 +5242,7 @@
         "id": "P8-REP-034",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.010800082236528397,
+        "latency_ms": 0.010999967344105244,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5251,7 +5251,7 @@
         "id": "P8-REP-035",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.009900075383484364,
+        "latency_ms": 0.010600080713629723,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5260,7 +5260,7 @@
         "id": "P8-REP-036",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.010999967344105244,
+        "latency_ms": 0.011299969628453255,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5269,7 +5269,7 @@
         "id": "P8-REP-037",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.010999967344105244,
+        "latency_ms": 0.011199968867003918,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5278,7 +5278,7 @@
         "id": "P8-REP-038",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.010299962013959885,
+        "latency_ms": 0.010499963536858559,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5287,7 +5287,7 @@
         "id": "P8-REP-039",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.015199999324977398,
+        "latency_ms": 0.015400000847876072,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5296,7 +5296,7 @@
         "id": "P8-REP-040",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.011399970389902592,
+        "latency_ms": 0.010999967344105244,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5305,7 +5305,7 @@
         "id": "P8-PARA-001",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 37.02389996033162,
+        "latency_ms": 22.799500031396747,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5314,7 +5314,7 @@
         "id": "P8-PARA-002",
         "decision": "REUSE",
         "path": "LOCAL_EQUIVALENCE",
-        "latency_ms": 4564.914699993096,
+        "latency_ms": 5295.76290003024,
         "local_score": 0.9957612156867981,
         "guard_reason": "GUARDS_PASSED",
         "outcome": "TP"
@@ -5323,7 +5323,7 @@
         "id": "P8-PARA-003",
         "decision": "REUSE",
         "path": "LOCAL_EQUIVALENCE",
-        "latency_ms": 104.87189993727952,
+        "latency_ms": 88.57769996393472,
         "local_score": 0.9962326884269714,
         "guard_reason": "GUARDS_PASSED",
         "outcome": "TP"
@@ -5332,7 +5332,7 @@
         "id": "P8-PARA-004",
         "decision": "REUSE",
         "path": "LOCAL_EQUIVALENCE",
-        "latency_ms": 95.00029997434467,
+        "latency_ms": 74.27009998355061,
         "local_score": 0.9970760345458984,
         "guard_reason": "GUARDS_PASSED",
         "outcome": "TP"
@@ -5341,7 +5341,7 @@
         "id": "P8-PARA-005",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 40.762800024822354,
+        "latency_ms": 34.01940001640469,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5350,7 +5350,7 @@
         "id": "P8-PARA-006",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 46.39079992193729,
+        "latency_ms": 24.61099997162819,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5359,7 +5359,7 @@
         "id": "P8-PARA-007",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 43.7299000332132,
+        "latency_ms": 28.254900011233985,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5368,7 +5368,7 @@
         "id": "P8-PARA-008",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 43.5591998975724,
+        "latency_ms": 31.09419997781515,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5377,7 +5377,7 @@
         "id": "P8-PARA-009",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 42.416200041770935,
+        "latency_ms": 26.073100045323372,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5386,7 +5386,7 @@
         "id": "P8-PARA-010",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 36.94680007174611,
+        "latency_ms": 29.25120003055781,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5395,7 +5395,7 @@
         "id": "P8-PARA-011",
         "decision": "REUSE",
         "path": "LOCAL_EQUIVALENCE",
-        "latency_ms": 104.50679995119572,
+        "latency_ms": 74.33620002120733,
         "local_score": 0.9962020516395569,
         "guard_reason": "GUARDS_PASSED",
         "outcome": "TP"
@@ -5404,7 +5404,7 @@
         "id": "P8-PARA-012",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 34.76969990879297,
+        "latency_ms": 26.90419997088611,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5413,7 +5413,7 @@
         "id": "P8-PARA-013",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 52.307400037534535,
+        "latency_ms": 30.74800001922995,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5422,7 +5422,7 @@
         "id": "P8-PARA-014",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 46.18360009044409,
+        "latency_ms": 30.145799973979592,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5431,7 +5431,7 @@
         "id": "P8-PARA-015",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 42.036900063976645,
+        "latency_ms": 26.420600013807416,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5440,7 +5440,7 @@
         "id": "P8-PARA-016",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 34.436400048434734,
+        "latency_ms": 26.197600062005222,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5449,7 +5449,7 @@
         "id": "P8-PARA-017",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 35.154800047166646,
+        "latency_ms": 26.99779998511076,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5458,7 +5458,7 @@
         "id": "P8-PARA-018",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 43.2079000165686,
+        "latency_ms": 24.579100077971816,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5467,7 +5467,7 @@
         "id": "P8-PARA-019",
         "decision": "REUSE",
         "path": "CANONICAL_EXACT",
-        "latency_ms": 0.023400061763823032,
+        "latency_ms": 0.02329994458705187,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TP"
@@ -5476,7 +5476,7 @@
         "id": "P8-PARA-020",
         "decision": "BYPASS",
         "path": "LOCAL_EQUIVALENCE",
-        "latency_ms": 39.71589996945113,
+        "latency_ms": 26.49560000281781,
         "local_score": 0.0,
         "guard_reason": "NUMBER_MISMATCH: query_a=[] vs query_b=['50', '70']",
         "outcome": "FN"
@@ -5485,7 +5485,7 @@
         "id": "P8-PARA-021",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 26.148000033572316,
+        "latency_ms": 21.881000022403896,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5494,7 +5494,7 @@
         "id": "P8-PARA-022",
         "decision": "BYPASS",
         "path": "LOCAL_EQUIVALENCE",
-        "latency_ms": 103.99640002287924,
+        "latency_ms": 74.89789999090135,
         "local_score": 0.05871109291911125,
         "guard_reason": "GUARDS_PASSED",
         "outcome": "FN"
@@ -5503,7 +5503,7 @@
         "id": "P8-PARA-023",
         "decision": "BYPASS",
         "path": "LOCAL_EQUIVALENCE",
-        "latency_ms": 43.3796999277547,
+        "latency_ms": 26.82630007620901,
         "local_score": 0.0,
         "guard_reason": "ENTITY_MISMATCH: differing_entities=['code']",
         "outcome": "FN"
@@ -5512,7 +5512,7 @@
         "id": "P8-PARA-024",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 40.845699957571924,
+        "latency_ms": 28.77730003092438,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5521,7 +5521,7 @@
         "id": "P8-PARA-025",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 51.26009997911751,
+        "latency_ms": 28.773199999704957,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5530,7 +5530,7 @@
         "id": "P8-PARA-026",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 43.31999993883073,
+        "latency_ms": 40.12619995046407,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5539,7 +5539,7 @@
         "id": "P8-PARA-027",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 43.58109994791448,
+        "latency_ms": 53.059699945151806,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5548,7 +5548,7 @@
         "id": "P8-PARA-028",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 39.0313999960199,
+        "latency_ms": 50.05759990308434,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5557,7 +5557,7 @@
         "id": "P8-PARA-029",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 38.17079996224493,
+        "latency_ms": 29.9148999620229,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5566,7 +5566,7 @@
         "id": "P8-PARA-030",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 31.878900015726686,
+        "latency_ms": 25.300499983131886,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5575,7 +5575,7 @@
         "id": "P8-PARA-031",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 36.962700076401234,
+        "latency_ms": 28.317400021478534,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5584,7 +5584,7 @@
         "id": "P8-PARA-032",
         "decision": "REUSE",
         "path": "LOCAL_EQUIVALENCE",
-        "latency_ms": 103.96600002422929,
+        "latency_ms": 65.48970006406307,
         "local_score": 0.9521239399909973,
         "guard_reason": "GUARDS_PASSED",
         "outcome": "TP"
@@ -5593,7 +5593,7 @@
         "id": "P8-PARA-033",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 41.40340001322329,
+        "latency_ms": 27.324700029566884,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5602,7 +5602,7 @@
         "id": "P8-PARA-034",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 32.05450007226318,
+        "latency_ms": 25.73230001144111,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5611,7 +5611,7 @@
         "id": "P8-PARA-035",
         "decision": "BYPASS",
         "path": "LOCAL_EQUIVALENCE",
-        "latency_ms": 37.50189999118447,
+        "latency_ms": 24.28649994544685,
         "local_score": 0.0,
         "guard_reason": "ENTITY_MISMATCH: differing_entities=['quora']",
         "outcome": "FN"
@@ -5620,7 +5620,7 @@
         "id": "P8-PARA-036",
         "decision": "REUSE",
         "path": "LOCAL_EQUIVALENCE",
-        "latency_ms": 86.23909996822476,
+        "latency_ms": 69.98070003464818,
         "local_score": 0.9986536502838135,
         "guard_reason": "GUARDS_PASSED",
         "outcome": "TP"
@@ -5629,7 +5629,7 @@
         "id": "P8-PARA-037",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 38.861599983647466,
+        "latency_ms": 23.272400023415685,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5638,7 +5638,7 @@
         "id": "P8-PARA-038",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 40.35459994338453,
+        "latency_ms": 25.545099982991815,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5647,7 +5647,7 @@
         "id": "P8-PARA-039",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 95.76479997485876,
+        "latency_ms": 25.07760003209114,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FN"
@@ -5656,7 +5656,7 @@
         "id": "P8-PARA-040",
         "decision": "BYPASS",
         "path": "LOCAL_EQUIVALENCE",
-        "latency_ms": 48.095300095155835,
+        "latency_ms": 25.04939993377775,
         "local_score": 0.0,
         "guard_reason": "ENTITY_MISMATCH: differing_entities=['writing']",
         "outcome": "FN"
@@ -5665,7 +5665,7 @@
         "id": "P8-ADV-SEED-001",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 61.55310000758618,
+        "latency_ms": 34.286700072698295,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5674,7 +5674,7 @@
         "id": "P8-ADV-PROBE-001",
         "decision": "REUSE",
         "path": "AUTO_REUSE",
-        "latency_ms": 41.96659999433905,
+        "latency_ms": 29.469499946571887,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FP"
@@ -5683,7 +5683,7 @@
         "id": "P8-ADV-SEED-002",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 41.61380010191351,
+        "latency_ms": 29.329099925234914,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5692,7 +5692,7 @@
         "id": "P8-ADV-PROBE-002",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 45.64340005163103,
+        "latency_ms": 38.65340002812445,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5701,7 +5701,7 @@
         "id": "P8-ADV-SEED-003",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 47.340699937194586,
+        "latency_ms": 55.85460003931075,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5710,7 +5710,7 @@
         "id": "P8-ADV-PROBE-003",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 70.65250002779067,
+        "latency_ms": 30.94039997085929,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5719,7 +5719,7 @@
         "id": "P8-ADV-SEED-004",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 41.367199970409274,
+        "latency_ms": 41.679700021632016,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5728,7 +5728,7 @@
         "id": "P8-ADV-PROBE-004",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 41.41239996533841,
+        "latency_ms": 41.75199999008328,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5737,7 +5737,7 @@
         "id": "P8-ADV-SEED-005",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 36.667500040493906,
+        "latency_ms": 26.996900094673038,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5746,7 +5746,7 @@
         "id": "P8-ADV-PROBE-005",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 31.571800005622208,
+        "latency_ms": 26.97880007326603,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5755,7 +5755,7 @@
         "id": "P8-ADV-SEED-006",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 39.05190003570169,
+        "latency_ms": 33.81489997263998,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5764,7 +5764,7 @@
         "id": "P8-ADV-PROBE-006",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 46.10769997816533,
+        "latency_ms": 36.551999975927174,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5773,7 +5773,7 @@
         "id": "P8-ADV-SEED-007",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 41.75620002206415,
+        "latency_ms": 31.43079997971654,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5782,7 +5782,7 @@
         "id": "P8-ADV-PROBE-007",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 35.00419994816184,
+        "latency_ms": 75.17109997570515,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5791,7 +5791,7 @@
         "id": "P8-ADV-SEED-008",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 37.27249999064952,
+        "latency_ms": 37.80429996550083,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5800,7 +5800,7 @@
         "id": "P8-ADV-PROBE-008",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 41.490199975669384,
+        "latency_ms": 54.83749997802079,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5809,7 +5809,7 @@
         "id": "P8-ADV-SEED-009",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 39.65509997215122,
+        "latency_ms": 29.692300013266504,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5818,7 +5818,7 @@
         "id": "P8-ADV-PROBE-009",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 36.520899971947074,
+        "latency_ms": 27.847599936649203,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5827,7 +5827,7 @@
         "id": "P8-ADV-SEED-010",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 38.90839999075979,
+        "latency_ms": 30.170399928465486,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5836,7 +5836,7 @@
         "id": "P8-ADV-PROBE-010",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 39.96939992066473,
+        "latency_ms": 30.215500039048493,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5845,7 +5845,7 @@
         "id": "P8-ADV-SEED-011",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 40.44779995456338,
+        "latency_ms": 29.08380003646016,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5854,7 +5854,7 @@
         "id": "P8-ADV-PROBE-011",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 36.83610004372895,
+        "latency_ms": 26.473799953237176,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5863,7 +5863,7 @@
         "id": "P8-ADV-SEED-012",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 44.86269992776215,
+        "latency_ms": 33.14750001300126,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5872,7 +5872,7 @@
         "id": "P8-ADV-PROBE-012",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 39.371300023049116,
+        "latency_ms": 30.948900035582483,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5881,7 +5881,7 @@
         "id": "P8-ADV-SEED-013",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 47.88440000265837,
+        "latency_ms": 37.168100010603666,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5890,7 +5890,7 @@
         "id": "P8-ADV-PROBE-013",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 40.37389997392893,
+        "latency_ms": 35.57659999933094,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5899,7 +5899,7 @@
         "id": "P8-ADV-SEED-014",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 38.14239997882396,
+        "latency_ms": 35.72990000247955,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5908,7 +5908,7 @@
         "id": "P8-ADV-PROBE-014",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 41.43989994190633,
+        "latency_ms": 30.600700061768293,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5917,7 +5917,7 @@
         "id": "P8-ADV-SEED-015",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 36.20490001048893,
+        "latency_ms": 27.103999978862703,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5926,7 +5926,7 @@
         "id": "P8-ADV-PROBE-015",
         "decision": "REUSE",
         "path": "AUTO_REUSE",
-        "latency_ms": 32.16760000213981,
+        "latency_ms": 25.834299973212183,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FP"
@@ -5935,7 +5935,7 @@
         "id": "P8-ADV-SEED-016",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 40.89440009556711,
+        "latency_ms": 26.133199920877814,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5944,7 +5944,7 @@
         "id": "P8-ADV-PROBE-016",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 38.211099919863045,
+        "latency_ms": 27.02589996624738,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5953,7 +5953,7 @@
         "id": "P8-ADV-SEED-017",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 40.900700027123094,
+        "latency_ms": 33.54159998707473,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5962,7 +5962,7 @@
         "id": "P8-ADV-PROBE-017",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 34.35380000155419,
+        "latency_ms": 32.00959996320307,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5971,7 +5971,7 @@
         "id": "P8-ADV-SEED-018",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 40.623200009576976,
+        "latency_ms": 30.667299986816943,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5980,7 +5980,7 @@
         "id": "P8-ADV-PROBE-018",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 35.6486999662593,
+        "latency_ms": 27.382700005546212,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5989,7 +5989,7 @@
         "id": "P8-ADV-SEED-019",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 45.90769996866584,
+        "latency_ms": 31.686700065620244,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -5998,7 +5998,7 @@
         "id": "P8-ADV-PROBE-019",
         "decision": "BYPASS",
         "path": "LOCAL_EQUIVALENCE",
-        "latency_ms": 37.54229994956404,
+        "latency_ms": 33.240400021895766,
         "local_score": 0.0,
         "guard_reason": "ENTITY_MISMATCH: differing_entities=['back', 'strikes']",
         "outcome": "TN"
@@ -6007,7 +6007,7 @@
         "id": "P8-ADV-SEED-020",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 41.644600103609264,
+        "latency_ms": 28.983499971218407,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6016,7 +6016,7 @@
         "id": "P8-ADV-PROBE-020",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 44.091899995692074,
+        "latency_ms": 28.158199973404408,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6025,7 +6025,7 @@
         "id": "P8-ADV-SEED-021",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 40.805500000715256,
+        "latency_ms": 42.221799958497286,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6034,7 +6034,7 @@
         "id": "P8-ADV-PROBE-021",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 31.457599950954318,
+        "latency_ms": 28.514000005088747,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6043,7 +6043,7 @@
         "id": "P8-ADV-SEED-022",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 44.12490001413971,
+        "latency_ms": 28.385199955664575,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6052,7 +6052,7 @@
         "id": "P8-ADV-PROBE-022",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 38.58509997371584,
+        "latency_ms": 34.117599949240685,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6061,7 +6061,7 @@
         "id": "P8-ADV-SEED-023",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 43.543700012378395,
+        "latency_ms": 33.541299984790385,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6070,7 +6070,7 @@
         "id": "P8-ADV-PROBE-023",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 44.331599958240986,
+        "latency_ms": 42.567100026644766,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6079,7 +6079,7 @@
         "id": "P8-ADV-SEED-024",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 42.53539990168065,
+        "latency_ms": 24.03299999423325,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6088,7 +6088,7 @@
         "id": "P8-ADV-PROBE-024",
         "decision": "BYPASS",
         "path": "LOCAL_EQUIVALENCE",
-        "latency_ms": 49.76249998435378,
+        "latency_ms": 25.81699995789677,
         "local_score": 0.0,
         "guard_reason": "ENTITY_MISMATCH: differing_entities=['platzer']",
         "outcome": "TN"
@@ -6097,7 +6097,7 @@
         "id": "P8-ADV-SEED-025",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 41.7489999672398,
+        "latency_ms": 22.55300001706928,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6106,7 +6106,7 @@
         "id": "P8-ADV-PROBE-025",
         "decision": "REUSE",
         "path": "AUTO_REUSE",
-        "latency_ms": 36.027400055900216,
+        "latency_ms": 20.37959999870509,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "FP"
@@ -6115,7 +6115,7 @@
         "id": "P8-ADV-SEED-026",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 38.43129996675998,
+        "latency_ms": 26.607200037688017,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6124,7 +6124,7 @@
         "id": "P8-ADV-PROBE-026",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 40.92329996638,
+        "latency_ms": 29.59930000361055,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6133,7 +6133,7 @@
         "id": "P8-ADV-SEED-027",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 33.84729998651892,
+        "latency_ms": 27.772899949923158,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6142,7 +6142,7 @@
         "id": "P8-ADV-PROBE-027",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 39.60199991706759,
+        "latency_ms": 30.891200061887503,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6151,7 +6151,7 @@
         "id": "P8-ADV-SEED-028",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 39.64179998729378,
+        "latency_ms": 27.523100026883185,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6160,7 +6160,7 @@
         "id": "P8-ADV-PROBE-028",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 42.108200024813414,
+        "latency_ms": 30.745299998670816,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6169,7 +6169,7 @@
         "id": "P8-ADV-SEED-029",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 38.195200031623244,
+        "latency_ms": 29.197900090366602,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6178,7 +6178,7 @@
         "id": "P8-ADV-PROBE-029",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 35.230099922046065,
+        "latency_ms": 28.92110007815063,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6187,7 +6187,7 @@
         "id": "P8-ADV-SEED-030",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 40.414499933831394,
+        "latency_ms": 30.74940002989024,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6196,7 +6196,7 @@
         "id": "P8-ADV-PROBE-030",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 37.140100030228496,
+        "latency_ms": 31.677500111982226,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6205,7 +6205,7 @@
         "id": "P8-MS-001",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 32.82459999900311,
+        "latency_ms": 23.776200017891824,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6214,7 +6214,7 @@
         "id": "P8-MS-002",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 38.40159997344017,
+        "latency_ms": 31.822600052691996,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6223,7 +6223,7 @@
         "id": "P8-MS-003",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 33.76740007661283,
+        "latency_ms": 20.810300018638372,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6232,7 +6232,7 @@
         "id": "P8-MS-004",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 36.23359999619424,
+        "latency_ms": 23.024900001473725,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6241,7 +6241,7 @@
         "id": "P8-MS-005",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 31.229999964125454,
+        "latency_ms": 24.54689994920045,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6250,7 +6250,7 @@
         "id": "P8-MS-006",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 36.719299969263375,
+        "latency_ms": 22.452000062912703,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6259,7 +6259,7 @@
         "id": "P8-MS-007",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 35.196100012399256,
+        "latency_ms": 22.090099984779954,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6268,7 +6268,7 @@
         "id": "P8-MS-008",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 33.647899981588125,
+        "latency_ms": 25.706799933686852,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6277,7 +6277,7 @@
         "id": "P8-MS-009",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 31.11530002206564,
+        "latency_ms": 21.20749989990145,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6286,7 +6286,7 @@
         "id": "P8-MS-010",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 36.561000044457614,
+        "latency_ms": 20.423499983735383,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6295,7 +6295,7 @@
         "id": "P8-MS-011",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 37.0852000778541,
+        "latency_ms": 24.102400057017803,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6304,7 +6304,7 @@
         "id": "P8-MS-012",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 26.4894999563694,
+        "latency_ms": 21.311099990271032,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6313,7 +6313,7 @@
         "id": "P8-MS-013",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 34.41039996687323,
+        "latency_ms": 25.587599957361817,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6322,7 +6322,7 @@
         "id": "P8-MS-014",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 37.84339991398156,
+        "latency_ms": 30.38759995251894,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6331,7 +6331,7 @@
         "id": "P8-MS-015",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 35.65869992598891,
+        "latency_ms": 27.267799945548177,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6340,7 +6340,7 @@
         "id": "P8-MS-016",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 36.786200013011694,
+        "latency_ms": 23.649200098589063,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6349,7 +6349,7 @@
         "id": "P8-MS-017",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 37.77599998284131,
+        "latency_ms": 25.309800053946674,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6358,7 +6358,7 @@
         "id": "P8-MS-018",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 36.66679991874844,
+        "latency_ms": 29.325700015760958,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6367,7 +6367,7 @@
         "id": "P8-MS-019",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 38.80660003051162,
+        "latency_ms": 30.1445999648422,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6376,7 +6376,7 @@
         "id": "P8-MS-020",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 31.21300006750971,
+        "latency_ms": 27.844800031743944,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6385,7 +6385,7 @@
         "id": "P8-MS-021",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 41.217299993149936,
+        "latency_ms": 38.407100015319884,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6394,7 +6394,7 @@
         "id": "P8-MS-022",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 27.26890007033944,
+        "latency_ms": 27.98599994275719,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6403,7 +6403,7 @@
         "id": "P8-MS-023",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 37.791899987496436,
+        "latency_ms": 24.009200045838952,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6412,7 +6412,7 @@
         "id": "P8-MS-024",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 30.963800032623112,
+        "latency_ms": 26.939300005324185,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6421,7 +6421,7 @@
         "id": "P8-MS-025",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 29.769200016744435,
+        "latency_ms": 26.80200000759214,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6430,7 +6430,7 @@
         "id": "P8-MS-026",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 29.326600022614002,
+        "latency_ms": 26.573800016194582,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6439,7 +6439,7 @@
         "id": "P8-MS-027",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 22.554900031536818,
+        "latency_ms": 23.274200037121773,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6448,7 +6448,7 @@
         "id": "P8-MS-028",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 25.875200051814318,
+        "latency_ms": 32.379499985836446,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6457,7 +6457,7 @@
         "id": "P8-MS-029",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 27.730099973268807,
+        "latency_ms": 27.86150004249066,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6466,7 +6466,7 @@
         "id": "P8-MS-030",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 22.176799946464598,
+        "latency_ms": 44.644300010986626,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6475,7 +6475,7 @@
         "id": "P8-MS-031",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 25.25409997906536,
+        "latency_ms": 28.950799955055118,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6484,7 +6484,7 @@
         "id": "P8-MS-032",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 25.21999995224178,
+        "latency_ms": 33.39230001438409,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6493,7 +6493,7 @@
         "id": "P8-MS-033",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 27.570500038564205,
+        "latency_ms": 32.97759999986738,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6502,7 +6502,7 @@
         "id": "P8-MS-034",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 30.852199997752905,
+        "latency_ms": 33.71070011053234,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6511,7 +6511,7 @@
         "id": "P8-MS-035",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 62.37569998484105,
+        "latency_ms": 28.379099909216166,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6520,7 +6520,7 @@
         "id": "P8-MS-036",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 43.402999988757074,
+        "latency_ms": 25.81369993276894,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6529,7 +6529,7 @@
         "id": "P8-MS-037",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 49.28290005773306,
+        "latency_ms": 23.787799989804626,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6538,7 +6538,7 @@
         "id": "P8-MS-038",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 41.11599992029369,
+        "latency_ms": 26.50289994198829,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6547,7 +6547,7 @@
         "id": "P8-MS-039",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 33.56330003589392,
+        "latency_ms": 25.045800022780895,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6556,7 +6556,7 @@
         "id": "P8-MS-040",
         "decision": "BYPASS",
         "path": "BYPASS",
-        "latency_ms": 36.58880002330989,
+        "latency_ms": 23.672199924476445,
         "local_score": 0.0,
         "guard_reason": "N/A",
         "outcome": "TN"
@@ -6567,22 +6567,22 @@
     "normalizer_only": {
       "hits": 41,
       "fp": 0,
-      "p50_ms": 0.009150011464953423
+      "p50_ms": 0.012649979908019304
     },
     "normalizer_embedding": {
       "hits": 90,
       "fp": 31,
-      "p50_ms": 34.020100021734834
+      "p50_ms": 20.780649967491627
     },
     "normalizer_embedding_local": {
       "hits": 50,
       "fp": 3,
-      "p50_ms": 37.817649950738996
+      "p50_ms": 26.85140003450215
     },
     "normalizer_embedding_judge": {
-      "hits": 16,
+      "hits": 18,
       "fp": 3,
-      "p50_ms": 50.64904998289421
+      "p50_ms": 36.662350001279265
     }
   }
 }
