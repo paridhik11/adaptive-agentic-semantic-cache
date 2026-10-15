@@ -21,6 +21,14 @@
   transactional cross-worker invalidation, logical storage limits, and explicit
   storage-failure behavior. Cross-worker miss coalescing is not implemented.
 
+- Answer-bound development traces, paired fresh/cache work accounting, strict
+  review bindings, missing-label bounds, grouped uncertainty and offline review UI.
+- Existing development-pair conversion with provenance and normalized-text groups;
+  larger fixture-only exercise recorded in `audit/ANSWER_BENCHMARK_FUNCTIONAL_EVIDENCE.json`.
+- Per-worker operations dashboard, gateway-only image/Compose files, container CI
+  smoke job and corrected installable package layout. Local Docker/browser-render
+  validation remains unavailable; see `deployment.md`.
+
 ## Evidence limits
 
 Saved Phase A counts reconcile, but off-seed labels, repeated seed requests,
@@ -32,8 +40,8 @@ semantic accuracy, answer quality, or measured workload savings.
 
 ## Next implementation work
 
-- Extend the gateway with streaming, deployment packaging, and a dashboard.
-- Develop candidate-bound, answer-aware evaluation with explicit lineage.
+- Add streaming and verify deployment/container behavior in a Docker-capable environment.
+- Collect independently reviewed live-answer evidence using the implemented evaluation contract.
 - Repair semantic matching on development data before a new frozen evaluation.
 - Measure complete-answer latency and net generation/verification work.
 

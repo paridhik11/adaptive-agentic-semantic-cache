@@ -18,6 +18,20 @@ provider, then shuts it down. See the [gateway guide](docs/gateway.md) for a
 persistent local server, live-provider configuration, supported request fields,
 and accounting limits. The smoke test does not measure real-model savings.
 
+## Recovery evaluation and operations
+
+The [answer-review workflow](docs/answer_evaluation.md) runs paired fresh-generation
+and exact-cache serving, records actual candidate/answer lineage, and exports an
+offline review page. Unreviewed answers remain unknown. The
+[dataset plan](docs/DATASET_PLAN.md) separates paraphrase, adversarial, domain and
+reference-answer evidence; existing training data remains development-only.
+
+An admin-authenticated metrics view is available at `/dashboard` (the static page
+is public; metrics are protected). See [deployment instructions](docs/deployment.md)
+for the gateway-only image, Compose setup, persistence and validation limits.
+The current exact-only runtime is infrastructure for the recovery experiment;
+semantic safety and useful real-model savings are still unproven.
+
 ## Historical experimental results
 
 Selected historical findings from the consolidated metrics table in [`docs/MASTER_REPORT.md`](docs/MASTER_REPORT.md), ordered strictly by evidentiary strength. Every metric preserves its verified evaluation nature label:

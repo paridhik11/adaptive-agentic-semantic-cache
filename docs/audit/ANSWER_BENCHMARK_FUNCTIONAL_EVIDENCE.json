@@ -1,0 +1,57 @@
+{
+  "schema_version": "functional-evidence-v1",
+  "purpose": "Reproducible functional counts only. No answer quality, live latency, currency savings or natural repeat-rate claims.",
+  "raw_trace_note": "Raw local traces contain request/response text and are not redistributed here. Rerun the documented commands to reproduce functional counts; wall-clock samples and trace hashes will differ.",
+  "runs": [
+    {
+      "name": "fixture",
+      "evaluation_mode": "simulated_fixture",
+      "nature": "synthetic_fixture",
+      "split": "dev",
+      "code_revision_local": "903ac57ed92a2f7565d18c53da4a1b9684143c3b",
+      "code_tree": "9fd757c0bb71a5589d455658b91ee153ac8c22aa",
+      "working_tree_dirty": false,
+      "workload_sha256": "1d5b78afa85332b32221e3d637b9da7d1feadc48af8191784632895dcd233858",
+      "trace_sha256": "8be711322694b77ecda9faca9119fb1080d6a17a30e5a90a74cdbdf80431373f",
+      "requests": 24,
+      "status_counts": {
+        "MISS": 4,
+        "BYPASS": 18,
+        "HIT": 2
+      },
+      "cache_provider_attempts": 22,
+      "fresh_provider_attempts": 24,
+      "accepted_hits": 2,
+      "reviewed_hits": 0,
+      "incorrect_reuse_rate": null,
+      "nonexact_hits": 0,
+      "external_model_calls": 0,
+      "safety_certified": false
+    },
+    {
+      "name": "development",
+      "evaluation_mode": "simulated_fixture",
+      "nature": "constructed_natural_queries",
+      "split": "dev",
+      "code_revision_local": "903ac57ed92a2f7565d18c53da4a1b9684143c3b",
+      "code_tree": "9fd757c0bb71a5589d455658b91ee153ac8c22aa",
+      "working_tree_dirty": false,
+      "workload_sha256": "d8bd0f54105eeb99b7d9cd9254de6b466c00200cc04cc381ada0479986661545",
+      "trace_sha256": "1fcc48ca724874b05a54a595f73f2830cd5d7286d127b540d2945cf3e4205226",
+      "requests": 4000,
+      "status_counts": {
+        "BYPASS": 3777,
+        "MISS": 219,
+        "HIT": 4
+      },
+      "cache_provider_attempts": 3996,
+      "fresh_provider_attempts": 4000,
+      "accepted_hits": 4,
+      "reviewed_hits": 0,
+      "incorrect_reuse_rate": null,
+      "nonexact_hits": 0,
+      "external_model_calls": 0,
+      "safety_certified": false
+    }
+  ]
+}
