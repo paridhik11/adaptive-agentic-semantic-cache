@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 import secrets
+import sqlite3
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, PlainTextResponse
@@ -15,6 +16,7 @@ from starlette.requests import ClientDisconnect
 from src.api.providers import FixtureChatProvider, HTTPChatProvider, ProviderError
 from src.api.service import ConservativeRulesPolicy, GatewayBusy, GatewayService, InvalidRequest
 from src.policy.response_cache import EligibilityDecision, ScopedResponseCache
+from src.policy.sqlite_store import SQLiteResponseStore
 
 
 def _reject_constant(value):
@@ -109,7 +111,11 @@ def create_app(service: GatewayService, *, tenant_tokens: dict[str, str],
         tenant = credentials.authenticate(request)
         if tenant is None:
             return error("unauthorized", 401)
-        return JSONResponse({"removed": service.cache.invalidate(tenant_id=tenant)},
+        try:
+            removed = service.cache.invalidate(tenant_id=tenant)
+        except sqlite3.Error:
+            return error("cache_invalidation_failed", 503)
+        return JSONResponse({"removed": removed},
                             headers={"Cache-Control": "no-store"})
 
     @app.post("/v1/chat/completions")
@@ -179,7 +185,21 @@ def app_from_env() -> FastAPI:
         policy = lambda _: EligibilityDecision(False, "deployment_cache_disabled")
     else:
         raise ValueError("GATEWAY_CACHE_POLICY must be bypass or rules")
-    cache = ScopedResponseCache(eligibility=policy,
+    storage = None
+    if os.environ.get("GATEWAY_CACHE_DB"):
+        version = os.environ.get("GATEWAY_CACHE_VERSION", "").strip()
+        if not version:
+            raise ValueError("GATEWAY_CACHE_VERSION is required with persistent storage")
+        # Version must change when model aliases, policy code or upstream data change.
+        scope = {"version": version, "provider": mode, "policy": policy_name,
+                 "endpoint": os.environ.get("UPSTREAM_CHAT_URL") if mode == "http" else None,
+                 "models": sorted(models),
+                 "ttl": os.environ.get("GATEWAY_TTL_SECONDS", "3600"),
+                 "entries": os.environ.get("GATEWAY_MAX_ENTRIES", "1024"),
+                 "bytes": os.environ.get("GATEWAY_MAX_CACHE_BYTES", "67108864")}
+        namespace = hashlib.sha256(json.dumps(scope, sort_keys=True).encode()).hexdigest()
+        storage = SQLiteResponseStore(os.environ["GATEWAY_CACHE_DB"], namespace=namespace)
+    cache = ScopedResponseCache(eligibility=policy, storage=storage,
                                 ttl_seconds=float(os.environ.get("GATEWAY_TTL_SECONDS", "3600")),
                                 max_entries=int(os.environ.get("GATEWAY_MAX_ENTRIES", "1024")),
                                 max_bytes=int(os.environ.get("GATEWAY_MAX_CACHE_BYTES", "67108864")))

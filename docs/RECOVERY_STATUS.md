@@ -17,6 +17,10 @@
 - Gateway tests and a loopback HTTP smoke test with a barrier-synchronized
   50-client burst pass. These are fixture checks, not real-model savings.
 
+- Optional SQLite persistence with restart recovery, deployment-version guards,
+  transactional cross-worker invalidation, logical storage limits, and explicit
+  storage-failure behavior. Cross-worker miss coalescing is not implemented.
+
 ## Evidence limits
 
 Saved Phase A counts reconcile, but off-seed labels, repeated seed requests,
@@ -28,7 +32,7 @@ semantic accuracy, answer quality, or measured workload savings.
 
 ## Next implementation work
 
-- Extend the gateway with persistence, streaming, deployment packaging, and a dashboard.
+- Extend the gateway with streaming, deployment packaging, and a dashboard.
 - Develop candidate-bound, answer-aware evaluation with explicit lineage.
 - Repair semantic matching on development data before a new frozen evaluation.
 - Measure complete-answer latency and net generation/verification work.

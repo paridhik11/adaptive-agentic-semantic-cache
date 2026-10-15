@@ -542,3 +542,11 @@ real-model latency savings or semantic accuracy.
 | PB-GATEWAY-TEST | Focused gateway/runtime regressions | 104 passed; includes real loopback HTTP adapter fixtures, authentication, isolation, error accounting, byte limits, concurrent coordination and no implicit retries | `tests/test_gateway.py`, `tests/test_http_provider.py`, `tests/test_response_cache.py` | `python -m pytest tests/test_gateway.py tests/test_http_provider.py tests/test_response_cache.py -q` |
 | PB-GATEWAY-SUITE | Full default offline suite | 408 passed, 22 deselected; live model/API integration excluded. Tested with FastAPI 0.143.1, Starlette 1.8.0 and uvicorn 0.54.0 | `tests/`, `pyproject.toml` | `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m pytest -q` |
 | PB-GATEWAY-SMOKE | Running HTTP gateway functional smoke | **simulated_functional_smoke**: 56 authenticated completion requests; 50 client threads released through a barrier (server peak concurrency not measured); 3 MISS, 52 HIT, 1 BYPASS; 4 fixture upstream attempts; 0 external model calls. Tenant isolation/invalidation and authentication passed | `docs/audit/GATEWAY_CONCURRENT_SMOKE.json` | `python scripts/smoke_gateway.py` |
+
+## SQLite Persistence — Functional Evidence (2026-10-15)
+
+| ID | Fact | Value and evidence | Source | Recompute |
+| --- | --- | --- | --- | --- |
+| PB-SQLITE-FOCUSED | Persistence and gateway regression checks | 118 passed; separate-interpreter reopen, TTL, tenant isolation, shared invalidation epoch, LRU/UTF-8 budgets, namespace guard, storage errors and provider call accounting. Fixture responses only | `tests/test_sqlite_response_cache.py`, gateway/provider/runtime tests | `python -m pytest tests/test_sqlite_response_cache.py tests/test_gateway.py tests/test_http_provider.py tests/test_response_cache.py -q` |
+| PB-SQLITE-SUITE | Full default offline suite after persistence | 422 passed, 22 deselected; no live model/API integration or sealed inference rerun | `tests/`, `pyproject.toml` | `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m pytest -q` |
+| PB-SQLITE-SMOKE | Existing loopback HTTP smoke remains passing | 56 authenticated fixture completions, 50 barrier-released clients, 4 fixture provider calls, 0 external model calls; default in-memory mode. Persistence separately checked in regression tests | `scripts/smoke_gateway.py` | `python scripts/smoke_gateway.py` |

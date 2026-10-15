@@ -154,3 +154,39 @@ See `audit/GATEWAY_CONCURRENT_SMOKE.json` and PB-GATEWAY rows in `FACTS.md` for
 fixture evidence. No new sealed evaluation was run. Streaming, durable storage,
 scoped invalidation beyond tenant, deployment packaging/dashboard, and broader
 real-provider paired workloads remain incomplete. Gate B has not passed.
+
+## Optional persistent exact cache
+
+Set `GATEWAY_CACHE_DB` to a local SQLite file and `GATEWAY_CACHE_VERSION` to an
+explicit deployment version before starting the gateway. Without a database
+path, storage remains in memory. The parent directory must already exist and
+be writable. Restrict its permissions: responses are stored as plaintext and
+may contain private user data. Database files are excluded from Git.
+
+Use a new database path and version when changing model aliases, upstream
+accounts/data, or eligibility policy code. Provider mode, endpoint, model
+allowlist, policy selection and cache limits also participate in the stored
+namespace. A namespace mismatch refuses startup instead of serving old answers.
+Changing a version does not automatically delete the previous database.
+
+SQLite transactions coordinate reads, LRU eviction and invalidation across
+local workers. A shared epoch prevents in-flight generations from repopulating
+after invalidation. Provider calls never hold a database transaction. Identical
+miss coalescing remains process-local: separate workers can generate the same
+answer concurrently. Use local disk, not a network filesystem; this is not a
+distributed cache. Transactions have a bounded lock wait, not a throughput SLA.
+
+Expiry uses wall-clock time across restarts; clock rollback can extend apparent
+TTL, so maintain the host clock. Entry and UTF-8 payload limits apply to logical
+stored responses, not physical database size. SQLite may retain freed pages;
+operators must budget disk space separately. Expired entries are removed during
+cache operations. Cache read failures bypass reuse; admission failures return
+the already-generated answer without retrying the provider. Invalidation errors
+return HTTP 503 and must not be treated as successful deletion. Startup storage
+errors fail startup. Malformed saved responses are bypassed; restore or replace
+a damaged database before re-enabling reuse.
+
+Regression coverage includes a separate Python process reopening the file,
+expiry, tenant isolation, cross-instance invalidation during generation, LRU
+and byte limits, namespace mismatch, and storage-failure behavior. These are
+fixture correctness checks, not real-model safety or performance measurements.

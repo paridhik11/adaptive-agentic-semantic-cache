@@ -8,8 +8,8 @@ policy cannot silently make dynamic requests cacheable.
 
 Tenant identity must come from a trusted application boundary. This module
 provides namespace isolation, not authentication. Storage is bounded and
-thread-safe within one process; persistence and streaming remain separate
-gateway work.
+thread-safe within one process; optional SQLite storage persists answers
+and coordinates invalidation across local processes. Streaming is unsupported.
 """
 
 from __future__ import annotations
@@ -18,6 +18,7 @@ import copy
 import hashlib
 import json
 import math
+import sqlite3
 import threading
 import time
 from collections import OrderedDict
@@ -79,6 +80,7 @@ class ScopedResponseCache:
         max_bytes: int = 64 * 1024 * 1024,
         temperature_cap: float = 0.2,
         clock: Callable[[], float] = time.monotonic,
+        storage=None,
     ) -> None:
         if not callable(eligibility):
             raise TypeError("an explicit eligibility policy is required")
@@ -90,6 +92,7 @@ class ScopedResponseCache:
             raise ValueError("max_bytes must be a positive integer")
         if isinstance(temperature_cap, bool) or not math.isfinite(temperature_cap) or not 0 <= temperature_cap <= 2:
             raise ValueError("temperature_cap must be finite and in [0, 2]")
+        self._storage = storage
         self._eligibility = eligibility
         self._ttl_seconds = ttl_seconds
         self._max_entries = max_entries
@@ -195,17 +198,28 @@ class ScopedResponseCache:
             reason = self._eligibility_reason(body)
             if reason is not None:
                 return result(generate(), "BYPASS", reason, 1, False)
-            with self._lock:
-                now = self._clock()
-                entry = self._entries.get(key)
-                if entry is not None and entry.expires_at > now:
-                    self._entries.move_to_end(key)
-                    return result(json.loads(entry.response_json), "HIT", "scoped_exact_hit", 0, False)
-                if entry is not None:
-                    self._payload_bytes -= entry.payload_bytes
-                    del self._entries[key]
-                epoch = self._epoch
-
+            if self._storage is not None:
+                try:
+                    payload, epoch = self._storage.lookup(key)
+                    if payload is not None:
+                        cached = json.loads(payload)
+                        _serialize(cached)  # reject non-finite persisted JSON
+                        if not isinstance(cached, dict) or not self._admissible(cached, body):
+                            raise ValueError("invalid stored response")
+                        return result(cached, "HIT", "scoped_exact_hit", 0, False)
+                except (sqlite3.Error, ValueError, TypeError):
+                    return result(generate(), "BYPASS", "cache_storage_unavailable", 1, False)
+            else:
+                with self._lock:
+                    now = self._clock()
+                    entry = self._entries.get(key)
+                    if entry is not None and entry.expires_at > now:
+                        self._entries.move_to_end(key)
+                        return result(json.loads(entry.response_json), "HIT", "scoped_exact_hit", 0, False)
+                    if entry is not None:
+                        self._payload_bytes -= entry.payload_bytes
+                        del self._entries[key]
+                    epoch = self._epoch
             response = generate()
             # Recheck after generation: policy can revoke eligibility while
             # upstream work is running. Invalid responses are never cached.
@@ -218,22 +232,32 @@ class ScopedResponseCache:
                     pass
             stored = False
             payload_bytes = len(response_json.encode("utf-8")) if response_json is not None else 0
-            with self._lock:
-                if response_json is not None and payload_bytes <= self._max_bytes and epoch == self._epoch:
-                    self._entries[key] = _Entry(tenant_id, response_json,
-                                               self._clock() + self._ttl_seconds, payload_bytes)
-                    self._payload_bytes += payload_bytes
-                    self._entries.move_to_end(key)
-                    while len(self._entries) > self._max_entries or self._payload_bytes > self._max_bytes:
-                        _, evicted = self._entries.popitem(last=False)
-                        self._payload_bytes -= evicted.payload_bytes
-                    stored = True
+            if self._storage is not None:
+                if response_json is not None:
+                    try:
+                        stored = self._storage.admit(key, tenant_id, response_json, epoch,
+                            ttl=self._ttl_seconds, max_entries=self._max_entries, max_bytes=self._max_bytes)
+                    except sqlite3.Error:
+                        return result(response, "MISS", "cache_storage_unavailable", 1, False)
+            else:
+                with self._lock:
+                    if response_json is not None and payload_bytes <= self._max_bytes and epoch == self._epoch:
+                        self._entries[key] = _Entry(tenant_id, response_json,
+                                                   self._clock() + self._ttl_seconds, payload_bytes)
+                        self._payload_bytes += payload_bytes
+                        self._entries.move_to_end(key)
+                        while len(self._entries) > self._max_entries or self._payload_bytes > self._max_bytes:
+                            _, evicted = self._entries.popitem(last=False)
+                            self._payload_bytes -= evicted.payload_bytes
+                        stored = True
             return result(response, "MISS", "generated_and_stored" if stored else "response_not_admitted", 1, stored)
 
     def invalidate(self, *, tenant_id: str | None = None) -> int:
         """Remove a tenant namespace or all entries; block in-flight admission."""
         if tenant_id is not None and (not isinstance(tenant_id, str) or not tenant_id.strip()):
             raise ValueError("tenant_id must be non-empty")
+        if self._storage is not None:
+            return self._storage.invalidate(tenant_id)
         with self._lock:
             self._epoch += 1
             keys = [key for key, entry in self._entries.items()
@@ -245,6 +269,8 @@ class ScopedResponseCache:
 
     @property
     def size(self) -> int:
+        if self._storage is not None:
+            return self._storage.size
         with self._lock:
             now = self._clock()
             expired = [key for key, entry in self._entries.items() if entry.expires_at <= now]

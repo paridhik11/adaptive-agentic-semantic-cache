@@ -96,4 +96,11 @@ http_cache/
 *.safetensors
 *.bin
 data/wildchat/
-data/cqadupstack/
+data/cqadupstack/
+# Persistent answers may contain private user data
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*

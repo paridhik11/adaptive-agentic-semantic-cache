@@ -217,3 +217,31 @@ def test_short_credentials_fail_at_startup():
     service, _ = setup()
     with pytest.raises(ValueError):
         create_app(service, tenant_tokens={"short": "tenant-a"})
+
+
+def test_persistent_env_restart_and_version_guard(monkeypatch, tmp_path):
+    monkeypatch.setenv('GATEWAY_TENANTS_JSON', '{"' + TOKEN_A + '":"tenant-a"}')
+    monkeypatch.setenv('GATEWAY_PROVIDER', 'fixture')
+    monkeypatch.setenv('GATEWAY_CACHE_POLICY', 'rules')
+    monkeypatch.setenv('GATEWAY_CACHE_DB', str(tmp_path / 'answers.sqlite'))
+    monkeypatch.delenv('GATEWAY_CACHE_VERSION', raising=False)
+    with pytest.raises(ValueError, match='GATEWAY_CACHE_VERSION'):
+        app_from_env()
+    monkeypatch.setenv('GATEWAY_CACHE_VERSION', 'fixture-v1')
+    assert send(TestClient(app_from_env())).headers['x-cache'] == 'MISS'
+    assert send(TestClient(app_from_env())).headers['x-cache'] == 'HIT'
+    monkeypatch.setenv('GATEWAY_CACHE_VERSION', 'fixture-v2')
+    import sqlite3
+    with pytest.raises(sqlite3.DatabaseError, match='namespace mismatch'):
+        app_from_env()
+
+
+def test_failed_invalidation_returns_503(monkeypatch):
+    import sqlite3
+    service, client = setup()
+    def fail(**kwargs):
+        raise sqlite3.OperationalError('private database path')
+    monkeypatch.setattr(service.cache, 'invalidate', fail)
+    result = client.delete('/v1/cache', headers={'Authorization': 'Bearer ' + TOKEN_A})
+    assert result.status_code == 503
+    assert 'private database path' not in result.text
