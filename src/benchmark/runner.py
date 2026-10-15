@@ -1,0 +1,88 @@
+"""Paired serial serving experiment. No automatic external API execution."""
+from __future__ import annotations
+import copy
+import random
+import time
+
+from src.api.service import ConservativeRulesPolicy, validate_request
+from src.policy.response_cache import ScopedResponseCache
+from src.benchmark.schema import digest, validate_workload
+
+
+def usage(response):
+    value = response.get('usage', {}) if isinstance(response, dict) else {}
+    fields = ('prompt_tokens', 'completion_tokens')
+    if any(type(value.get(k)) is not int or value[k] < 0 for k in fields):
+        return None
+    return {k: value[k] for k in fields}
+
+
+def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
+                 max_entries=1024, max_bytes=67108864):
+    validate_workload(workload)
+    rows = [r for r in workload['requests'] if r['split'] == split]
+    if not rows:
+        raise ValueError('selected split is empty')
+    if split != 'dev':
+        raise ValueError('recovery runner currently permits development only; no unregistered test runs')
+    models = frozenset(row['request'].get('model') for row in rows)
+    if any(not isinstance(m, str) or not m.strip() for m in models):
+        raise ValueError('all requests require a nonempty model')
+    # Validate the entire workload before making any provider calls.
+    for row in rows:
+        validate_request(row['request'], models, 4096)
+    cache = ScopedResponseCache(eligibility=ConservativeRulesPolicy(), ttl_seconds=ttl_seconds,
+                                max_entries=max_entries, max_bytes=max_bytes)
+    rng, origins, events = random.Random(seed), {}, []
+    provider_mode = getattr(provider, 'mode', 'unspecified')
+    if provider_mode not in ('live', 'simulated_fixture'):
+        raise ValueError('provider must declare live or simulated_fixture mode')
+    for row in rows:
+        body, tenant = copy.deepcopy(row['request']), row['tenant_id']
+        key = digest({'tenant_id': tenant, 'request': body})
+        arms = ['cache', 'fresh']
+        rng.shuffle(arms)
+        record = {**copy.deepcopy(row), 'request_sha256': digest(body), 'order': arms}
+        for arm in arms:
+            started = time.perf_counter()
+            calls, consumed, response, result, error = 0, [], None, None, None
+            def measured(request):
+                nonlocal calls
+                calls += 1
+                value = provider(copy.deepcopy(request))
+                consumed.append(usage(value))
+                return value
+            try:
+                if arm == 'cache':
+                    result = cache.process(body, tenant_id=tenant, provider=measured)
+                    response = result.response
+                else:
+                    response = measured(body)
+                if not isinstance(response, dict):
+                    raise TypeError('invalid response')
+                digest(response)  # fail invalid JSON before recording success
+                if not ScopedResponseCache._admissible(response, body):
+                    raise ValueError('incomplete answer')
+            except Exception:
+                # No provider bodies/credentials in errors. Attempts still count.
+                error, response = 'provider_or_processing_error', None
+            record[arm] = {'latency_ms': (time.perf_counter() - started) * 1000,
+                           'provider_calls': calls, 'usage': consumed, 'error': error,
+                           'response': response}
+            if arm == 'cache':
+                record['stored'] = result.stored if result is not None and error is None else False
+                record['status'] = result.status if result is not None and error is None else 'ERROR'
+                record['reason'] = result.reason if result is not None else error
+                record['candidate_event_id'] = origins.get(key) if record['status'] == 'HIT' else None
+                if result is not None and result.stored:
+                    origins[key] = row['event_id']
+        record['response_sha256'] = digest(record['cache']['response'])
+        record['fresh_response_sha256'] = digest(record['fresh']['response'])
+        events.append(record)
+    return {'schema_version': 'answer-trace-v1', 'evaluation_mode': provider_mode,
+            'workload_sha256': digest(workload), 'workload_name': workload['name'],
+            'nature': workload['nature'], 'provenance': workload['provenance'], 'license': workload['license'],
+            'split': split, 'config': {'seed': seed, 'policy': 'conservative-rules', 'matcher': 'exact-only',
+                'ttl_seconds': ttl_seconds, 'max_entries': max_entries, 'max_bytes': max_bytes},
+            'timing_scope': 'serial in-process complete serving including provider, lookup and admission; excludes HTTP gateway transport',
+            'events': events}
