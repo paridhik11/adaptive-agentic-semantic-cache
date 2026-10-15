@@ -34,7 +34,11 @@ gateway = [
 ]
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["."]
+include = ["src", "src.*"]
+
+[tool.setuptools.package-data]
+"src.api" = ["dashboard.html"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

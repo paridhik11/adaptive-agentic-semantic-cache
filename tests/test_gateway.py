@@ -245,3 +245,15 @@ def test_failed_invalidation_returns_503(monkeypatch):
     result = client.delete('/v1/cache', headers={'Authorization': 'Bearer ' + TOKEN_A})
     assert result.status_code == 503
     assert 'private database path' not in result.text
+
+
+def test_dashboard_is_static_and_metrics_remain_protected():
+    _, client = setup()
+    page = client.get('/dashboard')
+    assert page.status_code == 200
+    assert 'Operational counters' in page.text
+    assert 'localStorage' not in page.text
+    assert TOKEN_A not in page.text
+    assert "frame-ancestors 'none'" in page.headers['content-security-policy']
+    assert page.headers['cache-control'] == 'no-store'
+    assert client.get('/metrics').status_code == 401

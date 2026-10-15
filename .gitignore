@@ -104,3 +104,6 @@ data/cqadupstack/
 *.sqlite3-*
 *.db
 *.db-*
+
+# Local answer-review evidence can contain private data
+runs/

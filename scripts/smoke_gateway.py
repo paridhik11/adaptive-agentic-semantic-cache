@@ -33,6 +33,8 @@ def main():
            "GATEWAY_ADMIN_TOKEN": admin, "GATEWAY_MAX_INFLIGHT": "64",
            "GATEWAY_TTL_SECONDS": "3600", "GATEWAY_MAX_ENTRIES": "1024",
            "GATEWAY_MAX_CACHE_BYTES": "67108864", "GATEWAY_MAX_OUTPUT_TOKENS": "4096"}
+    env.pop("GATEWAY_CACHE_DB", None)
+    env.pop("GATEWAY_CACHE_VERSION", None)
     process = subprocess.Popen([sys.executable, "-m", "uvicorn", "src.api.gateway:app_from_env", "--factory",
                                 "--host", "127.0.0.1", "--port", str(port), "--no-access-log",
                                 "--log-level", "error", "--limit-concurrency", "128"],

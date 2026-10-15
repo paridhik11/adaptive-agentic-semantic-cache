@@ -7,9 +7,10 @@ import json
 import os
 import secrets
 import sqlite3
+from pathlib import Path
 
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse, PlainTextResponse
+from fastapi.responses import JSONResponse, PlainTextResponse, HTMLResponse
 from starlette.concurrency import run_in_threadpool
 from starlette.requests import ClientDisconnect
 
@@ -105,6 +106,13 @@ def create_app(service: GatewayService, *, tenant_tokens: dict[str, str],
         info = '# TYPE cache_gateway_info gauge\n' + f'cache_gateway_info{{provider_mode="{mode}"}} 1\n'
         return PlainTextResponse(info + service.metrics.render(), media_type="text/plain; version=0.0.4",
                                  headers={"Cache-Control": "no-store"})
+
+    @app.get("/dashboard", response_class=HTMLResponse)
+    def dashboard():
+        # Public static shell only; /metrics still requires admin authentication.
+        return HTMLResponse(Path(__file__).with_name("dashboard.html").read_text(encoding="utf-8"),
+            headers={"Cache-Control": "no-store", "X-Content-Type-Options": "nosniff",
+                "Content-Security-Policy": "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'"})
 
     @app.delete("/v1/cache")
     def invalidate(request: Request):

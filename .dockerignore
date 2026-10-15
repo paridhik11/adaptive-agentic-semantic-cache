@@ -1,0 +1,9 @@
+*
+!Dockerfile
+!deploy/
+!deploy/requirements-gateway.txt
+!src/
+!src/**
+src/**/__pycache__/
+src/**/*.pyc
+src/*.egg-info/

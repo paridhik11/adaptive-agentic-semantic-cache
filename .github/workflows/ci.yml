@@ -86,3 +86,37 @@ jobs:
         # These are the ONLY tests allowed to access the network or load the model.
         run: |
           pytest -m requires_model -v
+
+  gateway-container:
+    name: Gateway container fixture smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build gateway-only image
+        run: docker build -t cache-gateway:test .
+      - name: Start and check fixture container
+        shell: bash
+        run: |
+          tenant_token=$(python -c 'import secrets; print(secrets.token_urlsafe(32))')
+          admin_token=$(python -c 'import secrets; print(secrets.token_urlsafe(32))')
+          echo "::add-mask::$tenant_token"
+          echo "::add-mask::$admin_token"
+          export SMOKE_TENANT_TOKEN="$tenant_token"
+          export GATEWAY_TENANTS_JSON=$(python -c 'import json,os; print(json.dumps({os.environ["SMOKE_TENANT_TOKEN"]:"ci-tenant"}))')
+          export GATEWAY_ADMIN_TOKEN="$admin_token"
+          docker run -d --name cache-smoke -p 127.0.0.1:8000:8000 \
+            -e GATEWAY_TENANTS_JSON -e GATEWAY_ADMIN_TOKEN \
+            -e GATEWAY_PROVIDER=fixture -e GATEWAY_CACHE_POLICY=rules \
+            -e GATEWAY_CACHE_DB=/state/answers.sqlite -e GATEWAY_CACHE_VERSION=ci-v1 \
+            --read-only --tmpfs /tmp --mount type=volume,destination=/state \
+            --cap-drop ALL --security-opt no-new-privileges cache-gateway:test
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8000/health; then break; fi
+            sleep 1
+          done
+          python scripts/smoke_container.py
+      - name: Container logs and cleanup
+        if: always()
+        run: |
+          docker logs cache-smoke || true
+          docker rm -fv cache-smoke || true

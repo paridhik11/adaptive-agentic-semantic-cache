@@ -1,0 +1,27 @@
+services:
+  gateway:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      GATEWAY_PROVIDER: fixture
+      GATEWAY_CACHE_POLICY: rules
+      GATEWAY_TENANTS_JSON: ${GATEWAY_TENANTS_JSON:?Set tenant tokens in your environment}
+      GATEWAY_ADMIN_TOKEN: ${GATEWAY_ADMIN_TOKEN:?Set an admin token in your environment}
+      GATEWAY_CACHE_DB: /state/answers.sqlite
+      GATEWAY_CACHE_VERSION: fixture-deployment-v1
+    volumes:
+      - cache-state:/state
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 128
+    mem_limit: 512m
+    cpus: 1.0
+    restart: unless-stopped
+volumes:
+  cache-state:
