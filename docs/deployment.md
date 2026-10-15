@@ -51,11 +51,14 @@ hits do not imply correct answers. Use the answer-review benchmark for quality.
 
 ## Validation status
 
-Docker is unavailable in the implementation workspace, so image startup and
-Compose volume permissions are **not locally verified**. A CI job builds and
-smoke-tests the container; its remote result must be checked before claiming a
-validated container release. Local HTTP smoke tests cover the underlying gateway.
-The Python wheel is separately checked outside the source directory.
+Docker is unavailable in the implementation workspace. The GitHub Actions
+[container smoke job](https://github.com/paridhik11/adaptive-agentic-semantic-cache/actions/runs/38799899946/job/116645894452)
+passed on commit `2bd019453b59044d2e3731b4f3d45adfaf7f3710`: image build,
+read-only container startup with a writable SQLite volume, authenticated fixture
+MISS/HIT, health and dashboard delivery. This is a functional container check,
+not a production load or Compose-specific deployment certification. Other CI
+jobs were still running when this result was recorded. The Python wheel also
+passed the separate local check outside the source directory.
 
 Streaming, distributed storage/coordination, per-tenant rate limits, production
 identity integration, and deployment-specific load/SLO validation remain work.

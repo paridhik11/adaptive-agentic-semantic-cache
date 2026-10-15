@@ -26,8 +26,8 @@
 - Existing development-pair conversion with provenance and normalized-text groups;
   larger fixture-only exercise recorded in `audit/ANSWER_BENCHMARK_FUNCTIONAL_EVIDENCE.json`.
 - Per-worker operations dashboard, gateway-only image/Compose files, container CI
-  smoke job and corrected installable package layout. Local Docker/browser-render
-  validation remains unavailable; see `deployment.md`.
+  smoke job and corrected installable package layout. The remote container smoke
+  job passed; local browser-render validation remains unavailable. See `deployment.md`.
 
 ## Evidence limits
 
