@@ -1,0 +1,140 @@
+{
+  "schema_version": "semantic-functional-evidence-v1",
+  "limitations": [
+    "Constructed exposed QQP/PAWS training queries with deterministic fixture answers, not organic traffic or model quality evidence.",
+    "Similarity encoder is a lexical baseline, not learned dense embeddings.",
+    "Fixture verifier abstains on every non-exact candidate; this is not a measured verifier accuracy result.",
+    "All accepted answers are unreviewed. No new safety gate or real-model savings claim."
+  ],
+  "runs": [
+    {
+      "policy": "exact",
+      "config": {
+        "seed": 17,
+        "policy": "conservative-rules",
+        "matcher": "exact",
+        "encoder": null,
+        "verifier": null,
+        "threshold": null,
+        "margin": null,
+        "ttl_seconds": 3600,
+        "max_entries": 1024,
+        "max_bytes": 67108864
+      },
+      "code_tree": "240e327ddc436de28cfbcc76b1ac881b2fa54331",
+      "code_revision_local": "8a36f7c9311e77a328d2c82cc4154579b135b84a",
+      "working_tree_dirty": false,
+      "workload_sha256": "d8bd0f54105eeb99b7d9cd9254de6b466c00200cc04cc381ada0479986661545",
+      "trace_sha256": "27b096641b0f4f6fe0d4f80e68bf627e43e018377f63b3c57335943987f5a2c9",
+      "evaluation_mode": "simulated_fixture",
+      "requests": 4000,
+      "status_counts": {
+        "BYPASS": 3777,
+        "MISS": 219,
+        "HIT": 4
+      },
+      "nonexact_hits": 0,
+      "reviewed_hits": 0,
+      "incorrect_reuse_rate": null,
+      "cache_generation_attempts": 3996,
+      "verifier_work": {
+        "provider_attempts": 0,
+        "attempts_without_usage": 0,
+        "observed_tokens": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        },
+        "errors": 0
+      },
+      "fresh_generation_attempts": 4000,
+      "external_model_calls": 0,
+      "safety_certified": false
+    },
+    {
+      "policy": "similarity",
+      "config": {
+        "seed": 17,
+        "policy": "conservative-rules",
+        "matcher": "similarity",
+        "encoder": "lexical-sha256-unigram-bigram-512-v1",
+        "verifier": null,
+        "threshold": 0.85,
+        "margin": 0.05,
+        "ttl_seconds": 3600,
+        "max_entries": 1024,
+        "max_bytes": 67108864
+      },
+      "code_tree": "240e327ddc436de28cfbcc76b1ac881b2fa54331",
+      "code_revision_local": "8a36f7c9311e77a328d2c82cc4154579b135b84a",
+      "working_tree_dirty": false,
+      "workload_sha256": "d8bd0f54105eeb99b7d9cd9254de6b466c00200cc04cc381ada0479986661545",
+      "trace_sha256": "4ea31ab356da8124c77050a58418844e9721a77140c71a218730e9347c0e12d9",
+      "evaluation_mode": "simulated_fixture",
+      "requests": 4000,
+      "status_counts": {
+        "BYPASS": 3777,
+        "MISS": 173,
+        "HIT": 50
+      },
+      "nonexact_hits": 46,
+      "reviewed_hits": 0,
+      "incorrect_reuse_rate": null,
+      "cache_generation_attempts": 3950,
+      "verifier_work": {
+        "provider_attempts": 0,
+        "attempts_without_usage": 0,
+        "observed_tokens": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        },
+        "errors": 0
+      },
+      "fresh_generation_attempts": 4000,
+      "external_model_calls": 0,
+      "safety_certified": false
+    },
+    {
+      "policy": "verified",
+      "config": {
+        "seed": 17,
+        "policy": "conservative-rules",
+        "matcher": "verified",
+        "encoder": "lexical-sha256-unigram-bigram-512-v1",
+        "verifier": "fixture-abstain-v1",
+        "threshold": 0.85,
+        "margin": 0.05,
+        "ttl_seconds": 3600,
+        "max_entries": 1024,
+        "max_bytes": 67108864
+      },
+      "code_tree": "240e327ddc436de28cfbcc76b1ac881b2fa54331",
+      "code_revision_local": "8a36f7c9311e77a328d2c82cc4154579b135b84a",
+      "working_tree_dirty": false,
+      "workload_sha256": "d8bd0f54105eeb99b7d9cd9254de6b466c00200cc04cc381ada0479986661545",
+      "trace_sha256": "a83bf5b05b85060f3cd2522fc6913079afd011d9e587d728a6aa21f22886ffd4",
+      "evaluation_mode": "simulated_fixture",
+      "requests": 4000,
+      "status_counts": {
+        "BYPASS": 3777,
+        "MISS": 219,
+        "HIT": 4
+      },
+      "nonexact_hits": 0,
+      "reviewed_hits": 0,
+      "incorrect_reuse_rate": null,
+      "cache_generation_attempts": 3996,
+      "verifier_work": {
+        "provider_attempts": 0,
+        "attempts_without_usage": 0,
+        "observed_tokens": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        },
+        "errors": 0
+      },
+      "fresh_generation_attempts": 4000,
+      "external_model_calls": 0,
+      "safety_certified": false
+    }
+  ]
+}

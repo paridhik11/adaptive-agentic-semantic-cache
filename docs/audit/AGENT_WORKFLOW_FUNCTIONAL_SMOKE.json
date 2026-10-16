@@ -1,0 +1,82 @@
+{
+  "evaluation_mode": "simulated_fixture",
+  "external_model_calls": 0,
+  "note": "Permissive eligibility and reviewer approval are test fixtures only. Production conservative policy bypasses contextual requests.",
+  "runs": [
+    {
+      "status": "COMPLETED",
+      "specialist": "coding",
+      "draft": "SIMULATED specialist answer: review the request and apply the relevant algorithm.",
+      "answer": "SIMULATED specialist answer: review the request and apply the relevant algorithm.",
+      "stages": [
+        {
+          "stage": "specialist",
+          "status": "MISS",
+          "reason": "generated_and_stored",
+          "provider_calls": 1,
+          "elapsed_ms": 0.22055499999851236
+        },
+        {
+          "stage": "reviewer",
+          "status": "BYPASS",
+          "reason": "cache_disabled_by_caller",
+          "provider_calls": 1,
+          "elapsed_ms": 0.10865000001558656
+        }
+      ],
+      "provider_calls": 2,
+      "budget_charged_calls": 2,
+      "elapsed_ms": 0.734633999968537
+    },
+    {
+      "status": "COMPLETED",
+      "specialist": "coding",
+      "draft": "SIMULATED specialist answer: review the request and apply the relevant algorithm.",
+      "answer": "SIMULATED specialist answer: review the request and apply the relevant algorithm.",
+      "stages": [
+        {
+          "stage": "specialist",
+          "status": "HIT",
+          "reason": "scoped_exact_hit",
+          "provider_calls": 0,
+          "elapsed_ms": 0.07549200000767087
+        },
+        {
+          "stage": "reviewer",
+          "status": "BYPASS",
+          "reason": "cache_disabled_by_caller",
+          "provider_calls": 1,
+          "elapsed_ms": 0.06704899999476766
+        }
+      ],
+      "provider_calls": 1,
+      "budget_charged_calls": 1,
+      "elapsed_ms": 0.16818800003193246
+    },
+    {
+      "status": "COMPLETED",
+      "specialist": "coding",
+      "draft": "SIMULATED specialist answer: review the request and apply the relevant algorithm.",
+      "answer": "SIMULATED specialist answer: review the request and apply the relevant algorithm.",
+      "stages": [
+        {
+          "stage": "specialist",
+          "status": "MISS",
+          "reason": "generated_and_stored",
+          "provider_calls": 1,
+          "elapsed_ms": 0.09467899997162021
+        },
+        {
+          "stage": "reviewer",
+          "status": "BYPASS",
+          "reason": "cache_disabled_by_caller",
+          "provider_calls": 1,
+          "elapsed_ms": 0.05254699999568402
+        }
+      ],
+      "provider_calls": 2,
+      "budget_charged_calls": 2,
+      "elapsed_ms": 0.16415200002484198
+    }
+  ]
+}
