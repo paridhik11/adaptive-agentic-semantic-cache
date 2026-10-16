@@ -1,0 +1,61 @@
+{
+  "schema_version": "live-connection-observation-v1",
+  "provenance": "User-uploaded local pilot trace/report; content binding verified. Originals include local paths and are not redistributed.",
+  "trace_content_sha256": "3e89c616718dbd1dd4baf36f81947e9e9282b4338934adbfa9fb827bce1bc2fd",
+  "report_file_sha256": "9669ef1e2d330ab6f10e8ae8d6afd6a8a91cd45c1765e4c5c983e4a8aaeed831",
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "request_count": 1,
+  "max_tokens": 1024,
+  "recorded_new_live_attempts": 2,
+  "cache_stored": false,
+  "execution_mode": "live_uninterrupted",
+  "arms": {
+    "cache": {
+      "attempt_latency_ms": 20284.318699967116,
+      "diagnostics": {
+        "response_sha256": "ffbcf94c26da502e86206d3bfe79ff1bfa8e74db3a3d5d7def38a52c21e2b6ac",
+        "model": "nvidia/nemotron-3-super-120b-a12b:free",
+        "admissible_complete_answer": false,
+        "rejection_reason": "output_token_limit",
+        "choices": [
+          {
+            "finish_reason": "length",
+            "assistant_text_characters": 2885,
+            "reasoning_text_characters": 1553,
+            "has_tool_calls": false,
+            "has_refusal": false
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 20,
+          "completion_tokens": 1024,
+          "reasoning_tokens": 353
+        }
+      }
+    },
+    "fresh": {
+      "attempt_latency_ms": 32798.99379983544,
+      "diagnostics": {
+        "response_sha256": "d2d472670060b2d31989862814c88ef346d84e4fc1ebdadc61cd1adcbdd77112",
+        "model": "nvidia/nemotron-3-super-120b-a12b:free",
+        "admissible_complete_answer": false,
+        "rejection_reason": "output_token_limit",
+        "choices": [
+          {
+            "finish_reason": "length",
+            "assistant_text_characters": 2168,
+            "reasoning_text_characters": 1897,
+            "has_tool_calls": false,
+            "has_refusal": false
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 20,
+          "completion_tokens": 1024,
+          "reasoning_tokens": 432
+        }
+      }
+    }
+  },
+  "interpretation": "Both responses ended with length despite a larger output cap. Partial answer text is present, but neither is admissible as complete. No cache hits, complete-answer quality, successful-answer latency or savings are demonstrated."
+}

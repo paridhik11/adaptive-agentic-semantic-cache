@@ -7,6 +7,50 @@ Implementation regression tests used local fixtures. The first user-run live
 connection check is recorded in `audit/OPENROUTER_CONNECTION_PILOT_V1.json`; it
 yielded no admissible complete answers.
 
+## One foreground session with visible progress
+
+From the updated Windows checkout, with the key already in this PowerShell
+session, run:
+
+```powershell
+git pull --ff-only
+.\.venv\Scripts\python.exe scripts/run_zero_budget_session.py --execute
+```
+
+This opens `runs/guided-exact-v1/status.html` and prints progress in the terminal.
+It runs six authored requests across two topics: seed, exact repeat and
+paraphrase. The exact policy intentionally generates a fresh answer for the
+paraphrase. You see each arm's status, model-call count and unreviewed answer
+preview. Keep the foreground process running; it is not a background service.
+
+The profile requests at most two concise sentences, a 512-token output limit
+and OpenRouter's `reasoning: {"enabled": false}` setting. This setting is
+[documented by OpenRouter](https://openrouter.ai/docs/guides/best-practices/reasoning-tokens);
+its effect on this live model still requires observation. Parameter support is
+required and fallback remains disabled. The job stops on the first incomplete
+answer or provider failure rather than spending the rest of the budget. It caps
+total attempts at twelve; two exact hits would require ten generation attempts.
+This constructed sequence demonstrates functionality, not real-traffic hit rate
+or semantic safety.
+
+Only a local rolling-minute quota pause can automatically wait and resume in
+the same foreground job, for at most three minutes. Saved responses are replayed;
+any reconstruction suppresses live latency comparisons. Daily limits, provider
+errors and incomplete responses stop immediately. Run without `--execute` for a
+plan; add `--no-browser` to keep progress in the terminal and local HTML only.
+
+On completion share only `runs/guided-exact-v1/results.json` for analysis. It
+packages the trace, unreviewed report and response diagnostics. It contains model
+answers and local provenance paths, so inspect it before sharing publicly. On a
+pause the page and `paused.json` give the reason. Rerunning a completed session
+preserves evidence and makes no inference calls. Changed model/profile/code
+requires a new run and directory; keep the shared quota journal.
+
+The two earlier connection checks each used two live calls; all four were
+truncated. The second produced partial text but still ended with `length`.
+See `audit/OPENROUTER_CONNECTION_PILOT_V2.json`. Neither connection check
+establishes successful-answer latency, cache savings or answer correctness.
+
 ## Quota and price controls
 
 OpenRouter's [pricing page](https://openrouter.ai/pricing) documents the base free
@@ -30,10 +74,11 @@ one ledger. Usage from other apps, accounts or a different ledger is not visible
 this is not a query of your remaining OpenRouter quota.
 
 On local quota exhaustion, the script prints a pause and earliest retry time;
-it does not sleep or schedule itself. A provider rate-limit response blocks new
+the low-level pilot does not sleep or schedule itself. The guided wrapper above
+can wait for a local minute window. A provider rate-limit response blocks new
 project calls conservatively until the next local UTC day. Other provider errors
 also pause immediately for inspection instead of automatically consuming the
-rest of the pilot budget. Nothing retries automatically.
+rest of the pilot budget. Provider calls are never automatically retried.
 
 ## Prepare and inspect a plan
 

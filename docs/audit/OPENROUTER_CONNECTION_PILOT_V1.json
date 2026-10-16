@@ -21,5 +21,11 @@
   },
   "cache_stored": false,
   "raw_finish_reasons_available_in_uploaded_trace": false,
-  "interpretation": "Transport produced usage-bearing responses, but no complete admissible answers. Matching output caps suggest truncation; raw journal diagnostics are required to confirm. These are failed-attempt timings, not successful-answer latency or savings evidence."
+  "interpretation": "Both calls were incomplete. Subsequent user-pasted journal diagnostics confirm length termination with all 128 completion tokens spent on reasoning. No successful-answer latency or savings evidence.",
+  "subsequent_user_reported_journal_diagnostics": {
+    "finish_reason": "length",
+    "reasoning_tokens_each": 128,
+    "assistant_text_characters_each": null,
+    "provenance": "Read-only inspector output pasted by the user after the uploaded trace/report; not independently fetched from their laptop."
+  }
 }
