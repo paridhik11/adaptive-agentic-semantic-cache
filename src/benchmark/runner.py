@@ -7,6 +7,7 @@ import time
 from src.api.service import ConservativeRulesPolicy, validate_request
 from src.policy.response_cache import ScopedResponseCache
 from src.benchmark.schema import digest, validate_workload
+from src.benchmark.control import RunPaused
 
 
 def usage(response):
@@ -73,6 +74,8 @@ def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
                 digest(response)  # fail invalid JSON before recording success
                 if not ScopedResponseCache._admissible(response, body):
                     raise ValueError('incomplete answer')
+            except RunPaused:
+                raise
             except Exception:
                 # No provider bodies/credentials in errors. Attempts still count.
                 error, response = 'provider_or_processing_error', None

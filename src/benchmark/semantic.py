@@ -16,6 +16,7 @@ import time
 
 from src.policy.response_cache import ScopedResponseCache, ResponseCacheResult
 from src.benchmark.schema import canonical, digest
+from src.benchmark.control import RunPaused
 
 
 class LexicalEncoder:
@@ -88,6 +89,8 @@ class AnswerVerifier:
             if not isinstance(decision,dict) or set(decision)!={'reuse_safe'} or type(decision['reuse_safe']) is not bool:
                 raise ValueError('invalid verdict')
             result['approved']=decision['reuse_safe']
+        except RunPaused:
+            raise
         except Exception:
             result['error']='verification_failed'
         result['latency_ms']=(time.perf_counter()-started)*1000
@@ -167,6 +170,8 @@ class ExperimentalSemanticCache:
                     if approved and self.guard._eligibility_reason(body) is None:
                         self.entries.move_to_end(candidate_key)
                         return result(entry['answer'],'HIT','experimental_'+self.mode,0,False,entry['event_id'])
+        except RunPaused:
+            raise
         except Exception:
             # Failures in encoding/verification never authorize reuse.
             reason='retrieval_or_verification_failed'

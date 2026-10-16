@@ -212,7 +212,12 @@ def summarize(trace, reviews=None):
     token_delta = None
     if not cache['attempts_without_usage'] and not fresh['attempts_without_usage'] and not verifier_missing:
         token_delta = {k: fresh['observed_'+k]-cache['observed_'+k]-verifier_tokens[k] for k in ('prompt_tokens', 'completion_tokens')}
-    return {'schema_version': 'answer-report-v1', 'trace_sha256': digest(trace),
+    latency_valid=trace.get('latency_valid',True)
+    if not latency_valid:
+        for stats in (cache,fresh):
+            stats['successful_answer_latency_ms']={k:None for k in ('p50','p95','p99')}
+            stats['all_attempt_latency_ms_mean']=None
+    return {'schema_version': 'answer-report-v1', 'latency_valid':latency_valid, 'trace_sha256': digest(trace),
             'evaluation_mode': trace['evaluation_mode'], 'nature': trace['nature'], 'split': trace['split'],
             'timing_scope': trace['timing_scope'], 'requests': len(events),
             'status_counts': dict(Counter(e['status'] for e in events)),
@@ -224,8 +229,8 @@ def summarize(trace, reviews=None):
             'total_cache_provider_attempts':cache['provider_attempts']+verifier_calls,
             'provider_attempts_avoided': fresh['provider_attempts']-cache['provider_attempts']-verifier_calls,
             'token_difference_fresh_minus_cache': token_delta,
-            'paired_latency': {'complete_pairs': len(pairs), 'mean_cache_minus_fresh_ms': sum(map(latency_delta,pairs))/len(pairs) if pairs else None,
-                              'group_bootstrap_95': cluster_interval(pairs,latency_delta)},
+            'paired_latency': {'complete_pairs': len(pairs), 'mean_cache_minus_fresh_ms': sum(map(latency_delta,pairs))/len(pairs) if pairs and latency_valid else None,
+                              'group_bootstrap_95': cluster_interval(pairs,latency_delta) if latency_valid else None},
             'paired_answer_quality': {'reviewed_pairs': len(quality), 'unreviewed_or_incomplete_pairs': len(events)-len(quality),
                 'mean_cache_minus_fresh_accuracy': sum(map(quality_delta,quality))/len(quality) if quality else None,
                 'group_bootstrap_95': cluster_interval(quality,quality_delta)},
