@@ -38,7 +38,9 @@
 
 - Zero-budget OpenRouter pilot path with explicit free-only model IDs, zero-price
   routing constraints, shared durable attempt limits, resume journal and disabled
-  live-latency comparisons after replay. No live calls have been made through it.
+  live-latency comparisons after replay. The first user-run connection pilot made
+  two live attempts but yielded no admissible complete answers; raw journal
+  diagnostics are needed before further inference.
 
 ## Evidence limits
 

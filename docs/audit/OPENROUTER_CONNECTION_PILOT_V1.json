@@ -1,0 +1,25 @@
+{
+  "schema_version": "live-connection-observation-v1",
+  "provenance": "User-uploaded local pilot trace/report; their content binding was verified. Original files include local paths and are not redistributed.",
+  "trace_content_sha256": "402cab49c1e7eb972aaac17ca2c2d7e7c9fafa0086a4d5e5b0303197bdc666ea",
+  "report_file_sha256": "49b75d4958c0d68054b3bbad652740d8fb1c4d1b176cdf2aa9c2fac99ce88561",
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "request_count": 1,
+  "max_tokens": 128,
+  "recorded_new_live_attempts": 2,
+  "reported_prompt_tokens": 40,
+  "reported_completion_tokens": 256,
+  "cache_arm": {
+    "successful_answers": 0,
+    "errors": 1,
+    "attempt_latency_ms": 3256.8818000145257
+  },
+  "fresh_arm": {
+    "successful_answers": 0,
+    "errors": 1,
+    "attempt_latency_ms": 2451.52539992705
+  },
+  "cache_stored": false,
+  "raw_finish_reasons_available_in_uploaded_trace": false,
+  "interpretation": "Transport produced usage-bearing responses, but no complete admissible answers. Matching output caps suggest truncation; raw journal diagnostics are required to confirm. These are failed-attempt timings, not successful-answer latency or savings evidence."
+}

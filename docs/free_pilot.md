@@ -3,7 +3,9 @@
 This path prepares a small real-answer development experiment using only explicit
 OpenRouter free-model IDs. It defaults to planning; no requests are made until
 `--execute` is supplied and `OPENROUTER_API_KEY` exists in the process environment.
-No live OpenRouter model calls were used to implement or test this path.
+Implementation regression tests used local fixtures. The first user-run live
+connection check is recorded in `audit/OPENROUTER_CONNECTION_PILOT_V1.json`; it
+yielded no admissible complete answers.
 
 ## Quota and price controls
 
@@ -111,3 +113,28 @@ Successful evidence is exported atomically to a new directory: trace, unreviewed
 report, bound review template, offline review page and hash manifest. Existing
 completed evidence is never overwritten. Independent human review is still
 required before safe-reuse or answer-quality claims.
+
+## Inspect an incomplete answer without another call
+
+The first uploaded user-run connection check recorded live usage but no admissible
+complete answers. Both attempts reached the workload's output-token cap. This is
+consistent with truncation, but the original trace did not retain finish reasons;
+confirm from the saved raw journal instead of guessing.
+
+```bash
+python scripts/inspect_pilot_journal.py --run-id connection-check-v1
+```
+
+This opens the journal read-only, requires no API key and makes no model calls.
+It prints finish reasons, text/reasoning lengths, reported token counts and
+response hashes; it does not export answer or reasoning text. The journal's
+`complete` state means the HTTP response was saved, not that the answer passed
+admission. New benchmark traces include this diagnostic metadata on rejected
+answers and distinguish token-limit rejection from generic processing errors.
+
+After inspecting the finish reason, an explicit `--max-output-tokens` can increase
+the output limit for a new pilot run. Use a new run ID and output directory while
+retaining the same quota journal. Old pilot evidence is preserved. Do not resume
+an old run with changed request limits. This parameter also consumes reasoning
+output capacity for models that include reasoning in their completion budget;
+raising it does not guarantee a complete answer.
