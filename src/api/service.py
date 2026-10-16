@@ -132,7 +132,8 @@ class WorkMetrics:
             lines = []
             for key in ("upstream_attempts_total", "upstream_errors_total", "upstream_usage_missing_total",
                         "upstream_prompt_tokens_total", "upstream_completion_tokens_total",
-                        "requests_rejected_busy_total"):
+                        "requests_rejected_busy_total", "stream_completed_total", "stream_failed_total",
+                        "stream_cancelled_total", "stream_cleanup_errors_total", "stream_first_text_microseconds_total", "stream_first_text_count"):
                 lines += [f"# TYPE cache_gateway_{key} counter", f"cache_gateway_{key} {self._counts[key]}"]
             lines.append("# TYPE cache_gateway_processing_seconds histogram")
             for status, row in self._latency.items():
@@ -158,6 +159,36 @@ class GatewayService:
         self.max_output_tokens = max_output_tokens
         self.metrics = WorkMetrics()
         self._slots = threading.BoundedSemaphore(max_inflight)
+
+    def open_stream(self, body: dict, tenant_id: str):
+        from src.api.streaming import StreamSession
+        if not isinstance(tenant_id,str) or not tenant_id.strip():raise InvalidRequest('trusted tenant required')
+        if not isinstance(body,dict) or body.get('stream') is not True:raise InvalidRequest('stream must be true')
+        checked = dict(body)
+        options=checked.pop('stream_options',None)
+        if options is not None and options != {'include_usage':True}:raise InvalidRequest('only include_usage=true is supported')
+        checked['stream']=False
+        validate_request(checked,self.allowed_models,self.max_output_tokens)
+        if not callable(getattr(self.provider,'open_stream',None)):raise InvalidRequest('provider does not support streaming')
+        if not self._slots.acquire(blocking=False):
+            self.metrics.increment('requests_rejected_busy_total')
+            raise GatewayBusy()
+        started=time.perf_counter()
+        self.metrics.increment('upstream_attempts_total')
+        source=None
+        try:
+            outgoing={**checked,'stream':True,'stream_options':{'include_usage':True}}
+            source=self.provider.open_stream(outgoing)
+            return StreamSession(source,self.metrics,self._slots.release,started)
+        except Exception:
+            if source is not None and hasattr(source,'close'):
+                try:source.close()
+                except Exception:self.metrics.increment('stream_cleanup_errors_total')
+            self.metrics.increment('upstream_errors_total')
+            self.metrics.increment('upstream_usage_missing_total')
+            self.metrics.finish('ERROR',time.perf_counter()-started)
+            self._slots.release()
+            raise
 
     def complete(self, body: dict, tenant_id: str, *, bypass: bool = False):
         validate_request(body, self.allowed_models, self.max_output_tokens)

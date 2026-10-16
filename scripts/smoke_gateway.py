@@ -93,11 +93,18 @@ def main():
         assert status == 200 and "cache_gateway_upstream_attempts_total 4\n" in metrics
         assert "cache_gateway_upstream_errors_total 0\n" in metrics
         assert call("/metrics", token=token_a)[0] == 401
+        status, headers, stream = call("/v1/chat/completions",token=token_a,method="POST",data={**body,"stream":True})
+        assert status==200 and stream.endswith("data: [DONE]\n\n")
+        assert {k.lower():v for k,v in headers.items()}["x-cache"]=="BYPASS"
+        statuses.append("BYPASS")
+        status, _, metrics = call("/metrics",token=admin)
+        assert "cache_gateway_stream_completed_total 1\n" in metrics
+        assert "cache_gateway_upstream_attempts_total 5\n" in metrics
         report = {"evaluation_mode": "simulated_functional_smoke", "transport": "loopback HTTP with uvicorn",
                   "provider": "deterministic fixture, not an LLM", "external_model_calls": 0,
                   "authenticated_completion_requests": len(statuses), "concurrent_clients": 50,
                   "concurrency_method": "50 client threads released through a barrier; server peak concurrency not measured",
-                  "cache_status_counts": dict(Counter(statuses)), "fixture_upstream_attempts": 4,
+                  "cache_status_counts": dict(Counter(statuses)), "fixture_upstream_attempts": 5, "streaming_completion": "passed",
                   "tenant_isolation": "passed", "tenant_invalidation": "passed",
                   "authentication": "passed", "admin_metrics_access": "passed",
                   "semantic_accuracy_measured": False, "real_model_savings_measured": False}

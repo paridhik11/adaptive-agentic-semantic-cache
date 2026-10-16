@@ -22,7 +22,12 @@ def main():
     assert complete()=='HIT'
     with urlopen(base+'/dashboard',timeout=10) as response:
         assert b'Operational counters' in response.read()
-    print('Container fixture MISS/HIT, health and dashboard checks passed.')
+    req=Request(base+'/v1/chat/completions',data=json.dumps({**body,'stream':True}).encode(),
+        headers={'Content-Type':'application/json','Authorization':'Bearer '+token})
+    with urlopen(req,timeout=10) as response:
+        assert response.headers['X-Cache']=='BYPASS'
+        assert response.read().endswith(b'data: [DONE]\n\n')
+    print('Container fixture MISS/HIT, streaming, health and dashboard checks passed.')
 
 
 if __name__=='__main__':main()

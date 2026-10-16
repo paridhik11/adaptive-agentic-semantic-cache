@@ -1,4 +1,4 @@
-"""Authenticated non-streaming chat gateway; start with app_from_env factory."""
+"""Authenticated chat gateway; start with app_from_env factory."""
 from __future__ import annotations
 
 import asyncio
@@ -154,6 +154,23 @@ def create_app(service: GatewayService, *, tenant_tokens: dict[str, str],
         except (TimeoutError, ClientDisconnect):
             return error("request_body_timeout_or_disconnect", 408)
         try:
+            if isinstance(body,dict) and body.get('stream') is True:
+                from src.api.streaming import ManagedStreamingResponse
+                opening = asyncio.create_task(run_in_threadpool(service.open_stream, body, tenant))
+                try:
+                    session = await asyncio.shield(opening)
+                except asyncio.CancelledError:
+                    # If cancellation occurs while opening the upstream connection,
+                    # close its eventual result instead of leaking a processing slot.
+                    def cleanup(future):
+                        if not future.cancelled() and future.exception() is None:
+                            asyncio.create_task(run_in_threadpool(future.result().close))
+                    opening.add_done_callback(cleanup)
+                    raise
+                return ManagedStreamingResponse(session,headers={
+                    "X-Cache":"BYPASS", "X-Cache-Tier":"PROVIDER", "X-Cache-Reason":"streaming_bypass",
+                    "X-Provider-Calls":"1", "X-Evaluation-Mode":mode, "Cache-Control":"no-store",
+                    "X-Accel-Buffering":"no"})
             result = await run_in_threadpool(service.complete, body, tenant,
                                             bypass=request.headers.get("x-cache-mode") == "bypass")
             return JSONResponse(result.response, headers={

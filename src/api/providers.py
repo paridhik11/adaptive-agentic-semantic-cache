@@ -50,6 +50,25 @@ class HTTPChatProvider:
         self.timeout_seconds, self.max_response_bytes = timeout_seconds, max_response_bytes
         self._opener = build_opener(_NoRedirect())
 
+    def open_stream(self, body: dict):
+        from src.api.streaming import SSEReader
+        headers = {"Content-Type":"application/json", "Accept":"text/event-stream"}
+        if self.api_key: headers["Authorization"] = "Bearer " + self.api_key
+        request=Request(self.endpoint,data=json.dumps(body,allow_nan=False).encode(),headers=headers,method="POST")
+        try:
+            response=self._opener.open(request,timeout=self.timeout_seconds)
+            if response.status != 200 or response.headers.get_content_type() != 'text/event-stream':
+                response.close()
+                raise ProviderError('invalid_upstream_stream')
+            return SSEReader(response,max_bytes=self.max_response_bytes)
+        except HTTPError as exc:
+            exc.close()
+            raise ProviderError('upstream_rate_limited' if exc.code==429 else 'upstream_status',503 if exc.code==429 else 502) from None
+        except (TimeoutError,socket.timeout):
+            raise ProviderError('upstream_timeout',504) from None
+        except URLError:
+            raise ProviderError('upstream_unavailable') from None
+
     def __call__(self, body: dict) -> dict:
         headers = {"Content-Type": "application/json", "Accept": "application/json"}
         if self.api_key:
@@ -96,3 +115,15 @@ class FixtureChatProvider:
                 "message": {"role": "assistant", "content": text}}],
                 "usage": {"prompt_tokens": prompt_tokens, "completion_tokens": completion_tokens,
                           "total_tokens": prompt_tokens + completion_tokens}}
+
+    def open_stream(self, body: dict):
+        answer=self(body)
+        def events():
+            text=answer['choices'][0]['message']['content']
+            for offset in range(0,len(text),16):
+                yield {'id':answer['id'],'object':'chat.completion.chunk','model':body['model'],
+                    'choices':[{'index':0,'delta':{'content':text[offset:offset+16]},'finish_reason':None}]}
+            yield {'choices':[{'index':0,'delta':{},'finish_reason':'stop'}]}
+            yield {'choices':[],'usage':answer['usage']}
+            yield '[DONE]'
+        return events()

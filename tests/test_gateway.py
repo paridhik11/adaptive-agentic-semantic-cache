@@ -107,7 +107,7 @@ def test_context_default_bypass_and_custom_policy_still_isolates_full_history():
     assert send(client, body).headers["x-cache"] == "MISS"
 
 
-@pytest.mark.parametrize("update", [{"stream": True}, {"stream": "false"}, {"n": True}, {"n": 2},
+@pytest.mark.parametrize("update", [{"stream": True, "stream_options":{"include_usage":False}}, {"stream": "false"}, {"n": True}, {"n": 2},
                                     {"model": "not-enabled"}, {"temperature": True}, {"top_p": 2},
                                     {"max_tokens": 999999}, {"max_tokens": 0}, {"tools": []},
                                     {"messages": []}, {"response_format": {"type": "unsupported"}},
