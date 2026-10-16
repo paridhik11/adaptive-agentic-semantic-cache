@@ -38,6 +38,9 @@ specialist/reviewer workflow, and reconciliation of independent human reviews.
 These are implemented engineering paths; live answer quality and semantic safety
 remain unestablished.
 
+For limited free-model quotas, use the [zero-budget pilot guide](docs/free_pilot.md).
+It plans by default and journals attempts before explicit live execution.
+
 ## Historical experimental results
 
 Selected historical findings from the consolidated metrics table in [`docs/MASTER_REPORT.md`](docs/MASTER_REPORT.md), ordered strictly by evidentiary strength. Every metric preserves its verified evaluation nature label:

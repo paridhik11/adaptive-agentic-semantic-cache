@@ -36,6 +36,10 @@
 - Bounded specialist/reviewer workflow with tenant/context scope and explicit
   review states; two-reviewer answer reconciliation keeps conflicts unknown.
 
+- Zero-budget OpenRouter pilot path with explicit free-only model IDs, zero-price
+  routing constraints, shared durable attempt limits, resume journal and disabled
+  live-latency comparisons after replay. No live calls have been made through it.
+
 ## Evidence limits
 
 Saved Phase A counts reconcile, but off-seed labels, repeated seed requests,

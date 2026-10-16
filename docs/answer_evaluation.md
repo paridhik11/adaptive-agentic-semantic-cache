@@ -60,6 +60,10 @@ must be frozen only after development decisions are complete.
 
 ## Live development run
 
+For the current zero-budget project, use the [free-only pilot](free_pilot.md).
+The generic HTTP runner below does not enforce OpenRouter free-model quotas
+or zero-price routing.
+
 The fixture runner uses no external model. Live runs are explicit opt-in; set
 `UPSTREAM_CHAT_URL` and optionally `UPSTREAM_API_KEY` in the environment, use the
 provider's model name in the workload, then choose `--provider http`,
