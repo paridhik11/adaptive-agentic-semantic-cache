@@ -8,6 +8,7 @@ from src.api.service import ConservativeRulesPolicy, validate_request
 from src.policy.response_cache import ScopedResponseCache
 from src.benchmark.schema import digest, validate_workload
 from src.benchmark.control import RunPaused
+from src.benchmark.diagnostics import response_diagnostics
 
 
 def usage(response):
@@ -56,6 +57,7 @@ def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
         for arm in arms:
             started = time.perf_counter()
             calls, consumed, response, result, error = 0, [], None, None, None
+            diagnostics=None
             def measured(request):
                 nonlocal calls
                 calls += 1
@@ -69,6 +71,7 @@ def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
                     response = result.response
                 else:
                     response = measured(body)
+                diagnostics=response_diagnostics(response,body)
                 if not isinstance(response, dict):
                     raise TypeError('invalid response')
                 digest(response)  # fail invalid JSON before recording success
@@ -78,10 +81,11 @@ def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
                 raise
             except Exception:
                 # No provider bodies/credentials in errors. Attempts still count.
-                error, response = 'provider_or_processing_error', None
+                error = diagnostics['rejection_reason'] if diagnostics is not None and diagnostics['rejection_reason'] else 'provider_or_processing_error'
+                response = None
             record[arm] = {'latency_ms': (time.perf_counter() - started) * 1000,
                            'provider_calls': calls, 'usage': consumed, 'error': error,
-                           'response': response}
+                           'response': response, 'response_diagnostics':diagnostics}
             if arm == 'cache':
                 record['stored'] = result.stored if result is not None and error is None else False
                 record['status'] = result.status if result is not None and error is None else 'ERROR'

@@ -156,11 +156,11 @@ def test_cli_resume_exports_once_without_repeating_completed_calls(tmp_path,monk
     root=Path(__file__).parents[1]
     output=tmp_path/'evidence'
     args=['--workload',str(root/'examples/benchmark/workload.fixture.json'),'--model',BODY['model'],
-          '--run-id','resume','--journal',str(tmp_path/'ledger.sqlite'),'--output-dir',str(output),'--limit','1','--execute']
+          '--run-id','resume','--journal',str(tmp_path/'ledger.sqlite'),'--output-dir',str(output),'--limit','1','--max-output-tokens','512','--execute']
     cli.main(args)
     assert not output.exists() and len(sent)==1
     now[0]+=60;cli.main(args)
-    assert len(sent)==2
+    assert len(sent)==2 and all(body['max_tokens']==512 for body in sent)
     trace=read_json(output/'trace.json');report=read_json(output/'report.unreviewed.json')
     assert trace['execution_mode']=='resumed_reconstruction' and trace['replayed_calls']==1
     assert report['latency_valid'] is False

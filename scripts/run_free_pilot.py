@@ -33,15 +33,21 @@ def main(argv=None):
     p.add_argument('--output-dir',type=Path,required=True)
     p.add_argument('--limit',type=int,default=10)
     p.add_argument('--max-calls',type=int,default=30)
+    p.add_argument('--max-output-tokens',type=int,help='explicit output-limit override; changing it requires a new run ID')
     p.add_argument('--execute',action='store_true')
     args=p.parse_args(argv)
     if not 1<=args.limit<=10:p.error('pilot limit must be between one and ten requests')
     if not 1<=args.max_calls<=30:p.error('pilot budget must be between one and thirty attempts')
+    if args.max_output_tokens is not None and not 1<=args.max_output_tokens<=4096:p.error('output limit must be between one and 4096 tokens')
     original=validate_workload(read_json(args.workload));workload=copy.deepcopy(original)
     rows=[r for r in workload['requests'] if r['split']=='dev'][:args.limit]
     if not rows:p.error('workload has no development requests')
     workload['requests']=rows
-    for row in rows:row['request']['model']=args.model
+    for row in rows:
+        row['request']['model']=args.model
+        if args.max_output_tokens is not None:
+            field='max_completion_tokens' if 'max_completion_tokens' in row['request'] else 'max_tokens'
+            row['request'][field]=args.max_output_tokens
     # Entire input validation happens before creating the journal or making calls.
     from src.api.service import validate_request
     for row in rows:validate_request(row['request'],frozenset({args.model}),4096)

@@ -240,5 +240,5 @@ def summarize(trace, reviews=None):
                 'Group bootstrap is exploratory; few or identical groups can yield misleadingly narrow intervals.',
                 'Reviewed-only estimates may be biased; unreviewed hits are not counted as safe.',
                 'No recall is reported without an independently labeled opportunity denominator.',
-                'Fixture calls and tokens are simulated; monetary savings are not inferred.',
+                ('Fixture calls and tokens are simulated; monetary savings are not inferred.' if trace['evaluation_mode']=='simulated_fixture' else 'Token counts are reported by the live provider; monetary savings are not inferred.'),
                 'Fresh and cache arms are serial and randomized within each pair, not simultaneous traffic.']}
