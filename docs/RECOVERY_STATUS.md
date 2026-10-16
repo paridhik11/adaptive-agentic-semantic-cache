@@ -47,7 +47,7 @@ semantic accuracy, answer quality, or measured workload savings.
 
 ## Next implementation work
 
-- Verify the new streaming path in container CI and on a configured live provider.
+- Measure streaming with a configured live provider and defined concurrent workload; the updated container fixture smoke passed.
 - Collect independently reviewed live-answer evidence using the implemented evaluation contract.
 - Calibrate and compare experimental semantic policies using independently reviewed real answers before a new frozen evaluation.
 - Measure complete-answer latency and net generation/verification work.

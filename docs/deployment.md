@@ -68,6 +68,10 @@ checks cover dashboard delivery. Browser-rendered interaction testing could not
 run locally because the browser executable download failed. This is separate
 from passing backend tests and should not be reported as browser validation.
 
-Streaming passthrough has since been implemented and added to the container smoke
-script. The previously linked container result predates this streaming change;
-check the new commit’s CI before claiming container validation for streaming.
+Streaming passthrough is implemented and the updated container smoke passed on
+commit `ed32ba14069ec4ee3b5cd428d1ba3f186985fcbb` in
+[run 38945826011, job 117124563501](https://github.com/paridhik11/adaptive-agentic-semantic-cache/actions/runs/38945826011/job/117124563501).
+This verifies the image build, exact fixture MISS/HIT, terminal SSE completion,
+health and dashboard delivery. The broader unit/model CI jobs were still running
+when this container result was recorded. It does not establish live-model
+streaming quality or performance.
