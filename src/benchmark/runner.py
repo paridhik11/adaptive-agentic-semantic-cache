@@ -21,7 +21,7 @@ def usage(response):
 
 def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
                  max_entries=1024, max_bytes=67108864, policy="exact", encoder=None,
-                 verifier=None, threshold=.85, margin=.05):
+                 verifier=None, threshold=.85, margin=.05, observer=None):
     validate_workload(workload)
     rows = [r for r in workload['requests'] if r['split'] == split]
     if not rows:
@@ -55,6 +55,10 @@ def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
         rng.shuffle(arms)
         record = {**copy.deepcopy(row), 'request_sha256': digest(body), 'order': arms}
         for arm in arms:
+            if observer is not None:
+                try:observer({'kind':'arm_started','event_id':row['event_id'],'arm':arm,
+                    'question':body['messages'][-1]['content']})
+                except Exception:pass
             started = time.perf_counter()
             calls, consumed, response, result, error = 0, [], None, None, None
             diagnostics=None
@@ -86,6 +90,12 @@ def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
             record[arm] = {'latency_ms': (time.perf_counter() - started) * 1000,
                            'provider_calls': calls, 'usage': consumed, 'error': error,
                            'response': response, 'response_diagnostics':diagnostics}
+            if observer is not None:
+                try:observer({'kind':'arm_finished','event_id':row['event_id'],'arm':arm,
+                    'status':(result.status if result else 'GENERATED') if error is None else 'ERROR',
+                    'provider_calls':calls,'latency_ms':record[arm]['latency_ms'],'error':error,
+                    'answer':response['choices'][0]['message']['content'][:2000] if response is not None else None})
+                except Exception:pass
             if arm == 'cache':
                 record['stored'] = result.stored if result is not None and error is None else False
                 record['status'] = result.status if result is not None and error is None else 'ERROR'

@@ -2,6 +2,6 @@
 
 
 class RunPaused(Exception):
-    def __init__(self,reason,*,retry_at=None):
+    def __init__(self,reason,*,retry_at=None,diagnostics=None):
         super().__init__(reason)
-        self.reason,self.retry_at=reason,retry_at
+        self.reason,self.retry_at,self.diagnostics=reason,retry_at,diagnostics

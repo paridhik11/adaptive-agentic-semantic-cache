@@ -21,8 +21,10 @@ from src.benchmark.schema import canonical, digest
 class FreeOpenRouterProvider:
     mode='live'
     endpoint='https://openrouter.ai/api/v1/chat/completions'
-    def __init__(self,api_key,*,models,transport=None):
+    def __init__(self,api_key,*,models,transport=None,reasoning_enabled=None):
         if not isinstance(api_key,str) or not api_key.strip():raise ValueError('OpenRouter key required')
+        if reasoning_enabled is not None and type(reasoning_enabled) is not bool:raise ValueError("invalid reasoning profile")
+        self.reasoning_enabled=reasoning_enabled
         self.models=frozenset(models)
         if not self.models or any(not isinstance(m,str) or not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+:free',m) for m in self.models):
             raise ValueError('explicit :free model IDs required; automatic routing is disabled')
@@ -36,6 +38,7 @@ class FreeOpenRouterProvider:
         validate_request(body,self.models,4096)
         outgoing=copy.deepcopy(body)
         outgoing['provider']={'allow_fallbacks':False,'max_price':{'prompt':0,'completion':0,'request':0},'require_parameters':True}
+        if self.reasoning_enabled is not None:outgoing['reasoning']={'enabled':self.reasoning_enabled}
         return self.transport(outgoing)
 
 
@@ -96,9 +99,13 @@ class PilotJournal:
 
 class JournaledProvider:
     mode='live'
-    def __init__(self,provider,journal):
-        self.provider,self.journal=provider,journal
+    def __init__(self,provider,journal,observer=None):
+        self.provider,self.journal,self.observer=provider,journal,observer
         self.ordinal=0;self.replayed_calls=0;self.new_calls=0
+    def _notify(self,kind,**details):
+        if self.observer is not None:
+            try:self.observer({'kind':kind,'new_calls':self.new_calls,'replayed_calls':self.replayed_calls,**details})
+            except Exception:pass  # Progress reporting cannot alter inference or quota accounting.
     @staticmethod
     def _journal_call(method,*args):
         try:return method(*args)
@@ -109,9 +116,11 @@ class JournaledProvider:
         state,payload=self._journal_call(self.journal.reserve,ordinal,request)
         if state is not None:
             self.replayed_calls+=1
+            self._notify("provider_replayed",ordinal=ordinal)
             if state=='error':raise ProviderError(payload['code'],payload['status'])
             return payload
         self.new_calls+=1
+        self._notify("provider_started",ordinal=ordinal,model=request.get("model"))
         try:
             response=self.provider(request)
             canonical(response)
@@ -119,9 +128,24 @@ class JournaledProvider:
             code=exc.code if isinstance(exc,ProviderError) else 'upstream_or_processing_error'
             status=exc.status if isinstance(exc,ProviderError) else 502
             self._journal_call(self.journal.finish,ordinal,'error',{'code':code,'status':status})
+            self._notify('provider_error',ordinal=ordinal,code=code)
             if isinstance(exc,ProviderError) and exc.code=='upstream_rate_limited':
                 until=self._journal_call(self.journal.block_rate_limit)
                 raise RunPaused('upstream_rate_limit_pause',retry_at=until) from None
             raise RunPaused('upstream_attempt_failed_requires_inspection') from None
         self._journal_call(self.journal.finish,ordinal,'complete',response)
+        self._notify('provider_received',ordinal=ordinal)
         return copy.deepcopy(response)
+
+
+class CompleteAnswerProvider:
+    """Pause the whole local pilot on the first incomplete saved response."""
+    mode='live'
+    def __init__(self,provider):self.provider=provider
+    def __call__(self,request):
+        response=self.provider(request)
+        from src.benchmark.diagnostics import response_diagnostics
+        diagnostics=response_diagnostics(response,request)
+        if not diagnostics['admissible_complete_answer']:
+            raise RunPaused('incomplete_response_inspect_journal',diagnostics=diagnostics)
+        return response

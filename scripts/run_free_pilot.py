@@ -15,14 +15,14 @@ import tempfile
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from src.benchmark.control import RunPaused
 from src.benchmark.schema import canonical,digest,read_json,validate_workload,write_new
-from src.benchmark.free_pilot import FreeOpenRouterProvider,PilotJournal,JournaledProvider
+from src.benchmark.free_pilot import FreeOpenRouterProvider,PilotJournal,JournaledProvider,CompleteAnswerProvider
 from src.benchmark.runner import run_workload
 from src.benchmark.semantic import AnswerVerifier,LexicalEncoder
 from src.benchmark.report import review_template,summarize
 from src.benchmark.views import review_html
 
 
-def main(argv=None):
+def main(argv=None,observer=None):
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--workload',type=Path,required=True)
     p.add_argument('--model',required=True,help='explicit provider/model:free ID')
@@ -34,6 +34,8 @@ def main(argv=None):
     p.add_argument('--limit',type=int,default=10)
     p.add_argument('--max-calls',type=int,default=30)
     p.add_argument('--max-output-tokens',type=int,help='explicit output-limit override; changing it requires a new run ID')
+    p.add_argument('--reasoning',choices=['default','off'],default='default')
+    p.add_argument('--answer-style',choices=['original','concise'],default='original')
     p.add_argument('--execute',action='store_true')
     args=p.parse_args(argv)
     if not 1<=args.limit<=10:p.error('pilot limit must be between one and ten requests')
@@ -45,6 +47,8 @@ def main(argv=None):
     workload['requests']=rows
     for row in rows:
         row['request']['model']=args.model
+        if args.answer_style=='concise':
+            row['request']['messages'][-1]['content']+='\nAnswer in at most two concise sentences, without headings or a step-by-step explanation.'
         if args.max_output_tokens is not None:
             field='max_completion_tokens' if 'max_completion_tokens' in row['request'] else 'max_tokens'
             row['request'][field]=args.max_output_tokens
@@ -68,6 +72,7 @@ def main(argv=None):
     config={'source_workload_sha256':digest(original),'selected_workload_sha256':digest(workload),
         'selection':'first development requests in original order; development pilot only',
         'policy':args.policy,'models':sorted(models),'limit':args.limit,'max_calls':args.max_calls,
+        'reasoning':args.reasoning,'answer_style':args.answer_style,
         'code_hashes':code_hashes,'protocol':'journal-reconstruction-v1','output_dir':str(args.output_dir.resolve())}
     worst=(3 if args.policy=='verified' else 2)*len(rows)
     print(json.dumps({'requests':len(rows),'maximum_logical_calls':worst,'run_attempt_cap':args.max_calls,
@@ -81,16 +86,20 @@ def main(argv=None):
     if args.output_dir.exists():p.error('output directory already exists; completed evidence is not overwritten')
     args.journal.parent.mkdir(parents=True,exist_ok=True)
     journal=PilotJournal(args.journal,run_id=args.run_id,fingerprint=digest(config),max_calls=args.max_calls)
-    provider=JournaledProvider(FreeOpenRouterProvider(key,models=models),journal)
-    verifier=AnswerVerifier(provider,args.verifier_model) if args.policy=='verified' else None
+    transport=FreeOpenRouterProvider(key,models=models,**({'reasoning_enabled':False} if args.reasoning=='off' else {}))
+    provider=JournaledProvider(transport,journal,observer=observer)
+    guarded=CompleteAnswerProvider(provider)
+    verifier=AnswerVerifier(guarded,args.verifier_model) if args.policy=='verified' else None
     try:
-        trace=run_workload(workload,provider,policy=args.policy,encoder=LexicalEncoder(),verifier=verifier)
+        trace=run_workload(workload,guarded,policy=args.policy,encoder=LexicalEncoder(),verifier=verifier,observer=observer)
     except RunPaused as pause:
-        print(json.dumps({'status':'paused','reason':pause.reason,'retry_at_utc_epoch':pause.retry_at,
+        paused={'status':'paused','reason':pause.reason,'retry_at_utc_epoch':pause.retry_at,
             'new_attempts_this_invocation':provider.new_calls,'replayed_calls':provider.replayed_calls,
-            'journal_states':journal.status()},indent=2))
-        print('Resume with the same command, run ID, journal and unchanged implementation. Uncertain attempts require manual inspection.')
-        return
+            'journal_states':journal.status(),'response_diagnostics':pause.diagnostics}
+        print(json.dumps(paused,indent=2))
+        print('Resume unchanged quota pauses; inspect incomplete responses before starting a revised run.')
+        if observer is not None:observer({'kind':'paused',**paused})
+        return paused
     trace.update({'code_tree':tree,'working_tree_dirty':dirty,'pilot_config':config,
         'execution_mode':'resumed_reconstruction' if provider.replayed_calls else 'live_uninterrupted',
         'new_attempts_this_invocation':provider.new_calls,'replayed_calls':provider.replayed_calls,
@@ -109,8 +118,10 @@ def main(argv=None):
         write_new(stage/'manifest.json',{'trace_sha256':digest(trace),'fingerprint':digest(config),
             'files':{path.name:hashlib.sha256(path.read_bytes()).hexdigest() for path in stage.iterdir()}})
         stage.rename(args.output_dir)
+    if observer is not None:observer({'kind':'completed','output_dir':str(args.output_dir),'report':summary})
     print('Completed pilot evidence:',args.output_dir)
     print('No answers are independently reviewed. Inspect execution_mode and latency_valid before making claims.')
+    return {'status':'completed','output_dir':str(args.output_dir)}
 
 
 if __name__=='__main__':main()
