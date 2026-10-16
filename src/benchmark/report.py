@@ -83,6 +83,21 @@ def validate_trace(trace):
                 raise ValueError('successful arm requires response')
             if event.get(hash_key) != digest(data.get('response')):
                 raise ValueError('response digest mismatch')
+        verification = event.get('verification')
+        if verification is not None:
+            if not isinstance(verification,dict) or type(verification.get('calls')) is not int or not 0<=verification['calls']<=1:
+                raise ValueError('invalid verifier attempt count')
+            if type(verification.get('approved')) is not bool:
+                raise ValueError('invalid verifier decision')
+            finite(verification.get('latency_ms'), 'verifier latency')
+            usage = verification.get('usage')
+            if not isinstance(usage,list) or len(usage)>verification['calls']:
+                raise ValueError('invalid verifier usage')
+            for item in usage:
+                if item is not None and (not isinstance(item,dict) or any(type(item.get(k)) is not int or item[k]<0 for k in ('prompt_tokens','completion_tokens'))):
+                    raise ValueError('invalid verifier token count')
+            if verification['error'] is not None and verification['approved']:
+                raise ValueError('failed verifier cannot approve')
         if event['fresh']['provider_calls'] != 1:
             raise ValueError('fresh baseline requires exactly one provider attempt')
         if event['status'] != 'HIT' and event['cache']['provider_calls'] != 1:
@@ -95,6 +110,15 @@ def validate_trace(trace):
                 raise ValueError('hit must reference an earlier generated candidate')
             if source['tenant_id'] != event['tenant_id']:
                 raise ValueError('candidate crosses tenant boundary')
+            from src.benchmark.semantic import scope
+            if scope(source['request'],event['tenant_id'])!=scope(event['request'],event['tenant_id']):
+                raise ValueError('candidate crosses generation or context scope')
+            nonexact=source['request_sha256']!=event['request_sha256']
+            matcher=trace.get('config',{}).get('matcher','exact')
+            if nonexact and matcher not in ('similarity','verified'):
+                raise ValueError('exact policy cannot claim a non-exact hit')
+            if nonexact and matcher=='verified' and (verification is None or not verification['approved'] or verification['error'] is not None):
+                raise ValueError('verified reuse requires an affirmative recorded verdict')
             if source['response_sha256'] != event['response_sha256']:
                 raise ValueError('candidate answer does not match returned answer')
             if event['cache']['provider_calls'] != 0 or event['cache']['error'] is not None:
@@ -180,9 +204,14 @@ def summarize(trace, reviews=None):
     quality = [e for e in pairs if all(labels.get(e['event_id'], {}).get(k) is not None
                 for k in ('answer_correct', 'fresh_answer_correct'))]
     quality_delta = lambda e: int(labels[e['event_id']]['answer_correct'])-int(labels[e['event_id']]['fresh_answer_correct'])
+    verification = [e['verification'] for e in events if e.get('verification') is not None]
+    verifier_calls = sum(v['calls'] for v in verification)
+    verifier_usage = [u for v in verification for u in v['usage'] if u is not None]
+    verifier_missing = verifier_calls-len(verifier_usage)
+    verifier_tokens = {k:sum(u[k] for u in verifier_usage) for k in ('prompt_tokens','completion_tokens')}
     token_delta = None
-    if not cache['attempts_without_usage'] and not fresh['attempts_without_usage']:
-        token_delta = {k: fresh['observed_'+k]-cache['observed_'+k] for k in ('prompt_tokens', 'completion_tokens')}
+    if not cache['attempts_without_usage'] and not fresh['attempts_without_usage'] and not verifier_missing:
+        token_delta = {k: fresh['observed_'+k]-cache['observed_'+k]-verifier_tokens[k] for k in ('prompt_tokens', 'completion_tokens')}
     return {'schema_version': 'answer-report-v1', 'trace_sha256': digest(trace),
             'evaluation_mode': trace['evaluation_mode'], 'nature': trace['nature'], 'split': trace['split'],
             'timing_scope': trace['timing_scope'], 'requests': len(events),
@@ -190,7 +219,10 @@ def summarize(trace, reviews=None):
             'overall_reuse': safety(hits), 'nonexact_reuse': safety(nonexact),
             'by_source': {source: safety([e for e in hits if e['source']==source]) for source in sorted({e['source'] for e in events})},
             'cache_arm': cache, 'fresh_arm': fresh,
-            'provider_attempts_avoided': fresh['provider_attempts']-cache['provider_attempts'],
+            'verifier_work': {'provider_attempts':verifier_calls,'attempts_without_usage':verifier_missing,
+                'observed_tokens':verifier_tokens,'errors':sum(v['error'] is not None for v in verification)},
+            'total_cache_provider_attempts':cache['provider_attempts']+verifier_calls,
+            'provider_attempts_avoided': fresh['provider_attempts']-cache['provider_attempts']-verifier_calls,
             'token_difference_fresh_minus_cache': token_delta,
             'paired_latency': {'complete_pairs': len(pairs), 'mean_cache_minus_fresh_ms': sum(map(latency_delta,pairs))/len(pairs) if pairs else None,
                               'group_bootstrap_95': cluster_interval(pairs,latency_delta)},

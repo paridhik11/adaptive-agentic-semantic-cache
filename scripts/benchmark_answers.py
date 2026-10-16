@@ -22,6 +22,13 @@ def main(argv=None):
     run.add_argument('--provider', choices=['fixture','http'], default='fixture')
     run.add_argument('--allow-live-calls', action='store_true', help='explicit opt-in: fresh baseline adds provider calls')
     run.add_argument('--max-live-calls', type=int, default=0, help='must cover two calls per development request')
+    run.add_argument('--policy',choices=['exact','similarity','verified'],default='exact')
+    run.add_argument('--encoder',choices=['lexical','dense'],default='lexical')
+    run.add_argument('--embedding-model',default='sentence-transformers/all-MiniLM-L6-v2')
+    run.add_argument('--embedding-revision')
+    run.add_argument('--threshold',type=float,default=.85)
+    run.add_argument('--margin',type=float,default=.05)
+    run.add_argument('--verifier-model')
     report = commands.add_parser('report')
     report.add_argument('--trace', type=Path, required=True)
     report.add_argument('--reviews', type=Path)
@@ -35,12 +42,23 @@ def main(argv=None):
     from src.benchmark.schema import validate_workload
     workload = validate_workload(read_json(args.workload))
     if args.provider == 'http':
-        upper = 2 * sum(r['split']=='dev' for r in workload['requests'])
+        upper = (3 if args.policy=='verified' else 2) * sum(r['split']=='dev' for r in workload['requests'])
         if not args.allow_live_calls or args.max_live_calls < upper:
             parser.error('live run requires explicit opt-in and a call budget covering ' + str(upper) + ' calls')
         provider = HTTPChatProvider(os.environ['UPSTREAM_CHAT_URL'], api_key=os.environ.get('UPSTREAM_API_KEY'))
     else:
         provider = FixtureChatProvider()
+    from src.benchmark.semantic import LexicalEncoder, DenseEncoder, AnswerVerifier, AbstainingVerifier
+    encoder = None
+    if args.policy != 'exact':
+        encoder = DenseEncoder(args.embedding_model,args.embedding_revision) if args.encoder=='dense' else LexicalEncoder()
+    verifier = None
+    if args.policy == 'verified':
+        if args.provider=='http':
+            if not args.verifier_model:parser.error('--verifier-model required for live verified policy')
+            verifier=AnswerVerifier(provider,args.verifier_model)
+        else:
+            verifier=AbstainingVerifier()
     args.output_dir.mkdir(parents=True, exist_ok=False)
     try:
         revision = subprocess.check_output(['git','rev-parse','HEAD'], cwd=Path(__file__).resolve().parents[1], text=True).strip()
@@ -48,7 +66,7 @@ def main(argv=None):
         dirty = bool(subprocess.check_output(['git','status','--porcelain'], cwd=Path(__file__).resolve().parents[1], text=True).strip())
     except (OSError, subprocess.SubprocessError):
         revision, tree, dirty = None, None, None
-    trace = run_workload(workload, provider)
+    trace = run_workload(workload, provider,policy=args.policy,encoder=encoder,verifier=verifier,threshold=args.threshold,margin=args.margin)
     trace['code_revision'], trace['code_tree'], trace['working_tree_dirty'] = revision, tree, dirty
     trace['python_version'] = sys.version
     trace['provider_endpoint_sha256'] = digest(provider.endpoint) if args.provider == 'http' else None

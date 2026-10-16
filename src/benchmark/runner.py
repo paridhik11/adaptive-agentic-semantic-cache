@@ -18,7 +18,8 @@ def usage(response):
 
 
 def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
-                 max_entries=1024, max_bytes=67108864):
+                 max_entries=1024, max_bytes=67108864, policy="exact", encoder=None,
+                 verifier=None, threshold=.85, margin=.05):
     validate_workload(workload)
     rows = [r for r in workload['requests'] if r['split'] == split]
     if not rows:
@@ -33,6 +34,14 @@ def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
         validate_request(row['request'], models, 4096)
     cache = ScopedResponseCache(eligibility=ConservativeRulesPolicy(), ttl_seconds=ttl_seconds,
                                 max_entries=max_entries, max_bytes=max_bytes)
+    if policy not in ('exact','similarity','verified'):
+        raise ValueError('unknown benchmark policy')
+    if policy != 'exact':
+        from src.benchmark.semantic import ExperimentalSemanticCache, LexicalEncoder
+        encoder = encoder or LexicalEncoder()
+        cache = ExperimentalSemanticCache(eligibility=ConservativeRulesPolicy(), encoder=encoder,
+            mode=policy, verifier=verifier, threshold=threshold, margin=margin,
+            ttl_seconds=ttl_seconds,max_entries=max_entries,max_bytes=max_bytes)
     rng, origins, events = random.Random(seed), {}, []
     provider_mode = getattr(provider, 'mode', 'unspecified')
     if provider_mode not in ('live', 'simulated_fixture'):
@@ -54,7 +63,8 @@ def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
                 return value
             try:
                 if arm == 'cache':
-                    result = cache.process(body, tenant_id=tenant, provider=measured)
+                    result = cache.process(body, tenant_id=tenant, provider=measured,
+                        **({"event_id":row["event_id"]} if policy != "exact" else {}))
                     response = result.response
                 else:
                     response = measured(body)
@@ -73,7 +83,9 @@ def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
                 record['stored'] = result.stored if result is not None and error is None else False
                 record['status'] = result.status if result is not None and error is None else 'ERROR'
                 record['reason'] = result.reason if result is not None else error
-                record['candidate_event_id'] = origins.get(key) if record['status'] == 'HIT' else None
+                record['candidate_event_id'] = (getattr(result,'candidate_event_id',None) if policy != 'exact' else origins.get(key)) if record['status'] == 'HIT' else None
+                record['verification'] = getattr(result,'verification',getattr(cache,'last_verification',None))
+                record['similarity'] = getattr(result,'similarity',None)
                 if result is not None and result.stored:
                     origins[key] = row['event_id']
         record['response_sha256'] = digest(record['cache']['response'])
@@ -82,7 +94,9 @@ def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
     return {'schema_version': 'answer-trace-v1', 'evaluation_mode': provider_mode,
             'workload_sha256': digest(workload), 'workload_name': workload['name'],
             'nature': workload['nature'], 'provenance': workload['provenance'], 'license': workload['license'],
-            'split': split, 'config': {'seed': seed, 'policy': 'conservative-rules', 'matcher': 'exact-only',
+            'split': split, 'config': {'seed': seed, 'policy': 'conservative-rules', 'matcher': policy,
+                'encoder':getattr(encoder,'identity',None), 'verifier':getattr(verifier,'identity',None),
+                'threshold':threshold if policy!='exact' else None,'margin':margin if policy!='exact' else None,
                 'ttl_seconds': ttl_seconds, 'max_entries': max_entries, 'max_bytes': max_bytes},
             'timing_scope': 'serial in-process complete serving including provider, lookup and admission; excludes HTTP gateway transport',
             'events': events}
