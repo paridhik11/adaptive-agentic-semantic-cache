@@ -29,6 +29,13 @@
   smoke job and corrected installable package layout. The remote container smoke
   job passed; local browser-render validation remains unavailable. See `deployment.md`.
 
+- Experimental scoped similarity/verified retrieval in the development runner,
+  lexical and pinned-local dense encoders, and explicit verifier-work accounting.
+- Streaming text SSE bypass with bounded parsing, completion validation, slot
+  cleanup, cancellation/error metrics and no partial-response admission.
+- Bounded specialist/reviewer workflow with tenant/context scope and explicit
+  review states; two-reviewer answer reconciliation keeps conflicts unknown.
+
 ## Evidence limits
 
 Saved Phase A counts reconcile, but off-seed labels, repeated seed requests,
@@ -40,9 +47,9 @@ semantic accuracy, answer quality, or measured workload savings.
 
 ## Next implementation work
 
-- Add streaming and verify deployment/container behavior in a Docker-capable environment.
+- Verify the new streaming path in container CI and on a configured live provider.
 - Collect independently reviewed live-answer evidence using the implemented evaluation contract.
-- Repair semantic matching on development data before a new frozen evaluation.
+- Calibrate and compare experimental semantic policies using independently reviewed real answers before a new frozen evaluation.
 - Measure complete-answer latency and net generation/verification work.
 
 ## Publication

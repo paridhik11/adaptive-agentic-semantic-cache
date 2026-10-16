@@ -103,6 +103,14 @@ Use independently reviewed real answers and references, multiple domains, enough
 accepted non-exact hits, grouped uncertainty analysis, predefined quality margins,
 and new independent held-out groups. Compare no-cache, exact, similarity-only,
 verified semantic and adaptive policies under one complete-answer protocol.
-The present runner establishes the first two arms; it does not implement or
-certify the semantic/adaptive arms. Reviewer identity/method are recorded, not
+The runner implements no-cache, exact, and experimental similarity/verified arms;
+none of the semantic policies are certified. Adaptive policy learning remains
+unimplemented. Reviewer identity/method are recorded, not
 authenticated; label files require review before scientific claims.
+
+## Experimental semantic policies and independent review
+
+The benchmark now adds similarity-only and answer-verified retrieval with
+separate verifier work accounting. Two human review files can be reconciled
+without silently resolving disagreements. See [the implementation guide](semantic_streaming_agents.md).
+Semantic serving remains disabled and no new safety gate has passed.

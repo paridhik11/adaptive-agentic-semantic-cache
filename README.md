@@ -32,6 +32,12 @@ for the gateway-only image, Compose setup, persistence and validation limits.
 The current exact-only runtime is infrastructure for the recovery experiment;
 semantic safety and useful real-model savings are still unproven.
 
+The [semantic, streaming and agent guide](docs/semantic_streaming_agents.md) covers
+experimental retrieval/verification policies, SSE cache bypass, a bounded
+specialist/reviewer workflow, and reconciliation of independent human reviews.
+These are implemented engineering paths; live answer quality and semantic safety
+remain unestablished.
+
 ## Historical experimental results
 
 Selected historical findings from the consolidated metrics table in [`docs/MASTER_REPORT.md`](docs/MASTER_REPORT.md), ordered strictly by evidentiary strength. Every metric preserves its verified evaluation nature label:

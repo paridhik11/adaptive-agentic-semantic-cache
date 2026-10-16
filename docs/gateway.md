@@ -70,7 +70,7 @@ provider quality, token billing, and latency have not been measured.
 
 | Endpoint | Authentication | Behavior |
 | --- | --- | --- |
-| `POST /v1/chat/completions` | Tenant bearer credential | Supported non-streaming chat request subset; complete provider response |
+| `POST /v1/chat/completions` | Tenant bearer credential | Supported text chat subset; complete response or SSE passthrough with cache bypass |
 | `DELETE /v1/cache` | Tenant bearer credential | Invalidate only that credential's tenant; blocks in-flight re-admission |
 | `GET /metrics` | Separate administrator bearer credential | Prometheus aggregate metrics, no prompt/key/tenant labels |
 | `GET /health` | None | Process health and explicit provider mode; not an upstream readiness probe |
@@ -85,8 +85,9 @@ Requests require an enabled `model`, nonempty text `messages`, and one explicit
 output limit (`max_tokens` or `max_completion_tokens`). Supported roles are
 system, developer, user, and assistant. Supported optional fields are
 temperature, top_p, frequency_penalty, presence_penalty, seed, stop, n=1,
-stream=false, and response_format of text or json_object. Unknown fields,
-streaming, tools, media, unsupported formats, invalid parameters, non-finite
+stream=false/true, and response_format of text or json_object. Streaming accepts
+only include_usage=true stream options and bypasses the cache. Unknown fields,
+tools, media, unsupported formats, invalid parameters, non-finite
 JSON, and duplicate object keys are rejected before provider execution. This
 is an OpenAI-style subset, not full protocol compatibility.
 
@@ -190,3 +191,9 @@ Regression coverage includes a separate Python process reopening the file,
 expiry, tenant isolation, cross-instance invalidation during generation, LRU
 and byte limits, namespace mismatch, and storage-failure behavior. These are
 fixture correctness checks, not real-model safety or performance measurements.
+
+## Streaming update
+
+The gateway now supports bounded text SSE passthrough with mandatory cache bypass.
+See [streaming behavior and limitations](semantic_streaming_agents.md#streaming-gateway).
+Non-streaming requests still use the existing exact-response cache.

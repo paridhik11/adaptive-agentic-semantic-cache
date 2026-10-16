@@ -60,10 +60,14 @@ not a production load or Compose-specific deployment certification. Other CI
 jobs were still running when this result was recorded. The Python wheel also
 passed the separate local check outside the source directory.
 
-Streaming, distributed storage/coordination, per-tenant rate limits, production
+Distributed storage/coordination, per-tenant rate limits, production
 identity integration, and deployment-specific load/SLO validation remain work.
 
 The dashboard and review-page JavaScript pass syntax checks; HTTP/authentication
 checks cover dashboard delivery. Browser-rendered interaction testing could not
 run locally because the browser executable download failed. This is separate
 from passing backend tests and should not be reported as browser validation.
+
+Streaming passthrough has since been implemented and added to the container smoke
+script. The previously linked container result predates this streaming change;
+check the new commit’s CI before claiming container validation for streaming.
