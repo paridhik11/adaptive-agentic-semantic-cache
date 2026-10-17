@@ -70,3 +70,37 @@ This file records all architectural decisions, assumptions, dataset selections, 
   - Primary endpoint: Incorrect-Reuse Rate (IRR) among non-exact hits with exact 95% Clopper-Pearson CI.
   - Frozen configuration: Hash of models, thresholds, and guards committed in git prior to single evaluation run.
 
+# Decision D-20261017-R2-01 — technical reference corpus and traffic blocker
+
+Use the version-pinned CPython Programming FAQ as a small technical QA
+development/reference corpus because it supplies reusable domain-grounded
+answers under an explicit source license. Split by complete FAQ section and
+mark all repeated requests constructed. Do not use this corpus as natural
+traffic or infer answer safety from FAQ duplicate labels. Keep WildChat out of
+the current dataset run: its viewer sampling attempts returned HTTP 429 before
+a complete sample, and the dataset card's ODC-BY statement differs from the
+retained LICENSE.md text. Revisit only after a stable sample and clear terms are
+available. No replacement dataset is assumed to be representative merely
+because it is downloadable.
+
+Historical clarification: Decision D-20261012-02's phrase "representative of
+organic human traffic" was too strong. WildChat is a public conversational
+dataset, but this project's prior sample does not establish population
+representativeness. The current WildChat README says ODC-BY and describes a
+retroactive license change, while the retained LICENSE.md still contains AI2
+ImpACT terms. No new WildChat rows are used for R2 pending complete retrieval
+and source-term reconciliation. The previously recorded Phase A analysis is
+historical and is not reused as R2 evidence.
+
+## Decision D-20261017-R2-02 — OASST1 as a bounded prevalence alternative
+
+Use the pinned `OpenAssistant/oasst1` train shard under Apache-2.0 for a
+descriptive chronological first-turn repeat audit. It is crowdsourced
+OpenAssistant website data, not production API traffic. Process only root
+prompter messages; keep raw text and user IDs local; export aggregate counts.
+The observed cross-user repeats and absent same-source-user repeats do not
+establish safe cache opportunities, because source user IDs are not deployment
+tenants and no answers were independently reviewed. Keep the CPython FAQ as the
+separate technical QA reference, and keep authored adversarial cases separate.
+No OpenRouter calls are part of this data preparation.
+

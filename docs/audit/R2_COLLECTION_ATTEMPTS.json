@@ -1,0 +1,63 @@
+{
+  "schema_version": "r2-collection-attempts-v1",
+  "updated_utc_date": "2026-10-17",
+  "natural_traffic_candidate": {
+    "dataset": "allenai/WildChat-1M",
+    "use": "prevalence only; no answer-quality inference",
+    "license_sources": {
+      "dataset_card": "https://huggingface.co/datasets/allenai/WildChat-1M/blob/main/README.md",
+      "license_file_snapshot": "https://huggingface.co/datasets/allenai/WildChat-1M/blob/5747a92c93d22b055f1260de3b31d7b52395c00f/LICENSE.md",
+      "card_statement": "ODC-BY; README states the change retroactively applies to prior downloads",
+      "license_file_statement": "The retained LICENSE.md text names the AI2 ImpACT License for Low Risk Artifacts",
+      "decision": "No new rows are admitted or redistributed until the mismatch is resolved. The requests below also failed before producing a complete sample."
+    },
+    "viewer_attempts": [
+      {
+        "attempt": 1,
+        "requested_rows": 5000,
+        "last_observed_progress_rows": 1000,
+        "outcome": "HTTP 429",
+        "complete_export": false,
+        "aggregate_result_used": false
+      },
+      {
+        "attempt": 2,
+        "requested_rows": 5000,
+        "last_observed_progress_rows": 2000,
+        "outcome": "HTTP 429",
+        "complete_export": false,
+        "aggregate_result_used": false
+      }
+    ],
+    "natural_repeat_rate": null,
+    "api_model_calls": 0
+  },
+  "natural_traffic_alternative": {
+    "dataset": "OpenAssistant/oasst1",
+    "revision": "fdf72ae0827c1cda404aff25b6603abec9e3399b",
+    "license": "Apache-2.0",
+    "source_manifest": "examples/benchmark/oasst1.sources.json",
+    "analysis_artifact": "docs/audit/R2_OASST_NATURAL_REPETITION.json",
+    "selected_root_prompts": 9845,
+    "exact_repeat_count": 66,
+    "nfkc_casefold_whitespace_repeat_count": 83,
+    "same_source_user_repeat_count": 0,
+    "interpretation": "Descriptive prevalence in the pinned crowdsourced assistant dataset only. Repeats are not safe hits, and source user IDs are not deployment tenants.",
+    "exported_user_text": false,
+    "exported_user_ids": false,
+    "api_model_calls": 0
+  },
+  "domain_qa_candidate": {
+    "dataset": "CPython Programming FAQ",
+    "revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24",
+    "license": "PSF-2.0",
+    "license_artifact": "data/licenses/CPYTHON_PSF_LICENSE.txt",
+    "source_manifest": "examples/benchmark/python_faq.sources.json",
+    "preparation_output": "runs/r2-python-prepared-v1",
+    "note": "Reference Q&A, not natural traffic. The output remains local and is regenerated from pinned sources."
+  },
+  "adversarial_suite": {
+    "path": "examples/benchmark/python_faq_adversarial.json",
+    "nature": "authored stress probes; not independent accuracy labels"
+  }
+}

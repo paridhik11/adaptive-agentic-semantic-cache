@@ -1,0 +1,36 @@
+{
+  "schema_version": "source-manifest-v1",
+  "dataset": "CPython Programming FAQ",
+  "scope": "Versioned technical Q&A reference set; not a natural-traffic prevalence sample",
+  "repository": "https://github.com/python/cpython",
+  "revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24",
+  "revision_kind": "peeled commit for tag v3.12.0",
+  "license": "Python Software Foundation License Version 2 (PSF-2.0)",
+  "license_url": "https://docs.python.org/3.12/license.html",
+  "additional_code_example_terms": "Examples and code in Python documentation are also dual licensed under 0BSD; this preparation uses FAQ question/answer prose as reference data and retains the full PSF license.",
+  "files": [
+    {
+      "path": "Doc/faq/programming.rst",
+      "url": "https://raw.githubusercontent.com/python/cpython/0fb18b02c8ad56299d6a2910be0bab8ad601ef24/Doc/faq/programming.rst",
+      "sha256": "648bc2d476230c98f61571e9de969811150875996de2552d5c7656368b2df184",
+      "bytes": 78511
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/python/cpython/0fb18b02c8ad56299d6a2910be0bab8ad601ef24/LICENSE",
+      "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+      "bytes": 13936
+    }
+  ],
+  "group_split": {
+    "train": ["General Questions", "Core Language", "Performance"],
+    "dev": ["Numbers and strings", "Sequences (Tuples/Lists)"],
+    "reserved_test": ["Objects", "Modules"]
+  },
+  "notes": [
+    "The source is reference documentation, not a log of user traffic.",
+    "Repeated-query records generated from source questions are marked constructed.",
+    "No assertion is made that pretrained models have not seen this public documentation.",
+    "The source wording is preserved; the preparation adds IDs, split/group metadata and request wrappers."
+  ]
+}

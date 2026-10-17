@@ -1,6 +1,9 @@
 # Recovery execution roadmap
 
-Status: R1 diagnostic phase complete; R2 workload preparation next. No new
+Status: R1 and R2 workload investigations are complete and published. R2 has a
+pinned domain reference corpus and a descriptive OASST1 prevalence audit.
+Representative production traffic, answer quality and live utility remain
+unestablished. R3 may proceed as development-only matcher evaluation; no
 semantic quality or live utility gate is declared passed.
 Latest instruction: finish, debug and validate a phase before committing and
 pushing its coherent changes. This replaces the earlier small-commit workflow

@@ -1,0 +1,20 @@
+{
+  "schema_version": "authored-adversarial-workload-v1",
+  "nature": "authored_stress_cases_not_accuracy_labels",
+  "source": "Handwritten Python technical request pairs for policy and matcher stress; no model outputs or independent labels.",
+  "cases": [
+    {"case_id": "entity-change-bst-avl", "category": "entity", "anchor": "How does a binary search tree organize values?", "probe": "How does an AVL tree rebalance values?", "expected_reuse": false, "reason": "Related data structures require distinct algorithm and complexity details."},
+    {"case_id": "negation-is-equals", "category": "negation", "anchor": "When should I use Python's is operator to compare values?", "probe": "When should I avoid Python's is operator to compare values?", "expected_reuse": false, "reason": "Negation changes the requested guidance."},
+    {"case_id": "numeric-operator", "category": "quantity", "anchor": "What does 2 ** 3 evaluate to in Python?", "probe": "What does 2 * 3 evaluate to in Python?", "expected_reuse": false, "reason": "The operator changes the result."},
+    {"case_id": "unit-kib-mib", "category": "unit", "anchor": "How many bytes are in one KiB?", "probe": "How many bytes are in one MiB?", "expected_reuse": false, "reason": "The unit magnitude changes."},
+    {"case_id": "direction-sort", "category": "direction", "anchor": "How do I sort a Python list in ascending order?", "probe": "How do I sort a Python list in descending order?", "expected_reuse": false, "reason": "The requested order is reversed."},
+    {"case_id": "code-input-change", "category": "code_input", "anchor": "What is printed by print(7 // 2)?", "probe": "What is printed by print(7 / 2)?", "expected_reuse": false, "reason": "The operator and output type differ."},
+    {"case_id": "version-change", "category": "version", "anchor": "What changed for asyncio in Python 3.11?", "probe": "What changed for asyncio in Python 3.12?", "expected_reuse": false, "reason": "Version-specific behavior can change the answer."},
+    {"case_id": "dynamic-latest-version", "category": "temporal", "anchor": "Which Python version was the latest release in 2024?", "probe": "Which Python version is the latest release now?", "expected_reuse": false, "reason": "The second request is time-sensitive and must bypass stale reuse."},
+    {"case_id": "depth-instruction", "category": "requested_depth", "anchor": "Define a Python generator in one sentence.", "probe": "Give me a complete tutorial on Python generators with examples.", "expected_reuse": false, "reason": "Requested depth and examples differ materially."},
+    {"case_id": "context-version", "category": "context", "anchor": "In Python 3.11, how do exception groups work?", "probe": "In Python 3.8, how do exception groups work?", "expected_reuse": false, "reason": "The version context changes whether the feature is available."},
+    {"case_id": "multi-turn-context", "category": "conversation_context", "anchor": "Given the function above, how do I make it asynchronous?", "probe": "Given a different function above, how do I make it asynchronous?", "expected_reuse": false, "reason": "The answer depends on prior conversation state."},
+    {"case_id": "open-ended-generation", "category": "generative_request", "anchor": "Explain Python decorators briefly.", "probe": "Write a funny poem about Python decorators.", "expected_reuse": false, "reason": "Open-ended generated wording is not a stable factual response."
+    }
+  ]
+}

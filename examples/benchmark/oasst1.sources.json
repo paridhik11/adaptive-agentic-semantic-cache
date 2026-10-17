@@ -1,0 +1,29 @@
+{
+  "schema_version": "source-manifest-v1",
+  "dataset": "OpenAssistant/oasst1",
+  "scope": "Crowdsourced human-assistant conversations; prevalence-only analysis, not production API traffic",
+  "repository": "https://huggingface.co/datasets/OpenAssistant/oasst1",
+  "revision": "fdf72ae0827c1cda404aff25b6603abec9e3399b",
+  "license": "Apache-2.0",
+  "license_url": "https://huggingface.co/datasets/OpenAssistant/oasst1/blob/fdf72ae0827c1cda404aff25b6603abec9e3399b/LICENSE",
+  "files": [
+    {
+      "path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357
+    },
+    {
+      "path": "README.md",
+      "sha256": "68483ac2fcc2f3f7779f453352363827678070ef35b6d746ccb2ca6958540fff",
+      "bytes": 10168
+    },
+    {
+      "path": "data/train-00000-of-00001-b42a775f407cee45.parquet",
+      "sha256": "bbfadf5ed1278ba2208c837fdcad865adf65f5df55d80abadab2745db13fcb5e",
+      "bytes": 39516251
+    }
+  ],
+  "fields_used": ["parent_id", "role", "created_date", "text", "deleted", "synthetic", "message_tree_id", "user_id", "lang"],
+  "privacy": "Raw prompt text and user IDs are processed locally and never exported in the audit summary.",
+  "analysis": "Select first-level prompter messages with no parent, sort chronologically, take first 5000 eligible roots, and report raw exact plus NFKC/casefold/whitespace-folded repeats globally and within the same source user ID. User IDs are not tenants."
+}

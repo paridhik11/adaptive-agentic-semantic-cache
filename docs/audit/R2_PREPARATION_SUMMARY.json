@@ -1,0 +1,47 @@
+{
+  "schema_version": "python-faq-preparation-v1",
+  "source_manifest_sha256": "59f5f79eb3be5bf6185d038e8b723299545c978f0f1ac8e1924e0d85ed771895",
+  "source_revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24",
+  "source_license": "Python Software Foundation License Version 2 (PSF-2.0)",
+  "source_files": [
+    {
+      "path": "Doc/faq/programming.rst",
+      "sha256": "648bc2d476230c98f61571e9de969811150875996de2552d5c7656368b2df184",
+      "bytes": 78511
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+      "bytes": 13936
+    }
+  ],
+  "corpus_sha256": "0fe8140b1d3bb1bf752821d15e863b5552db324d17ed373b89952837620a7089",
+  "corpus_file_sha256": "cd37d9991da29d53092b9c9c111d405bc37f4454737f2960b4f35eb9bba644cf",
+  "workload_sha256": "95a84f7e95c0a1fbc480c9fc2a0d35bfd76884f9ff70b86b155237d189bc6eb2",
+  "workload_file_sha256": "366c913080df46210765304c3ab740593d56ab7b85a7df06d344f1352065640a",
+  "group_split_check": {
+    "group_splits": {
+      "python312:General Questions": "train",
+      "python312:Core Language": "train",
+      "python312:Numbers and strings": "dev",
+      "python312:Performance": "train",
+      "python312:Sequences (Tuples/Lists)": "dev",
+      "python312:Objects": "test",
+      "python312:Modules": "test"
+    },
+    "question_count": 67,
+    "corpus_sha256": "0fe8140b1d3bb1bf752821d15e863b5552db324d17ed373b89952837620a7089"
+  },
+  "question_counts_by_split": {
+    "train": 24,
+    "dev": 22,
+    "test": 21
+  },
+  "request_count_by_split": {
+    "train": 48,
+    "dev": 44,
+    "test": 42
+  },
+  "answer_reuse_gold": null,
+  "nature": "reference QA plus constructed exact repeats; natural prevalence unmeasured"
+}
