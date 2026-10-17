@@ -64,6 +64,7 @@ class SemanticResult(ResponseCacheResult):
     candidate_event_id: str | None = None
     similarity: float | None = None
     verification: dict | None = None
+    diagnosis: dict | None = None
 
 
 class AnswerVerifier:
@@ -120,20 +121,26 @@ class ExperimentalSemanticCache:
         if not isinstance(event_id,str) or not event_id.strip():raise ValueError('event ID required')
         canonical(body)
         verification=None;score=None
+        diagnosis={'stage':'eligibility','eligible':False,'expired_entries':0,
+            'scope_candidates':None,'threshold_passed':None,'margin_passed':None,
+            'verifier_approved':None,'processing_failure':False,'evicted_entries':0}
         self.last_verification=None
         def result(response,status,reason,calls,stored,candidate=None):
             return SemanticResult(copy.deepcopy(response),status,reason,calls,stored,
-                (time.perf_counter()-started)*1000,candidate,score,verification)
+                (time.perf_counter()-started)*1000,candidate,score,verification,copy.deepcopy(diagnosis))
         reason=self.guard._eligibility_reason(body)
         if body.get('stream') or body['messages'][-1].get('role')!='user':reason='unsupported_semantic_scope'
         if reason:return result(provider(body),'BYPASS',reason,1,False)
+        diagnosis.update(eligible=True,stage='lookup')
         now=self.clock()
         for key in list(self.entries):
             if self.entries[key]['expires']<=now:
                 self.bytes-=self.entries.pop(key)['bytes']
+                diagnosis['expired_entries']+=1
         key=digest({'tenant':tenant_id,'body':body});namespace=scope(body,tenant_id)
         if key in self.entries:
             entry=self.entries[key];self.entries.move_to_end(key)
+            diagnosis['stage']='exact_hit'
             return result(entry['answer'],'HIT','experimental_exact',0,False,entry['event_id'])
         vector=None
         try:
@@ -144,10 +151,14 @@ class ExperimentalSemanticCache:
                 if len(entry['vector'])!=len(vector):raise ValueError('embedding dimension changed')
                 similarity=sum(a*b for a,b in zip(vector,entry['vector']))
                 candidates.append((similarity,candidate_key,entry))
+            diagnosis['scope_candidates']=len(candidates)
+            diagnosis['stage']='no_candidate' if not candidates else 'candidate_scoring'
             candidates.sort(key=lambda c:(-c[0],c[1]))
             if candidates:
                 score,candidate_key,entry=candidates[0]
                 separated=len(candidates)==1 or score-candidates[1][0]>=self.margin
+                diagnosis.update(threshold_passed=score>=self.threshold,margin_passed=separated)
+                diagnosis['stage']='threshold_rejected' if score<self.threshold else 'margin_rejected' if not separated else 'candidate_accepted'
                 if score>=self.threshold and separated:
                     approved=self.mode=='similarity'
                     if self.mode=='verified':
@@ -167,13 +178,17 @@ class ExperimentalSemanticCache:
                         verification=verdict
                         self.last_verification=verification
                         approved=verification['approved'] and verification['error'] is None
+                        diagnosis['verifier_approved']=approved
+                        diagnosis['stage']='verifier_approved' if approved else 'verifier_failed' if verification['error'] else 'verifier_rejected'
                     if approved and self.guard._eligibility_reason(body) is None:
                         self.entries.move_to_end(candidate_key)
+                        diagnosis['stage']='semantic_hit'
                         return result(entry['answer'],'HIT','experimental_'+self.mode,0,False,entry['event_id'])
         except RunPaused:
             raise
         except Exception:
             # Failures in encoding/verification never authorize reuse.
+            diagnosis.update(stage='retrieval_or_verification_failed',processing_failure=True)
             reason='retrieval_or_verification_failed'
         answer=provider(copy.deepcopy(body));stored=False
         if self.guard._eligibility_reason(body) is None and self.guard._admissible(answer,body) and vector is not None:
@@ -185,6 +200,7 @@ class ExperimentalSemanticCache:
                     self.bytes+=size
                     while len(self.entries)>self.limit or self.bytes>self.max_bytes:
                         _,old=self.entries.popitem(last=False);self.bytes-=old['bytes']
+                        diagnosis['evicted_entries']+=1
                     stored=True
             except (ValueError,TypeError):pass
         return result(answer,'MISS','experimental_generated' if stored else reason or 'not_admitted',1,stored)

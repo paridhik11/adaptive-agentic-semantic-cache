@@ -1,0 +1,198 @@
+{
+  "schema_version": "policy-scope-audit-v1",
+  "nature": "authored_contract_examples_not_safety_labels",
+  "all_contracts_match": true,
+  "cases": [
+    {
+      "case": "recognized-static",
+      "request": {
+        "model": "fixture-model",
+        "max_tokens": 256,
+        "messages": [
+          {
+            "role": "user",
+            "content": "What is photosynthesis?"
+          }
+        ],
+        "temperature": 0
+      },
+      "expected_policy_bypass_reason": null,
+      "observed_policy_bypass_reason": null,
+      "contract_matches": true
+    },
+    {
+      "case": "recognized-cs",
+      "request": {
+        "model": "fixture-model",
+        "max_tokens": 256,
+        "messages": [
+          {
+            "role": "user",
+            "content": "What is a binary search tree?"
+          }
+        ],
+        "temperature": 0
+      },
+      "expected_policy_bypass_reason": null,
+      "observed_policy_bypass_reason": null,
+      "contract_matches": true
+    },
+    {
+      "case": "unrecognized-static",
+      "request": {
+        "model": "fixture-model",
+        "max_tokens": 256,
+        "messages": [
+          {
+            "role": "user",
+            "content": "What is binary search?"
+          }
+        ],
+        "temperature": 0
+      },
+      "expected_policy_bypass_reason": "not_rule_confirmed_static",
+      "observed_policy_bypass_reason": "not_rule_confirmed_static",
+      "contract_matches": true
+    },
+    {
+      "case": "unrecognized-static",
+      "request": {
+        "model": "fixture-model",
+        "max_tokens": 256,
+        "messages": [
+          {
+            "role": "user",
+            "content": "What is a hash table?"
+          }
+        ],
+        "temperature": 0
+      },
+      "expected_policy_bypass_reason": "not_rule_confirmed_static",
+      "observed_policy_bypass_reason": "not_rule_confirmed_static",
+      "contract_matches": true
+    },
+    {
+      "case": "fixed-system-context",
+      "request": {
+        "model": "fixture-model",
+        "max_tokens": 256,
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer concisely."
+          },
+          {
+            "role": "user",
+            "content": "What is photosynthesis?"
+          }
+        ],
+        "temperature": 0
+      },
+      "expected_policy_bypass_reason": "context_requires_review",
+      "observed_policy_bypass_reason": "context_requires_review",
+      "contract_matches": true
+    },
+    {
+      "case": "dynamic",
+      "request": {
+        "model": "fixture-model",
+        "max_tokens": 256,
+        "messages": [
+          {
+            "role": "user",
+            "content": "What is the weather right now?"
+          }
+        ],
+        "temperature": 0
+      },
+      "expected_policy_bypass_reason": "not_rule_confirmed_static",
+      "observed_policy_bypass_reason": "not_rule_confirmed_static",
+      "contract_matches": true
+    },
+    {
+      "case": "creative",
+      "request": {
+        "model": "fixture-model",
+        "max_tokens": 256,
+        "messages": [
+          {
+            "role": "user",
+            "content": "Write a poem about photosynthesis."
+          }
+        ],
+        "temperature": 0
+      },
+      "expected_policy_bypass_reason": "personal_or_generative_request",
+      "observed_policy_bypass_reason": "personal_or_generative_request",
+      "contract_matches": true
+    },
+    {
+      "case": "personal",
+      "request": {
+        "model": "fixture-model",
+        "max_tokens": 256,
+        "messages": [
+          {
+            "role": "user",
+            "content": "Explain photosynthesis to person@example.test"
+          }
+        ],
+        "temperature": 0
+      },
+      "expected_policy_bypass_reason": "personal_or_generative_request",
+      "observed_policy_bypass_reason": "personal_or_generative_request",
+      "contract_matches": true
+    },
+    {
+      "case": "high-temperature",
+      "request": {
+        "model": "fixture-model",
+        "max_tokens": 256,
+        "messages": [
+          {
+            "role": "user",
+            "content": "What is photosynthesis?"
+          }
+        ],
+        "temperature": 1
+      },
+      "expected_policy_bypass_reason": "temperature_not_eligible",
+      "observed_policy_bypass_reason": "temperature_not_eligible",
+      "contract_matches": true
+    },
+    {
+      "case": "omitted-temperature",
+      "request": {
+        "model": "fixture-model",
+        "max_tokens": 256,
+        "messages": [
+          {
+            "role": "user",
+            "content": "What is photosynthesis?"
+          }
+        ]
+      },
+      "expected_policy_bypass_reason": "temperature_not_eligible",
+      "observed_policy_bypass_reason": "temperature_not_eligible",
+      "contract_matches": true
+    },
+    {
+      "case": "long",
+      "request": {
+        "model": "fixture-model",
+        "max_tokens": 256,
+        "messages": [
+          {
+            "role": "user",
+            "content": "photosynthesis word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word "
+          }
+        ],
+        "temperature": 0
+      },
+      "expected_policy_bypass_reason": "long_request",
+      "observed_policy_bypass_reason": "long_request",
+      "contract_matches": true
+    }
+  ],
+  "interpretation": "Unrecognized stable topics and fixed system prompts are excluded. Recognized static wording is heuristic eligibility, not independent proof of correctness or safety."
+}

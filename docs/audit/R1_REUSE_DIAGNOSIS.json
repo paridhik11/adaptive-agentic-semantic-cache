@@ -1,0 +1,292 @@
+{
+  "schema_version": "reuse-diagnosis-pack-v1",
+  "implementation_sha256": {
+    "src/__init__.py": "f9489c92343d74f96db26f617e139bd6f54c0edcbcad73620127de44890ffe50",
+    "src/agents/__init__.py": "05f70b2769cfe6b5c1dc80ee60ee46866ff740fa6f2d16c098b60d4ca3ab44a1",
+    "src/agents/workflow.py": "fa6b9abe56ecd2042d3113ecda5d3df91195505145b9415e23ae2c8b1c85e12c",
+    "src/api/__init__.py": "f0fb9371b1cd8cfc6c932060ed0d717ca86442f93601f15e988730dd81722cb1",
+    "src/api/gateway.py": "c08faeeb1874370ebffd2660660012119b5d10b4255bc2b224025a71d9c4929f",
+    "src/api/providers.py": "2448af44987a2b18262f9bb01da28361a969b1118e175391bf517a0ac7cae232",
+    "src/api/service.py": "78cc75abe5e473f673baeeb83fded61b56370905206c7ee49ebff9880730aa10",
+    "src/api/streaming.py": "d190e9f7203234208b81480e807c49f6d0daaf7334ac03d71a512f74d3596b0f",
+    "src/benchmark/__init__.py": "e31037414bd04e31e07548fee493ec582fff4f7bca52b0c5197da5a586a2b17f",
+    "src/benchmark/control.py": "8fe48ff32d66a1a5ceca5931a9b8cd3edaba31c3409c815a524a9bfb212c0cee",
+    "src/benchmark/diagnostics.py": "fe0492a1e621ccdcfece07dbf9d8f9af2f1f35cc5abebaf0e677ac39f8a369c4",
+    "src/benchmark/free_pilot.py": "fd7f8f06ba14043e65203e512ca622c97a42dd8637d93983040a3df0e096e83f",
+    "src/benchmark/progress.py": "5cdf3b117d6304a3cc7eda9437ef151c9221218662ef49f05d7e302b0f9df8b4",
+    "src/benchmark/report.py": "26c3121208c2f734c273df88901ddc96c78fa7813381f6c61eb8193a2806efd8",
+    "src/benchmark/reuse_diagnosis.py": "61da28a5b991da178cd5ef6dcb16f8c4be7203dcd3b6774a80b5d62ebc9c6dc9",
+    "src/benchmark/review_agreement.py": "bf58d227f1e9a6bb078b0f236a004fea3b2c5c19e121ac989c2432f5624b2145",
+    "src/benchmark/runner.py": "b0ade877259fbf3ee0a022523998efdd216657931ec7d815852294c538f6c309",
+    "src/benchmark/schema.py": "a812466bf8505cdaa2cfcf52eb89da107be64f692cf19aade06cfb01911d7865",
+    "src/benchmark/semantic.py": "7134389917f55fc7a7a2ccb3047fa53415957cbe18d4af6f0b13ceb83efaea3f",
+    "src/benchmark/views.py": "7d831c1ca5a30ff54e33b25ac52593900ef394ce393393908bc1b0b5042089b4",
+    "src/cache/__init__.py": "7e27fb9b7c029bf5b6cf7f55015f60255aee9015ac4f68b5ee7812d90fd676b5",
+    "src/cache/embedding.py": "630bc89e0afcdae1d6140b8b40904ef6d673d6091a83545c4227179939629080",
+    "src/cache/normalizer.py": "2bfa718c2a8177a4b915c3aedc739915fb72b987e9ef6a9269f16e6da6579d83",
+    "src/cache/semantic_cache.py": "4052fa24fb12167d6bd643f2c21e945a49e050eb0e1cc268da541d94ca88d9b8",
+    "src/cache/vector_store.py": "1ed51fe88315016bef8cad08693124c58fe4afa67754e96986270d3e8d9c58d8",
+    "src/classifier/__init__.py": "6ef99a80b3d4ffa5cc4cf5b5df15c1a2824858d8d0213f97c0277f2bea1db4b5",
+    "src/classifier/fallback.py": "d9f1d59fd1f6102d8c9c73dd5834055d6009f1db5f2d35c0f52bbd9a57c14702",
+    "src/classifier/models.py": "360edd6fc905fdb645de292d4f84aacc4b3240b18eec99750c53b72bfdd06726",
+    "src/classifier/rules.py": "c0340527b7b83cc0dadb7e6bfba4bcc312399ac244f5633c9dcbff78d28b4bd0",
+    "src/classifier/stability_classifier.py": "0b8eadb17b68b478169d1b36bba2dd4a7faf10c855adf1e50bc3209b729400fc",
+    "src/decision/__init__.py": "eae2d7107541a083a84f1fa56bdb05c7d5ce57cfbb41616dadb55aafe6e155bd",
+    "src/decision/adaptive_threshold_engine.py": "c9272ecd70b9392daf3f5c9689b84ef35d7f4b0035a53d0b9e7d5eec3d92f667",
+    "src/decision/decision_step.py": "7ff3b71c848aeff1d2d4c6bae31b8c98038610713fafd353b353a52ef4a56cdb",
+    "src/decision/judge_call.py": "548558fa575ebcf579e52dfa87b31e4dab0b63c887aa79ad53a8572fd562fef6",
+    "src/decision/local_equivalence.py": "f63ed1ce3adb66a8bb2adc04cd4d1248c351f5903ad81600ec2c8c0708ac5023",
+    "src/decision/tier_router.py": "dcb5de0c2fdf821b9002005769d693449f47065148e42611a5125636b90dd7fa",
+    "src/decision_agent/__init__.py": "a3a727273010e1e82714ee3a5b70a3086ea37dc35ecf62b42c9ad3e82ffdb0d1",
+    "src/evaluation/__init__.py": "f4a8f90964fc52e901cbfb5ce816327aa3b2feb09963ab45b9676786ecb74cce",
+    "src/evaluation/cache_evaluator.py": "628a7c7c47cc81571e03c75552f97f81da781aa56ccbab898675e410a48a951e",
+    "src/evaluation/decision_evaluator.py": "856dcae750cfbda538752b733914dc06bd25e6632d5814590a5f33c8dfd8c4fb",
+    "src/evaluation/stability_evaluator.py": "73c24e1818f44c2cf53ff66f0dcbec8f5e7a4c4305777e8dc713d87f518c2326",
+    "src/policy/__init__.py": "2b9798f9a5e5200c4b18210d8e0b3e5a4c6d6cac44b4d54b57da78ab44f0b967",
+    "src/policy/response_cache.py": "bb84a74582f551a2b49a1d085e6e2fb097474b7d193003ab1a22e8c2b52ffce0",
+    "src/policy/sqlite_store.py": "cf0e381065406bec3ca15b3ee1d655f1f6a471d8e1b90ac73657e535b5c7e983",
+    "src/utils/__init__.py": "c00482dc9ad2c401998082f89a20ecffe24f5c1288ec30591f532ba3bdf55978",
+    "scripts/diagnose_reuse.py": "9e695f1c6b6d7d8cfc3fc9cf21a5274ab6c36f5143aae51ab385be283c190112",
+    "scripts/prepare_answer_workload.py": "d566d4ba3d20a3f9ba8f574bc7c50279c44108897fbafd32dd708422521864a7"
+  },
+  "code_tree": "8edcebebaa10b96effe25f3f9dbe9df256171a31",
+  "working_tree_dirty": true,
+  "runs": {
+    "exact": {
+      "schema_version": "reuse-diagnosis-v1",
+      "trace_sha256": "3b39943ce4887c1f3f5c6775d125f4cd9f4254ad0a50f7e22e1360c00d8abeca",
+      "evaluation_mode": "simulated_fixture",
+      "nature": "constructed_natural_queries",
+      "requests": 4000,
+      "terminal_outcomes": {
+        "BYPASS": 3777,
+        "MISS": 219,
+        "HIT": 4
+      },
+      "terminal_reasons": {
+        "not_rule_confirmed_static": 3738,
+        "generated_and_stored": 219,
+        "personal_or_generative_request": 39,
+        "scoped_exact_hit": 4
+      },
+      "eligibility_observed": {
+        "bypass:not_rule_confirmed_static": 3738,
+        "eligible": 223,
+        "bypass:personal_or_generative_request": 39
+      },
+      "eligible_requests": 223,
+      "bypass_fraction": 0.94425,
+      "all_request_hit_fraction": 0.001,
+      "eligible_hit_fraction": 0.017937219730941704,
+      "admission_counts": {
+        "not_stored": 3781,
+        "stored": 219
+      },
+      "by_source": {
+        "paws_train_hard_neg": {
+          "BYPASS": 823,
+          "MISS": 175,
+          "HIT": 2
+        },
+        "qqp_train_neg": {
+          "BYPASS": 988,
+          "MISS": 12
+        },
+        "qqp_train_pos": {
+          "BYPASS": 1966,
+          "MISS": 32,
+          "HIT": 2
+        }
+      },
+      "semantic_terminal_stages": {},
+      "instrumentation_coverage": {
+        "semantic_decision_unrecorded_or_not_applicable": 4000
+      },
+      "semantic_expirations_observed": null,
+      "semantic_evictions_observed": null,
+      "prior_identical_request_occurrences_by_outcome": {
+        "BYPASS": 48,
+        "HIT": 4
+      },
+      "provider_work": {
+        "cache_generation_attempts": 3996,
+        "verifier_attempts": 0,
+        "total_cache_attempts": 3996,
+        "fresh_attempts": 4000,
+        "net_attempts_avoided": 4
+      },
+      "accounting_reconciled": true,
+      "safety_certified": false,
+      "limitations": [
+        "Eligibility is a recorded heuristic decision, not an independent safe/unsafe label.",
+        "Prior identical request occurrence ignores TTL, eviction and answer correctness; it is NOT a safe opportunity count.",
+        "No pair label is used as an answer correctness label. Candidate recall and correct reuse require independent audits.",
+        "Missing diagnostic fields stay unrecorded. Exact expiry, invalidation and eviction causes are not inferred from a miss.",
+        "A semantic candidate count of zero means none in the active complete-request scope, not zero semantic duplicates in the world.",
+        "No fixture latency or token work is presented as live cost/latency improvement."
+      ]
+    },
+    "similarity": {
+      "schema_version": "reuse-diagnosis-v1",
+      "trace_sha256": "f0e445a196505189474ad115cd97012daf2c1d5d87d022d1cd58f8bce501665d",
+      "evaluation_mode": "simulated_fixture",
+      "nature": "constructed_natural_queries",
+      "requests": 4000,
+      "terminal_outcomes": {
+        "BYPASS": 3777,
+        "MISS": 173,
+        "HIT": 50
+      },
+      "terminal_reasons": {
+        "not_rule_confirmed_static": 3738,
+        "experimental_generated": 173,
+        "experimental_similarity": 46,
+        "personal_or_generative_request": 39,
+        "experimental_exact": 4
+      },
+      "eligibility_observed": {
+        "bypass:not_rule_confirmed_static": 3738,
+        "eligible": 223,
+        "bypass:personal_or_generative_request": 39
+      },
+      "eligible_requests": 223,
+      "bypass_fraction": 0.94425,
+      "all_request_hit_fraction": 0.0125,
+      "eligible_hit_fraction": 0.2242152466367713,
+      "admission_counts": {
+        "not_stored": 3827,
+        "stored": 173
+      },
+      "by_source": {
+        "paws_train_hard_neg": {
+          "BYPASS": 823,
+          "MISS": 135,
+          "HIT": 42
+        },
+        "qqp_train_neg": {
+          "BYPASS": 988,
+          "MISS": 12
+        },
+        "qqp_train_pos": {
+          "BYPASS": 1966,
+          "MISS": 26,
+          "HIT": 8
+        }
+      },
+      "semantic_terminal_stages": {
+        "eligibility": 3777,
+        "no_candidate": 1,
+        "semantic_hit": 46,
+        "threshold_rejected": 172,
+        "exact_hit": 4
+      },
+      "instrumentation_coverage": {
+        "semantic_decision_recorded": 4000
+      },
+      "semantic_expirations_observed": 0,
+      "semantic_evictions_observed": 0,
+      "prior_identical_request_occurrences_by_outcome": {
+        "BYPASS": 48,
+        "HIT": 4
+      },
+      "provider_work": {
+        "cache_generation_attempts": 3950,
+        "verifier_attempts": 0,
+        "total_cache_attempts": 3950,
+        "fresh_attempts": 4000,
+        "net_attempts_avoided": 50
+      },
+      "accounting_reconciled": true,
+      "safety_certified": false,
+      "limitations": [
+        "Eligibility is a recorded heuristic decision, not an independent safe/unsafe label.",
+        "Prior identical request occurrence ignores TTL, eviction and answer correctness; it is NOT a safe opportunity count.",
+        "No pair label is used as an answer correctness label. Candidate recall and correct reuse require independent audits.",
+        "Missing diagnostic fields stay unrecorded. Exact expiry, invalidation and eviction causes are not inferred from a miss.",
+        "A semantic candidate count of zero means none in the active complete-request scope, not zero semantic duplicates in the world.",
+        "No fixture latency or token work is presented as live cost/latency improvement."
+      ]
+    },
+    "verified": {
+      "schema_version": "reuse-diagnosis-v1",
+      "trace_sha256": "d92bca591459094130c0c12c4ff1c39b3b901a97da51ee54850e7fe9fdfbe539",
+      "evaluation_mode": "simulated_fixture",
+      "nature": "constructed_natural_queries",
+      "requests": 4000,
+      "terminal_outcomes": {
+        "BYPASS": 3777,
+        "MISS": 219,
+        "HIT": 4
+      },
+      "terminal_reasons": {
+        "not_rule_confirmed_static": 3738,
+        "experimental_generated": 219,
+        "personal_or_generative_request": 39,
+        "experimental_exact": 4
+      },
+      "eligibility_observed": {
+        "bypass:not_rule_confirmed_static": 3738,
+        "eligible": 223,
+        "bypass:personal_or_generative_request": 39
+      },
+      "eligible_requests": 223,
+      "bypass_fraction": 0.94425,
+      "all_request_hit_fraction": 0.001,
+      "eligible_hit_fraction": 0.017937219730941704,
+      "admission_counts": {
+        "not_stored": 3781,
+        "stored": 219
+      },
+      "by_source": {
+        "paws_train_hard_neg": {
+          "BYPASS": 823,
+          "MISS": 175,
+          "HIT": 2
+        },
+        "qqp_train_neg": {
+          "BYPASS": 988,
+          "MISS": 12
+        },
+        "qqp_train_pos": {
+          "BYPASS": 1966,
+          "MISS": 32,
+          "HIT": 2
+        }
+      },
+      "semantic_terminal_stages": {
+        "eligibility": 3777,
+        "no_candidate": 1,
+        "verifier_rejected": 42,
+        "threshold_rejected": 172,
+        "margin_rejected": 4,
+        "exact_hit": 4
+      },
+      "instrumentation_coverage": {
+        "semantic_decision_recorded": 4000
+      },
+      "semantic_expirations_observed": 0,
+      "semantic_evictions_observed": 0,
+      "prior_identical_request_occurrences_by_outcome": {
+        "BYPASS": 48,
+        "HIT": 4
+      },
+      "provider_work": {
+        "cache_generation_attempts": 3996,
+        "verifier_attempts": 0,
+        "total_cache_attempts": 3996,
+        "fresh_attempts": 4000,
+        "net_attempts_avoided": 4
+      },
+      "accounting_reconciled": true,
+      "safety_certified": false,
+      "limitations": [
+        "Eligibility is a recorded heuristic decision, not an independent safe/unsafe label.",
+        "Prior identical request occurrence ignores TTL, eviction and answer correctness; it is NOT a safe opportunity count.",
+        "No pair label is used as an answer correctness label. Candidate recall and correct reuse require independent audits.",
+        "Missing diagnostic fields stay unrecorded. Exact expiry, invalidation and eviction causes are not inferred from a miss.",
+        "A semantic candidate count of zero means none in the active complete-request scope, not zero semantic duplicates in the world.",
+        "No fixture latency or token work is presented as live cost/latency improvement."
+      ]
+    }
+  }
+}

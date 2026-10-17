@@ -53,7 +53,10 @@ def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
         key = digest({'tenant_id': tenant, 'request': body})
         arms = ['cache', 'fresh']
         rng.shuffle(arms)
-        record = {**copy.deepcopy(row), 'request_sha256': digest(body), 'order': arms}
+        guard=cache if policy=='exact' else cache.guard
+        eligibility_reason=guard._eligibility_reason(body)
+        record = {**copy.deepcopy(row), 'request_sha256': digest(body), 'order': arms,
+            'eligibility':{'cacheable':eligibility_reason is None,'bypass_reason':eligibility_reason}}
         for arm in arms:
             if observer is not None:
                 try:observer({'kind':'arm_started','event_id':row['event_id'],'arm':arm,
@@ -97,6 +100,7 @@ def run_workload(workload, provider, *, split='dev', seed=17, ttl_seconds=3600,
                     'answer':response['choices'][0]['message']['content'][:2000] if response is not None else None})
                 except Exception:pass
             if arm == 'cache':
+                record['decision_diagnostics']=getattr(result,'diagnosis',None)
                 record['stored'] = result.stored if result is not None and error is None else False
                 record['status'] = result.status if result is not None and error is None else 'ERROR'
                 record['reason'] = result.reason if result is not None else error

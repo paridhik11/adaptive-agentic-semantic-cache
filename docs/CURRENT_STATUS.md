@@ -53,3 +53,11 @@ workspace. The OpenRouter credential set in the user's PowerShell exists only
 on their laptop; live inference therefore runs there. The guided command keeps
 that boundary while removing per-query manual commands and separate evidence
 exports. It is a foreground job, not an autonomous background agent.
+
+## Recovery execution status
+
+R1 diagnostics are complete: recorded eligibility, matching and verifier stages
+now explain the reproduced development outcomes. See
+[audit/R1_CLOSEOUT.md](audit/R1_CLOSEOUT.md) and
+[EXECUTION_ROADMAP.md](EXECUTION_ROADMAP.md). This closes an instrumentation
+phase, not the semantic safety/utility gate. R2 establishes workload fit next.
