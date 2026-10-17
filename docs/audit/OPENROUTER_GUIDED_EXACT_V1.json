@@ -1,0 +1,82 @@
+{
+  "schema_version": "redacted-live-pilot-audit-v1",
+  "source_package_sha256": "feb94120cb12958e3c7f424b613c9bdc69f5fab2c7bb3b6896c79047e08fb442",
+  "trace_sha256": "c65db4a44834ce92c2cfcff986344bd895611c0ed82bf26cf96e19c46281c228",
+  "run_id": "guided-exact-v1",
+  "evaluation_mode": "live",
+  "execution_mode": "live_uninterrupted",
+  "workload": {
+    "name": "guided-exact-cache-demonstration",
+    "sha256": "cd2e40d733345e34ff112470f3db3ce7af35da74e3a765456929ea00aa79b169",
+    "nature": "synthetic_fixture",
+    "split": "dev",
+    "provenance": "Two authored topics, each with a seed, an exact repeat and a paraphrase. Constructed diagnostic sequence, not natural traffic or sealed data.",
+    "requests": 6,
+    "working_tree_dirty": false,
+    "code_tree": "8edcebebaa10b96effe25f3f9dbe9df256171a31"
+  },
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "cache_policy": "conservative-rules",
+  "latency_valid": true,
+  "status_counts": {
+    "MISS": 4,
+    "HIT": 2
+  },
+  "nonexact_reuse": {
+    "accepted": 0,
+    "reviewed": 0,
+    "unreviewed": 0,
+    "incorrect": 0,
+    "reviewed_incorrect_rate": null,
+    "reviewed_clopper_pearson_95": null,
+    "reviewed_group_bootstrap_95": null,
+    "all_accepted_error_identification_bounds": null,
+    "review_methods": {}
+  },
+  "provider_attempts": {
+    "cache_arm": 4,
+    "fresh_arm": 6,
+    "verifier": 0,
+    "avoided": 2,
+    "journaled_live_calls": 10
+  },
+  "provider_tokens": {
+    "cache_arm": {
+      "prompt": 162,
+      "completion": 246
+    },
+    "fresh_arm": {
+      "prompt": 241,
+      "completion": 371
+    },
+    "fresh_minus_cache": {
+      "prompt_tokens": 79,
+      "completion_tokens": 125
+    }
+  },
+  "latency_ms": {
+    "cache_arm_mean": 1414.8369833128527,
+    "fresh_arm_mean": 1639.9361833076302,
+    "paired_mean_cache_minus_fresh": -225.09919999477765,
+    "paired_group_bootstrap_95": [
+      -562.9623667337,
+      112.76396674414475
+    ],
+    "paired_comparisons": 6
+  },
+  "answer_review": {
+    "reviewed_hits": 0,
+    "unreviewed_hits": 2,
+    "safety_certified": false,
+    "quality_pairs_reviewed": 0
+  },
+  "limitations": [
+    "Development evidence does not certify a sealed safety gate.",
+    "Binomial intervals assume independent trials; repeated groups violate that assumption.",
+    "Group bootstrap is exploratory; few or identical groups can yield misleadingly narrow intervals.",
+    "Reviewed-only estimates may be biased; unreviewed hits are not counted as safe.",
+    "No recall is reported without an independently labeled opportunity denominator.",
+    "Token counts are reported by the live provider; monetary savings are not inferred.",
+    "Fresh and cache arms are serial and randomized within each pair, not simultaneous traffic."
+  ]
+}

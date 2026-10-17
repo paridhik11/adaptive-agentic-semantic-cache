@@ -27,6 +27,12 @@ attempts, not a benchmark. There are no independently reviewed live-answer
 metrics to put on a resume yet. Historical Gate A remains failed; its spent test
 stream must not become a tuning set or be rerun to manufacture a passing result.
 
+The user then completed `guided-exact-v1`: six constructed development
+requests produced two exact-repeat hits and four misses, with ten provider
+attempts across cache and fresh arms. Both hits remain unreviewed and the
+paired-latency interval spans zero. This confirms exact-hit wiring only; see
+[`audit/OPENROUTER_GUIDED_EXACT_V1.json`](audit/OPENROUTER_GUIDED_EXACT_V1.json).
+
 ## Next evidence steps
 
 First obtain complete responses and exact-cache admission using the guided local

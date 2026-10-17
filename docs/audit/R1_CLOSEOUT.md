@@ -82,6 +82,25 @@ no R2 implementation is bundled into the R1 phase commit. The running local
 live pilot and later independent answer reviews remain external dependencies
 for live evidence, not for offline development.
 
+## Guided live exact-cache pilot incorporated
+
+The user supplied the completed `guided-exact-v1` package. The answer-free
+audit at `OPENROUTER_GUIDED_EXACT_V1.json` binds the source-package checksum,
+trace checksum, and report checksum, then reconciles event outcomes, provider
+attempts, token use, and journal call count. The underlying package is not
+committed because it contains complete model answers. Its prompts were
+constructed for an exact-cache demonstration: two exact-repeat hits and four
+misses across two topics. The exact policy served no paraphrase.
+
+The run made ten OpenRouter attempts total: four in the cache arm and six in
+the fresh arm, avoiding two attempts. The reported paired mean latency
+difference favors the cache arm, but its group-bootstrap interval includes no
+difference, there are only two topic groups, and successful-answer tails vary
+substantially. No independent answer review was performed. This validates the
+complete-response exact-hit path and evidence accounting; it does not establish
+semantic safety, natural hit prevalence, representative savings, or a resume
+claim. No further provider calls were made during this audit.
+
 ## Validation output
 
 ```text
@@ -93,6 +112,17 @@ Numeric-token check:
 OVERALL RESULT: PASS (0 unledgered numeric tokens across all audited documents)
 Working-tree gitleaks:
 no leaks found
+
+Guided live-pilot package audit:
+trace/package/report hashes verified; six events, ten provider calls, attempts
+and token totals reconcile; raw prompts and answers omitted from committed
+artifact. The input package remains user-owned and is identified by SHA-256.
+
+Final post-ingestion offline suite:
+545 passed, 23 deselected in 111.92 seconds. The 48 focused pilot, diagnosis,
+guided-pilot and answer-evaluation tests passed. Strict numeric-token check,
+working-tree secret scan, and all-history secret scan passed. No live model call
+was made by these checks.
 ```
 
 These are local offline checks. No new remote CI or live inference pass is
