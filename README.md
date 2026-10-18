@@ -215,3 +215,10 @@ Every phase of the project is backed by standalone reproduction scripts cited in
 - [`docs/FACTS.md`](docs/FACTS.md): Authoritative fact ledger with exact line citations and CLI reproduction steps for every metric.
 - [`DESIGN.md`](DESIGN.md): Detailed discussion of the failure modes of naive caching, four-stage architecture, tier routing rules, the adaptive mechanism analysis, self-audited bugs, and complete limitation disclosures.
 - [`docs/phase7c_claim_check.md`](docs/phase7c_claim_check.md): Comprehensive verification matrix mapping all numbers in documentation to [`docs/FACTS.md`](docs/FACTS.md).
+
+### Bounded documentation agent
+
+R4 adds validated document-tool plans, SQLite checkpoints, scoped task memory and
+human approve/modify/reject. Start with the [offline CLI](docs/document_agent.md)
+and inspect the [phase evidence](docs/audit/R4_CLOSEOUT.md). Fixture success is
+functional evidence; live task quality and net savings remain unmeasured.

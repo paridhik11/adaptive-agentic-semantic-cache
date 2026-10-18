@@ -1,0 +1,13 @@
+{
+  "schema_version": "r4-functional-smoke-v1",
+  "execution_mode": "simulated_functional_fixture",
+  "external_model_calls": 0,
+  "independent_reviews": 0,
+  "quality_measured": false,
+  "live_savings_measured": false,
+  "first_task_fixture_provider_calls": 3,
+  "first_task_document_tools": 2,
+  "approval_after_process_restart": true,
+  "resume_completed_without_reexecution": true,
+  "rejection_without_answer": true
+}

@@ -11,7 +11,7 @@ would hide that distinction.
 | Gateway | Authentication, metrics, local dashboard, HTTP provider, bounded SSE bypass | Live operational validation; streaming responses remain uncached |
 | Semantic matching | Opt-in guarded serving wrapper, semantic shadow mode, bounded candidates, lexical/pinned-local dense adapters, strict actual-answer approval bindings | Reviewed development calibration, broader approval beyond an explicit pair allowlist, independent untouched quality/utility evaluation; default remains exact |
 | Evaluation | Answer-bound trace/review/report, unknown-label handling, work accounting, uncertainty intervals, independent review reconciliation | Complete live answers and independent human labels across sources/groups |
-| Agent integration | Bounded specialist/reviewer workflow and scope isolation checks | Broader task/tool workflow and task-level quality evaluation; this is not the full original agent roadmap |
+| Agent integration | Schema-validated document plan, local search/read tools, SQLite checkpoints, scoped task memory, bounded reviewer feedback, durable human approve/modify/reject and CLI | Independent task quality and memory-benefit evaluation, live paired measurements; guarded semantic verifier budgeting remains pending |
 | Zero-budget execution | Free-only routing, durable quota journal, resume rules, foreground progress page and single results bundle | Observation that the revised concise/reasoning-off profile completes on the live backend |
 
 ## Observed live results

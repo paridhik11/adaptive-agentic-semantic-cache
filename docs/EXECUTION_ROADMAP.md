@@ -2,7 +2,7 @@
 
 Status (2026-10-18, Asia/Calcutta): R1 and R2 are published. R3 cache-lifecycle
 engineering is complete with fixture evidence; its quality/utility gate remains
-open. See `audit/R3_CLOSEOUT.md`. R4 is the next implementation phase.
+open. See `audit/R3_CLOSEOUT.md`. R4 bounded documentation-agent engineering is implemented; see `audit/R4_CLOSEOUT.md`. R5 is the next evaluation phase.
 The user accepted the Project 7 + bounded Project 15 recommendation on this
 date. The active remaining sequence below replaces the earlier matcher-first
 R3-R6 sequence: R3 completes a working cache slice, R4 adds a bounded real agent
@@ -76,8 +76,8 @@ costs more than it saves. Adding agents does not repair an ineffective matcher.
 The previous constructed development run bypassed 94.425% of requests before
 matching. Only 223 of 4000 were eligible. The lexical matcher served 50 hits,
 all with fixture answers and no independent review. These diagnose a restrictive
-policy and a workload mismatch, not semantic accuracy. The current gateway
-serves exact caching only; experimental semantic matching is benchmark-only.
+policy and a workload mismatch, not semantic accuracy. R3 subsequently integrated opt-in guarded semantic serving and shadow mode;
+quality and utility remain unvalidated.
 Earlier live connection checks returned no admissible complete answers. The
 later guided exact-repeat demo establishes wiring, not representative savings.
 Sources and derived values: RECOVERY-PLAN-BYPASS and FREE-LIVE-* in FACTS.md.

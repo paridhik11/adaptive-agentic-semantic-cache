@@ -1,0 +1,31 @@
+{
+  "schema_version": "r4-validation-v1",
+  "parent_commit": "d46ab82f19e092175ef7d0470298f3176ba2323d",
+  "full_offline_suite": {
+    "passed": 610,
+    "deselected": 23,
+    "seconds": 113.63,
+    "note": "Collected 17 R4 cases; three additional R4 tests were subsequently included in the focused suite. No runtime-source changes after this collection."
+  },
+  "final_focused_suite": {
+    "passed": 20,
+    "seconds": 0.25
+  },
+  "subprocess_smoke": "R4_FUNCTIONAL_SMOKE.json",
+  "external_model_calls": 0,
+  "independent_answer_reviews": 0,
+  "live_quality_or_savings_measured": false,
+  "checks": {
+    "compileall": "passed",
+    "git_diff_check": "passed",
+    "targeted_secret_pattern_scan_findings": 0,
+    "secret_scan_limit": "Targeted token/private-key patterns only; not a full secret-scanner or security certification."
+  },
+  "sha256": {
+    "src/agents/document_agent.py": "a1c32a457c50db6247253723462f3c6ed70505f6dffd9774b7ab8146d1d466f3",
+    "scripts/demo_document_agent.py": "93ba3746e3dbacafa0a67acf9c1b05ce36b5497ce738c08208b68894e848e614",
+    "scripts/smoke_document_agent.py": "ffb591f12129149c349ce65975f2134165fc60976de726dcef7f392580683f64",
+    "tests/test_document_agent.py": "a2946a4e235dd1dc83a767201c81817c879bafe5a72bfbb3c0c7ce89c330d38a",
+    "examples/agent/documents.fixture.json": "c20bd5716780b553649db2090546b519970a97eb2c9ae2966021ce2b577a5416"
+  }
+}

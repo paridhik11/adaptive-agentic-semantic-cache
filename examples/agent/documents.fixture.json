@@ -1,0 +1,1 @@
+{"python-tuples":"AUTHORED FUNCTIONAL FIXTURE, not the pinned evaluation corpus. Python tuples are immutable sequences: their element references cannot be reassigned. A mutable object referenced by a tuple can still change."}

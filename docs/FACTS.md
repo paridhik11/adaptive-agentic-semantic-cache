@@ -656,3 +656,14 @@ has been established.
 | R3-HTTP-SMOKE | Loopback lifecycle smoke with scripted complete responses and authored approvals | 17 completion requests; 13 fixture provider attempts; 3 BYPASS, 10 MISS, 4 HIT (3 exact, 1 semantic). Off/exact/shadow/guarded paths, SQLite exact restart, invalidation, authentication, tenant and source-revision isolation passed. No paired workload savings estimate, 0 external model calls | `docs/audit/R3_SEMANTIC_SERVING_SMOKE.json` | Same R3 smoke command; compare aggregate JSON |
 | R3-REGRESSIONS | Final offline phase verification | 593 passed, 23 deselected in 113.55 seconds; 37 new runtime tests passed focused. Full suite offline flags enabled; real-model/API integrations excluded. No new dense inference or external model calls | `docs/audit/R3_VALIDATION.json`, `tests/test_semantic_runtime.py`, `docs/audit/R3_CLOSEOUT.md` | `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m pytest -q`; focused runtime command in closeout |
 | R3-DEPLOYMENT-SMOKES | Existing HTTP/SSE path and clean gateway-only install | Existing exact gateway smoke: 57 completion requests, 5 fixture upstream attempts, 3 MISS / 52 HIT / 2 BYPASS; streaming and 50-client barrier burst passed. Fresh environment installed only gateway requirements and reproduced the full R3 smoke. No new Docker execution on this host; no external model calls | `docs/audit/R3_EXACT_REGRESSION_SMOKE.json`, `docs/audit/R3_VALIDATION.json` | `python scripts/smoke_gateway.py`; fresh venv install `deploy/requirements-gateway.txt` then run R3 smoke |
+
+
+## R4 functional agent evidence (2026-10-18)
+
+R4-FUNCTIONAL: `audit/R4_FUNCTIONAL_SMOKE.json` is reproduced with
+`python scripts/smoke_document_agent.py`. The first authored-fixture task makes
+three fixture provider calls and two actual local document-tool calls. Approval
+survives process restart and completed resume adds no model/tool work. External
+model calls: zero. Independent reviews: zero. No task-quality, memory-benefit,
+semantic-precision or live-savings measurement is established by this smoke.
+Test execution and source binding: `audit/R4_VALIDATION.json`.
