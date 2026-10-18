@@ -96,3 +96,42 @@ keys in URLs. Use HTTPS for a remote gateway.
 R5 must measure complete task work, correctness and overhead. Adding a planner
 and reviewer can increase provider work relative to a direct answer; those calls
 must not disappear from the comparison.
+
+## Opt-in static drafting contract (R6)
+
+`DocumentAgent.create(..., static_document_stage=True, relevant_memory=[...])`
+selects a narrowly scoped factual documentation stage. It removes prior completed-task
+suggestions from the actual draft prompt, while preserving the complete
+question, collected evidence, source revision, instructions, generation settings,
+trusted knowledge/access/policy scope, principal, prior draft and feedback. The
+exact cache still hashes the complete actual request; no model-visible input is
+hidden from its key. Planning/review keep task memory and remain uncached.
+
+`relevant_memory` is bounded user/assistant text explicitly supplied by the trusted
+caller, not selected by a model relevance score. Any memory affecting answer
+constraints must be included. The caller must select the static contract only
+when fixed evidence and explicit context suffice. Explicit references to earlier
+conversation fall back to full task context and bypass static drafting reuse.
+That lexical fallback is a conservative convenience, not complete ambiguity
+recognition or proof that other questions are history-independent. If unsure,
+leave the option off or provide all relevant context. Default legacy behaviour
+remains available.
+
+Constructor scope fields are `knowledge_base`, `access_scope`, `policy_revision`
+and optional declared `source_revision`; content hashing remains in addition to
+the declared revision. Custom draft instructions, temperature and output limits
+are bound to task runtime state. Changing scope/settings requires a new task.
+Old checkpoints without a runtime binding are supported only under the original
+default runtime, and cannot provide memory to a newly restricted runtime.
+
+The CLI exposes `--static-document-stage` with fixture default. It does not enable
+live cache eligibility or remove the existing explicit-live/quotas requirement.
+Human decisions are never cached: a draft hit still goes through review and any
+required durable human approval. Stage invocation reservations remain conservative
+and do not reset merely because a stage hits cache.
+
+The saved R5 negative baseline is immutable. R6's preregistered run is a controlled
+source-reference replay, not live inference or independent answer-quality evidence.
+The old `check_claim_hygiene.py` intentionally audits the historical pre-redesign
+source snapshot; it is not a current-runtime integrity check after legitimate R6
+source edits. Its checkout regression tests are pinned to that historical snapshot.

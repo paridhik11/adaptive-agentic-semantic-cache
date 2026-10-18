@@ -35,7 +35,11 @@ The current implementation includes prior-task memories in draft inputs and only
 drafting is cache-eligible. The R5 source-replay experiment found no provider-call
 reduction in the agent arms; see [closeout](docs/audit/R5_CLOSEOUT.md). Its model
 plans, answers and reviews were scripted fixtures. Live agent quality is unmeasured.
-The [R6 proposal](docs/audit/R6_AGENT_CACHE_PREREG.md) is not implemented yet.
+The opt-in [R6 static-stage contract](docs/audit/R6_AGENT_STAGE_CLOSEOUT.md) now
+passes its source-replay engineering criterion. It changes the actual draft
+prompt, retains explicit relevant memory/evidence/scope in the full-request key,
+and leaves planning/review uncached. Default full-task behaviour remains available.
+Its controlled result does not establish live answer quality or savings.
 
 ## Failure and security boundaries
 

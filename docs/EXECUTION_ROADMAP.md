@@ -369,3 +369,8 @@ https://arxiv.org/abs/2403.02694 and SCALM https://arxiv.org/abs/2406.00025.
 Their results are not transferable project metrics. The uploaded BASWE guide's
 Projects 7 and 15 motivate the build sequence; its advertised savings are not
 a guarantee for this implementation.
+
+R6 scoped agent-stage refinement was authorized on 2026-10-19 and passed its
+preregistered offline engineering criterion; see `audit/R6_AGENT_STAGE_CLOSEOUT.md`.
+The R5 live collection, independent review, semantic-quality gate and broader final
+delivery/utility validation remain open. This is not full roadmap completion.

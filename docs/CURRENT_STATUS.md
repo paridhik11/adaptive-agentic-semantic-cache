@@ -13,7 +13,7 @@ Passing engineering tests does not change that gate or establish a completion ra
 | Exact cache | Full-request/tenant scope, eligibility, complete-response admission, TTL, memory bounds, SQLite, invalidation and process-local miss coordination | Representative live quality/performance; distributed miss coordination |
 | Gateway | Authentication, HTTP adapter, work metrics, local dashboard, bounded SSE bypass and recorded packaging/container checks | Broader live operational validation; streaming remains uncached |
 | Semantic path | Off/exact/shadow/guarded wrapper, bounded candidates, lexical/pinned-local dense adapters, actual-answer approval bindings | Generalizing approval beyond allowlist, calibrated retrieval/verifier quality, net utility |
-| Documentation agent | Validated bounded plan, actual search/read tools, task checkpoints, scoped memory, review retries and human approval/resume | Live task correctness, memory benefit, guarded-verifier budget integration, efficient stage reuse |
+| Documentation agent | Validated bounded plan, actual search/read tools, task checkpoints, scoped memory, review retries and human approval/resume | Live task correctness, memory benefit, guarded-verifier budget integration, live validation of opt-in static-stage reuse |
 | Evaluation | Answer-bound traces/reviews, missing-label handling, attempt/usage accounting, grouped-analysis tools and R5 comparisons | Independent actual-answer labels, useful reviewed semantic live comparison and fresh final evaluation |
 | Free collection | Free-only routing, shared durable journal/caps, fail-closed pauses and foreground evidence export | Completed current R5 live pilot and review |
 
@@ -35,19 +35,23 @@ Passing engineering tests does not change that gate or establish a completion ra
 - R5 agent source replay: 44 tasks per arm; both arms made 132 simulated provider
   invocations and 88 actual local tool invocations. No agent call reduction.
   Changing task memory changed drafting inputs. See [R5](audit/R5_CLOSEOUT.md).
-- Last recorded full offline suite: 620 passed, 23 excluded. These are engineering
-  tests, not accuracy observations. Source: [validation](audit/R5_VALIDATION.json).
+- Last recorded full offline suite: 660 passed, 23 excluded. These are engineering
+  tests, not accuracy observations. Source: [validation](audit/R6_STAGE_VALIDATION.json).
 
 Counts above cite FACTS.md recovery/R5 sections and linked raw aggregate artifacts.
-No new model run or replay is implied by this documentation update.
+R6 added one explicitly frozen source-reference replay; no live model run is implied.
 
 ## Active work and user action
 
 Claim hygiene is complete on the audit branch; old wording is retained in marked
 historical snapshots. See [claim audit](audit/CLAIM_HYGIENE_AUDIT.md).
-The [R6 agent-stage preregistration](audit/R6_AGENT_CACHE_PREREG.md) is PROPOSED:
-implementation and criterion evaluation have not started. User review/go is the
-next checkpoint. The full-request key must not silently omit model-visible context.
+The [R6 preregistration](audit/R6_AGENT_CACHE_PREREG.md) was authorized by the user's
+go on 2026-10-19. Its original document remains unchanged. The opt-in static drafting
+contract is implemented, and its single engineering criterion run passed: 44 tasks
+per arm, 132 off versus 110 exact fixture provider calls, 88 actual tool dispatches
+per arm, identical final answers/statuses and original raw-baseline answer match.
+Full-request keys still bind all actual model-visible stage inputs. No live savings
+or general semantic safety follows. See [R6 closeout](audit/R6_AGENT_STAGE_CLOSEOUT.md).
 
 Live evidence may be collected independently via [R5 live instructions](R5_LIVE_RUN.md):
 eight development requests, at most 16 free-provider attempts, using the existing
@@ -55,7 +59,7 @@ shared journal. No key is available to this workspace. Human reviewers get only
 the blinded template; model-assisted review is labeled separately. No paid service
 or new dataset hunt is needed. A reconstructed run cannot certify live latency.
 
-After approved offline refinement, retain negative baselines, collect/review actual
+The approved offline refinement is complete. Retain negative baselines, collect/review actual
 answers, and define fresh final evaluation criteria/data before running it. Stop
 and ship a scoped honest report even if quality/utility remains inconclusive;
 never manufacture a passing outcome by retuning a spent test.

@@ -6,8 +6,9 @@ work while preserving answer quality.
 
 **Current result:** exact-cache mechanics and agent workflow integration work in
 functional checks. General semantic accuracy and useful live end-to-end savings
-remain unproven. The development agent replay showed no call reduction with its
-current memory-bearing prompts. Historical Gate A remains failed.
+remain unproven. The original development agent replay showed no call reduction with its
+memory-bearing prompts. R6 opt-in static drafting passes a controlled replay
+criterion; its live utility remains unmeasured. Historical Gate A remains failed.
 
 [Current status](docs/CURRENT_STATUS.md) is the single implementation/evidence
 status page. See [design](DESIGN.md), [fact ledger](docs/FACTS.md),
@@ -55,8 +56,9 @@ retains its negative agent result and makes no real token or monetary claim.
 [Live collection](docs/R5_LIVE_RUN.md) is explicit, free-only and quota-capped;
 no key belongs in this repository or chat. Actual independent answer review is pending.
 
-The [R6 preregistration](docs/audit/R6_AGENT_CACHE_PREREG.md) proposes a scoped
-stage-input redesign. It is awaiting user review; implementation/evaluation has
-not started. Legacy documents are preserved and marked superseded. Historical
+The [R6 scoped stage-input redesign](docs/audit/R6_AGENT_STAGE_CLOSEOUT.md) is
+implemented and passed its preregistered source-replay engineering criterion.
+It keeps relevant memory/scope in the actual prompt and full-request key. This
+does not validate live agent quality or net savings. Legacy documents are preserved and marked superseded. Historical
 latency percentages are component comparisons against a remote judge, not
 application savings against fresh generation.

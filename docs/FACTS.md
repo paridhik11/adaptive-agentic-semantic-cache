@@ -691,3 +691,13 @@ live pilot, not retrospective preregistration of the initial exploratory replay.
 | --- | --- | --- | --- |
 | CLAIM-AUDIT-SUITE | Historical R5 offline suite: 620 passed, 23 excluded, 114.29 seconds | Recorded engineering result, not a new run or accuracy/safety rate | docs/audit/R5_VALIDATION.json |
 | CLAIM-AUDIT-TIMING | Recomputed historical AUTO_REUSE sample counts: 20, 1, 1 in workloads 70, 338, 175 | Saved telemetry arithmetic only; baseline is AMBIGUOUS total pipeline including remote judging, not fresh generation | data/load_test_telemetry.json; data/scaled_load_test_telemetry_corrected.json; data/phase6_telemetry.json; docs/audit/CLAIM_HYGIENE_VALIDATION.json |
+
+
+## R6 static-document agent-stage engineering result
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| R6-STAGE-COUNTS | Single frozen source-reference replay: 44 tasks per arm; off 132 fixture provider calls, exact 110; 88 actual local tool dispatches per arm; 22 exact draft hits | Controlled development engineering PASS; identical task statuses/final text across arms and verified original R5 baseline. Not live model savings or semantic precision. | docs/audit/R6_AGENT_STAGE_RESULT.json; docs/audit/R6_STAGE_FREEZE.json |
+| R6-STAGE-WORK | Planner 44 calls and reviewer 44 calls in each arm; drafting 44 off versus 22 exact | All stages included; no tool memoization or omitted reviewer work | docs/audit/R6_STAGE_VALIDATION.json |
+| R6-STAGE-TESTS | Final offline suite 660 passed, 23 excluded, 125.16 seconds; focused tests 60 passed, 7.32 seconds | Engineering regressions; no model/API integration or independently reviewed accuracy observations | docs/audit/R6_STAGE_VALIDATION.json |
+| R6-STAGE-LIMITS | External model calls 0; independent answer reviews 0; criterion runs 1 | Semantic quality, actual model tokens, live latency and monetary savings unmeasured. Original R5 negative baseline and preregistration unchanged. | docs/audit/R6_AGENT_STAGE_CLOSEOUT.md |

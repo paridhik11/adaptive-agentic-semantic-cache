@@ -16,7 +16,7 @@ class CheckoutAuditTests(unittest.TestCase):
             root=Path(temporary)/'checkout'
             subprocess.run(['git','clone','--quiet','--shared','--no-checkout',str(REPO),str(root)],check=True,capture_output=True)
             subprocess.run(['git','config','core.autocrlf',autocrlf],cwd=root,check=True)
-            subprocess.run(['git','checkout','--quiet','HEAD'],cwd=root,check=True,capture_output=True)
+            subprocess.run(['git','checkout','--quiet','67414e91caa83c4be2e2a35aec0b68486fd103ed'],cwd=root,check=True,capture_output=True)
             path=root/'data/load_test_telemetry.json'
             raw=path.read_bytes()
             if autocrlf=='true':self.assertIn(b'\r\n',raw)

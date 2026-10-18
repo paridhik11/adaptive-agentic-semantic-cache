@@ -1,0 +1,32 @@
+{
+  "decision": "PASS",
+  "checks": {
+    "all_tasks_present": true,
+    "complete_and_equal_answers": true,
+    "original_baseline_text_match": true,
+    "known_reconciled_provider_counts": true,
+    "off_calls_unchanged": true,
+    "strictly_fewer_provider_calls": true,
+    "tool_work_unchanged": true,
+    "isolation_and_workflow_regressions_passed": true
+  },
+  "totals": {
+    "off": {
+      "provider_calls": 132,
+      "tool_calls": 88
+    },
+    "exact": {
+      "provider_calls": 110,
+      "tool_calls": 88
+    }
+  },
+  "schema_version": "r6-agent-stage-result-v1",
+  "evidence_kind": "source-reference-replay-development",
+  "tasks_per_arm": 44,
+  "baseline_comparison": "verified raw R5 archive and source references",
+  "freeze_sha256": "1e1a57d5f462f54081f68c1a69a71c1e26b3baa753085e39a225fd574885ee29",
+  "external_model_calls": 0,
+  "independent_reviews": 0,
+  "semantic_quality_measured": false,
+  "live_savings_measured": false
+}
