@@ -2,7 +2,7 @@
 
 Status (2026-10-18, Asia/Calcutta): R1 and R2 are published. R3 cache-lifecycle
 engineering is complete with fixture evidence; its quality/utility gate remains
-open. See `audit/R3_CLOSEOUT.md`. R4 bounded documentation-agent engineering is implemented; see `audit/R4_CLOSEOUT.md`. R5 is the next evaluation phase.
+open. See `audit/R3_CLOSEOUT.md`. R4 bounded documentation-agent engineering is implemented; see `audit/R4_CLOSEOUT.md`. R5 offline investigation is published as inconclusive; live collection/review remain pending (`audit/R5_CLOSEOUT.md`). R6 refinement must preserve the negative development baseline.
 The user accepted the Project 7 + bounded Project 15 recommendation on this
 date. The active remaining sequence below replaces the earlier matcher-first
 R3-R6 sequence: R3 completes a working cache slice, R4 adds a bounded real agent

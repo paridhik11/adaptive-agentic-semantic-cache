@@ -1,0 +1,104 @@
+{
+  "schema_version": "r5-summary-v1",
+  "development_only": true,
+  "provider_mode": "source_reference_replay",
+  "incoming_events": 132,
+  "composition": {
+    "seed": 22,
+    "constructed_exact_repeat": 22,
+    "authored_wording_variant": 22,
+    "authored_negation_stress": 22,
+    "different_tenant": 22,
+    "different_revision": 22
+  },
+  "reviewed_answers": 0,
+  "semantic_precision": null,
+  "answer_correctness": null,
+  "monetary_savings": null,
+  "live_latency_valid": false,
+  "arms": {
+    "off": {
+      "events": 132,
+      "provider_attempts": 132,
+      "statuses": {
+        "BYPASS": 132
+      },
+      "tiers": {
+        "PROVIDER": 132
+      },
+      "provider_tokens": null,
+      "whole_stream_hit_rate": 0.0,
+      "errors": 0,
+      "local_observed_ms": {
+        "mean": 0.0984626591027584,
+        "p50": 0.08711100008440553,
+        "p95": 0.16853300007824146
+      },
+      "latency_is_live_model_evidence": false
+    },
+    "guarded": {
+      "events": 132,
+      "provider_attempts": 110,
+      "statuses": {
+        "MISS": 110,
+        "HIT": 22
+      },
+      "tiers": {
+        "PROVIDER": 110,
+        "EXACT": 22
+      },
+      "provider_tokens": null,
+      "whole_stream_hit_rate": 0.16666666666666666,
+      "errors": 0,
+      "local_observed_ms": {
+        "mean": 0.3387913030241124,
+        "p50": 0.349626000115677,
+        "p95": 0.5318900000474969
+      },
+      "latency_is_live_model_evidence": false
+    },
+    "exact": {
+      "events": 132,
+      "provider_attempts": 110,
+      "statuses": {
+        "MISS": 110,
+        "HIT": 22
+      },
+      "tiers": {
+        "PROVIDER": 110,
+        "EXACT": 22
+      },
+      "provider_tokens": null,
+      "whole_stream_hit_rate": 0.16666666666666666,
+      "errors": 0,
+      "local_observed_ms": {
+        "mean": 0.13232030304242004,
+        "p50": 0.12837299982493278,
+        "p95": 0.21784799992019543
+      },
+      "latency_is_live_model_evidence": false
+    },
+    "unsafe_similarity_offline": {
+      "events": 132,
+      "provider_attempts": 109,
+      "statuses": {
+        "MISS": 109,
+        "HIT": 23
+      },
+      "tiers": {
+        "PROVIDER": 109,
+        "EXACT": 22,
+        "SEMANTIC": 1
+      },
+      "provider_tokens": null,
+      "whole_stream_hit_rate": 0.17424242424242425,
+      "errors": 0,
+      "local_observed_ms": {
+        "mean": 0.34075509847408475,
+        "p50": 0.354292999872996,
+        "p95": 0.5087150000235852
+      },
+      "latency_is_live_model_evidence": false
+    }
+  }
+}

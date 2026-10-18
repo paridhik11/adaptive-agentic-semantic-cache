@@ -10,7 +10,7 @@ would hide that distinction.
 | Exact response cache | Tenant/request scope, eligibility, TTL, memory bounds, SQLite, invalidation and concurrency handling | Representative live workload performance and answer review |
 | Gateway | Authentication, metrics, local dashboard, HTTP provider, bounded SSE bypass | Live operational validation; streaming responses remain uncached |
 | Semantic matching | Opt-in guarded serving wrapper, semantic shadow mode, bounded candidates, lexical/pinned-local dense adapters, strict actual-answer approval bindings | Reviewed development calibration, broader approval beyond an explicit pair allowlist, independent untouched quality/utility evaluation; default remains exact |
-| Evaluation | Answer-bound trace/review/report, unknown-label handling, work accounting, uncertainty intervals, independent review reconciliation | Complete live answers and independent human labels across sources/groups |
+| Evaluation | Answer-bound trace/review/report, unknown-label handling, work accounting, uncertainty intervals, independent review reconciliation | R5 actual-runtime development replay published (including negative agent savings); complete live answers and independent human labels across sources/groups remain pending |
 | Agent integration | Schema-validated document plan, local search/read tools, SQLite checkpoints, scoped task memory, bounded reviewer feedback, durable human approve/modify/reject and CLI | Independent task quality and memory-benefit evaluation, live paired measurements; guarded semantic verifier budgeting remains pending |
 | Zero-budget execution | Free-only routing, durable quota journal, resume rules, foreground progress page and single results bundle | Observation that the revised concise/reasoning-off profile completes on the live backend |
 
@@ -98,3 +98,7 @@ correctness for unseen paraphrases. The larger benchmark-only semantic engine
 remains separate. See [R3 closeout](audit/R3_CLOSEOUT.md) and
 [serving contract](semantic_cache_runtime.md). Semantic quality, live utility
 and the broader agent feature set remain unproven/unfinished.
+
+R5 offline investigation: [`audit/R5_CLOSEOUT.md`](audit/R5_CLOSEOUT.md).
+Live collection and independent quality/utility gates remain pending;
+[`R5_LIVE_RUN.md`](R5_LIVE_RUN.md) contains the capped foreground command.

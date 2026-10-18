@@ -222,3 +222,8 @@ R4 adds validated document-tool plans, SQLite checkpoints, scoped task memory an
 human approve/modify/reject. Start with the [offline CLI](docs/document_agent.md)
 and inspect the [phase evidence](docs/audit/R4_CLOSEOUT.md). Fixture success is
 functional evidence; live task quality and net savings remain unmeasured.
+
+R5 now compares the actual cache and agent runtime using disclosed source replay.
+The [development report](docs/audit/R5_CLOSEOUT.md) retains the negative agent
+savings result. [Live collection instructions](docs/R5_LIVE_RUN.md) use the
+existing free-only journal and caps; quality and live savings remain pending.

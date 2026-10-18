@@ -1,0 +1,29 @@
+{
+  "schema_version": "r5-agent-summary-v1",
+  "mode": "source_reference_replay",
+  "memory_enabled": true,
+  "arms": {
+    "off": {
+      "tasks": 44,
+      "provider_calls": 132,
+      "unknown_call_tasks": 0,
+      "statuses": {
+        "COMPLETED": 44
+      },
+      "tool_calls": 88
+    },
+    "exact": {
+      "tasks": 44,
+      "provider_calls": 132,
+      "unknown_call_tasks": 0,
+      "statuses": {
+        "COMPLETED": 44
+      },
+      "tool_calls": 88
+    }
+  },
+  "independent_reviews": 0,
+  "quality_measured": false,
+  "live_savings_measured": false,
+  "raw_evidence": "Generated locally by scripts/run_r5_paired.py; raw answer/review bundle is not published"
+}

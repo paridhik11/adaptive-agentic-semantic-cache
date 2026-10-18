@@ -1,0 +1,39 @@
+{
+  "schema_version": "r5-validation-v1",
+  "parent_commit": "3e62597e7f2e04bfaad80bfd72ad0870891a35b0",
+  "full_offline_suite": {
+    "passed": 620,
+    "deselected": 23,
+    "seconds": 114.29
+  },
+  "focused_paired_runtime_tests": {
+    "passed": 7
+  },
+  "final_cli_smoke": "passed after adding source-license/manifest archive export; final runtime module covered by full suite",
+  "live_plan": {
+    "plan_only": true,
+    "requests": 8,
+    "arms": 2,
+    "maximum_provider_attempts": 16,
+    "config_sha256": "079d91dee072e237c449a67b84a1b07a07a14fb47634befaf9229f87a4f29804",
+    "key_read": false,
+    "calls_made": 0
+  },
+  "external_model_calls": 0,
+  "independent_reviews": 0,
+  "quality_gate": "INCONCLUSIVE",
+  "archive_file_hashes_verified": true,
+  "source_license_verified": true,
+  "secret_scan": "targeted token/private-key patterns: zero findings; not a full scanner/security certification",
+  "sha256": {
+    "src/benchmark/paired_runtime.py": "eeab8bdb4f7f452d6544541359b8539512fc1bfa65bc10018cbf18c0a8ed808e",
+    "scripts/run_r5_paired.py": "5b1919d3e867481907a40262f8703936beecaf70768f22cfdd479df904bc1515",
+    "scripts/review_r5_answers.py": "c5fd04a5b1f74e85d51dbea36415d327e27b9987cb1b8ceb5059627b9711f983",
+    "tests/test_paired_runtime.py": "c48e3685e5151f3a9b1afdec74e01bcf8f0ab7e03a087f21f9b6f78d89cffea6",
+    "docs/R5_PROTOCOL.md": "35f319927970e2d1ca401fb20353c8aa3335b349174ca29d6481c76c3adbeb79",
+    "docs/audit/R5_DEVELOPMENT_SUMMARY.json": "ffda9190603a305326553fbcb48665312d659aeb7685431e335f563942dd2267",
+    "docs/audit/R5_AGENT_SUMMARY.json": "a65e7e5a663c25d4f8f1ec3aa5abe5430901aebd6eb80d4ddc979f423ab01961"
+  },
+  "local_only_archive_sha256": "df84b9326e0ee5ba816f96fb6829394f40697b5b5a5fb537783f4fb3523e9645",
+  "raw_archive_publication": "Not published: automatic approval review rejected raw answer traces/reviewer mapping; only aggregates and reproduction code are published."
+}

@@ -667,3 +667,19 @@ survives process restart and completed resume adds no model/tool work. External
 model calls: zero. Independent reviews: zero. No task-quality, memory-benefit,
 semantic-precision or live-savings measurement is established by this smoke.
 Test execution and source binding: `audit/R4_VALIDATION.json`.
+
+
+## R5 development runtime comparison (2026-10-18)
+
+R5-DEVELOPMENT: `audit/R5_DEVELOPMENT_SUMMARY.json` and
+`audit/R5_AGENT_SUMMARY.json`, with raw trace/manifest generated locally by
+`scripts/run_r5_paired.py` (not publicly uploaded). 22 development FAQ questions produce
+132 constructed request events per arm. Replay invocations: off 132, exact 110,
+guarded 110, unsafe offline ablation 109. Exact/guarded each serve 22 exact hits
+and zero semantic hits; unsafe offline ablation serves one semantic hit.
+44 source-replay agent tasks per arm each consume 132 simulated provider calls
+and 88 real local document-tool calls. No agent call reduction is observed.
+External model calls and independent reviews are zero. Tokens, answer correctness
+and semantic precision remain unknown. These are development fixture results,
+not live latency or inference savings. `R5_PROTOCOL.md` is prospective for the
+live pilot, not retrospective preregistration of the initial exploratory replay.
