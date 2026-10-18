@@ -1,3 +1,7 @@
+> SUPERSEDED — historical record, not current project status.
+> See [CURRENT_STATUS.md](CURRENT_STATUS.md) for implementation and evidence status.
+> Historical claims below may have later corrections; see [claim audit](audit/CLAIM_HYGIENE_AUDIT.md).
+
 # Adaptive Agentic Semantic Cache for LLM Optimization
 ## Comprehensive Master Technical Report & Execution Blueprint (Phase 0 – Phase 1.1)
 

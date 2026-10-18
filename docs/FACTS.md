@@ -683,3 +683,11 @@ External model calls and independent reviews are zero. Tokens, answer correctnes
 and semantic precision remain unknown. These are development fixture results,
 not live latency or inference savings. `R5_PROTOCOL.md` is prospective for the
 live pilot, not retrospective preregistration of the initial exploratory replay.
+
+
+## Claim-hygiene audit evidence
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| CLAIM-AUDIT-SUITE | Historical R5 offline suite: 620 passed, 23 excluded, 114.29 seconds | Recorded engineering result, not a new run or accuracy/safety rate | docs/audit/R5_VALIDATION.json |
+| CLAIM-AUDIT-TIMING | Recomputed historical AUTO_REUSE sample counts: 20, 1, 1 in workloads 70, 338, 175 | Saved telemetry arithmetic only; baseline is AMBIGUOUS total pipeline including remote judging, not fresh generation | data/load_test_telemetry.json; data/scaled_load_test_telemetry_corrected.json; data/phase6_telemetry.json; docs/audit/CLAIM_HYGIENE_VALIDATION.json |
