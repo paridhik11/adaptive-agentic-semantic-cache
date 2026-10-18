@@ -2,9 +2,10 @@
 
 ## Current boundary
 
-Semantic retrieval is implemented in the development benchmark, not enabled in
-the serving gateway. Gateway reuse remains exact and eligibility-gated. The
-experimental cache is serial, in-memory and scoped by tenant, all generation
+Semantic retrieval now has an opt-in [serving integration](semantic_cache_runtime.md)
+with shadow mode and explicit answer-bound approvals. Default gateway reuse
+remains exact and eligibility-gated; semantic quality is not certified. The
+separate experimental benchmark cache is serial, in-memory and scoped by tenant, all generation
 parameters and the complete preceding message context. Only the final user text
 can vary during retrieval. It has TTL, entry/payload limits and LRU eviction;
 request/vector memory is additionally bounded by entry count, not payload bytes.

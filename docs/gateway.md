@@ -3,8 +3,10 @@
 This milestone exposes the scoped exact-response runtime through HTTP. It uses
 complete answers on misses, authenticated tenant namespaces, explicit cache
 eligibility, TTL, entry and payload-byte limits, and measured upstream attempts.
-Semantic reuse remains disabled. Historical Phase A Gate A failed; this
-engineering milestone does not declare Gate A or Gate B passed.
+Exact reuse remains the default. The optional [guarded semantic serving
+path](semantic_cache_runtime.md) adds shadow mode and answer-bound approvals;
+it has functional evidence, not validated semantic quality or live savings.
+Historical Phase A Gate A failed; this does not declare Gate A or Gate B passed.
 
 ## Run the functional smoke test
 
@@ -96,8 +98,8 @@ header. Body reads have a 10-second timeout. Request content encodings other
 than identity are rejected. Model and output limits are checked server-side.
 
 Success headers: `X-Cache`, `X-Cache-Tier`, `X-Cache-Reason`,
-`X-Provider-Calls`, and `X-Evaluation-Mode`. Tier EXACT denotes a hit; PROVIDER
-denotes a miss or bypass. `Cache-Control: no-store` prevents shared HTTP caches
+`X-Provider-Calls`, and `X-Evaluation-Mode`. Tier EXACT denotes exact reuse;
+SEMANTIC denotes opt-in guarded reuse; PROVIDER denotes a miss or bypass. `Cache-Control: no-store` prevents shared HTTP caches
 from retaining tenant answers. Errors do not falsely claim HIT/MISS/BYPASS.
 
 ## Eligibility and resource limits
@@ -128,7 +130,8 @@ refused outputs, malformed responses, and errors are never admitted.
 Cache coordination is thread-safe within one process. Run one worker for a
 shared in-memory cache. Multiple processes have separate caches and counters.
 Uvicorn's connection limit additionally bounds queued HTTP work. In-memory
-entries and metrics are lost on restart; persistence is outstanding.
+entries and metrics are lost on restart. Optional exact persistence is
+documented below; the semantic candidate index is process-local.
 
 ## Accounting and verification
 
@@ -196,4 +199,5 @@ fixture correctness checks, not real-model safety or performance measurements.
 
 The gateway now supports bounded text SSE passthrough with mandatory cache bypass.
 See [streaming behavior and limitations](semantic_streaming_agents.md#streaming-gateway).
-Non-streaming requests still use the existing exact-response cache.
+Non-streaming requests use the exact cache by default; the opt-in guarded
+wrapper preserves that path and its storage/eligibility checks.

@@ -28,7 +28,7 @@ def main():
     with socket.socket() as sock:
         sock.bind(("127.0.0.1", 0))
         port = sock.getsockname()[1]
-    env = {**os.environ, "GATEWAY_PROVIDER": "fixture", "GATEWAY_CACHE_POLICY": "rules",
+    env = {**os.environ, "GATEWAY_PROVIDER": "fixture", "GATEWAY_CACHE_POLICY": "rules", "GATEWAY_CACHE_MODE": "exact",
            "GATEWAY_TENANTS_JSON": json.dumps({token_a: "smoke-a", token_b: "smoke-b"}),
            "GATEWAY_ADMIN_TOKEN": admin, "GATEWAY_MAX_INFLIGHT": "64",
            "GATEWAY_TTL_SECONDS": "3600", "GATEWAY_MAX_ENTRIES": "1024",

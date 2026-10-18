@@ -1,0 +1,148 @@
+{
+  "schema_version": "r3-semantic-serving-smoke-v1",
+  "evaluation_mode": "simulated_functional_smoke",
+  "transport": "loopback HTTP; separate uvicorn processes; SQLite exact persistence",
+  "provider": "deterministic fixture, not an LLM",
+  "encoder": "lexical hashing baseline",
+  "approvals": "authored fixture bindings; not independently reviewed answer labels",
+  "external_model_calls": 0,
+  "semantic_quality_measured": false,
+  "live_latency_or_savings_measured": false,
+  "checks": {
+    "persistent_exact_restart": "passed",
+    "shadow_records_without_serving": "passed",
+    "authentication": "passed",
+    "answer_binding": "passed",
+    "tenant_isolation": "passed",
+    "invalidation": "passed",
+    "source_revision_isolation": "passed"
+  },
+  "completion_requests": 17,
+  "fixture_provider_attempts": 13,
+  "status_counts": {
+    "BYPASS": 3,
+    "MISS": 10,
+    "HIT": 4
+  },
+  "cases": [
+    {
+      "case": "cache_off_seed",
+      "status": "BYPASS",
+      "tier": "PROVIDER",
+      "provider_attempts": 1,
+      "response_sha256": "7a70e5ae47f21ebc562d183f25a6e19f8ddfd41dfa7fa9b51555bd40c2748a1a"
+    },
+    {
+      "case": "cache_off_repeat",
+      "status": "BYPASS",
+      "tier": "PROVIDER",
+      "provider_attempts": 1,
+      "response_sha256": "7a70e5ae47f21ebc562d183f25a6e19f8ddfd41dfa7fa9b51555bd40c2748a1a"
+    },
+    {
+      "case": "exact_seed",
+      "status": "MISS",
+      "tier": "PROVIDER",
+      "provider_attempts": 1,
+      "response_sha256": "7a70e5ae47f21ebc562d183f25a6e19f8ddfd41dfa7fa9b51555bd40c2748a1a"
+    },
+    {
+      "case": "exact_repeat",
+      "status": "HIT",
+      "tier": "EXACT",
+      "provider_attempts": 0,
+      "response_sha256": "7a70e5ae47f21ebc562d183f25a6e19f8ddfd41dfa7fa9b51555bd40c2748a1a"
+    },
+    {
+      "case": "exact_nonidentical",
+      "status": "MISS",
+      "tier": "PROVIDER",
+      "provider_attempts": 1,
+      "response_sha256": "cbe84c8ed1274b06dea13e075e8ee25b5bb30a2b502d74ab3895727f2f5dcc13"
+    },
+    {
+      "case": "persistent_exact_after_restart",
+      "status": "HIT",
+      "tier": "EXACT",
+      "provider_attempts": 0,
+      "response_sha256": "7a70e5ae47f21ebc562d183f25a6e19f8ddfd41dfa7fa9b51555bd40c2748a1a"
+    },
+    {
+      "case": "shadow_seed",
+      "status": "MISS",
+      "tier": "PROVIDER",
+      "provider_attempts": 1,
+      "response_sha256": "7a70e5ae47f21ebc562d183f25a6e19f8ddfd41dfa7fa9b51555bd40c2748a1a"
+    },
+    {
+      "case": "shadow_nonidentical",
+      "status": "MISS",
+      "tier": "PROVIDER",
+      "provider_attempts": 1,
+      "response_sha256": "cbe84c8ed1274b06dea13e075e8ee25b5bb30a2b502d74ab3895727f2f5dcc13"
+    },
+    {
+      "case": "guarded_seed",
+      "status": "MISS",
+      "tier": "PROVIDER",
+      "provider_attempts": 1,
+      "response_sha256": "7a70e5ae47f21ebc562d183f25a6e19f8ddfd41dfa7fa9b51555bd40c2748a1a"
+    },
+    {
+      "case": "guarded_exact",
+      "status": "HIT",
+      "tier": "EXACT",
+      "provider_attempts": 0,
+      "response_sha256": "7a70e5ae47f21ebc562d183f25a6e19f8ddfd41dfa7fa9b51555bd40c2748a1a"
+    },
+    {
+      "case": "guarded_approved_nonidentical",
+      "status": "HIT",
+      "tier": "SEMANTIC",
+      "provider_attempts": 0,
+      "response_sha256": "7a70e5ae47f21ebc562d183f25a6e19f8ddfd41dfa7fa9b51555bd40c2748a1a"
+    },
+    {
+      "case": "guarded_unapproved_near_miss",
+      "status": "MISS",
+      "tier": "PROVIDER",
+      "provider_attempts": 1,
+      "response_sha256": "89bac4447f48e29b169d0ad201380d098b8dd734b9d122fe2837c117323e5278"
+    },
+    {
+      "case": "other_tenant",
+      "status": "MISS",
+      "tier": "PROVIDER",
+      "provider_attempts": 1,
+      "response_sha256": "cbe84c8ed1274b06dea13e075e8ee25b5bb30a2b502d74ab3895727f2f5dcc13"
+    },
+    {
+      "case": "explicit_bypass",
+      "status": "BYPASS",
+      "tier": "PROVIDER",
+      "provider_attempts": 1,
+      "response_sha256": "7a70e5ae47f21ebc562d183f25a6e19f8ddfd41dfa7fa9b51555bd40c2748a1a"
+    },
+    {
+      "case": "after_tenant_invalidation",
+      "status": "MISS",
+      "tier": "PROVIDER",
+      "provider_attempts": 1,
+      "response_sha256": "7a70e5ae47f21ebc562d183f25a6e19f8ddfd41dfa7fa9b51555bd40c2748a1a"
+    },
+    {
+      "case": "source_revision_changed",
+      "status": "MISS",
+      "tier": "PROVIDER",
+      "provider_attempts": 1,
+      "response_sha256": "7a70e5ae47f21ebc562d183f25a6e19f8ddfd41dfa7fa9b51555bd40c2748a1a"
+    },
+    {
+      "case": "old_approval_under_new_revision",
+      "status": "MISS",
+      "tier": "PROVIDER",
+      "provider_attempts": 1,
+      "response_sha256": "cbe84c8ed1274b06dea13e075e8ee25b5bb30a2b502d74ab3895727f2f5dcc13"
+    }
+  ]
+}

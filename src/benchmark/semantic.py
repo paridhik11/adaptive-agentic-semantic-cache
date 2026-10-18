@@ -5,13 +5,11 @@ requires explicit affirmative verification; any failure abstains. No test labels
 are read here. Bounds and complete-request scope apply before retrieval.
 """
 from __future__ import annotations
-from collections import Counter, OrderedDict
+from collections import OrderedDict
 from dataclasses import dataclass
 import copy
-import hashlib
 import json
 import math
-import re
 import time
 
 from src.policy.response_cache import ScopedResponseCache, ResponseCacheResult
@@ -19,38 +17,8 @@ from src.benchmark.schema import canonical, digest
 from src.benchmark.control import RunPaused
 
 
-class LexicalEncoder:
-    """Deterministic unigram/bigram hashing baseline, NOT a learned embedding."""
-    identity = 'lexical-sha256-unigram-bigram-512-v1'
-    def encode(self, text):
-        tokens = re.findall(r'\w+', text.casefold())
-        features = tokens + [' '.join(pair) for pair in zip(tokens, tokens[1:])]
-        vector = [0.0] * 512
-        for feature, count in Counter(features).items():
-            vector[int(hashlib.sha256(feature.encode()).hexdigest()[:8],16)%512] += count
-        return normalize(vector)
-
-
-class DenseEncoder:
-    """Explicit pinned local snapshot; never downloads weights implicitly."""
-    def __init__(self, model, revision):
-        if not isinstance(revision,str) or not re.fullmatch('[0-9a-f]{40}',revision):
-            raise ValueError('dense encoder requires a full immutable model revision')
-        from sentence_transformers import SentenceTransformer
-        self.model = SentenceTransformer(model, revision=revision, local_files_only=True)
-        self.identity = model + '@' + revision
-    def encode(self,text):
-        return normalize(self.model.encode(text, normalize_embeddings=True).tolist())
-
-
-def normalize(vector):
-    values = [float(x) for x in vector]
-    if not values or any(not math.isfinite(x) for x in values):
-        raise ValueError('invalid embedding')
-    norm = math.sqrt(sum(x*x for x in values))
-    if not norm:
-        raise ValueError('empty embedding')
-    return [x/norm for x in values]
+# Compatibility exports keep existing benchmark callers on the same encoders.
+from src.policy.encoders import LexicalEncoder, DenseEncoder, normalize
 
 
 def scope(body,tenant):

@@ -97,7 +97,10 @@ def create_app(service: GatewayService, *, tenant_tokens: dict[str, str],
 
     @app.get("/health")
     def health():
-        return {"status": "ok", "provider_mode": mode, "semantic_reuse_enabled": False}
+        cache_mode = getattr(service.cache, "semantic_mode", "exact")
+        return {"status": "ok", "provider_mode": mode, "cache_mode": cache_mode,
+                "semantic_reuse_enabled": cache_mode == "guarded",
+                "semantic_quality_validated": False}
 
     @app.get("/metrics")
     def metrics(request: Request):
@@ -174,7 +177,7 @@ def create_app(service: GatewayService, *, tenant_tokens: dict[str, str],
             result = await run_in_threadpool(service.complete, body, tenant,
                                             bypass=request.headers.get("x-cache-mode") == "bypass")
             return JSONResponse(result.response, headers={
-                "X-Cache": result.status, "X-Cache-Tier": "EXACT" if result.status == "HIT" else "PROVIDER",
+                "X-Cache": result.status, "X-Cache-Tier": getattr(result, "tier", "EXACT" if result.status == "HIT" else "PROVIDER"),
                 "X-Cache-Reason": result.reason, "X-Provider-Calls": str(result.provider_calls),
                 "X-Evaluation-Mode": mode, "Cache-Control": "no-store"})
         except InvalidRequest as exc:
@@ -208,8 +211,16 @@ def app_from_env() -> FastAPI:
         policy = ConservativeRulesPolicy()
     elif policy_name == "bypass":
         policy = lambda _: EligibilityDecision(False, "deployment_cache_disabled")
+    elif policy_name == "pinned_context":
+        from src.policy.semantic_runtime import PinnedContextPolicy
+        policy = PinnedContextPolicy(Path(os.environ["GATEWAY_DOCUMENT_PROMPT_FILE"]).read_text(encoding="utf-8"))
     else:
-        raise ValueError("GATEWAY_CACHE_POLICY must be bypass or rules")
+        raise ValueError("GATEWAY_CACHE_POLICY must be bypass, rules or pinned_context")
+    cache_mode = os.environ.get("GATEWAY_CACHE_MODE", "exact")
+    if cache_mode not in {"off", "exact", "shadow", "guarded"}:
+        raise ValueError("unsupported GATEWAY_CACHE_MODE")
+    if cache_mode == "off":
+        policy = lambda _: EligibilityDecision(False, "deployment_cache_disabled")
     storage = None
     if os.environ.get("GATEWAY_CACHE_DB"):
         version = os.environ.get("GATEWAY_CACHE_VERSION", "").strip()
@@ -228,6 +239,31 @@ def app_from_env() -> FastAPI:
                                 ttl_seconds=float(os.environ.get("GATEWAY_TTL_SECONDS", "3600")),
                                 max_entries=int(os.environ.get("GATEWAY_MAX_ENTRIES", "1024")),
                                 max_bytes=int(os.environ.get("GATEWAY_MAX_CACHE_BYTES", "67108864")))
+    cache.semantic_mode = cache_mode  # deployment metadata, including cache-off health
+    if cache_mode in {"shadow", "guarded"} or policy_name == "pinned_context":
+        from src.policy.encoders import LexicalEncoder, DenseEncoder
+        from src.policy.semantic_runtime import AnswerBoundApprovals, GuardedSemanticCache, KnowledgeScope
+        scope = KnowledgeScope(os.environ["GATEWAY_KNOWLEDGE_BASE"], os.environ["GATEWAY_KNOWLEDGE_REVISION"],
+                               os.environ["GATEWAY_ACCESS_SCOPE"], os.environ["GATEWAY_SCOPE_POLICY_VERSION"])
+        encoder_name = os.environ.get("GATEWAY_SEMANTIC_ENCODER", "lexical")
+        if cache_mode in {"off", "exact"}:
+            encoder = None
+        elif encoder_name == "lexical":
+            encoder = LexicalEncoder()
+        elif encoder_name == "dense":
+            encoder = DenseEncoder(os.environ["GATEWAY_EMBEDDING_MODEL"], os.environ["GATEWAY_EMBEDDING_REVISION"])
+        else:
+            raise ValueError("semantic encoder must be lexical or dense")
+        approver = None
+        if cache_mode == "guarded":
+            approver = AnswerBoundApprovals(_strict_json(Path(os.environ["GATEWAY_SEMANTIC_APPROVALS"]).read_bytes()))
+            if mode != "fixture" and approver.provenance == "authored_fixture":
+                raise ValueError("fixture approvals cannot enable live semantic serving")
+        cache = GuardedSemanticCache(cache, scope=scope, encoder=encoder, mode=cache_mode, approver=approver,
+                                     threshold=float(os.environ.get("GATEWAY_SEMANTIC_THRESHOLD", "0.85")),
+                                     margin=float(os.environ.get("GATEWAY_SEMANTIC_MARGIN", "0.05")),
+                                     max_entries=int(os.environ.get("GATEWAY_SEMANTIC_MAX_ENTRIES", "256")),
+                                     max_bytes=int(os.environ.get("GATEWAY_SEMANTIC_MAX_BYTES", "8388608")))
     service = GatewayService(cache, provider, allowed_models=models,
                              max_inflight=int(os.environ.get("GATEWAY_MAX_INFLIGHT", "32")),
                              max_output_tokens=int(os.environ.get("GATEWAY_MAX_OUTPUT_TOKENS", "4096")))

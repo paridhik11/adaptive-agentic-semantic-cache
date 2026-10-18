@@ -1,0 +1,85 @@
+{
+  "schema_version": "r3-validation-v1",
+  "run_date": "2026-10-18",
+  "base_revision": "387fa47ad32897093b9a045fb3c6548465738597",
+  "working_tree_dirty_at_validation": true,
+  "engineering_gate": "complete-cache-lifecycle-functional-pass",
+  "semantic_quality_gate": "not-assessed; independent real-answer evidence required",
+  "live_utility_gate": "not-assessed",
+  "external_model_calls": 0,
+  "independent_human_labels_collected": 0,
+  "source_sha256": {
+    "src/policy/semantic_runtime.py": "05c8dccc45fb734ad1a123a2f6346dc497016b118f743b0dbbb5f6bc8e030402",
+    "src/policy/encoders.py": "dbf4774bbded59cd5da862e75e3008fc25d67977fa95993144dedf9a2e110515",
+    "src/policy/response_cache.py": "4e6d1c227ce6df629f55b4ffc4ccb3bd8aceb51d09f98b898ad3afbbc2aba30d",
+    "src/policy/sqlite_store.py": "53047720824ffcede0788ac45285fc0fb33396e926e2376836fd10bd1d2dda04",
+    "src/api/gateway.py": "651efb34f339dd3b72227498adc5f3a882c474e7982e24238ea2a9e88786d0f5",
+    "src/api/service.py": "6ac9a094a06824f08795d011d180dae66ca28ba4b3132f8c62a1a1f9eef65a45",
+    "src/benchmark/semantic.py": "9e9bb6a8c966e63db312d4a53ce9f4b0864b1e9940d77df62c80a099e9a97e5b",
+    "scripts/smoke_semantic_gateway.py": "20dc0b3f3e645cb62e64be6b5e377a8f7e3828d658cdcee9a6d9ca266dec71d8",
+    "scripts/smoke_gateway.py": "1827eedca413a9e4f97fa72587354fb1eef67db285b94bb5739ae5b86c28821e",
+    "tests/test_semantic_runtime.py": "ea2a34af3f6493dab5470e88e10ae1bfcc6b480289461ef7db547af4e60d905c",
+    "deploy/requirements-gateway.txt": "df788424b277bd2eaee862fa2c06277f728f047f6443ae2d8ac1023818a7c16f"
+  },
+  "offline_suite": {
+    "passed": 593,
+    "deselected": 23,
+    "duration_seconds": 113.55,
+    "network_flags": {
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1"
+    },
+    "excluded_markers": [
+      "requires_model",
+      "requires_llm_api"
+    ],
+    "focused_new_runtime_tests_passed": 37
+  },
+  "smoke_artifacts": {
+    "docs/audit/R3_SEMANTIC_SERVING_SMOKE.json": "b65dd3005532b18f64f0314774ddf37232eb7dd13e42d7b644e9fc888ce05103",
+    "docs/audit/R3_EXACT_REGRESSION_SMOKE.json": "a2126a7dc661ec4978f69ffdc6b62b689b0fd1d6a8c397dd405035da294cad5d"
+  },
+  "gateway_only_environment": {
+    "requirements": "deploy/requirements-gateway.txt",
+    "r3_smoke_matches_committed_aggregate": true,
+    "machine_learning_stack_required_for_lexical": false,
+    "docker_run_performed": false
+  },
+  "checks": {
+    "standard_numeric_audit": "pass",
+    "new_runtime_closeout_status_numeric_audit": "pass",
+    "new_unledgered_tokens_in_changed_roadmap_decisions": 0,
+    "local_doc_links_checked": 98,
+    "whitespace": "pass",
+    "gitleaks": {
+      "version": "8.18.4",
+      "official_release_checksum_verified": true,
+      "tracked_and_nonignored_worktree_findings": 0,
+      "precommit_all_refs_history_findings": 0,
+      "precommit_history_commits_scanned": 91
+    }
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux",
+    "packages": {
+      "pytest": "9.1.1",
+      "fastapi": "0.145.0",
+      "httpx": "0.28.1",
+      "uvicorn": "0.54.0",
+      "numpy": "2.3.5",
+      "scikit-learn": "1.8.0",
+      "sentence-transformers": "6.1.0",
+      "torch": "2.14.1+cpu",
+      "faiss-cpu": "1.15.1"
+    }
+  },
+  "limits": [
+    "Actual-answer approval registry is a pair/response allowlist with no unseen-pair generalization.",
+    "Authored fixture approvals and lexical retrieval do not establish semantic quality.",
+    "The separate dense adapter was not newly model-tested; default offline suite excludes real-model/API integrations.",
+    "Index is process-local/cold after restart; exact SQLite storage persists.",
+    "No new live-provider latency, billing, task quality or production hit rate was measured.",
+    "Historical Gate A remains failed; no spent sealed test was retuned or rerun."
+  ]
+}

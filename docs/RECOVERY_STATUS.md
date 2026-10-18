@@ -4,7 +4,10 @@
 
 - Shared scoped exact-response runtime: complete-request and trusted tenant keys,
   explicit eligibility, admission, TTL, bounded storage, coordinated concurrent
-  misses, and invalidation. Semantic matching is disabled in this runtime.
+  misses, and invalidation. Exact reuse remains the default. An opt-in R3
+  wrapper adds scoped semantic candidates, shadow mode and actual-answer
+  approval bindings; see [runtime contract](semantic_cache_runtime.md).
+  This is functional evidence, not a semantic quality/savings certification.
 - Historical mocked load runner isolated from model downloads and API access.
 - Four Antigravity Phase A commits imported from the user-supplied git bundle
   and reconciled with the exact-response runtime. Both ledger sections retained.
@@ -53,6 +56,9 @@ semantic accuracy, answer quality, or measured workload savings.
 
 ## Next implementation work
 
+- R3 cache lifecycle integration is implemented; the next accepted phase is R4
+  planning, document tools, persistent task state/scoped memory and human
+  approval/resume. See [execution roadmap](EXECUTION_ROADMAP.md).
 - Measure streaming with a configured live provider and defined concurrent workload; the updated container fixture smoke passed.
 - Collect independently reviewed live-answer evidence using the implemented evaluation contract.
 - Calibrate and compare experimental semantic policies using independently reviewed real answers before a new frozen evaluation.

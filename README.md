@@ -1,6 +1,6 @@
 # Adaptive Agentic Semantic Cache
 
-> **Current engineering status:** A runnable authenticated exact-response gateway is available; semantic reuse remains disabled and the historical Phase A safety gate failed. Start with [`docs/gateway.md`](docs/gateway.md), [`docs/RECOVERY_STATUS.md`](docs/RECOVERY_STATUS.md), and the [source-level Phase A audit](docs/audit/PHASE_A_SOURCE_AUDIT.md). Historical reports and [`docs/FACTS.md`](docs/FACTS.md) retain earlier experiments; a ledger entry alone does not certify a claim.
+> **Current engineering status:** A runnable authenticated exact-response gateway is available; semantic reuse is off by default and the historical Phase A safety gate failed. An [opt-in guarded runtime](docs/semantic_cache_runtime.md) now exercises answer-bound reuse and shadow mode; semantic quality and live savings remain unproven. Start with [`docs/gateway.md`](docs/gateway.md), [`docs/RECOVERY_STATUS.md`](docs/RECOVERY_STATUS.md), and the [source-level Phase A audit](docs/audit/PHASE_A_SOURCE_AUDIT.md). Historical reports and [`docs/FACTS.md`](docs/FACTS.md) retain earlier experiments; a ledger entry alone does not certify a claim.
 
 An adaptive semantic response reuse engine designed to eliminate redundant LLM computation safely. While naive similarity caches suffer high false-positive reuse rates by confusing syntactically similar prompts with semantically identical ones, this system guards cache access through a gated architecture: a lexical/rule-based **StabilityClassifier** that filters volatile and time-sensitive queries, a dense **SemanticCache** using `all-MiniLM-L6-v2` embeddings in FAISS, a dual-signal **TierRouter** evaluating both similarity and stability confidence, and an **LLMJudge** (`nvidia/nemotron-3-super-120b-a12b:free`) that reasons over ambiguous-tier queries with a strict fail-closed contract.
 
@@ -29,8 +29,9 @@ reference-answer evidence; existing training data remains development-only.
 An admin-authenticated metrics view is available at `/dashboard` (the static page
 is public; metrics are protected). See [deployment instructions](docs/deployment.md)
 for the gateway-only image, Compose setup, persistence and validation limits.
-The current exact-only runtime is infrastructure for the recovery experiment;
-semantic safety and useful real-model savings are still unproven.
+The default exact runtime and guarded semantic extension are infrastructure for
+the recovery experiment; semantic safety and useful real-model savings remain
+unproven.
 
 The [semantic, streaming and agent guide](docs/semantic_streaming_agents.md) covers
 experimental retrieval/verification policies, SSE cache bypass, a bounded

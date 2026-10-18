@@ -1,27 +1,67 @@
 # Recovery execution roadmap
 
-Status: R1 and R2 workload investigations are complete and published. R2 has a
-pinned domain reference corpus and a descriptive OASST1 prevalence audit.
-Representative production traffic, answer quality and live utility remain
-unestablished. R3 may proceed as development-only matcher evaluation; no
-semantic quality or live utility gate is declared passed.
-Latest instruction: finish, debug and validate a phase before committing and
-pushing its coherent changes. This replaces the earlier small-commit workflow
-for future work. Historical Phase A/B/C files and spent evaluation artifacts
-remain unchanged. Recovery stages below use R names to avoid rewriting history.
-This plan is included in the R1 phase closeout.
+Status (2026-10-18, Asia/Calcutta): R1 and R2 are published. R3 cache-lifecycle
+engineering is complete with fixture evidence; its quality/utility gate remains
+open. See `audit/R3_CLOSEOUT.md`. R4 is the next implementation phase.
+The user accepted the Project 7 + bounded Project 15 recommendation on this
+date. The active remaining sequence below replaces the earlier matcher-first
+R3-R6 sequence: R3 completes a working cache slice, R4 adds a bounded real agent
+client, R5 benchmarks both paths, and R6 refines and publishes the results.
+Historical numbered phases and Phase A/B/C artifacts remain unchanged. This
+revision changes execution order; it does not declare any quality gate passed.
 
-## Delivery window
+## Accepted scope and guide alignment
 
-User-requested deadline: a ready project within 5–7 days of October 17, 2026.
-Target demo/report delivery October 22; maximum delivery window October 24.
-This bounds scope, not evidence claims. R1 diagnosis first; R2 data and live
-answer collection next; R3 matcher/calibration and R4 serving integration take
-priority over broad agent features. R5 review/evaluation runs as soon as its
-prerequisites pass; R6 hardening closes the window. If quality evidence remains
-underpowered, deliver an honest scoped result and limitations, not invented
-confidence. A validated exact-cache result takes precedence over unsafe semantic
-coverage. No new paid dependency is authorized by this schedule.
+Build the semantic caching middleware from Project 7, used by a bounded
+version-aware documentation agent drawn from Project 15. Start with the pinned
+Python technical-reference corpus from R2. Preserve provider-agnostic request
+contracts and make the corpus/domain replaceable. This is a scoped combination,
+not delivery of the guide's entire general-purpose multi-agent platform.
+
+The implementation must demonstrate an actual request/response lifecycle before
+more standalone matcher research. The agent must add structured planning,
+allowlisted document tools, persisted task state, scoped memory and resumable
+human review; renaming a fixed specialist/reviewer prompt pair is insufficient.
+
+Constructed repeat workloads are valid controlled experiments when labeled and
+reported with their repeat shares. Natural-traffic prevalence is a separate
+analysis and is not a prerequisite for building this vertical slice. Include
+unique/cold traffic and hard near-misses so the workload can expose a loss as
+well as a gain. Different users may share approved public knowledge within the
+same tenant/access scope. A source user ID is not a deployment tenant; absence
+of same-user duplicates alone does not show that shared caching is useless.
+
+## Delivery window and estimates
+
+All dates below are estimates in Asia/Calcutta, assuming continued active
+working sessions. They do not schedule background execution. The original
+user deadline remains October 24, 2026; it has not silently been extended.
+
+| Recommendation | Active phase | Target | Definition of delivery |
+| --- | --- | --- | --- |
+| 1. Finish a complete cache path | R3 | October 19-20 | Working exact/semantic candidate path, storage, scope, invalidation and end-to-end functional evidence |
+| 2. Connect a bounded agent client | R4 | October 21-22 | Structured plan, real document-tool interface, persisted task state, review and approval/resume; fixture demo plus explicit live mode |
+| 3. Compare identical tasks cache off/on | R5 | October 22-23 | Frozen protocol, controlled offline workload, quota-bounded paired live sample and review status; pass/fail/inconclusive report |
+| 4. Refine and publish | R6 | October 24 | Development fixes, appropriate fresh evaluation if policy changes, clean-install demo, limitations and supported claims |
+
+October 22 is the integrated demo target; October 24 is the scoped four-step
+engineering/report target. October 25-28 is a planning contingency if integration,
+provider availability, review turnaround or failures prevent the target; this
+is a forecast, not a new user-approved deadline. Broader domains, the full
+Project 15 platform and a tightly certified safety bound are additional scope.
+
+Independent review and a free-provider quota can make statistical validation
+take longer than implementation. In particular, the existing strict safety goal
+requires more evidence than a tiny demo provides. October 24 cannot guarantee
+positive savings or a passing confidence-bound gate. Report an underpowered
+result as inconclusive, with completed engineering and missing evidence listed
+separately. Do not mark a pending evaluation passed to meet the date.
+
+No paid service or inference is authorized. Keep the existing durable project
+caps; preflight all live work, count failures and retries, and confirm current
+free model availability before a run. User-initiated foreground collection may
+begin during R3 development; the new final evaluation stays frozen and separate.
+Do not spend the quota on repeated unchanged connection checks.
 
 ## Engineering judgment
 
@@ -38,8 +78,8 @@ matching. Only 223 of 4000 were eligible. The lexical matcher served 50 hits,
 all with fixture answers and no independent review. These diagnose a restrictive
 policy and a workload mismatch, not semantic accuracy. The current gateway
 serves exact caching only; experimental semantic matching is benchmark-only.
-Earlier live connection checks returned no admissible complete answers. A
-successful guided repeat demo would establish wiring, not representative savings.
+Earlier live connection checks returned no admissible complete answers. The
+later guided exact-repeat demo establishes wiring, not representative savings.
 Sources and derived values: RECOVERY-PLAN-BYPASS and FREE-LIVE-* in FACTS.md.
 
 ## Objective and metric contract
@@ -128,133 +168,204 @@ and accounting show whether meaningful savings could be feasible. If natural
 traffic has too little reuse, report that and narrow to a real useful domain;
 do not tune on the future test or fabricate a universal high-hit workload.
 
-## R3 — Build a matcher that earns its overhead
+## R3 — Finish the complete cache serving slice (recommendation 1)
 
-Work: retain exact lookup as the first path. Compare cheap lexical, pinned dense
-and hybrid retrieval, then a local pair reranker on candidates. Select using
-calibration data with actual reuse labels and adversarial negatives: changed
-entities, quantities, units, direction, negation, code/input, requested depth,
-versions and temporal/context scope. Broader eligibility must have its own
-labeled validation; deleting safeguards is not a matching improvement.
+Build one request path: receive a scoped request, try exact reuse, retrieve a
+semantic candidate, approve or abstain, call the provider on a miss, and store
+only a complete successful response. Store actual response/candidate lineage;
+a reference answer or canned fixture must never masquerade as fresh generation.
+Expose cache off, exact, semantic shadow and explicit experimental semantic modes.
+The default serving policy remains conservative until development labels support
+specific semantic reuse classes. A runnable functional semantic path is not a
+safety certification and does not require silently enabling it for all traffic.
 
-High-confidence, validated classes may reuse locally. Ambiguous cases use a
-remote verifier only when its measured cost/latency is worthwhile; otherwise
-miss and generate. Reject uncertain or incomplete decisions. Do not require an
-LLM verification call on every semantic hit: that can save no provider calls.
-Cache validated decisions only under complete scope and bounded freshness.
-Do not equate paraphrase or shared topic with an answer that satisfies all
-incoming instructions. Measure candidate recall separately from approval.
+Use the existing gateway/cache/storage rather than a new parallel service.
+Explicitly bind tenant, trusted access scope, model, instructions, preceding
+context, generation settings, corpus/document revision and relevant tool state.
+References make an answer inspectable, not automatically correct. An updated
+revision must exclude stale entries. Different output requirements, entities,
+quantities, negation, code input and requested scope require independent checks.
 
-Compare no cache, exact, unsafe similarity-only ablation and guarded semantic
-policies. Plot precision versus coverage and net work/latency rather than
-maximizing one headline hit rate. Calibrate category thresholds only with enough
-independent labels; abstain elsewhere. No automatic online threshold relaxation
-based solely on noisy self-generated labels or accepted hits.
+Compare lexical, pinned local dense and hybrid candidates only as needed to
+choose a development baseline. Keep exact lookup first. Calibrate approval on
+actual-answer reuse examples and adversarial negatives, distinguishing authored
+intentions from independent human labels. Measure accepted and missed
+opportunities. Use a remote verifier only if total measured work justifies it;
+an extra model call on every hit can erase savings. No learned/adaptive
+threshold claim is made without adequate feedback evidence.
 
-Exit: a frozen development candidate improves useful reuse over exact while
-meeting the declared development quality constraint and net work accounting.
-If not, close the investigation honestly and keep exact caching or narrow the
-semantic domain. A failing matcher cannot silently become the serving default.
+Keep the existing bounded streaming bypass contract for this first slice.
+Caching streaming output requires a separate completeness/cancellation contract;
+it must not be implied by a working non-streaming cache. Keep persistent
+storage, TTL, invalidation, payload bounds and concurrent identical-miss handling.
 
-## R4 — Integrate and measure the actual serving path
+Deliverables: reproducible cache-off/miss/exact-hit/semantic-candidate demo,
+provider and storage traces, scope/revision regression checks, explicit failure
+paths and one coherent closeout. Fixtures prove functionality; an optional
+capped live smoke confirms actual complete-response admission. Local models and
+test doubles require no paid API calls.
 
-Work: integrate only the validated policy behind opt-in configuration, with
-shadow mode before serving semantic answers. Bind tenant, model identity,
-instructions/history, generation settings, content revision and applicable
-tool/environment state. Support fixed system prompts with exact context scope
-where validated; keep unsupported history/dynamic requests bypassed.
-Do not reuse contextual answers merely because the final question matches.
+Exit: end-to-end lifecycle and accounting tests pass; unsafe scope changes and
+incomplete outputs cannot be admitted; opt-in semantic decisions retain
+provenance. If semantic approval has insufficient quality evidence, deliver the
+functional path with shadow/default abstention and record that quality remains
+open. Do not describe this as validated semantic serving. Debug, then commit
+and push this whole phase once.
 
-Profile embedding/reranking overhead, retrieval/index scale, memory budgets,
-TTL/invalidation and concurrent duplicate misses. Optimize what profiles show;
-add approximate indexing only when scale warrants it. Enforce an overhead
-budget derived from measured generation time and achievable safe hit share.
-Evaluate miss and tail latency as well as fast hits. Keep SSE bypass unless a
-separate bounded cache-serving contract is implemented and tested.
+## R4 — Connect the bounded documentation agent (recommendation 2)
 
-Deliverables: feature-controlled gateway integration, isolation/invalidation and
-concurrency regressions, reproducible load profiles, cold/warm measurements,
-resource bounds and configuration documentation. Fixture load tests are marked
-functional; they cannot establish free-provider performance.
+Implement an application client of R3, not a competing cache. A supervisor
+produces a schema-validated bounded plan with subtasks/dependencies. A research
+specialist can invoke allowlisted local document search/read tools; an answer
+specialist synthesizes evidence, and a reviewer checks the final deliverable.
+In live mode the model must actually select registered tools where required;
+scripted fixture tool sequences are labeled functional demonstrations.
+Model-generated tool arguments are validated against schemas and the caller's
+trusted scope. No unrestricted shell, arbitrary external writes or paid tools.
 
-Exit: serving and benchmark decisions agree under the same configuration,
-unsafe/state-crossing reuse is rejected, failures preserve accounting, and the
-profile supports a plausible whole-workload latency benefit. Debug before push.
+Persist task/checkpoint state, plan, tool outcomes, attempts and approval status
+in SQLite using existing infrastructure. Supply task-local working context and
+a small scoped store of prior completed tasks/evidence; retrieval is tied to
+user/tenant permissions and source revision. Provide delete/invalidation.
+Retrieved memories are untrusted suggestions, not correctness labels. Measure
+whether they help rather than claiming the system learns simply by storing them.
 
-## R5 — Independently review live answers and evaluate once
+Include bounded review feedback/retry behavior. Ambiguous evidence or a configured
+approval requirement pauses at a durable checkpoint with task context and a
+proposed next action. A human can approve, modify or reject and resume without
+re-executing completed side effects. This is distinct from independent benchmark
+answer labeling. A failure status alone is not a human-approval system.
 
-Work: finish a complete-response pilot first. Spend the shared free quota on
-planned answer collection and paired cache/fresh comparisons, rather than
-re-running unchanged sanity checks. Continue offline work while local calls
-run. Record provider/model/profile/date, failed attempts, usage and hardware.
-Freeze workload/group selection, order, policies, safety/utility gates, quality
-rubrics, sample-size reasoning and analysis BEFORE the untouched evaluation.
-Predeclare batching across days, interleave arms, and account for provider drift.
-Use new journals for protocol identity, not to reset shared project quotas.
+All model calls go through the gateway with explicit budgets. Cache only stages
+whose full inputs, evidence, tool state and freshness are defined. Read-only
+tool-result memoization may use exact tool arguments plus source revision; it
+is reported separately from saved LLM calls. Do not assume semantic similarity
+of tool arguments makes their results interchangeable. Reviewer/model/tool work
+always appears in task-level counts, even if it reduces the apparent benefit.
 
-Obtain independent declared human reviews of returned answers, blinded to arm
-where possible, with disagreement resolution and missing/conflicting labels
-unknown. Automated verifier labels remain policy signals, never independent
-human ground truth. Report reviewed coverage and sampling weights if review is
-sampled. Review enough groups; many repeats of one answer are not independent.
+Deliverables: documented tool registry, bounded plan/execution loop, SQLite
+checkpoints and scoped memory, review/resume interface, per-stage traces,
+cache-on/off switch and reproducible fixture/live modes. A small browser page
+or CLI is sufficient; a full general-purpose orchestration platform is outside
+this delivery scope.
 
-Use exact binomial intervals for suitable independently sampled decisions and
-group-aware intervals for clustered streams; paired group bootstrap for work,
-latency and task quality. No early stopping when results happen to look good.
-Zero errors in 183 independent reviewed hits would only put the two-sided 95%
-upper incorrect-reuse bound below 2%; this illustrative calculation does not
-ensure sample sufficiency for quality noninferiority, clusters or nonzero errors.
-At a free quota, credible evidence may require multiple weeks. Choose precision
-and power transparently; if insufficient, label the result inconclusive.
+Exit: integration tests cover planning/schema failure, actual tool dispatch,
+context/version isolation, memory invalidation, retry budgets, and restart after
+human approval/rejection. Fixture replay is deterministic; any live validation
+is explicitly labeled and budgeted. Commit/push only after the phase closeout.
 
-Exit: immutable artifacts reproduce all metrics and show pass, fail or
-inconclusive against preregistered criteria. No post-test retuning and rerun of
-that same cohort. Failed outcomes remain published; any revised model requires
-a fresh future evaluation design and untouched data. A favorable point estimate
-alone does not clear a confidence-bound gate.
+## R5 — Compare identical requests and tasks (recommendation 3)
 
-## R6 — Agent utility, final hardening and defensible presentation
+Freeze workload selection, group splits, stream order, policies, code/model/data
+revisions, review rubric, endpoints, stopping rule and analysis before the new
+final evaluation. Keep development, authored stress and untouched evaluation
+separate. The existing reserved FAQ split is visible and is not automatically
+an untouched sealed evaluation. Preserve historical failed cohorts unchanged.
 
-Work: extend the bounded specialist/reviewer workflow only after cache utility
-is established. Use task repetition/shared subproblems with recorded prevalence,
-strict input/tool/data-version scope and current correctness checks. Tool results
-are not reusable without a freshness/state contract. Include reviewer and tool
-work in the task comparison. Agents must demonstrate task-level benefit rather
-than merely adding calls to create an impressive diagram.
+Compare the same application and agent with cache disabled, exact caching and
+guarded semantic caching. Include similarity-only as an unsafe offline ablation.
+An optional no-agent baseline evaluates orchestration overhead separately; do
+not attribute the benefit of adding/removing an agent to caching. Count the
+full request/task lifecycle and every verifier, retry and tool invocation.
 
-Predeclare cache-on/off task evaluation and independent correctness checks;
-compare task quality, calls, tokens and time. Do not inherit cache precision as
-proof of agent task accuracy. Finish fresh-clone, integration, failure recovery,
-security, packaging and end-to-end regressions; investigate remaining failures.
-Publish the final report, demo, limitations and only supported resume claims.
+Use cold/unique traffic, exact repeats, reviewed semantic variants, changed
+context, changed source revision and difficult non-reuse cases. Vary the
+constructed repetition mix and publish its composition; do not select just
+accepted hits. The guide's large repeated-query workload is a valid disclosed
+stress/load test. It does not become natural production traffic because it
+contains public questions. The OASST prevalence audit remains separate.
 
-Exit: a reproducible task report, working clean installation/demo and final
-claim audit. If agent overhead erases benefits, keep it as an explicitly bounded
-integration example; lead the project with the useful caching result instead.
+Run the larger functional/load suite locally with fixture or replay providers.
+Mark simulated response times, replayed usage and source-answer replay explicitly;
+these are not new live generation observations or paid savings. Use a planned,
+stratified, quota-bounded paired live sample for real provider measurements.
+Do not promise thousands of live baseline calls on the free quota. Preflight
+cost/work and start collecting development answers early when a user foreground
+session is available. Preserve incomplete attempts and interleave paired arms
+where practical to reduce provider-time confounding.
 
-## Phase delivery and failure policy
+Have independent declared reviewers judge actual answers and reuse decisions,
+blinded to cache arm where possible. Review more than one topic/group; repeated
+copies of one answer do not provide independent safety observations. Record
+missing/disagreeing labels as unknown. Policy-judge output is never independent
+human ground truth. Do not wait for human labels to run unrelated offline checks.
 
-Each phase ends with a short closeout: what changed, raw evidence, tests,
-failures/fixes, known limits, exit-gate decision and next action. Run appropriate
-checks and secret scans before one coherent phase commit/push; no intermediate
-micro-commits. A blocked closeout may be committed as completed investigation,
-clearly labeled blocked, never as achieved performance. Track this distinction.
-Historical reports remain intact. Update FACTS before metric claims elsewhere.
+Report whole-workload hit and correct-hit coverage, exact/non-exact precision,
+answer/task correctness, attempts/tokens, tool work, latency mean/p50/p95,
+resource overhead, stale-answer reuse and scope violations. Measure first-token
+and completion latency separately for streaming. Free-versus-free observed
+inference charges are both zero; any priced projection is hypothetical and
+must disclose dated prices and all extra calls. A high hit rate does not
+necessarily improve tail latency.
 
-Debug throughout each phase and perform final cross-component hardening in R6.
-Leaving all debugging until the end could invalidate measurements collected
-with broken instrumentation. A dependency failure blocks deployment or live
-claims, but not independent offline work on diagnostics, data or tests.
+Retain the metric goals above as aspirations, not guaranteed achievements.
+Use grouped uncertainty for dependent tasks and paired samples. Zero errors in
+183 independent reviewed hits is only an illustration for a two-sided 95%
+upper incorrect-reuse bound below 2%; real clustering/nonzero errors need their
+own sample plan. A small quota-limited pilot cannot certify that bound.
 
-User action now: let the current local pilot finish and share its combined
-results (or pause evidence). Later, independently reviewed labels are needed;
-the assistant cannot invent human reviewers. Dataset research, implementation,
-offline runs, debugging and phase-closeout publication remain engineering work.
-No new key, paid service or dataset search is requested from the user now.
+Deliverables/exit: immutable traces, review coverage, reproducible reports and
+an explicit pass/fail/inconclusive decision against the frozen protocol. Pending
+review or inadequate power is recorded, not replaced by self-labels. This phase
+can close a completed inconclusive investigation; it cannot claim a safety gate
+passed. Commit/push only the complete coherent evaluation closeout.
 
-Primary background sources checked for this plan: MeanCache
-https://arxiv.org/abs/2403.02694 and SCALM https://arxiv.org/abs/2406.00025
-establish that semantic caching and workload/context limitations are existing
-research topics; their reported gains are not transferable project metrics.
-OpenRouter https://openrouter.ai/pricing documents free quota/failed-attempt
-constraints; local project caps remain the conservative controls in free_pilot.md.
+## R6 — Refine, harden and publish (recommendation 4)
+
+Fix observed development bottlenecks rather than optimizing a headline hit rate.
+Profile embedding/reranking, misses, concurrency and the reviewer/tool overhead.
+Retain simpler exact caching if guarded semantics does not earn its overhead.
+Keep unsupported classes abstaining. Optimize only within the declared scope.
+
+If evaluation findings lead to policy changes, the revised version needs a new
+untouched evaluation; do not rerun the spent test to manufacture a pass. If time
+or quota prevents that, publish the earlier frozen result and clearly mark the
+new implementation's validation pending. No comparative claim transfers to an
+unmeasured version.
+
+Finish clean-install/container smoke, integration/failure/restart checks,
+resource/isolation checks, documentation and secret scans. Provide a short demo
+showing fresh generation, exact reuse, semantic behavior, a source update,
+a real tool-use task, and human pause/resume. Fixture/offline replay must be
+obvious to the viewer. A useful minimal dashboard comes before optional extra
+infrastructure; the guide's full Grafana stack is optional expanded scope.
+
+Publish a report with workload construction, repeat shares, quality results,
+failed attempts, overhead, uncertainty and limits. Correct any older resume
+wording that overstates end-to-end savings. Link every measured performance
+claim to the matching immutable run; do not promote proposed goals to results.
+The final report may honestly conclude semantic utility remains unproven.
+
+Exit: coherent clean-install demo and report reproduce the current claims,
+known unresolved issues are explicit, and any remaining research gate is
+labeled open. Commit and push this completed phase once.
+
+## Phase delivery, commits and blockers
+
+R1/R2 are completed history. Remaining R3-R6 correspond one-to-one to the four
+accepted recommendations. Every phase receives implementation, focused tests,
+debugging and an audit closeout before a single coherent commit/push. Do not
+make intermediate micro-commits or commit this roadmap revision alone; include
+it in the completed R3 cache-lifecycle phase. The closeout records scope, code/config, tests,
+raw evidence, failures/fixes, gate decision, known limits and next action.
+Run appropriate numeric/claim and secret checks before publication.
+
+A completed blocked/inconclusive investigation can be committed with that
+status; this is not delivery of a missing feature or a successful quality gate.
+Offline engineering continues around missing quota or human review. Ask for
+user assistance only when a concrete prepared live run, human-label packet or
+other actual dependency is ready. Do not request new credentials, paid services
+or an unguided dataset hunt. Never ask the user to open an unverified missing
+artifact link.
+
+Current user action: none required for the roadmap update or offline build.
+When actual live generation or independent review is ready, present a working
+command/review packet with its required effort and inference-attempt budget.
+The assistant does not run foreground jobs on the user's laptop or work
+unattended between chat sessions.
+
+Primary background references retained from the earlier plan: MeanCache
+https://arxiv.org/abs/2403.02694 and SCALM https://arxiv.org/abs/2406.00025.
+Their results are not transferable project metrics. The uploaded BASWE guide's
+Projects 7 and 15 motivate the build sequence; its advertised savings are not
+a guarantee for this implementation.

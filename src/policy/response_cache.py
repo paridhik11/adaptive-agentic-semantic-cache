@@ -153,10 +153,15 @@ class ScopedResponseCache:
         tenant_id: str,
         provider: Callable[[JsonObject], Mapping[str, Any]],
         bypass: bool = False,
+        key_context: Mapping[str, Any] | None = None,
+        on_miss: Callable[[JsonObject], ResponseCacheResult | None] | None = None,
     ) -> ResponseCacheResult:
         """Return a stored answer or execute the supplied provider exactly once.
 
         Provider exceptions propagate to the caller and are never admitted.
+        key_context is trusted server-side scope and is never forwarded upstream.
+        on_miss is a trusted extension invoked only after eligible exact lookup.
+        Its hits are never readmitted as fresh generations or given a new TTL.
         Usage inside a cached response describes its original generation;
         ``provider_calls`` distinguishes a hit from newly consumed work.
         """
@@ -191,7 +196,10 @@ class ScopedResponseCache:
         if reason is not None:
             return result(generate(), "BYPASS", reason, 1, False)
 
-        key = hashlib.sha256(_serialize({"tenant_id": tenant_id, "request": body}).encode()).hexdigest()
+        key_data = {"tenant_id": tenant_id, "request": body}
+        if key_context is not None:
+            key_data["context"] = json.loads(_serialize(dict(key_context)))
+        key = hashlib.sha256(_serialize(key_data).encode()).hexdigest()
         stripe = self._stripes[int(key[:8], 16) % len(self._stripes)]
         with stripe:
             # A queued request must recheck policy after the preceding call.
@@ -220,6 +228,15 @@ class ScopedResponseCache:
                         self._payload_bytes -= entry.payload_bytes
                         del self._entries[key]
                     epoch = self._epoch
+            if on_miss is not None:
+                resolved = on_miss(copy.deepcopy(body))
+                if resolved is not None:
+                    if (not isinstance(resolved, ResponseCacheResult) or resolved.status != "HIT"
+                            or resolved.stored is not False
+                            or type(resolved.provider_calls) is not int or resolved.provider_calls < 0
+                            or not self._admissible(resolved.response, body)):
+                        raise ValueError("invalid miss resolution")
+                    return resolved
             response = generate()
             # Recheck after generation: policy can revoke eligibility while
             # upstream work is running. Invalid responses are never cached.
@@ -266,6 +283,14 @@ class ScopedResponseCache:
                 self._payload_bytes -= self._entries[key].payload_bytes
                 del self._entries[key]
             return len(keys)
+
+    @property
+    def invalidation_epoch(self) -> int:
+        """Generation token shared with a local SQLite store when configured."""
+        if self._storage is not None:
+            return self._storage.invalidation_epoch
+        with self._lock:
+            return self._epoch
 
     @property
     def size(self) -> int:

@@ -77,6 +77,11 @@ class SQLiteResponseStore:
             return db.execute('DELETE FROM entries WHERE tenant=?', (tenant_id,)).rowcount
 
     @property
+    def invalidation_epoch(self):
+        with self._transaction() as db:
+            return self._check(db)
+
+    @property
     def size(self):
         with self._transaction() as db:
             self._check(db)

@@ -133,7 +133,9 @@ class WorkMetrics:
             for key in ("upstream_attempts_total", "upstream_errors_total", "upstream_usage_missing_total",
                         "upstream_prompt_tokens_total", "upstream_completion_tokens_total",
                         "requests_rejected_busy_total", "stream_completed_total", "stream_failed_total",
-                        "stream_cancelled_total", "stream_cleanup_errors_total", "stream_first_text_microseconds_total", "stream_first_text_count"):
+                        "stream_cancelled_total", "stream_cleanup_errors_total", "stream_first_text_microseconds_total", "stream_first_text_count",
+                        "exact_hits_total", "semantic_hits_total", "semantic_candidates_total", "semantic_shadow_candidates_total",
+                        "semantic_approval_rejections_total", "semantic_processing_errors_total", "semantic_verifier_attempts_total"):
                 lines += [f"# TYPE cache_gateway_{key} counter", f"cache_gateway_{key} {self._counts[key]}"]
             lines.append("# TYPE cache_gateway_processing_seconds histogram")
             for status, row in self._latency.items():
@@ -212,6 +214,18 @@ class GatewayService:
                     raise
             result = self.cache.process(body, tenant_id=tenant_id, provider=generate, bypass=bypass)
             status = result.status
+            if status == "HIT":
+                self.metrics.increment("semantic_hits_total" if getattr(result, "tier", None) == "SEMANTIC" else "exact_hits_total")
+            diagnosis = getattr(result, "diagnosis", None)
+            if isinstance(diagnosis, dict):
+                if diagnosis.get("candidate"):
+                    self.metrics.increment("semantic_candidates_total")
+                counters = {"shadow_candidate": "semantic_shadow_candidates_total",
+                            "approval_rejected": "semantic_approval_rejections_total",
+                            "semantic_processing_failed": "semantic_processing_errors_total"}
+                if diagnosis.get("stage") in counters:
+                    self.metrics.increment(counters[diagnosis["stage"]])
+                self.metrics.increment("semantic_verifier_attempts_total", diagnosis.get("verifier_calls", 0))
             return result
         finally:
             self.metrics.finish(status, time.perf_counter() - started)

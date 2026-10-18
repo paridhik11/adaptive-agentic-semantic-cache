@@ -104,3 +104,59 @@ tenants and no answers were independently reviewed. Keep the CPython FAQ as the
 separate technical QA reference, and keep authored adversarial cases separate.
 No OpenRouter calls are part of this data preparation.
 
+## Decision D-20261018-DELIVERY — restore the cache-plus-agent build sequence
+
+The user accepted the comparison against the BASWE guide's Projects 7 and 15
+and authorized updating the execution roadmap before further phase commits.
+Keep completed R1/R2 history. Replace the remaining sequence with R3 complete
+cache serving slice, R4 bounded documentation agent, R5 cache-off/on request
+and task evaluation, and R6 refinement/hardening/report. The documentation
+domain uses the existing pinned reference corpus as a starting point, not a
+claim of general workload coverage.
+
+The agent slice must include structured planning, allowlisted document tools,
+persisted task state and scoped memory, plus human approval/resume. The current
+fixed specialist/reviewer demo is insufficient. Reuse the existing gateway and
+storage. Scope this delivery to a bounded application rather than the guide's
+entire autonomous multi-agent platform.
+
+Constructed repetitions are legitimate disclosed controlled experiments; natural
+traffic is a separate descriptive suite. Do not delay the serving prototype
+while searching for a universal organic hit rate. Different users may share
+approved public content within a trusted tenant/access scope; source-user IDs
+are not tenant identities. Include cold/unique traffic and non-reuse cases.
+
+Keep the original October 24 scoped target, with an integrated demo targeted
+for October 22 and October 25-28 as an explicit contingency forecast. These are
+active-session estimates and do not promise positive savings or statistically
+certified precision. No paid calls/services are authorized. A pending human
+review or quota-limited result stays pending/inconclusive.
+
+One coherent commit/push follows implementation, debugging, appropriate checks
+and a completed closeout for each phase. Do not commit this planning revision
+alone; include it in the next completed R3 phase. Historical failed results and
+spent cohorts remain unchanged.
+
+
+## Decision D-20261018-R3-01 — opt-in miss resolution with answer-bound approval
+
+Complete R3 by extending the existing exact runtime with a trusted miss resolver
+and separate bounded process-local candidates, rather than wiring the serial
+benchmark cache directly into a concurrent HTTP service. Preserve exact storage,
+eligibility, invalidation and full request keys; add trusted knowledge revision
+and access/policy scope without forwarding extra fields to the provider.
+
+Expose off/exact/shadow/guarded configuration. Serving has no similarity-only
+mode. The initial guarded approver is an explicit actual-answer/pair allowlist,
+with unknown bindings abstaining. This completes a functional candidate-to-reuse
+path without claiming a learned matcher or independent correctness evidence.
+Authored fixture approvals are blocked for live-provider environment setup.
+Keep source TTL and revocation checks across concurrent/SQLite users, and do
+not readmit semantic hits as new exact entries. Exact persistence survives
+restart; the semantic index is intentionally cold until fresh generations.
+
+The fixture HTTP lifecycle and full offline tests establish the engineering
+exit only. Quality, generalized coverage and live savings remain unestablished;
+R5 requires actual reviewed answers. Continue R4's bounded agent implementation
+without interpreting this phase as a historical safety-gate pass. Include the
+accepted roadmap revision in the single R3 phase commit/push.

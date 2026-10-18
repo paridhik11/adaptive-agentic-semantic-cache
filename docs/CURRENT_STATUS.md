@@ -9,7 +9,7 @@ would hide that distinction.
 | --- | --- | --- |
 | Exact response cache | Tenant/request scope, eligibility, TTL, memory bounds, SQLite, invalidation and concurrency handling | Representative live workload performance and answer review |
 | Gateway | Authentication, metrics, local dashboard, HTTP provider, bounded SSE bypass | Live operational validation; streaming responses remain uncached |
-| Semantic matching | Experimental benchmark policies, lexical baseline, pinned dense encoder adapter, fail-closed verifier | Independent answer review, calibration on development data and a new untouched evaluation; production gateway integration depends on evidence |
+| Semantic matching | Opt-in guarded serving wrapper, semantic shadow mode, bounded candidates, lexical/pinned-local dense adapters, strict actual-answer approval bindings | Reviewed development calibration, broader approval beyond an explicit pair allowlist, independent untouched quality/utility evaluation; default remains exact |
 | Evaluation | Answer-bound trace/review/report, unknown-label handling, work accounting, uncertainty intervals, independent review reconciliation | Complete live answers and independent human labels across sources/groups |
 | Agent integration | Bounded specialist/reviewer workflow and scope isolation checks | Broader task/tool workflow and task-level quality evaluation; this is not the full original agent roadmap |
 | Zero-budget execution | Free-only routing, durable quota journal, resume rules, foreground progress page and single results bundle | Observation that the revised concise/reasoning-off profile completes on the live backend |
@@ -35,10 +35,27 @@ paired-latency interval spans zero. This confirms exact-hit wiring only; see
 
 ## Next evidence steps
 
-First obtain complete responses and exact-cache admission using the guided local
-session in [free_pilot.md](free_pilot.md). This deliberately constructed repeat
-sequence is a functional check. Inspect failures before changing a profile;
-do not expand traffic while responses are incomplete.
+The user accepted the revised Project 7 + bounded Project 15 sequence on
+October 18, 2026. The active plan is [EXECUTION_ROADMAP.md](EXECUTION_ROADMAP.md):
+R3 cache lifecycle engineering is complete with fixture evidence; R4 adds structured planning,
+document tools, persistent task state/scoped memory and human approval/resume;
+R5 compares the same requests/tasks with cache off/on; R6 refines and publishes.
+This supersedes the earlier matcher-first sequence. A disclosed constructed
+load test is valid controlled evidence; natural-traffic prevalence is reported
+separately. A working implementation does not itself pass a quality gate.
+
+Target: integrated demo October 22 and scoped engineering/report delivery
+October 24. October 25-28 is a contingency estimate, not a changed deadline;
+free quota and review can leave statistical evidence inconclusive. Commit/push
+only after each complete phase, with the roadmap update included in the R3 closeout.
+No user action is required for the offline build. The evidence workflow below
+still applies when a concrete foreground live run or review packet is ready.
+
+The earlier guided exact run confirms complete-answer admission on its small
+constructed workload. Further live collection uses [free_pilot.md](free_pilot.md)
+with explicit free quota planning. Inspect incomplete responses before expanding
+traffic. The R3 lifecycle smoke uses local fixture responses and consumes no
+external model calls; it does not replace paired live evaluation.
 
 Then use a disclosed, diverse development workload with realistic repetition,
 near misses, tenant/context separation and changing-information cases. Allocate
@@ -72,3 +89,12 @@ crowdsourced traffic only; it does not establish safe reuse or production
 savings. WildChat remains excluded pending complete retrieval and license-file
 reconciliation. R3 can test matcher development against these grouped sources
 without changing serving defaults.
+
+R3 adds the complete gateway candidate/approval path and source-revision scope
+on top of the existing exact runtime. Off, exact, shadow and guarded modes are
+exercised by `scripts/smoke_semantic_gateway.py`. Guarded mode's current
+operator approval registry is an actual-answer/pair allowlist; it does not infer
+correctness for unseen paraphrases. The larger benchmark-only semantic engine
+remains separate. See [R3 closeout](audit/R3_CLOSEOUT.md) and
+[serving contract](semantic_cache_runtime.md). Semantic quality, live utility
+and the broader agent feature set remain unproven/unfinished.
