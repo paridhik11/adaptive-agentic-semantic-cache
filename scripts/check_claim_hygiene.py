@@ -25,11 +25,21 @@ def checkout_original(path, *, checkout_path=None):
     return subprocess.check_output(
         ['git','cat-file','--filters',f'--path={checkout_path or path}',f'{BASE}:{path}'],cwd=ROOT)
 
+def matches_original(path, raw, *, checkout_path=None, suffix=False):
+    """Accept recorded bytes OR their current Git checkout representation.
+
+    Git does not rewrite unchanged files on every branch switch/config change,
+    so existing LF files can coexist with CRLF files in one clean checkout.
+    No arbitrary normalization or whitespace stripping is performed.
+    """
+    variants=(original(path),checkout_original(path,checkout_path=checkout_path))
+    return any(raw.endswith(value) if suffix else raw==value for value in variants)
+
 def verify():
     files={'data/load_test_telemetry.json':20,'data/scaled_load_test_telemetry_corrected.json':1,'data/phase6_telemetry.json':1}
     timing=[]
     for path,n in files.items():
-        raw=(ROOT/path).read_bytes();assert raw==checkout_original(path),f'historical telemetry changed beyond Git checkout conversion: {path}'
+        raw=(ROOT/path).read_bytes();assert matches_original(path,raw),f'historical telemetry changed beyond Git checkout conversion: {path}'
         rows=json.loads(raw)
         auto=[r['timings_ms']['total_pipeline_ms'] for r in rows if r.get('tier')=='AUTO_REUSE']
         judge=[r['timings_ms']['total_pipeline_ms'] for r in rows if r.get('tier')=='AMBIGUOUS']
@@ -41,10 +51,10 @@ def verify():
     preserved=[]
     for source,snapshot in [('README.md','README.before_claim_hygiene.md'),('DESIGN.md','DESIGN.before_claim_hygiene.md'),('docs/RESUME_BULLETS.md','RESUME_BULLETS.before_claim_hygiene.md')]:
         target=ROOT/'docs/archive'/snapshot
-        assert target.read_bytes().endswith(checkout_original(source,checkout_path=str(target.relative_to(ROOT)).replace(chr(92),chr(47)))),f'snapshot body changed: {source}'
+        assert matches_original(source,target.read_bytes(),checkout_path=target.relative_to(ROOT).as_posix(),suffix=True),f'snapshot body changed: {source}'
         preserved.append(str(target.relative_to(ROOT)))
     for name in ('STATUS.md','RECOVERY_STATUS.md','MASTER_REPORT.md','comprehensive_project_status_report.md'):
-        path='docs/'+name;assert (ROOT/path).read_bytes().endswith(checkout_original(path)),f'historical report body changed: {path}'
+        path='docs/'+name;assert matches_original(path,(ROOT/path).read_bytes(),suffix=True),f'historical report body changed: {path}'
         assert (ROOT/path).read_text(encoding='utf-8').startswith('> SUPERSEDED');preserved.append(path)
     html='docs/comprehensive_project_status_report.html'
     current=(ROOT/html).read_text(encoding='utf-8');before=original(html).decode('utf-8').replace('\r\n','\n')
@@ -53,7 +63,7 @@ def verify():
     # All source/runtime and R5 recorded artifacts retain baseline bytes.
     paths=subprocess.check_output(['git','ls-tree','-r','--name-only',BASE],cwd=ROOT,text=True).splitlines()
     frozen=[p for p in paths if p.startswith(('src/','data/','docs/audit/R5_'))]
-    for path in frozen:assert (ROOT/path).read_bytes()==checkout_original(path),f'frozen runtime/data/artifact changed: {path}'
+    for path in frozen:assert matches_original(path,(ROOT/path).read_bytes()),f'frozen runtime/data/artifact changed: {path}'
     targets=['README.md','DESIGN.md','AGENTS.md','docs/RESUME_BULLETS.md','docs/CURRENT_STATUS.md','docs/audit/CLAIM_HYGIENE_AUDIT.md','docs/audit/R6_AGENT_CACHE_PREREG.md']
     links=0
     for path in targets:
@@ -73,7 +83,7 @@ def verify():
         if file.is_file() and (file.suffix in ('.md','.html','.py','.json') or path=='AGENTS.md'):
             assert not pattern.search(file.read_text(encoding='utf-8')),f'targeted secret-pattern finding in {path}'
             scanned.append(path)
-    return {'schema_version':'claim-hygiene-validation-v1','base_commit':BASE,'runtime_data_r5_artifacts_unchanged':True,'comparison_policy':'Baseline converted using git cat-file --filters --path; raw Git blob hashes retained; no benchmark file rewritten.',
+    return {'schema_version':'claim-hygiene-validation-v1','base_commit':BASE,'runtime_data_r5_artifacts_unchanged':True,'comparison_policy':'Accept raw baseline blob or Git checkout representation per file; mixed checkout supported, raw hashes retained, no arbitrary whitespace normalization or data rewriting.',
             'frozen_files_checked':len(frozen),'historical_bodies_preserved':preserved,'local_links_checked':links,
             'timing_recomputations':timing,'external_model_calls':0,'new_benchmark_or_replay_runs':0,
             'redesign_implemented':False,'redesign_evaluation_run':False,'targeted_secret_pattern_findings':0,
