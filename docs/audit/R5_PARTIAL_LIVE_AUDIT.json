@@ -1,0 +1,43 @@
+{
+  "evidence_kind": "uploaded_live_journal_export_verified_offline",
+  "archive_sha256": "f0ef5737a5d1867e133d172bed3e0b6f2a0d2f1bd1f6209a88fa33f2ef2a670e",
+  "manifest_verified": true,
+  "request_response_and_review_bindings_verified": true,
+  "runs": {
+    "r5-live-v1": {
+      "saved_attempts": 6,
+      "complete_responses": 5,
+      "incomplete_responses": 1,
+      "registered_attempt_cap": 16,
+      "observed_tokens": {
+        "prompt_tokens": 1314,
+        "completion_tokens": 2346,
+        "reasoning_tokens": 0
+      }
+    },
+    "r5-live-v2": {
+      "saved_attempts": 10,
+      "complete_responses": 10,
+      "incomplete_responses": 0,
+      "registered_attempt_cap": 10,
+      "observed_tokens": {
+        "prompt_tokens": 2580,
+        "completion_tokens": 1347,
+        "reasoning_tokens": 0
+      }
+    }
+  },
+  "combined_saved_attempts": 16,
+  "unique_blank_review_items": 12,
+  "independent_reviews": 0,
+  "external_model_calls_during_audit": 0,
+  "live_latency_valid": false,
+  "paired_comparison_complete": false,
+  "paired_savings": null,
+  "quality_result": null,
+  "limitations": [
+    "Archive is user-supplied; manifest consistency is not independent proof of provider execution.",
+    "No raw SQLite journal was uploaded; its original snapshot digest is not independently recomputed.",
+    "No cache-arm attribution or valid live timing is inferred. Profiles must remain separate."
+  ]
+}

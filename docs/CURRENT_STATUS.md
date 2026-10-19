@@ -59,10 +59,14 @@ not inspected that private journal. The explicit [v2 repair](R5_LIVE_V2_PROTOCOL
 adds a concise-answer instruction and larger output allowance, retaining strict
 complete-response admission. Its combined predecessor/revision attempt budget
 remains 16; both use the existing shared journal. See [v2 run instructions](R5_LIVE_V2_RUN.md).
-The user subsequently reported v2 attempt-budget exhaustion. Stop live collection
-and [export saved evidence read-only](R5_PARTIAL_EXPORT.md). The hosted workspace
-has not inspected the private journal; counts by run and complete-answer coverage
-remain unknown. No completed paired result or savings claim follows.
+The uploaded partial evidence has now been checked: v1 contains six attempts
+(five complete responses and one truncated); v2 contains ten attempts, all complete.
+The revised allowance was insufficient to finish the expected paired workload.
+Twelve unique request-bound answer items are ready for human review, with all
+labels still blank. Model-assisted inspection flags unsupported reasoning in the
+negation-stress answers. No completed paired result or live latency/savings claim
+follows. See [partial live closeout](audit/R5_PARTIAL_LIVE_CLOSEOUT.md). Do not
+resume stopped live runs or reset the journal.
 Human reviewers get only the blinded template. Reconstruction invalidates live latency.
 
 The approved offline refinement is complete. Retain negative baselines, collect/review actual

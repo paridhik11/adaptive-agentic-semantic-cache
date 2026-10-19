@@ -718,3 +718,12 @@ live pilot, not retrospective preregistration of the initial exploratory replay.
 | --- | --- | --- | --- |
 | R5-V2-BUDGET-STOP | User-pasted v2 reason run_attempt_budget_exhausted; retry_at null; resume disallowed | Reported collection stop, not a completed paired comparison. Per-run attempt split and complete responses require journal inspection. No cap reset or further inference authorized by the export. | User conversation; docs/R5_PARTIAL_EXPORT.md |
 | R5-PARTIAL-EXPORT-TESTS | 51 focused tests passed in 1.36 seconds, including 7 exporter tests; external model calls 0 | Offline engineering evidence. Full suite not rerun for the additive exporter; no new answer-quality, latency or savings measurements. | tests/test_r5_journal_export.py; docs/R5_PARTIAL_EXPORT.md |
+
+
+## R5 uploaded partial live evidence
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| R5-PARTIAL-LIVE-COUNTS | V1: 6 attempts, 5 complete responses, 1 truncated. V2: 10 attempts, 10 complete, 0 truncated. Combined 16 attempts; 12 unique request-bound review items from 15 complete responses. | User-supplied saved-live evidence verified offline. No completed paired comparison, independent quality labels or valid live-latency result. | docs/audit/R5_PARTIAL_LIVE_AUDIT.json |
+| R5-PARTIAL-LIVE-USAGE | V1 observed prompt/completion tokens 1314/2346; v2 2580/1347; reasoning tokens 0 in each | Includes original truncated attempt. Different profiles and incomplete coverage prevent a paired savings inference. | docs/audit/R5_PARTIAL_LIVE_AUDIT.json |
+| R5-PARTIAL-AUDIT-CHECKS | Manifest, request/response/review bindings verified; 5 negative mutations rejected; 0 new external model calls; human labels 0 | Internal consistency, not independent authentication of provider execution. Raw journal not supplied. | docs/audit/R5_PARTIAL_LIVE_CLOSEOUT.md; scripts/audit_r5_partial.py |
