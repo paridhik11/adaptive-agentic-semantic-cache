@@ -1,3 +1,10 @@
+> **October 20 planning update:** the user now allows approximately 8–10 days,
+> targeting October 28–30 at roughly three focused hours per day. This supersedes
+> the earlier deadline below. These are planning estimates, not delivery or positive-result guarantees.
+> Current sequence: pilot repair/collection, independent answer review, budgeted live
+> agent and semantic evaluation, frozen fresh evaluation, website/demo and final packaging.
+> See [CURRENT_STATUS.md](CURRENT_STATUS.md) for completed work; the old schedule is retained below.
+
 # Recovery execution roadmap
 
 Status (2026-10-18, Asia/Calcutta): R1 and R2 are published. R3 cache-lifecycle

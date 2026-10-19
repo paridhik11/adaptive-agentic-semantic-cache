@@ -1,0 +1,51 @@
+{
+  "evidence_kind": "offline_engineering_validation",
+  "full_suite": {
+    "passed": 678,
+    "excluded": 23,
+    "seconds": 127.36
+  },
+  "focused_suite": {
+    "passed": 44
+  },
+  "external_model_calls": 0,
+  "live_v2_completed": false,
+  "independent_reviews": 0,
+  "predecessor_raw_journal_available_here": false,
+  "historical_files_unchanged": [
+    "scripts/run_r5_paired.py",
+    "docs/R5_PROTOCOL.md",
+    "data",
+    "docs/audit/R5_CLOSEOUT.md",
+    "docs/audit/R6_STAGE_FREEZE.json",
+    "docs/audit/R6_AGENT_STAGE_RESULT.json"
+  ],
+  "targeted_secret_findings": 0,
+  "scan_scope": [
+    "docs/R5_LIVE_V2_PROTOCOL.md",
+    "docs/R5_LIVE_V2_RUN.md",
+    "docs/audit/R5_LIVE_V2_REPAIR.md",
+    "scripts/run_r5_paired_v2.py",
+    "src/benchmark/r5_revision.py",
+    "tests/test_r5_revision.py",
+    "docs/CURRENT_STATUS.md",
+    "docs/EXECUTION_ROADMAP.md",
+    "docs/FACTS.md",
+    "docs/R5_LIVE_RUN.md"
+  ],
+  "scan_limit": "Targeted token/private-key patterns only; not full security certification",
+  "local_links_checked": 14,
+  "initial_environment_issue": "System Python without runtime site-packages failed test collection; rerun with primary runtime plus existing project site-packages passed. No packages downloaded.",
+  "commands": [
+    "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONPATH=.venv/lib/python3.12/site-packages python -m pytest -q",
+    "PYTHONPATH=.venv/lib/python3.12/site-packages python -m pytest tests/test_r5_revision.py tests/test_free_pilot.py tests/test_paired_runtime.py -q",
+    "python scripts/check_numeric_tokens.py",
+    "git diff --check"
+  ],
+  "source_sha256": {
+    "scripts/run_r5_paired_v2.py": "9bb6fd423cfd416b3da4d432f5b391ad8092cc9532fd8fda5d12835ec4e085a8",
+    "src/benchmark/r5_revision.py": "b69c6d7a90ee46ac428fa51b3607e00b0a598bafe37e54f8b0a7e1307c97b7c0",
+    "tests/test_r5_revision.py": "7db06dad8edc9e746edfcc1b6a9137c7f4ccd8f0bf919ee42c94866167167c0d",
+    "docs/R5_LIVE_V2_PROTOCOL.md": "7427b3341070c1a9e743d34b937af32c2b1e059d24ceb6c1326e323289b0a8cc"
+  }
+}

@@ -701,3 +701,12 @@ live pilot, not retrospective preregistration of the initial exploratory replay.
 | R6-STAGE-WORK | Planner 44 calls and reviewer 44 calls in each arm; drafting 44 off versus 22 exact | All stages included; no tool memoization or omitted reviewer work | docs/audit/R6_STAGE_VALIDATION.json |
 | R6-STAGE-TESTS | Final offline suite 660 passed, 23 excluded, 125.16 seconds; focused tests 60 passed, 7.32 seconds | Engineering regressions; no model/API integration or independently reviewed accuracy observations | docs/audit/R6_STAGE_VALIDATION.json |
 | R6-STAGE-LIMITS | External model calls 0; independent answer reviews 0; criterion runs 1 | Semantic quality, actual model tokens, live latency and monetary savings unmeasured. Original R5 negative baseline and preregistration unchanged. | docs/audit/R6_AGENT_STAGE_CLOSEOUT.md |
+
+## R5 live-development profile repair (October 20, 2026)
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| R5-V1-USER-PAUSE | User-pasted live diagnostics: output_token_limit, finish_reason length, 1024 completion tokens, 225 prompt tokens, 3869 answer characters | Incomplete response; user-supplied evidence, local journal not independently inspected here. Total predecessor calls unknown until journal read. | docs/R5_LIVE_V2_PROTOCOL.md |
+| R5-V2-PROFILE | Planned revision: at most 180 words, 4096 output-token allowance, same free model with reasoning off, 8 events across 2 arms; combined v1+v2 cap 16, shared limits 40/day and 10/minute | Prospective development settings, not observed completion or quality. Old attempt counts are subtracted, never reset. | docs/R5_LIVE_V2_PROTOCOL.md; src/benchmark/r5_revision.py |
+| DELIVERY-20261020 | User allows approximately 8–10 days at about 3 focused hours/day; working target October 28–30 | Planning estimate supersedes earlier deadline; not an assurance of positive results, provider availability or unattended work. | User conversation; docs/EXECUTION_ROADMAP.md |
+| R5-V2-OFFLINE | Full suite: 678 passed, 23 excluded, 127.36 seconds; focused suite: 44 passed; external model calls 0 | Offline engineering checks including fixture CLI pause/resume/export. No live-v2 completion, answer-quality or savings claim. | docs/audit/R5_LIVE_V2_VALIDATION.json |

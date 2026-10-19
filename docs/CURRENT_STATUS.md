@@ -1,6 +1,6 @@
 # Current implementation and evidence
 
-Single current status page. Updated 2026-10-19 (Asia/Calcutta).
+Single current status page. Updated 2026-10-20 (Asia/Calcutta).
 Historical status/master reports are preserved with superseded banners. FACTS.md
 is the evidence ledger, not a second implementation-status page.
 
@@ -53,11 +53,14 @@ per arm, identical final answers/statuses and original raw-baseline answer match
 Full-request keys still bind all actual model-visible stage inputs. No live savings
 or general semantic safety follows. See [R6 closeout](audit/R6_AGENT_STAGE_CLOSEOUT.md).
 
-Live evidence may be collected independently via [R5 live instructions](R5_LIVE_RUN.md):
-eight development requests, at most 16 free-provider attempts, using the existing
-shared journal. No key is available to this workspace. Human reviewers get only
-the blinded template; model-assisted review is labeled separately. No paid service
-or new dataset hunt is needed. A reconstructed run cannot certify live latency.
+The user-run R5 v1 live collection stopped on a token-limit response, reported
+October 20. Preserve the original journal and failure; the hosted workspace has
+not inspected that private journal. The explicit [v2 repair](R5_LIVE_V2_PROTOCOL.md)
+adds a concise-answer instruction and larger output allowance, retaining strict
+complete-response admission. Its combined predecessor/revision attempt budget
+remains 16; both use the existing shared journal. See [v2 run instructions](R5_LIVE_V2_RUN.md).
+No live v2 call has been made here; completion and quality remain unproven.
+Human reviewers get only the blinded template. Reconstruction invalidates live latency.
 
 The approved offline refinement is complete. Retain negative baselines, collect/review actual
 answers, and define fresh final evaluation criteria/data before running it. Stop
