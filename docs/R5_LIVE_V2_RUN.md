@@ -1,3 +1,7 @@
+> **Stopped collection:** the user reported v2 attempt-budget exhaustion. Do not
+> repeat the live command below. Follow [the read-only export instructions](R5_PARTIAL_EXPORT.md)
+> to recover partial evidence. The original v2 instructions are retained below.
+
 # Revised R5 live pilot: preserve the paused run
 
 The v1 token-limit response is failed development evidence, not a retryable quota

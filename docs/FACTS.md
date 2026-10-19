@@ -710,3 +710,11 @@ live pilot, not retrospective preregistration of the initial exploratory replay.
 | R5-V2-PROFILE | Planned revision: at most 180 words, 4096 output-token allowance, same free model with reasoning off, 8 events across 2 arms; combined v1+v2 cap 16, shared limits 40/day and 10/minute | Prospective development settings, not observed completion or quality. Old attempt counts are subtracted, never reset. | docs/R5_LIVE_V2_PROTOCOL.md; src/benchmark/r5_revision.py |
 | DELIVERY-20261020 | User allows approximately 8–10 days at about 3 focused hours/day; working target October 28–30 | Planning estimate supersedes earlier deadline; not an assurance of positive results, provider availability or unattended work. | User conversation; docs/EXECUTION_ROADMAP.md |
 | R5-V2-OFFLINE | Full suite: 678 passed, 23 excluded, 127.36 seconds; focused suite: 44 passed; external model calls 0 | Offline engineering checks including fixture CLI pause/resume/export. No live-v2 completion, answer-quality or savings claim. | docs/audit/R5_LIVE_V2_VALIDATION.json |
+
+
+## R5 stopped-collection recovery
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| R5-V2-BUDGET-STOP | User-pasted v2 reason run_attempt_budget_exhausted; retry_at null; resume disallowed | Reported collection stop, not a completed paired comparison. Per-run attempt split and complete responses require journal inspection. No cap reset or further inference authorized by the export. | User conversation; docs/R5_PARTIAL_EXPORT.md |
+| R5-PARTIAL-EXPORT-TESTS | 51 focused tests passed in 1.36 seconds, including 7 exporter tests; external model calls 0 | Offline engineering evidence. Full suite not rerun for the additive exporter; no new answer-quality, latency or savings measurements. | tests/test_r5_journal_export.py; docs/R5_PARTIAL_EXPORT.md |
