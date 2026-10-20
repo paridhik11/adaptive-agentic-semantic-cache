@@ -30,6 +30,16 @@ always abstains, including on positive recommendations. No new general semantic
 serving is enabled. Exact hits skip the local verifier; local check work is
 reported separately from remote verifier calls. See `audit/ANSWER_POLICY_RESULT.json`.
 
+A decomposed local NLI verifier now separates request preservation, source-span
+coverage and answer support, with explicit requirement guards. On 45 authored
+development cases it recommended reuse for 2/14 valid paraphrases and 0/31
+negatives. The fixture cache served 2 semantic hits, with no unsafe semantic hit;
+it also repeated one deliberately bad seed through exact matching. This exposes
+the distinction between complete-response admission and factual correctness.
+Coverage remains inadequate; production serving still abstains. These are
+builder-authored diagnostics, not independent accuracy. See
+[audit closeout](audit/DECOMPOSED_POLICY_CLOSEOUT.md).
+
 The target is the tolerant group gate, at least 125 accepted groups with a
 one-sided 95% exact lower safety bound at least 95%, plus separate answer
 precision, coverage and hard-negative endpoints. Final cohort sizing and review
@@ -70,8 +80,8 @@ Passing engineering tests does not change that gate or establish a completion ra
 - R5 agent source replay: 44 tasks per arm; both arms made 132 simulated provider
   invocations and 88 actual local tool invocations. No agent call reduction.
   Changing task memory changed drafting inputs. See [R5](audit/R5_CLOSEOUT.md).
-- Last recorded full offline suite: 726 passed, 23 excluded. These are engineering
-  tests, not accuracy observations. Source: [validation](audit/ANSWER_POLICY_RESULT.json).
+- Last recorded full offline suite: 744 passed, 23 excluded. These are engineering
+  tests, not accuracy observations. Source: [validation](audit/DECOMPOSED_POLICY_RESULT.json).
 
 Counts above cite FACTS.md recovery/R5 sections and linked raw aggregate artifacts.
 R6 added one explicitly frozen source-reference replay; no live model run is implied.
