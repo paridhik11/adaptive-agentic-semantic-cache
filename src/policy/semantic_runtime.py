@@ -69,6 +69,9 @@ class PinnedContextPolicy:
 class ReuseDecision:
     approved: bool
     reason: str
+    local_verifier_attempts: int = 0
+    local_verifier_ms: float = 0.0
+    local_policy_recommendation: bool | None = None
 
 
 BINDING_FIELDS = ("scope_sha256", "incoming_request_sha256", "candidate_request_sha256", "candidate_response_sha256")
@@ -226,7 +229,9 @@ class GuardedSemanticCache:
         body = json.loads(_serialize(dict(request)))
         diagnosis = {"mode": self.semantic_mode, "stage": "exact_lookup", "candidate": None,
                      "similarity": None, "verifier_calls": 0, "approval_signal": None,
-                     "approver_identity": getattr(self.approver, "identity", None)}
+                     "approver_identity": getattr(self.approver, "identity", None),
+                     "local_verifier_attempts": 0, "local_verifier_ms": 0.0,
+                     "local_policy_recommendation": None}
 
         def metered(outgoing):
             nonlocal calls
@@ -285,6 +290,14 @@ class GuardedSemanticCache:
                     diagnosis["verifier_calls"] = calls - before
                 if not isinstance(verdict, ReuseDecision) or type(verdict.approved) is not bool or not isinstance(verdict.reason, str):
                     raise ValueError("invalid approval contract")
+                if (type(verdict.local_verifier_attempts) is not int or verdict.local_verifier_attempts < 0
+                        or type(verdict.local_verifier_ms) not in (int, float)
+                        or not math.isfinite(verdict.local_verifier_ms) or verdict.local_verifier_ms < 0
+                        or (verdict.local_policy_recommendation is not None and type(verdict.local_policy_recommendation) is not bool)):
+                    raise ValueError("invalid local verification work")
+                diagnosis.update(local_verifier_attempts=verdict.local_verifier_attempts,
+                                 local_verifier_ms=verdict.local_verifier_ms,
+                                 local_policy_recommendation=verdict.local_policy_recommendation)
                 diagnosis["approval_signal"] = verdict.approved
                 if not verdict.approved:
                     diagnosis["stage"] = "approval_rejected"

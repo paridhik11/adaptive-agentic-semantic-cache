@@ -1,6 +1,6 @@
 # Current implementation and evidence
 
-Single current status page. Updated 2026-10-20 (Asia/Calcutta).
+Single current status page. Updated 2026-10-21 (Asia/Calcutta).
 Historical status/master reports are preserved with superseded banners. FACTS.md
 is the evidence ledger, not a second implementation-status page.
 
@@ -19,6 +19,16 @@ intended seed for all three authored positive paraphrases; the pair model gave
 very low scores to two of them. This is a development finding, not answer
 precision, a passing policy or representative coverage. The old fine-tuned
 checkpoint remains missing. See `audit/SEMANTIC_PREPARATION_RESULT.json`.
+
+An [answer-aware diagnostic policy](ANSWER_POLICY_DEVELOPMENT.md) now reads the
+actual complete cached answer and fixed context, separately checking sufficiency
+and source support. Both tested local baselines failed development: FLAN
+recommended no reuse on 4 positives/11 negatives; Qwen recommended 4 positives
+and 8 unsafe negatives. These are authored cases in 3 correlated intent groups,
+not independently labeled quality observations. The diagnostic serving interface
+always abstains, including on positive recommendations. No new general semantic
+serving is enabled. Exact hits skip the local verifier; local check work is
+reported separately from remote verifier calls. See `audit/ANSWER_POLICY_RESULT.json`.
 
 The target is the tolerant group gate, at least 125 accepted groups with a
 one-sided 95% exact lower safety bound at least 95%, plus separate answer
@@ -60,8 +70,8 @@ Passing engineering tests does not change that gate or establish a completion ra
 - R5 agent source replay: 44 tasks per arm; both arms made 132 simulated provider
   invocations and 88 actual local tool invocations. No agent call reduction.
   Changing task memory changed drafting inputs. See [R5](audit/R5_CLOSEOUT.md).
-- Last recorded full offline suite: 701 passed, 23 excluded. These are engineering
-  tests, not accuracy observations. Source: [validation](audit/WORKBENCH_VALIDATION.json).
+- Last recorded full offline suite: 726 passed, 23 excluded. These are engineering
+  tests, not accuracy observations. Source: [validation](audit/ANSWER_POLICY_RESULT.json).
 
 Counts above cite FACTS.md recovery/R5 sections and linked raw aggregate artifacts.
 R6 added one explicitly frozen source-reference replay; no live model run is implied.

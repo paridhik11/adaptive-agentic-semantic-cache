@@ -135,7 +135,9 @@ class WorkMetrics:
                         "requests_rejected_busy_total", "stream_completed_total", "stream_failed_total",
                         "stream_cancelled_total", "stream_cleanup_errors_total", "stream_first_text_microseconds_total", "stream_first_text_count",
                         "exact_hits_total", "semantic_hits_total", "semantic_candidates_total", "semantic_shadow_candidates_total",
-                        "semantic_approval_rejections_total", "semantic_processing_errors_total", "semantic_verifier_attempts_total"):
+                        "semantic_approval_rejections_total", "semantic_processing_errors_total", "semantic_verifier_attempts_total",
+                        "semantic_local_verifier_attempts_total", "semantic_local_verifier_microseconds_total",
+                        "semantic_local_recommendations_total"):
                 lines += [f"# TYPE cache_gateway_{key} counter", f"cache_gateway_{key} {self._counts[key]}"]
             lines.append("# TYPE cache_gateway_processing_seconds histogram")
             for status, row in self._latency.items():
@@ -226,6 +228,10 @@ class GatewayService:
                 if diagnosis.get("stage") in counters:
                     self.metrics.increment(counters[diagnosis["stage"]])
                 self.metrics.increment("semantic_verifier_attempts_total", diagnosis.get("verifier_calls", 0))
+                self.metrics.increment("semantic_local_verifier_attempts_total", diagnosis.get("local_verifier_attempts", 0))
+                self.metrics.increment("semantic_local_verifier_microseconds_total", round(diagnosis.get("local_verifier_ms", 0) * 1000))
+                if diagnosis.get("local_policy_recommendation") is True:
+                    self.metrics.increment("semantic_local_recommendations_total")
             return result
         finally:
             self.metrics.finish(status, time.perf_counter() - started)
