@@ -1,4 +1,13 @@
-> **October 20 planning update:** the user now allows approximately 8–10 days,
+> **October 20 scope correction:** prioritize general semantic answer reuse,
+> before agent planning, with no remote judge on hits. The active work order and
+> evidence requirements are in [SEMANTIC_EVALUATION_CONTRACT.md](SEMANTIC_EVALUATION_CONTRACT.md).
+> The pilot-first sequence below is superseded. Start with actual pretrained
+> weights, retrieval, written rubric and reviewer capacity; then applicability,
+> calibration, persistence, integration, freeze/evaluation and final demo QA.
+> Live comparison is optional and the first item dropped for provider problems.
+> The schedule does not guarantee enough independent review for the quality gate.
+
+> **Earlier October 20 planning update:** the user now allows approximately 8–10 days,
 > targeting October 28–30 at roughly three focused hours per day. This supersedes
 > the earlier deadline below. These are planning estimates, not delivery or positive-result guarantees.
 > Current sequence: pilot repair/collection, independent answer review, budgeted live

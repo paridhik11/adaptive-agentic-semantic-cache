@@ -4,6 +4,31 @@ Single current status page. Updated 2026-10-20 (Asia/Calcutta).
 Historical status/master reports are preserved with superseded banners. FACTS.md
 is the evidence ledger, not a second implementation-status page.
 
+## Active priority: general semantic answer reuse
+
+The user's scope correction makes semantic answer caching the primary product,
+with the bounded agent as its client. Follow the new
+[evaluation contract](SEMANTIC_EVALUATION_CONTRACT.md). Do not resume failed live
+pilots or expand the website before completing a generalizing local applicability
+policy. Successful eligible semantic lookup must precede agent planning and make
+zero remote calls. A question-pair score alone cannot authorize a hit.
+
+The pretrained pinned dense and pair models are now available locally and both
+executed on exposed authored development probes. Dense retrieval selected the
+intended seed for all three authored positive paraphrases; the pair model gave
+very low scores to two of them. This is a development finding, not answer
+precision, a passing policy or representative coverage. The old fine-tuned
+checkpoint remains missing. See `audit/SEMANTIC_PREPARATION_RESULT.json`.
+
+The target is the tolerant group gate, at least 125 accepted groups with a
+one-sided 95% exact lower safety bound at least 95%, plus separate answer
+precision, coverage and hard-negative endpoints. Final cohort sizing and review
+staffing remain unresolved; no independent human reviewers are confirmed.
+Model-assisted diagnostics remain the fallback. No final evaluation has started.
+
+Codex may commit/push substantial validated milestones on the task branch under
+the latest user instruction; do not commit every small edit, push main or merge.
+
 The gateway and bounded agent are implemented. General semantic safety and useful
 live end-to-end savings remain unproven. Historical Gate A is still failed.
 Passing engineering tests does not change that gate or establish a completion rate.
