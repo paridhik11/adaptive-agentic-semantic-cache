@@ -735,3 +735,11 @@ live pilot, not retrospective preregistration of the initial exploratory replay.
 | --- | --- | --- | --- |
 | R5-ANTIGRAVITY-LABELS | Final 12-item review: 2 correct/supported, 9 correct/unsupported, 1 incorrect/unsupported; 0 human reviews | Third-party model-assisted labels as submitted, with disputed judgments. No accuracy/safety rate or passed gate follows. | docs/audit/R5_ANTIGRAVITY_RECONCILIATION.json |
 | R5-ANTIGRAVITY-CHECKS | All 12 immutable bindings verified; 6 invalid temporary mutations rejected; 0 external model calls | Final second attachment accepted; earlier transcript draft has 3 immutable-field differences and is not imported. Original labels retained. | docs/audit/R5_ANTIGRAVITY_RECONCILIATION.md |
+
+
+## Live-agent pilot preparation
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| AGENT-LIVE-PROFILE | Planned 4 tasks, 3 generation calls maximum per task, 0 revision retries, new experiment cap 12; shared project limits 40/day and 10/minute; output allowance 4096; draft under 180 words | Prospective development profile, not a live result. Budget for zero hits; human approval required. | docs/LIVE_AGENT_PILOT_PROTOCOL.md |
+| AGENT-LIVE-PREPARATION | 70 focused tests passed in 1.85 seconds; actual-corpus no-key plan passed; fixture calls off 6 versus exact 5; 0 external model calls, 0 human approvals | Engineering preparation only. No completed live comparison or independent answer quality result. Full suite not rerun for additive runner. | docs/audit/LIVE_AGENT_PREPARATION.json |

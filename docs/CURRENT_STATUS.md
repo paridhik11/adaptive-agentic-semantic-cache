@@ -35,8 +35,8 @@ Passing engineering tests does not change that gate or establish a completion ra
 - R5 agent source replay: 44 tasks per arm; both arms made 132 simulated provider
   invocations and 88 actual local tool invocations. No agent call reduction.
   Changing task memory changed drafting inputs. See [R5](audit/R5_CLOSEOUT.md).
-- Last recorded full offline suite: 660 passed, 23 excluded. These are engineering
-  tests, not accuracy observations. Source: [validation](audit/R6_STAGE_VALIDATION.json).
+- Last recorded full offline suite: 678 passed, 23 excluded. These are engineering
+  tests, not accuracy observations. Source: [validation](audit/R5_LIVE_V2_VALIDATION.json).
 
 Counts above cite FACTS.md recovery/R5 sections and linked raw aggregate artifacts.
 R6 added one explicitly frozen source-reference replay; no live model run is implied.
@@ -79,3 +79,20 @@ Delivery targets in EXECUTION_ROADMAP.md are forecasts, not guarantees of positi
 results. Commit/push completed tasks on branches under the current user instruction;
 main is unchanged until an authorized merge. Work runs during active sessions,
 not unattended between chat turns.
+
+## Prepared live-agent development pilot
+
+The separate [agent pilot](LIVE_AGENT_PILOT_PROTOCOL.md) is prepared offline. It
+uses one exposed development question, seed/repeat in off/exact arms, human
+approval required, and a new maximum twelve-attempt experiment allowance. The
+shared journal keeps previous project usage in daily/minute accounting; exhausted
+R5 request runs remain stopped. Read-only preflight budgets for zero cache hits
+and refuses to start if the full worst-case remaining work cannot fit the day.
+Every collection stop exports a uniquely named private evidence ZIP.
+
+Seventy focused tests passed; no live inference during preparation. The scripted
+fixture observes six off versus five exact calls, which verifies mechanics only.
+Runtime modules and original R5/R6 evidence are unchanged. Live planning, answer
+quality and useful net savings remain unproven. See [preparation validation](audit/LIVE_AGENT_PREPARATION.json)
+and [Windows run instructions](LIVE_AGENT_PILOT_RUN.md). Execution is explicit
+with --execute and the user's environment key; it is not an unattended task.
