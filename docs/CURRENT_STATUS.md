@@ -62,9 +62,10 @@ remains 16; both use the existing shared journal. See [v2 run instructions](R5_L
 The uploaded partial evidence has now been checked: v1 contains six attempts
 (five complete responses and one truncated); v2 contains ten attempts, all complete.
 The revised allowance was insufficient to finish the expected paired workload.
-Twelve unique request-bound answer items are ready for human review, with all
-labels still blank. Model-assisted inspection flags unsupported reasoning in the
-negation-stress answers. No completed paired result or live latency/savings claim
+Antigravity returned a model-assisted review of the twelve items; all final
+immutable bindings validate. Its submitted counts are two correct/supported, nine
+correct/unsupported and one incorrect/unsupported. Some judgments remain disputed;
+no human labels or accepted quality rate follow. See [review reconciliation](audit/R5_ANTIGRAVITY_RECONCILIATION.md). No completed paired result or live latency/savings claim
 follows. See [partial live closeout](audit/R5_PARTIAL_LIVE_CLOSEOUT.md). Do not
 resume stopped live runs or reset the journal.
 Human reviewers get only the blinded template. Reconstruction invalidates live latency.

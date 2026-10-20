@@ -727,3 +727,11 @@ live pilot, not retrospective preregistration of the initial exploratory replay.
 | R5-PARTIAL-LIVE-COUNTS | V1: 6 attempts, 5 complete responses, 1 truncated. V2: 10 attempts, 10 complete, 0 truncated. Combined 16 attempts; 12 unique request-bound review items from 15 complete responses. | User-supplied saved-live evidence verified offline. No completed paired comparison, independent quality labels or valid live-latency result. | docs/audit/R5_PARTIAL_LIVE_AUDIT.json |
 | R5-PARTIAL-LIVE-USAGE | V1 observed prompt/completion tokens 1314/2346; v2 2580/1347; reasoning tokens 0 in each | Includes original truncated attempt. Different profiles and incomplete coverage prevent a paired savings inference. | docs/audit/R5_PARTIAL_LIVE_AUDIT.json |
 | R5-PARTIAL-AUDIT-CHECKS | Manifest, request/response/review bindings verified; 5 negative mutations rejected; 0 new external model calls; human labels 0 | Internal consistency, not independent authentication of provider execution. Raw journal not supplied. | docs/audit/R5_PARTIAL_LIVE_CLOSEOUT.md; scripts/audit_r5_partial.py |
+
+
+## R5 Antigravity review reconciliation
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| R5-ANTIGRAVITY-LABELS | Final 12-item review: 2 correct/supported, 9 correct/unsupported, 1 incorrect/unsupported; 0 human reviews | Third-party model-assisted labels as submitted, with disputed judgments. No accuracy/safety rate or passed gate follows. | docs/audit/R5_ANTIGRAVITY_RECONCILIATION.json |
+| R5-ANTIGRAVITY-CHECKS | All 12 immutable bindings verified; 6 invalid temporary mutations rejected; 0 external model calls | Final second attachment accepted; earlier transcript draft has 3 immutable-field differences and is not imported. Original labels retained. | docs/audit/R5_ANTIGRAVITY_RECONCILIATION.md |
