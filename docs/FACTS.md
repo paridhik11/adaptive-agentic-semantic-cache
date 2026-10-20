@@ -743,3 +743,13 @@ live pilot, not retrospective preregistration of the initial exploratory replay.
 | --- | --- | --- | --- |
 | AGENT-LIVE-PROFILE | Planned 4 tasks, 3 generation calls maximum per task, 0 revision retries, new experiment cap 12; shared project limits 40/day and 10/minute; output allowance 4096; draft under 180 words | Prospective development profile, not a live result. Budget for zero hits; human approval required. | docs/LIVE_AGENT_PILOT_PROTOCOL.md |
 | AGENT-LIVE-PREPARATION | 70 focused tests passed in 1.85 seconds; actual-corpus no-key plan passed; fixture calls off 6 versus exact 5; 0 external model calls, 0 human approvals | Engineering preparation only. No completed live comparison or independent answer quality result. Full suite not rerun for additive runner. | docs/audit/LIVE_AGENT_PREPARATION.json |
+
+
+## Integrated local workbench
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| LIVE-AGENT-PARTIAL | User-uploaded pilot: 6 attempts, 5 complete responses, 1 recorded upstream HTTP 502; 2 document reads; 0 repeated tasks or observed draft hits | Off seed awaiting human approval; exact seed failed during workflow review. No completed live comparison or savings result. | docs/audit/LIVE_AGENT_PARTIAL_RESULT.json |
+| WORKBENCH-FLOW | Scripted HTTP flow: first task 3 calls, identical repeat 2 with exact draft HIT, cache-off task 3; 3 versioned source documents; 0 external model calls | Actual agent/tools/cache/decision integration with scripted responses; not live quality or savings. Default local address 127.0.0.1, port 8765. | docs/audit/WORKBENCH_VALIDATION.json |
+| WORKBENCH-TESTS | Full suite 701 passed, 23 excluded, 120.31 seconds; 10 workbench API tests included; JS syntax and wheel assets passed | Offline engineering evidence. Browser visual QA unavailable. | docs/audit/WORKBENCH_VALIDATION.json |
+| WORKBENCH-LIVE-PROFILE | Optional explicit live mode: fixed product-demo-v1 cap 12, task max calls 3, revision retries 0, output allowance 4096; shared project caps 40/day and 10/minute | Configuration only. New-task capacity checks budget for zero hits. No live workbench calls during development. | src/api/demo.py; docs/WORKBENCH.md |

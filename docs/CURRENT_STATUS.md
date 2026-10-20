@@ -35,8 +35,8 @@ Passing engineering tests does not change that gate or establish a completion ra
 - R5 agent source replay: 44 tasks per arm; both arms made 132 simulated provider
   invocations and 88 actual local tool invocations. No agent call reduction.
   Changing task memory changed drafting inputs. See [R5](audit/R5_CLOSEOUT.md).
-- Last recorded full offline suite: 678 passed, 23 excluded. These are engineering
-  tests, not accuracy observations. Source: [validation](audit/R5_LIVE_V2_VALIDATION.json).
+- Last recorded full offline suite: 701 passed, 23 excluded. These are engineering
+  tests, not accuracy observations. Source: [validation](audit/WORKBENCH_VALIDATION.json).
 
 Counts above cite FACTS.md recovery/R5 sections and linked raw aggregate artifacts.
 R6 added one explicitly frozen source-reference replay; no live model run is implied.
@@ -80,19 +80,27 @@ results. Commit/push completed tasks on branches under the current user instruct
 main is unchanged until an authorized merge. Work runs during active sessions,
 not unattended between chat turns.
 
-## Prepared live-agent development pilot
+## Partial live-agent pilot and integrated workbench
 
-The separate [agent pilot](LIVE_AGENT_PILOT_PROTOCOL.md) is prepared offline. It
-uses one exposed development question, seed/repeat in off/exact arms, human
-approval required, and a new maximum twelve-attempt experiment allowance. The
-shared journal keeps previous project usage in daily/minute accounting; exhausted
-R5 request runs remain stopped. Read-only preflight budgets for zero cache hits
-and refuses to start if the full worst-case remaining work cannot fit the day.
-Every collection stop exports a uniquely named private evidence ZIP.
+The user-uploaded agent pilot stopped after six recorded attempts: five complete
+responses and one upstream HTTP 502 during exact-arm workflow review. The off
+seed reached AWAITING_APPROVAL; the exact seed drafted successfully before the
+review failed. Neither repeat task started, so there is no live reuse/savings
+result. Two real local document reads were observed. See [aggregate evidence](audit/LIVE_AGENT_PARTIAL_RESULT.json).
+Do not resume that failed pilot or reset its allowance.
 
-Seventy focused tests passed; no live inference during preparation. The scripted
-fixture observes six off versus five exact calls, which verifies mechanics only.
-Runtime modules and original R5/R6 evidence are unchanged. Live planning, answer
-quality and useful net savings remain unproven. See [preparation validation](audit/LIVE_AGENT_PREPARATION.json)
-and [Windows run instructions](LIVE_AGENT_PILOT_RUN.md). Execution is explicit
-with --execute and the user's environment key; it is not an unattended task.
+The integrated [Trace workbench](WORKBENCH.md) now connects the existing agent,
+source tools, full-request exact cache, durable approvals and recent tasks through
+a responsive local interface. Reference replay starts without a key and labels
+its scripted answers. The real HTTP flow records three first-task scripted calls,
+two on an identical repeat with a draft HIT, and three with caching off. These
+are fixture mechanics, not live savings or semantic-quality measurements.
+
+Optional interactive live mode requires an explicit --live flag, environment key
+and existing shared journal; a fixed separate twelve-attempt demo allowance
+survives app restarts. No live calls were made during interface development. The
+launcher binds only to loopback. Multi-user hosting remains separate work.
+
+The full offline suite passed with 701 tests and 23 exclusions; JavaScript syntax,
+HTTP application flow and packaged asset inclusion passed. Browser visual QA was
+unavailable here and is not claimed. See [validation](audit/WORKBENCH_VALIDATION.json).

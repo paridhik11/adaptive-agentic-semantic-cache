@@ -31,6 +31,21 @@ responses are uncached. Semantic indexes start cold after process restart.
 The historical FAISS/cross-encoder research pipeline is separate from the current
 lexical/pinned-local-adapter serving wrapper. No learned adaptation benefit is claimed.
 
+## Local workbench
+
+Run the integrated question/source/approval interface without a model key:
+
+```sh
+python -m pip install -r deploy/requirements-gateway.txt
+python scripts/run_demo.py
+```
+
+Open http://127.0.0.1:8765. Reference replay uses scripted answers with the real
+agent, tools, exact cache and durable approval. The mode is clearly labeled.
+Ask a source question, approve the draft and ask it again to inspect actual draft
+reuse. See [Windows instructions and optional explicit live mode](docs/WORKBENCH.md).
+This is a local application; no public deployment is implied.
+
 ## Offline quickstart
 
 Use Python in a virtual environment. The source tree is tested with the repository's
@@ -53,8 +68,11 @@ For document CLI commands see [agent contract](docs/document_agent.md).
 
 [R5's controlled replay](docs/audit/R5_CLOSEOUT.md) counts all provider/tool work,
 retains its negative agent result and makes no real token or monetary claim.
-[Live collection](docs/R5_LIVE_RUN.md) is explicit, free-only and quota-capped;
-no key belongs in this repository or chat. Actual independent answer review is pending.
+Live collection is explicit, free-only and quota-capped. The
+[partial request evidence](docs/audit/R5_PARTIAL_LIVE_CLOSEOUT.md) and
+[model-assisted review](docs/audit/R5_ANTIGRAVITY_RECONCILIATION.md) retain their
+limitations. No key belongs in this repository or chat. Independent human answer
+review remains pending.
 
 The [R6 scoped stage-input redesign](docs/audit/R6_AGENT_STAGE_CLOSEOUT.md) is
 implemented and passed its preregistered source-replay engineering criterion.
