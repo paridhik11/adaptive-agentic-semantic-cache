@@ -788,3 +788,30 @@ live pilot, not retrospective preregistration of the initial exploratory replay.
 | DAY3-QA-CACHE | Isolated actual-cache replay across 75 cases: semantic hits strict 0 (0 unsafe), anchors 4 (0), function rewrite 7 (2), hybrid 4 (0); each variant also has 1 known-bad exact seed reuse | Scripted provider/socket-blocked local model experiments, not live savings or enabled production. Retrieval and approval denominators differ | docs/audit/DAY3_CLOSEOUT.md; docs/audit/day3/*.json.gz |
 | DAY3-QA-CURVES | 25 fixed grid points per QA variant, all 100 recomputed; none jointly attains >=30% positive coverage and zero negative accepts on these authored cases | Descriptive development failure, no threshold selected. Day 3 quality remains blocked | scripts/analyze_day3_policies.py; docs/audit/DAY3_POLICY_CURVES.svg |
 | DAY3-REGRESSIONS | Full offline suite 767 passed/23 deselected, 118.90 s. Final boundary hardening: 79 focused tests passed; 232 recorded QA triplet agreement decisions unchanged. Both runners reject evidence overwrite. 0 external generation calls/0 human reviews | Engineering verification, not model accuracy. Restored full-score baseline remains 2/14 positive and 0/31 negative recommendations on old 45 cases | docs/audit/DAY3_POLICY_RESULT.json |
+
+
+## Stage A final-split lock (created before any Stage A evaluation)
+
+Final manifest SHA-256: `1d83b84584b62fc1d5662a45e0db7d5753f5871fa273dadb62f1f3a7b01e39af`. Data SHA-256: `0869f373fce124f5aa7039e09cd65069152632f09a6d918a30a07e9f6a82afba`. Generator-created, template-authored labels; no final inference or per-case review. See `data/intent_stage_a/final.manifest.json`.
+
+## Intent-pair Stage A (uncommitted user-review work)
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| INTENT-A-DATA | 215 groups: train 96, dev 59, calibration 36, final 24. Dev 668 new-question pairs, including 224 labeled non-exact positives | Authored/template-generated, source-lineage split, not independent human labels. Final locked and unevaluated; old spent cases dev-only | data/intent_stage_a/manifest.json |
+| INTENT-A-RETRIEVAL | Dev MiniLM designated-group recall@1 221/224; @3 and @5 224/224 | Conditional constructed positive-opportunity retrieval, separate from pair decisions and serving hit rate | artifacts/stage_a/baselines-v1/metrics.json |
+| INTENT-A-BASELINES | Real local MiniLM, Quora and approved Redis scores, fixed baseline grids, per-family errors and group/lineage counts; original and verified metrics preserved | No selected policy, calibration, training or enabled serving. Parsed-call comparator not run: unapproved QA/NLI checkpoints absent | artifacts/stage_a/verified/metrics.json; docs/audit/STAGE_A_REPORT.md |
+| INTENT-A-VALIDATION | 9 focused tests passed; no final evaluation, external model inference, training or Git publication | Engineering checks, not model-precision evidence. Redistribution/retrieval bundle contains working-tree artifacts; pretrained cache restored via pinned scripts | artifacts/stage_a/tests.txt; artifacts/stage_a/BACKUP_MANIFEST.json |
+
+
+## Stage A final regeneration verification (2026-10-21)
+
+Evidence type: deterministic hash check, not model evaluation. Isolated
+regeneration matched the final manifest and both final stores byte-for-byte.
+Final manifest SHA-256 remains
+`1d83b84584b62fc1d5662a45e0db7d5753f5871fa273dadb62f1f3a7b01e39af`.
+Receipt: `artifacts/stage_a/final-regeneration-v1.json`. Command:
+`python scripts/verify_stage_a_regeneration.py --receipt artifacts/stage_a/final-regeneration-v1.json`
+(use a new receipt filename on repetition). No final per-case inspection or
+evaluation occurred. Final question/answer stores stay out of Git and remain
+in the backup. Public generator reproducibility is not cryptographic sealing.
