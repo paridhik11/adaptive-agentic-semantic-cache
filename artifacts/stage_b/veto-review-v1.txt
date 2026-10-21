@@ -1,0 +1,91 @@
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/evaluation/intent_stage_b_veto.py", "bytes": 4872, "sha256": "3d972405a3e318476a9545f98e9d335c85349bea5b338ded158216d6270c41ce"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/data/intent_stage_a/dev.jsonl", "bytes": 702763, "sha256": "f7a0027c60276c38e7bed7a316d3e3b5b7dca5d8b627109a825e18c0749b600e"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/configs/intent_stage_b_v1.json", "bytes": 1210, "sha256": "e2f992e83e980602416c2e619527f3be5088d92924bebee09b6a159bf5b8ff85"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/data/intent_stage_b/v2/dev.jsonl", "bytes": 959072, "sha256": "2fa384c4f54a6ea6da3a60c658dbaa14b70b291350e3255ecea64865222a6687"}
+{
+  "added_requirement": {
+    "n": 64,
+    "rejected": 64,
+    "true_positives_wrongly_rejected": 0,
+    "reasons": {
+      "requirements_mismatch": 64
+    }
+  },
+  "ambiguity": {
+    "n": 64,
+    "rejected": 64,
+    "true_positives_wrongly_rejected": 0,
+    "reasons": {
+      "unparsed_or_ambiguous_question": 64,
+      "operation_mismatch": 64,
+      "input_type_mismatch": 64,
+      "output_type_mismatch": 64,
+      "numbers_mismatch": 64,
+      "versions_mismatch": 64,
+      "requirements_mismatch": 64
+    }
+  },
+  "direction_inversion": {
+    "n": 64,
+    "rejected": 64,
+    "true_positives_wrongly_rejected": 0,
+    "reasons": {
+      "direction_mismatch": 64
+    }
+  },
+  "entity_swap": {
+    "n": 64,
+    "rejected": 64,
+    "true_positives_wrongly_rejected": 0,
+    "reasons": {
+      "input_type_mismatch": 64
+    }
+  },
+  "negation": {
+    "n": 64,
+    "rejected": 64,
+    "true_positives_wrongly_rejected": 0,
+    "reasons": {
+      "negated_mismatch": 64
+    }
+  },
+  "paraphrase": {
+    "n": 192,
+    "rejected": 0,
+    "true_positives_wrongly_rejected": 0,
+    "reasons": {}
+  },
+  "quantity": {
+    "n": 64,
+    "rejected": 64,
+    "true_positives_wrongly_rejected": 0,
+    "reasons": {
+      "numbers_mismatch": 64
+    }
+  },
+  "removed_requirement": {
+    "n": 64,
+    "rejected": 64,
+    "true_positives_wrongly_rejected": 0,
+    "reasons": {
+      "requirements_mismatch": 64
+    }
+  },
+  "unit": {
+    "n": 64,
+    "rejected": 64,
+    "true_positives_wrongly_rejected": 0,
+    "reasons": {
+      "units_mismatch": 64
+    }
+  },
+  "version": {
+    "n": 64,
+    "rejected": 64,
+    "true_positives_wrongly_rejected": 0,
+    "reasons": {
+      "numbers_mismatch": 64,
+      "versions_mismatch": 64
+    }
+  }
+}

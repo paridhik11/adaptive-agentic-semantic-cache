@@ -44,3 +44,45 @@ def test_actual_candidate_relation_is_not_designated_label():
     counterpart = next(c for c in cached if c['intent_signature']==changed['intent_signature'])
     assert changed['relation_to_cached'] == 'different_intent'
     assert relation(changed['intent_signature'], counterpart['intent_signature']) == 'same_intent'
+
+
+def test_veto_rejects_direction_and_preserves_known_paraphrases():
+    from src.evaluation.intent_stage_b_veto import veto
+    rows=records('dev')
+    cached={r['cached_case_id']:r for r in rows if r['role']=='cached'}
+    for r in rows:
+        if r['case_family']=='direction_inversion':
+            assert veto(cached[r['cached_case_id']]['question'],r['question'])['reject']
+        if r['case_family']=='paraphrase':
+            assert not veto(cached[r['cached_case_id']]['question'],r['question'])['reject']
+    assert veto('How do I convert A to B?', 'How do I convert A to B?')['reject']  # unsupported domain
+
+
+def test_classifier_required_even_when_veto_does_not_reject():
+    from src.evaluation.intent_stage_b_policy import choose
+    candidate={'cached_case_id':'c','predicted_class':'same_intent','same_probability':.2,'veto_reject':False}
+    assert choose([candidate],.9)[0] is None
+    candidate['same_probability']=.99
+    candidate['veto_reject']=True
+    assert choose([candidate],.9)[0] is None
+
+
+def test_competing_candidates_and_no_threshold_abstain():
+    from src.evaluation.intent_stage_b_policy import choose
+    cs=[{'cached_case_id':str(i),'predicted_class':'same_intent','same_probability':.99-i*.01,'veto_reject':False} for i in range(2)]
+    assert choose(cs,.9)[1]=='competing_candidates'
+    assert choose(cs,None)[0] is None
+    cs[0]['veto_reject']=True
+    assert choose(cs,.9)[1]=='competing_candidates'  # veto cannot promote runner-up
+    cs[1]['same_probability']=.8
+    assert choose(cs,.7)[1]=='veto'  # no fallback after top candidate rejection
+
+
+def test_unknown_accept_cannot_produce_precision_bound():
+    from src.evaluation.intent_stage_b_policy import summarize
+    record={'case_id':'x','group_id':'g','source_lineage_id':'l','template_id':'t','case_family':'ambiguity',
+            'suitable_candidate_ids':[],'exact_candidate':None,'candidates':[{'cached_case_id':'c','actual_relation':None}]}
+    result=summarize([record],[('c','semantic')])
+    assert result['precision'] is None
+    assert result['accepted_unknown']==1
+    assert result['groups']['conditional_error_upper'] is None
