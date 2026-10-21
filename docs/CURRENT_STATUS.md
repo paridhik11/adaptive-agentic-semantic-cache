@@ -192,3 +192,16 @@ Day 1 inventory and Day 2 local retrieval experiments are recorded, with
 limitations. Day 3 quality is unresolved: baseline unsafe reuse remains high.
 Stage B trains and measures a candidate policy; completion of its implementation
 will not itself prove generalization, human-reviewed quality or a passing gate.
+
+
+## Stage B through B3 — quality remains blocked
+
+B0 diverse synthetic cohorts, B1 three-seed LoRA fine-tuning and B2 question
+veto are committed locally. B3 actual-candidate dev evaluation shows a major
+train/held-out gap: 100% train four-class fit versus 46.3%–73.2% dev agreement
+with synthetic labels. At fixed diagnostic threshold 0.5, primary seed 11
+safely accepts 4/256 positive opportunities with zero observed unsafe accepts;
+other seeds accept 60–66/256. Top-3 retrieval recall is 256/256. These are
+synthetic diagnostics, not independent accuracy. Do not switch to the best seed.
+B4 calibration follows the already written config without model/rule changes.
+General semantic serving stays DISABLED. No Stage C or UI work is authorized.

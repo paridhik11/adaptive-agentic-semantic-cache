@@ -1,0 +1,16 @@
+{
+  "python": "3.12.14",
+  "packages": {
+    "torch": "2.6.0+cpu",
+    "transformers": "4.57.6",
+    "sentence-transformers": "3.4.1",
+    "huggingface-hub": "0.36.2",
+    "tokenizers": "0.22.2",
+    "safetensors": "0.8.0",
+    "numpy": "2.2.6",
+    "scipy": "1.18.1",
+    "pytest": "9.1.1"
+  },
+  "restore_note": "Use a fresh Python 3.12 environment; torch CPU wheel may require https://download.pytorch.org/whl/cpu. These versions are runtime evidence, not new model downloads.",
+  "resolved_metadata_command_error": "Initial metadata-only invocation omitted PYTHONPATH and failed before writing outputs; rerun with the same project package path used by every model experiment. No training or scored evidence affected."
+}

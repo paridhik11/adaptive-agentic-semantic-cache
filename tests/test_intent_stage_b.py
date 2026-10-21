@@ -86,3 +86,14 @@ def test_unknown_accept_cannot_produce_precision_bound():
     assert result['precision'] is None
     assert result['accepted_unknown']==1
     assert result['groups']['conditional_error_upper'] is None
+
+
+def test_final_rejected_before_scoring_or_output_creation(tmp_path):
+    import subprocess
+    import sys
+    output=tmp_path/'forbidden'
+    result=subprocess.run([sys.executable,str(ROOT/'scripts/score_stage_b_candidates.py'),
+                           '--split','final','--output-dir',str(output)],capture_output=True,text=True)
+    assert result.returncode==2
+    assert 'invalid choice' in result.stderr
+    assert not output.exists()

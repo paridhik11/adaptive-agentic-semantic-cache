@@ -1,0 +1,15 @@
+{
+  "labels": "programmatic synthetic oracle over Codex-authored contracts; model-assisted construction, not human review",
+  "model_scores": "measured local CPU inference on synthetic data; not natural-language population accuracy",
+  "train_numbers": "training diagnostics only",
+  "dev_numbers": "template-held-out development diagnostics, not threshold selection",
+  "calibration_numbers": "calibration-only threshold selection; no independent test",
+  "timing_numbers": "local component measurements, cold/model-load definitions and dependent warm probes stated",
+  "independent_human_labels": 0,
+  "final_evaluation": "NOT RUN",
+  "known_contract_limitations": [
+    "ASCII versus Unicode source-domain restriction is treated as an incomparable input kind by the synthetic four-class oracle; specificity ordering is not independently verified. Reuse safety labels only distinguish same from non-same.",
+    "Training sequence domain versus held-out string domain confounds template/lineage and domain shift.",
+    "Output signature is domain-derived and does not parse arbitrary output representation requests."
+  ]
+}
