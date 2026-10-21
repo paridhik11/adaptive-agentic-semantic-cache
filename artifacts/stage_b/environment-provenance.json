@@ -1,0 +1,9 @@
+{
+  "evidence_type": "runtime_provenance_check_not_model_accuracy",
+  "stage_a_original_hostname_sha256": "4cf725b4d190f8d5cedd4e96f97ff4b5e3ddcd4296a2bf6436fca6ebde2d7985",
+  "stage_b_restore_hostname_sha256": "ec555b8d51ebd4989724107e11e7dabce95bd5bb97d5ed1aebec557bfa6c3d3a",
+  "current_hostname_sha256": "ec555b8d51ebd4989724107e11e7dabce95bd5bb97d5ed1aebec557bfa6c3d3a",
+  "stage_b_restore_and_experiments_same_environment": true,
+  "original_stage_a_machine_matches_current": false,
+  "baseline_comparison_note": "All Stage B baseline methods are rerun on the same current dev/calibration cohorts, not compared as cross-machine latency claims."
+}

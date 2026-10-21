@@ -837,3 +837,12 @@ All learned tensors exported to safetensors; exact reconstruction probes passed.
 Hashes, hardware, config, per-epoch losses, wall time and command:
 `artifacts/stage_b/training-v1.json`, `train-classification-v1.json`,
 `model-receipts/`. Models frozen before dev/calibration experiments.
+
+
+## Stage B B4 calibration
+
+Evidence: synthetic calibration-only, conditional exact group-bound selection.
+All three prespecified seeds have no qualifying fixed-grid threshold. Selected
+policies always abstain semantically: zero safe coverage, precision undefined.
+No held-out tuning or final evaluation occurred. See calibration-v1/selection.json
+and docs/audit/STAGE_B_B4.md. This does not complete the Day 3 quality objective.

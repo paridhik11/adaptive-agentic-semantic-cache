@@ -1,0 +1,13 @@
+{"stage": "prepare_started"}
+{"stage": "prepare_complete"}
+{"stage": "model_started", "key": "redis_reranker", "pid": 29}
+{"stage": "model_started", "key": "quora", "pid": 27}
+{"stage": "model_started", "key": "11", "pid": 30}
+{"stage": "model_finished", "key": "quora", "pid": 27, "returncode": 0}
+{"stage": "model_started", "key": "29", "pid": 85}
+{"stage": "model_finished", "key": "11", "pid": 30, "returncode": 0}
+{"stage": "model_started", "key": "47", "pid": 86}
+{"stage": "model_finished", "key": "47", "pid": 86, "returncode": 0}
+{"stage": "model_finished", "key": "29", "pid": 85, "returncode": 0}
+{"stage": "model_finished", "key": "redis_reranker", "pid": 29, "returncode": 0}
+{"stage": "complete", "receipt": "artifacts/stage_b/calibration/receipt.json"}

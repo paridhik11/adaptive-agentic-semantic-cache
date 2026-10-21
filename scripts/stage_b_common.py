@@ -88,4 +88,6 @@ def hardware():
     return {'platform': platform.platform(), 'python': platform.python_version(),
             'torch': torch.__version__, 'logical_cpus': os.cpu_count(), 'torch_threads': torch.get_num_threads(),
             'cpu_model': next((x.split(':',1)[1].strip() for x in cpu if x.startswith('model name')), 'unknown'),
-            'memory_total': next((x for x in memory if x.startswith('MemTotal:')), 'unknown'), 'device': 'cpu'}
+            'memory_total': next((x for x in memory if x.startswith('MemTotal:')), 'unknown'), 'device': 'cpu',
+            'cgroup_cpu_max':Path('/sys/fs/cgroup/cpu.max').read_text().strip() if Path('/sys/fs/cgroup/cpu.max').exists() else None,
+            'cgroup_memory_max_bytes':Path('/sys/fs/cgroup/memory.max').read_text().strip() if Path('/sys/fs/cgroup/memory.max').exists() else None}

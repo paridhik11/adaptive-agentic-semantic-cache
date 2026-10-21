@@ -119,3 +119,6 @@ artifacts/stage_a/verified/decisions.jsonl
 # Stage B retrievable backups and learned local model exports
 artifacts/stage_b/*backup*.zip
 artifacts/stage_b/models/
+
+# Resumable numeric inference caches (final raw score files are versioned)
+artifacts/stage_b/*/checkpoints/

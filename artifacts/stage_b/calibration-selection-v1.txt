@@ -1,0 +1,298 @@
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/configs/intent_stage_b_v1.json", "bytes": 1210, "sha256": "e2f992e83e980602416c2e619527f3be5088d92924bebee09b6a159bf5b8ff85"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/configs/intent_stage_b_calibration_v1.json", "bytes": 1002, "sha256": "8d4867329ccdab452c631e66c9abe2aa9d989421fb20e8e9d8b564c245d676e2"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/artifacts/stage_b/calibration/scored.jsonl.gz", "bytes": 2051487, "sha256": "a2dcf7997fe83faf5e6733e75923d4c87118704f7f0f43b2abf764c0f0d005a4"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/artifacts/stage_b/dev/scored.jsonl.gz", "bytes": 522538, "sha256": "01d1e7644ed2a2157fdd9c0182d057e77c74baa0e81b1a73670be50377586c03"}
+{
+  "selected_thresholds": {
+    "11": null,
+    "29": null,
+    "47": null
+  },
+  "metrics": [
+    {
+      "split": "dev",
+      "seed": 11,
+      "threshold": null,
+      "evidence_type": "synthetic_template_held_out_actual_candidate_diagnostic_not_human_truth",
+      "total_queries": 832,
+      "exact_queries": 64,
+      "exact_accepts": 64,
+      "nonexact_opportunities": 768,
+      "accepted_nonexact": 0,
+      "safe_accepts": 0,
+      "unsafe_accepts": 0,
+      "accepted_unknown": 0,
+      "positive_opportunities": 256,
+      "precision": null,
+      "labeled_precision_excluding_unknown": null,
+      "safe_coverage": 0.0,
+      "unsafe_accept_rate": 0.0,
+      "retrieval_recall_at_k": 1.0,
+      "retrieval_missed_positives": 0,
+      "decision_lost_positives": 256,
+      "missed_positive_causes": {
+        "no_calibrated_threshold": 256
+      },
+      "unsafe_by_family": {},
+      "groups": {
+        "accepted": 0,
+        "safe": 0,
+        "failed": 0,
+        "unknown": 0,
+        "conditional_error_upper": null,
+        "conditional_safety_lower": null,
+        "alpha": 0.001666666666666668,
+        "population_guarantee_established": false
+      },
+      "lineages": {
+        "accepted": 0,
+        "safe": 0,
+        "failed": 0,
+        "unknown": 0,
+        "conditional_error_upper": null,
+        "conditional_safety_lower": null,
+        "alpha": 0.001666666666666668,
+        "population_guarantee_established": false
+      },
+      "bound_assumption": "independent Bernoulli cluster outcomes; purposive templates and shared lineages do not establish this assumption"
+    },
+    {
+      "split": "dev",
+      "seed": 29,
+      "threshold": null,
+      "evidence_type": "synthetic_template_held_out_actual_candidate_diagnostic_not_human_truth",
+      "total_queries": 832,
+      "exact_queries": 64,
+      "exact_accepts": 64,
+      "nonexact_opportunities": 768,
+      "accepted_nonexact": 0,
+      "safe_accepts": 0,
+      "unsafe_accepts": 0,
+      "accepted_unknown": 0,
+      "positive_opportunities": 256,
+      "precision": null,
+      "labeled_precision_excluding_unknown": null,
+      "safe_coverage": 0.0,
+      "unsafe_accept_rate": 0.0,
+      "retrieval_recall_at_k": 1.0,
+      "retrieval_missed_positives": 0,
+      "decision_lost_positives": 256,
+      "missed_positive_causes": {
+        "no_calibrated_threshold": 256
+      },
+      "unsafe_by_family": {},
+      "groups": {
+        "accepted": 0,
+        "safe": 0,
+        "failed": 0,
+        "unknown": 0,
+        "conditional_error_upper": null,
+        "conditional_safety_lower": null,
+        "alpha": 0.001666666666666668,
+        "population_guarantee_established": false
+      },
+      "lineages": {
+        "accepted": 0,
+        "safe": 0,
+        "failed": 0,
+        "unknown": 0,
+        "conditional_error_upper": null,
+        "conditional_safety_lower": null,
+        "alpha": 0.001666666666666668,
+        "population_guarantee_established": false
+      },
+      "bound_assumption": "independent Bernoulli cluster outcomes; purposive templates and shared lineages do not establish this assumption"
+    },
+    {
+      "split": "dev",
+      "seed": 47,
+      "threshold": null,
+      "evidence_type": "synthetic_template_held_out_actual_candidate_diagnostic_not_human_truth",
+      "total_queries": 832,
+      "exact_queries": 64,
+      "exact_accepts": 64,
+      "nonexact_opportunities": 768,
+      "accepted_nonexact": 0,
+      "safe_accepts": 0,
+      "unsafe_accepts": 0,
+      "accepted_unknown": 0,
+      "positive_opportunities": 256,
+      "precision": null,
+      "labeled_precision_excluding_unknown": null,
+      "safe_coverage": 0.0,
+      "unsafe_accept_rate": 0.0,
+      "retrieval_recall_at_k": 1.0,
+      "retrieval_missed_positives": 0,
+      "decision_lost_positives": 256,
+      "missed_positive_causes": {
+        "no_calibrated_threshold": 256
+      },
+      "unsafe_by_family": {},
+      "groups": {
+        "accepted": 0,
+        "safe": 0,
+        "failed": 0,
+        "unknown": 0,
+        "conditional_error_upper": null,
+        "conditional_safety_lower": null,
+        "alpha": 0.001666666666666668,
+        "population_guarantee_established": false
+      },
+      "lineages": {
+        "accepted": 0,
+        "safe": 0,
+        "failed": 0,
+        "unknown": 0,
+        "conditional_error_upper": null,
+        "conditional_safety_lower": null,
+        "alpha": 0.001666666666666668,
+        "population_guarantee_established": false
+      },
+      "bound_assumption": "independent Bernoulli cluster outcomes; purposive templates and shared lineages do not establish this assumption"
+    },
+    {
+      "split": "calibration",
+      "seed": 11,
+      "threshold": null,
+      "evidence_type": "synthetic_template_held_out_actual_candidate_diagnostic_not_human_truth",
+      "total_queries": 3328,
+      "exact_queries": 256,
+      "exact_accepts": 256,
+      "nonexact_opportunities": 3072,
+      "accepted_nonexact": 0,
+      "safe_accepts": 0,
+      "unsafe_accepts": 0,
+      "accepted_unknown": 0,
+      "positive_opportunities": 1024,
+      "precision": null,
+      "labeled_precision_excluding_unknown": null,
+      "safe_coverage": 0.0,
+      "unsafe_accept_rate": 0.0,
+      "retrieval_recall_at_k": 0.990234375,
+      "retrieval_missed_positives": 10,
+      "decision_lost_positives": 1014,
+      "missed_positive_causes": {
+        "no_calibrated_threshold": 1014,
+        "retrieval_miss": 10
+      },
+      "unsafe_by_family": {},
+      "groups": {
+        "accepted": 0,
+        "safe": 0,
+        "failed": 0,
+        "unknown": 0,
+        "conditional_error_upper": null,
+        "conditional_safety_lower": null,
+        "alpha": 0.001666666666666668,
+        "population_guarantee_established": false
+      },
+      "lineages": {
+        "accepted": 0,
+        "safe": 0,
+        "failed": 0,
+        "unknown": 0,
+        "conditional_error_upper": null,
+        "conditional_safety_lower": null,
+        "alpha": 0.001666666666666668,
+        "population_guarantee_established": false
+      },
+      "bound_assumption": "independent Bernoulli cluster outcomes; purposive templates and shared lineages do not establish this assumption"
+    },
+    {
+      "split": "calibration",
+      "seed": 29,
+      "threshold": null,
+      "evidence_type": "synthetic_template_held_out_actual_candidate_diagnostic_not_human_truth",
+      "total_queries": 3328,
+      "exact_queries": 256,
+      "exact_accepts": 256,
+      "nonexact_opportunities": 3072,
+      "accepted_nonexact": 0,
+      "safe_accepts": 0,
+      "unsafe_accepts": 0,
+      "accepted_unknown": 0,
+      "positive_opportunities": 1024,
+      "precision": null,
+      "labeled_precision_excluding_unknown": null,
+      "safe_coverage": 0.0,
+      "unsafe_accept_rate": 0.0,
+      "retrieval_recall_at_k": 0.990234375,
+      "retrieval_missed_positives": 10,
+      "decision_lost_positives": 1014,
+      "missed_positive_causes": {
+        "no_calibrated_threshold": 1014,
+        "retrieval_miss": 10
+      },
+      "unsafe_by_family": {},
+      "groups": {
+        "accepted": 0,
+        "safe": 0,
+        "failed": 0,
+        "unknown": 0,
+        "conditional_error_upper": null,
+        "conditional_safety_lower": null,
+        "alpha": 0.001666666666666668,
+        "population_guarantee_established": false
+      },
+      "lineages": {
+        "accepted": 0,
+        "safe": 0,
+        "failed": 0,
+        "unknown": 0,
+        "conditional_error_upper": null,
+        "conditional_safety_lower": null,
+        "alpha": 0.001666666666666668,
+        "population_guarantee_established": false
+      },
+      "bound_assumption": "independent Bernoulli cluster outcomes; purposive templates and shared lineages do not establish this assumption"
+    },
+    {
+      "split": "calibration",
+      "seed": 47,
+      "threshold": null,
+      "evidence_type": "synthetic_template_held_out_actual_candidate_diagnostic_not_human_truth",
+      "total_queries": 3328,
+      "exact_queries": 256,
+      "exact_accepts": 256,
+      "nonexact_opportunities": 3072,
+      "accepted_nonexact": 0,
+      "safe_accepts": 0,
+      "unsafe_accepts": 0,
+      "accepted_unknown": 0,
+      "positive_opportunities": 1024,
+      "precision": null,
+      "labeled_precision_excluding_unknown": null,
+      "safe_coverage": 0.0,
+      "unsafe_accept_rate": 0.0,
+      "retrieval_recall_at_k": 0.990234375,
+      "retrieval_missed_positives": 10,
+      "decision_lost_positives": 1014,
+      "missed_positive_causes": {
+        "no_calibrated_threshold": 1014,
+        "retrieval_miss": 10
+      },
+      "unsafe_by_family": {},
+      "groups": {
+        "accepted": 0,
+        "safe": 0,
+        "failed": 0,
+        "unknown": 0,
+        "conditional_error_upper": null,
+        "conditional_safety_lower": null,
+        "alpha": 0.001666666666666668,
+        "population_guarantee_established": false
+      },
+      "lineages": {
+        "accepted": 0,
+        "safe": 0,
+        "failed": 0,
+        "unknown": 0,
+        "conditional_error_upper": null,
+        "conditional_safety_lower": null,
+        "alpha": 0.001666666666666668,
+        "population_guarantee_established": false
+      },
+      "bound_assumption": "independent Bernoulli cluster outcomes; purposive templates and shared lineages do not establish this assumption"
+    }
+  ]
+}

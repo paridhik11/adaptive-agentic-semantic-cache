@@ -1,6 +1,6 @@
 # Natural-wording review request — no responses supplied by Codex
 
-Fill `data/intent_stage_b/v2/natural-review-request.jsonl`: 50 blank slots,
+Work on a COPY of `data/intent_stage_b/v2/natural-review-request.jsonl`: 50 blank slots,
 balanced across the suggested families. Write BOTH questions yourself. Do not
 copy generated dataset wording, model outputs, public pairs or this project's
 formatter templates. Keep Python requests self-contained and state any material
@@ -38,7 +38,9 @@ Write a rationale identifying what is preserved or changed. Ideally a second
 reviewer labels independently; keep both labels, disagreements and adjudication
 provenance. Never force a null case into a definite class to increase sample size.
 
-Return the completed JSONL without running the policy yourself. The implementation
+Return a separately named completed JSONL without running the policy yourself.
+Do not overwrite the frozen blank request or generated train/dev/calibration
+files; completed reviews belong in a new versioned natural-review directory. The implementation
 and thresholds must remain frozen for its first diagnostic evaluation; do not
 tune on it and then call it fresh. Once used for development it is spent.
 

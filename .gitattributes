@@ -3,3 +3,10 @@ artifacts/stage_a/** -text
 docs/FACTS.md text eol=lf
 data/intent_stage_b/** -text
 artifacts/stage_b/** -text
+# Preserve bytes of hashed experiment inputs/source on Windows checkouts
+configs/intent_stage_a*.json text eol=lf
+configs/intent_stage_b*.json text eol=lf
+scripts/*stage_a*.py text eol=lf
+scripts/*stage_b*.py text eol=lf
+scripts/inventory_intent_artifacts.py text eol=lf
+src/evaluation/intent_stage_*.py text eol=lf

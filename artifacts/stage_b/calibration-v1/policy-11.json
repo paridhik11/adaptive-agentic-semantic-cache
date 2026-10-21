@@ -1,0 +1,60 @@
+{
+  "schema": "stage-b-policy-v1",
+  "seed": 11,
+  "threshold": null,
+  "threshold_status": "no_qualifying_threshold_always_abstain",
+  "trained_model": {
+    "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/artifacts/stage_b/models/11/adapter.safetensors",
+    "bytes": 605120,
+    "sha256": "89685b335847eb052d7bf3ba55f9ace99cbde6e9d08277e0cb16ebeed244b348"
+  },
+  "base_repo": "cross-encoder/quora-distilroberta-base",
+  "base_revision": "f62e7a4b20b97195c2868e53ec59126df5eac743",
+  "embedding_repo": "sentence-transformers/all-MiniLM-L6-v2",
+  "embedding_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "embedding_weight_sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+  "base_weight_sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb",
+  "veto_version": "question-veto-v1",
+  "veto_sha256": "3d972405a3e318476a9545f98e9d335c85349bea5b338ded158216d6270c41ce",
+  "top_k": 3,
+  "competition_margin": 0.05,
+  "training_config_sha256": "e2f992e83e980602416c2e619527f3be5088d92924bebee09b6a159bf5b8ff85",
+  "calibration_config_sha256": "8d4867329ccdab452c631e66c9abe2aa9d989421fb20e8e9d8b564c245d676e2",
+  "calibration_scored_sha256": "a2dcf7997fe83faf5e6733e75923d4c87118704f7f0f43b2abf764c0f0d005a4",
+  "alpha_per_threshold": 0.001666666666666668,
+  "confidence_contract": {
+    "schema": "stage-b-calibration-v1",
+    "target_group_error_rate": 0.05,
+    "one_sided_confidence": 0.95,
+    "thresholds": [
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      0.95,
+      0.975,
+      0.99,
+      0.995,
+      0.999
+    ],
+    "seeds": [
+      11,
+      29,
+      47
+    ],
+    "multiplicity_correction": "Bonferroni across 10 thresholds and 3 seeds; alpha = 0.05/30",
+    "selection": "within each seed, maximize safe positive coverage among thresholds satisfying adjusted group upper error bound and zero accepted unknowns; ties choose higher threshold; no qualifying threshold means always abstain",
+    "group_failure": "any unsafe accepted nonexact query in group; unknown acceptance prevents qualification",
+    "assumptions": "Clopper-Pearson arithmetic conditional on independent Bernoulli group outcomes; purposive templates and shared lineages do not establish that assumption. No population guarantee. Lineage bound reported separately.",
+    "final_evaluation_allowed": false,
+    "serving_enabled": false
+  },
+  "public_data_used": false,
+  "provenance_flags": [
+    "possible pretraining overlap with public pair data"
+  ],
+  "serving_enabled": false,
+  "population_guarantee_established": false,
+  "seed_selection": "first listed seed 11 is primary, prespecified; other seeds report spread only"
+}

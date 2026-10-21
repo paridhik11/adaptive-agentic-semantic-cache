@@ -49,15 +49,16 @@ def summarize(records, decisions, alpha=.05):
         positive=bool(r['suitable_candidate_ids']) and r['exact_candidate'] is None
         selected=next((c for c in r['candidates'] if c['cached_case_id']==cid),None)
         relation=selected['actual_relation'] if selected else ('same_intent' if cause=='exact' else None)
-        accepted=cid is not None and cause!='exact'
+        exact_query=r['exact_candidate'] is not None
+        accepted=cid is not None and not exact_query
         cases.append({'case_id':r['case_id'],'group_id':r['group_id'],'lineage':r['source_lineage_id'],
             'template':r['template_id'],'family':r['case_family'],'positive_opportunity':positive,
-            'selected_candidate':cid,'selected_relation':relation,'cause':cause,
+            'selected_candidate':cid,'selected_relation':relation,'cause':cause,'is_exact_query':exact_query,
             'accepted_nonexact':accepted,'safe':accepted and relation=='same_intent',
             'unsafe':accepted and relation not in ('same_intent',None),
             'accepted_unknown':accepted and relation is None,
             'retrievable_positive':any(c['actual_relation']=='same_intent' for c in r['candidates'])})
-    nonexact=[c for c in cases if c['cause']!='exact']
+    nonexact=[c for c in cases if not c['is_exact_query']]
     accepted=[c for c in nonexact if c['accepted_nonexact']]
     safe=sum(c['safe'] for c in accepted);unsafe=sum(c['unsafe'] for c in accepted);unknown=sum(c['accepted_unknown'] for c in accepted)
     positive=sum(c['positive_opportunity'] for c in nonexact)
@@ -74,6 +75,8 @@ def summarize(records, decisions, alpha=.05):
             'conditional_safety_lower':None if missing or not groups else 1-cp_error(failed,len(groups),alpha),
             'alpha':alpha,'population_guarantee_established':False}
     return {'evidence_type':'synthetic_template_held_out_actual_candidate_diagnostic_not_human_truth',
+        'total_queries':len(cases),'exact_queries':sum(c['is_exact_query'] for c in cases),
+        'exact_accepts':sum(c['is_exact_query'] and c['selected_candidate'] is not None for c in cases),
         'nonexact_opportunities':len(nonexact),'accepted_nonexact':len(accepted),'safe_accepts':safe,
         'unsafe_accepts':unsafe,'accepted_unknown':unknown,'positive_opportunities':positive,
         'precision':safe/len(accepted) if accepted and not unknown else None,

@@ -4,18 +4,25 @@ Single current status page. Updated 2026-10-21 (Asia/Calcutta).
 Historical status/master reports are preserved with superseded banners. FACTS.md
 is the evidence ledger, not a second implementation-status page.
 
-## Active approved task: intent-pair Stage A only
+## Current task: Stage B B4 complete; B5 closeout in progress
 
-The user has replaced the earlier answer-applicability direction with a four-class
-question-intent relation study. Only same_intent can be accepted within trusted
-scope; cached-answer quality is a separate audit dimension. Stage A data/harness
-and available baselines are complete in the uncommitted working tree. See
-[audit/STAGE_A_REPORT.md](audit/STAGE_A_REPORT.md). No Stage B/C authorization.
-The user now reviews and pushes: no agent commits, pushes or branch creation.
-All important new artifacts are packaged for retrieval before workspace reset.
-The locked generated final is not independently reviewed and cannot establish the
-prior final quality gate; it has not been evaluated. The historical parsed-call
-baseline remains unavailable pending separate checkpoint approval.
+Stage A is committed on three stacked local branches. Stage B B0–B3 are
+committed on `stage-b/classifier`; B4 calibration has completed and its commit
+is being prepared. Local milestone commits are authorized. Pushing, merging,
+rebasing main and final-split evaluation are prohibited.
+
+Evidence: programmatic synthetic template-held-out diagnostics, not human truth.
+All three classifier seeds fit training perfectly but generalize substantially
+worse. No fixed-grid threshold passes the prespecified conditional calibration
+gate for any seed; selected semantic policies always abstain. This is zero useful
+semantic coverage, not demonstrated perfect precision. General semantic serving
+remains DISABLED. Day 1–2 inventory/retrieval engineering is recorded; Day 3
+quality is unresolved. Tests passing cannot establish model quality.
+
+The remaining authorized work is B5 comparison, local timing, report, local
+commit and downloadable backup, then STOP. No Stage C or website work.
+The natural-review request remains 50 blank slots; independent labels are zero.
+Public records have not been downloaded. The final split remains unevaluated.
 
 ## Active priority: general semantic answer reuse
 

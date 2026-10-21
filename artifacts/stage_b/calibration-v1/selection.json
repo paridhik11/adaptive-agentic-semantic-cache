@@ -1,0 +1,11 @@
+{
+  "evidence_type": "synthetic_calibration_only_conditional_CP",
+  "selected": {
+    "11": null,
+    "29": null,
+    "47": null
+  },
+  "dev_opened_during_selection": false,
+  "final_read": false,
+  "alpha_per_threshold": 0.001666666666666668
+}

@@ -97,3 +97,58 @@ def test_final_rejected_before_scoring_or_output_creation(tmp_path):
     assert result.returncode==2
     assert 'invalid choice' in result.stderr
     assert not output.exists()
+
+
+def test_always_miss_and_exact_only_have_same_semantic_denominator():
+    from scripts.report_stage_b_dev import baseline_decision
+    from src.evaluation.intent_stage_b_policy import summarize
+    record={'case_id':'x','group_id':'g','source_lineage_id':'l','template_id':'t','case_family':'exact_control',
+            'suitable_candidate_ids':['c'],'exact_candidate':'c','candidates':[{'cached_case_id':'c','actual_relation':'same_intent'}]}
+    miss=summarize([record],[baseline_decision(record,'always_miss',None)])
+    exact=summarize([record],[baseline_decision(record,'exact_only',None)])
+    assert miss['exact_accepts']==0 and exact['exact_accepts']==1
+    assert miss['nonexact_opportunities']==exact['nonexact_opportunities']==0
+
+
+def test_gold_relation_cannot_change_policy_decision():
+    from src.evaluation.intent_stage_b_policy import decision_view
+    candidate={'cached_case_id':'c','actual_relation':'same_intent',
+               'classifier':{'11':{'probabilities':[.99,.003,.003,.004],'predicted_class':'same_intent'}},
+               'veto':{'reject':False}}
+    record={'exact_candidate':None,'candidates':[candidate],'suitable_candidate_ids':['c']}
+    before=decision_view(record,11,.9)
+    candidate['actual_relation']='different_intent'
+    record['suitable_candidate_ids']=[]
+    assert decision_view(record,11,.9)==before==('c','semantic')
+
+
+def test_numeric_checkpoint_preserves_prefix_and_ignores_unfinished_temp(tmp_path):
+    import numpy as np
+    from scripts.stage_b_checkpoint import load,save
+    path=tmp_path/'scores.npz';binding={'inputs':'abc','model':'def'}
+    values=[[.1,.9],[.2,.8]]
+    timings={'batch_ms':[1.2],'load_seconds':[.3]}
+    save(path,binding,values,timings)
+    path.with_suffix('.npz.tmp').write_bytes(b'interrupted incomplete write')
+    actual,state=load(path,binding)
+    assert np.array_equal(np.asarray(actual,dtype=np.float32),np.asarray(values,dtype=np.float32))
+    assert state==timings
+
+
+def test_numeric_checkpoint_rejects_different_model_or_inputs(tmp_path):
+    import pytest
+    from scripts.stage_b_checkpoint import load,save
+    path=tmp_path/'scores.npz'
+    save(path,{'inputs':'a','model':'b'},[[.9]],{'batch_ms':[1.],'load_seconds':[.1]})
+    with pytest.raises(ValueError,match='differ'):
+        load(path,{'inputs':'changed','model':'b'})
+
+
+def test_checkpoint_contains_no_pickle_arrays(tmp_path):
+    import numpy as np
+    from scripts.stage_b_checkpoint import save
+    path=tmp_path/'scores.npz'
+    save(path,{'inputs':'a'},[[.9]],{'batch_ms':[],'load_seconds':[]})
+    with np.load(path,allow_pickle=False) as archive:
+        assert archive['data'].dtype==np.float32
+        assert archive['metadata'].dtype.kind=='U'

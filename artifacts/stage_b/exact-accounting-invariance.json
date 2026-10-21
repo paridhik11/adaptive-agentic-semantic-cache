@@ -1,0 +1,254 @@
+{
+  "evidence_type": "deterministic_aggregation_regression_check_not_new_model_inference",
+  "all_preexisting_metrics_identical": true,
+  "points": [
+    {
+      "baseline": "always_miss",
+      "threshold": null,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 0
+    },
+    {
+      "baseline": "exact_only",
+      "threshold": null,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "minilm_cosine",
+      "threshold": 0.5,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "minilm_cosine",
+      "threshold": 0.6,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "minilm_cosine",
+      "threshold": 0.7,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "minilm_cosine",
+      "threshold": 0.8,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "minilm_cosine",
+      "threshold": 0.9,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "minilm_cosine",
+      "threshold": 0.95,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_embedding_cosine",
+      "threshold": 0.5,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_embedding_cosine",
+      "threshold": 0.6,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_embedding_cosine",
+      "threshold": 0.7,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_embedding_cosine",
+      "threshold": 0.8,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_embedding_cosine",
+      "threshold": 0.9,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_embedding_cosine",
+      "threshold": 0.95,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "quora",
+      "threshold": 0.5,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "quora",
+      "threshold": 0.7,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "quora",
+      "threshold": 0.9,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "quora",
+      "threshold": 0.95,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "quora",
+      "threshold": 0.99,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker",
+      "threshold": 0.5,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker",
+      "threshold": 0.7,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker",
+      "threshold": 0.9,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker",
+      "threshold": 0.95,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker",
+      "threshold": 0.99,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "existing_guard_stack",
+      "threshold": 0.5,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "existing_guard_stack",
+      "threshold": 0.7,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "existing_guard_stack",
+      "threshold": 0.9,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "existing_guard_stack",
+      "threshold": 0.95,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "existing_guard_stack",
+      "threshold": 0.99,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker_same_set_diagnostic",
+      "threshold": 0,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker_same_set_diagnostic",
+      "threshold": 0.01,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker_same_set_diagnostic",
+      "threshold": 0.025,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker_same_set_diagnostic",
+      "threshold": 0.05,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker_same_set_diagnostic",
+      "threshold": 0.07275390625,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker_same_set_diagnostic",
+      "threshold": 0.075,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker_same_set_diagnostic",
+      "threshold": 0.0888671875,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker_same_set_diagnostic",
+      "threshold": 0.1,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker_same_set_diagnostic",
+      "threshold": 0.2,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker_same_set_diagnostic",
+      "threshold": 0.3,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker_same_set_diagnostic",
+      "threshold": 0.4,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    },
+    {
+      "baseline": "redis_reranker_same_set_diagnostic",
+      "threshold": 0.5,
+      "all_preexisting_semantic_metrics_identical": true,
+      "exact_accepts": 64
+    }
+  ],
+  "original_error_rows_preserved": 14468,
+  "all_original_error_row_fields_identical": true
+}

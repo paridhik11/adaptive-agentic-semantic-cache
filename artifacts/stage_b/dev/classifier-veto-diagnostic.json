@@ -5,6 +5,9 @@
     "selection": "fixed preregistered diagnostic, not selected",
     "with_veto": {
       "evidence_type": "synthetic_template_held_out_actual_candidate_diagnostic_not_human_truth",
+      "total_queries": 832,
+      "exact_queries": 64,
+      "exact_accepts": 64,
       "nonexact_opportunities": 768,
       "accepted_nonexact": 4,
       "safe_accepts": 4,
@@ -47,6 +50,9 @@
     },
     "without_veto": {
       "evidence_type": "synthetic_template_held_out_actual_candidate_diagnostic_not_human_truth",
+      "total_queries": 832,
+      "exact_queries": 64,
+      "exact_accepts": 64,
       "nonexact_opportunities": 768,
       "accepted_nonexact": 5,
       "safe_accepts": 4,
@@ -108,6 +114,9 @@
     "selection": "fixed preregistered diagnostic, not selected",
     "with_veto": {
       "evidence_type": "synthetic_template_held_out_actual_candidate_diagnostic_not_human_truth",
+      "total_queries": 832,
+      "exact_queries": 64,
+      "exact_accepts": 64,
       "nonexact_opportunities": 768,
       "accepted_nonexact": 66,
       "safe_accepts": 66,
@@ -149,6 +158,9 @@
     },
     "without_veto": {
       "evidence_type": "synthetic_template_held_out_actual_candidate_diagnostic_not_human_truth",
+      "total_queries": 832,
+      "exact_queries": 64,
+      "exact_accepts": 64,
       "nonexact_opportunities": 768,
       "accepted_nonexact": 71,
       "safe_accepts": 66,
@@ -233,6 +245,9 @@
     "selection": "fixed preregistered diagnostic, not selected",
     "with_veto": {
       "evidence_type": "synthetic_template_held_out_actual_candidate_diagnostic_not_human_truth",
+      "total_queries": 832,
+      "exact_queries": 64,
+      "exact_accepts": 64,
       "nonexact_opportunities": 768,
       "accepted_nonexact": 60,
       "safe_accepts": 60,
@@ -274,6 +289,9 @@
     },
     "without_veto": {
       "evidence_type": "synthetic_template_held_out_actual_candidate_diagnostic_not_human_truth",
+      "total_queries": 832,
+      "exact_queries": 64,
+      "exact_accepts": 64,
       "nonexact_opportunities": 768,
       "accepted_nonexact": 60,
       "safe_accepts": 60,

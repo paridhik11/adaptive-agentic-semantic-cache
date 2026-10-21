@@ -1,0 +1,10 @@
+{
+  "evidence_type": "observed_environment_limits_not_model_performance",
+  "values": {
+    "cpu.max": "800000 100000",
+    "memory.max": "8589934592",
+    "memory.current": "6008643584",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0"
+  },
+  "note": "logical CPU count and host /proc RAM in earlier receipts differ from cgroup quotas; current quota is 8 CPU-equivalents and 8 GiB memory"
+}

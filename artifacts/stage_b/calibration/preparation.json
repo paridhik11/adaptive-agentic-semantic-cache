@@ -1,0 +1,9 @@
+{
+  "status": "embedding checkpoints complete",
+  "unique_pairs": 7631,
+  "unique_texts": 2497,
+  "input_splits": [
+    "calibration"
+  ],
+  "final_read": false
+}

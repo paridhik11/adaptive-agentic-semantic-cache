@@ -27,6 +27,7 @@ def baseline_specs():
 
 
 def baseline_decision(record,name,threshold):
+    if name=='always_miss':return None,'baseline_abstention'
     if record['exact_candidate'] is not None:return record['exact_candidate'],'exact'
     if name in ['always_miss','exact_only']:return None,'baseline_abstention'
     field={'minilm_cosine':'minilm_cosine','redis_embedding_cosine':'redis_cosine',
