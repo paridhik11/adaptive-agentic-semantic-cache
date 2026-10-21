@@ -97,7 +97,7 @@ def cases():
     return rows
 
 
-def run():
+def run(*, collect_all_scores=False):
     encoder = DenseEncoder(ENCODER_MODEL, ENCODER_REVISION)
     scorer = LocalEntailmentScorer()
     policies, rows = {}, []
@@ -107,7 +107,8 @@ def run():
             policies[context] = DecomposedDiagnosticPolicy(evidence_index=EvidenceIndex(
                 context=context, spans=source_spans(context), encoder=encoder), scorer=scorer)
         assessment = policies[context].assess(request(context,case["incoming"]),
-            request(context,case["original"]), response(case["answer"]))
+            request(context,case["original"]), response(case["answer"]),
+            collect_all_scores=collect_all_scores)
         rows.append({"id":case["id"],"group":case["group"],"cohort":case["cohort"],
             "authored_expected_applicable":case["expected"],"case_sha256":digest(case),
             "assessment":asdict(assessment)})
@@ -152,6 +153,7 @@ def run():
             'returned_seed_response':result.response==seed.response})
         print('cache',case['id'],result.tier,flush=True)
     return {"schema_version":"decomposed-development-v1","evidence_type":"builder_authored_model_assisted_development",
+        "collect_all_scores":collect_all_scores,
         "cases_sha256":digest(cases()),"models":{"encoder":encoder.identity,"nli":scorer.identity},
         "thresholds":{"nli":.95,"evidence_cosine":.50,"evidence_margin":.03},
         "rows":rows,"summaries":summaries,
@@ -170,8 +172,11 @@ def run():
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--prepare",action="store_true")
+    parser.add_argument("--collect-all-scores",action="store_true")
     parser.add_argument("--output",type=Path,default=Path("runs/semantic-dev/decomposed-v1.json"))
     args=parser.parse_args()
+    if args.output.exists():
+        parser.error("output exists; preserve previous evidence and choose a fresh path")
     if args.prepare:
         from huggingface_hub import snapshot_download
         for model,revision in [(NLI_MODEL,NLI_REVISION),(ENCODER_MODEL,ENCODER_REVISION)]:
@@ -181,9 +186,10 @@ def main():
         raise RuntimeError("network connections forbidden during local experiment")
     socket.socket.connect=forbidden
     socket.create_connection=forbidden
-    result=run()
+    result=run(collect_all_scores=args.collect_all_scores)
     args.output.parent.mkdir(parents=True,exist_ok=True)
-    args.output.write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
+    with args.output.open('x',encoding='utf-8') as handle:
+        handle.write(json.dumps(result,indent=2)+"\n")
     print(json.dumps(result["summaries"],indent=2))
 
 

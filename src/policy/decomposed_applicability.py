@@ -193,7 +193,10 @@ class DecomposedDiagnosticPolicy:
         self.identity = POLICY_VERSION + ":" + digest({"evidence": evidence_index.identity,
             "scorer": scorer.identity, "threshold": threshold})
 
-    def assess(self, request, candidate_request, answer):
+    def assess(self, request, candidate_request, answer, *, collect_all_scores=False):
+        """Development option observes later checks; never reverses a rejection."""
+        if type(collect_all_scores) is not bool:
+            raise ValueError("collect_all_scores must be boolean")
         started = time.perf_counter()
         scores, evidence, embeddings, nli = {}, None, 0, 0
         def result(approved, reason):
@@ -242,6 +245,7 @@ class DecomposedDiagnosticPolicy:
                       ("incoming_to_original", task_statement(incoming), task_statement(original)),
                       ("evidence_coverage", content, evidence["text"])]
             checks += [("claim_support_"+str(i), self.index.context, claim) for i,claim in enumerate(claims)]
+            first_failure = None
             for name, premise, hypothesis in checks:
                 nli += 1
                 values = self.scorer.score(premise, hypothesis)
@@ -254,7 +258,11 @@ class DecomposedDiagnosticPolicy:
                 scores[name] = dict(values)
                 # Short circuit saves work; remaining checks are missing, not successes.
                 if values["entailment"] < self.threshold:
-                    return result(False, name + "_not_entailed")
+                    first_failure = first_failure or name + "_not_entailed"
+                    if not collect_all_scores:
+                        return result(False, first_failure)
+            if first_failure:
+                return result(False, first_failure)
         except Exception:
             return result(False, "local_check_failed")
         return result(True, "diagnostic_positive")

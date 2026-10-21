@@ -165,3 +165,33 @@ def test_nli_overflow_is_rejected_before_inference():
 def test_mutable_nli_revision_is_rejected_before_loading():
     with pytest.raises(ValueError,match="immutable"):
         LocalEntailmentScorer(revision="main")
+
+
+def test_complete_diagnostics_keep_rejection_and_count_later_checks():
+    class FirstNeutral(Scorer):
+        def score(self, *args):
+            v = super().score(*args)
+            return {'entailment': .01, 'neutral': .98, 'contradiction': .01} if len(self.inputs)==1 else v
+    policy, _ = setup(scorer=FirstNeutral())
+    a = policy.assess(request(INCOMING),request(),response(),collect_all_scores=True)
+    assert not a.recommended_reuse and a.reason=='original_to_incoming_not_entailed'
+    assert len(a.scores)==a.work['nli_attempts']==4
+
+
+def test_complete_diagnostics_preserve_hard_guards():
+    policy, _ = setup()
+    a = policy.assess(request('How do I convert a tuple to a list?'),request(),response(),collect_all_scores=True)
+    assert not a.recommended_reuse and a.work['nli_attempts']==0
+
+
+def test_complete_diagnostics_later_error_abstains():
+    class LaterError(Scorer):
+        def score(self, *args):
+            super().score(*args)
+            if len(self.inputs)>1:
+                raise RuntimeError('fixture')
+            return {'entailment': .01, 'neutral': .98, 'contradiction': .01}
+    policy, _ = setup(scorer=LaterError())
+    a = policy.assess(request(INCOMING),request(),response(),collect_all_scores=True)
+    assert not a.recommended_reuse and a.reason=='local_check_failed'
+    assert a.work['nli_attempts']==2

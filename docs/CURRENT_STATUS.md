@@ -40,6 +40,21 @@ Coverage remains inadequate; production serving still abstains. These are
 builder-authored diagnostics, not independent accuracy. See
 [audit closeout](audit/DECOMPOSED_POLICY_CLOSEOUT.md).
 
+[Day 3 research and policy measurements](audit/DAY3_CLOSEOUT.md) are now recorded.
+Four question-conditioned QA variants were tested on 75 authored development
+cases (24 positives, 51 negatives, 23 intent groups). At fixed initial settings:
+strict spans accept 0/24 positives; parsed-call anchors 5/24 with 0 negatives;
+function-question rewriting 13/24 with 4 unsafe negatives; the intent-gated hybrid
+6/24 with 0 negatives. Hybrid fixture cache: 4 semantic hits, no unsafe semantic
+hit; the separate exact path repeats one bad seeded answer. The old 45-case
+cohort is unchanged, and the hybrid accepts only 2/14 positives on that cohort.
+None of the fixed QA grid points combines 30% positive coverage and zero negative
+accepts on these authored cases. This is not independent accuracy or a final gate.
+Day 3 quality remains blocked; do not advance to Day 4 calibration or UI work.
+Engineering fixes include full-score diagnostics, preserved evidence outputs and
+word-boundary-safe span comparison. Full suite: 767 passed, 23 excluded; final
+focused suite after boundary hardening: 79 passed. No general serving enabled.
+
 The target is the tolerant group gate, at least 125 accepted groups with a
 one-sided 95% exact lower safety bound at least 95%, plus separate answer
 precision, coverage and hard-negative endpoints. Final cohort sizing and review
@@ -80,8 +95,8 @@ Passing engineering tests does not change that gate or establish a completion ra
 - R5 agent source replay: 44 tasks per arm; both arms made 132 simulated provider
   invocations and 88 actual local tool invocations. No agent call reduction.
   Changing task memory changed drafting inputs. See [R5](audit/R5_CLOSEOUT.md).
-- Last recorded full offline suite: 744 passed, 23 excluded. These are engineering
-  tests, not accuracy observations. Source: [validation](audit/DECOMPOSED_POLICY_RESULT.json).
+- Last recorded full offline suite: 767 passed, 23 excluded. These are engineering
+  tests, not accuracy observations. Source: [validation](audit/DAY3_POLICY_RESULT.json).
 
 Counts above cite FACTS.md recovery/R5 sections and linked raw aggregate artifacts.
 R6 added one explicitly frozen source-reference replay; no live model run is implied.
