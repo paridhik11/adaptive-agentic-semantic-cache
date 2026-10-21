@@ -1,0 +1,16 @@
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/configs/intent_stage_a.json", "bytes": 566, "sha256": "5d251931058552493d0db89956dad1941d0a8dbd0456208c0bc5cce75b5b12a7"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/encoders.py", "bytes": 1965, "sha256": "9c75a78f768015b0baba6fe0cec0562029f8e7002e5adafa11b9cb1bca2c35f8"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/decision/local_equivalence.py", "bytes": 13256, "sha256": "f63ed1ce3adb66a8bb2adc04cd4d1248c351f5903ad81600ec2c8c0708ac5023"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/decision/judge_call.py", "bytes": 34662, "sha256": "548558fa575ebcf579e52dfa87b31e4dab0b63c887aa79ad53a8572fd562fef6"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/cache/normalizer.py", "bytes": 3452, "sha256": "2bfa718c2a8177a4b915c3aedc739915fb72b987e9ef6a9269f16e6da6579d83"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/evaluation/intent_stage_a.py", "bytes": 3219, "sha256": "d11cecede2375a3fe0b7cd75645a5bb7d18623a32df262759bc225022379217c"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/data/intent_stage_a/dev.jsonl", "bytes": 702763, "sha256": "f7a0027c60276c38e7bed7a316d3e3b5b7dca5d8b627109a825e18c0749b600e"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/data/intent_stage_a/dev.answers.jsonl", "bytes": 49965, "sha256": "00ac2f4aaef526a02266901b9b9b7dc8ed891e19fd53d4f541aa27511a0e62df"}
+Traceback (most recent call last):
+  File "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/scripts/run_stage_a_baselines.py", line 120, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/scripts/run_stage_a_baselines.py", line 31, in main
+    c=cached[r['cached_case_id']];rows.append({**r,'cached_question':c['question'],'is_exact':r['question']==c['question']})
+      ~~~~~~^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'spent:legacy-list-tuple:cached'

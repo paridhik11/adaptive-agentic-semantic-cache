@@ -1,0 +1,6 @@
+/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/artifacts/stage_a/baselines-v1/metrics.json 321896 752a51b1c043c10da54100564a686f8692e1f0971f6dabcef47afed594a303bb
+/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/artifacts/stage_a/baselines-v1/scores.jsonl 975924 cc9789bd6c7d8127d5e952ca7d212f6175edb821ebb7683d0d40d033ef42b14e
+/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/configs/intent_stage_a_redis_supplement.json 576 717d26b656acbce0f8da09b33e24cae32da9da0d8573a6e7b78643b2617e4a36
+/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/data/intent_stage_a/manifest.json 3389 6109d2c0ff96f04a7220ec11b2ed7cfc304961647938ab1a0784cbbd6c14ad9f
+/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/docs/audit/STAGE_A_REDIS_RECEIPT.json 11329 aeaf2e72bb55cc1765f7a0c006f2d511028e47d999a3e37dbff1245b393229a3
+Report and verified metrics written; no inference or final data read.

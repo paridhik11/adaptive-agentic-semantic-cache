@@ -112,3 +112,6 @@ runs/
 data/intent_stage_a/final.jsonl
 data/intent_stage_a/final.answers.jsonl
 artifacts/stage_a/*backup*.zip
+
+# Lossless compressed decision log is versioned; raw duplicate stays local
+artifacts/stage_a/verified/decisions.jsonl

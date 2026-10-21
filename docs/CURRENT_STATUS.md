@@ -4,6 +4,19 @@ Single current status page. Updated 2026-10-21 (Asia/Calcutta).
 Historical status/master reports are preserved with superseded banners. FACTS.md
 is the evidence ledger, not a second implementation-status page.
 
+## Active approved task: intent-pair Stage A only
+
+The user has replaced the earlier answer-applicability direction with a four-class
+question-intent relation study. Only same_intent can be accepted within trusted
+scope; cached-answer quality is a separate audit dimension. Stage A data/harness
+and available baselines are complete in the uncommitted working tree. See
+[audit/STAGE_A_REPORT.md](audit/STAGE_A_REPORT.md). No Stage B/C authorization.
+The user now reviews and pushes: no agent commits, pushes or branch creation.
+All important new artifacts are packaged for retrieval before workspace reset.
+The locked generated final is not independently reviewed and cannot establish the
+prior final quality gate; it has not been evaluated. The historical parsed-call
+baseline remains unavailable pending separate checkpoint approval.
+
 ## Active priority: general semantic answer reuse
 
 The user's scope correction makes semantic answer caching the primary product,
@@ -164,3 +177,18 @@ launcher binds only to loopback. Multi-user hosting remains separate work.
 The full offline suite passed with 701 tests and 23 exclusions; JavaScript syntax,
 HTTP application flow and packaged asset inclusion passed. Browser visual QA was
 unavailable here and is not claimed. See [validation](audit/WORKBENCH_VALIDATION.json).
+
+
+## Stage A local publication complete (2026-10-21)
+
+Latest authorization: LOCAL commits only; no pushing, merging, main rebasing or
+force operations. Harness and data are committed on stacked branches. The user
+approved the verified compressed decision log; the raw oversized duplicate is
+gitignored. Results are committed next, followed by Stage B on its own branch.
+Final regeneration matched by hash only; final question and answer stores remain
+out of Git and in backups. General semantic serving remains disabled.
+
+Day 1 inventory and Day 2 local retrieval experiments are recorded, with
+limitations. Day 3 quality is unresolved: baseline unsafe reuse remains high.
+Stage B trains and measures a candidate policy; completion of its implementation
+will not itself prove generalization, human-reviewed quality or a passing gate.

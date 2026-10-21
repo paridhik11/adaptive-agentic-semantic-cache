@@ -1,0 +1,135 @@
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/scripts/probe_question_conditioned.py", "bytes": 11602, "sha256": "4a0dbe0f50b07212160ea6a0e15b0d10b365353924fe0f2415abc48f0a24cf5b"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/scripts/probe_decomposed_policy.py", "bytes": 13154, "sha256": "998c983f6f6edbeeb609715bbd62487b95d0d93716851d068492f30d8bccaf8f"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/scripts/probe_answer_applicability.py", "bytes": 8534, "sha256": "bfb1894ee7dc1df11227dd2621f644cfdf921d5a648a69488b3626ff4bd54b85"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/question_conditioned.py", "bytes": 14592, "sha256": "e9ae1683db4ff8f469d1ee8a2471adac8a162bf0a4c068b09aa50103fd0040a0"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/decomposed_applicability.py", "bytes": 14249, "sha256": "f1a514f4de3bd5fa51849a8d97fa16de1b37ff929ea7c64be02850bea38598a0"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/LICENSE", "bytes": 1067, "sha256": "4d61294e4ea1754e1de8249059e34bf7273915bd70e87acfdceac6212b48e30a"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/scripts/build_stage_a_intents.py", "bytes": 13971, "sha256": "79ee554a23bd1267ddf475893151054c4fe808eff13ddc4e0e15a860cd8ddffd"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/docs/FACTS.md", "bytes": 109781, "sha256": "3e72f415576079d471eabf64fd0785b76626d8a3d813cf05c4aa53c2081ee6fc"}
+{
+  "schema": "intent-stage-a-v1",
+  "evidence_type": "authored_and_template_generated_not_human_reviewed",
+  "public_pairs_used": false,
+  "public_pair_exclusion": "No vetted license-checked local public corpus selected; historical sealed/pilot/FAQ sets excluded.",
+  "final_manifest_sha256": "1d83b84584b62fc1d5662a45e0db7d5753f5871fa273dadb62f1f3a7b01e39af",
+  "splits": {
+    "train": {
+      "groups": 96,
+      "source_lineages": 8,
+      "rows": 1248,
+      "new_rows": 1152,
+      "families": {
+        "cached_control": 96,
+        "natural_paraphrase": 288,
+        "exact_control": 96,
+        "added_requirement": 96,
+        "removed_requirement": 96,
+        "negation_polarity": 96,
+        "entity_function_swap": 96,
+        "direction_role_inversion": 96,
+        "quantity_version_unit": 96,
+        "negative_control": 96,
+        "ambiguity": 96
+      },
+      "provenance": {
+        "template-generated": 1248
+      },
+      "relations": {
+        "same_intent": 480,
+        "new_more_specific": 192,
+        "new_more_general": 96,
+        "different_intent": 384,
+        "None": 96
+      }
+    },
+    "dev": {
+      "groups": 59,
+      "source_lineages": 24,
+      "rows": 727,
+      "new_rows": 668,
+      "families": {
+        "cached_control": 59,
+        "natural_paraphrase": 225,
+        "direction_role_inversion": 61,
+        "added_requirement": 61,
+        "exact_control": 59,
+        "negation_polarity": 59,
+        "entity_function_swap": 59,
+        "removed_requirement": 36,
+        "quantity_version_unit": 36,
+        "negative_control": 36,
+        "ambiguity": 36
+      },
+      "provenance": {
+        "authored": 121,
+        "template-generated": 606
+      },
+      "relations": {
+        "same_intent": 343,
+        "different_intent": 215,
+        "new_more_specific": 97,
+        "new_more_general": 36,
+        "None": 36
+      }
+    },
+    "calibration": {
+      "groups": 36,
+      "source_lineages": 3,
+      "rows": 468,
+      "new_rows": 432,
+      "families": {
+        "cached_control": 36,
+        "natural_paraphrase": 108,
+        "exact_control": 36,
+        "added_requirement": 36,
+        "removed_requirement": 36,
+        "negation_polarity": 36,
+        "entity_function_swap": 36,
+        "direction_role_inversion": 36,
+        "quantity_version_unit": 36,
+        "negative_control": 36,
+        "ambiguity": 36
+      },
+      "provenance": {
+        "template-generated": 468
+      },
+      "relations": {
+        "same_intent": 180,
+        "new_more_specific": 72,
+        "new_more_general": 36,
+        "different_intent": 144,
+        "None": 36
+      }
+    },
+    "final": {
+      "groups": 24,
+      "source_lineages": 2,
+      "rows": 312,
+      "new_rows": 288,
+      "families": {
+        "cached_control": 24,
+        "natural_paraphrase": 72,
+        "exact_control": 24,
+        "added_requirement": 24,
+        "removed_requirement": 24,
+        "negation_polarity": 24,
+        "entity_function_swap": 24,
+        "direction_role_inversion": 24,
+        "quantity_version_unit": 24,
+        "negative_control": 24,
+        "ambiguity": 24
+      },
+      "provenance": {
+        "template-generated": 312
+      },
+      "relations": {
+        "same_intent": 120,
+        "new_more_specific": 48,
+        "new_more_general": 24,
+        "different_intent": 96,
+        "None": 24
+      }
+    }
+  }
+}
+FINAL_MANIFEST_SHA256 1d83b84584b62fc1d5662a45e0db7d5753f5871fa273dadb62f1f3a7b01e39af
