@@ -815,3 +815,13 @@ Receipt: `artifacts/stage_a/final-regeneration-v1.json`. Command:
 (use a new receipt filename on repetition). No final per-case inspection or
 evaluation occurred. Final question/answer stores stay out of Git and remain
 in the backup. Public generator reproducibility is not cryptographic sealing.
+
+
+## Stage B preregistered construction (before training)
+
+Evidence: synthetic template-held-out construction, not human truth. Version v2
+contains train 96 groups/24 lineages, dev 64/8, calibration 256/8. Manifest SHA-256:
+`6169212e09ed657fbdbd321995b80cc5df685430e1538a4b46426b698a38e9e2`.
+No final split was read/evaluated. Training and calibration settings are fixed in
+`configs/intent_stage_b_v1.json` and `configs/intent_stage_b_calibration_v1.json`.
+Natural-review request: 50 blank slots; public data not approved/downloaded.

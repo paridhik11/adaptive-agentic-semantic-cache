@@ -115,3 +115,7 @@ artifacts/stage_a/*backup*.zip
 
 # Lossless compressed decision log is versioned; raw duplicate stays local
 artifacts/stage_a/verified/decisions.jsonl
+
+# Stage B retrievable backups and learned local model exports
+artifacts/stage_b/*backup*.zip
+artifacts/stage_b/models/

@@ -1,3 +1,5 @@
 data/intent_stage_a/** -text
 artifacts/stage_a/** -text
 docs/FACTS.md text eol=lf
+data/intent_stage_b/** -text
+artifacts/stage_b/** -text

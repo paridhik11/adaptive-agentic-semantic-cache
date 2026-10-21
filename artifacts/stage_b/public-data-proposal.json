@@ -1,0 +1,476 @@
+[
+  {
+    "dataset_id": "google-research-datasets/paws",
+    "revision": "161ece9501cf0a11f3e48bd356eaa82de46d6a09",
+    "license": [
+      "other"
+    ],
+    "card_metadata": {
+      "annotations_creators": [
+        "expert-generated",
+        "machine-generated"
+      ],
+      "language_creators": [
+        "machine-generated"
+      ],
+      "language": [
+        "en"
+      ],
+      "license": [
+        "other"
+      ],
+      "multilinguality": [
+        "monolingual"
+      ],
+      "size_categories": [
+        "100K<n<1M",
+        "10K<n<100K"
+      ],
+      "source_datasets": [
+        "original"
+      ],
+      "task_categories": [
+        "text-classification"
+      ],
+      "task_ids": [
+        "semantic-similarity-classification",
+        "semantic-similarity-scoring",
+        "text-scoring",
+        "multi-input-text-classification"
+      ],
+      "paperswithcode_id": "paws",
+      "pretty_name": "PAWS: Paraphrase Adversaries from Word Scrambling",
+      "config_names": [
+        "labeled_final",
+        "labeled_swap",
+        "unlabeled_final"
+      ],
+      "tags": [
+        "paraphrase-identification"
+      ],
+      "dataset_info": [
+        {
+          "config_name": "labeled_final",
+          "features": [
+            {
+              "name": "id",
+              "dtype": "int32"
+            },
+            {
+              "name": "sentence1",
+              "dtype": "string"
+            },
+            {
+              "name": "sentence2",
+              "dtype": "string"
+            },
+            {
+              "name": "label",
+              "dtype": {
+                "class_label": {
+                  "names": {
+                    "0": "0",
+                    "1": "1"
+                  }
+                }
+              }
+            }
+          ],
+          "splits": [
+            {
+              "name": "train",
+              "num_bytes": 12239938,
+              "num_examples": 49401
+            },
+            {
+              "name": "test",
+              "num_bytes": 1987794,
+              "num_examples": 8000
+            },
+            {
+              "name": "validation",
+              "num_bytes": 1975862,
+              "num_examples": 8000
+            }
+          ],
+          "download_size": 10899391,
+          "dataset_size": 16203594
+        },
+        {
+          "config_name": "labeled_swap",
+          "features": [
+            {
+              "name": "id",
+              "dtype": "int32"
+            },
+            {
+              "name": "sentence1",
+              "dtype": "string"
+            },
+            {
+              "name": "sentence2",
+              "dtype": "string"
+            },
+            {
+              "name": "label",
+              "dtype": {
+                "class_label": {
+                  "names": {
+                    "0": "0",
+                    "1": "1"
+                  }
+                }
+              }
+            }
+          ],
+          "splits": [
+            {
+              "name": "train",
+              "num_bytes": 7963619,
+              "num_examples": 30397
+            }
+          ],
+          "download_size": 5741756,
+          "dataset_size": 7963619
+        },
+        {
+          "config_name": "unlabeled_final",
+          "features": [
+            {
+              "name": "id",
+              "dtype": "int32"
+            },
+            {
+              "name": "sentence1",
+              "dtype": "string"
+            },
+            {
+              "name": "sentence2",
+              "dtype": "string"
+            },
+            {
+              "name": "label",
+              "dtype": {
+                "class_label": {
+                  "names": {
+                    "0": "0",
+                    "1": "1"
+                  }
+                }
+              }
+            }
+          ],
+          "splits": [
+            {
+              "name": "train",
+              "num_bytes": 157806476,
+              "num_examples": 645652
+            },
+            {
+              "name": "validation",
+              "num_bytes": 2442165,
+              "num_examples": 10000
+            }
+          ],
+          "download_size": 112644285,
+          "dataset_size": 160248641
+        }
+      ],
+      "configs": [
+        {
+          "config_name": "labeled_final",
+          "data_files": [
+            {
+              "split": "train",
+              "path": "labeled_final/train-*"
+            },
+            {
+              "split": "test",
+              "path": "labeled_final/test-*"
+            },
+            {
+              "split": "validation",
+              "path": "labeled_final/validation-*"
+            }
+          ]
+        },
+        {
+          "config_name": "labeled_swap",
+          "data_files": [
+            {
+              "split": "train",
+              "path": "labeled_swap/train-*"
+            }
+          ]
+        },
+        {
+          "config_name": "unlabeled_final",
+          "data_files": [
+            {
+              "split": "train",
+              "path": "unlabeled_final/train-*"
+            },
+            {
+              "split": "validation",
+              "path": "unlabeled_final/validation-*"
+            }
+          ]
+        }
+      ]
+    },
+    "files": [
+      {
+        "path": ".gitattributes",
+        "bytes": 1174
+      },
+      {
+        "path": "README.md",
+        "bytes": 9795
+      },
+      {
+        "path": "labeled_final/test-00000-of-00001.parquet",
+        "bytes": 1235128
+      },
+      {
+        "path": "labeled_final/train-00000-of-00001.parquet",
+        "bytes": 8433884
+      },
+      {
+        "path": "labeled_final/validation-00000-of-00001.parquet",
+        "bytes": 1230379
+      },
+      {
+        "path": "labeled_swap/train-00000-of-00001.parquet",
+        "bytes": 5741756
+      },
+      {
+        "path": "unlabeled_final/train-00000-of-00001.parquet",
+        "bytes": 110988709
+      },
+      {
+        "path": "unlabeled_final/validation-00000-of-00001.parquet",
+        "bytes": 1655576
+      }
+    ],
+    "approval": "pending; metadata only, no dataset files downloaded",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "dataset_id": "BeIR/cqadupstack-python",
+    "error": "RepositoryNotFoundError",
+    "detail": "401 Client Error. (Request ID: 7f9adb87-6ed6-4a72-b63b-cc11a2c69531)\n\nRepository Not Found for url: https://huggingface.co/api/datasets/BeIR/cqadupstack-python?blobs=True.\nPlease make sure you specified the correct `repo_id` and `repo_type`.\nIf you are trying to access a private or gated repo, make "
+  },
+  {
+    "dataset_id": "sentence-transformers/stackexchange-duplicates",
+    "revision": "1c9657aec12d9e101667bb9593efcc623c4a68ff",
+    "license": null,
+    "card_metadata": {
+      "language": [
+        "en"
+      ],
+      "multilinguality": [
+        "monolingual"
+      ],
+      "size_categories": [
+        "100K<n<1M"
+      ],
+      "task_categories": [
+        "feature-extraction",
+        "sentence-similarity"
+      ],
+      "pretty_name": "Stack Exchange Duplicates",
+      "tags": [
+        "sentence-transformers"
+      ],
+      "dataset_info": [
+        {
+          "config_name": "body-body-pair",
+          "features": [
+            {
+              "name": "body1",
+              "dtype": "string"
+            },
+            {
+              "name": "body2",
+              "dtype": "string"
+            }
+          ],
+          "splits": [
+            {
+              "name": "train",
+              "num_bytes": 305549013,
+              "num_examples": 250460
+            }
+          ],
+          "download_size": 181363161,
+          "dataset_size": 305549013
+        },
+        {
+          "config_name": "post-post-pair",
+          "features": [
+            {
+              "name": "post1",
+              "dtype": "string"
+            },
+            {
+              "name": "post2",
+              "dtype": "string"
+            }
+          ],
+          "splits": [
+            {
+              "name": "train",
+              "num_bytes": 333790087,
+              "num_examples": 250519
+            }
+          ],
+          "download_size": 194620191,
+          "dataset_size": 333790087
+        },
+        {
+          "config_name": "title-title-pair",
+          "features": [
+            {
+              "name": "title1",
+              "dtype": "string"
+            },
+            {
+              "name": "title2",
+              "dtype": "string"
+            }
+          ],
+          "splits": [
+            {
+              "name": "train",
+              "num_bytes": 35778522,
+              "num_examples": 304525
+            }
+          ],
+          "download_size": 25068596,
+          "dataset_size": 35778522
+        }
+      ],
+      "configs": [
+        {
+          "config_name": "body-body-pair",
+          "data_files": [
+            {
+              "split": "train",
+              "path": "body-body-pair/train-*"
+            }
+          ]
+        },
+        {
+          "config_name": "post-post-pair",
+          "data_files": [
+            {
+              "split": "train",
+              "path": "post-post-pair/train-*"
+            }
+          ]
+        },
+        {
+          "config_name": "title-title-pair",
+          "data_files": [
+            {
+              "split": "train",
+              "path": "title-title-pair/train-*"
+            }
+          ]
+        }
+      ]
+    },
+    "files": [
+      {
+        "path": ".gitattributes",
+        "bytes": 2307
+      },
+      {
+        "path": "README.md",
+        "bytes": 4487
+      },
+      {
+        "path": "body-body-pair/train-00000-of-00001.parquet",
+        "bytes": 181363161
+      },
+      {
+        "path": "post-post-pair/train-00000-of-00001.parquet",
+        "bytes": 194620191
+      },
+      {
+        "path": "title-title-pair/train-00000-of-00001.parquet",
+        "bytes": 25068596
+      }
+    ],
+    "approval": "pending; metadata only; no dataset files downloaded",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "dataset_id": "mteb/cqadupstack-retrieval",
+    "revision": "11452ff64abeb3a37db5e0cd75bfec4763c11d61",
+    "license": null,
+    "card_metadata": {},
+    "files": [
+      {
+        "path": ".gitattributes",
+        "bytes": 2473
+      },
+      {
+        "path": "data/android-00000-of-00001.json.gz",
+        "bytes": 555190
+      },
+      {
+        "path": "data/english-00000-of-00001.json.gz",
+        "bytes": 970792
+      },
+      {
+        "path": "data/gaming-00000-of-00001.json.gz",
+        "bytes": 1117497
+      },
+      {
+        "path": "data/gis-00000-of-00001.json.gz",
+        "bytes": 924012
+      },
+      {
+        "path": "data/mathematica-00000-of-00001.json.gz",
+        "bytes": 386709
+      },
+      {
+        "path": "data/physics-00000-of-00001.json.gz",
+        "bytes": 946388
+      },
+      {
+        "path": "data/programmers-00000-of-00001.json.gz",
+        "bytes": 841760
+      },
+      {
+        "path": "data/stats-00000-of-00001.json.gz",
+        "bytes": 981453
+      },
+      {
+        "path": "data/tex-00000-of-00001.json.gz",
+        "bytes": 1555984
+      },
+      {
+        "path": "data/unix-00000-of-00001.json.gz",
+        "bytes": 1149459
+      },
+      {
+        "path": "data/webmasters-00000-of-00001.json.gz",
+        "bytes": 437123
+      },
+      {
+        "path": "data/wordpress-00000-of-00001.json.gz",
+        "bytes": 1047494
+      }
+    ],
+    "approval": "pending; metadata only; no dataset files downloaded",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  }
+]
