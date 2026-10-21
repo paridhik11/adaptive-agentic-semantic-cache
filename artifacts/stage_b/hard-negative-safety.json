@@ -1,0 +1,1322 @@
+[
+  {
+    "split": "dev",
+    "seed": 11,
+    "family": "added_requirement",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "family": "ambiguity",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "family": "direction_inversion",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "family": "entity_swap",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "family": "exact_control",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "family": "negation",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "family": "paraphrase",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "family": "quantity",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "family": "removed_requirement",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "family": "unit",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "family": "version",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "family": "added_requirement",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "family": "ambiguity",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "family": "direction_inversion",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "family": "entity_swap",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "family": "exact_control",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "family": "negation",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "family": "paraphrase",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "family": "quantity",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "family": "removed_requirement",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "family": "unit",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "family": "version",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "family": "added_requirement",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "family": "ambiguity",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "family": "direction_inversion",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "family": "entity_swap",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "family": "exact_control",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "family": "negation",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "family": "paraphrase",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "family": "quantity",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "family": "removed_requirement",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "family": "unit",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "family": "version",
+    "negative_queries": 64,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 64,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.04572970233076244,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "family": "added_requirement",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "family": "ambiguity",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "family": "direction_inversion",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "family": "entity_swap",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "family": "exact_control",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "family": "negation",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "family": "paraphrase",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "family": "quantity",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "family": "removed_requirement",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "family": "unit",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "family": "version",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "family": "added_requirement",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "family": "ambiguity",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "family": "direction_inversion",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "family": "entity_swap",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "family": "exact_control",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "family": "negation",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "family": "paraphrase",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "family": "quantity",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "family": "removed_requirement",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "family": "unit",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "family": "version",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "family": "added_requirement",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "family": "ambiguity",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "family": "direction_inversion",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "family": "entity_swap",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "family": "exact_control",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "family": "negation",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "family": "paraphrase",
+    "negative_queries": 0,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 0,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": null,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "family": "quantity",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "family": "removed_requirement",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "family": "unit",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "family": "version",
+    "negative_queries": 256,
+    "definition": "no suitable cached contract anywhere in identical scope; definite question label only",
+    "evidence_type": "synthetic_negative_suite_conditional_cluster_arithmetic",
+    "group_id": {
+      "tested_clusters": 256,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.011633876163163281,
+      "population_guarantee_established": false
+    },
+    "source_lineage_id": {
+      "tested_clusters": 8,
+      "clusters_with_unsafe_accept": 0,
+      "conditional_error_upper_95": 0.3123439780663678,
+      "population_guarantee_established": false
+    }
+  }
+]

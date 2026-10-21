@@ -1,0 +1,3 @@
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/configs/intent_stage_b_v1.json", "bytes": 1210, "sha256": "e2f992e83e980602416c2e619527f3be5088d92924bebee09b6a159bf5b8ff85"}
+**GENERALIZATION FAILURE / TEMPLATE-MEMORIZATION WARNING.** Primary-seed train four-class accuracy is 100.00%; held-out dev is 46.31%, calibration 45.45%. These are synthetic designated-pair diagnostics, not reuse precision or independent accuracy. The unchanged guarded Quora baseline at 0.7 achieves 128/256 safe dev reuses with 0 observed unsafe accepts under the synthetic oracle.
+{"selected": {"11": null, "29": null, "47": null}, "report": "docs/audit/STAGE_B_REPORT.md"}

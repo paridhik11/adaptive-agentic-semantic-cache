@@ -1,0 +1,8 @@
+{
+  "evidence_type": "isolated_clone_prepare_check_not_full_experiment_reproduction",
+  "command": "python scripts/reproduce_stage_b.py --workspace NEW_DIRECTORY",
+  "execute": false,
+  "returncode": 0,
+  "stdout": "{\n  \"clone\": \"/tmp/stage-b-reproduce-check-d9ao92lw/isolated\",\n  \"execute\": false,\n  \"commands\": [\n    [\n      \"scripts/build_stage_b_intents.py\",\n      \"--output-dir\",\n      \"scratch/rebuilt-stage-b\"\n    ],\n    [\n      \"scripts/train_stage_b_classifier.py\"\n    ],\n    [\n      \"scripts/diagnose_stage_b_train.py\"\n    ],\n    [\n      \"scripts/review_stage_b_veto.py\"\n    ],\n    [\n      \"scripts/score_stage_b_candidates.py\",\n      \"--split\",\n      \"dev\",\n      \"--output-dir\",\n      \"artifacts/stage_b/dev\"\n    ],\n    [\n      \"scripts/report_stage_b_dev.py\",\n      \"--split\",\n      \"dev\"\n    ],\n    [\n      \"scripts/run_stage_b_scoring.py\",\n      \"--split\",\n      \"calibration\",\n      \"--output-dir\",\n      \"artifacts/stage_b/calibration\"\n    ],\n    [\n      \"scripts/calibrate_stage_b_policy.py\"\n    ],\n    [\n      \"scripts/report_stage_b_dev.py\",\n      \"--split\",\n      \"calibration\"\n    ],\n    [\n      \"scripts/benchmark_stage_b_local.py\"\n    ],\n    [\n      \"scripts/report_stage_b_final.py\"\n    ],\n    [\n      \"-m\",\n      \"pytest\",\n      \"-q\",\n      \"tests/test_intent_stage_a.py\",\n      \"tests/test_intent_stage_b.py\"\n    ]\n  ]\n}\n",
+  "stderr": "Cloning into '/tmp/stage-b-reproduce-check-d9ao92lw/isolated'...\ndone.\n"
+}

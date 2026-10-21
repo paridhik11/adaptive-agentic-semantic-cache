@@ -846,3 +846,15 @@ All three prespecified seeds have no qualifying fixed-grid threshold. Selected
 policies always abstain semantically: zero safe coverage, precision undefined.
 No held-out tuning or final evaluation occurred. See calibration-v1/selection.json
 and docs/audit/STAGE_B_B4.md. This does not complete the Day 3 quality objective.
+
+
+## Stage B B5 closeout
+
+Evidence: Codex-authored synthetic template-held-out diagnostics; no independent
+human ground truth. Primary seed designated-pair agreement is train 100%,
+dev 46.31%, calibration 45.45%. All seeds select null thresholds and zero
+semantic coverage. The unchanged guard baseline at 0.7 records safe coverage
+128/256 dev and 1,014/1,024 calibration, with zero observed unsafe accepts under
+the authored oracle. This does not establish natural answer precision or warrant
+serving promotion. See docs/audit/STAGE_B_REPORT.md and the full raw tables.
+Stage B stops after B5; Day 3 quality remains unresolved.

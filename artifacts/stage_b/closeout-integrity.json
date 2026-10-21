@@ -1,0 +1,8 @@
+{
+  "evidence_type": "artifact_integrity_not_accuracy",
+  "frozen_checks_passed": 16,
+  "final_manifest_sha256": "1d83b84584b62fc1d5662a45e0db7d5753f5871fa273dadb62f1f3a7b01e39af",
+  "final_records_inspected": false,
+  "tracked_or_candidate_files_over_5MB": [],
+  "learned_exports_ignored": true
+}

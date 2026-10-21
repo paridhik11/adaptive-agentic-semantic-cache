@@ -4,25 +4,41 @@ Single current status page. Updated 2026-10-21 (Asia/Calcutta).
 Historical status/master reports are preserved with superseded banners. FACTS.md
 is the evidence ledger, not a second implementation-status page.
 
-## Current task: Stage B B4 complete; B5 closeout in progress
+## Current milestone: Stage B B0–B5 complete; stopped for review
 
-Stage A is committed on three stacked local branches. Stage B B0–B3 are
-committed on `stage-b/classifier`; B4 calibration has completed and its commit
-is being prepared. Local milestone commits are authorized. Pushing, merging,
-rebasing main and final-split evaluation are prohibited.
+Stage A is committed on three stacked local branches. Stage B has one local
+commit per B0–B5 on `stage-b/classifier`. No push, merge or main rebase.
+Full eight-part report: [Stage B closeout](audit/STAGE_B_REPORT.md).
 
-Evidence: programmatic synthetic template-held-out diagnostics, not human truth.
-All three classifier seeds fit training perfectly but generalize substantially
-worse. No fixed-grid threshold passes the prespecified conditional calibration
-gate for any seed; selected semantic policies always abstain. This is zero useful
-semantic coverage, not demonstrated perfect precision. General semantic serving
-remains DISABLED. Day 1–2 inventory/retrieval engineering is recorded; Day 3
-quality is unresolved. Tests passing cannot establish model quality.
+Evidence: Codex-authored synthetic template-held-out diagnostics, not human truth.
+Primary seed four-class agreement: training 100%, dev 46.31%, calibration 45.45%.
+All three trained seeds fail the prespecified conditional calibration gate;
+selected policies abstain on every semantic query. Their coverage is zero and
+precision undefined. Retrieval recall@3 is separate from this decision failure.
+The unchanged guard baseline at 0.7 safely reuses 128/256 dev and 1,014/1,024
+calibration opportunities under the authored oracle, with zero observed unsafe
+accepts. No baseline is promoted; these are not independent answer-quality labels.
 
-The remaining authorized work is B5 comparison, local timing, report, local
-commit and downloadable backup, then STOP. No Stage C or website work.
-The natural-review request remains 50 blank slots; independent labels are zero.
-Public records have not been downloaded. The final split remains unevaluated.
+| Roadmap item | Current evidence |
+| --- | --- |
+| Day 1 inventory/contracts | Recorded, with synthetic-label and artifact limitations |
+| Day 2 local retrieval | Implemented and measured; natural wording unverified |
+| Day 3 applicability quality | NOT passed; trained policy lacks useful calibrated coverage |
+| Stage B B0–B5 authorized study | Complete; stopped after B5 |
+| Day 4 onward integration/product/final claims | Not authorized in this scope; not complete |
+
+General semantic serving remains DISABLED. Final records remain unevaluated;
+independent human labels are zero. The 50-slot natural-review request is blank.
+No public records were downloaded. A future study needs separately versioned,
+mixed-domain training data and independent natural-wording review. Preserve this
+study; do not tune it to the already observed held-out results.
+
+Download `artifacts/stage_b/stage-b-complete-backup.zip` before reset. It includes
+all three learned safetensors exports and the local Git bundle; ignored learned
+weights are not preserved by a Git commit alone. No live/provider calls or UI,
+agent, Stage C, final-evaluation or serving-promotion work was performed.
+
+The older preparation findings below are historical context, not the active task.
 
 ## Active priority: general semantic answer reuse
 

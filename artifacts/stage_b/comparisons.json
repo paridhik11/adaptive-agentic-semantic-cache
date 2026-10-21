@@ -1,0 +1,638 @@
+[
+  {
+    "split": "dev",
+    "seed": 11,
+    "baseline": "always_miss",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "baseline": "exact_only",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "baseline": "existing_guard_stack",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.5,
+    "baseline_threshold": 0.5,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "baseline": "minilm_cosine",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": null,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "baseline": "quora",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0078125,
+    "baseline_threshold": 0.99,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "baseline": "redis_embedding_cosine",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": null,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "baseline": "redis_reranker",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.5,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "dev",
+    "seed": 11,
+    "baseline": "redis_reranker_same_set_diagnostic",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.3,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "baseline": "always_miss",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "baseline": "exact_only",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "baseline": "existing_guard_stack",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.5,
+    "baseline_threshold": 0.5,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "baseline": "minilm_cosine",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": null,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "baseline": "quora",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0078125,
+    "baseline_threshold": 0.99,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "baseline": "redis_embedding_cosine",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": null,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "baseline": "redis_reranker",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.5,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "dev",
+    "seed": 29,
+    "baseline": "redis_reranker_same_set_diagnostic",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.3,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "baseline": "always_miss",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "baseline": "exact_only",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "baseline": "existing_guard_stack",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.5,
+    "baseline_threshold": 0.5,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "baseline": "minilm_cosine",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": null,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "baseline": "quora",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0078125,
+    "baseline_threshold": 0.99,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "baseline": "redis_embedding_cosine",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": null,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "baseline": "redis_reranker",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.5,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "dev",
+    "seed": 47,
+    "baseline": "redis_reranker_same_set_diagnostic",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.3,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "baseline": "always_miss",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "baseline": "exact_only",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "baseline": "existing_guard_stack",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.990234375,
+    "baseline_threshold": 0.5,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "baseline": "minilm_cosine",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": null,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "baseline": "quora",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.99,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "baseline": "redis_embedding_cosine",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": null,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "baseline": "redis_reranker",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.5,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 11,
+    "baseline": "redis_reranker_same_set_diagnostic",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.3,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "baseline": "always_miss",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "baseline": "exact_only",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "baseline": "existing_guard_stack",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.990234375,
+    "baseline_threshold": 0.5,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "baseline": "minilm_cosine",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": null,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "baseline": "quora",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.99,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "baseline": "redis_embedding_cosine",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": null,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "baseline": "redis_reranker",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.5,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 29,
+    "baseline": "redis_reranker_same_set_diagnostic",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.3,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "baseline": "always_miss",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "baseline": "exact_only",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "baseline": "existing_guard_stack",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.990234375,
+    "baseline_threshold": 0.5,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "baseline": "minilm_cosine",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": null,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": []
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "baseline": "quora",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.99,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "baseline": "redis_embedding_cosine",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": null,
+    "baseline_threshold": null,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "baseline": "redis_reranker",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.5,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  {
+    "split": "calibration",
+    "seed": 47,
+    "baseline": "redis_reranker_same_set_diagnostic",
+    "policy_safe_coverage": 0.0,
+    "policy_unsafe_accepts": 0,
+    "baseline_max_coverage_at_no_greater_observed_unsafe_and_unknown_count": 0.0,
+    "baseline_threshold": 0.3,
+    "strict_coverage_improvement": false,
+    "caveat": "observed same-cohort point comparison only; not independent or causal evidence",
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  }
+]
