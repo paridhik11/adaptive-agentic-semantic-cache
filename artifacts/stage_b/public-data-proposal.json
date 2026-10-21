@@ -255,7 +255,9 @@
     "approval": "pending; metadata only, no dataset files downloaded",
     "provenance_flags": [
       "possible pretraining overlap with public pair data"
-    ]
+    ],
+    "card_sha256": "f281c5c5099f08da86c25f83419eedb01eaafaf0bb29b8eb14036249cfc97e89",
+    "license_metadata_excerpt": "- en\nlicense:\n- other\nmultilinguality:\n- monolingual\nsize_categories:\n- 100K<n<1M\n  - [Dataset Curators](#dataset-curators)\n  - [Licensing Information](#licensing-information)\n  - [Citation Information](#citation-information)\n  - [Contributions](#contributions)\n\n## Dataset Description\n\n\nPAWS-QQP is not available due to license of QQP. It must be reconstructed by downloading the original data and then running our scripts to produce the data and attach the labels.\n\n### Supported Tasks and Leaderboards\n\n[More Information Needed]\n\n\n### Licensing Information\n\nThe dataset may be freely used for any purpose, although acknowledgement of Google LLC (\"Google\") as the data source would be appreciated. The dataset is provided \"AS IS\" without any warranty, express or implied. Google disclaims all liability for any damages, direct or indirect, resulting from the use of the dataset.\n\n### Citation Information\n"
   },
   {
     "dataset_id": "BeIR/cqadupstack-python",
@@ -407,7 +409,9 @@
     "approval": "pending; metadata only; no dataset files downloaded",
     "provenance_flags": [
       "possible pretraining overlap with public pair data"
-    ]
+    ],
+    "card_sha256": "56f2ec104a66d4ca80886a7973e25b97a3f23e254cab4d26bf3f053aca669909",
+    "license_metadata_excerpt": ""
   },
   {
     "dataset_id": "mteb/cqadupstack-retrieval",

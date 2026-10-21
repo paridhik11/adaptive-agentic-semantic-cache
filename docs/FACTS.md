@@ -825,3 +825,15 @@ contains train 96 groups/24 lineages, dev 64/8, calibration 256/8. Manifest SHA-
 No final split was read/evaluated. Training and calibration settings are fixed in
 `configs/intent_stage_b_v1.json` and `configs/intent_stage_b_calibration_v1.json`.
 Natural-review request: 50 blank slots; public data not approved/downloaded.
+
+
+## Stage B B1 training
+
+Evidence: synthetic TRAIN-only fit, not generalization. All three fixed seeds
+(11, 29, 47) trained on 1,056 nonexact, nonnull labeled pairs with the fixed
+Quora-base LoRA architecture. Each post-fit train diagnostic was 1,056/1,056
+four-class correct. This is not reuse precision or a population accuracy claim.
+All learned tensors exported to safetensors; exact reconstruction probes passed.
+Hashes, hardware, config, per-epoch losses, wall time and command:
+`artifacts/stage_b/training-v1.json`, `train-classification-v1.json`,
+`model-receipts/`. Models frozen before dev/calibration experiments.
