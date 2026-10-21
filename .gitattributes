@@ -1,0 +1,3 @@
+data/intent_stage_a/** -text
+artifacts/stage_a/** -text
+docs/FACTS.md text eol=lf

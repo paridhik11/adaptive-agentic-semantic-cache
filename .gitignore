@@ -107,3 +107,8 @@ data/cqadupstack/
 
 # Local answer-review evidence can contain private data
 runs/
+
+# Stage A locked stores and local backup archives
+data/intent_stage_a/final.jsonl
+data/intent_stage_a/final.answers.jsonl
+artifacts/stage_a/*backup*.zip
