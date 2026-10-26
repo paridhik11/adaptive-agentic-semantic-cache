@@ -10,3 +10,5 @@ scripts/*stage_a*.py text eol=lf
 scripts/*stage_b*.py text eol=lf
 scripts/inventory_intent_artifacts.py text eol=lf
 src/evaluation/intent_stage_*.py text eol=lf
+
+artifacts/documentation_rebuild/** -text -whitespace

@@ -1,0 +1,556 @@
+{
+  "evidence_type": "constructed offline functional fixture; builder-authored approvals",
+  "not_measured": [
+    "natural-language answer quality",
+    "live provider work",
+    "real tokens",
+    "cost",
+    "representative latency"
+  ],
+  "workload": [
+    {
+      "model": "fixture-model",
+      "temperature": 0,
+      "max_tokens": 64,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explain tuple immutability"
+        }
+      ]
+    },
+    {
+      "model": "fixture-model",
+      "temperature": 0,
+      "max_tokens": 64,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explain tuple immutability"
+        }
+      ]
+    },
+    {
+      "model": "fixture-model",
+      "temperature": 0,
+      "max_tokens": 64,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Describe immutable tuples"
+        }
+      ]
+    },
+    {
+      "model": "fixture-model",
+      "temperature": 0,
+      "max_tokens": 64,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explain dictionaries"
+        }
+      ]
+    }
+  ],
+  "restart_after_request": 1,
+  "arms": [
+    {
+      "mode": "off",
+      "requests": 4,
+      "actual_fixture_provider_invocations": 4,
+      "rows": [
+        {
+          "status": "BYPASS",
+          "tier": "PROVIDER",
+          "provider_calls": 1,
+          "response": {
+            "id": "fixture-0f29a2e732b67659a4a7",
+            "object": "chat.completion",
+            "created": 0,
+            "model": "fixture-model",
+            "choices": [
+              {
+                "index": 0,
+                "finish_reason": "stop",
+                "message": {
+                  "role": "assistant",
+                  "content": "SIMULATED FIXTURE: Explain tuple immutability"
+                }
+              }
+            ],
+            "usage": {
+              "prompt_tokens": 3,
+              "completion_tokens": 5,
+              "total_tokens": 8
+            }
+          },
+          "diagnosis": {
+            "mode": "off",
+            "stage": "exact_lookup",
+            "candidate": null,
+            "similarity": null,
+            "verifier_calls": 0,
+            "approval_signal": null,
+            "approver_identity": "answer-bound-approvals-v1:b9f6088c8c3984fad9083789296256458a25e393ff42af4a98c3d58c80a45398",
+            "local_verifier_attempts": 0,
+            "local_verifier_ms": 0.0,
+            "local_policy_recommendation": null
+          }
+        },
+        {
+          "status": "BYPASS",
+          "tier": "PROVIDER",
+          "provider_calls": 1,
+          "response": {
+            "id": "fixture-0f29a2e732b67659a4a7",
+            "object": "chat.completion",
+            "created": 0,
+            "model": "fixture-model",
+            "choices": [
+              {
+                "index": 0,
+                "finish_reason": "stop",
+                "message": {
+                  "role": "assistant",
+                  "content": "SIMULATED FIXTURE: Explain tuple immutability"
+                }
+              }
+            ],
+            "usage": {
+              "prompt_tokens": 3,
+              "completion_tokens": 5,
+              "total_tokens": 8
+            }
+          },
+          "diagnosis": {
+            "mode": "off",
+            "stage": "exact_lookup",
+            "candidate": null,
+            "similarity": null,
+            "verifier_calls": 0,
+            "approval_signal": null,
+            "approver_identity": "answer-bound-approvals-v1:b9f6088c8c3984fad9083789296256458a25e393ff42af4a98c3d58c80a45398",
+            "local_verifier_attempts": 0,
+            "local_verifier_ms": 0.0,
+            "local_policy_recommendation": null
+          }
+        },
+        {
+          "status": "BYPASS",
+          "tier": "PROVIDER",
+          "provider_calls": 1,
+          "response": {
+            "id": "fixture-fd6cd94be8bf985e95b5",
+            "object": "chat.completion",
+            "created": 0,
+            "model": "fixture-model",
+            "choices": [
+              {
+                "index": 0,
+                "finish_reason": "stop",
+                "message": {
+                  "role": "assistant",
+                  "content": "SIMULATED FIXTURE: Describe immutable tuples"
+                }
+              }
+            ],
+            "usage": {
+              "prompt_tokens": 3,
+              "completion_tokens": 5,
+              "total_tokens": 8
+            }
+          },
+          "diagnosis": {
+            "mode": "off",
+            "stage": "exact_lookup",
+            "candidate": null,
+            "similarity": null,
+            "verifier_calls": 0,
+            "approval_signal": null,
+            "approver_identity": "answer-bound-approvals-v1:b9f6088c8c3984fad9083789296256458a25e393ff42af4a98c3d58c80a45398",
+            "local_verifier_attempts": 0,
+            "local_verifier_ms": 0.0,
+            "local_policy_recommendation": null
+          }
+        },
+        {
+          "status": "BYPASS",
+          "tier": "PROVIDER",
+          "provider_calls": 1,
+          "response": {
+            "id": "fixture-62054b92c4b9dfa2f1c5",
+            "object": "chat.completion",
+            "created": 0,
+            "model": "fixture-model",
+            "choices": [
+              {
+                "index": 0,
+                "finish_reason": "stop",
+                "message": {
+                  "role": "assistant",
+                  "content": "SIMULATED FIXTURE: Explain dictionaries"
+                }
+              }
+            ],
+            "usage": {
+              "prompt_tokens": 2,
+              "completion_tokens": 4,
+              "total_tokens": 6
+            }
+          },
+          "diagnosis": {
+            "mode": "off",
+            "stage": "exact_lookup",
+            "candidate": null,
+            "similarity": null,
+            "verifier_calls": 0,
+            "approval_signal": null,
+            "approver_identity": "answer-bound-approvals-v1:b9f6088c8c3984fad9083789296256458a25e393ff42af4a98c3d58c80a45398",
+            "local_verifier_attempts": 0,
+            "local_verifier_ms": 0.0,
+            "local_policy_recommendation": null
+          }
+        }
+      ]
+    },
+    {
+      "mode": "exact",
+      "requests": 4,
+      "actual_fixture_provider_invocations": 3,
+      "rows": [
+        {
+          "status": "MISS",
+          "tier": "PROVIDER",
+          "provider_calls": 1,
+          "response": {
+            "id": "fixture-0f29a2e732b67659a4a7",
+            "object": "chat.completion",
+            "created": 0,
+            "model": "fixture-model",
+            "choices": [
+              {
+                "index": 0,
+                "finish_reason": "stop",
+                "message": {
+                  "role": "assistant",
+                  "content": "SIMULATED FIXTURE: Explain tuple immutability"
+                }
+              }
+            ],
+            "usage": {
+              "prompt_tokens": 3,
+              "completion_tokens": 5,
+              "total_tokens": 8
+            }
+          },
+          "diagnosis": {
+            "mode": "exact",
+            "stage": "exact_lookup",
+            "candidate": null,
+            "similarity": null,
+            "verifier_calls": 0,
+            "approval_signal": null,
+            "approver_identity": "answer-bound-approvals-v1:b9f6088c8c3984fad9083789296256458a25e393ff42af4a98c3d58c80a45398",
+            "local_verifier_attempts": 0,
+            "local_verifier_ms": 0.0,
+            "local_policy_recommendation": null
+          }
+        },
+        {
+          "status": "HIT",
+          "tier": "EXACT",
+          "provider_calls": 0,
+          "response": {
+            "choices": [
+              {
+                "finish_reason": "stop",
+                "index": 0,
+                "message": {
+                  "content": "SIMULATED FIXTURE: Explain tuple immutability",
+                  "role": "assistant"
+                }
+              }
+            ],
+            "created": 0,
+            "id": "fixture-0f29a2e732b67659a4a7",
+            "model": "fixture-model",
+            "object": "chat.completion",
+            "usage": {
+              "completion_tokens": 5,
+              "prompt_tokens": 3,
+              "total_tokens": 8
+            }
+          },
+          "diagnosis": {
+            "mode": "exact",
+            "stage": "exact_hit",
+            "candidate": null,
+            "similarity": null,
+            "verifier_calls": 0,
+            "approval_signal": null,
+            "approver_identity": "answer-bound-approvals-v1:b9f6088c8c3984fad9083789296256458a25e393ff42af4a98c3d58c80a45398",
+            "local_verifier_attempts": 0,
+            "local_verifier_ms": 0.0,
+            "local_policy_recommendation": null
+          }
+        },
+        {
+          "status": "MISS",
+          "tier": "PROVIDER",
+          "provider_calls": 1,
+          "response": {
+            "id": "fixture-fd6cd94be8bf985e95b5",
+            "object": "chat.completion",
+            "created": 0,
+            "model": "fixture-model",
+            "choices": [
+              {
+                "index": 0,
+                "finish_reason": "stop",
+                "message": {
+                  "role": "assistant",
+                  "content": "SIMULATED FIXTURE: Describe immutable tuples"
+                }
+              }
+            ],
+            "usage": {
+              "prompt_tokens": 3,
+              "completion_tokens": 5,
+              "total_tokens": 8
+            }
+          },
+          "diagnosis": {
+            "mode": "exact",
+            "stage": "exact_lookup",
+            "candidate": null,
+            "similarity": null,
+            "verifier_calls": 0,
+            "approval_signal": null,
+            "approver_identity": "answer-bound-approvals-v1:b9f6088c8c3984fad9083789296256458a25e393ff42af4a98c3d58c80a45398",
+            "local_verifier_attempts": 0,
+            "local_verifier_ms": 0.0,
+            "local_policy_recommendation": null
+          }
+        },
+        {
+          "status": "MISS",
+          "tier": "PROVIDER",
+          "provider_calls": 1,
+          "response": {
+            "id": "fixture-62054b92c4b9dfa2f1c5",
+            "object": "chat.completion",
+            "created": 0,
+            "model": "fixture-model",
+            "choices": [
+              {
+                "index": 0,
+                "finish_reason": "stop",
+                "message": {
+                  "role": "assistant",
+                  "content": "SIMULATED FIXTURE: Explain dictionaries"
+                }
+              }
+            ],
+            "usage": {
+              "prompt_tokens": 2,
+              "completion_tokens": 4,
+              "total_tokens": 6
+            }
+          },
+          "diagnosis": {
+            "mode": "exact",
+            "stage": "exact_lookup",
+            "candidate": null,
+            "similarity": null,
+            "verifier_calls": 0,
+            "approval_signal": null,
+            "approver_identity": "answer-bound-approvals-v1:b9f6088c8c3984fad9083789296256458a25e393ff42af4a98c3d58c80a45398",
+            "local_verifier_attempts": 0,
+            "local_verifier_ms": 0.0,
+            "local_policy_recommendation": null
+          }
+        }
+      ]
+    },
+    {
+      "mode": "guarded",
+      "requests": 4,
+      "actual_fixture_provider_invocations": 2,
+      "rows": [
+        {
+          "status": "MISS",
+          "tier": "PROVIDER",
+          "provider_calls": 1,
+          "response": {
+            "id": "fixture-0f29a2e732b67659a4a7",
+            "object": "chat.completion",
+            "created": 0,
+            "model": "fixture-model",
+            "choices": [
+              {
+                "index": 0,
+                "finish_reason": "stop",
+                "message": {
+                  "role": "assistant",
+                  "content": "SIMULATED FIXTURE: Explain tuple immutability"
+                }
+              }
+            ],
+            "usage": {
+              "prompt_tokens": 3,
+              "completion_tokens": 5,
+              "total_tokens": 8
+            }
+          },
+          "diagnosis": {
+            "mode": "guarded",
+            "stage": "no_candidate",
+            "candidate": null,
+            "similarity": null,
+            "verifier_calls": 0,
+            "approval_signal": null,
+            "approver_identity": "answer-bound-approvals-v1:b9f6088c8c3984fad9083789296256458a25e393ff42af4a98c3d58c80a45398",
+            "local_verifier_attempts": 0,
+            "local_verifier_ms": 0.0,
+            "local_policy_recommendation": null
+          }
+        },
+        {
+          "status": "HIT",
+          "tier": "EXACT",
+          "provider_calls": 0,
+          "response": {
+            "choices": [
+              {
+                "finish_reason": "stop",
+                "index": 0,
+                "message": {
+                  "content": "SIMULATED FIXTURE: Explain tuple immutability",
+                  "role": "assistant"
+                }
+              }
+            ],
+            "created": 0,
+            "id": "fixture-0f29a2e732b67659a4a7",
+            "model": "fixture-model",
+            "object": "chat.completion",
+            "usage": {
+              "completion_tokens": 5,
+              "prompt_tokens": 3,
+              "total_tokens": 8
+            }
+          },
+          "diagnosis": {
+            "mode": "guarded",
+            "stage": "exact_hit",
+            "candidate": null,
+            "similarity": null,
+            "verifier_calls": 0,
+            "approval_signal": null,
+            "approver_identity": "answer-bound-approvals-v1:b9f6088c8c3984fad9083789296256458a25e393ff42af4a98c3d58c80a45398",
+            "local_verifier_attempts": 0,
+            "local_verifier_ms": 0.0,
+            "local_policy_recommendation": null
+          }
+        },
+        {
+          "status": "HIT",
+          "tier": "SEMANTIC",
+          "provider_calls": 0,
+          "response": {
+            "choices": [
+              {
+                "finish_reason": "stop",
+                "index": 0,
+                "message": {
+                  "content": "SIMULATED FIXTURE: Explain tuple immutability",
+                  "role": "assistant"
+                }
+              }
+            ],
+            "created": 0,
+            "id": "fixture-0f29a2e732b67659a4a7",
+            "model": "fixture-model",
+            "object": "chat.completion",
+            "usage": {
+              "completion_tokens": 5,
+              "prompt_tokens": 3,
+              "total_tokens": 8
+            }
+          },
+          "diagnosis": {
+            "mode": "guarded",
+            "stage": "semantic_hit",
+            "candidate": "14b0161292b84b6aa642a3ae27bd3dd9",
+            "similarity": 1.0,
+            "verifier_calls": 0,
+            "approval_signal": true,
+            "approver_identity": "answer-bound-approvals-v1:b9f6088c8c3984fad9083789296256458a25e393ff42af4a98c3d58c80a45398",
+            "local_verifier_attempts": 0,
+            "local_verifier_ms": 0.0,
+            "local_policy_recommendation": null,
+            "binding": {
+              "scope_sha256": "acf2f516f9f49531a54025c877a80f9fc4e1794279974826f8278a16ca173604",
+              "incoming_request_sha256": "cf7ed2871ed197a97b56c48ab41e26982e9b32aaee6ab80b7493ab97b0bcc9cb",
+              "candidate_request_sha256": "01038b2188901115d4e9f285657ee9719671063691a23c8d10e7d7ce5d9a54f6",
+              "candidate_response_sha256": "c165521db1e164eb77e8d44b445213ee2d0b2b02fd4aebd8e4fe8b1de1d801d4"
+            }
+          }
+        },
+        {
+          "status": "MISS",
+          "tier": "PROVIDER",
+          "provider_calls": 1,
+          "response": {
+            "id": "fixture-62054b92c4b9dfa2f1c5",
+            "object": "chat.completion",
+            "created": 0,
+            "model": "fixture-model",
+            "choices": [
+              {
+                "index": 0,
+                "finish_reason": "stop",
+                "message": {
+                  "role": "assistant",
+                  "content": "SIMULATED FIXTURE: Explain dictionaries"
+                }
+              }
+            ],
+            "usage": {
+              "prompt_tokens": 2,
+              "completion_tokens": 4,
+              "total_tokens": 6
+            }
+          },
+          "diagnosis": {
+            "mode": "guarded",
+            "stage": "approval_rejected",
+            "candidate": "14b0161292b84b6aa642a3ae27bd3dd9",
+            "similarity": 1.0,
+            "verifier_calls": 0,
+            "approval_signal": false,
+            "approver_identity": "answer-bound-approvals-v1:b9f6088c8c3984fad9083789296256458a25e393ff42af4a98c3d58c80a45398",
+            "local_verifier_attempts": 0,
+            "local_verifier_ms": 0.0,
+            "local_policy_recommendation": null,
+            "binding": {
+              "scope_sha256": "acf2f516f9f49531a54025c877a80f9fc4e1794279974826f8278a16ca173604",
+              "incoming_request_sha256": "ad55bbc0e3e6bba712196694ae438601791bf2f7e01041c32b00e9cff231b893",
+              "candidate_request_sha256": "01038b2188901115d4e9f285657ee9719671063691a23c8d10e7d7ce5d9a54f6",
+              "candidate_response_sha256": "c165521db1e164eb77e8d44b445213ee2d0b2b02fd4aebd8e4fe8b1de1d801d4"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "src/policy/sqlite_store.py": "9e81950ca37b07bb8b428f38de24236aac763634e7000f827b936381649b10c2",
+    "src/policy/response_cache.py": "1828a7a30ce712a5dc3d6e5d1d6404e8f45d494d4616c6ff0d83808a42442eed",
+    "src/policy/semantic_runtime.py": "a38add59496bce1df9ec6770b239c83b75b9f9185bb29bcb202b7091d0a2d4a2",
+    "src/api/service.py": "ebfae492f9d3f3499b3bff549c1182113f0c0ae6347fc09a5e81a62597d536e7",
+    "src/api/providers.py": "2448af44987a2b18262f9bb01da28361a969b1118e175391bf517a0ac7cae232",
+    "scripts/check_documentation_rebuild.py": "7ac340ac310eb76080e7d4823fb0069d7f5a57a7df6fea5a60b58e89f3bdf0d4"
+  }
+}

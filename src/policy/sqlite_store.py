@@ -1,6 +1,8 @@
 """Transactional local-disk storage. No transaction spans provider execution."""
 import sqlite3
 import time
+import uuid
+import json
 from contextlib import contextmanager
 
 
@@ -22,6 +24,9 @@ class SQLiteResponseStore:
             db.execute('INSERT OR IGNORE INTO metadata VALUES (1, ?, 0)', (namespace,))
             self._check(db)
             db.execute('CREATE TABLE IF NOT EXISTS entries (key TEXT PRIMARY KEY, tenant TEXT NOT NULL, payload TEXT NOT NULL, expires REAL NOT NULL, bytes INTEGER NOT NULL, touched INTEGER NOT NULL)')
+            if 'source_token' not in {row[1] for row in db.execute('PRAGMA table_info(entries)')}:
+                db.execute('ALTER TABLE entries ADD COLUMN source_token TEXT')
+            db.execute('CREATE TABLE IF NOT EXISTS semantic_candidates (id TEXT PRIMARY KEY, namespace TEXT NOT NULL, source_key TEXT NOT NULL, source_token TEXT NOT NULL, epoch INTEGER NOT NULL, request TEXT NOT NULL, vector TEXT NOT NULL, bytes INTEGER NOT NULL, touched INTEGER NOT NULL)')
 
     def _check(self, db):
         row = db.execute('SELECT namespace, epoch FROM metadata WHERE id=1').fetchone()
@@ -60,7 +65,7 @@ class SQLiteResponseStore:
                 return False
             now = self.clock()
             db.execute('DELETE FROM entries WHERE expires <= ?', (now,))
-            db.execute('INSERT OR REPLACE INTO entries VALUES (?, ?, ?, ?, ?, (SELECT COALESCE(MAX(touched),0)+1 FROM entries))', (key, tenant, payload, now + ttl, size))
+            db.execute('INSERT OR REPLACE INTO entries (key,tenant,payload,expires,bytes,touched,source_token) VALUES (?, ?, ?, ?, ?, (SELECT COALESCE(MAX(touched),0)+1 FROM entries), ?)', (key, tenant, payload, now + ttl, size, uuid.uuid4().hex))
             while True:
                 count, total = db.execute('SELECT COUNT(*), COALESCE(SUM(bytes),0) FROM entries').fetchone()
                 if count <= max_entries and total <= max_bytes:
@@ -68,10 +73,53 @@ class SQLiteResponseStore:
                 db.execute('DELETE FROM entries WHERE key=(SELECT key FROM entries ORDER BY touched, key LIMIT 1)')
             return True
 
+    def _prune_candidates(self, db):
+        db.execute('DELETE FROM semantic_candidates WHERE epoch != ? OR NOT EXISTS (SELECT 1 FROM entries e WHERE e.key=semantic_candidates.source_key AND e.source_token=semantic_candidates.source_token AND e.expires>?)', (self._check(db), self.clock()))
+
+    def admit_candidate(self, *, namespace, source_key, tenant, payload, epoch,
+                        request, vector, max_entries, max_bytes):
+        """Bind a retrieval record to an exact admission, never to a hit alias."""
+        vector = json.dumps(vector, allow_nan=False)
+        size = sum(len(s.encode()) for s in (namespace, source_key, request, vector, payload))
+        if size > max_bytes:
+            return False
+        with self._transaction() as db:
+            if self._check(db) != epoch:
+                return False
+            self._prune_candidates(db)
+            source = db.execute('SELECT source_token FROM entries WHERE key=? AND tenant=? AND payload=? AND expires>?', (source_key, tenant, payload, self.clock())).fetchone()
+            if source is None or source[0] is None:
+                return False
+            identity = uuid.uuid4().hex
+            # One record per source/namespace, bounded globally across namespaces.
+            db.execute('DELETE FROM semantic_candidates WHERE namespace=? AND source_key=?', (namespace, source_key))
+            db.execute('INSERT INTO semantic_candidates VALUES (?,?,?,?,?,?,?,?,(SELECT COALESCE(MAX(touched),0)+1 FROM semantic_candidates))', (identity, namespace, source_key, source[0], epoch, request, vector, size))
+            while True:
+                count, total = db.execute('SELECT COUNT(*),COALESCE(SUM(bytes),0) FROM semantic_candidates').fetchone()
+                if count <= max_entries and total <= max_bytes:
+                    break
+                db.execute('DELETE FROM semantic_candidates WHERE id=(SELECT id FROM semantic_candidates ORDER BY touched,id LIMIT 1)')
+            return True
+
+    def recover_candidates(self, namespace, tenant, epoch):
+        with self._transaction() as db:
+            if self._check(db) != epoch:
+                return []
+            self._prune_candidates(db)
+            return db.execute('SELECT c.id,c.source_key,c.source_token,c.request,c.vector,e.payload,e.expires FROM semantic_candidates c JOIN entries e ON e.key=c.source_key AND e.source_token=c.source_token WHERE c.namespace=? AND e.tenant=? AND c.epoch=? AND e.expires>? ORDER BY c.touched', (namespace, tenant, epoch, self.clock())).fetchall()
+
+    def candidate_current(self, identity, source_key, source_token, namespace, tenant, epoch):
+        """Final approval-time snapshot: source, record, expiry and epoch together."""
+        with self._transaction() as db:
+            if self._check(db) != epoch:
+                return False
+            return db.execute('SELECT 1 FROM semantic_candidates c JOIN entries e ON e.key=c.source_key AND e.source_token=c.source_token WHERE c.id=? AND c.source_key=? AND c.source_token=? AND c.namespace=? AND e.tenant=? AND c.epoch=? AND e.expires>?', (identity,source_key,source_token,namespace,tenant,epoch,self.clock())).fetchone() is not None
+
     def invalidate(self, tenant_id=None):
         with self._transaction() as db:
             self._check(db)
             db.execute('UPDATE metadata SET epoch=epoch+1 WHERE id=1')
+            db.execute('DELETE FROM semantic_candidates')
             if tenant_id is None:
                 return db.execute('DELETE FROM entries').rowcount
             return db.execute('DELETE FROM entries WHERE tenant=?', (tenant_id,)).rowcount

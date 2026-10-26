@@ -1,8 +1,21 @@
 # Adaptive Agentic Semantic Cache
 
-A Python LLM response-cache gateway and bounded documentation agent. The project
-investigates whether scoped exact and guarded semantic reuse can reduce model
-work while preserving answer quality.
+A semantic caching gateway for a **bounded documentation assistant**, continuing
+the existing Python gateway and document agent. Questions concern a selected,
+versioned document collection. Suitable complete answers can be reused for exact
+repeats or approved equivalent questions; misses execute the agent's planning,
+source search/read, drafting and review workflow.
+
+The goal is measurable useful reuse. Question wording is not restricted to an
+allowlist, but a similar question must not receive an inapplicable answer. Cosine
+similarity alone never authorizes semantic reuse. Unknown requests fall back to
+fresh execution; unsupported sources still require an uncertainty response.
+
+**2026-10-26 reconstruction:** the unavailable durability milestone was rebuilt
+from the preserved Stage B foundation. New offline functional evidence: **242
+regression tests passed**; four-request restart fixtures observed **4/3/2**
+provider invocations with off/exact/approved-semantic modes. This is not live
+savings or natural-language accuracy. See [rebuild report](docs/DOCUMENTATION_REBUILD.md).
 
 **Current result:** exact-cache mechanics and agent workflow integration work in
 functional checks. General semantic accuracy and useful live end-to-end savings
@@ -27,9 +40,27 @@ status page. See [design](DESIGN.md), [fact ledger](docs/FACTS.md),
   durable shared quota journal. Missing labels remain unknown.
 
 These are implemented contracts, not a semantic safety certification. Streaming
-responses are uncached. Semantic indexes start cold after process restart.
+responses are uncached. Semantic indexes default to process-local storage.
+Opt-in `GATEWAY_PERSIST_SEMANTIC=true` recovers candidates from the SQLite exact
+database in shadow/guarded mode, bound to source expiry and admission identity.
 The historical FAISS/cross-encoder research pipeline is separate from the current
 lexical/pinned-local-adapter serving wrapper. No learned adaptation benefit is claimed.
+
+## Completion groups
+
+1. Durable source-bound candidates: rebuilt and verified with offline fixtures.
+2. Qualified lookup before agent execution and complete local/remote work accounting.
+3. Specialist/tool orchestration and scoped persistent task-memory integration.
+4. Unified interface, reproducible deployment and independent answer review;
+   separately authorized budgeted live comparison.
+
+No new training experiment unless a specific integration failure requires one.
+Compare off/exact/semantic modes on the same documentation workload: reviewed
+answer applicability, actual calls, provider-reported tokens and valid timings.
+There is no promised savings percentage. Zero useful coverage is a failed result.
+Anyone can run the configured assistant; public hosting and unrestricted
+question answering are not delivered. General semantic serving remains disabled
+by default, and independent answer-quality review is still missing.
 
 ## Local workbench
 

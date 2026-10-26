@@ -122,3 +122,6 @@ artifacts/stage_b/models/
 
 # Resumable numeric inference caches (final raw score files are versioned)
 artifacts/stage_b/*/checkpoints/
+
+# Rebuilt product backups are delivered separately, never weights in Git
+artifacts/documentation_rebuild/*.zip

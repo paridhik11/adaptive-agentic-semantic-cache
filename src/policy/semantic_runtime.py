@@ -1,8 +1,8 @@
 """Opt-in semantic miss resolution around the existing exact-response runtime.
 
 Candidates are never approved by similarity alone. Exact storage remains the
-source of fresh-answer admission. The bounded semantic index is process-local;
-SQLite exact responses persist, but semantic candidates start cold on restart.
+source of fresh-answer admission. The default index is process-local; optional
+SQLite candidate recovery binds records to the exact source admission.
 """
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ import time
 
 from src.policy.encoders import normalize
 from src.policy.response_cache import EligibilityDecision, ResponseCacheResult, ScopedResponseCache, _serialize
+from src.policy.sqlite_store import SQLiteResponseStore
 
 
 def digest(value):
@@ -136,6 +137,8 @@ class _Candidate:
     vector: tuple[float, ...]
     expires: float
     size: int
+    source_key: str | None = None
+    source_token: str | None = None
 
 
 class GuardedSemanticCache:
@@ -147,7 +150,7 @@ class GuardedSemanticCache:
     def __init__(self, exact: ScopedResponseCache, *, scope: KnowledgeScope, encoder=None,
                  mode="shadow", approver=None, threshold=0.85, margin=0.05,
                  max_entries=256, max_bytes=8 * 1024 * 1024, max_dimensions=4096,
-                 clock=time.monotonic):
+                 clock=time.monotonic, persistent_candidates=False):
         if not isinstance(exact, ScopedResponseCache) or not isinstance(scope, KnowledgeScope):
             raise TypeError("exact cache and trusted knowledge scope are required")
         if mode not in {"off", "exact", "shadow", "guarded"}:
@@ -167,7 +170,13 @@ class GuardedSemanticCache:
         self.semantic_mode = mode
         self.threshold, self.margin = threshold, margin
         self.max_entries, self.max_bytes, self.max_dimensions = max_entries, max_bytes, max_dimensions
-        self.clock = clock
+        if type(persistent_candidates) is not bool:
+            raise ValueError("persistent_candidates must be boolean")
+        if persistent_candidates and not isinstance(exact._storage, SQLiteResponseStore):
+            raise ValueError("persistent candidates require SQLite exact storage")
+        self._persistent = exact._storage if persistent_candidates else None
+        # Source TTL is authoritative; do not mix monotonic and persisted wall time.
+        self.clock = self._persistent.clock if self._persistent is not None else clock
         self._default_scope, self._scopes = scope, {}
         self._lock, self._encoder_lock = threading.RLock(), threading.Lock()
         self._entries, self._bytes, self._generation = OrderedDict(), 0, None
@@ -221,6 +230,28 @@ class GuardedSemanticCache:
             else:
                 self._scopes[tenant_id] = scope
 
+    def _recover(self, namespace, tenant, scope, generation):
+        records = self._persistent.recover_candidates(namespace, tenant, generation)
+        # Remove this namespace's memory view; preserve object identity for unchanged
+        # rows so overlapping approvals do not revoke each other spuriously.
+        previous = {k: v for k, v in self._entries.items() if v.scope_hash == namespace}
+        for key in previous:
+            self._bytes -= self._entries.pop(key).size
+        for identity, source_key, token, request_json, vector_json, response_json, expires in records:
+            request, answer = json.loads(request_json), json.loads(response_json)
+            raw = json.loads(vector_json)
+            if (not isinstance(raw, list) or not 0 < len(raw) <= self.max_dimensions
+                    or not ScopedResponseCache._admissible(answer, request)
+                    or ScopedResponseCache.request_key(request, tenant, scope) != source_key):
+                raise ValueError("invalid durable candidate")
+            vector = tuple(normalize(raw))
+            size = sum(len(x.encode()) for x in (request_json, response_json)) + len(vector)*8 + len(_serialize(scope).encode())
+            candidate = _Candidate(tenant, namespace, request_json, response_json, vector, expires, size, source_key, token)
+            self._entries[identity] = previous[identity] if previous.get(identity) == candidate else candidate
+            self._bytes += size
+        while len(self._entries) > self.max_entries or self._bytes > self.max_bytes:
+            self._bytes -= self._entries.popitem(last=False)[1].size
+
     def process(self, request, *, tenant_id, provider, bypass=False):
         started = time.perf_counter()
         calls, generated_at, vector = 0, None, None
@@ -257,6 +288,8 @@ class GuardedSemanticCache:
                 with self._lock:
                     self._sync_generation()
                     self._expire()
+                    if self._persistent is not None:
+                        self._recover(namespace, tenant_id, scope, generation)
                     candidates = []
                     for key, entry in self._entries.items():
                         if entry.scope_hash != namespace or entry.tenant_id != tenant_id:
@@ -305,6 +338,8 @@ class GuardedSemanticCache:
                 with self._lock:
                     if (self._sync_generation() != generation or self._entries.get(key) is not candidate
                             or candidate.expires <= self.clock()
+                            or (self._persistent is not None and not self._persistent.candidate_current(
+                                key, candidate.source_key, candidate.source_token, namespace, tenant_id, generation))
                             or self.exact._eligibility_reason(checked) is not None):
                         diagnosis["stage"] = "candidate_revoked"
                         return None
@@ -328,7 +363,10 @@ class GuardedSemanticCache:
                 if isinstance(scoped.get("messages"), list) and scoped["messages"]:
                     scoped["messages"][-1]["content"] = "<retrieval-query>"
                 namespace = digest({"tenant": tenant_id, "scope": scope, "request": scoped,
-                                    "encoder": self.encoder.identity})
+                                    "encoder": self.encoder.identity,
+                                    "policy": getattr(self.approver, "identity", None),
+                                    "threshold": self.threshold, "margin": self.margin,
+                                    "contract": "source-bound-candidates-v1"})
             except (sqlite3.Error, ValueError, TypeError):
                 semantic_active = False
                 diagnosis["stage"] = "semantic_scope_unavailable"
@@ -338,6 +376,17 @@ class GuardedSemanticCache:
         if result.status == "MISS" and result.stored and vector is not None and generated_at is not None:
             try:
                 request_json, response_json = _serialize(body), _serialize(result.response)
+                if self._persistent is not None:
+                    self._persistent.admit_candidate(namespace=namespace,
+                        source_key=ScopedResponseCache.request_key(body, tenant_id, scope),
+                        tenant=tenant_id, payload=response_json, epoch=generation,
+                        request=request_json, vector=vector,
+                        max_entries=self.max_entries, max_bytes=self.max_bytes)
+                    with self._lock:
+                        self._recover(namespace, tenant_id, scope, generation)
+                    return ServingCacheResult(copy.deepcopy(result.response), result.status, result.reason, calls,
+                                              result.stored, (time.perf_counter()-started)*1000,
+                                              "PROVIDER", copy.deepcopy(diagnosis))
                 # Conservative origin: never extend the source response's TTL.
                 expires = generated_at + self.exact._ttl_seconds
                 key = digest({"tenant": tenant_id, "scope": scope, "request": body, "response": result.response})

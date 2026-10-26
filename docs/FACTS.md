@@ -858,3 +858,17 @@ semantic coverage. The unchanged guard baseline at 0.7 records safe coverage
 the authored oracle. This does not establish natural answer precision or warrant
 serving promotion. See docs/audit/STAGE_B_REPORT.md and the full raw tables.
 Stage B stops after B5; Day 3 quality remains unresolved.
+
+
+## Documentation product reconstruction — 2026-10-26
+
+Evidence type: builder-authored offline functional fixtures, not human truth.
+Durable source-bound candidates rebuilt from preserved Stage B `847d3f9`.
+Regression suite: 242 passed in 3.51s; raw
+`artifacts/documentation_rebuild/group1-tests.txt`. Four requests per arm with
+restart after seed: actual fixture invocations off 4, exact 3, guarded semantic 2.
+Answer-bound authored approvals and constant-vector test encoder; receipt and
+source hashes in `artifacts/documentation_rebuild/group1-work.json`.
+No real tokens, cost, representative latency or natural-language quality measured.
+Old missing integration results are not used. No training, live calls or final
+record evaluation. See docs/DOCUMENTATION_REBUILD.md.

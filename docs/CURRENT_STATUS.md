@@ -1,5 +1,26 @@
 # Current implementation and evidence
 
+## Active product milestone — 2026-10-26
+
+Continue the existing bounded documentation product; no new training experiments
+without a specific integration need. Local milestone commits only: no push or
+merge. No live inference or locked final evaluation.
+
+Missing Group 1 was reconstructed from `847d3f9` on
+`integration/documentation-rebuild`. Candidates now share their SQLite exact
+source database. New evidence: **242 regression tests passed**; constructed
+four-request restart fixture calls off/exact/guarded = **4/3/2**. These are
+engineering fixtures, not human answer labels, live savings or a recovery of the
+old unavailable 243-test result. General semantic serving stays disabled by default.
+
+Next: Group 2, lookup before agent execution and complete stage accounting.
+The current agent still plans/reviews repeats. Later: orchestration/memory,
+UI/deployment and independently reviewed paired utility measurements.
+See [rebuild report](DOCUMENTATION_REBUILD.md).
+
+The status below is historical Stage B context. Missing follow-up artifacts are
+not recreated by repeating experiments; their results are not claimed here.
+
 Single current status page. Updated 2026-10-21 (Asia/Calcutta).
 Historical status/master reports are preserved with superseded banners. FACTS.md
 is the evidence ledger, not a second implementation-status page.

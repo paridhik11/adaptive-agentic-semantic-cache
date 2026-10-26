@@ -219,6 +219,11 @@ def app_from_env() -> FastAPI:
     cache_mode = os.environ.get("GATEWAY_CACHE_MODE", "exact")
     if cache_mode not in {"off", "exact", "shadow", "guarded"}:
         raise ValueError("unsupported GATEWAY_CACHE_MODE")
+    durable = os.environ.get("GATEWAY_PERSIST_SEMANTIC", "false")
+    if durable not in {"true", "false"}:
+        raise ValueError("GATEWAY_PERSIST_SEMANTIC must be true or false")
+    if durable == "true" and (cache_mode not in {"shadow", "guarded"} or not os.environ.get("GATEWAY_CACHE_DB")):
+        raise ValueError("persistent semantic candidates require shadow/guarded mode and GATEWAY_CACHE_DB")
     if cache_mode == "off":
         policy = lambda _: EligibilityDecision(False, "deployment_cache_disabled")
     storage = None
@@ -263,7 +268,8 @@ def app_from_env() -> FastAPI:
                                      threshold=float(os.environ.get("GATEWAY_SEMANTIC_THRESHOLD", "0.85")),
                                      margin=float(os.environ.get("GATEWAY_SEMANTIC_MARGIN", "0.05")),
                                      max_entries=int(os.environ.get("GATEWAY_SEMANTIC_MAX_ENTRIES", "256")),
-                                     max_bytes=int(os.environ.get("GATEWAY_SEMANTIC_MAX_BYTES", "8388608")))
+                                     max_bytes=int(os.environ.get("GATEWAY_SEMANTIC_MAX_BYTES", "8388608")),
+                                     persistent_candidates=durable == "true")
     service = GatewayService(cache, provider, allowed_models=models,
                              max_inflight=int(os.environ.get("GATEWAY_MAX_INFLIGHT", "32")),
                              max_output_tokens=int(os.environ.get("GATEWAY_MAX_OUTPUT_TOKENS", "4096")))

@@ -71,6 +71,13 @@ class ScopedResponseCache:
     while calling the upstream provider.
     """
 
+    @staticmethod
+    def request_key(body, tenant_id, key_context=None):
+        data = {"tenant_id": tenant_id, "request": body}
+        if key_context is not None:
+            data["context"] = json.loads(_serialize(dict(key_context)))
+        return hashlib.sha256(_serialize(data).encode()).hexdigest()
+
     def __init__(
         self,
         *,
@@ -196,10 +203,7 @@ class ScopedResponseCache:
         if reason is not None:
             return result(generate(), "BYPASS", reason, 1, False)
 
-        key_data = {"tenant_id": tenant_id, "request": body}
-        if key_context is not None:
-            key_data["context"] = json.loads(_serialize(dict(key_context)))
-        key = hashlib.sha256(_serialize(key_data).encode()).hexdigest()
+        key = self.request_key(body, tenant_id, key_context)
         stripe = self._stripes[int(key[:8], 16) % len(self._stripes)]
         with stripe:
             # A queued request must recheck policy after the preceding call.
