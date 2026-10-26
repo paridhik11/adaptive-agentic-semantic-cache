@@ -12,3 +12,11 @@ scripts/inventory_intent_artifacts.py text eol=lf
 src/evaluation/intent_stage_*.py text eol=lf
 
 artifacts/documentation_rebuild/** -text -whitespace
+src/agents/document_agent.py text eol=lf
+src/agents/document_answer_cache.py text eol=lf
+src/policy/work_ledger.py text eol=lf
+src/policy/semantic_runtime.py text eol=lf
+src/policy/sqlite_store.py text eol=lf
+src/api/service.py text eol=lf
+scripts/check_before_agent_work.py text eol=lf
+scripts/backup_documentation_product.py text eol=lf

@@ -16,6 +16,7 @@ import re
 import sqlite3
 import threading
 import time
+from contextlib import nullcontext
 
 from src.policy.encoders import normalize
 from src.policy.response_cache import EligibilityDecision, ResponseCacheResult, ScopedResponseCache, _serialize
@@ -150,7 +151,7 @@ class GuardedSemanticCache:
     def __init__(self, exact: ScopedResponseCache, *, scope: KnowledgeScope, encoder=None,
                  mode="shadow", approver=None, threshold=0.85, margin=0.05,
                  max_entries=256, max_bytes=8 * 1024 * 1024, max_dimensions=4096,
-                 clock=time.monotonic, persistent_candidates=False):
+                 clock=time.monotonic, persistent_candidates=False, local_approval_only=False):
         if not isinstance(exact, ScopedResponseCache) or not isinstance(scope, KnowledgeScope):
             raise TypeError("exact cache and trusted knowledge scope are required")
         if mode not in {"off", "exact", "shadow", "guarded"}:
@@ -167,6 +168,9 @@ class GuardedSemanticCache:
         if any(type(value) is not int or value < 1 for value in (max_entries, max_bytes, max_dimensions)):
             raise ValueError("semantic index bounds must be positive integers")
         self.exact, self.encoder, self.approver = exact, encoder, approver
+        if type(local_approval_only) is not bool:
+            raise ValueError('local_approval_only must be boolean')
+        self.local_approval_only = local_approval_only
         self.semantic_mode = mode
         self.threshold, self.margin = threshold, margin
         self.max_entries, self.max_bytes, self.max_dimensions = max_entries, max_bytes, max_dimensions
@@ -252,7 +256,17 @@ class GuardedSemanticCache:
         while len(self._entries) > self.max_entries or self._bytes > self.max_bytes:
             self._bytes -= self._entries.popitem(last=False)[1].size
 
-    def process(self, request, *, tenant_id, provider, bypass=False):
+    def candidate_namespace(self, body, tenant_id, scope):
+        scoped = copy.deepcopy(body)
+        if isinstance(scoped.get('messages'), list) and scoped['messages']:
+            scoped['messages'][-1]['content'] = '<retrieval-query>'
+        return digest({'tenant':tenant_id,'scope':scope,'request':scoped,
+                       'encoder':self.encoder.identity,
+                       'policy':getattr(self.approver,'identity',None),
+                       'threshold':self.threshold,'margin':self.margin,
+                       'contract':'source-bound-candidates-v1'})
+
+    def process(self, request, *, tenant_id, provider, bypass=False, ledger=None):
         started = time.perf_counter()
         calls, generated_at, vector = 0, None, None
         with self._lock:
@@ -280,12 +294,12 @@ class GuardedSemanticCache:
                 diagnosis["stage"] = "unsupported_semantic_scope"
                 return None
             try:
-                with self._encoder_lock:
+                with self._encoder_lock, ledger.measure('embedding') if ledger is not None else nullcontext():
                     raw = self.encoder.encode(checked["messages"][-1]["content"])
                     if not hasattr(raw, "__len__") or not 0 < len(raw) <= self.max_dimensions:
                         raise ValueError("embedding dimensions exceed bound")
                     vector = tuple(normalize(raw))
-                with self._lock:
+                with self._lock, ledger.measure('search') if ledger is not None else nullcontext():
                     self._sync_generation()
                     self._expire()
                     if self._persistent is not None:
@@ -317,8 +331,12 @@ class GuardedSemanticCache:
                     return None
                 before = calls
                 try:
-                    verdict = self.approver(copy.deepcopy(checked), candidate_request, copy.deepcopy(answer),
-                                            binding=copy.deepcopy(binding), provider=metered)
+                    def forbidden_remote(_):
+                        raise ValueError('remote approval is disabled on the document hit path')
+                    with ledger.measure('applicability') if ledger is not None else nullcontext():
+                        verdict = self.approver(copy.deepcopy(checked), candidate_request, copy.deepcopy(answer),
+                                                binding=copy.deepcopy(binding),
+                                                provider=forbidden_remote if self.local_approval_only else metered)
                 finally:
                     diagnosis["verifier_calls"] = calls - before
                 if not isinstance(verdict, ReuseDecision) or type(verdict.approved) is not bool or not isinstance(verdict.reason, str):
@@ -359,14 +377,7 @@ class GuardedSemanticCache:
             try:
                 with self._lock:
                     generation = self._sync_generation()
-                scoped = copy.deepcopy(body)
-                if isinstance(scoped.get("messages"), list) and scoped["messages"]:
-                    scoped["messages"][-1]["content"] = "<retrieval-query>"
-                namespace = digest({"tenant": tenant_id, "scope": scope, "request": scoped,
-                                    "encoder": self.encoder.identity,
-                                    "policy": getattr(self.approver, "identity", None),
-                                    "threshold": self.threshold, "margin": self.margin,
-                                    "contract": "source-bound-candidates-v1"})
+                namespace = self.candidate_namespace(body, tenant_id, scope)
             except (sqlite3.Error, ValueError, TypeError):
                 semantic_active = False
                 diagnosis["stage"] = "semantic_scope_unavailable"

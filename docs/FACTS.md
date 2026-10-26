@@ -872,3 +872,18 @@ source hashes in `artifacts/documentation_rebuild/group1-work.json`.
 No real tokens, cost, representative latency or natural-language quality measured.
 Old missing integration results are not used. No training, live calls or final
 record evaluation. See docs/DOCUMENTATION_REBUILD.md.
+
+
+## Before-agent documentation cache — 2026-10-26
+
+Evidence: builder-authored offline whole-task fixtures; scripted approvals are
+NOT human review. Group 2 regression suite: 274 passed in 5.06s; raw
+`artifacts/documentation_rebuild/group2/tests.txt`. Four tasks per arm, restart
+after approved seed: off 12 fixture calls (4 planning/4 generation/4 review),
+exact 9 (3/3/3), guarded semantic 6 (2/2/2). Guarded task calls [3,0,0,3].
+Receipt: `artifacts/documentation_rebuild/group2/comparison-final-v2/work.json`, with actual
+states, answers, local-stage events, workload and source hashes. Constant-vector
+encoder; one frozen answer-bound authored paraphrase approval. Inner draft cache
+disabled. No natural-language quality, live cost/token/latency savings inferred.
+All comparison snapshots repeat the same fixtures and add no independent cases.
+No model training/downloads, live calls or final records read/evaluated.

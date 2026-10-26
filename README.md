@@ -11,11 +11,13 @@ allowlist, but a similar question must not receive an inapplicable answer. Cosin
 similarity alone never authorizes semantic reuse. Unknown requests fall back to
 fresh execution; unsupported sources still require an uncertainty response.
 
-**2026-10-26 reconstruction:** the unavailable durability milestone was rebuilt
-from the preserved Stage B foundation. New offline functional evidence: **242
-regression tests passed**; four-request restart fixtures observed **4/3/2**
-provider invocations with off/exact/approved-semantic modes. This is not live
-savings or natural-language accuracy. See [rebuild report](docs/DOCUMENTATION_REBUILD.md).
+**2026-10-26 Group 2:** qualified lookup now precedes agent execution for
+explicit standalone-document tasks. Fresh required human approval is preserved.
+New offline functional evidence: **274 regression tests passed**; four whole-task
+fixtures per mode observed **12/9/6** provider invocations for off/exact/approved
+semantic caching, with restart after the seed. These are scripted mechanisms,
+not live savings or natural-language accuracy. See [Group 2 report](docs/BEFORE_AGENT_CACHE.md).
+[Group 1 durability evidence](docs/DOCUMENTATION_REBUILD.md) remains preserved.
 
 **Current result:** exact-cache mechanics and agent workflow integration work in
 functional checks. General semantic accuracy and useful live end-to-end savings
@@ -49,7 +51,8 @@ lexical/pinned-local-adapter serving wrapper. No learned adaptation benefit is c
 ## Completion groups
 
 1. Durable source-bound candidates: rebuilt and verified with offline fixtures.
-2. Qualified lookup before agent execution and complete local/remote work accounting.
+2. Qualified lookup before agent execution: implemented and fixture-verified,
+   with provider-boundary and local-stage observations (see coverage limits).
 3. Specialist/tool orchestration and scoped persistent task-memory integration.
 4. Unified interface, reproducible deployment and independent answer review;
    separately authorized budgeted live comparison.
@@ -76,6 +79,19 @@ agent, tools, exact cache and durable approval. The mode is clearly labeled.
 Ask a source question, approve the draft and ask it again to inspect actual draft
 reuse. See [Windows instructions and optional explicit live mode](docs/WORKBENCH.md).
 This is a local application; no public deployment is implied.
+
+## Before-agent demo (offline)
+
+```sh
+python scripts/run_demo.py --whole-answer-cache
+```
+
+Ask a bundled documentation question, approve its answer, then repeat it. The
+opt-in reference demo reuses the exact whole answer before planning and requests
+your approval again. It uses a separate local profile; the original demo remains
+available. No external inference occurs. Guarded semantic whole-task lookup is
+verified by authored answer-bound fixtures; it is not enabled generally in this
+UI. This flag cannot be combined with live mode yet.
 
 ## Offline quickstart
 

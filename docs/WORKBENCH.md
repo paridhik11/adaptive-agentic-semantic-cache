@@ -91,3 +91,22 @@ The HTTP smoke uses FastAPI's test client (httpx from the development extras).
 It tests actual backend transitions and cache storage with scripted source
 responses. Browser visual QA was unavailable in this managed environment; no
 browser screenshot or deployed public URL is claimed.
+
+
+## Opt-in before-agent exact answer reuse (2026-10-26)
+
+Use `python scripts/run_demo.py --whole-answer-cache` (PowerShell: `& $py
+scripts/run_demo.py --whole-answer-cache`). This offline profile is stored under
+`runs/workbench/reference-whole-answer`, separately from the original demo. Seed
+a bundled documentation question, approve it, and repeat it. A qualified exact
+whole-answer hit creates a fresh approval task without model planning, drafting
+or review. Restart retains compatible approved answers. Human edits/rejections
+retire the old answer namespace; edits are not automatically promoted as reviewed
+model answers. Ineligible/context-dependent tasks run fresh work.
+
+The UI distinguishes whole-answer and draft reuse, displays the matched question,
+and retains reused evidence provenance. `/api/tasks/{id}` includes `work` and
+`work_coverage` for the new profile. General semantic serving is not enabled by
+this flag. The authored semantic comparison is offline harness evidence only.
+Do not combine this option with `--live`; live budget integration remains pending.
+Browser visual QA is still not claimed. See [Group 2 report](BEFORE_AGENT_CACHE.md).

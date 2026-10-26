@@ -7,6 +7,8 @@ import math
 import re
 import threading
 import time
+from contextlib import nullcontext
+from src.policy.work_ledger import WorkLedger
 
 from src.classifier.models import StabilityLabel
 from src.classifier.rules import StabilityRuleEngine
@@ -194,7 +196,11 @@ class GatewayService:
             self._slots.release()
             raise
 
-    def complete(self, body: dict, tenant_id: str, *, bypass: bool = False):
+    def complete(self, body: dict, tenant_id: str, *, bypass: bool = False, ledger=None, remote_stage=None):
+        if (ledger is None) != (remote_stage is None):
+            raise ValueError('ledger and remote stage must be supplied together')
+        if ledger is not None and (not isinstance(ledger, WorkLedger) or remote_stage not in {'planning','generation','review'}):
+            raise ValueError('invalid provider work accounting')
         validate_request(body, self.allowed_models, self.max_output_tokens)
         if not self._slots.acquire(blocking=False):
             self.metrics.increment("requests_rejected_busy_total")
@@ -205,7 +211,13 @@ class GatewayService:
             def generate(request):
                 self.metrics.increment("upstream_attempts_total")
                 try:
-                    response = self.provider(request)
+                    with ledger.measure(remote_stage) if ledger is not None else nullcontext() as event:
+                        response = self.provider(request)
+                        if event is not None:
+                            usage = response.get('usage') if isinstance(response,dict) else None
+                            event['usage'] = ({k:usage[k] for k in ('prompt_tokens','completion_tokens')}
+                                if isinstance(usage,dict) and all(type(usage.get(k)) is int and usage[k]>=0
+                                    for k in ('prompt_tokens','completion_tokens')) else None)
                     if not isinstance(response, dict):
                         raise TypeError("provider returned a non-object")
                     json.dumps(response, allow_nan=False)
@@ -214,7 +226,9 @@ class GatewayService:
                 except Exception:
                     self.metrics.increment("upstream_errors_total")
                     raise
-            result = self.cache.process(body, tenant_id=tenant_id, provider=generate, bypass=bypass)
+            from src.policy.semantic_runtime import GuardedSemanticCache
+            local_accounting = {'ledger':ledger} if isinstance(self.cache,GuardedSemanticCache) and ledger is not None else {}
+            result = self.cache.process(body, tenant_id=tenant_id, provider=generate, bypass=bypass,**local_accounting)
             status = result.status
             if status == "HIT":
                 self.metrics.increment("semantic_hits_total" if getattr(result, "tier", None) == "SEMANTIC" else "exact_hits_total")

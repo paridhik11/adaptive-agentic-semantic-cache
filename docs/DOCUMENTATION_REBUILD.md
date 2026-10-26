@@ -1,5 +1,8 @@
 # Documentation product — rebuilt durability group
 
+Group 1 snapshot. Subsequent before-agent integration is recorded separately in
+[Group 2](BEFORE_AGENT_CACHE.md); its former pending item below is now implemented.
+
 2026-10-26. Reconstruction from preserved Stage B head `847d3f9`, under the
 user's instruction to continue the bounded documentation product. Original
 `f9fcc9b` and its backup remain unavailable. This is new implementation and

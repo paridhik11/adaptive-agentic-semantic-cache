@@ -13,10 +13,24 @@ four-request restart fixture calls off/exact/guarded = **4/3/2**. These are
 engineering fixtures, not human answer labels, live savings or a recovery of the
 old unavailable 243-test result. General semantic serving stays disabled by default.
 
-Next: Group 2, lookup before agent execution and complete stage accounting.
-The current agent still plans/reviews repeats. Later: orchestration/memory,
-UI/deployment and independently reviewed paired utility measurements.
-See [rebuild report](DOCUMENTATION_REBUILD.md).
+Group 2 is now implemented and fixture-verified: standalone whole-answer lookup
+before agent planning, source-bound admission after required approval, durable
+human-rejection namespace revocation, fresh approval tasks on hits, and actual
+provider/local-stage work observations. **274 regression tests passed**. Four
+tasks per arm: constructed fixture calls **off 12 / exact 9 / guarded 6**, with
+restart after the approved seed. Workload, answers, stage events and source hashes
+are retained; scripted approval actions are not human answer review.
+
+Try the offline exact whole-answer demo with
+`python scripts/run_demo.py --whole-answer-cache`. General semantic serving,
+independent answer quality and live utility remain unproven/disabled. No model
+training, downloads, live/provider calls or final evaluation. Timings are local
+fixture observations, not representative latency. Combined applicability is
+measured; classifier/veto internals and provider-internal retries are not.
+
+Next: Group 3 orchestration and scoped memory integration, then Group 4 product
+QA, independent answer review and separately authorized live utility. No new
+training detour. See [Group 2 report](BEFORE_AGENT_CACHE.md).
 
 The status below is historical Stage B context. Missing follow-up artifacts are
 not recreated by repeating experiments; their results are not claimed here.

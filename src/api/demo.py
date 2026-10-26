@@ -84,7 +84,11 @@ def _live_capacity(journal,required=3):
     return {'run_attempts':run,'run_limit':journal.max_calls,'daily_attempts':daily,'daily_limit':40}
 
 
-def create_demo_app(directory,*,live=False,journal_path=None,api_key=None):
+def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_answer_cache=False):
+    if type(whole_answer_cache) is not bool:
+        raise ValueError('whole_answer_cache must be boolean')
+    if live and whole_answer_cache:
+        raise ValueError('before-agent demo is offline reference mode only pending live budget integration')
     directory=Path(directory);directory.mkdir(parents=True,exist_ok=True)
     reference=json.loads(Path(__file__).with_name('demo_reference.json').read_text())
     documents={d['id']:'# '+d['title']+'\n\n'+d['text'] for d in reference['documents']}
@@ -102,12 +106,23 @@ def create_demo_app(directory,*,live=False,journal_path=None,api_key=None):
     else:
         provider=ReferenceDemoProvider(documents);counter=lambda:provider.attempts
     observed=ObservedProvider(provider)
-    namespace=hashlib.sha256(packed({'reference':reference,'mode':'live' if live else 'reference','model':model,'instruction':INSTRUCTION}).encode()).hexdigest()
+    profile={'reference':reference,'mode':'live' if live else 'reference','model':model,'instruction':INSTRUCTION}
+    if whole_answer_cache:profile['task_contract']='standalone-document-answer-v1'
+    namespace=hashlib.sha256(packed(profile).encode()).hexdigest()
     cache=ScopedResponseCache(eligibility=lambda _:EligibilityDecision(True,'fixed_local_document_workbench'),
                               storage=SQLiteResponseStore(directory/'cache.sqlite',namespace=namespace))
     service=GatewayService(cache,observed,allowed_models={model})
+    answers=None
+    if whole_answer_cache:
+        from src.agents.document_answer_cache import CompletedDocumentCache
+        from src.policy.semantic_runtime import GuardedSemanticCache,KnowledgeScope
+        outer=ScopedResponseCache(eligibility=lambda _:EligibilityDecision(True,'standalone reference fixture'),
+            storage=SQLiteResponseStore(directory/'answers.sqlite',namespace=namespace))
+        answers=CompletedDocumentCache(GuardedSemanticCache(outer,mode='exact',
+            scope=KnowledgeScope('reference-docs',reference['source_revision'],'local-operator','standalone-document-answer-v1')))
     agent=DocumentAgent(service,DocumentTools(documents),directory/'tasks.sqlite',model=model,max_calls=3,max_revisions=0,
-                        draft_instruction=INSTRUCTION,max_output_tokens=4096,source_revision=reference['source_revision'])
+                        draft_instruction=INSTRUCTION,max_output_tokens=4096,source_revision=reference['source_revision'],
+                        answer_cache=answers,stage_accounting=whole_answer_cache)
     scope={'tenant':'local-workbench','principal':'local-operator'}
     lock=threading.RLock();session=secrets.token_urlsafe(32)
     database=directory/'tasks.sqlite'
@@ -155,10 +170,14 @@ def create_demo_app(directory,*,live=False,journal_path=None,api_key=None):
             for tid in ids:
                 try:s=state_view(tid)
                 except (KeyError,ValueError):continue
-                tasks.append({'id':tid,'question':s['question'],'status':s['status'],'cache_hit':s['draft_cache_hit'],'calls':s['observed_attempts']})
-            return {'mode':'live' if live else 'reference_replay','model':model,'reference':reference,'history':tasks,
+                tasks.append({'id':tid,'question':s['question'],'status':s['status'],
+                    'cache_hit':s['draft_cache_hit'] or bool(s.get('answer_cache_hit')),
+                    'draft_cache_hit':s['draft_cache_hit'],'calls':s['observed_attempts']})
+            return {'mode':'live' if live else 'reference_replay','whole_answer_cache':whole_answer_cache,
+                    'cached_answers':sum(bool(state_view(t['id']).get('answer_cache_hit')) for t in tasks),
+                    'model':model,'reference':reference,'history':tasks,
                     'current_process_attempts':provider.new_calls if live else provider.attempts,
-                    'cached_drafts':sum(t['cache_hit'] for t in tasks),'live_allowance':{'limit':12,'used':counter()} if live else None}
+                    'cached_drafts':sum(t['draft_cache_hit'] for t in tasks),'live_allowance':{'limit':12,'used':counter()} if live else None}
 
     async def body(request):
         if request.headers.get('content-type','').split(';')[0]!='application/json':raise ValueError('JSON required')
@@ -184,7 +203,8 @@ def create_demo_app(directory,*,live=False,journal_path=None,api_key=None):
                     except (KeyError,ValueError):continue
                     if status not in TERMINAL:raise ValueError('Finish the active task before starting another.')
                 if journal:_live_capacity(journal)
-                tid=agent.create(question.strip(),cache=enabled,static_document_stage=True,require_approval=True,**scope)
+                tid=agent.create(question.strip(),cache=enabled,static_document_stage=True,require_approval=True,
+                                 standalone_document_task=whole_answer_cache,**scope)
                 with sqlite3.connect(database) as db:db.execute('INSERT INTO demo_tasks (id,created,question) VALUES (?,?,?)',(tid,time.time(),question.strip()))
                 return state_view(tid)
         except (ValueError,UnicodeError) as e:return JSONResponse({'error':str(e)},status_code=400)
