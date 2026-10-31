@@ -1,0 +1,658 @@
+{
+  "evidence_type": "constructed offline reference fixtures; scripted approvals NOT human labels",
+  "memory_encoder": "lexical-sha256-unigram-bigram-512-v1",
+  "retrieval_type": "lexical vector baseline, not demonstrated natural semantics",
+  "actual_fixture_provider_invocations": 6,
+  "task_calls": [
+    3,
+    0,
+    3
+  ],
+  "cold_candidate_plus_query_embeddings": 2,
+  "warm_query_embeddings": 1,
+  "seed": {
+    "answer": "Tuples are immutable [tuples].",
+    "answer_cache_epoch": 0,
+    "answer_cache_request": {
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "content": "{\"contract\":\"standalone-document-answer-v1\",\"max_calls\":6,\"max_revisions\":1,\"principal\":\"fixture-operator\",\"relevant_memory\":[],\"runtime_binding\":\"fcb5c397179b9e664d74bee7a0d9bf3ae3e56a48841de337009e0a2fb93416b6\",\"scope\":{\"access_scope\":\"public-docs\",\"declared_source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"knowledge_base\":\"local-documents\",\"policy_revision\":\"document-policy-v1\"},\"source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"task_epoch\":0,\"workflow\":\"document-agent-r4-v1\"}",
+          "role": "system"
+        },
+        {
+          "content": "Explain immutable tuples",
+          "role": "user"
+        }
+      ],
+      "model": "fixture",
+      "temperature": 0
+    },
+    "answer_namespace_epoch": 0,
+    "cache": true,
+    "draft": "Tuples are immutable [tuples].",
+    "feedback": null,
+    "id": "076bf6640db041a1b20472e0a10c4897",
+    "max_calls": 6,
+    "max_revisions": 1,
+    "memory_epoch": 0,
+    "memory_status": "standalone_skip",
+    "model": "fixture",
+    "plan": {
+      "steps": [
+        {
+          "arguments": {
+            "document_id": "tuples"
+          },
+          "depends_on": [],
+          "id": "read",
+          "tool": "read"
+        }
+      ]
+    },
+    "provider_calls": 3,
+    "question": "Explain immutable tuples",
+    "relevant_memory": [],
+    "require_approval": true,
+    "reserved_calls": 3,
+    "revisions": 0,
+    "runtime_binding": "fcb5c397179b9e664d74bee7a0d9bf3ae3e56a48841de337009e0a2fb93416b6",
+    "standalone_document_task": true,
+    "static_document_stage": false,
+    "status": "COMPLETED",
+    "task_memories": [],
+    "tools": [
+      {
+        "result": "Tuples are immutable.",
+        "step": {
+          "arguments": {
+            "document_id": "tuples"
+          },
+          "depends_on": [],
+          "id": "read",
+          "tool": "read"
+        }
+      }
+    ],
+    "trace": [
+      {
+        "provider_calls": 0,
+        "routing": "deterministic_state_machine",
+        "specialist": "cache_gateway",
+        "stage": "supervisor_route",
+        "target_state": "CACHE_LOOKUP"
+      },
+      {
+        "cache_status": "MISS",
+        "evidence_reused": false,
+        "provider_calls": 0,
+        "reason": "no_qualified_answer",
+        "stage": "CACHE_LOOKUP",
+        "tier": null
+      },
+      {
+        "provider_calls": 0,
+        "routing": "deterministic_state_machine",
+        "specialist": "planner",
+        "stage": "supervisor_route",
+        "target_state": "PLANNING"
+      },
+      {
+        "cache_status": "BYPASS",
+        "context_bypass": false,
+        "provider_calls": 1,
+        "stage": "PLANNING",
+        "stage_contract": "full-task-context",
+        "usage": {
+          "completion_tokens": 5,
+          "prompt_tokens": 39,
+          "total_tokens": 44
+        }
+      },
+      {
+        "provider_calls": 0,
+        "routing": "deterministic_state_machine",
+        "specialist": "source_researcher",
+        "stage": "supervisor_route",
+        "target_state": "TOOLS"
+      },
+      {
+        "provider_calls": 0,
+        "stage": "tool",
+        "tool": "read"
+      },
+      {
+        "provider_calls": 0,
+        "routing": "deterministic_state_machine",
+        "specialist": "answer_writer",
+        "stage": "supervisor_route",
+        "target_state": "DRAFTING"
+      },
+      {
+        "cache_status": "BYPASS",
+        "context_bypass": false,
+        "provider_calls": 1,
+        "stage": "DRAFTING",
+        "stage_contract": "full-task-context",
+        "usage": {
+          "completion_tokens": 7,
+          "prompt_tokens": 41,
+          "total_tokens": 48
+        }
+      },
+      {
+        "provider_calls": 0,
+        "routing": "deterministic_state_machine",
+        "specialist": "reviewer",
+        "stage": "supervisor_route",
+        "target_state": "REVIEWING"
+      },
+      {
+        "cache_status": "BYPASS",
+        "context_bypass": false,
+        "provider_calls": 1,
+        "stage": "REVIEWING",
+        "stage_contract": "full-task-context",
+        "usage": {
+          "completion_tokens": 10,
+          "prompt_tokens": 45,
+          "total_tokens": 55
+        }
+      },
+      {
+        "stage": "human_decision",
+        "decision": "approve",
+        "principal": "fixture-operator"
+      },
+      {
+        "stage": "answer_admission",
+        "stored": true,
+        "provider_calls": 0
+      }
+    ],
+    "version": "document-agent-r4-v1",
+    "work": [
+      {
+        "completed": true,
+        "elapsed_ms": 0.04655399993680476,
+        "error": null,
+        "stage": "planning",
+        "usage": {
+          "completion_tokens": 5,
+          "prompt_tokens": 39
+        }
+      },
+      {
+        "completed": true,
+        "elapsed_ms": 0.011620000009315845,
+        "error": null,
+        "stage": "tool"
+      },
+      {
+        "completed": true,
+        "elapsed_ms": 0.041688999999678344,
+        "error": null,
+        "stage": "generation",
+        "usage": {
+          "completion_tokens": 7,
+          "prompt_tokens": 41
+        }
+      },
+      {
+        "completed": true,
+        "elapsed_ms": 3.024591999974291,
+        "error": null,
+        "stage": "review",
+        "usage": {
+          "completion_tokens": 10,
+          "prompt_tokens": 45
+        }
+      },
+      {
+        "stage": "admission",
+        "completed": true,
+        "error": null,
+        "elapsed_ms": 2.396510000039598
+      }
+    ],
+    "work_coverage": {
+      "classifier_veto_internals": false,
+      "memory_retrieval": true,
+      "provider_boundary": true,
+      "provider_internal_retries": "not_observed",
+      "timings": "stage observations; not end-to-end; excludes human wait",
+      "whole_answer_local_stages": true
+    },
+    "workflow_approved": true
+  },
+  "hit": {
+    "answer": "Tuples are immutable [tuples].",
+    "answer_cache_epoch": 0,
+    "answer_cache_hit": true,
+    "answer_cache_request": {
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "content": "{\"contract\":\"standalone-document-answer-v1\",\"max_calls\":6,\"max_revisions\":1,\"principal\":\"fixture-operator\",\"relevant_memory\":[],\"runtime_binding\":\"fcb5c397179b9e664d74bee7a0d9bf3ae3e56a48841de337009e0a2fb93416b6\",\"scope\":{\"access_scope\":\"public-docs\",\"declared_source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"knowledge_base\":\"local-documents\",\"policy_revision\":\"document-policy-v1\"},\"source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"task_epoch\":0,\"workflow\":\"document-agent-r4-v1\"}",
+          "role": "system"
+        },
+        {
+          "content": "Explain immutable tuples",
+          "role": "user"
+        }
+      ],
+      "model": "fixture",
+      "temperature": 0
+    },
+    "answer_namespace_epoch": 0,
+    "cache": true,
+    "draft": "Tuples are immutable [tuples].",
+    "feedback": null,
+    "id": "eeecd552b5b648dbb81a3f1e3c0b2a6f",
+    "matched_question": "Explain immutable tuples",
+    "max_calls": 6,
+    "max_revisions": 1,
+    "memory_epoch": 0,
+    "memory_status": "standalone_skip",
+    "model": "fixture",
+    "plan": null,
+    "provider_calls": 0,
+    "question": "Explain immutable tuples",
+    "relevant_memory": [],
+    "require_approval": true,
+    "reserved_calls": 0,
+    "revisions": 0,
+    "runtime_binding": "fcb5c397179b9e664d74bee7a0d9bf3ae3e56a48841de337009e0a2fb93416b6",
+    "standalone_document_task": true,
+    "static_document_stage": false,
+    "status": "COMPLETED",
+    "task_memories": [],
+    "tools": [
+      {
+        "result": "Tuples are immutable.",
+        "step": {
+          "arguments": {
+            "document_id": "tuples"
+          },
+          "depends_on": [],
+          "id": "read",
+          "tool": "read"
+        }
+      }
+    ],
+    "trace": [
+      {
+        "provider_calls": 0,
+        "routing": "deterministic_state_machine",
+        "specialist": "cache_gateway",
+        "stage": "supervisor_route",
+        "target_state": "CACHE_LOOKUP"
+      },
+      {
+        "cache_status": "HIT",
+        "evidence_reused": true,
+        "provider_calls": 0,
+        "reason": "scoped_exact_hit",
+        "stage": "CACHE_LOOKUP",
+        "tier": "EXACT"
+      },
+      {
+        "stage": "human_decision",
+        "decision": "approve",
+        "principal": "fixture-operator"
+      }
+    ],
+    "version": "document-agent-r4-v1",
+    "work": [],
+    "work_coverage": {
+      "classifier_veto_internals": false,
+      "memory_retrieval": true,
+      "provider_boundary": true,
+      "provider_internal_retries": "not_observed",
+      "timings": "stage observations; not end-to-end; excludes human wait",
+      "whole_answer_local_stages": true
+    },
+    "workflow_approved": true
+  },
+  "context": {
+    "answer": null,
+    "cache": true,
+    "draft": "Tuples are immutable [tuples].",
+    "feedback": null,
+    "id": "e70a8f21073745d991af8f3b0c51de89",
+    "max_calls": 6,
+    "max_revisions": 1,
+    "memory_epoch": 0,
+    "memory_status": "snapshot",
+    "model": "fixture",
+    "plan": {
+      "steps": [
+        {
+          "arguments": {
+            "document_id": "tuples"
+          },
+          "depends_on": [],
+          "id": "read",
+          "tool": "read"
+        }
+      ]
+    },
+    "provider_calls": 3,
+    "question": "Explain immutable tuples as earlier",
+    "relevant_memory": [],
+    "require_approval": true,
+    "reserved_calls": 3,
+    "revisions": 0,
+    "runtime_binding": "fcb5c397179b9e664d74bee7a0d9bf3ae3e56a48841de337009e0a2fb93416b6",
+    "static_document_stage": false,
+    "status": "AWAITING_APPROVAL",
+    "task_memories": [
+      {
+        "answer": "Tuples are immutable [tuples].",
+        "evidence": [
+          {
+            "document_id": "tuples"
+          }
+        ],
+        "provenance": "prior_workflow_task_not_independent_truth",
+        "question": "Explain immutable tuples",
+        "similarity": 0.7453559924999299,
+        "source_task_id": "076bf6640db041a1b20472e0a10c4897"
+      }
+    ],
+    "tools": [
+      {
+        "result": "Tuples are immutable.",
+        "step": {
+          "arguments": {
+            "document_id": "tuples"
+          },
+          "depends_on": [],
+          "id": "read",
+          "tool": "read"
+        }
+      }
+    ],
+    "trace": [
+      {
+        "provider_calls": 0,
+        "routing": "deterministic_state_machine",
+        "specialist": "planner",
+        "stage": "supervisor_route",
+        "target_state": "PLANNING"
+      },
+      {
+        "cache_status": "BYPASS",
+        "context_bypass": false,
+        "provider_calls": 1,
+        "stage": "PLANNING",
+        "stage_contract": "full-task-context",
+        "usage": {
+          "completion_tokens": 12,
+          "prompt_tokens": 46,
+          "total_tokens": 58
+        }
+      },
+      {
+        "provider_calls": 0,
+        "routing": "deterministic_state_machine",
+        "specialist": "source_researcher",
+        "stage": "supervisor_route",
+        "target_state": "TOOLS"
+      },
+      {
+        "provider_calls": 0,
+        "stage": "tool",
+        "tool": "read"
+      },
+      {
+        "provider_calls": 0,
+        "routing": "deterministic_state_machine",
+        "specialist": "answer_writer",
+        "stage": "supervisor_route",
+        "target_state": "DRAFTING"
+      },
+      {
+        "cache_status": "BYPASS",
+        "context_bypass": false,
+        "provider_calls": 1,
+        "stage": "DRAFTING",
+        "stage_contract": "full-task-context",
+        "usage": {
+          "completion_tokens": 14,
+          "prompt_tokens": 48,
+          "total_tokens": 62
+        }
+      },
+      {
+        "stage": "supervisor_route",
+        "specialist": "reviewer",
+        "target_state": "REVIEWING",
+        "provider_calls": 0,
+        "routing": "deterministic_state_machine"
+      },
+      {
+        "stage": "REVIEWING",
+        "cache_status": "BYPASS",
+        "provider_calls": 1,
+        "usage": {
+          "prompt_tokens": 52,
+          "completion_tokens": 17,
+          "total_tokens": 69
+        },
+        "stage_contract": "full-task-context",
+        "context_bypass": false
+      }
+    ],
+    "version": "document-agent-r4-v1",
+    "work": [
+      {
+        "completed": true,
+        "elapsed_ms": 0.2547529999219478,
+        "error": null,
+        "stage": "memory_embedding"
+      },
+      {
+        "completed": true,
+        "elapsed_ms": 0.14405499996428262,
+        "error": null,
+        "stage": "memory_embedding"
+      },
+      {
+        "completed": true,
+        "elapsed_ms": 0.025525999944875366,
+        "error": null,
+        "stage": "memory_search"
+      },
+      {
+        "completed": true,
+        "elapsed_ms": 0.03931200001261459,
+        "error": null,
+        "stage": "planning",
+        "usage": {
+          "completion_tokens": 12,
+          "prompt_tokens": 46
+        }
+      },
+      {
+        "completed": true,
+        "elapsed_ms": 0.009614000077817764,
+        "error": null,
+        "stage": "tool"
+      },
+      {
+        "completed": true,
+        "elapsed_ms": 0.035189000072932686,
+        "error": null,
+        "stage": "generation",
+        "usage": {
+          "completion_tokens": 14,
+          "prompt_tokens": 48
+        }
+      },
+      {
+        "stage": "review",
+        "completed": true,
+        "error": null,
+        "usage": {
+          "prompt_tokens": 52,
+          "completion_tokens": 17
+        },
+        "elapsed_ms": 0.03932799995709502
+      }
+    ],
+    "work_coverage": {
+      "classifier_veto_internals": false,
+      "memory_retrieval": true,
+      "provider_boundary": true,
+      "provider_internal_retries": "not_observed",
+      "timings": "stage observations; not end-to-end; excludes human wait",
+      "whole_answer_local_stages": false
+    },
+    "workflow_approved": true
+  },
+  "warm_snapshot": {
+    "answer": null,
+    "cache": true,
+    "draft": null,
+    "feedback": null,
+    "id": "de3536e525f6496a8757679e567f2b30",
+    "max_calls": 6,
+    "max_revisions": 1,
+    "memory_epoch": 0,
+    "memory_status": "snapshot",
+    "model": "fixture",
+    "plan": null,
+    "provider_calls": 0,
+    "question": "Explain immutable tuples as earlier",
+    "relevant_memory": [],
+    "require_approval": true,
+    "reserved_calls": 0,
+    "revisions": 0,
+    "runtime_binding": "fcb5c397179b9e664d74bee7a0d9bf3ae3e56a48841de337009e0a2fb93416b6",
+    "static_document_stage": false,
+    "status": "PLANNING",
+    "task_memories": [
+      {
+        "answer": "Tuples are immutable [tuples].",
+        "evidence": [
+          {
+            "document_id": "tuples"
+          }
+        ],
+        "provenance": "prior_workflow_task_not_independent_truth",
+        "question": "Explain immutable tuples",
+        "similarity": 0.7453559924999299,
+        "source_task_id": "076bf6640db041a1b20472e0a10c4897"
+      }
+    ],
+    "tools": [],
+    "trace": [],
+    "version": "document-agent-r4-v1",
+    "work": [
+      {
+        "completed": true,
+        "elapsed_ms": 0.14163800005917437,
+        "error": null,
+        "stage": "memory_embedding"
+      },
+      {
+        "completed": true,
+        "elapsed_ms": 0.02595300009033963,
+        "error": null,
+        "stage": "memory_search"
+      }
+    ],
+    "work_coverage": {
+      "classifier_veto_internals": false,
+      "memory_retrieval": true,
+      "provider_boundary": true,
+      "provider_internal_retries": "not_observed",
+      "timings": "stage observations; not end-to-end; excludes human wait",
+      "whole_answer_local_stages": false
+    }
+  },
+  "clear_result": {
+    "context_retired": true,
+    "audit_tasks_retained": true
+  },
+  "revoked": {
+    "answer": null,
+    "cache": true,
+    "draft": null,
+    "feedback": null,
+    "id": "de3536e525f6496a8757679e567f2b30",
+    "max_calls": 6,
+    "max_revisions": 1,
+    "memory_epoch": 0,
+    "memory_status": "snapshot",
+    "model": "fixture",
+    "plan": null,
+    "provider_calls": 0,
+    "question": "Explain immutable tuples as earlier",
+    "relevant_memory": [],
+    "require_approval": true,
+    "reserved_calls": 0,
+    "revisions": 0,
+    "runtime_binding": "fcb5c397179b9e664d74bee7a0d9bf3ae3e56a48841de337009e0a2fb93416b6",
+    "static_document_stage": false,
+    "status": "FAILED",
+    "task_memories": [
+      {
+        "answer": "Tuples are immutable [tuples].",
+        "evidence": [
+          {
+            "document_id": "tuples"
+          }
+        ],
+        "provenance": "prior_workflow_task_not_independent_truth",
+        "question": "Explain immutable tuples",
+        "similarity": 0.7453559924999299,
+        "source_task_id": "076bf6640db041a1b20472e0a10c4897"
+      }
+    ],
+    "tools": [],
+    "trace": [
+      {
+        "stage": "supervisor_route",
+        "specialist": "planner",
+        "target_state": "PLANNING",
+        "provider_calls": 0,
+        "routing": "deterministic_state_machine"
+      }
+    ],
+    "version": "document-agent-r4-v1",
+    "work": [
+      {
+        "completed": true,
+        "elapsed_ms": 0.14163800005917437,
+        "error": null,
+        "stage": "memory_embedding"
+      },
+      {
+        "completed": true,
+        "elapsed_ms": 0.02595300009033963,
+        "error": null,
+        "stage": "memory_search"
+      }
+    ],
+    "work_coverage": {
+      "classifier_veto_internals": false,
+      "memory_retrieval": true,
+      "provider_boundary": true,
+      "provider_internal_retries": "not_observed",
+      "timings": "stage observations; not end-to-end; excludes human wait",
+      "whole_answer_local_stages": false
+    },
+    "error": "memory_scope_revoked"
+  },
+  "source_sha256": {
+    "src/agents/document_agent.py": "4ffab5df9f7c6d7cefe8b2c624767e0476ca34e672e3c284402ddc331995de5a",
+    "src/agents/document_orchestration.py": "cb6a542b2f2b58ff3df8d1241f8f6832e49fb123bbe1f0cd769e5a6f1745e360",
+    "src/agents/task_memory.py": "a530502e5b648a5b273fc169531bda54237683d2688888dd799600ec3aa66cff",
+    "src/agents/document_answer_cache.py": "f539f2c38f1882bae4642ec06c403efa08abab9086e60173446b97cec7b8a5a8",
+    "src/policy/work_ledger.py": "66b6aeaae03e9fe70feb2569fc09442566d809fac74f3db8d65b4864c7c58bc8",
+    "scripts/check_document_memory.py": "71024f230b0fe3dbd653ea21dd25c5c2594fe8bab34f9bdb2c1bd49b6556b7cd",
+    "scripts/check_before_agent_work.py": "8d414c1bbf805a0999a117d018aa639416d5d64539045f894cb9d736dcf5993f"
+  }
+}

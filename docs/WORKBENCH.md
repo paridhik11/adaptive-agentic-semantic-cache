@@ -110,3 +110,22 @@ and retains reused evidence provenance. `/api/tasks/{id}` includes `work` and
 this flag. The authored semantic comparison is offline harness evidence only.
 Do not combine this option with `--live`; live budget integration remains pending.
 Browser visual QA is still not claimed. See [Group 2 report](BEFORE_AGENT_CACHE.md).
+
+
+## Scoped task context and role routing (2026-10-31)
+
+`python scripts/run_demo.py --whole-answer-cache --task-memory` starts a separate
+offline `reference-whole-answer-memory` profile. Source work is routed through
+planner, source researcher, answer writer and reviewer roles; routing itself
+makes no model calls. Ask and approve a source question. Its exact repeat skips
+all model roles and still needs a new approval. A question referencing an earlier
+answer uses a frozen snapshot of scoped prior tasks and runs fresh model work.
+The default retrieval encoder is lexical hashing, not a demonstrated natural
+paraphrase model. Prior answers remain untrusted context, not new source evidence.
+
+With the local session capability, GET `/api/memory` lists compatible context
+sources; DELETE `/api/memory` retires future context and cached-answer namespaces
+while keeping task audit history. Clearing stops pending tasks with old snapshots;
+create a new task. Deleting a task via the agent API removes its vector references.
+Full memory management UI and visual QA remain Group 4 work. The flag rejects live
+mode. Details: [Group 3 report](DOCUMENT_ORCHESTRATION_MEMORY.md).

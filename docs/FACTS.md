@@ -887,3 +887,18 @@ encoder; one frozen answer-bound authored paraphrase approval. Inner draft cache
 disabled. No natural-language quality, live cost/token/latency savings inferred.
 All comparison snapshots repeat the same fixtures and add no independent cases.
 No model training/downloads, live calls or final records read/evaluated.
+
+
+## Documentation orchestration and memory — 2026-10-31
+
+Evidence type: builder-authored offline functional fixtures, not independent human
+truth. Group 3 targeted regression suite: 293 passed in 12.94s; raw
+`artifacts/documentation_rebuild/group3/tests.txt`. New receipt:
+`artifacts/documentation_rebuild/group3/work.json`. Fresh standalone task, exact
+repeat after restart and contextual follow-up: [3,0,3] actual scripted provider
+calls (6 total). First vector retrieval computes candidate+query embeddings (2);
+restart reuses the stored vector and computes query only (1). Lexical hashing
+encoder; scripted approvals are not human review. Snapshot/revocation, isolation,
+read-only tool validation and authenticated memory management tested.
+No semantic memory precision, answer benefit, representative latency/cost, live
+savings, new training or final-split evaluation. Group 2 raw evidence is unchanged.

@@ -84,7 +84,9 @@ def _live_capacity(journal,required=3):
     return {'run_attempts':run,'run_limit':journal.max_calls,'daily_attempts':daily,'daily_limit':40}
 
 
-def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_answer_cache=False):
+def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_answer_cache=False,task_memory=False):
+    if type(task_memory) is not bool:raise ValueError('task_memory must be boolean')
+    if live and task_memory:raise ValueError('task memory demo is offline reference mode only')
     if type(whole_answer_cache) is not bool:
         raise ValueError('whole_answer_cache must be boolean')
     if live and whole_answer_cache:
@@ -108,6 +110,7 @@ def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_
     observed=ObservedProvider(provider)
     profile={'reference':reference,'mode':'live' if live else 'reference','model':model,'instruction':INSTRUCTION}
     if whole_answer_cache:profile['task_contract']='standalone-document-answer-v1'
+    if task_memory:profile['memory_profile']='local-task-memory-v1'
     namespace=hashlib.sha256(packed(profile).encode()).hexdigest()
     cache=ScopedResponseCache(eligibility=lambda _:EligibilityDecision(True,'fixed_local_document_workbench'),
                               storage=SQLiteResponseStore(directory/'cache.sqlite',namespace=namespace))
@@ -120,9 +123,11 @@ def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_
             storage=SQLiteResponseStore(directory/'answers.sqlite',namespace=namespace))
         answers=CompletedDocumentCache(GuardedSemanticCache(outer,mode='exact',
             scope=KnowledgeScope('reference-docs',reference['source_revision'],'local-operator','standalone-document-answer-v1')))
+    from src.policy.encoders import LexicalEncoder
     agent=DocumentAgent(service,DocumentTools(documents),directory/'tasks.sqlite',model=model,max_calls=3,max_revisions=0,
                         draft_instruction=INSTRUCTION,max_output_tokens=4096,source_revision=reference['source_revision'],
-                        answer_cache=answers,stage_accounting=whole_answer_cache)
+                        answer_cache=answers,stage_accounting=whole_answer_cache or task_memory,
+                        orchestration=task_memory,memory_encoder=LexicalEncoder() if task_memory else None)
     scope={'tenant':'local-workbench','principal':'local-operator'}
     lock=threading.RLock();session=secrets.token_urlsafe(32)
     database=directory/'tasks.sqlite'
@@ -174,6 +179,7 @@ def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_
                     'cache_hit':s['draft_cache_hit'] or bool(s.get('answer_cache_hit')),
                     'draft_cache_hit':s['draft_cache_hit'],'calls':s['observed_attempts']})
             return {'mode':'live' if live else 'reference_replay','whole_answer_cache':whole_answer_cache,
+                    'task_memory':'lexical local retrieval' if task_memory else 'recent task suggestions',
                     'cached_answers':sum(bool(state_view(t['id']).get('answer_cache_hit')) for t in tasks),
                     'model':model,'reference':reference,'history':tasks,
                     'current_process_attempts':provider.new_calls if live else provider.attempts,
@@ -214,6 +220,19 @@ def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_
         with lock:
             try:return state_view(tid)
             except (KeyError,ValueError):return JSONResponse({'error':'Task unavailable for this source version.'},status_code=404)
+
+    @app.get('/api/memory')
+    def memory_list():
+        with lock:
+            if not task_memory:return JSONResponse({'error':'Task memory is not enabled.'},status_code=400)
+            return {'items':agent.list_task_memory(**scope),'retrieval':'local lexical baseline',
+                    'context_only':True,'independent_answer_evidence':False}
+
+    @app.delete('/api/memory')
+    def memory_clear():
+        with lock:
+            if not task_memory:return JSONResponse({'error':'Task memory is not enabled.'},status_code=400)
+            return agent.clear_task_memory(**scope)
 
     def advance_task(tid):
         with lock:

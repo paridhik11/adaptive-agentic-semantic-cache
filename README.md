@@ -53,7 +53,9 @@ lexical/pinned-local-adapter serving wrapper. No learned adaptation benefit is c
 1. Durable source-bound candidates: rebuilt and verified with offline fixtures.
 2. Qualified lookup before agent execution: implemented and fixture-verified,
    with provider-boundary and local-stage observations (see coverage limits).
-3. Specialist/tool orchestration and scoped persistent task-memory integration.
+3. Bounded role orchestration, typed read-only tools and persistent scoped task
+   retrieval: implemented and fixture-verified. Demo retrieval is lexical, not
+   evidence of broad semantic understanding.
 4. Unified interface, reproducible deployment and independent answer review;
    separately authorized budgeted live comparison.
 
@@ -92,6 +94,20 @@ your approval again. It uses a separate local profile; the original demo remains
 available. No external inference occurs. Guarded semantic whole-task lookup is
 verified by authored answer-bound fixtures; it is not enabled generally in this
 UI. This flag cannot be combined with live mode yet.
+
+## Role workflow and task context
+
+```sh
+python scripts/run_demo.py --whole-answer-cache --task-memory
+```
+
+The offline profile exposes planner, source researcher, answer writer and reviewer
+routes. Standalone questions keep the cache-first path. Contextual follow-ups use
+locally retrieved prior tasks as untrusted context, frozen for the task. Listing
+and clearing context are available through authenticated local memory endpoints;
+clearing retains the audit history. The demo uses a lexical vector baseline.
+New Group 3 evidence: **293 regression tests passed**; no natural-language memory
+quality or live savings claim. See [Group 3 report](docs/DOCUMENT_ORCHESTRATION_MEMORY.md).
 
 ## Offline quickstart
 

@@ -1,6 +1,6 @@
 # Current implementation and evidence
 
-## Active product milestone — 2026-10-26
+## Active product milestone — 2026-10-31
 
 Continue the existing bounded documentation product; no new training experiments
 without a specific integration need. Local milestone commits only: no push or
@@ -28,9 +28,19 @@ training, downloads, live/provider calls or final evaluation. Timings are local
 fixture observations, not representative latency. Combined applicability is
 measured; classifier/veto internals and provider-internal retries are not.
 
-Next: Group 3 orchestration and scoped memory integration, then Group 4 product
-QA, independent answer review and separately authorized live utility. No new
-training detour. See [Group 2 report](BEFORE_AGENT_CACHE.md).
+Group 3 is implemented: explicit bounded document-role routing, typed search/read
+registry, persistent scoped vector index and frozen contextual-task snapshots.
+Local authenticated memory list/clear endpoints retain audit history; epoch
+revocation blocks stale pending tasks. Standalone answer hits skip memory and all
+model roles. **293 regression tests passed**. New fixture receipt: fresh/repeat/
+contextual tasks use [3,0,3] scripted model calls; source+query embeddings 2 on
+first retrieval versus 1 query embedding after restart. This is lexical retrieval
+and lifecycle evidence, not natural paraphrase quality or a memory benefit study.
+
+Next: Group 4 UI/installation/deployment QA, independent actual-answer review and
+separately authorized budgeted live utility. No training detour, push or merge.
+See [Group 3 report](DOCUMENT_ORCHESTRATION_MEMORY.md). Milestone commits are
+preserved automatically; the user need not manage recovery downloads.
 
 The status below is historical Stage B context. Missing follow-up artifacts are
 not recreated by repeating experiments; their results are not claimed here.

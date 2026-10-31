@@ -1,0 +1,29 @@
+{
+  "receipt_source_hashes_match": true,
+  "facts_append_only": true,
+  "frozen_experiment_paths_unchanged": true,
+  "evidence_type": "engineering integrity check",
+  "scan_scope": [
+    ".gitattributes",
+    "README.md",
+    "artifacts/documentation_rebuild/group3/tests-before-memory-management.txt",
+    "artifacts/documentation_rebuild/group3/tests.txt",
+    "artifacts/documentation_rebuild/group3/work.json",
+    "docs/CURRENT_STATUS.md",
+    "docs/DOCUMENT_ORCHESTRATION_MEMORY.md",
+    "docs/FACTS.md",
+    "docs/WORKBENCH.md",
+    "scripts/check_document_memory.py",
+    "scripts/run_demo.py",
+    "src/agents/document_agent.py",
+    "src/agents/document_orchestration.py",
+    "src/agents/task_memory.py",
+    "src/api/demo.py",
+    "src/api/workbench.js",
+    "src/policy/work_ledger.py",
+    "tests/test_document_orchestration_memory.py"
+  ],
+  "scan_limit": "obvious credential patterns and sizes in changed/new text only",
+  "operational_failure": "Initial fixture import lacked tests package prefix; corrected, no policy tuning",
+  "network_runtime_observation": "Environment-status tool not exposed and network-policy file absent; no external inference or credential-readiness claim"
+}

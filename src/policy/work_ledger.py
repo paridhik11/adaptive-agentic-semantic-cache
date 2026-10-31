@@ -6,7 +6,7 @@ import time
 
 class WorkLedger:
     STAGES = frozenset({'planning', 'generation', 'review', 'embedding', 'search',
-                        'applicability', 'tool', 'admission'})
+                        'applicability', 'tool', 'admission', 'memory_embedding', 'memory_search'})
 
     def __init__(self):
         self.events = []

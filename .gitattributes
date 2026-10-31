@@ -20,3 +20,6 @@ src/policy/sqlite_store.py text eol=lf
 src/api/service.py text eol=lf
 scripts/check_before_agent_work.py text eol=lf
 scripts/backup_documentation_product.py text eol=lf
+src/agents/document_orchestration.py text eol=lf
+src/agents/task_memory.py text eol=lf
+scripts/check_document_memory.py text eol=lf
