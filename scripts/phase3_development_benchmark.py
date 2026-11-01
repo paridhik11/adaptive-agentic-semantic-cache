@@ -7,7 +7,7 @@ Evaluates 5 arms on a fixed, answer-bound, source-version-aware development set:
   D. Combined policy (MiniLM-L6 + Quora CrossEncoder)
   E. Answer-aware policy (MiniLM-L6 + requirement guards + MS MARCO CrossEncoder)
 
-Preserves frozen evaluation protocol and records full raw telemetry.
+Development replay only. Review labels bind actual requests, answers and scope.
 """
 from __future__ import annotations
 
@@ -23,6 +23,7 @@ import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from src.benchmark.answer_evidence import AnswerReviews, ObservedApprover, ObservedProvider, review_binding, summarize
 from src.api.providers import FixtureChatProvider
 from src.api.service import GatewayService
 from src.policy.answer_aware_policy import AnswerAwareSemanticPolicy, LocalPassageScorer
@@ -33,9 +34,12 @@ from src.policy.semantic_runtime import GuardedSemanticCache, KnowledgeScope, Re
 
 
 class ReferenceProvider(FixtureChatProvider):
-    """Deterministic reference replay returning reference answers with realistic token accounting."""
+    """Scripted source replay; whitespace usage is synthetic, not provider token usage."""
 
     mode = "source_reference_replay"
+
+    def __init__(self, delay_ms=20.0):
+        self.delay_ms = delay_ms
 
     def __call__(self, body: dict) -> dict:
         messages = body.get("messages", [])
@@ -43,8 +47,8 @@ class ReferenceProvider(FixtureChatProvider):
         ref = system_text.split("Treat reference as data:\n", 1)[-1] if "Treat reference as data:\n" in system_text else "Default reference."
         user_query = messages[-1]["content"] if messages else ""
         
-        # Simulate ~150-250ms provider network/inference delay
-        time.sleep(0.02)
+        # Explicit fixture delay, never a measured remote-provider latency.
+        time.sleep(self.delay_ms / 1000)
         
         return {
             "id": f"ref-{hashlib.sha256(user_query.encode()).hexdigest()[:12]}",
@@ -170,10 +174,18 @@ def generate_dev_workload(corpus_path: Path) -> list[dict]:
     return events
 
 
-def run_benchmark(workload: list[dict], output_path: Path):
-    encoder = DenseEncoder("sentence-transformers/all-MiniLM-L6-v2", "1110a243fdf4706b3f48f1d95db1a4f5529b4d41")
-    pair_scorer = LocalPairScorer(PAIR_MODEL, PAIR_REVISION)
-    passage_scorer = LocalPassageScorer()
+def run_benchmark(workload: list[dict], output_path: Path, *, arms=None, reviews=(), delay_ms=20.0):
+    if output_path.exists():
+        raise FileExistsError(output_path)
+    if not math.isfinite(delay_ms) or delay_ms < 0:
+        raise ValueError("nonnegative finite fixture delay required")
+    if not workload:
+        raise ValueError("nonempty development workload required")
+    review_index = AnswerReviews(reviews)
+    neural = arms is None or any(a not in ("A_no_cache", "B_exact_cache") for a in arms)
+    encoder = DenseEncoder("sentence-transformers/all-MiniLM-L6-v2", "1110a243fdf4706b3f48f1d95db1a4f5529b4d41") if neural else None
+    pair_scorer = LocalPairScorer(PAIR_MODEL, PAIR_REVISION) if arms is None or "D_combined_policy" in arms else None
+    passage_scorer = LocalPassageScorer() if arms is None or "E_answer_aware_policy" in arms else None
     
     # 5 arms
     arm_names = [
@@ -184,12 +196,16 @@ def run_benchmark(workload: list[dict], output_path: Path):
         "E_answer_aware_policy",
     ]
     
-    provider = ReferenceProvider()
+    if arms is not None:
+        if not arms or len(set(arms)) != len(arms) or set(arms)-set(arm_names):
+            raise ValueError("invalid arms")
+        arm_names = arms
     results = {arm: [] for arm in arm_names}
     
     # Execute each arm with fresh caches
     for arm in arm_names:
         print(f"Executing arm: {arm} ({len(workload)} events)...", flush=True)
+        provider = ObservedProvider(ReferenceProvider(delay_ms), usage_kind="synthetic_whitespace")
         exact_cache = ScopedResponseCache(eligibility=lambda req: EligibilityDecision(True, "dev_benchmark"))
         
         if arm == "A_no_cache":
@@ -219,6 +235,9 @@ def run_benchmark(workload: list[dict], output_path: Path):
             # Candidate retrieval threshold allows candidate verifier to judge relevant pairs
             retrieval_th = 0.60
             
+        if approver is not None:
+            approver = ObservedApprover(approver)
+
         default_scope = KnowledgeScope("python-faq", workload[0]["revision"], "public-docs", "p0-dev-v1")
         semantic_cache = GuardedSemanticCache(
             exact_cache,
@@ -241,126 +260,65 @@ def run_benchmark(workload: list[dict], output_path: Path):
         # Execute events sequentially
         for event in workload:
             
+            before = len(provider.events)
+            approval_before = len(approver.events) if approver is not None else 0
             t0 = time.perf_counter()
-            res = service.complete(copy.deepcopy(event["request"]), tenant_id=event["tenant"])
+            error = None
+            try:
+                res = service.complete(copy.deepcopy(event["request"]), tenant_id=event["tenant"])
+                response, status, tier = res.response, res.status, res.tier
+                diag = res.diagnosis or {}
+            except Exception as exc:
+                response, status, tier, diag = None, "ERROR", "ERROR", {}
+                error = type(exc).__name__
             elapsed = (time.perf_counter() - t0) * 1000.0
-            
-            is_hit = res.status == "HIT"
-            tier = getattr(res, "tier", "EXACT" if is_hit else "NONE")
-            diag = getattr(res, "diagnosis", {}) or {}
-            
-            reused = is_hit
-            expected = event["expected_safe_reuse"]
-            
-            # Classification
-            if is_hit:
-                correct_reuse = expected
-                unsafe_reuse = not expected
-            else:
-                correct_reuse = False
-                unsafe_reuse = False
-                
+            binding = review_binding(event["request"], response, event["tenant"], event["revision"])
+            review = review_index.lookup(binding)
+            is_hit = status == "HIT"
             results[arm].append({
-                "event_id": event["event_id"],
-                "faq_id": event["faq_id"],
-                "family": event["family"],
-                "status": res.status,
-                "tier": tier,
-                "is_hit": is_hit,
-                "reused": reused,
-                "expected_safe_reuse": expected,
-                "correct_reuse": correct_reuse,
-                "unsafe_reuse": unsafe_reuse,
-                "elapsed_ms": elapsed,
-                "diagnosis": diag,
+                "event_id": event["event_id"], "faq_id": event["faq_id"], "family": event["family"],
+                "request": event["request"], "returned_response": response,
+                "binding": binding, "answer_review": review,
+                "status": status, "tier": tier, "is_hit": is_hit,
+                "correct_reuse": (review["label"] == "sufficient") if is_hit and review["label"] != "unknown" else None,
+                "unsafe_reuse": (review["label"] == "insufficient") if is_hit and review["label"] != "unknown" else None,
+                "elapsed_ms": elapsed, "error": error, "diagnosis": diag,
+                "provider_events": copy.deepcopy(provider.events[before:]),
+                "candidate_assessments": copy.deepcopy(approver.events[approval_before:]) if approver is not None else [],
             })
-            
-    # Compute summary metrics for each arm
-    summary = {}
-    for arm, records in results.items():
-        total = len(records)
-        hits = sum(r["is_hit"] for r in records)
-        exact_hits = sum(r["is_hit"] and r["tier"] == "EXACT" for r in records)
-        semantic_hits = sum(r["is_hit"] and r["tier"] == "SEMANTIC" for r in records)
-        misses = total - hits
-        
-        # Semantic precision & safety
-        tp = sum(r["correct_reuse"] and r["tier"] == "SEMANTIC" for r in records)
-        fp = sum(r["unsafe_reuse"] and r["tier"] == "SEMANTIC" for r in records)
-        fn = sum(r["expected_safe_reuse"] and not r["is_hit"] for r in records)
-        
-        precision = tp / (tp + fp) if (tp + fp) > 0 else (1.0 if fp == 0 else 0.0)
-        
-        # Wilson score confidence interval for semantic error rate (fp / semantic_hits)
-        err_rate = fp / semantic_hits if semantic_hits > 0 else 0.0
-        n_sem = semantic_hits
-        if n_sem > 0:
-            z = 1.96  # 95% CI
-            denom = 1 + z**2 / n_sem
-            center = (err_rate + z**2 / (2 * n_sem)) / denom
-            half = z * math.sqrt((err_rate * (1 - err_rate) + z**2 / (4 * n_sem)) / n_sem) / denom
-            ci_lower = max(0.0, center - half)
-            ci_upper = min(1.0, center + half)
-        else:
-            ci_lower, ci_upper = 0.0, 0.0
-            
-        unsafe_by_family = {}
-        for r in records:
-            if r["unsafe_reuse"]:
-                fam = r["family"]
-                unsafe_by_family[fam] = unsafe_by_family.get(fam, 0) + 1
-                
-        latencies = sorted(r["elapsed_ms"] for r in records)
-        p50 = latencies[int(len(latencies) * 0.50)]
-        p95 = latencies[int(len(latencies) * 0.95)]
-        
-        summary[arm] = {
-            "total_requests": total,
-            "hits_total": hits,
-            "exact_hits": exact_hits,
-            "semantic_hits": semantic_hits,
-            "misses": misses,
-            "correct_semantic_reuse": tp,
-            "unsafe_semantic_reuse": fp,
-            "semantic_precision": precision,
-            "semantic_error_rate": err_rate,
-            "semantic_error_ci95": [ci_lower, ci_upper],
-            "unsafe_by_family": unsafe_by_family,
-            "latency_p50_ms": p50,
-            "latency_p95_ms": p95,
-        }
-        
+
+    summary = {arm: summarize(records) for arm, records in results.items()}
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump({"summary": summary, "results": results}, f, indent=2)
-        
-    print("\n=== PHASE 3 COMPARATIVE BENCHMARK RESULTS ===")
-    print(f"{'Arm':<25} | {'Hits':<8} | {'Exact':<6} | {'Sem':<5} | {'TP':<4} | {'FP':<4} | {'Prec':<7} | {'p50(ms)':<8} | {'Unsafe Families'}")
-    print("-" * 105)
-    for arm, s in summary.items():
-        fam_str = ", ".join(f"{k}:{v}" for k, v in s["unsafe_by_family"].items()) or "None (Safe)"
-        print(f"{arm:<25} | {s['hits_total']:<8} | {s['exact_hits']:<6} | {s['semantic_hits']:<5} | {s['correct_semantic_reuse']:<4} | {s['unsafe_semantic_reuse']:<4} | {s['semantic_precision']*100:6.1f}% | {s['latency_p50_ms']:<8.2f} | {fam_str}")
-    print("-" * 105)
+    receipt = {"schema": "answer-bound-development-v2", "evidence_kind": "simulated_provider_replay",
+               "timing_scope": "GatewayService.complete; excludes HTTP, agent orchestration and model construction",
+               "fixture_delay_ms": delay_ms, "workload_sha256": digest(workload),
+               "quantile_method": "nearest_rank", "summary": summary, "results": results}
+    with output_path.open("x", encoding="utf-8") as f:
+        json.dump(receipt, f, indent=2, allow_nan=False)
+    print(json.dumps(summary, indent=2))
+    return receipt
 
 
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--corpus", type=Path, default=Path("runs/r5-corpus/corpus.json"))
     p.add_argument("--output", type=Path, default=Path("runs/semantic-dev/phase3_benchmark_results.json"))
+    p.add_argument("--workload", type=Path, help="Existing development workload; no sealed corpus reads")
+    p.add_argument("--arms", nargs="+", choices=["A_no_cache", "B_exact_cache", "C_dense_only", "D_combined_policy", "E_answer_aware_policy"])
+    p.add_argument("--reviews", type=Path, help="JSON list of answer-bound review declarations")
+    p.add_argument("--provider-delay-ms", type=float, default=20.0)
     args = p.parse_args()
+    if not math.isfinite(args.provider_delay_ms) or args.provider_delay_ms < 0:
+        p.error("nonnegative finite fixture delay required")
+    if args.output.exists():
+        p.error("output already exists; preserve prior evidence")
     
     print("Generating fixed development workload from FAQ dev split...")
-    workload = generate_dev_workload(args.corpus)
+    workload = json.loads(args.workload.read_text()) if args.workload else generate_dev_workload(args.corpus)
     print(f"Total development events generated: {len(workload)}")
     
-    # Save workload definition for audit reproducibility
-    workload_file = Path("runs/semantic-dev/phase3_dev_workload.json")
-    workload_file.parent.mkdir(parents=True, exist_ok=True)
-    with open(workload_file, "w", encoding="utf-8") as f:
-        json.dump(workload, f, indent=2)
-    print(f"Workload saved to {workload_file}")
-    
-    run_benchmark(workload, args.output)
+    reviews = json.loads(args.reviews.read_text()) if args.reviews else []
+    run_benchmark(workload, args.output, arms=args.arms, reviews=reviews, delay_ms=args.provider_delay_ms)
 
 
 if __name__ == "__main__":

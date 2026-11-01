@@ -1,3 +1,15 @@
+## Evidence correction — 2026-11-02 (supersedes publication/precision snapshots below)
+
+GitHub integration branch was verified at `8a272ff`. All 1,100 historical events
+were audited; all 129 semantic-hit answers recovered by full-response hash.
+Corrected answer-bound benchmark no longer inherits generated family labels.
+Model-assisted review of 12 answer-aware hits: 11 sufficient, 1 false behavioral
+claim under strict whole-answer rubric; no independent human accuracy claim.
+New offline no-cache/exact replay directly counts 220/198 scripted calls over
+220 requests per arm; no failures, live calls or measured billable token costs.
+Policy defaults/thresholds and agent architecture are unchanged. Neural/whole-agent
+live utility remains unverified. See [evidence correction](BENCHMARK_EVIDENCE_CORRECTION.md).
+
 # Current implementation and evidence
 
 ## Latest release checkpoint — 2026-11-02

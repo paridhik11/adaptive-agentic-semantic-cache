@@ -1,3 +1,11 @@
+> **Historical report, superseded 2026-11-02.** The original text below is retained
+> for audit history. Its TP/FP, precision and safety claims use generated family
+> labels, not returned-answer review. Its live speedup is a projection, not a
+> measurement. See [answer-bound correction](BENCHMARK_EVIDENCE_CORRECTION.md).
+> No historical raw result has been modified. Current model-assisted review of
+> the 12 answer-aware hits finds 11 sufficient and 1 with a false behavioral
+> claim under a strict whole-answer rubric; this is not independent human truth.
+
 # SEMANTIC_P0_RESULTS.md
 
 _Branch: `integration/documentation-rebuild`_  

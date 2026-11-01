@@ -1,47 +1,27 @@
-# RESUME_METRICS_VERIFIED.md
+# Resume evidence status — corrected 2026-11-02
 
-_Classification of experimental claims across the codebase._  
-_Written: 2026-11-02_
+Do not describe the five-arm reference replay as measured-live provider evidence.
+It combines local-model execution with a scripted 20 ms provider; its whitespace
+usage fields are not billable tokens. The original family-derived 12/12 is not
+verified answer precision. Historical data remains unchanged.
 
----
+Current actual-answer review is explicitly model-assisted, not human ground truth:
+11 of 12 answer-aware reused answers are sufficient under a strict whole-answer
+rubric; one gives a useful reverse loop but falsely claims `reversed` builds a
+new copy. No population safety estimate or deployment qualification follows.
+The other semantic arms retain unknown reviews. See
+[BENCHMARK_EVIDENCE_CORRECTION.md](BENCHMARK_EVIDENCE_CORRECTION.md).
 
-## Metric Evidence Classification
+Supported historical engineering wording remains in `Resume_Ready_Project.md`:
 
-| Category | Definition | Status / Traceability |
-| :--- | :--- | :--- |
-| **Measured-Live (Development Benchmark)** | Actual local CPU forward passes and full runtime execution on fixed, version-pinned test records. | **VERIFIED:** Phase 3 benchmark (`runs/semantic-dev/phase3_benchmark_results.json`). 220 events across 5 arms. |
-| **Historical Component Measurement** | Isolated micro-benchmarks of individual encoders or models. | **VERIFIED:** Documented in `docs/FACTS.md` (e.g. MiniLM embedding ~30–60 ms, Quora latency ~40 ms). |
-| **Simulated / Replay** | Synthetic provider replays simulating network latency or fixed response generation. | **VERIFIED:** Used for offline evaluation without paid API calls (`ReferenceProvider`). Not claimed as live API savings. |
-| **Projected / Estimated** | Extrapolations of cost or latency savings under hypothetical live traffic distributions. | **CAUTION:** Must always be labeled as projections; cannot be cited as headline application benefits. |
-| **Unproven / Disproven** | Hypotheses contradicted by empirical data. | **DISPROVEN:** Claim that Quora QQP cross-encoder is effective for technical Python semantic caching (disproven in Phase 1: logits −7 to −8.35). |
+- Tenant-scoped durable caching with TTL/invalidation; historical local SQLite
+  warm-hit p95 1.79 ms across 5,000 requests, not end-to-end LLM time.
+- Process-local coordination: 64 simultaneous constructed cold requests made
+  one counted stub-provider invocation, not demonstrated paid-API savings.
+- Bounded planning, source tools, review, memory and durable approval, validated
+  with scoped offline regressions, not natural-answer accuracy observations.
 
----
-
-## Exact Verified Metrics for Resume / Portfolios
-
-### 1. Semantic Reuse Safety & Precision
-- **Claim:** Answer-aware semantic verification eliminates false-positive reuse on complex technical Q&A requests.
-- **Evidence Label:** `measured-live (development benchmark)`
-- **Denominators & CIs:**
-  - Semantic Hits: 12
-  - True Positives (TP): 12
-  - False Positives (FP): 0
-  - Precision: **100.0%**
-  - Error Rate: **0.0%** (Exact 95% Wilson Confidence Interval: **[0.0%, 24.3%]**, upper bound 24.3% with $N=12$).
-  - Unsafe Reuses: 0 across all 220 requests (0 direction reversals, 0 negation errors, 0 numeric/version errors).
-- **Comparison Baselines ($N=220$ events):**
-  - Dense-only baseline ($\ge 0.85$): Error rate **51.9%** (41 FP out of 79 semantic hits, 95% CI: [41.1%, 62.6%]).
-  - Combined Quora policy: Error rate **42.1%** (16 FP out of 38 semantic hits, 95% CI: [27.9%, 57.8%]).
-
-### 2. Local Verification Overhead
-- **Evidence Label:** `measured-live (CPU execution on Intel/AMD x86_64)`
-- **Breakdown:**
-  - MiniLM Dense Encoder: 20–30 ms p50
-  - Hard Requirement Guard: 0.15 ms p50
-  - MS MARCO Passage Scorer: 25–45 ms p50
-  - End-to-end Gateway Cache Processing p50: **47.62 ms** (Arm E) vs **21.51 ms** (Arm B exact cache).
-
-### 3. Non-Claims & Disclosures
-- **No live API cost savings claimed:** The development benchmark operated on local models and deterministic reference replay; no external provider tokens were saved during offline testing.
-- **Sample size disclosure:** Development evaluation conducted on $N=220$ events (22 seed items $\times$ 10 variations) from CPython 3.12 documentation. Final test split remains sealed.
-- **Zero-error upper bound disclosure:** While Arm E achieved 0 errors in this evaluation, the statistical 95% confidence upper bound for the error rate is 24.3% given $N=12$ semantic hits.
+The corrected 440-request offline gateway replay directly counts 220 no-cache
+versus 198 exact-only scripted attempts, with zero completion failures. No live
+provider calls were made. Billable tokens, API cost and live end-to-end efficiency
+remain unverified; no headline application savings percentage is supported.

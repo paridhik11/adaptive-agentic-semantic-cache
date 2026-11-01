@@ -1014,3 +1014,30 @@ Raw evidence, build log, wheel SHA and dependency versions: group4/clean-install
 Automatic approval review rejected the renewed GitHub push because sharing consent
 for recorded review data after the prior pause was considered unclear. No push or
 alternate transport followed rejection. Browser QA and deployment remain open.
+
+
+## Answer-bound evidence correction — 2026-11-02
+
+Historical 8a272ff five-arm trace: 1,100 ordered records audited. All 129 semantic
+hit responses recovered by deterministic fixture reconstruction and full-response
+SHA-256 match (79 dense / 38 combined / 12 answer-aware). Source telemetry was
+not changed. Model-assisted source-reading review: answer-aware 11 sufficient /
+1 insufficient for strict whole-answer correctness; reversed-copy claim false.
+Not independent human truth or evidence of cache-induced degradation. Dense and
+combined retain 67 and 26 unknowns. Descriptive exact-binomial 11/12 interval
+[0.6152038348,0.9978924068] is not a population guarantee on selected exposed data.
+Raw review bindings and reconciliation: semantic_p0/answer_aware_model_reviews_v2.json,
+phase3_trace_audit_v2.json and phase3_trace_model_review_v2.json under
+artifacts/documentation_rebuild/. Historical call counts are inferred, not observed.
+
+New offline gateway replay: 220 requests/arm; observed no-cache 220 vs exact 198
+scripted attempts, 0 failures. Fixture delay 20 ms; no-cache p50/p95
+20.386301/20.636422 ms, exact 20.442820/20.614063 ms; nearest-rank quantiles.
+Not HTTP/whole-agent/live LLM timings. Usage synthetic; billable tokens and money
+null. Receipt: artifacts/documentation_rebuild/semantic_p0/answer_bound_exact_replay_v2.json.
+Corrected benchmark binds actual returned answers and scope; unknowns stay null.
+No thresholds changed, sealed final data read, models downloaded, or live API calls.
+See docs/BENCHMARK_EVIDENCE_CORRECTION.md for scope, reproduction and limitations.
+
+Validation of this correction: 250 offline regressions passed in 3.82s; one
+Starlette/httpx deprecation warning. Receipt: semantic_p0/answer_evidence_tests_v2.txt.
