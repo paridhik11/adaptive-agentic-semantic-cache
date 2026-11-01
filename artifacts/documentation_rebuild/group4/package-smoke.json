@@ -1,0 +1,15 @@
+{
+  "evidence_type": "installed-wheel functional smoke using existing dependency runtime, NOT clean dependency installation",
+  "import_path": "/workspace/scratch/2722df406b2c/group4-installed/src/api/demo.py",
+  "wheel_sha256": "ca7a1feaa2405e318664e6061eb1750da216ada5e1f25532a28c27aa5777187b",
+  "actual_scripted_calls_per_task": [
+    3,
+    0
+  ],
+  "packaged_assets": true,
+  "memory_management": true,
+  "ml_stack_imported": false,
+  "external_inference_calls": 0,
+  "browser_visual_qa": false,
+  "clean_dependency_install": "not verified; no cached dependency wheels; no dependency download attempted"
+}

@@ -1,0 +1,26 @@
+{
+  "packet_hashes_match": true,
+  "facts_append_only": true,
+  "frozen_experiment_paths_unchanged": true,
+  "scan_scope": [
+    ".gitattributes",
+    "README.md",
+    "artifacts/documentation_rebuild/group4/data-inventory.json",
+    "artifacts/documentation_rebuild/group4/package-smoke.json",
+    "artifacts/documentation_rebuild/group4/tests.txt",
+    "artifacts/documentation_rebuild/group4/wheel-build.txt",
+    "data/document_product_review/v1/INSTRUCTIONS.md",
+    "data/document_product_review/v1/SOURCE_LICENSE.txt",
+    "data/document_product_review/v1/manifest.json",
+    "data/document_product_review/v1/requests.jsonl",
+    "data/document_product_review/v1/sources.json",
+    "docs/CURRENT_STATUS.md",
+    "docs/DATASETS_AND_REVIEW.md",
+    "docs/FACTS.md",
+    "scripts/inventory_product_data.py",
+    "scripts/prepare_document_review.py",
+    "scripts/validate_document_review.py",
+    "tests/test_document_review_packet.py"
+  ],
+  "scan_limit": "obvious key patterns and file sizes in new/changed text only"
+}

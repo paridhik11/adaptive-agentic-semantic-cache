@@ -902,3 +902,17 @@ encoder; scripted approvals are not human review. Snapshot/revocation, isolation
 read-only tool validation and authenticated memory management tested.
 No semantic memory precision, answer benefit, representative latency/cost, live
 savings, new training or final-split evaluation. Group 2 raw evidence is unchanged.
+
+
+## Group 4 data/evaluation preparation — 2026-11-01
+
+Evidence: engineering/schema fixtures only. 301 regression tests passed in 4.97s,
+`artifacts/documentation_rebuild/group4/tests.txt`. Installed-wheel HTTP smoke
+loaded packaged assets, approval, whole-answer reuse and memory management:
+scripted task calls [3,0], no ML-stack imports; dependencies reused from existing
+runtime, so this is NOT a clean dependency-install result. Receipt:
+`artifacts/documentation_rebuild/group4/package-smoke.json`.
+Data inventory: `artifacts/documentation_rebuild/group4/data-inventory.json`.
+New independent authoring request: 30 blank slots over 3 existing FAQ sources,
+0 new questions and 0 labels. No natural-quality observations or savings claim.
+No new training, model/data download, live calls or locked final evaluation.

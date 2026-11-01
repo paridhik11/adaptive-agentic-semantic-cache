@@ -23,3 +23,8 @@ scripts/backup_documentation_product.py text eol=lf
 src/agents/document_orchestration.py text eol=lf
 src/agents/task_memory.py text eol=lf
 scripts/check_document_memory.py text eol=lf
+
+data/document_product_review/** -text
+scripts/prepare_document_review.py text eol=lf
+scripts/validate_document_review.py text eol=lf
+scripts/inventory_product_data.py text eol=lf

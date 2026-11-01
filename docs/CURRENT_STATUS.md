@@ -1,6 +1,6 @@
 # Current implementation and evidence
 
-## Active product milestone — 2026-10-31
+## Active product milestone — 2026-11-01
 
 Continue the existing bounded documentation product; no new training experiments
 without a specific integration need. Local milestone commits only: no push or
@@ -41,6 +41,13 @@ Next: Group 4 UI/installation/deployment QA, independent actual-answer review an
 separately authorized budgeted live utility. No training detour, push or merge.
 See [Group 3 report](DOCUMENT_ORCHESTRATION_MEMORY.md). Milestone commits are
 preserved automatically; the user need not manage recovery downloads.
+
+Group 4 is PARTIAL: data inventory, independent-review authoring packet/schema
+validator and installed-wheel HTTP smoke are complete. 301 regression tests
+passed. Wheel smoke uses existing dependencies and is not clean-machine install
+or browser QA. No new independent labels exist. General approval beyond authored
+bindings remains unresolved, separately from UI/deployment work. See
+[dataset/review report](DATASETS_AND_REVIEW.md). No training or live calls.
 
 The status below is historical Stage B context. Missing follow-up artifacts are
 not recreated by repeating experiments; their results are not claimed here.

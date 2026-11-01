@@ -143,3 +143,18 @@ It keeps relevant memory/scope in the actual prompt and full-request key. This
 does not validate live agent quality or net savings. Legacy documents are preserved and marked superseded. Historical
 latency percentages are component comparisons against a remote judge, not
 application savings against fresh generation.
+
+
+## Which datasets are used?
+
+See [data inventory and limitations](docs/DATASETS_AND_REVIEW.md). Historical
+Stage B training used builder-authored synthetic Python intent pairs in
+`data/intent_stage_b/v2`; its trained policies failed useful-coverage calibration
+and were not promoted. Product regression tests use scripted fixtures. The demo
+uses three bundled CPython 3.12 FAQ excerpts. No new training is running.
+
+Group 4 has prepared a 30-slot independent wording/review request with blank
+judgments, not a new labeled benchmark. Current general semantic approval remains
+unresolved; the authored registry cannot establish unseen paraphrase recognition.
+An installed-wheel smoke check passed using existing dependencies; clean-machine
+installation, browser QA, deployment and live utility are not yet established.
