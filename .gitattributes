@@ -35,3 +35,6 @@ configs/document_product/** text eol=lf
 scripts/score_document_diagnostic.py text eol=lf
 scripts/report_document_diagnostic.py text eol=lf
 src/policy/local_models.py text eol=lf
+
+artifacts/resume/** -text -whitespace
+scripts/benchmark_resume_cache.py text eol=lf

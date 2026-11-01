@@ -91,6 +91,13 @@ promotion or threshold changes. 120 related regressions passed. GitHub work
 is paused by user instruction; no branch head was published. See
 [real-model diagnostic](REAL_DOCUMENT_MODEL_DIAGNOSTIC.md).
 
+Resume submission priority: reproducible local cache benchmark completed.
+SQLite warm-hit p95 1.79 ms over 5,000 requests; three keys/five runs. Separate
+64-request cold fixture made one stub invocation. 320 targeted regressions pass.
+These are engineering metrics, not live savings or semantic quality. Resume
+entry and demo instructions are ready in [Resume_Ready_Project.md](Resume_Ready_Project.md).
+General semantic approval remains unresolved. GitHub stays postponed.
+
 The status below is historical Stage B context. Missing follow-up artifacts are
 not recreated by repeating experiments; their results are not claimed here.
 

@@ -987,3 +987,16 @@ threshold sweep, cost/latency claim or population accuracy inference. 120 focuse
 regressions passed in 3.36s. Full predictions/comparison under real-model-diagnostic-v1/.
 GitHub work was paused at the user's request; only intermediate blob objects
 were uploaded before stopping, no new branch head/commit was published.
+
+
+## Resume engineering benchmark — 2026-11-01
+
+Evidence: measured local exact-cache component latency; constructed concurrency
+fixture. One fixed benchmark, five runs x 1,000 warm hits per store, three keys.
+SQLite p50 1.273999 ms / p95 1.78591505 ms (run p95 1.5945165–1.99776105 ms).
+Memory p50 .021452 ms / p95 .039598 ms. Raw samples, hardware/config/source hashes:
+artifacts/resume/cache-benchmark-v1.json. Per-store cold wave: 64 concurrent
+identical requests, 1 counted stub invocation, 1 MISS and 63 HITs. No actual LLM
+inference, external-provider traffic, production latency or monetary claim.
+320 targeted offline regressions passed in 6.09s; artifacts/resume/regression-tests.txt.
+Resume wording: docs/Resume_Ready_Project.md. No general semantic success claim.

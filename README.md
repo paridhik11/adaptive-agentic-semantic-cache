@@ -168,3 +168,13 @@ settings, dense similarity recommends three reuses: two human-sufficient and one
 insufficient. The pair and combined rules recommend none. These are failed
 applicability/coverage results, not proof of useful general semantic serving.
 No threshold was lowered to pass. [Details and commands](docs/REAL_DOCUMENT_MODEL_DIAGNOSTIC.md).
+
+
+## Measured engineering benchmark
+
+The local SQLite exact-hit path measured **1.79 ms p95 over 5,000 warm requests**
+(three keys, five runs). A separate 64-request concurrent cold fixture made one
+counted stub-provider invocation. These are cache-component measurements, not
+live LLM latency/cost savings or semantic accuracy. Full raw samples and source
+hashes: `artifacts/resume/cache-benchmark-v1.json`. Current targeted suite: 320
+passed. [Resume wording, limitations and commands](docs/Resume_Ready_Project.md).
