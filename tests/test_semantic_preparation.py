@@ -51,6 +51,19 @@ def test_mutable_pair_revision_rejected_before_any_model_import():
         LocalPairScorer(revision="main")
 
 
+def test_pair_constructor_uses_supported_activation_and_safetensors(monkeypatch):
+    import sys
+    calls=[]
+    class CompatibleCrossEncoder:
+        def __init__(self, model, *, revision,local_files_only,device,trust_remote_code,
+                     default_activation_function,automodel_args):
+            calls.append((local_files_only,trust_remote_code,default_activation_function,automodel_args))
+    monkeypatch.setitem(sys.modules,'torch',SimpleNamespace(nn=SimpleNamespace(Identity=lambda:'identity')))
+    monkeypatch.setitem(sys.modules,'sentence_transformers',SimpleNamespace(CrossEncoder=CompatibleCrossEncoder))
+    LocalPairScorer()
+    assert calls==[(True,False,'identity',{'use_safetensors':True})]
+
+
 def test_exact_group_gate_distinguishes_one_error_in_sixty_from_two_in_125():
     module = script("plan_semantic_review")
     assert module.lower_bound(60, 1) < .95

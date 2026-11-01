@@ -1,0 +1,21 @@
+{
+  "evidence_type": "exposed human diagnostic, not fresh final evaluation",
+  "config_sha256": "512ef6dadd70d46a62943d33a158eb2d3d2d6f428ae6ea6b34e16ba378563c98",
+  "predictions_sha256": "be9a56da5963b91f513953071e1aae9e4d108c4e209246afee4c2313afe68e4c",
+  "rows": 30,
+  "model_pair_forward_passes": 90,
+  "runtime": {
+    "python": "3.12.14",
+    "torch": "2.6.0+cpu",
+    "sentence_transformers": "3.4.1",
+    "threads": 2
+  },
+  "human_labels_used_for_scoring": false,
+  "serving_enabled": false,
+  "warning": "Similarity recommendations do not establish actual-answer applicability.",
+  "source_sha256": {
+    "src/policy/local_models.py": "38046df268d028919a0a75ad242faf8ae0d1bf9215d8de34bc7d0e4f548eede1",
+    "src/policy/encoders.py": "9c75a78f768015b0baba6fe0cec0562029f8e7002e5adafa11b9cb1bca2c35f8",
+    "scripts/score_document_diagnostic.py": "bda360f78c8a01f8d063e0304e3efbe3389e3028edc7cb6875d5af8168db815d"
+  }
+}

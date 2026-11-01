@@ -25,7 +25,8 @@ class LocalPairScorer:
 
         self.model = CrossEncoder(model, revision=revision, local_files_only=True,
                                   device="cpu", trust_remote_code=False,
-                                  activation_fn=torch.nn.Identity())
+                                  default_activation_function=torch.nn.Identity(),
+                                  automodel_args={"use_safetensors": True})
         self.identity = model + "@" + revision
 
     def score(self, first, second):

@@ -1,0 +1,568 @@
+{
+  "stage": "A1",
+  "evidence_type": "local_artifact_inventory_not_inference",
+  "status": "inventory_only",
+  "repository_head": "ff129e152be4bb053561da01c935bac3393bf59f",
+  "sources": [
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/AGENTS.md",
+      "status": "present",
+      "bytes": 2882,
+      "sha256": "ef6b927f82f629c7caec432384aadb8eb5e32f53bdc8988608ebb8e31ec848e0"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/docs/CURRENT_STATUS.md",
+      "status": "present",
+      "bytes": 21116,
+      "sha256": "5d45b03965d04a5859a97ef70ed0c85a628f75a2469e347364d364add59ad18f"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/docs/FACTS.md",
+      "status": "present",
+      "bytes": 120994,
+      "sha256": "19539dea465e56d7b42966038b0eb8d2b63d13d47faa667bea834a1f2e7725df"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/docs/DAY3_RESEARCH_AND_PROTOCOL.md",
+      "status": "present",
+      "bytes": 8961,
+      "sha256": "023b9fa0941e0da345f3b22d504099a5f66dc0ddce084734b31c03d3896f125b"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/docs/SEMANTIC_EVALUATION_CONTRACT.md",
+      "status": "present",
+      "bytes": 10689,
+      "sha256": "828c428f46eba050b3f7655d354dc63bc9376e1eead5a11835858c9fd4a9797a"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/encoders.py",
+      "status": "present",
+      "bytes": 1965,
+      "sha256": "9c75a78f768015b0baba6fe0cec0562029f8e7002e5adafa11b9cb1bca2c35f8"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/semantic_runtime.py",
+      "status": "present",
+      "bytes": 22470,
+      "sha256": "87e5708468d6fb0a05d0508a77a54a33ad45fc0e2bca4cf3d92335b306f2f5a9"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/local_models.py",
+      "status": "present",
+      "bytes": 2186,
+      "sha256": "aba5216373522267b18ed6765cd7bac6bbd9db46235518779b7e897e7d189521"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/decision/local_equivalence.py",
+      "status": "present",
+      "bytes": 13256,
+      "sha256": "f63ed1ce3adb66a8bb2adc04cd4d1248c351f5903ad81600ec2c8c0708ac5023"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/scripts/inventory_intent_artifacts.py",
+      "status": "present",
+      "bytes": 9364,
+      "sha256": "ddc6e4860079f0d1993b2eb44371d76ea5a54d3f96728e4a5c24f58a37da54f3"
+    }
+  ],
+  "cache_roots": [
+    "/root/.cache/huggingface/hub"
+  ],
+  "models": [
+    {
+      "role": "pinned_dense_encoder",
+      "repo_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "status": "weight_files_found_not_loaded",
+      "model_card_license": "apache-2.0",
+      "license_source": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+      "searched_snapshots": [
+        "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      ],
+      "files": [
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling/config.json",
+          "status": "present",
+          "bytes": 190,
+          "sha256": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+          "status": "present",
+          "bytes": 10502,
+          "sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json",
+          "status": "present",
+          "bytes": 612,
+          "sha256": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json",
+          "status": "present",
+          "bytes": 116,
+          "sha256": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors",
+          "status": "present",
+          "bytes": 90868376,
+          "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json",
+          "status": "present",
+          "bytes": 349,
+          "sha256": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json",
+          "status": "present",
+          "bytes": 53,
+          "sha256": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json",
+          "status": "present",
+          "bytes": 112,
+          "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json",
+          "status": "present",
+          "bytes": 466247,
+          "sha256": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json",
+          "status": "present",
+          "bytes": 350,
+          "sha256": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt",
+          "status": "present",
+          "bytes": 231508,
+          "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+          "model_card_license": "apache-2.0"
+        }
+      ]
+    },
+    {
+      "role": "off_the_shelf_quora",
+      "repo_id": "cross-encoder/quora-distilroberta-base",
+      "revision": "f62e7a4b20b97195c2868e53ec59126df5eac743",
+      "status": "weight_files_found_not_loaded",
+      "model_card_license": "apache-2.0",
+      "license_source": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/README.md",
+      "searched_snapshots": [
+        "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743"
+      ],
+      "files": [
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/README.md",
+          "status": "present",
+          "bytes": 1299,
+          "sha256": "59baa6da620d95c9045e86a091d84e00074c42ec40c1cc04d4799914ee4fe6b7",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/config.json",
+          "status": "present",
+          "bytes": 607,
+          "sha256": "4d3d424eb9a2e40b2bc7ae274147f274b031e508de73cdf28e75f759a4360a08",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/merges.txt",
+          "status": "present",
+          "bytes": 456318,
+          "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/model.safetensors",
+          "status": "present",
+          "bytes": 328493408,
+          "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/special_tokens_map.json",
+          "status": "present",
+          "bytes": 1008,
+          "sha256": "75cbec71553267dadc77a583ef15122c2aa7422eb6635acc72a184a413f17c1c",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer.json",
+          "status": "present",
+          "bytes": 3558642,
+          "sha256": "2bb1a22cfbe25b8e5a232b7fc4d7fc5073923b45724a5f813b00811bb6620f66",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer_config.json",
+          "status": "present",
+          "bytes": 1335,
+          "sha256": "fe09e6fe347cc94002f77bec394efa02db0ac151393f940d0d854af765e8b165",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/vocab.json",
+          "status": "present",
+          "bytes": 798293,
+          "sha256": "ed19656ea1707df69134c4af35c8ceda2cc9860bf2c3495026153a133670ab5e",
+          "model_card_license": "apache-2.0"
+        }
+      ],
+      "provenance_flags": [
+        "possible pretraining overlap with public pair data"
+      ]
+    },
+    {
+      "role": "local_equivalence_default",
+      "repo_id": "cross-encoder/quora-distilroberta-base",
+      "revision": "f62e7a4b20b97195c2868e53ec59126df5eac743",
+      "status": "weight_files_found_not_loaded",
+      "model_card_license": "apache-2.0",
+      "license_source": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/README.md",
+      "searched_snapshots": [
+        "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743"
+      ],
+      "files": [
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/README.md",
+          "status": "present",
+          "bytes": 1299,
+          "sha256": "59baa6da620d95c9045e86a091d84e00074c42ec40c1cc04d4799914ee4fe6b7",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/config.json",
+          "status": "present",
+          "bytes": 607,
+          "sha256": "4d3d424eb9a2e40b2bc7ae274147f274b031e508de73cdf28e75f759a4360a08",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/merges.txt",
+          "status": "present",
+          "bytes": 456318,
+          "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/model.safetensors",
+          "status": "present",
+          "bytes": 328493408,
+          "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/special_tokens_map.json",
+          "status": "present",
+          "bytes": 1008,
+          "sha256": "75cbec71553267dadc77a583ef15122c2aa7422eb6635acc72a184a413f17c1c",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer.json",
+          "status": "present",
+          "bytes": 3558642,
+          "sha256": "2bb1a22cfbe25b8e5a232b7fc4d7fc5073923b45724a5f813b00811bb6620f66",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer_config.json",
+          "status": "present",
+          "bytes": 1335,
+          "sha256": "fe09e6fe347cc94002f77bec394efa02db0ac151393f940d0d854af765e8b165",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/vocab.json",
+          "status": "present",
+          "bytes": 798293,
+          "sha256": "ed19656ea1707df69134c4af35c8ceda2cc9860bf2c3495026153a133670ab5e",
+          "model_card_license": "apache-2.0"
+        }
+      ],
+      "provenance_flags": [
+        "possible pretraining overlap with public pair data"
+      ]
+    },
+    {
+      "role": "local_equivalence_ms_marco_option",
+      "repo_id": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+      "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+      "status": "missing_weights",
+      "model_card_license": null,
+      "license_source": null,
+      "searched_snapshots": [
+        "/root/.cache/huggingface/hub/models--cross-encoder--ms-marco-MiniLM-L-6-v2/snapshots/233902d25c440f23af6f7d6e94d2946bac0bee0a"
+      ],
+      "files": []
+    }
+  ],
+  "project_weight_files": [
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/models/stability_fallback_lexical.joblib",
+      "status": "present",
+      "bytes": 384516,
+      "sha256": "5b48bee9d98300e17e7062f22c3115922ee00fe89c1355c1a75a159a12bc6fa5"
+    }
+  ],
+  "other_cached_model_weights": [
+    {
+      "directory": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base",
+      "files": [
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/model.safetensors",
+          "status": "present",
+          "bytes": 328493408,
+          "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb"
+        }
+      ]
+    },
+    {
+      "directory": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2",
+      "files": [
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors",
+          "status": "present",
+          "bytes": 90868376,
+          "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db"
+        }
+      ]
+    }
+  ],
+  "redis_langcache": {
+    "status": "not_found_no_local_pinned_identity",
+    "artifacts": []
+  },
+  "lexical_substitution_used": false,
+  "model_inference": "not_run",
+  "downloads": 2,
+  "dataset_construction": "not_run",
+  "baseline_evaluation": "not_run",
+  "git_mutations": false,
+  "runtime": {
+    "workspace": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache",
+    "python": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "python_version": "3.12.14",
+    "machine": "x86_64",
+    "hostname_sha256": "72ef6a8eeb54e571b31d2fdbe5a7003db7c7c268be7246d301d0c94f489cc5db"
+  },
+  "previous_inventory_sha256": null,
+  "download_receipt": {
+    "identity": {
+      "path": "artifacts/documentation_rebuild/group4/model-restore-v1.json",
+      "status": "present",
+      "bytes": 9967,
+      "sha256": "14c206512f7bb1b9d4daf85bdd5199e9c93df53f2a0ed1d31c513c5a6fa3f669"
+    },
+    "record": {
+      "evidence_type": "approved_checkpoint_download_not_inference",
+      "cache_root": "/root/.cache/huggingface/hub",
+      "trust_remote_code": false,
+      "model_code_executed": false,
+      "runtime": {
+        "workspace": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache",
+        "python": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "python_version": "3.12.14",
+        "machine": "x86_64",
+        "hostname_sha256": "72ef6a8eeb54e571b31d2fdbe5a7003db7c7c268be7246d301d0c94f489cc5db"
+      },
+      "models": [
+        {
+          "repo_id": "sentence-transformers/all-MiniLM-L6-v2",
+          "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+          "snapshot": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+          "revision_source": {
+            "kind": "repository_file",
+            "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/local_models.py",
+            "constant": "ENCODER_REVISION",
+            "sha256": "aba5216373522267b18ed6765cd7bac6bbd9db46235518779b7e897e7d189521"
+          },
+          "license": "apache-2.0",
+          "license_source": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+          "license_source_sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+          "files": [
+            {
+              "relative_path": "1_Pooling/config.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling/config.json",
+              "bytes": 190,
+              "sha256": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "README.md",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+              "bytes": 10502,
+              "sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "config.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json",
+              "bytes": 612,
+              "sha256": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "config_sentence_transformers.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json",
+              "bytes": 116,
+              "sha256": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "model.safetensors",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors",
+              "bytes": 90868376,
+              "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "modules.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json",
+              "bytes": 349,
+              "sha256": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "sentence_bert_config.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json",
+              "bytes": 53,
+              "sha256": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "special_tokens_map.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json",
+              "bytes": 112,
+              "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "tokenizer.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json",
+              "bytes": 466247,
+              "sha256": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "tokenizer_config.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json",
+              "bytes": 350,
+              "sha256": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "vocab.txt",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt",
+              "bytes": 231508,
+              "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+              "model_card_license": "apache-2.0"
+            }
+          ],
+          "pickle_weights_downloaded": false,
+          "inference": "not_run"
+        },
+        {
+          "repo_id": "cross-encoder/quora-distilroberta-base",
+          "revision": "f62e7a4b20b97195c2868e53ec59126df5eac743",
+          "snapshot": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743",
+          "revision_source": {
+            "kind": "repository_file",
+            "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/local_models.py",
+            "constant": "PAIR_REVISION",
+            "sha256": "aba5216373522267b18ed6765cd7bac6bbd9db46235518779b7e897e7d189521"
+          },
+          "license": "apache-2.0",
+          "license_source": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/README.md",
+          "license_source_sha256": "59baa6da620d95c9045e86a091d84e00074c42ec40c1cc04d4799914ee4fe6b7",
+          "files": [
+            {
+              "relative_path": "README.md",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/README.md",
+              "bytes": 1299,
+              "sha256": "59baa6da620d95c9045e86a091d84e00074c42ec40c1cc04d4799914ee4fe6b7",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "config.json",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/config.json",
+              "bytes": 607,
+              "sha256": "4d3d424eb9a2e40b2bc7ae274147f274b031e508de73cdf28e75f759a4360a08",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "merges.txt",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/merges.txt",
+              "bytes": 456318,
+              "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "model.safetensors",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/model.safetensors",
+              "bytes": 328493408,
+              "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "special_tokens_map.json",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/special_tokens_map.json",
+              "bytes": 1008,
+              "sha256": "75cbec71553267dadc77a583ef15122c2aa7422eb6635acc72a184a413f17c1c",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "tokenizer.json",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer.json",
+              "bytes": 3558642,
+              "sha256": "2bb1a22cfbe25b8e5a232b7fc4d7fc5073923b45724a5f813b00811bb6620f66",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "tokenizer_config.json",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer_config.json",
+              "bytes": 1335,
+              "sha256": "fe09e6fe347cc94002f77bec394efa02db0ac151393f940d0d854af765e8b165",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "vocab.json",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/vocab.json",
+              "bytes": 798293,
+              "sha256": "ed19656ea1707df69134c4af35c8ceda2cc9860bf2c3495026153a133670ab5e",
+              "model_card_license": "apache-2.0"
+            }
+          ],
+          "pickle_weights_downloaded": false,
+          "inference": "not_run"
+        }
+      ]
+    }
+  },
+  "same_download_inventory_environment": true,
+  "git_storage": {
+    "cache_roots_outside_worktree": true,
+    "cache_directory_gitignore_status": "not_applicable_outside_worktree",
+    "repository_safetensors_ignore_rule": ".gitignore:96:*.safetensors\tmodels/_stage_a_ignore_probe.safetensors",
+    "repository_safetensors_rule_verified": true
+  }
+}

@@ -967,3 +967,23 @@ Repository metadata confirms owner paridhik11 and push permission, but automatic
 approval review rejected branch publication again for unclear destination-specific
 sharing consent. No bypass or successful push. General semantic approval remains
 an unresolved core feature, not implied by completed infrastructure.
+
+
+## Actual local models restored and executed — 2026-11-01
+
+Evidence: pretrained-model diagnostic on exposed model-authored/human-reviewed
+questions, not fresh final evaluation. Exactly the two approved immutable MiniLM
+and Quora revisions restored with safetensors only, both Apache-2.0 per pinned
+cards. Per-file hashes/license, same-workspace provenance: group4/model-restore-v1.json;
+inventory rerun: model-inventory-restored-v1.json. No additional model or training.
+CrossEncoder activation_fn argument failed on installed SentenceTransformers 3.4.1;
+fixed to default_activation_function with explicit safetensors. Both models then
+executed. 30 queries x 3 actual candidates = 90 pair scorer invocations.
+Fixed .8 dense / .7 pair / .05 margin: dense recommends 3, of which 2 match human
+sufficient labels and 1 matches insufficient; Quora/combined each recommend 0.
+H12 unsafe dense recommendation cosine 0.9234989537385168. Unknown selected labels
+0 for recommendations. Similarity is not answer sufficiency. No serving promotion,
+threshold sweep, cost/latency claim or population accuracy inference. 120 focused
+regressions passed in 3.36s. Full predictions/comparison under real-model-diagnostic-v1/.
+GitHub work was paused at the user's request; only intermediate blob objects
+were uploaded before stopping, no new branch head/commit was published.

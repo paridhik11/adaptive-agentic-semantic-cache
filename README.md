@@ -158,3 +158,13 @@ judgments, not a new labeled benchmark. Current general semantic approval remain
 unresolved; the authored registry cannot establish unseen paraphrase recognition.
 An installed-wheel smoke check passed using existing dependencies; clean-machine
 installation, browser QA, deployment and live utility are not yet established.
+
+
+## Actual-model check (2026-11-01)
+
+Both pinned MiniLM and Quora models now execute locally after a constructor
+compatibility fix. On the exposed 30-question diagnostic at fixed historical
+settings, dense similarity recommends three reuses: two human-sufficient and one
+insufficient. The pair and combined rules recommend none. These are failed
+applicability/coverage results, not proof of useful general semantic serving.
+No threshold was lowered to pass. [Details and commands](docs/REAL_DOCUMENT_MODEL_DIAGNOSTIC.md).

@@ -81,6 +81,16 @@ specific sharing authorization was considered unclear. No bypass attempted.
 Core semantic decision quality remains unresolved; supporting infrastructure
 completion must not be presented as completion of that goal.
 
+Core-model update: both approved MiniLM/Quora revisions have now been restored
+and actually executed locally. The earlier missing-weight preflight is historical.
+A real CrossEncoder constructor incompatibility in SentenceTransformers 3.4.1
+was repaired (supported identity activation argument, explicit safetensors).
+Fixed-setting exposed diagnostic: MiniLM recommends 3/30 (2 human-sufficient,
+1 human-insufficient); Quora and combined-margin recommend none. No serving
+promotion or threshold changes. 120 related regressions passed. GitHub work
+is paused by user instruction; no branch head was published. See
+[real-model diagnostic](REAL_DOCUMENT_MODEL_DIAGNOSTIC.md).
+
 The status below is historical Stage B context. Missing follow-up artifacts are
 not recreated by repeating experiments; their results are not claimed here.
 
