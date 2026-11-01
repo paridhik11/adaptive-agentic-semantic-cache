@@ -24,12 +24,16 @@ class CompletedDocumentCache:
     _fresh = re.compile(r'\b(delete|send|execute|run|update|change|purchase|book)\b', re.I)
 
     def __init__(self, cache):
-        if not isinstance(cache, GuardedSemanticCache) or not isinstance(cache.exact._storage, SQLiteResponseStore):
+        from src.policy.hybrid_cache import ConservativeHybridCache
+        if not isinstance(cache, (GuardedSemanticCache, ConservativeHybridCache)):
+            raise ValueError('document answer cache requires a GuardedSemanticCache or ConservativeHybridCache wrapper')
+        if not isinstance(cache.exact._storage, SQLiteResponseStore):
             raise ValueError('document answer cache requires a SQLite-backed semantic wrapper')
-        if cache.semantic_mode in {'guarded','shadow'} and cache._persistent is None:
-            raise ValueError('document semantic lookup requires source-bound durable candidates')
-        if cache.semantic_mode == 'guarded' and not cache.local_approval_only:
-            raise ValueError('document hit path must prohibit provider-assisted approval')
+        if isinstance(cache, GuardedSemanticCache):
+            if cache.semantic_mode in {'guarded','shadow'} and cache._persistent is None:
+                raise ValueError('document semantic lookup requires source-bound durable candidates')
+            if cache.semantic_mode == 'guarded' and not cache.local_approval_only:
+                raise ValueError('document hit path must prohibit provider-assisted approval')
         self.cache = cache
         self.store = cache.exact._storage
 
@@ -74,7 +78,26 @@ class CompletedDocumentCache:
             return None, 'cache_unavailable'
 
     def admit(self, request, response, tenant, expected_epoch, ledger=None):
-        if (expected_epoch is None or self.cache.semantic_mode == 'off'
+        from src.policy.hybrid_cache import ConservativeHybridCache
+        if isinstance(self.cache, ConservativeHybridCache):
+            if expected_epoch is None or not self.eligible(request) or not ScopedResponseCache._admissible(response, request):
+                return False
+            stored = False
+            try:
+                with ledger.measure('admission') if ledger is not None else nullcontext():
+                    scope = asdict(self.cache.get_scope(tenant))
+                    payload = _serialize(response)
+                    source_key = ScopedResponseCache.request_key(request, tenant, scope)
+                    stored = self.store.admit(source_key, tenant, payload, expected_epoch,
+                        ttl=self.cache.ttl_seconds, max_entries=self.cache.exact._max_entries,
+                        max_bytes=self.cache.exact._max_bytes)
+                    if stored:
+                        self.cache.admit_candidate(request, response, tenant_id=tenant, force_sync=True)
+                    return stored
+            except Exception:
+                return stored
+
+        if (expected_epoch is None or getattr(self.cache, 'semantic_mode', None) == 'off'
                 or not self.eligible(request) or not ScopedResponseCache._admissible(response, request)):
             return False
         stored = False
@@ -88,7 +111,7 @@ class CompletedDocumentCache:
                 stored = self.store.admit(source_key,tenant,payload,expected_epoch,
                     ttl=self.cache.exact._ttl_seconds,max_entries=self.cache.exact._max_entries,
                     max_bytes=self.cache.exact._max_bytes)
-                if stored and self.cache.semantic_mode in {'guarded','shadow'}:
+                if stored and getattr(self.cache, 'semantic_mode', None) in {'guarded','shadow'}:
                     with self.cache._encoder_lock, ledger.measure('embedding') if ledger is not None else nullcontext():
                         raw = self.cache.encoder.encode(request['messages'][-1]['content'])
                         if not 0 < len(raw) <= self.cache.max_dimensions:
@@ -104,6 +127,8 @@ class CompletedDocumentCache:
             return stored
 
     def invalidate(self, tenant):
+        if hasattr(self.cache, 'revoke_tenant'):
+            return self.cache.revoke_tenant(tenant)
         return self.cache.invalidate(tenant_id=tenant)
 
     @staticmethod

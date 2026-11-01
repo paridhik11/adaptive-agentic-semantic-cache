@@ -31,31 +31,32 @@ remain unverified; no headline application savings percentage is supported.
 ## Exact Verified Metrics for Resume / Portfolios
 
 ### 1. Semantic Reuse Safety & Precision
-- **Claim:** Answer-aware semantic verification eliminates false-positive reuse on complex technical Q&A requests.
-- **Evidence Label:** `measured-live (development benchmark)`
-- **Denominators & CIs:**
-  - Semantic Hits: 12
-  - True Positives (TP): 12
-  - False Positives (FP): 0
-  - Precision: **100.0%**
-  - Error Rate: **0.0%** (Exact 95% Wilson Confidence Interval: **[0.0%, 24.3%]**, upper bound 24.3% with $N=12$).
-  - Unsafe Reuses: 0 across all 220 requests (0 direction reversals, 0 negation errors, 0 numeric/version errors).
-- **Comparison Baselines ($N=220$ events):**
+- **Status of 12/12 Precision Claim:** **SUPERSEDED / HISTORICAL (2026-11-02)**. The earlier 12/12 (100.0%) precision claim was based on synthetic variation family tags ("safe_paraphrase"), which are functional test fixture categories rather than verified answer evaluations. It must not be cited as empirical answer precision.
+- **Current Verified Actual-Answer Review:** Model-assisted review of actual served answers under a strict whole-answer rubric (`artifacts/documentation_rebuild/semantic_p0/answer_aware_model_reviews_v2.json`):
+  - Evaluated Answers: 12
+  - Sufficient Answers: **11 / 12** (**91.7%**; exact 95% Wilson CI: **[64.6%, 98.5%]**)
+  - Defective Answers: **1 / 12** (**8.3%**; exact 95% Wilson CI: **[1.5%, 35.4%]**) — one response provided a correct reverse-iteration loop but falsely asserted that `reversed()` copies the underlying sequence.
+  - Uncertainty Disclosure: Model-assisted review is model judgment, not human ground truth. Missing labels remain null.
+- **Adversarial Constraint Resistance ($N=220$ events):**
+  - Unsafe Reuses on Adversarial Queries: **0** across all 220 requests (0 direction reversals, 0 negation errors, 0 numeric/version errors).
+- **Comparison Baselines ($N=220$ events, family-level):**
   - Dense-only baseline ($\ge 0.85$): Error rate **51.9%** (41 FP out of 79 semantic hits, 95% CI: [41.1%, 62.6%]).
   - Combined Quora policy: Error rate **42.1%** (16 FP out of 38 semantic hits, 95% CI: [27.9%, 57.8%]).
 
 ### 2. Whole-Agent Latency & Provider Accounting (Project 15 Agent Workflow)
 - **Claim:** Verified semantic caching eliminates multi-stage agent execution (planning, source document retrieval, draft generation, and review) for semantically equivalent requests while preserving strict safety.
-- **Evidence Label:** `measured-live (whole-agent execution benchmark, 24 tasks across 4 variation families)`
-- **All-Traffic Results ($N=24$ tasks):**
-  - No Cache: 72 provider calls, 6,718 tokens consumed, 0 hits
-  - Exact Only: 57 provider calls (15 calls / 20.8% reduction), 5,331 tokens (1,387 tokens / 20.6% reduction), 5 exact hits
-  - Verified Semantic: **39 provider calls** (33 calls / **45.8% reduction**), **3,639 tokens** (3,079 tokens / **45.8% reduction**), 11 hits (5 exact + 6 semantic)
+- **Evidence Label:** `measured-live (whole-agent execution benchmark, 24 tasks across 4 variation families; ConservativeHybridCache)`
+- **Accounting Scope Disclosure:** Simulated provider accounting using deterministic reference fixture completions. Token and attempt reductions represent avoided agent workflow stages, not measured billable API cost reductions.
+- **All-Traffic Results ($N=24$ tasks, `artifacts/resume/whole_agent_benchmark_results.json`):**
+  - No Cache: 72 provider calls, 6,282 tokens consumed, 0 hits (p50: 116.9 ms)
+  - Exact Only: 57 provider calls (15 calls / 20.8% reduction), 4,981 tokens (1,301 tokens / 20.7% reduction), 5 exact hits (p50: 103.4 ms)
+  - Verified Semantic: **45 provider calls** (27 calls / **37.5% reduction**), **3,916 tokens** (2,366 tokens / **37.7% reduction**), 9 hits (5 exact + 4 semantic; p50: **108.3 ms**)
 - **Eligible-Traffic Results ($N=18$ tasks with prior answer coverage):**
-  - No Cache: 54 provider calls, 4,996 tokens consumed
-  - Exact Only: 39 provider calls (15 avoided / 27.8% reduction), 3,609 tokens (1,387 avoided / 27.8% reduction)
-  - Verified Semantic: **24 provider calls** (30 avoided / **55.6% reduction**), **2,197 tokens** (2,799 avoided / **56.0% reduction**), 10 hits (5 exact + 5 semantic)
+  - No Cache: 54 provider calls, 4,668 tokens consumed (p50: 117.2 ms)
+  - Exact Only: 39 provider calls (15 avoided / 27.8% reduction), 3,367 tokens (1,301 avoided / 27.9% reduction; p50: 103.5 ms)
+  - Verified Semantic: **27 provider calls** (27 avoided / **50.0% reduction**), **2,302 tokens** (2,366 avoided / **50.7% reduction**), 9 hits (5 exact + 4 semantic; p50: **98.8 ms**)
 - **Zero-Remote-Generation Invariant:** Exactly **0** remote provider calls attributable to any cache hit (exact or semantic).
+- **Adversarial Safety:** Exactly **0** hits across all 6 adversarial constraint tasks (direction reversal, negation, numeric constraint, task alteration). All 6 correctly executed full agent workflows.
 
 ### 3. Local Verification Overhead & Stage Timing Breakdown
 - **Evidence Label:** `measured-live (CPU execution on Intel/AMD x86_64, Windows)`

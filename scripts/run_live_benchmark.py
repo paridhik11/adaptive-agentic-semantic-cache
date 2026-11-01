@@ -23,6 +23,11 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+FREE_MODELS = frozenset({
+    "nvidia/nemotron-3-super-120b-a12b:free",
+    "meta-llama/llama-3.2-3b-instruct:free",
+})
+
 DEFAULT_FREE_MODEL = "nvidia/nemotron-3-super-120b-a12b:free"
 PROVIDER_PRICING = {
     # Free-tier models on OpenRouter (Pricing verified 2026-11-01)
@@ -41,16 +46,17 @@ PROVIDER_PRICING = {
 }
 
 
-def compute_cost(model: str, prompt_tokens: int, completion_tokens: int) -> float:
+def compute_cost(model: str, prompt_tokens: int | None, completion_tokens: int | None) -> float | None:
     pricing = PROVIDER_PRICING.get(model)
     if not pricing:
-        # Conservative assumption for unknown models: $0.15 / 1M prompt, $0.60 / 1M completion
-        return (prompt_tokens * 0.15 + completion_tokens * 0.60) / 1_000_000.0
+        raise ValueError(f"Unknown pricing for model '{model}'. Invented pricing fallback is prohibited.")
+    if prompt_tokens is None or completion_tokens is None:
+        return None
     return (prompt_tokens * pricing["prompt_per_1m"] + completion_tokens * pricing["completion_per_1m"]) / 1_000_000.0
 
 
 class LiveBenchmarkRunner:
-    """Hermetic opt-in runner for live provider evaluation."""
+    """Hermetic opt-in runner for live provider evaluation with durable quota safeguards."""
 
     def __init__(
         self,
@@ -59,28 +65,28 @@ class LiveBenchmarkRunner:
         execute_live: bool = False,
         spend_cap_usd: float = 0.00,
         max_attempts: int = 5,
+        max_output_tokens: int = 1024,
         journal_path: Path | None = None,
         output_dir: Path | None = None,
     ):
+        if model not in FREE_MODELS:
+            raise ValueError(f"Model '{model}' is not in the free-only allowlist: {sorted(FREE_MODELS)}")
         self.model = model
         self.execute_live = execute_live
         self.spend_cap_usd = float(spend_cap_usd)
         self.max_attempts = int(max_attempts)
-        self.journal_path = journal_path or (ROOT / "data/openrouter_synthetic_feedback_telemetry.json")
+        self.max_output_tokens = int(max_output_tokens)
+        self.journal_path = journal_path or (ROOT / "runs/openrouter-free.sqlite")
         self.output_dir = output_dir or (ROOT / "artifacts/live_evaluation/receipts")
 
         self.current_spent_usd = 0.00
         self.attempts_made = 0
         self.receipts: list[dict] = []
+        self._journal = None
 
     def preflight_check(self) -> dict:
         api_key_present = bool(os.environ.get("OPENROUTER_API_KEY") or os.environ.get("GEMINI_API_KEY"))
-        pricing = PROVIDER_PRICING.get(self.model, {
-            "prompt_per_1m": "unknown",
-            "completion_per_1m": "unknown",
-            "pricing_source": "unregistered_model",
-            "pricing_date": "unknown",
-        })
+        pricing = PROVIDER_PRICING.get(self.model)
 
         journal_exists = self.journal_path.exists()
 
@@ -89,19 +95,26 @@ class LiveBenchmarkRunner:
 
         if not self.execute_live:
             blockers.append("Execution flag --execute-live not provided (safety default)")
+        if self.model not in FREE_MODELS:
+            blockers.append(f"Model {self.model} not in free-only allowlist")
+        if not pricing:
+            blockers.append(f"Model {self.model} pricing is unverified; unknown pricing rejected")
         if self.execute_live and not api_key_present:
-            blockers.append("No API key detected in environment (OPENROUTER_API_KEY / GEMINI_API_KEY)")
-        if self.execute_live and self.spend_cap_usd <= 0.00 and pricing["prompt_per_1m"] != 0.00:
+            blockers.append("No API key detected in environment (OPENROUTER_API_KEY)")
+        if self.execute_live and not journal_exists:
+            blockers.append(f"Durable quota journal does not exist at {self.journal_path}; shared journal required")
+        if self.execute_live and self.spend_cap_usd <= 0.00 and pricing and pricing["prompt_per_1m"] != 0.00:
             blockers.append("Spend cap is $0.00 on a non-free model; execution blocked")
 
         return {
             "status": status if not blockers else "BLOCKED",
             "execute_live_flag": self.execute_live,
             "model": self.model,
-            "is_free_model": pricing.get("prompt_per_1m") == 0.00,
+            "is_free_model": pricing.get("prompt_per_1m") == 0.00 if pricing else False,
             "pricing": pricing,
             "spend_cap_usd": self.spend_cap_usd,
             "max_attempts": self.max_attempts,
+            "max_output_tokens": self.max_output_tokens,
             "api_key_configured": api_key_present,
             "quota_journal_preserved": journal_exists,
             "journal_path": str(self.journal_path),
@@ -116,11 +129,31 @@ class LiveBenchmarkRunner:
         if self.attempts_made >= self.max_attempts:
             raise RuntimeError(f"Hard maximum provider attempts reached ({self.max_attempts})")
 
-        # In live execution mode, this performs the call through the official provider adapter
+        # 1. Enforce output-token ceiling
+        req_max_tokens = request_body.get("max_tokens")
+        if req_max_tokens is None or req_max_tokens > self.max_output_tokens:
+            request_body["max_tokens"] = self.max_output_tokens
+
+        # 2. Bind request model to verified free-only runner model
+        request_body["model"] = self.model
+
+        # 3. Durable quota reservation before network dispatch
+        from src.benchmark.free_pilot import PilotJournal
+        from src.benchmark.schema import digest
+        if self._journal is None:
+            self._journal = PilotJournal(
+                self.journal_path,
+                run_id=f"live-runner-{request_id}",
+                fingerprint=digest({"model": self.model, "cap": self.max_attempts}),
+                max_calls=min(self.max_attempts, 30),
+            )
+
+        ordinal = self.attempts_made
+        self._journal.reserve(ordinal, request_body)
+
         t0 = time.perf_counter()
         self.attempts_made += 1
 
-        # Check API key from environment only
         api_key = os.environ.get("OPENROUTER_API_KEY")
         if not api_key:
             raise RuntimeError("API key missing from environment")
@@ -144,6 +177,10 @@ class LiveBenchmarkRunner:
                 raw_resp = json.loads(resp.read().decode("utf-8"))
         except Exception as exc:
             elapsed = (time.perf_counter() - t0) * 1000.0
+            try:
+                self._journal.finish(ordinal, "error", {"error": str(exc)})
+            except Exception:
+                pass
             receipt = {
                 "request_id": request_id,
                 "timestamp_iso": datetime.now(timezone.utc).isoformat(),
@@ -154,21 +191,27 @@ class LiveBenchmarkRunner:
                 "prompt_tokens": None,
                 "completion_tokens": None,
                 "usage_missing": True,
-                "spend_usd": 0.00,
+                "spend_usd": None,
             }
             self.receipts.append(receipt)
+            self._persist_single_receipt(receipt)
             raise
 
         elapsed = (time.perf_counter() - t0) * 1000.0
+        try:
+            self._journal.finish(ordinal, "complete", raw_resp)
+        except Exception:
+            pass
         usage = raw_resp.get("usage", {})
         p_tok = usage.get("prompt_tokens")
         c_tok = usage.get("completion_tokens")
         usage_missing = p_tok is None or c_tok is None
 
-        call_cost = compute_cost(self.model, p_tok or 0, c_tok or 0)
-        self.current_spent_usd += call_cost
+        call_cost = compute_cost(self.model, p_tok, c_tok)
+        if call_cost is not None:
+            self.current_spent_usd += call_cost
 
-        if self.current_spent_usd > self.spend_cap_usd and self.spend_cap_usd > 0.0:
+        if self.spend_cap_usd > 0.0 and self.current_spent_usd > self.spend_cap_usd:
             raise RuntimeError(f"Hard spend cap reached: ${self.current_spent_usd:.6f} > ${self.spend_cap_usd:.2f}")
 
         receipt = {
@@ -185,7 +228,20 @@ class LiveBenchmarkRunner:
             "price_date": PROVIDER_PRICING.get(self.model, {}).get("pricing_date", "unknown"),
         }
         self.receipts.append(receipt)
+        self._persist_single_receipt(receipt)
         return raw_resp
+
+    def _persist_single_receipt(self, receipt: dict):
+        try:
+            self.output_dir.mkdir(parents=True, exist_ok=True)
+            req_file = self.output_dir / f"receipt_{receipt['request_id']}.json"
+            with open(req_file, "w", encoding="utf-8") as f:
+                json.dump(receipt, f, indent=2)
+            log_file = self.output_dir / "live_receipts.jsonl"
+            with open(log_file, "a", encoding="utf-8") as f:
+                f.write(json.dumps(receipt) + "\n")
+        except Exception:
+            pass
 
     def save_receipts(self, path: Path | None = None) -> Path:
         target = path or (self.output_dir / f"live_receipt_{int(time.time())}.json")
@@ -232,7 +288,29 @@ def main():
         return 0
 
     print("\nExecuting authorized live evaluation...")
-    # Ready for authorized execution
+    sample_queries = [
+        "How do I convert a list to a tuple in Python?",
+        "How do I convert a list to a tuple in Python?",
+        "How can I turn a Python list into a tuple?",
+    ]
+    for idx, query in enumerate(sample_queries):
+        body = {
+            "model": runner.model,
+            "messages": [
+                {"role": "system", "content": "Answer concisely using official documentation."},
+                {"role": "user", "content": query},
+            ],
+            "max_tokens": runner.max_output_tokens,
+        }
+        try:
+            print(f"[{idx+1}/{len(sample_queries)}] Executing query: {query}")
+            resp = runner.execute_request(body, f"live-task-{idx+1}")
+            print(f" -> Success: {resp.get('choices', [{}])[0].get('message', {}).get('content', '')[:60]}...")
+        except Exception as exc:
+            print(f" -> Paused/Failed: {exc}")
+            break
+    saved_path = runner.save_receipts()
+    print(f"\nLive execution completed. Receipts saved to {saved_path}")
     return 0
 
 

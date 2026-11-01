@@ -349,3 +349,164 @@ def test_ttl_expiry_causes_fallback(hybrid_cache):
 
     assert res.status == "MISS"
     assert calls == 2
+
+
+def test_queued_before_revocation_not_served_after_revocation():
+    exact = ScopedResponseCache(eligibility=lambda req: EligibilityDecision(True, "test"))
+    scope = KnowledgeScope("test-corpus", "rev-1", "public", "test-p1")
+    c = ConservativeHybridCache(
+        exact,
+        scope=scope,
+        encoder=MockEncoder(),
+        passage_scorer=MockPassageScorer(),
+        retrieval_threshold=0.50,
+        verification_threshold=0.85,
+        async_promotion=True,
+    )
+    req_seed = make_request("Explain list conversion in Python.")
+    req_para = make_request("Can you explain list conversion in Python?")
+    resp = make_response("Use tuple() for list conversion in Python.")
+
+    # Enqueue candidate
+    assert c.admit_candidate(req_seed, resp, tenant_id="t_rev") is True
+    # Revoke tenant while item is still queued
+    c.revoke_tenant("t_rev")
+    # Drain promotion queue
+    admitted = c.process_promotion_queue()
+    assert admitted == 0
+
+    # Query paraphrase: must MISS and not serve revoked candidate
+    calls = []
+    r = c.process(req_para, tenant_id="t_rev", provider=lambda req: calls.append(1) or resp)
+    assert r.status == "MISS"
+    assert r.tier == "NONE"
+    assert len(calls) == 1
+
+
+def test_revoked_binding_suppressed_in_exact_cache():
+    exact = ScopedResponseCache(eligibility=lambda req: EligibilityDecision(True, "test"))
+    scope = KnowledgeScope("test-corpus", "rev-1", "public", "test-p1")
+    c = ConservativeHybridCache(
+        exact,
+        scope=scope,
+        encoder=MockEncoder(),
+        passage_scorer=MockPassageScorer(),
+        retrieval_threshold=0.50,
+        verification_threshold=0.85,
+    )
+    req = make_request("Explain list conversion in Python.")
+    resp = make_response("Use tuple() for list conversion in Python.")
+
+    # First call stores in exact cache
+    r1 = c.process(req, tenant_id="t_exact", provider=lambda req: resp)
+    assert r1.status == "MISS"
+
+    # Revoke the specific entry binding
+    from src.policy.semantic_runtime import approval_binding
+    binding = digest(approval_binding(req, req, resp, tenant_id="t_exact", scope=asdict(c.get_scope("t_exact"))))
+    c.revoke_entry(binding)
+
+    # Subsequent request on exact match must NOT return EXACT HIT; must fall back to fresh provider call
+    calls = []
+    r2 = c.process(req, tenant_id="t_exact", provider=lambda r: calls.append(1) or resp)
+    assert r2.status == "MISS"
+    assert r2.tier == "NONE"
+    assert len(calls) == 1
+
+
+def test_changed_model_and_format_rejects_semantic_hit(hybrid_cache):
+    req_seed = make_request("Explain list conversion in Python.")
+    resp_seed = make_response("Use tuple() for list conversion in Python.")
+
+    hybrid_cache.admit_candidate(req_seed, resp_seed, tenant_id="t_model")
+
+    changed = make_request("Can you explain list conversion in Python?")
+    changed["model"] = "different-model"
+    changed["response_format"] = {"type": "json_object"}
+
+    calls = []
+    r = hybrid_cache.process(changed, tenant_id="t_model", provider=lambda req: calls.append(1) or resp_seed)
+    assert r.status == "MISS"
+    assert r.tier == "NONE"
+    assert len(calls) == 1
+
+
+def test_changed_conversation_history_rejects_semantic_hit(hybrid_cache):
+    req_seed = make_request("Explain list conversion in Python.")
+    req_seed["messages"].insert(1, {"role": "user", "content": "Only discuss lists."})
+    resp_seed = make_response("Use tuple() for list conversion in Python.")
+
+    hybrid_cache.admit_candidate(req_seed, resp_seed, tenant_id="t_hist")
+
+    changed = make_request("Can you explain list conversion in Python?")
+    changed["messages"].insert(1, {"role": "user", "content": "Only discuss sets."})
+
+    calls = []
+    r = hybrid_cache.process(changed, tenant_id="t_hist", provider=lambda req: calls.append(1) or resp_seed)
+    assert r.status == "MISS"
+    assert r.tier == "NONE"
+    assert len(calls) == 1
+
+
+def test_post_provider_verifier_error_falls_back_safely():
+    class ErrorScorer(MockPassageScorer):
+        def score(self, q, a):
+            raise ValueError("diagnostic input window overflow")
+
+    exact = ScopedResponseCache(eligibility=lambda req: EligibilityDecision(True, "test"))
+    scope = KnowledgeScope("test-corpus", "rev-1", "public", "test-p1")
+    c = ConservativeHybridCache(
+        exact,
+        scope=scope,
+        encoder=MockEncoder(),
+        passage_scorer=ErrorScorer(),
+    )
+    req = make_request("Explain list conversion in Python.")
+    resp = make_response("Use tuple() for list conversion in Python.")
+
+    calls = []
+    # Must NOT raise ValueError; must safely return fresh provider response
+    r = c.process(req, tenant_id="t_err", provider=lambda req: calls.append(1) or resp)
+    assert r.status == "MISS"
+    assert len(calls) == 1
+    assert r.response == resp
+
+
+def test_admission_timing_includes_synchronous_admission():
+    class SlowScorer(MockPassageScorer):
+        def score(self, q, a):
+            time.sleep(0.03)
+            return super().score(q, a)
+
+    exact = ScopedResponseCache(eligibility=lambda req: EligibilityDecision(True, "test"))
+    scope = KnowledgeScope("test-corpus", "rev-1", "public", "test-p1")
+    c = ConservativeHybridCache(
+        exact,
+        scope=scope,
+        encoder=MockEncoder(),
+        passage_scorer=SlowScorer(),
+    )
+    req = make_request("Explain list conversion in Python.")
+    resp = make_response("Use tuple() for list conversion in Python.")
+
+    t0 = time.perf_counter()
+    r = c.process(req, tenant_id="t_timing", provider=lambda req: resp)
+    wall = (time.perf_counter() - t0) * 1000.0
+
+    # Total latency must include the ~30 ms synchronous admission verification
+    assert r.total_latency_ms >= 25.0
+    assert abs(wall - r.total_latency_ms) < 15.0
+
+
+def test_semantic_hit_latency_in_milliseconds(hybrid_cache):
+    req_seed = make_request("How to convert a list to a tuple in Python?")
+    resp_seed = make_response("Use tuple(my_list) to convert a list to a tuple in Python.")
+    hybrid_cache.process(req_seed, tenant_id="t_units", provider=lambda req: resp_seed)
+
+    req_para = make_request("How can I turn a list into a tuple in Python?")
+    r = hybrid_cache.process(req_para, tenant_id="t_units", provider=lambda req: resp_seed)
+    assert r.status == "HIT"
+    assert r.tier == "SEMANTIC"
+    # Latency must be in milliseconds (> 0.05 ms, not converted to fractional seconds like 0.0005)
+    assert r.total_latency_ms > 0.05
+

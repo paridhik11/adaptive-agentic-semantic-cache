@@ -41,6 +41,7 @@ from src.policy.local_models import (
     ENCODER_MODEL, ENCODER_REVISION,
     PASSAGE_MODEL, PASSAGE_REVISION,
 )
+from src.policy.hybrid_cache import ConservativeHybridCache
 from src.policy.response_cache import EligibilityDecision, ScopedResponseCache
 from src.policy.semantic_runtime import GuardedSemanticCache, KnowledgeScope, ReuseDecision, digest
 from src.policy.sqlite_store import SQLiteResponseStore
@@ -64,13 +65,26 @@ class AgentBenchmarkProvider(FixtureChatProvider):
         system = messages[0]["content"] if messages else ""
         user = messages[-1]["content"] if messages else ""
 
+        payload_data = {}
+        if user.startswith("{"):
+            try:
+                payload_data = json.loads(user)
+            except Exception:
+                pass
+        q_text = payload_data.get("question", user)
+
         # Determine agent workflow stage from prompt
         if "Plan 1-8" in system or "steps" in system or "planning" in system.lower():
             stage = "planning"
-            # Find relevant document
+            # Find relevant document using question keywords
             matched_doc = next(iter(self.documents.keys()))
+            q_lower = q_text.lower()
             for doc_id, doc_text in self.documents.items():
-                if any(w in doc_text.lower() for w in user.lower().split() if len(w) > 3):
+                if doc_id.lower() in q_lower or any(
+                    part in q_lower for part in doc_id.split("_") if len(part) > 3
+                ) or any(
+                    w in doc_text.lower() for w in q_lower.split() if len(w) > 4 and w not in {"python", "using"}
+                ):
                     matched_doc = doc_id
                     break
             content = json.dumps({
@@ -83,9 +97,12 @@ class AgentBenchmarkProvider(FixtureChatProvider):
             content = json.dumps({"approved": True, "feedback": "Draft correctly cites source reference."})
         else:
             stage = "generation"
-            # Extract doc content or generate answer
-            doc_snippet = next(iter(self.documents.values()))[:200]
-            content = f"Based on documentation: {user.strip('?.')}. Reference evidence: {doc_snippet}"
+            evidence_list = payload_data.get("evidence", [])
+            if evidence_list and isinstance(evidence_list[0], dict):
+                doc_snippet = evidence_list[0].get("result", "")
+            else:
+                doc_snippet = next(iter(self.documents.values()))[:200]
+            content = f"Based on documentation for '{q_text}': {doc_snippet}"
 
         if self.delay > 0:
             time.sleep(self.delay)
@@ -218,35 +235,45 @@ def run_arm(
     tools = DocumentTools(documents)
     scope = KnowledgeScope("agent-python-docs", tools.revision, "public-docs", f"whole-agent-{arm_name}")
 
+    exact_storage = SQLiteResponseStore(answers_db, namespace=f"agent-{arm_name}")
     if arm_name == "no_cache":
-        mode = "off"
-        approver = None
-    elif arm_name == "exact_only":
-        mode = "exact"
-        approver = None
-    elif arm_name == "verified_semantic":
-        mode = "guarded"
-        approver = AnswerAwareSemanticPolicy(
-            scorer=passage_scorer,
-            threshold=0.85,
-            enabled=True,
+        exact = ScopedResponseCache(
+            eligibility=lambda _: EligibilityDecision(False, "no_cache"),
+            storage=exact_storage,
         )
-
-    exact = ScopedResponseCache(
-        eligibility=lambda _: EligibilityDecision(True, "whole_agent_benchmark"),
-        storage=SQLiteResponseStore(answers_db, namespace=f"agent-{arm_name}"),
-    )
-    outer = GuardedSemanticCache(
-        exact,
-        scope=scope,
-        encoder=encoder if mode == "guarded" else None,
-        mode=mode,
-        approver=approver,
-        persistent_candidates=(mode in {"shadow", "guarded"}),
-        local_approval_only=True,
-        threshold=0.60,
-        margin=0.0,
-    )
+        outer = ConservativeHybridCache(
+            exact,
+            scope=scope,
+            encoder=encoder,
+            passage_scorer=passage_scorer,
+            mode="off",
+        )
+    elif arm_name == "exact_only":
+        exact = ScopedResponseCache(
+            eligibility=lambda _: EligibilityDecision(True, "whole_agent_benchmark"),
+            storage=exact_storage,
+        )
+        outer = ConservativeHybridCache(
+            exact,
+            scope=scope,
+            encoder=encoder,
+            passage_scorer=passage_scorer,
+            mode="exact",
+        )
+    elif arm_name == "verified_semantic":
+        exact = ScopedResponseCache(
+            eligibility=lambda _: EligibilityDecision(True, "whole_agent_benchmark"),
+            storage=exact_storage,
+        )
+        outer = ConservativeHybridCache(
+            exact,
+            scope=scope,
+            encoder=encoder,
+            passage_scorer=passage_scorer,
+            mode="guarded",
+            retrieval_threshold=0.60,
+            verification_threshold=0.85,
+        )
 
     answer_cache = CompletedDocumentCache(outer)
     service = GatewayService(
@@ -314,12 +341,16 @@ def run_arm(
 
         # Operator approval to admit qualified answers for subsequent reuse
         if state["status"] == "AWAITING_APPROVAL":
-            agent.decide(tid, "approve", tenant="tenant-main", principal="benchmark-user")
+            state = agent.decide(tid, "approve", tenant="tenant-main", principal="benchmark-user")
 
+        ans_text = state.get("answer")
+        trace_entry = state.get("trace", [{}])[0] if state.get("trace") else {}
         task_records.append({
             "task_id": item["task_id"],
             "family": item["family"],
             "eligible": item["eligible"],
+            "question": item["question"],
+            "terminal_status": state.get("status"),
             "is_hit": is_hit,
             "tier": tier,
             "provider_calls": prov_calls,
@@ -333,6 +364,12 @@ def run_arm(
                 "generation": generation_calls,
                 "review": review_calls,
             },
+            "tool_calls": tool_calls,
+            "actual_answer": ans_text,
+            "answer_sha256": digest(ans_text) if ans_text else None,
+            "selected_candidate_id": trace_entry.get("candidate") if is_hit else None,
+            "binding_sha256": digest(trace_entry.get("binding")) if is_hit and trace_entry.get("binding") else None,
+            "diagnosis": trace_entry.get("diagnosis", {}),
         })
 
     arm_elapsed_s = time.perf_counter() - t_arm0
@@ -417,7 +454,12 @@ def main():
     with open(args.output, "w", encoding="utf-8") as f:
         json.dump(benchmark_output, f, indent=2)
 
-    print(f"\n=== WHOLE-AGENT BENCHMARK RESULTS SAVED TO {args.output} ===")
+    resume_output = ROOT / "artifacts/resume/whole_agent_benchmark_results.json"
+    resume_output.parent.mkdir(parents=True, exist_ok=True)
+    with open(resume_output, "w", encoding="utf-8") as f:
+        json.dump(benchmark_output, f, indent=2)
+
+    print(f"\n=== WHOLE-AGENT BENCHMARK RESULTS SAVED TO {args.output} AND {resume_output} ===")
 
     # Print markdown comparison table
     print("\n### Whole-Agent Comparative Accounting\n")

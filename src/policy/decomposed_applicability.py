@@ -88,6 +88,10 @@ def constraints(text):
         "ascending": r"\bascending\b|\bsmallest to largest\b|\blowest to highest\b",
         "preservation": r"\b(?:preserv\w*|retain\w*)\b",
         "reversal": r"\b(?:revers\w*|invers\w*|opposite)\b",
+        "counting": r"\b(?:count\w*|frequency|tally)\b",
+        "removal": r"\b(?:remov\w*|delet\w*|filter out|strip\w*|dedup\w*|unique|drop)\b",
+        "reading": r"\b(?:read\w*|load\w*|fetch\w*|parse\w*)\b",
+        "writing": r"\b(?:writ\w*|sav\w*|dump\w*|output)\b",
     }
     return frozenset(name for name, pattern in patterns.items() if re.search(pattern, text, re.I))
 

@@ -273,6 +273,17 @@ class ScopedResponseCache:
                         stored = True
             return result(response, "MISS", "generated_and_stored" if stored else "response_not_admitted", 1, stored)
 
+    def invalidate_key(self, key: str) -> bool:
+        """Remove a single cache key."""
+        if self._storage is not None and hasattr(self._storage, "invalidate_key"):
+            return self._storage.invalidate_key(key)
+        with self._lock:
+            if key in self._entries:
+                self._payload_bytes -= self._entries[key].payload_bytes
+                del self._entries[key]
+                return True
+            return False
+
     def invalidate(self, *, tenant_id: str | None = None) -> int:
         """Remove a tenant namespace or all entries; block in-flight admission."""
         if tenant_id is not None and (not isinstance(tenant_id, str) or not tenant_id.strip()):

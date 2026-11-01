@@ -115,6 +115,12 @@ class SQLiteResponseStore:
                 return False
             return db.execute('SELECT 1 FROM semantic_candidates c JOIN entries e ON e.key=c.source_key AND e.source_token=c.source_token WHERE c.id=? AND c.source_key=? AND c.source_token=? AND c.namespace=? AND e.tenant=? AND c.epoch=? AND e.expires>?', (identity,source_key,source_token,namespace,tenant,epoch,self.clock())).fetchone() is not None
 
+    def invalidate_key(self, key):
+        with self._transaction() as db:
+            self._check(db)
+            db.execute('DELETE FROM semantic_candidates WHERE source_key=?', (key,))
+            return db.execute('DELETE FROM entries WHERE key=?', (key,)).rowcount > 0
+
     def invalidate(self, tenant_id=None):
         with self._transaction() as db:
             self._check(db)
