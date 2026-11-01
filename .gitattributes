@@ -28,3 +28,5 @@ data/document_product_review/** -text
 scripts/prepare_document_review.py text eol=lf
 scripts/validate_document_review.py text eol=lf
 scripts/inventory_product_data.py text eol=lf
+
+scripts/preflight_document_models.py text eol=lf

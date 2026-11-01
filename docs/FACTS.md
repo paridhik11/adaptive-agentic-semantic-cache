@@ -955,3 +955,15 @@ headless-shell and Chromium executables are absent; no browser downloaded and
 no visual pass claimed. Branch push was rejected by automatic approval review
 because destination-specific sharing authorization was considered ambiguous.
 No retry/workaround/push/merge occurred. See group4/ui-status.json and ui-tests.txt.
+
+
+## Release and actual-model preflight — 2026-11-01
+
+Engineering evidence: 176 focused tests passed in 3.41s; raw group4/release-preflight-tests.txt.
+Exact approved MiniLM and Quora cache snapshots both absent: group4/model-preflight.json.
+No checkpoint download, inference or synthetic score fallback. A manual GitHub
+workflow is prepared but unexecuted; no clean-install/browser success is inferred.
+Repository metadata confirms owner paridhik11 and push permission, but automatic
+approval review rejected branch publication again for unclear destination-specific
+sharing consent. No bypass or successful push. General semantic approval remains
+an unresolved core feature, not implied by completed infrastructure.

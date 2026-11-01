@@ -52,3 +52,25 @@ No unqualified natural-language precision, token/cost savings or latency percent
 belongs in the resume without matching evidence. A bounded reproducible product
 and a clearly scoped inconclusive semantic study are acceptable closeout outcomes;
 an invented success is not.
+
+
+## Current executable blockers and prepared checks
+
+`python scripts/preflight_document_models.py --output NEW_RECEIPT.json` checks
+only the two previously approved explicit MiniLM/Quora revisions against their
+repository constants. Both snapshots are currently absent. It loads/downloads
+nothing, rejects pickle-only readiness, and exits 2 on missing files. File
+presence would only permit a later load check, not establish semantic quality.
+Restoring the already-approved snapshots requires Hugging Face access or existing
+checkpoint files; no additional model approval or new training is proposed.
+
+`.github/workflows/documentation-product.yml` is a manual, read-only-permissions
+workflow for minimal web/test dependencies and the reference-browser flow. It
+installs the pinned Playwright dependency/browser in the runner, with no model
+weights or provider keys. It has not been uploaded/executed; execution success
+must be observed before any clean-install/browser claim. Existing CI is unchanged.
+176 local engineering/preflight tests passed in 3.41s. These are not model accuracy
+observations. The requested public repository is verified as owned by paridhik11
+with push permission; automated approval still requires explicit sharing consent
+for this named destination and committed review history. No alternate push method
+was attempted after rejection.

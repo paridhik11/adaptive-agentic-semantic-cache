@@ -71,6 +71,16 @@ A loopback-only Playwright smoke script is ready. General semantic approval and
 representative live utility are still unresolved; no release completion claimed.
 See [48-hour release checklist](RELEASE_48H.md).
 
+Release preflight now explicitly reports BOTH approved MiniLM/Quora snapshots
+missing in the current local cache. No fallback scores, model load or downloads.
+176 focused product/preflight regressions passed. A manually triggered GitHub
+workflow is prepared for minimal dependency installation and actual browser QA;
+it has NOT run. GitHub metadata confirms repository ownership and push permission,
+but automatic approval review again blocked publication because destination-
+specific sharing authorization was considered unclear. No bypass attempted.
+Core semantic decision quality remains unresolved; supporting infrastructure
+completion must not be presented as completion of that goal.
+
 The status below is historical Stage B context. Missing follow-up artifacts are
 not recreated by repeating experiments; their results are not claimed here.
 
