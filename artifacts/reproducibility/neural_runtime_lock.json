@@ -1,0 +1,100 @@
+{
+  "status": "PASSED_VERIFIED_HERMETIC_EXECUTION",
+  "timestamp_iso": "2026-11-01T21:52:09Z",
+  "platform": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]",
+    "machine": "AMD64"
+  },
+  "packages": {
+    "torch": "2.14.0+cpu",
+    "transformers": "5.16.1",
+    "sentence_transformers": "6.0.1"
+  },
+  "device": "cpu",
+  "network_blocked": true,
+  "models": [
+    {
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "role": "dense_encoder",
+      "snapshot_path": "C:\\Users\\parid\\.cache\\huggingface\\hub\\models--sentence-transformers--all-MiniLM-L6-v2\\snapshots\\1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "safetensors_sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+      "expected_max_seq": 256,
+      "files_exist": {
+        "model.safetensors": true,
+        "config.json": true,
+        "tokenizer.json": true
+      },
+      "status": "CHECKPOINT_VERIFIED"
+    },
+    {
+      "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+      "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+      "role": "passage_scorer",
+      "snapshot_path": "C:\\Users\\parid\\.cache\\huggingface\\hub\\models--cross-encoder--ms-marco-MiniLM-L-6-v2\\snapshots\\233902d25c440f23af6f7d6e94d2946bac0bee0a",
+      "safetensors_sha256": "821d1aa69520101d6e0737f78a042ae25b19e5cb9160701909d10434f4aeb0ae",
+      "expected_max_seq": 512,
+      "files_exist": {
+        "model.safetensors": true,
+        "config.json": true,
+        "tokenizer.json": true
+      },
+      "status": "CHECKPOINT_VERIFIED"
+    },
+    {
+      "model": "cross-encoder/quora-distilroberta-base",
+      "revision": "f62e7a4b20b97195c2868e53ec59126df5eac743",
+      "role": "pair_scorer_diagnostic",
+      "snapshot_path": "C:\\Users\\parid\\.cache\\huggingface\\hub\\models--cross-encoder--quora-distilroberta-base\\snapshots\\f62e7a4b20b97195c2868e53ec59126df5eac743",
+      "safetensors_sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb",
+      "expected_max_seq": 512,
+      "files_exist": {
+        "model.safetensors": true,
+        "config.json": true,
+        "tokenizer.json": true
+      },
+      "status": "CHECKPOINT_VERIFIED"
+    }
+  ],
+  "execution_benchmarks": {
+    "dense_encoder": {
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "load_ms": 24896.73599973321,
+      "single_embed_ms": 65.37500023841858,
+      "embedding_dim": 384,
+      "truncation_refusal_verified": true
+    },
+    "passage_scorer": {
+      "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+      "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+      "load_ms": 257.8067001886666,
+      "single_score_ms": 62.65579955652356,
+      "test_score": {
+        "logit": 7.46975040435791,
+        "probability": 0.9994302542290432,
+        "input_tokens": 21
+      },
+      "truncation_refusal_verified": true
+    },
+    "pair_scorer": {
+      "model": "cross-encoder/quora-distilroberta-base",
+      "revision": "f62e7a4b20b97195c2868e53ec59126df5eac743",
+      "load_ms": 519.2503998987377,
+      "single_score_ms": 173.148600384593,
+      "test_score": {
+        "logit": 3.4058220386505127,
+        "pair_score": 0.9678859937533649,
+        "input_tokens": 15
+      }
+    }
+  },
+  "sealed_records_unopened": {
+    "policy": "Sealed and final splits remain unopened during development and benchmark runs.",
+    "sealed_files_present": {
+      "final_test": true,
+      "corpus_test_split_present": true
+    }
+  }
+}

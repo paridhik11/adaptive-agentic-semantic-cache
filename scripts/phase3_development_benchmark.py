@@ -31,6 +31,7 @@ from src.policy.encoders import DenseEncoder
 from src.policy.local_models import LocalPairScorer, PAIR_MODEL, PAIR_REVISION
 from src.policy.response_cache import EligibilityDecision, ScopedResponseCache
 from src.policy.semantic_runtime import GuardedSemanticCache, KnowledgeScope, ReuseDecision, digest
+from src.policy.work_ledger import WorkLedger
 
 
 class ReferenceProvider(FixtureChatProvider):
@@ -183,9 +184,18 @@ def run_benchmark(workload: list[dict], output_path: Path, *, arms=None, reviews
         raise ValueError("nonempty development workload required")
     review_index = AnswerReviews(reviews)
     neural = arms is None or any(a not in ("A_no_cache", "B_exact_cache") for a in arms)
+    
+    t_init0 = time.perf_counter()
     encoder = DenseEncoder("sentence-transformers/all-MiniLM-L6-v2", "1110a243fdf4706b3f48f1d95db1a4f5529b4d41") if neural else None
+    encoder_init_ms = (time.perf_counter() - t_init0) * 1000.0 if neural else 0.0
+
+    t_init1 = time.perf_counter()
     pair_scorer = LocalPairScorer(PAIR_MODEL, PAIR_REVISION) if arms is None or "D_combined_policy" in arms else None
+    pair_init_ms = (time.perf_counter() - t_init1) * 1000.0 if pair_scorer else 0.0
+
+    t_init2 = time.perf_counter()
     passage_scorer = LocalPassageScorer() if arms is None or "E_answer_aware_policy" in arms else None
+    passage_init_ms = (time.perf_counter() - t_init2) * 1000.0 if passage_scorer else 0.0
     
     # 5 arms
     arm_names = [
@@ -259,13 +269,13 @@ def run_benchmark(workload: list[dict], output_path: Path, *, arms=None, reviews
         
         # Execute events sequentially
         for event in workload:
-            
             before = len(provider.events)
             approval_before = len(approver.events) if approver is not None else 0
+            ledger = WorkLedger()
             t0 = time.perf_counter()
             error = None
             try:
-                res = service.complete(copy.deepcopy(event["request"]), tenant_id=event["tenant"])
+                res = service.complete(copy.deepcopy(event["request"]), tenant_id=event["tenant"], ledger=ledger, remote_stage="generation")
                 response, status, tier = res.response, res.status, res.tier
                 diag = res.diagnosis or {}
             except Exception as exc:
@@ -275,6 +285,13 @@ def run_benchmark(workload: list[dict], output_path: Path, *, arms=None, reviews
             binding = review_binding(event["request"], response, event["tenant"], event["revision"])
             review = review_index.lookup(binding)
             is_hit = status == "HIT"
+
+            events_recorded = ledger.snapshot()
+            embed_ms = sum(e.get("elapsed_ms", 0.0) for e in events_recorded if e.get("stage") == "embedding")
+            search_ms = sum(e.get("elapsed_ms", 0.0) for e in events_recorded if e.get("stage") == "search")
+            app_ms = sum(e.get("elapsed_ms", 0.0) for e in events_recorded if e.get("stage") == "applicability")
+            verifier_ms = float(diag.get("local_verifier_ms", 0.0)) or app_ms
+
             results[arm].append({
                 "event_id": event["event_id"], "faq_id": event["faq_id"], "family": event["family"],
                 "request": event["request"], "returned_response": response,
@@ -283,11 +300,31 @@ def run_benchmark(workload: list[dict], output_path: Path, *, arms=None, reviews
                 "correct_reuse": (review["label"] == "sufficient") if is_hit and review["label"] != "unknown" else None,
                 "unsafe_reuse": (review["label"] == "insufficient") if is_hit and review["label"] != "unknown" else None,
                 "elapsed_ms": elapsed, "error": error, "diagnosis": diag,
+                "timing_breakdown": {
+                    "total_ms": elapsed,
+                    "embedding_ms": embed_ms,
+                    "search_ms": search_ms,
+                    "verification_ms": verifier_ms,
+                },
                 "provider_events": copy.deepcopy(provider.events[before:]),
                 "candidate_assessments": copy.deepcopy(approver.events[approval_before:]) if approver is not None else [],
             })
 
     summary = {arm: summarize(records) for arm, records in results.items()}
+    for arm, records in results.items():
+        embed_times = [r["timing_breakdown"]["embedding_ms"] for r in records if r.get("timing_breakdown", {}).get("embedding_ms", 0) > 0]
+        search_times = [r["timing_breakdown"]["search_ms"] for r in records if r.get("timing_breakdown", {}).get("search_ms", 0) > 0]
+        verif_times = [r["timing_breakdown"]["verification_ms"] for r in records if r.get("timing_breakdown", {}).get("verification_ms", 0) > 0]
+        summary[arm]["timing_breakdown"] = {
+            "mean_embedding_ms": sum(embed_times) / len(embed_times) if embed_times else 0.0,
+            "mean_search_ms": sum(search_times) / len(search_times) if search_times else 0.0,
+            "mean_verification_ms": sum(verif_times) / len(verif_times) if verif_times else 0.0,
+        }
+        summary[arm]["model_initialization_ms"] = {
+            "encoder_init_ms": encoder_init_ms,
+            "passage_scorer_init_ms": passage_init_ms,
+            "pair_scorer_init_ms": pair_init_ms,
+        }
     output_path.parent.mkdir(parents=True, exist_ok=True)
     receipt = {"schema": "answer-bound-development-v2", "evidence_kind": "simulated_provider_replay",
                "timing_scope": "GatewayService.complete; excludes HTTP, agent orchestration and model construction",
@@ -297,6 +334,14 @@ def run_benchmark(workload: list[dict], output_path: Path, *, arms=None, reviews
         json.dump(receipt, f, indent=2, allow_nan=False)
     print(json.dumps(summary, indent=2))
     return receipt
+
+    print("\n=== TIMING BREAKDOWN (SEPARATED STAGES) ===")
+    print(f"{'Arm':<25} | {'Exact p50':<10} | {'Sem p50':<10} | {'Miss p50':<10} | {'Embed(ms)':<10} | {'Search(ms)':<10} | {'Verif(ms)':<10}")
+    print("-" * 105)
+    for arm, s in summary.items():
+        tb = s["timing_breakdown"]
+        print(f"{arm:<25} | {tb['exact_hit_p50_ms']:<10.2f} | {tb['semantic_hit_p50_ms']:<10.2f} | {tb['cache_miss_p50_ms']:<10.2f} | {tb['mean_embedding_ms']:<10.2f} | {tb['mean_search_ms']:<10.2f} | {tb['mean_verification_ms']:<10.2f}")
+    print("-" * 105)
 
 
 def main():

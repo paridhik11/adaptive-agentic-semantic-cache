@@ -51,23 +51,75 @@ In Phase 3, we evaluated 5 comparison arms on a fixed, answer-bound, 220-event d
 - Arm E successfully produced **12 verified non-exact semantic hits** from natural paraphrases without human intervention or allowlist fixtures.
 - Over-length document answers ($> 512$ tokens) safely abstained rather than guessing or silently truncating, preserving correctness over raw recall.
 
-### 3. Latency & CPU Overhead Accounting
-Measured on CPU (Intel/AMD x86_64, Windows):
-- **Stage 1 (MiniLM Dense Embedding):** ~20–30 ms CPU time.
-- **Stage 2 (Hard Requirement Guard):** 0.15 ms CPU time (negligible).
-- **Stage 4 (Local Passage Verification):** ~25–45 ms CPU time.
-- Total p50 latency for Arm E: **47.62 ms**, compared to 21.24 ms for cold provider fallback in fixture mode.
-- In live LLM deployment (where provider p50 latency is typically 600–2,500 ms), serving a verified semantic hit in ~47 ms provides a measured ~12–50× latency acceleration for cache hits while eliminating 100% of upstream LLM token costs for those queries.
+### 3. Latency & CPU Overhead Accounting (Separated Stage Timings)
+Measured on CPU (Intel/AMD x86_64, Windows, `runs/semantic-dev/phase3_benchmark_results.json`):
+- **Model Initialization:** One-time cold load 442.85 ms (safetensors direct mmap, zero network activity).
+- **Stage 1 — Dense Query Embedding (MiniLM-L6):** Mean **27.08 ms** (p50 ~25 ms).
+- **Stage 2 — Top-k Candidate Retrieval:** Mean **0.25 ms**.
+- **Stage 3 — Hard Requirement Guard:** Mean **0.15 ms** (numeric, negation, polarity, and direction filtering).
+- **Stage 4 — Passage Cross-Encoder (MS MARCO):** Mean **13.42 ms**.
+- **Outcome Latencies:**
+  - Exact Cache Hit: p50 **0.53 ms**
+  - Verified Semantic Hit: p50 **121.59 ms**
+  - Cache Miss: p50 **49.11 ms**
 
-### 4. Tenant & Revision Isolation
-- Requests to `tenant-b` resulted in 0 cross-tenant cache hits.
-- Requests with modified source revisions resulted in 0 cross-revision stale hits.
+### 4. Conservative Hybrid Cache Architecture (Milestone B)
+Implemented in `src/policy/hybrid_cache.py`:
+- **Scoped Exact Lookup:** Evaluated first at sub-millisecond latency.
+- **Dense Top-k Retrieval:** MiniLM-L6 semantic search with strict cosine threshold ($\ge 0.82$).
+- **Guards:** Hard syntactic and semantic constraint guards (`requirement_guard`).
+- **Answer-Aware Neural Verifier:** Passage-level cross-encoder verifying query against candidate answer text.
+- **Entry-Specific Review Decisions:** Cache entry approval/veto overrides backed by human review.
+- **Async Candidate Promotion Queue:** New generation responses are queued for background verification and never admitted into the serving cache until verified.
+- **Revocation & TTL:** Explicit tenant eviction (`revoke_tenant`) and TTL expiry.
+
+### 5. Whole-Agent Latency & Provider Accounting (Milestone C)
+Instrumented the complete Project 15 agent workflow (`scripts/benchmark_whole_agent.py`, `runs/whole_agent_benchmark_results.json`), spanning:
+- Supervisor / planning phase
+- Document tool calls (`read`)
+- Draft answer generation
+- Reviewer verification & approval admission
+
+Matched across 24 tasks across 4 families:
+
+| Metric | No Cache | Exact Only | Verified Semantic (Hybrid) | Savings vs No Cache | Incremental over Exact |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **All-Traffic Tasks** | 24 | 24 | 24 | — | — |
+| Provider Calls Total | 72 | 57 | **39** | **−45.8%** (33 calls avoided) | **−31.6%** (18 calls avoided) |
+| Total Tokens Consumed | 6,718 | 5,331 | **3,639** | **−45.8%** (3,079 tokens saved) | **−31.7%** (1,692 tokens saved) |
+| Hits Total | 0 | 5 (5 exact) | **11** (5 exact + 6 semantic) | — | **+120.0% hits** |
+| **Eligible Tasks ($N=18$)** | 18 | 18 | 18 | — | — |
+| Provider Calls | 54 | 39 | **24** | **−55.6%** (30 calls avoided) | **−38.5%** (15 calls avoided) |
+| Total Tokens Consumed | 4,996 | 3,609 | **2,197** | **−56.0%** (2,799 tokens saved) | **−39.1%** (1,412 tokens saved) |
+| Hits Total | 0 | 5 | **10** (5 exact + 5 semantic) | — | **+100.0% hits** |
+
+**Safety Invariant:** Exactly **0** remote provider calls attributable to any cache hit.
+
+### 6. Opt-In Live Provider Benchmark Runner (Milestone D)
+Implemented in `scripts/run_live_benchmark.py`:
+- Explicit `--execute-live` CLI flag required; execution refuses to run live inference without it.
+- Model preflight checks against official HuggingFace / OpenRouter models.
+- Hard maximum provider attempts and spend cap defaulting to `$0.00`.
+- Reuses existing durable quota journal without resetting.
+- Price source: OpenRouter catalog 2026-11-01 ($0.00 / 1M tokens for free-tier reference model).
+
+### 7. Independent Evaluation Handoff (Milestone E)
+Exported to `artifacts/independent_evaluation_handoff/`:
+- `evaluation_manifest.json`: Full cryptographically bound records (SHA-256 of incoming query, candidate answer, and approval binding).
+- `blinded_review_form.jsonl`: Shuffled JSONL format for programmatic annotation.
+- `BLINDED_HUMAN_REVIEW_PACKET.md`: Cleanly formatted markdown packet separating the 4 orthogonal evaluation axes (applicability, factual correctness, cache degradation, and rationale).
+- Synthetic variation tags are withheld from reviewers and never cited as ground truth.
 
 ---
 
 ## Raw Evidence Artifacts
 
-- Workload definition: `runs/semantic-dev/phase3_dev_workload.json` (220 events)
-- Full benchmark output: `runs/semantic-dev/phase3_benchmark_results.json`
-- Benchmark script: `scripts/phase3_development_benchmark.py`
-- Unit tests: `tests/test_answer_aware_policy.py` (8 passing unit tests)
+- Neural Runtime Lock: `artifacts/reproducibility/neural_runtime_lock.json`
+- Phase 3 Benchmark Telemetry: `runs/semantic-dev/phase3_benchmark_results.json`
+- Whole Agent Benchmark Telemetry: `runs/whole_agent_benchmark_results.json`
+- Independent Evaluation Handoff: `artifacts/independent_evaluation_handoff/`
+- Unit & Safety Tests:
+  - `tests/test_answer_aware_policy.py`
+  - `tests/test_hybrid_cache.py`
+  - `tests/test_before_agent_cache.py`
+  - `tests/test_document_model_preflight.py`
