@@ -916,3 +916,17 @@ Data inventory: `artifacts/documentation_rebuild/group4/data-inventory.json`.
 New independent authoring request: 30 blank slots over 3 existing FAQ sources,
 0 new questions and 0 labels. No natural-quality observations or savings claim.
 No new training, model/data download, live calls or locked final evaluation.
+
+
+## Separate model and human review preparation — 2026-11-01
+
+User authorized a separate model-assisted review and volunteered human review.
+A separate assistant agent, instructed to see only bundled FAQ sources, authored
+and self-reviewed 30 questions. Policy blindness is by instruction, not externally
+verified. All 30 rows validate as model_assisted; no human judgments yet. No
+accuracy, precision, classifier performance or serving promotion follows.
+Model records: data/document_product_review/model_assisted_v1/.
+Human form: data/document_product_review/human_v1/Human_Answer_Review.md, shuffled,
+model labels/reasons withheld. Human returns will be recorded separately as
+human_review_of_model_authored; no human-authored wording claim. Original blank
+packet unchanged. No training, tuning, project provider call or final evaluation.

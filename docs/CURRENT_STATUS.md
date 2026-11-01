@@ -49,6 +49,12 @@ or browser QA. No new independent labels exist. General approval beyond authored
 bindings remains unresolved, separately from UI/deployment work. See
 [dataset/review report](DATASETS_AND_REVIEW.md). No training or live calls.
 
+Separate model review is now available: 30 model-authored/self-reviewed items,
+policy-blind by instruction. Human labels are still zero; user will review a
+shuffled form without model judgments. Those labels will be human review of
+model-authored questions. No claim of independent human-authored wording, policy
+accuracy or general serving promotion. See `data/document_product_review/human_v1/`.
+
 The status below is historical Stage B context. Missing follow-up artifacts are
 not recreated by repeating experiments; their results are not claimed here.
 

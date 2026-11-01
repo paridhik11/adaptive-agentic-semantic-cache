@@ -1,0 +1,25 @@
+{
+  "evidence_type": "review-schema and provenance validation; NOT quality measurement",
+  "received": 30,
+  "missing_ids": [],
+  "by_provenance": {
+    "human_authored": {
+      "questions": 0,
+      "labeled": 0,
+      "declared_distinct_author_reviewer": 0
+    },
+    "model_assisted": {
+      "questions": 30,
+      "labeled": 30,
+      "declared_distinct_author_reviewer": 0
+    },
+    "human_review_of_model_authored": {
+      "questions": 0,
+      "labeled": 0,
+      "declared_distinct_author_reviewer": 0
+    }
+  },
+  "identities_independently_verified": false,
+  "accuracy": null,
+  "precision": null
+}

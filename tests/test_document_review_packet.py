@@ -44,3 +44,21 @@ def test_source_tampering_is_rejected(packet,tmp_path):
     path=response(packet,tmp_path)
     (packet/'sources.json').write_text('[]')
     with pytest.raises(ValueError,match='integrity'):validate(packet,path)
+
+
+def test_human_review_of_model_questions_is_separate_from_human_authorship(packet,tmp_path):
+    path=response(packet,tmp_path,evidence_type='human_review_of_model_authored',question_origin='model_authored',relation=None)
+    result=validate(packet,path)
+    assert result['by_provenance']['human_review_of_model_authored']['labeled']==1
+    assert result['by_provenance']['human_authored']['questions']==0
+
+
+def test_human_form_omits_model_judgments_and_rationales():
+    from scripts.prepare_blinded_human_review import prepare
+    source={'seed_id':'source','original_question':'Original','cached_answer':'Reference answer'}
+    rows=[{'item_id':'001','seed_id':'source','new_question':'New wording?',
+           'author_id':'fixture-model','answer_sufficient':False,'rationale':'SECRET MODEL RATIONALE'}]
+    text,mapping,template=prepare([source],rows)
+    assert 'SECRET MODEL RATIONALE' not in text and 'answer_sufficient' not in text
+    assert template[0]['answer_sufficient'] is None and template[0]['rationale'] is None
+    assert mapping[0]['human_id']=='H01'

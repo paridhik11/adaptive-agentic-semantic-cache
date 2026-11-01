@@ -14,7 +14,7 @@ def validate(packet, responses):
     expected={row['item_id']:row for row in originals}
     rows=[json.loads(line) for line in responses.read_text().splitlines() if line.strip()]
     seen=set();counts={kind:{'questions':0,'labeled':0,'declared_distinct_author_reviewer':0}
-                       for kind in ['human_authored','model_assisted']}
+                       for kind in ['human_authored','model_assisted','human_review_of_model_authored']}
     for row in rows:
         identifier=row.get('item_id')
         if identifier not in expected or identifier in seen:raise ValueError('unknown/duplicate item')
@@ -23,13 +23,15 @@ def validate(packet, responses):
         question=row.get('new_question')
         if not isinstance(question,str) or not question.strip() or len(question)>4000:raise ValueError('missing/bounded question required')
         kind=row.get('evidence_type')
-        if kind not in counts:raise ValueError('declare human_authored or model_assisted')
+        if kind not in counts:raise ValueError('declare question and review provenance')
+        if kind=='human_review_of_model_authored' and row.get('question_origin')!='model_authored':
+            raise ValueError('declare model question origin')
         if not isinstance(row.get('author_id'),str) or not row['author_id'].strip():raise ValueError('author declaration required')
         label=row.get('answer_sufficient')
         if label is not None and type(label) is not bool:raise ValueError('label must be boolean or null')
         counts[kind]['questions']+=1
         if label is not None:
-            if row.get('relation') not in {'same_intent','more_specific','more_general','different_intent','ambiguous'}:
+            if row.get('relation') not in {'same_intent','more_specific','more_general','different_intent','ambiguous'} and not (kind=='human_review_of_model_authored' and row.get('relation') is None):
                 raise ValueError('valid relation required for labeled item')
             if not all(isinstance(row.get(k),str) and row[k].strip() for k in ['reviewer_id','rationale']):
                 raise ValueError('reviewer and rationale required for labels')

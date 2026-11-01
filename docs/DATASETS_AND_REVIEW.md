@@ -100,3 +100,28 @@ unqualified savings/accuracy claims on a resume.
 
 One coherent local milestone commit preserves this preparation. No push, merge,
 new model training/download, live/provider inference or final-split evaluation.
+
+
+## Authorized dual review update — 2026-11-01
+
+The user volunteered human review and requested a separate model-assisted review.
+`model_assisted_v1/responses.jsonl` contains 30 model-authored, self-reviewed rows;
+method/provenance is preserved beside it. The reviewer agent was instructed to
+read source excerpts only, not policy code or predictions. This is model-assisted
+diagnostic judgment, not independent human ground truth.
+
+`human_v1/Human_Answer_Review.md` withholds model labels, reasons and requested
+positive/negative slot types. Its H01–H30 order is shuffled. The user can return
+Y/N/? in chat; source and question hashes bind responses to this form. Human
+labels are blank. They will be recorded as `human_review_of_model_authored`,
+separate from both model judgments and genuinely human-authored questions. We
+will not copy model labels into human fields or reveal predictions in advance.
+Human review does not establish independence of question authorship. Blinding is
+best effort through the delivered form, not externally verified. No model-assisted
+accuracy score or serving acceptance rate is inferred from these self-judgments.
+
+Reproduce form generation into a new output path:
+
+```bash
+python scripts/prepare_blinded_human_review.py --packet data/document_product_review/v1 --model-responses data/document_product_review/model_assisted_v1/responses.jsonl --output-dir NEW_HUMAN_PACKET
+```
