@@ -87,6 +87,7 @@ def constraints(text):
         "descending": r"\bdescending\b|\blargest to smallest\b|\bhighest to lowest\b",
         "ascending": r"\bascending\b|\bsmallest to largest\b|\blowest to highest\b",
         "preservation": r"\b(?:preserv\w*|retain\w*)\b",
+        "reversal": r"\b(?:revers\w*|invers\w*|opposite)\b",
     }
     return frozenset(name for name, pattern in patterns.items() if re.search(pattern, text, re.I))
 
@@ -96,6 +97,8 @@ def requirement_guard(original, incoming):
         return "numeric_or_version_requirement_changed"
     if constraints(incoming) - constraints(original):
         return "added_explicit_requirement"
+    if constraints(original) - constraints(incoming):
+        return "dropped_explicit_requirement"
     old, new = conversion_slots(original), conversion_slots(incoming)
     if old is not None and new is not None and (not old[0] & new[0] or not old[1] & new[1]):
         return "conversion_direction_or_entity_changed"

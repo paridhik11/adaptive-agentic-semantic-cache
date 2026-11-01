@@ -25,8 +25,8 @@ class LocalPairScorer:
 
         self.model = CrossEncoder(model, revision=revision, local_files_only=True,
                                   device="cpu", trust_remote_code=False,
-                                  default_activation_function=torch.nn.Identity(),
-                                  automodel_args={"use_safetensors": True})
+                                  activation_fn=torch.nn.Identity(),
+                                  model_kwargs={"use_safetensors": True})
         self.identity = model + "@" + revision
 
     def score(self, first, second):
@@ -34,8 +34,11 @@ class LocalPairScorer:
             raise ValueError("two nonempty texts required")
         tokens = self.model.tokenizer(first, second, truncation=False)["input_ids"]
         limits = [self.model.tokenizer.model_max_length]
-        if self.model.max_length is not None:
-            limits.append(self.model.max_length)
+        max_seq = getattr(self.model, "max_seq_length", None)
+        if max_seq is None:
+            max_seq = getattr(self.model, "max_length", None)
+        if max_seq is not None:
+            limits.append(max_seq)
         if len(tokens) > min(limits):
             raise ValueError("pair exceeds model input window; no silent truncation")
         logit = float(self.model.predict([(first, second)], show_progress_bar=False)[0])
