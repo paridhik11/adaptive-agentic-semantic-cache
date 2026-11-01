@@ -38,3 +38,4 @@ src/policy/local_models.py text eol=lf
 
 artifacts/resume/** -text -whitespace
 scripts/benchmark_resume_cache.py text eol=lf
+scripts/check_document_install.py text eol=lf

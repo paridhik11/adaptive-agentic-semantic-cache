@@ -1,5 +1,21 @@
 # Current implementation and evidence
 
+## Latest release checkpoint — 2026-11-02
+
+This section supersedes the historical snapshots below. Groups 1–3 are
+implemented and fixture-tested; Group 4 is PARTIAL. Human/model reviews and
+resume component measurements are recorded. Automatic semantic applicability
+and live savings remain unproven. No final split or new training was used.
+
+User requested resuming publication to `integration/documentation-rebuild`.
+Automatic approval review rejected the push because authorization to publish
+recorded review data after the earlier pause was considered unclear. Nothing
+was pushed; no alternate upload route was attempted after this rejection.
+
+Fresh-environment release regressions: 174 passed, one Starlette/httpx deprecation
+warning, 3.53s. This is software validation, not answer quality. Installed-wheel
+verification and current release limitations are documented in RELEASE_48H.md.
+
 ## Active product milestone — 2026-11-01
 
 Continue the existing bounded documentation product; no new training experiments

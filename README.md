@@ -1,5 +1,14 @@
 # Adaptive Agentic Semantic Cache
 
+**Release status — 2026-11-02:** Groups 1–3 are implemented with offline
+functional evidence. Group 4 (release verification and evaluation) is partial.
+The persistent exact-cache component measured **1.79 ms p95 over 5,000 warm
+local hits**; this is not end-to-end LLM latency or live savings. See the
+[resume evidence and limitations](docs/Resume_Ready_Project.md).
+Automatic semantic answer applicability remains unqualified: the exposed
+model diagnostic found an insufficient dense match, while the fixed pair gate
+accepted none. No threshold was changed to obtain a pass.
+
 A semantic caching gateway for a **bounded documentation assistant**, continuing
 the existing Python gateway and document agent. Questions concern a selected,
 versioned document collection. Suitable complete answers can be reused for exact
@@ -65,7 +74,10 @@ answer applicability, actual calls, provider-reported tokens and valid timings.
 There is no promised savings percentage. Zero useful coverage is a failed result.
 Anyone can run the configured assistant; public hosting and unrestricted
 question answering are not delivered. General semantic serving remains disabled
-by default, and independent answer-quality review is still missing.
+by default. Human review of 30 model-authored question/source-answer pairs is
+recorded separately from model-assisted judgments (14 sufficient, 15 insufficient,
+1 uncertain); it is an exposed diagnostic, not independent human-authored data
+or a population precision estimate. See [human/model review](docs/HUMAN_MODEL_REVIEW.md).
 
 ## Local workbench
 

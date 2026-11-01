@@ -1000,3 +1000,17 @@ identical requests, 1 counted stub invocation, 1 MISS and 63 HITs. No actual LLM
 inference, external-provider traffic, production latency or monetary claim.
 320 targeted offline regressions passed in 6.09s; artifacts/resume/regression-tests.txt.
 Resume wording: docs/Resume_Ready_Project.md. No general semantic success claim.
+
+
+## Clean gateway wheel verification — 2026-11-02
+
+Evidence: installed-wheel real HTTP offline reference fixture. Fresh environment,
+minimal web runtime plus build/test tools, wheel installed without full research
+dependencies; module verified under environment site-packages outside source tree.
+Packaged assets, approval and memory list/clear passed; observed scripted calls
+[3,0] for source/exact-repeat tasks. No live inference or semantic-quality claim.
+174 focused regressions passed in 3.53s, one Starlette/httpx deprecation warning.
+Raw evidence, build log, wheel SHA and dependency versions: group4/clean-install-v1/.
+Automatic approval review rejected the renewed GitHub push because sharing consent
+for recorded review data after the prior pause was considered unclear. No push or
+alternate transport followed rejection. Browser QA and deployment remain open.

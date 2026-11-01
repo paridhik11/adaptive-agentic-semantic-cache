@@ -19,7 +19,14 @@ jobs:
         run: python -m pip install -r deploy/requirements-gateway.txt pytest==9.1.1 httpx==0.28.1
       - name: Run documentation product regressions without models
         run: python -m pytest -q tests/test_workbench.py tests/test_document_agent.py tests/test_before_agent_cache.py tests/test_document_orchestration_memory.py tests/test_durable_semantic_rebuild.py tests/test_response_cache.py tests/test_sqlite_response_cache.py
-      - name: Install pinned browser test dependency
+      - name: Verify installed wheel outside source tree
+        # The installed-wheel smoke is separate from source-tree regression imports.
+        run: |
+          python -m pip install build
+          python -m build --wheel --outdir "$RUNNER_TEMP/product-wheel"
+          python -m pip install --no-deps "$RUNNER_TEMP/product-wheel/"*.whl
+          python scripts/check_document_install.py --output "$RUNNER_TEMP/installed-wheel.json"
+      - name: Install pinned browser dependency
         run: |
           npm install --no-save --package-lock=false playwright@1.62.1
           npx playwright install --with-deps chromium
