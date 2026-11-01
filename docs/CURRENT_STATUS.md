@@ -3,8 +3,9 @@
 ## Active product milestone — 2026-11-01
 
 Continue the existing bounded documentation product; no new training experiments
-without a specific integration need. Local milestone commits only: no push or
-merge. No live inference or locked final evaluation.
+without a specific integration need. User requested branch push on 2026-11-01;
+automatic approval review blocked it pending destination-specific sharing
+confirmation. Local commits continue; no merge or force operations. No live inference or locked final evaluation.
 
 Missing Group 1 was reconstructed from `847d3f9` on
 `integration/documentation-rebuild`. Candidates now share their SQLite exact
@@ -61,6 +62,14 @@ human-uncertain versus model-yes. These are source-answer applicability labels,
 not cache-policy predictions. No accuracy/savings claim or serving promotion.
 The earlier zero-human-label statements above describe preparation snapshots.
 See [review reconciliation](HUMAN_MODEL_REVIEW.md).
+
+UI context management is now connected to its existing authenticated API, with
+confirmation before clearing future context. Whole-answer mode captions and hit
+labels distinguish it from draft reuse. 61 focused API/agent regressions and JS
+syntax passed; visual browser QA is BLOCKED by missing browser executables.
+A loopback-only Playwright smoke script is ready. General semantic approval and
+representative live utility are still unresolved; no release completion claimed.
+See [48-hour release checklist](RELEASE_48H.md).
 
 The status below is historical Stage B context. Missing follow-up artifacts are
 not recreated by repeating experiments; their results are not claimed here.

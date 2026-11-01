@@ -944,3 +944,14 @@ or savings. Reviewer identity/independence/blinding not externally verified.
 `artifacts/documentation_rebuild/group4/human-review-v1/` holds comparison,
 input hashes, schema validation and tests. Raw labels remain local/private; no push.
 No training/tuning, serving promotion, live calls or locked final evaluation.
+
+
+## UI management and publication attempt — 2026-11-01
+
+Evidence: engineering regression checks, not visual/live utility. 61 focused
+API/agent tests passed in 2.45s; JS syntax passed. UI adds context list/clear and
+accurate whole-answer captions. Playwright could not launch: both its expected
+headless-shell and Chromium executables are absent; no browser downloaded and
+no visual pass claimed. Branch push was rejected by automatic approval review
+because destination-specific sharing authorization was considered ambiguous.
+No retry/workaround/push/merge occurred. See group4/ui-status.json and ui-tests.txt.
