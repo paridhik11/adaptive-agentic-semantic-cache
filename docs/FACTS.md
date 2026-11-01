@@ -930,3 +930,17 @@ Human form: data/document_product_review/human_v1/Human_Answer_Review.md, shuffl
 model labels/reasons withheld. Human returns will be recorded separately as
 human_review_of_model_authored; no human-authored wording claim. Original blank
 packet unchanged. No training, tuning, project provider call or final evaluation.
+
+
+## Complete declared human review — 2026-11-01
+
+Evidence: human review of 30 model-authored questions and source-excerpt answers,
+3 correlated FAQ sources. Latest complete user chat supersedes partial submissions.
+14 sufficient / 15 insufficient / 1 uncertain; no missing items. Model diagnostic
+judgments agree on 29 definite human labels. H05 human uncertain versus model yes;
+both rationales preserved, not resolved by overwriting either. No opposing binary
+judgments. Counts are diagnostic, not system predictions, accuracy, reuse precision
+or savings. Reviewer identity/independence/blinding not externally verified.
+`artifacts/documentation_rebuild/group4/human-review-v1/` holds comparison,
+input hashes, schema validation and tests. Raw labels remain local/private; no push.
+No training/tuning, serving promotion, live calls or locked final evaluation.

@@ -55,6 +55,13 @@ shuffled form without model judgments. Those labels will be human review of
 model-authored questions. No claim of independent human-authored wording, policy
 accuracy or general serving promotion. See `data/document_product_review/human_v1/`.
 
+Complete user human review is now recorded: 14 Y / 15 N / 1 uncertain across all
+30 model-authored items. The model agrees on 29 definite judgments; H05 remains
+human-uncertain versus model-yes. These are source-answer applicability labels,
+not cache-policy predictions. No accuracy/savings claim or serving promotion.
+The earlier zero-human-label statements above describe preparation snapshots.
+See [review reconciliation](HUMAN_MODEL_REVIEW.md).
+
 The status below is historical Stage B context. Missing follow-up artifacts are
 not recreated by repeating experiments; their results are not claimed here.
 

@@ -1,0 +1,122 @@
+{
+  "H01": {
+    "judgment": "N",
+    "rationale": "no binary literals"
+  },
+  "H02": {
+    "judgment": "N",
+    "rationale": "no int-to-hex-string conversion"
+  },
+  "H03": {
+    "judgment": "Y",
+    "rationale": null
+  },
+  "H04": {
+    "judgment": "N",
+    "rationale": "no addition or octal printing"
+  },
+  "H05": {
+    "judgment": "?",
+    "rationale": "\"octal ten\" could mean 0o10 (eight) or ten written as 0o12, and the answer only shows 0o10"
+  },
+  "H06": {
+    "judgment": "N",
+    "rationale": "no hex floats"
+  },
+  "H07": {
+    "judgment": "N",
+    "rationale": "no runtime string parsing"
+  },
+  "H08": {
+    "judgment": "Y",
+    "rationale": null
+  },
+  "H09": {
+    "judgment": "Y",
+    "rationale": null
+  },
+  "H10": {
+    "judgment": "Y",
+    "rationale": null
+  },
+  "H11": {
+    "judgment": "N",
+    "rationale": "no deep copy"
+  },
+  "H12": {
+    "judgment": "N",
+    "rationale": "no nested conversion"
+  },
+  "H13": {
+    "judgment": "Y",
+    "rationale": null
+  },
+  "H14": {
+    "judgment": "N",
+    "rationale": "no reversal"
+  },
+  "H15": {
+    "judgment": "Y",
+    "rationale": null
+  },
+  "H16": {
+    "judgment": "N",
+    "rationale": "no in-place conversion, since list() builds a new object"
+  },
+  "H17": {
+    "judgment": "Y",
+    "rationale": "tuple() on a tuple returns the same object, and list() on a list copies"
+  },
+  "H18": {
+    "judgment": "N",
+    "rationale": "no set or deduplication"
+  },
+  "H19": {
+    "judgment": "Y",
+    "rationale": null
+  },
+  "H20": {
+    "judgment": "Y",
+    "rationale": null
+  },
+  "H21": {
+    "judgment": "N",
+    "rationale": "no one-character slice such as S[-1:]"
+  },
+  "H22": {
+    "judgment": "N",
+    "rationale": "no out-of-range behavior"
+  },
+  "H23": {
+    "judgment": "N",
+    "rationale": "it doesn't say S is unchanged or how to reassign"
+  },
+  "H24": {
+    "judgment": "Y",
+    "rationale": null
+  },
+  "H25": {
+    "judgment": "Y",
+    "rationale": null
+  },
+  "H26": {
+    "judgment": "Y",
+    "rationale": null
+  },
+  "H27": {
+    "judgment": "N",
+    "rationale": "no one-based indexing"
+  },
+  "H28": {
+    "judgment": "N",
+    "rationale": "no negative-step slice"
+  },
+  "H29": {
+    "judgment": "Y",
+    "rationale": null
+  },
+  "H30": {
+    "judgment": "Y",
+    "rationale": null
+  }
+}

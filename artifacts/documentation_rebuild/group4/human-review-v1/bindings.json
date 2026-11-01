@@ -1,0 +1,10 @@
+{
+  "source": "latest complete user-chat judgments; supersedes partial submissions",
+  "human_reviewer": "user-declared, identity not externally verified",
+  "input_sha256": {
+    "data/document_product_review/human_return_v1/labels-from-chat.json": "896582a942fbb4424804c1c237319392d07461bc23858cc80e6d8dccbaa98913",
+    "data/document_product_review/human_v1/manifest.json": "0cef7ce990a433ce7ca33e96d076fb07ed045ab9eb36af3221bfa5802879d11c",
+    "data/document_product_review/model_assisted_v1/responses.jsonl": "073c4ddd629014aaf517c97c7a802dabe1ccc3ea216effb291e0d6be456d68e8",
+    "scripts/reconcile_document_reviews.py": "7c825ae838b0810e99857736039a46d7e43243ba6632de23eede22581c4a79cc"
+  }
+}
