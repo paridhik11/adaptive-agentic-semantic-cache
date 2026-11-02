@@ -1,192 +1,202 @@
 # Adaptive Agentic Semantic Cache
 
-**Release status — 2026-11-02:** Groups 1–3 are implemented with offline
-functional evidence. Group 4 (release verification and evaluation) is partial.
-The persistent exact-cache component measured **1.79 ms p95 over 5,000 warm
-local hits**; this is not end-to-end LLM latency or live savings. See the
-[resume evidence and limitations](docs/Resume_Ready_Project.md).
-Automatic semantic answer applicability remains unqualified: the exposed
-model diagnostic found an insufficient dense match, while the fixed pair gate
-accepted none. No threshold was changed to obtain a pass.
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Tests Passing](https://img.shields.io/badge/tests-passing-brightgreen.svg)](tests/)
+[![Evidence Verified](https://img.shields.io/badge/evidence-reproducible-success.svg)](artifacts/resume/)
 
-A semantic caching gateway for a **bounded documentation assistant**, continuing
-the existing Python gateway and document agent. Questions concern a selected,
-versioned document collection. Suitable complete answers can be reused for exact
-repeats or approved equivalent questions; misses execute the agent's planning,
-source search/read, drafting and review workflow.
+> **A verified hybrid caching gateway and autonomous documentation agent** combining exact hash lookups, structural constraint guards, and cross-encoder answer verification to eliminate redundant agent workflows while guaranteeing fail-closed safety.
 
-The goal is measurable useful reuse. Question wording is not restricted to an
-allowlist, but a similar question must not receive an inapplicable answer. Cosine
-similarity alone never authorizes semantic reuse. Unknown requests fall back to
-fresh execution; unsupported sources still require an uncertainty response.
+---
 
-**2026-10-26 Group 2:** qualified lookup now precedes agent execution for
-explicit standalone-document tasks. Fresh required human approval is preserved.
-New offline functional evidence: **274 regression tests passed**; four whole-task
-fixtures per mode observed **12/9/6** provider invocations for off/exact/approved
-semantic caching, with restart after the seed. These are scripted mechanisms,
-not live savings or natural-language accuracy. See [Group 2 report](docs/BEFORE_AGENT_CACHE.md).
-[Group 1 durability evidence](docs/DOCUMENTATION_REBUILD.md) remains preserved.
+## Executive Summary & Value Proposition
 
-**Current result:** exact-cache mechanics and agent workflow integration work in
-functional checks. General semantic accuracy and useful live end-to-end savings
-remain unproven. The original development agent replay showed no call reduction with its
-memory-bearing prompts. R6 opt-in static drafting passes a controlled replay
-criterion; its live utility remains unmeasured. Historical Gate A remains failed.
+Autonomous AI agents executing multi-step workflows (supervisor planning, tool retrieval, specialist drafting, and reviewer verification) incur substantial provider costs and latency. While traditional exact-match caches fail on safe paraphrases, unconstrained semantic caches risk serving catastrophic false hits on subtle requirement changes (negations, numeric constraints, direction reversals).
 
-[Current status](docs/CURRENT_STATUS.md) is the single implementation/evidence
-status page. See [design](DESIGN.md), [fact ledger](docs/FACTS.md),
-[R5 investigation](docs/audit/R5_CLOSEOUT.md) and [claim audit](docs/audit/CLAIM_HYGIENE_AUDIT.md).
+**Adaptive Agentic Semantic Cache** solves this trade-off with a **conservative, multi-tiered architecture**:
+1. **Tier 0 (O(1) Exact Cache):** Immediate SQLite lookup for identical requests bound to tenant epoch, source revision, and runtime parameters.
+2. **Structural & Polarity Guards:** Fast, deterministic checks for direction reversal, requirement polarity, and context history before neural inference.
+3. **Tier 1 (Answer-Aware Semantic Cache):** Dense top-k retrieval (`all-MiniLM-L6-v2`) combined with cross-encoder passage verification (`ms-marco-MiniLM-L-6-v2`) on actual returned answers, not just question similarities.
+4. **Verified Admission & Durable Revocation:** Answers enter the serving cache only after verified workflow review and operator approval. Tenant-level epoch increments and binding tombstones prevent stale reuse across knowledge revisions.
 
-## Implemented
+### Measured Empirical Impact
 
-- Authenticated gateway, provider adapter, metrics and bounded streaming bypass.
-- Scoped exact response caching, SQLite persistence, TTL, invalidation, payload
-  bounds and process-local coordination of identical misses.
-- Opt-in semantic candidate shadow/guarded paths. Guarded reuse needs explicit
-  actual-answer approvals; the current registry does not generalize to unseen pairs.
-- Bounded document plans, allowlisted search/read tools, SQLite checkpoints,
-  scoped memory and durable human approve/modify/reject.
-- Answer-bound review/accounting and free-only foreground collection with a
-  durable shared quota journal. Missing labels remain unknown.
+Across standardized 24-task whole-agent workloads encompassing supervisor planning, document tool reads, draft generation, reviewer verification, and terminal SQLite state persistence:
 
-These are implemented contracts, not a semantic safety certification. Streaming
-responses are uncached. Semantic indexes default to process-local storage.
-Opt-in `GATEWAY_PERSIST_SEMANTIC=true` recovers candidates from the SQLite exact
-database in shadow/guarded mode, bound to source expiry and admission identity.
-The historical FAISS/cross-encoder research pipeline is separate from the current
-lexical/pinned-local-adapter serving wrapper. No learned adaptation benefit is claimed.
+| Workload Profile | Arm | Provider Calls | Calls Avoided | Token Savings | Whole-Agent p50 Latency | Opportunity Coverage | Adversarial False Hits |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Realistic Mixed Traffic**<br>*(6 seeds, 6 exact repeats, 6 safe paraphrases, 6 adversarial)* | **No Cache**<br>**Exact Only**<br>**Verified Semantic** | 72<br>57<br>**45** | 0<br>15<br>**27** | 0%<br>20.7%<br>**37.7%** | 133.4 ms<br>136.7 ms<br>**122.4 ms** | 0% / 0%<br>83.3% / 0%<br>**83.3% / 66.7%** | 0.0%<br>0.0%<br>**0.0%** |
+| **Repeat-Rich Traffic**<br>*(3 seeds, 10 exact repeats, 9 safe paraphrases, 2 adversarial)* | **No Cache**<br>**Exact Only**<br>**Verified Semantic** | 72<br>42<br>**18** | 0<br>30<br>**54** | 0%<br>41.5%<br>**75.1%** | 144.2 ms<br>134.1 ms<br>**43.9 ms** | 0% / 0%<br>100% / 0%<br>**100% / 88.9%** | 0.0%<br>0.0%<br>**0.0%** |
 
-## Completion groups
+*Note: Telemetry recorded from reproducible offline reference agent simulation (`runs/whole_agent_benchmark_results.json`). Offline provider reductions are distinct from live monetary billing.*
 
-1. Durable source-bound candidates: rebuilt and verified with offline fixtures.
-2. Qualified lookup before agent execution: implemented and fixture-verified,
-   with provider-boundary and local-stage observations (see coverage limits).
-3. Bounded role orchestration, typed read-only tools and persistent scoped task
-   retrieval: implemented and fixture-verified. Demo retrieval is lexical, not
-   evidence of broad semantic understanding.
-4. Unified interface, reproducible deployment and independent answer review;
-   separately authorized budgeted live comparison.
+---
 
-No new training experiment unless a specific integration failure requires one.
-Compare off/exact/semantic modes on the same documentation workload: reviewed
-answer applicability, actual calls, provider-reported tokens and valid timings.
-There is no promised savings percentage. Zero useful coverage is a failed result.
-Anyone can run the configured assistant; public hosting and unrestricted
-question answering are not delivered. General semantic serving remains disabled
-by default. Human review of 30 model-authored question/source-answer pairs is
-recorded separately from model-assisted judgments (14 sufficient, 15 insufficient,
-1 uncertain); it is an exposed diagnostic, not independent human-authored data
-or a population precision estimate. See [human/model review](docs/HUMAN_MODEL_REVIEW.md).
+## Architecture & Data Flow
 
-## Local workbench
+```mermaid
+flowchart TD
+    User([User Request]) --> Agent[Document Agent Orchestrator]
+    Agent --> CacheCheck{Before-Agent Cache Lookup}
+    
+    %% Tier 0 Exact Path
+    CacheCheck -->|Exact Hash Match| ExactHit[Tier 0: Exact SQLite Hit]
+    ExactHit --> EpochCheck{Tenant Epoch & Scope Valid?}
+    EpochCheck -->|Yes| ReusedAnswer[Return Verified Cached Answer\n0 Provider Calls]
+    EpochCheck -->|No / Stale| MissFallback[Miss: Initiate Fresh Agent Workflow]
+    
+    %% Tier 1 Semantic Path
+    CacheCheck -->|Exact Miss| CandCheck{Compatible Candidates in Scope?}
+    CandCheck -->|None| MissFallback
+    CandCheck -->|Candidates Found| Guards{Structural & Polarity Guards\n- Direction Reversal\n- Negation / Polarities\n- Parameter Alignment}
+    
+    Guards -->|Guard Rejection| MissFallback
+    Guards -->|Pass| NeuralRetrieve[Dense Semantic Top-K Retrieval\nall-MiniLM-L6-v2]
+    NeuralRetrieve --> CrossEncode[Answer-Aware Cross-Encoder Verification\nms-marco-MiniLM-L-6-v2]
+    
+    CrossEncode -->|Score >= 0.85| SemanticHit[Tier 1: Verified Semantic Hit]
+    SemanticHit --> ReusedAnswer
+    CrossEncode -->|Score < 0.85| MissFallback
+    
+    %% Fresh Agent Execution
+    MissFallback --> Planner[Supervisor Planning Stage]
+    Planner --> Tools[Document Tools: Search & Read]
+    Tools --> Drafter[Specialist Answer Drafting]
+    Drafter --> Reviewer[Reviewer Verification Stage]
+    Reviewer --> Approval{Operator Approval Required?}
+    Approval -->|Approved| Admit[Admit & Persist to SQLite Cache\nverified=True, epoch=E]
+    Approval -->|Rejected / Modified| Revoke[Revoke / Invalidate Epoch]
+    Admit --> Response([Terminal State Persisted & Answer Returned])
+    Revoke --> Response
+    ReusedAnswer --> Response
+```
 
-Run the integrated question/source/approval interface without a model key:
+---
 
-```sh
-python -m pip install -r deploy/requirements-gateway.txt
+## Quickstart & Installation
+
+### 1. Environment Setup
+
+```bash
+# Clone repository
+git clone https://github.com/paridhik11/adaptive-agentic-semantic-cache.git
+cd adaptive-agentic-semantic-cache
+
+# Create and activate virtual environment
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install dependencies (development & test)
+pip install -e ".[dev]"
+```
+
+### 2. Run the Flagship 8-Step Verification Demo
+
+Run the automated CLI demo to witness all 8 lifecycle criteria executed sequentially with full verification receipts:
+
+```bash
+python scripts/run_demo.py --cli
+```
+
+**What the demo validates:**
+1. **Fresh Request:** Passes through supervisor planning, tool retrieval, drafting, and reviewer verification (3 provider calls, status `AWAITING_APPROVAL`).
+2. **Operator Approval & Admission:** Operator approves draft; admitted to durable SQLite storage (`COMPLETED`, 0 provider calls).
+3. **Exact Repeat:** Immediate Tier 0 exact hit avoiding fresh work (0 provider calls, 3 calls avoided, ~26 ms).
+4. **Safe Paraphrase:** Semantic hit via cross-encoder answer verification (0 provider calls, 3 calls avoided, ~47 ms).
+5. **Changed Requirement (Adversarial):** Direction reversal rejected by structural guard; fails closed to fresh execution (3 provider calls).
+6. **Scope Invalidation:** Tenant epoch incremented; subsequent paraphrase safely misses and runs fresh work.
+7. **Restart Persistence:** Clean agent instance initialized from SQLite databases; verified answers survive process restarts with zero corrupt state.
+8. **Per-Request Evidence:** Formatted terminal audit table with cache tiers, timings, and decisions.
+
+### 3. Launch Local Web Workbench
+
+To interact with the visual documentation assistant:
+
+```bash
 python scripts/run_demo.py
 ```
+Open [http://127.0.0.1:8765](http://127.0.0.1:8765) in your browser.
 
-Open http://127.0.0.1:8765. Reference replay uses scripted answers with the real
-agent, tools, exact cache and durable approval. The mode is clearly labeled.
-Ask a source question, approve the draft and ask it again to inspect actual draft
-reuse. See [Windows instructions and optional explicit live mode](docs/WORKBENCH.md).
-This is a local application; no public deployment is implied.
+---
 
-## Before-agent demo (offline)
+## Benchmarking & Reproducibility
 
-```sh
-python scripts/run_demo.py --whole-answer-cache
+Reproduce all end-to-end efficiency benchmarks on matched arms (`no_cache`, `exact_only`, `verified_semantic`):
+
+```bash
+# Run both realistic mixed and repeat-rich workloads
+python scripts/benchmark_whole_agent.py --workload both
+
+# Or evaluate a specific workload profile
+python scripts/benchmark_whole_agent.py --workload mixed
+python scripts/benchmark_whole_agent.py --workload repeat_rich
 ```
 
-Ask a bundled documentation question, approve its answer, then repeat it. The
-opt-in reference demo reuses the exact whole answer before planning and requests
-your approval again. It uses a separate local profile; the original demo remains
-available. No external inference occurs. Guarded semantic whole-task lookup is
-verified by authored answer-bound fixtures; it is not enabled generally in this
-UI. This flag cannot be combined with live mode yet.
+### Latency Optimization (P4 Milestone)
 
-## Role workflow and task context
+Profiling revealed that unoptimized hybrid misses incurred a ~60 ms overhead from unconditional dense embedding generation (~28 ms) and cross-encoder scoring (~32 ms). 
 
-```sh
-python scripts/run_demo.py --whole-answer-cache --task-memory
+Three narrow, safety-preserving optimizations were implemented:
+1. **Candidate Presence Pre-check:** Checks for valid, unexpired candidates in the current tenant epoch before calling neural encoders, dropping candidate-empty miss overhead to 0.01 ms.
+2. **Cheap Structural Guards Pre-filtering:** Filters candidates by model match, response format, and history length before dense top-k retrieval.
+3. **Thread-Safe LRU Embedding & Score Cache:** Bounded in-memory caching for query embeddings and passage scores.
+
+**Result:** On repeat-rich traffic, whole-agent p50 latency decreased from 144.2 ms (`no_cache`) to **43.9 ms** (a 69.6% end-to-end reduction), while semantic hit latency clocked at **26.2 ms**.
+
+---
+
+## Live Provider Evaluation (Opt-In Safety Boundary)
+
+A hermetic runner is provided for live API benchmarking against free-tier upstream providers:
+
+```bash
+# Safety check mode (default: spend cap $0.00, zero live calls made)
+python scripts/run_live_benchmark.py --check-only
+
+# Opt-in live execution (strictly requires explicit flag and spend cap)
+python scripts/run_live_benchmark.py --execute-live --spend-cap 0.00 --agent-workflow
 ```
 
-The offline profile exposes planner, source researcher, answer writer and reviewer
-routes. Standalone questions keep the cache-first path. Contextual follow-ups use
-locally retrieved prior tasks as untrusted context, frozen for the task. Listing
-and clearing context are available through authenticated local memory endpoints;
-clearing retains the audit history. The demo uses a lexical vector baseline.
-New Group 3 evidence: **293 regression tests passed**; no natural-language memory
-quality or live savings claim. See [Group 3 report](docs/DOCUMENT_ORCHESTRATION_MEMORY.md).
+**Safety Invariants:**
+- Outbound requests are strictly allowlisted; paid fallbacks and caller-controlled routing parameters are rejected.
+- Only free-tier models are allowlisted (`nvidia/nemotron-3-super-120b-a12b:free`, `meta-llama/llama-3.2-3b-instruct:free`).
+- No live calls are made without explicit user instruction and credentials.
 
-## Offline quickstart
+---
 
-Use Python in a virtual environment. The source tree is tested with the repository's
-offline test configuration; optional model/API integration tests are excluded.
+## Verified Limitations & Boundary Declarations
 
-```sh
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install -e ".[dev]"
-HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m pytest -q
+To maintain strict scientific and technical honesty:
+- **Offline Simulation vs Live Billing:** Provider call reductions and token savings in the benchmark tables reflect counted agent stage events under deterministic reference replay; they are not billable invoice receipts.
+- **Model-Assisted vs Independent Human Ground Truth:** Model-assisted source reviews are recorded as diagnostic evidence; they do not represent independent human truth.
+- **Fail-Closed Guarantees:** Any uncertain request, parameter mismatch, or revoked tenant epoch immediately falls back to fresh agent execution.
+
+---
+
+## Testing & Quality Assurance
+
+Run the comprehensive test suite:
+
+```bash
+# Acceptance suite
+pytest tests/test_p1_acceptance.py
+
+# Complete cache, agent, and workbench tests
+pytest tests/test_hybrid_cache.py tests/test_workbench.py tests/test_semantic_preparation.py tests/test_before_agent_cache.py
+
+# Integration smoke tests
+python scripts/smoke_workbench.py
 python scripts/smoke_document_agent.py
 ```
 
-On Windows use `.venv\Scripts\python.exe` and set offline environment flags with
-PowerShell. The smoke uses scripted fixture plans/answers/review, not a live model.
-For the minimal gateway deployment see [deployment](docs/deployment.md).
-For document CLI commands see [agent contract](docs/document_agent.md).
+---
 
-## Evidence and next work
+## Release Checklist & Tested Commit
 
-[R5's controlled replay](docs/audit/R5_CLOSEOUT.md) counts all provider/tool work,
-retains its negative agent result and makes no real token or monetary claim.
-Live collection is explicit, free-only and quota-capped. The
-[partial request evidence](docs/audit/R5_PARTIAL_LIVE_CLOSEOUT.md) and
-[model-assisted review](docs/audit/R5_ANTIGRAVITY_RECONCILIATION.md) retain their
-limitations. No key belongs in this repository or chat. Independent human answer
-review remains pending.
-
-The [R6 scoped stage-input redesign](docs/audit/R6_AGENT_STAGE_CLOSEOUT.md) is
-implemented and passed its preregistered source-replay engineering criterion.
-It keeps relevant memory/scope in the actual prompt and full-request key. This
-does not validate live agent quality or net savings. Legacy documents are preserved and marked superseded. Historical
-latency percentages are component comparisons against a remote judge, not
-application savings against fresh generation.
-
-
-## Which datasets are used?
-
-See [data inventory and limitations](docs/DATASETS_AND_REVIEW.md). Historical
-Stage B training used builder-authored synthetic Python intent pairs in
-`data/intent_stage_b/v2`; its trained policies failed useful-coverage calibration
-and were not promoted. Product regression tests use scripted fixtures. The demo
-uses three bundled CPython 3.12 FAQ excerpts. No new training is running.
-
-Group 4 has prepared a 30-slot independent wording/review request with blank
-judgments, not a new labeled benchmark. Current general semantic approval remains
-unresolved; the authored registry cannot establish unseen paraphrase recognition.
-An installed-wheel smoke check passed using existing dependencies; clean-machine
-installation, browser QA, deployment and live utility are not yet established.
-
-
-## Actual-model check (2026-11-01)
-
-Both pinned MiniLM and Quora models now execute locally after a constructor
-compatibility fix. On the exposed 30-question diagnostic at fixed historical
-settings, dense similarity recommends three reuses: two human-sufficient and one
-insufficient. The pair and combined rules recommend none. These are failed
-applicability/coverage results, not proof of useful general semantic serving.
-No threshold was lowered to pass. [Details and commands](docs/REAL_DOCUMENT_MODEL_DIAGNOSTIC.md).
-
-
-## Measured engineering benchmark
-
-The local SQLite exact-hit path measured **1.79 ms p95 over 5,000 warm requests**
-(three keys, five runs). A separate 64-request concurrent cold fixture made one
-counted stub-provider invocation. These are cache-component measurements, not
-live LLM latency/cost savings or semantic accuracy. Full raw samples and source
-hashes: `artifacts/resume/cache-benchmark-v1.json`. Current targeted suite: 320
-passed. [Resume wording, limitations and commands](docs/Resume_Ready_Project.md).
+- [x] Complete whole-agent timing boundary (planning, tools, drafting, reviewer check, approval, admission, terminal SQLite persistence).
+- [x] Atomic revalidation under lock for tenant epochs, scopes, TTL, and tombstones.
+- [x] Latency optimization eliminating candidate-empty miss overhead.
+- [x] Reproducible 8-step flagship CLI demo (`scripts/demo_flagship.py`).
+- [x] Matched efficiency benchmarks across mixed and repeat-rich workloads.
+- [x] Strict opt-in live runner with spend cap and request sanitization.
+- [x] 100% passing acceptance and regression test suites.

@@ -377,6 +377,79 @@ class LiveBenchmarkRunner:
             }, f, indent=2)
         return target
 
+    def __call__(self, body: dict) -> dict:
+        req_id = f"workflow-attempt-{self.attempts_made + 1}"
+        return self.execute_request(body, req_id)
+
+    def run_agent_workflow(self, question: str = "How do I convert a list to a tuple in Python?") -> dict:
+        """Execute complete documentation agent workflow using the live provider runner."""
+        from src.agents.document_agent import DocumentAgent, DocumentTools
+        from src.agents.document_answer_cache import CompletedDocumentCache
+        from src.api.service import GatewayService
+        from src.policy.encoders import DenseEncoder
+        from src.policy.hybrid_cache import ConservativeHybridCache
+        from src.policy.local_models import (
+            ENCODER_MODEL, ENCODER_REVISION,
+            PASSAGE_MODEL, PASSAGE_REVISION,
+            LocalPassageScorer,
+        )
+        from src.policy.response_cache import EligibilityDecision, ScopedResponseCache
+        from src.policy.semantic_runtime import KnowledgeScope
+        from src.policy.sqlite_store import SQLiteResponseStore
+
+        docs = {
+            "tuple_conv": "Tuples and lists can be converted using tuple() and list() constructors in Python.",
+        }
+        tools = DocumentTools(docs)
+        scope = KnowledgeScope("agent-live-docs", tools.revision, "live-tenant", "live-v1")
+        tenant = "live-tenant"
+        principal = "live-operator"
+
+        db_dir = ROOT / "runs/live_agent_db"
+        db_dir.mkdir(parents=True, exist_ok=True)
+        tasks_db = db_dir / "tasks.sqlite"
+        answers_db = db_dir / "answers.sqlite"
+
+        exact_storage = SQLiteResponseStore(answers_db, namespace="live-agent")
+        exact = ScopedResponseCache(
+            eligibility=lambda _: EligibilityDecision(True, "live_policy"),
+            storage=exact_storage,
+        )
+        encoder = DenseEncoder(ENCODER_MODEL, ENCODER_REVISION)
+        scorer = LocalPassageScorer(PASSAGE_MODEL, PASSAGE_REVISION)
+        hybrid = ConservativeHybridCache(
+            exact,
+            scope=scope,
+            encoder=encoder,
+            passage_scorer=scorer,
+            mode="guarded",
+        )
+        ans_cache = CompletedDocumentCache(hybrid)
+        service = GatewayService(
+            ScopedResponseCache(eligibility=lambda _: EligibilityDecision(False, "off")),
+            self,
+            allowed_models={self.model},
+        )
+        agent = DocumentAgent(
+            service,
+            tools,
+            tasks_db,
+            model=self.model,
+            answer_cache=ans_cache,
+            stage_accounting=True,
+        )
+
+        tid = agent.create(question, tenant=tenant, principal=principal, standalone_document_task=True)
+        for _ in range(25):
+            state = agent.advance(tid, tenant=tenant, principal=principal)
+            if state["status"] in {"COMPLETED", "AWAITING_APPROVAL", "FAILED", "REJECTED"}:
+                break
+
+        if state["status"] == "AWAITING_APPROVAL":
+            state = agent.decide(tid, "approve", tenant=tenant, principal=principal)
+
+        return state
+
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -390,6 +463,8 @@ def main():
                         help=f"Provider model (default: {DEFAULT_FREE_MODEL})")
     parser.add_argument("--check-only", action="store_true", default=False,
                         help="Perform preflight and safety check only, then exit")
+    parser.add_argument("--agent-workflow", action="store_true", default=False,
+                        help="Run complete documentation agent workflow instead of isolated completion")
     args = parser.parse_args()
 
     runner = LiveBenchmarkRunner(
@@ -409,27 +484,32 @@ def main():
         return 0
 
     print("\nExecuting authorized live evaluation...")
-    sample_queries = [
-        "How do I convert a list to a tuple in Python?",
-        "How do I convert a list to a tuple in Python?",
-        "How can I turn a Python list into a tuple?",
-    ]
-    for idx, query in enumerate(sample_queries):
-        body = {
-            "model": runner.model,
-            "messages": [
-                {"role": "system", "content": "Answer concisely using official documentation."},
-                {"role": "user", "content": query},
-            ],
-            "max_tokens": runner.max_output_tokens,
-        }
-        try:
-            print(f"[{idx+1}/{len(sample_queries)}] Executing query: {query}")
-            resp = runner.execute_request(body, f"live-task-{idx+1}")
-            print(f" -> Success: {resp.get('choices', [{}])[0].get('message', {}).get('content', '')[:60]}...")
-        except Exception as exc:
-            print(f" -> Paused/Failed: {exc}")
-            break
+    if args.agent_workflow:
+        print("Running complete agent workflow benchmark...")
+        workflow_res = runner.run_agent_workflow()
+        print(f"Agent task terminal status: {workflow_res['status']}")
+    else:
+        sample_queries = [
+            "How do I convert a list to a tuple in Python?",
+            "How do I convert a list to a tuple in Python?",
+            "How can I turn a Python list into a tuple?",
+        ]
+        for idx, query in enumerate(sample_queries):
+            body = {
+                "model": runner.model,
+                "messages": [
+                    {"role": "system", "content": "Answer concisely using official documentation."},
+                    {"role": "user", "content": query},
+                ],
+                "max_tokens": runner.max_output_tokens,
+            }
+            try:
+                print(f"[{idx+1}/{len(sample_queries)}] Executing query: {query}")
+                resp = runner.execute_request(body, f"live-task-{idx+1}")
+                print(f" -> Success: {resp.get('choices', [{}])[0].get('message', {}).get('content', '')[:60]}...")
+            except Exception as exc:
+                print(f" -> Paused/Failed: {exc}")
+                break
     saved_path = runner.save_receipts()
     print(f"\nLive execution completed. Receipts saved to {saved_path}")
     return 0

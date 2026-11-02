@@ -1,3 +1,25 @@
+## P3–P6 Flagship Delivery Checkpoint — 2026-11-02
+
+P3 (End-to-End Efficiency Evidence), P4 (Measured Latency Optimization), P5 (Working Demo & Release QA), and P6 (Flagship Release Documentation) are fully implemented, benchmarked, and verified (PASS).
+
+1. **P3 Efficiency Benchmarks**:
+   - **Realistic Mixed Workload (24 tasks)**: Verified semantic cache reduced provider calls from 72 (`no_cache`) to 45 (37.7% call & token reduction; exact: 57 calls). Whole-agent latency p50 improved from 133.4 ms to 122.4 ms (eligible traffic p50: 103.6 ms). Opportunity coverage: 83.3% exact, 66.7% semantic. Adversarial false hit rate: 0.0% (fail closed).
+   - **Repeat-Rich Workload (24 tasks)**: Verified semantic cache reduced provider calls from 72 (`no_cache`) to 18 (75.1% call & token reduction; exact: 42 calls). Whole-agent latency p50 dropped from 144.2 ms to 43.9 ms (69.6% whole-agent latency reduction). Opportunity coverage: 100% exact, 88.9% semantic. Adversarial false hit rate: 0.0%.
+   - Full environment provenance, model revisions (`all-MiniLM-L6-v2@1110a24` and `ms-marco-MiniLM-L-6-v2@233902d`), and per-task raw records published to `artifacts/resume/whole_agent_benchmark_results.json`.
+   - Distinct scripted simulation vs opt-in live provider benchmarks preserved (`scripts/run_live_benchmark.py --check-only` enforces spend cap $0.00 and zero live calls unless explicitly authorized).
+
+2. **P4 Latency Optimization**:
+   - Diagnosed 28 ms DenseEncoder + 32 ms LocalPassageScorer per-candidate inference overhead on misses.
+   - Implemented candidate presence pre-check before neural encoding, cheap structural guards (model match, history length, message structure) before scoring, and thread-safe in-memory embedding & passage score caching in `ConservativeHybridCache`.
+   - Net whole-agent p50 improved from 165.6 ms down to 122.4 ms (mixed) and 43.9 ms (repeat-rich). Semantic hit p50 measured at 26.2–35.5 ms. Correctness strictly preserved (100% pass on acceptance suite).
+
+3. **P5 Flagship Demo & QA**:
+   - Built and validated `scripts/demo_flagship.py` (and `python scripts/run_demo.py --cli`) executing all 8 core lifecycle criteria: fresh request, operator approval, exact repeat (0 calls), safe paraphrase (0 calls), changed requirement miss (fail closed, 3 calls), scope invalidation (stale reuse blocked), restart persistence (durable SQLite reload), and per-request receipts (100% PASS).
+   - Clean Windows temp directory handling verified in `scripts/smoke_workbench.py`.
+
+4. **P6 Release Ready**:
+   - Professional README.md with clear architecture diagram, setup instructions, comparative accounting tables, reproducibility commands, and honest evidence boundaries.
+
 ## P1.1 Final Closure Checkpoint — 2026-11-02 (`05ce156`)
 
 All five supplemental independent audit blockers are closed with independently reproducible fixes (PASS).

@@ -1041,3 +1041,29 @@ See docs/BENCHMARK_EVIDENCE_CORRECTION.md for scope, reproduction and limitation
 
 Validation of this correction: 250 offline regressions passed in 3.82s; one
 Starlette/httpx deprecation warning. Receipt: semantic_p0/answer_evidence_tests_v2.txt.
+
+
+## P3–P6 Flagship Delivery Checkpoint — 2026-11-02
+
+Evidence: Complete whole-agent empirical benchmarks (`scripts/benchmark_whole_agent.py`) and 8-step lifecycle demo (`scripts/demo_flagship.py`).
+Telemetry: `runs/whole_agent_benchmark_results.json` and `artifacts/resume/whole_agent_benchmark_results.json`.
+
+| # | Fact | Claim / Value | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| P3-01 | Mixed Workload: no_cache provider calls | 72 calls / 6,282 tokens (24 tasks, p50: 133.4 ms, p95: 147.2 ms) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload mixed` |
+| P3-02 | Mixed Workload: exact_only provider calls | 57 calls / 4,981 tokens (Avoided: 15 calls / 1,301 tokens, 20.7% savings, p50: 136.7 ms, p95: 175.9 ms) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload mixed` |
+| P3-03 | Mixed Workload: verified_semantic provider calls | 45 calls / 3,916 tokens (Avoided: 27 calls / 2,366 tokens, 37.7% savings, p50: 122.4 ms, p95: 163.3 ms) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload mixed` |
+| P3-04 | Mixed Workload: exact opportunity coverage | 83.3% (5 / 6 exact repeats hit exact tier) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload mixed` |
+| P3-05 | Mixed Workload: semantic opportunity coverage | 66.7% (4 / 6 safe paraphrases hit semantic tier) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload mixed` |
+| P3-06 | Mixed Workload: adversarial false hit rate | 0.0% (0 / 6 adversarial constraints hit cache; 100% fail closed to fresh agent execution) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload mixed` |
+| P3-07 | Repeat-Rich Workload: no_cache provider calls | 72 calls / 6,260 tokens (24 tasks, p50: 144.2 ms, p95: 165.5 ms) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload repeat_rich` |
+| P3-08 | Repeat-Rich Workload: exact_only provider calls | 42 calls / 3,659 tokens (Avoided: 30 calls / 2,601 tokens, 41.5% savings, p50: 134.1 ms, p95: 170.5 ms) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload repeat_rich` |
+| P3-09 | Repeat-Rich Workload: verified_semantic provider calls | 18 calls / 1,558 tokens (Avoided: 54 calls / 4,702 tokens, 75.1% savings, p50: 43.9 ms, p95: 144.2 ms) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload repeat_rich` |
+| P3-10 | Repeat-Rich Workload: exact opportunity coverage | 100.0% (10 / 10 exact repeats hit exact tier) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload repeat_rich` |
+| P3-11 | Repeat-Rich Workload: semantic opportunity coverage | 88.9% (8 / 9 safe paraphrases hit semantic tier) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload repeat_rich` |
+| P3-12 | Repeat-Rich Workload: adversarial false hit rate | 0.0% (0 / 2 adversarial constraints hit cache; 100% fail closed) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload repeat_rich` |
+| P4-01 | Neural candidate pre-check optimization | Checks candidate presence and cheap structural guards before dense encoding / scoring; eliminates 28ms encoding overhead on candidate-empty misses `[CODE]` | `src/policy/hybrid_cache.py` lines 584-630 | `pytest tests/test_p1_acceptance.py` |
+| P4-02 | In-memory embedding & passage score cache | Thread-safe bounded cache avoids repeated SentenceTransformer inference on identical texts `[CODE]` | `src/policy/hybrid_cache.py` lines 237-270 | `pytest tests/test_p1_acceptance.py` |
+| P5-01 | Flagship 8-Step Verification Demo | Validates all 8 criteria: fresh request, operator approval, exact repeat, safe paraphrase, changed requirement miss, scope invalidation, restart persistence, and per-request receipts (100% PASS) `[SIMULATED]` | `scripts/demo_flagship.py` | `python scripts/demo_flagship.py` |
+| P5-02 | Automated CLI Demo Flag | `python scripts/run_demo.py --cli` automated runner executing 8-step verification flow `[CODE]` | `scripts/run_demo.py` line 20 | `python scripts/run_demo.py --cli` |
+| P6-01 | Opt-in Live Agent Workflow Runner | Free-tier allowlisted live runner with spend cap and quota journal for full agent workflow `[CODE]` | `scripts/run_live_benchmark.py` | `python scripts/run_live_benchmark.py --check-only` |

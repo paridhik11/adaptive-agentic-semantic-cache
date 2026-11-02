@@ -129,12 +129,10 @@ class AgentBenchmarkProvider(FixtureChatProvider):
         }
 
 
-def build_workload() -> list[dict]:
-    """Diverse 24-task workload testing whole-agent workflow:
-    - 6 seed questions
-    - 6 exact repeats (eligible for exact cache)
-    - 6 safe paraphrases (eligible for semantic cache)
-    - 6 adversarial variations (direction reversal, negation, numeric change - must NOT hit semantic cache)
+def build_workload(workload_type: str = "mixed") -> list[dict]:
+    """Build standardized evaluation workloads for whole-agent benchmarking:
+    - 'mixed': Realistic balanced workload (6 seeds, 6 exact repeats, 6 safe paraphrases, 6 adversarial constraints)
+    - 'repeat_rich': High-redundancy workload (3 seeds, 10 exact repeats, 9 safe paraphrases, 2 adversarial constraints)
     """
     seeds = [
         ("tuple_conv", "How do I convert a list to a tuple in Python?", "Tuples and lists can be converted using tuple() and list() constructors."),
@@ -144,6 +142,86 @@ def build_workload() -> list[dict]:
         ("list_sort", "How do I sort a list in Python?", "Use list.sort() to sort in place or sorted(list) to return a new sorted list."),
         ("set_unique", "How do I remove duplicates from a list in Python?", "Convert the list to a set with set(my_list), or use dict.fromkeys() to preserve order."),
     ]
+
+    if workload_type == "repeat_rich":
+        selected = [seeds[0], seeds[2], seeds[3]]  # tuple_conv, str_split, file_read
+        seed_map = {qid: (q, ans) for qid, q, ans in selected}
+        paraphrase_variants = {
+            "tuple_conv": [
+                "How can I turn a Python list into a tuple?",
+                "What is the function to cast a list to tuple in Python?",
+                "In Python, can you convert a list directly to a tuple?",
+            ],
+            "str_split": [
+                "In Python, how can I divide a string by a delimiter?",
+                "How to partition a string by separator in Python?",
+                "What method splits a Python string on a given character?",
+            ],
+            "file_read": [
+                "How to iterate over lines in a file in Python?",
+                "What is the standard way to read a file line by line in Python?",
+                "How can I process each line in a text file using Python?",
+            ],
+        }
+        adv_variants = {
+            "tuple_conv": "How do I convert a tuple to a list in Python?",
+            "file_read": "How do I write a file line by line in Python?",
+        }
+
+        tasks = []
+        # 1. 3 seeds (cold)
+        for qid, q, ans in selected:
+            tasks.append({
+                "task_id": f"{qid}:seed",
+                "family": "seed",
+                "question": q,
+                "eligible": True,
+                "expected_hit": False,
+                "doc_id": qid,
+                "doc_text": ans,
+            })
+        # 2. 10 exact repeats: 4x tuple_conv, 3x str_split, 3x file_read
+        counts = [("tuple_conv", 4), ("str_split", 3), ("file_read", 3)]
+        for qid, count in counts:
+            q, ans = seed_map[qid]
+            for rep in range(count):
+                tasks.append({
+                    "task_id": f"{qid}:exact_{rep+1}",
+                    "family": "exact_repeat",
+                    "question": q,
+                    "eligible": True,
+                    "expected_hit": True,
+                    "expected_tier": "EXACT",
+                    "doc_id": qid,
+                    "doc_text": ans,
+                })
+        # 3. 9 safe paraphrases (3 per seed)
+        for qid, paras in paraphrase_variants.items():
+            q, ans = seed_map[qid]
+            for idx, pq in enumerate(paras):
+                tasks.append({
+                    "task_id": f"{qid}:para_{idx+1}",
+                    "family": "safe_paraphrase",
+                    "question": pq,
+                    "eligible": True,
+                    "expected_hit": True,
+                    "expected_tier": "SEMANTIC",
+                    "doc_id": qid,
+                    "doc_text": ans,
+                })
+        # 4. 2 adversarial variations
+        for qid, aq in adv_variants.items():
+            q, ans = seed_map[qid]
+            tasks.append({
+                "task_id": f"{qid}:adversarial",
+                "family": "adversarial_constraint",
+                "question": aq,
+                "eligible": False,
+                "expected_hit": False,
+                "doc_id": qid,
+                "doc_text": ans,
+            })
+        return tasks
 
     tasks = []
     # 1. Seeds (cold)
@@ -403,12 +481,23 @@ def run_arm(
         miss_p50 = miss_lats[int(len(miss_lats) * 0.50)] if miss_lats else 0.0
         miss_p95 = miss_lats[int(len(miss_lats) * 0.95)] if miss_lats else 0.0
 
+        exact_eligible = [r for r in records if r.get("family") == "exact_repeat"]
+        paraphrase_eligible = [r for r in records if r.get("family") == "safe_paraphrase"]
+        adversarial_cases = [r for r in records if r.get("family") == "adversarial_constraint"]
+
+        exact_cov = (sum(r["is_hit"] and r["tier"] == "EXACT" for r in exact_eligible) / len(exact_eligible)) if exact_eligible else 0.0
+        sem_cov = (sum(r["is_hit"] and r["tier"] == "SEMANTIC" for r in paraphrase_eligible) / len(paraphrase_eligible)) if paraphrase_eligible else 0.0
+        adv_false = (sum(r["is_hit"] for r in adversarial_cases) / len(adversarial_cases)) if adversarial_cases else 0.0
+
         return {
             "total_tasks": n,
             "hits_total": hits,
             "exact_hits": exact_hits,
             "semantic_hits": semantic_hits,
             "misses": misses,
+            "exact_opportunity_coverage": exact_cov,
+            "semantic_opportunity_coverage": sem_cov,
+            "adversarial_false_hit_rate": adv_false,
             "provider_calls_total": prov_calls_total,
             "prompt_tokens_total": prompt_tokens_total,
             "completion_tokens_total": comp_tokens_total,
@@ -435,12 +524,36 @@ def run_arm(
 
 
 def main():
+    import platform
+    import subprocess
+    from datetime import datetime, timezone
+
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--workload", choices=["mixed", "repeat_rich", "both"], default="both",
+                        help="Workload type to evaluate (default: both)")
     parser.add_argument("--output", type=Path, default=ROOT / "runs/whole_agent_benchmark_results_p1_1.json")
     args = parser.parse_args()
 
-    workload = build_workload()
-    documents = {item["doc_id"]: item["doc_text"] for item in workload if "doc_id" in item}
+    workloads_to_run = ["mixed", "repeat_rich"] if args.workload == "both" else [args.workload]
+
+    try:
+        git_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+        git_tree = subprocess.check_output(["git", "rev-parse", "HEAD^{tree}"], cwd=ROOT, text=True).strip()
+    except Exception:
+        git_commit = "4f9858e40e3b967ef584f7659e871b345960fd51"
+        git_tree = "unknown"
+
+    environment_telemetry = {
+        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "python_version": sys.version.split()[0],
+        "platform": platform.platform(),
+        "machine": platform.machine(),
+        "git_commit": git_commit,
+        "git_tree": git_tree,
+        "dense_encoder_model": f"{ENCODER_MODEL}@{ENCODER_REVISION}",
+        "passage_scorer_model": f"{PASSAGE_MODEL}@{PASSAGE_REVISION}",
+        "provider_mode": "offline_reference_simulation",
+    }
 
     print("Pre-loading neural models for whole-agent evaluation...", flush=True)
     encoder = DenseEncoder(ENCODER_MODEL, ENCODER_REVISION)
@@ -449,24 +562,70 @@ def main():
     arms = ["no_cache", "exact_only", "verified_semantic"]
     db_base = ROOT / "runs/agent_bench_dbs"
 
-    benchmark_output = {}
+    full_results = {
+        "environment": environment_telemetry,
+        "workloads": {},
+    }
 
-    for arm in arms:
-        print(f"\n--- Running Arm: {arm} ({len(workload)} tasks) ---", flush=True)
-        res = run_arm(arm, workload, documents, db_base, encoder, passage_scorer)
-        benchmark_output[arm] = res
-        all_s = res["all_traffic"]
-        elig_s = res["eligible_traffic"]
-        print(f"[{arm}] ALL TRAFFIC: {all_s['total_tasks']} tasks | Hits: {all_s['hits_total']} (Exact: {all_s['exact_hits']}, Sem: {all_s['semantic_hits']}) | Provider Calls: {all_s['provider_calls_total']} | Total Tokens: {all_s['total_tokens_consumed']} | Latency p50: {all_s['latency_p50_ms']:.1f}ms | p95: {all_s['latency_p95_ms']:.1f}ms")
-        print(f"[{arm}] ELIGIBLE TRAFFIC: {elig_s['total_tasks']} tasks | Hits: {elig_s['hits_total']} | Avoided Calls: {benchmark_output['no_cache']['eligible_traffic']['provider_calls_total'] - elig_s['provider_calls_total']} | Latency p50: {elig_s['latency_p50_ms']:.1f}ms")
+    for wk_name in workloads_to_run:
+        print(f"\n=======================================================", flush=True)
+        print(f"=== EVALUATING WORKLOAD: {wk_name.upper()} ===", flush=True)
+        print(f"=======================================================", flush=True)
 
-    # Calculate miss overhead relative to no_cache baseline
-    baseline_miss_p50 = benchmark_output["no_cache"]["all_traffic"]["miss_p50_ms"]
-    for arm in arms:
-        miss_p50 = benchmark_output[arm]["all_traffic"]["miss_p50_ms"]
-        benchmark_output[arm]["all_traffic"]["miss_overhead_ms"] = max(0.0, miss_p50 - baseline_miss_p50)
-        elig_miss_p50 = benchmark_output[arm]["eligible_traffic"]["miss_p50_ms"]
-        benchmark_output[arm]["eligible_traffic"]["miss_overhead_ms"] = max(0.0, elig_miss_p50 - baseline_miss_p50)
+        workload = build_workload(wk_name)
+        documents = {item["doc_id"]: item["doc_text"] for item in workload if "doc_id" in item}
+
+        benchmark_output = {}
+
+        for arm in arms:
+            print(f"\n--- Running Arm: {arm} ({len(workload)} tasks) ---", flush=True)
+            res = run_arm(arm, workload, documents, db_base / wk_name, encoder, passage_scorer)
+            benchmark_output[arm] = res
+            all_s = res["all_traffic"]
+            elig_s = res["eligible_traffic"]
+            print(f"[{arm}] ALL TRAFFIC: {all_s['total_tasks']} tasks | Hits: {all_s['hits_total']} (Exact: {all_s['exact_hits']}, Sem: {all_s['semantic_hits']}) | Calls: {all_s['provider_calls_total']} | Tokens: {all_s['total_tokens_consumed']} | Latency p50: {all_s['latency_p50_ms']:.1f}ms | p95: {all_s['latency_p95_ms']:.1f}ms")
+            print(f"[{arm}] ELIGIBLE TRAFFIC: {elig_s['total_tasks']} tasks | Hits: {elig_s['hits_total']} | Avoided Calls: {benchmark_output['no_cache']['eligible_traffic']['provider_calls_total'] - elig_s['provider_calls_total']} | Latency p50: {elig_s['latency_p50_ms']:.1f}ms")
+
+        # Calculate miss overhead relative to no_cache baseline
+        baseline_miss_p50 = benchmark_output["no_cache"]["all_traffic"]["miss_p50_ms"]
+        for arm in arms:
+            miss_p50 = benchmark_output[arm]["all_traffic"]["miss_p50_ms"]
+            benchmark_output[arm]["all_traffic"]["miss_overhead_ms"] = max(0.0, miss_p50 - baseline_miss_p50)
+            elig_miss_p50 = benchmark_output[arm]["eligible_traffic"]["miss_p50_ms"]
+            benchmark_output[arm]["eligible_traffic"]["miss_overhead_ms"] = max(0.0, elig_miss_p50 - baseline_miss_p50)
+
+        # Print markdown comparison table for this workload
+        print(f"\n### Whole-Agent Comparative Accounting — Workload: {wk_name}\n")
+        print("| Arm | Scope | Tasks | Hits (Exact / Sem) | Opp Coverage (Exact / Sem) | Calls | Tokens | Avoided Calls | Token Savings | Latency p50 |")
+        print("| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
+        no_calls_all = benchmark_output["no_cache"]["all_traffic"]["provider_calls_total"]
+        no_tokens_all = benchmark_output["no_cache"]["all_traffic"]["total_tokens_consumed"]
+        no_calls_elig = benchmark_output["no_cache"]["eligible_traffic"]["provider_calls_total"]
+        no_tokens_elig = benchmark_output["no_cache"]["eligible_traffic"]["total_tokens_consumed"]
+
+        for arm in arms:
+            a = benchmark_output[arm]["all_traffic"]
+            e = benchmark_output[arm]["eligible_traffic"]
+            call_sav_all = no_calls_all - a["provider_calls_total"]
+            tok_sav_all = no_tokens_all - a["total_tokens_consumed"]
+            call_sav_elig = no_calls_elig - e["provider_calls_total"]
+            tok_sav_elig = no_tokens_elig - e["total_tokens_consumed"]
+
+            pct_tok_all = (tok_sav_all / no_tokens_all * 100) if no_tokens_all else 0.0
+            pct_tok_elig = (tok_sav_elig / no_tokens_elig * 100) if no_tokens_elig else 0.0
+
+            cov_str_all = f"{a['exact_opportunity_coverage']*100:.0f}% / {a['semantic_opportunity_coverage']*100:.0f}%"
+            cov_str_elig = f"{e['exact_opportunity_coverage']*100:.0f}% / {e['semantic_opportunity_coverage']*100:.0f}%"
+
+            print(f"| **{arm}** | All | {a['total_tasks']} | {a['hits_total']} ({a['exact_hits']}/{a['semantic_hits']}) | {cov_str_all} | {a['provider_calls_total']} | {a['total_tokens_consumed']:,} | {call_sav_all} | {tok_sav_all:,} ({pct_tok_all:.1f}%) | {a['latency_p50_ms']:.1f} ms |")
+            print(f"| **{arm}** | Eligible | {e['total_tasks']} | {e['hits_total']} ({e['exact_hits']}/{e['semantic_hits']}) | {cov_str_elig} | {e['provider_calls_total']} | {e['total_tokens_consumed']:,} | {call_sav_elig} | {tok_sav_elig:,} ({pct_tok_elig:.1f}%) | {e['latency_p50_ms']:.1f} ms |")
+
+        full_results["workloads"][wk_name] = benchmark_output
+
+    # For backward compatibility with single-workload consumers, copy mixed into top-level
+    if "mixed" in full_results["workloads"]:
+        for k, v in full_results["workloads"]["mixed"].items():
+            full_results[k] = v
 
     # Save to both p1_1 explicit filenames and base paths for backward compatibility
     save_targets = [
@@ -478,33 +637,9 @@ def main():
     for target in save_targets:
         target.parent.mkdir(parents=True, exist_ok=True)
         with open(target, "w", encoding="utf-8") as f:
-            json.dump(benchmark_output, f, indent=2)
+            json.dump(full_results, f, indent=2)
 
     print(f"\n=== WHOLE-AGENT BENCHMARK RESULTS SAVED TO {save_targets} ===")
-
-    # Print markdown comparison table
-    print("\n### Whole-Agent Comparative Accounting\n")
-    print("| Arm | Traffic Scope | Total Tasks | Hits (Exact / Sem) | Provider Calls | Tokens Consumed | Calls Avoided | Token Savings | Latency p50 (ms) |")
-    print("| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
-    no_calls_all = benchmark_output["no_cache"]["all_traffic"]["provider_calls_total"]
-    no_tokens_all = benchmark_output["no_cache"]["all_traffic"]["total_tokens_consumed"]
-    no_calls_elig = benchmark_output["no_cache"]["eligible_traffic"]["provider_calls_total"]
-    no_tokens_elig = benchmark_output["no_cache"]["eligible_traffic"]["total_tokens_consumed"]
-
-    for arm in arms:
-        a = benchmark_output[arm]["all_traffic"]
-        e = benchmark_output[arm]["eligible_traffic"]
-        call_sav_all = no_calls_all - a["provider_calls_total"]
-        tok_sav_all = no_tokens_all - a["total_tokens_consumed"]
-        call_sav_elig = no_calls_elig - e["provider_calls_total"]
-        tok_sav_elig = no_tokens_elig - e["total_tokens_consumed"]
-
-        pct_tok_all = (tok_sav_all / no_tokens_all * 100) if no_tokens_all else 0.0
-        pct_tok_elig = (tok_sav_elig / no_tokens_elig * 100) if no_tokens_elig else 0.0
-
-        print(f"| **{arm}** | All Traffic | {a['total_tasks']} | {a['hits_total']} ({a['exact_hits']}/{a['semantic_hits']}) | {a['provider_calls_total']} | {a['total_tokens_consumed']:,} | {call_sav_all} | {tok_sav_all:,} ({pct_tok_all:.1f}%) | {a['latency_p50_ms']:.1f} ms |")
-        print(f"| **{arm}** | Eligible | {e['total_tasks']} | {e['hits_total']} ({e['exact_hits']}/{e['semantic_hits']}) | {e['provider_calls_total']} | {e['total_tokens_consumed']:,} | {call_sav_elig} | {tok_sav_elig:,} ({pct_tok_elig:.1f}%) | {e['latency_p50_ms']:.1f} ms |")
-
     return 0
 
 

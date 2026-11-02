@@ -10,7 +10,7 @@ from src.api.demo import create_demo_app
 
 
 def main():
-    with tempfile.TemporaryDirectory() as directory:
+    with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as directory:
         c=TestClient(create_demo_app(directory));shell=c.get('/')
         c.headers['x-demo-session']=re.search(r'name="demo-session" content="([^"]+)"',shell.text).group(1)
         question='How do I convert between tuples and lists?'

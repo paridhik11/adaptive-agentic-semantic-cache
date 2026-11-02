@@ -229,6 +229,9 @@ class ConservativeHybridCache:
         self._entry_reviews: dict[str, EntryReviewRecord] = {}
         self._revoked_keys: set[str] = set()
         self._binding_to_exact_keys: dict[str, set[str]] = {}
+        self._embedding_cache: dict[str, tuple[float, ...]] = {}
+        self._passage_score_cache: dict[tuple[str, str], dict] = {}
+        self._max_cache_size = 2048
 
         self.promotion_queue = CandidatePromotionQueue()
         self.answer_policy = AnswerAwareSemanticPolicy(
@@ -237,6 +240,38 @@ class ConservativeHybridCache:
             threshold=self.verification_threshold,
             enabled=True,
         )
+
+    def _encode_query(self, query: str, ledger: WorkLedger | None = None) -> tuple[float, ...]:
+        with self._lock:
+            if query in self._embedding_cache:
+                return self._embedding_cache[query]
+        if ledger is not None:
+            with ledger.measure("embedding"):
+                raw_vec = self.encoder.encode(query)
+        else:
+            raw_vec = self.encoder.encode(query)
+        normalized_vec = tuple(normalize(raw_vec))
+        with self._lock:
+            if len(self._embedding_cache) >= self._max_cache_size:
+                del self._embedding_cache[next(iter(self._embedding_cache))]
+            self._embedding_cache[query] = normalized_vec
+        return normalized_vec
+
+    def _score_passage(self, query: str, passage: str, ledger: WorkLedger | None = None) -> dict:
+        key = (query, passage)
+        with self._lock:
+            if key in self._passage_score_cache:
+                return self._passage_score_cache[key]
+        if ledger is not None:
+            with ledger.measure("applicability"):
+                score_data = self.passage_scorer.score(query, passage)
+        else:
+            score_data = self.passage_scorer.score(query, passage)
+        with self._lock:
+            if len(self._passage_score_cache) >= self._max_cache_size:
+                del self._passage_score_cache[next(iter(self._passage_score_cache))]
+            self._passage_score_cache[key] = score_data
+        return score_data
 
     def update_scope(self, scope: KnowledgeScope, tenant_id: str = "default"):
         with self._lock:
@@ -363,8 +398,7 @@ class ConservativeHybridCache:
         expires_at = self.clock() + self.ttl_seconds
 
         try:
-            raw_vec = self.encoder.encode(user_content)
-            vector = tuple(normalize(raw_vec))
+            vector = self._encode_query(user_content)
         except Exception:
             return False
 
@@ -391,7 +425,7 @@ class ConservativeHybridCache:
         # Synchronous verification: candidate must pass before admission
         ref_text = response["choices"][0]["message"]["content"]
         try:
-            score_info = self.passage_scorer.score(user_content, ref_text)
+            score_info = self._score_passage(user_content, ref_text)
             prob = score_info.get("probability", 0.0)
             if prob < self.verification_threshold:
                 return False
@@ -547,18 +581,7 @@ class ConservativeHybridCache:
             if not incoming_query:
                 return None
 
-            # 2. Dense Semantic Top-K Retrieval
-            t_enc = time.perf_counter()
-            try:
-                if ledger is not None:
-                    with ledger.measure("embedding"):
-                        query_vec = tuple(normalize(self.encoder.encode(incoming_query)))
-                else:
-                    query_vec = tuple(normalize(self.encoder.encode(incoming_query)))
-            except Exception as exc:
-                diagnosis["guard_rejections"].append(f"encoder_failure:{type(exc).__name__}")
-                return None
-
+            # 1. Candidate check BEFORE neural inference (avoid unnecessary neural scoring)
             with self._lock:
                 valid_candidates = [
                     c for c in self._serving_candidates.values()
@@ -573,12 +596,42 @@ class ConservativeHybridCache:
                 diagnosis["stage"] = "no_candidates_in_scope"
                 return None
 
-            # Cosine search
-            scored_candidates = []
+            # 2. Cheap structural guards BEFORE dense encoding
+            incoming_msgs = checked.get("messages", [])
+            compatible_candidates = []
             for c in valid_candidates:
+                try:
+                    cand_req = json.loads(c.request_json)
+                except Exception:
+                    continue
+                if checked.get("model") != cand_req.get("model"):
+                    continue
+                if checked.get("response_format") != cand_req.get("response_format"):
+                    continue
+                cand_msgs = cand_req.get("messages", [])
+                if len(incoming_msgs) != len(cand_msgs):
+                    continue
+                if incoming_msgs[:-1] != cand_msgs[:-1]:
+                    continue
+                compatible_candidates.append((c, cand_req))
+
+            if not compatible_candidates:
+                diagnosis["stage"] = "no_compatible_candidates_in_scope"
+                return None
+
+            # 3. Dense Semantic Top-K Retrieval using cached/reused embeddings
+            try:
+                query_vec = self._encode_query(incoming_query, ledger)
+            except Exception as exc:
+                diagnosis["guard_rejections"].append(f"encoder_failure:{type(exc).__name__}")
+                return None
+
+            # Cosine search over compatible candidates
+            scored_candidates = []
+            for c, cand_req in compatible_candidates:
                 sim = sum(a * b for a, b in zip(query_vec, c.vector))
                 if sim >= self.retrieval_threshold:
-                    scored_candidates.append((sim, c))
+                    scored_candidates.append((sim, c, cand_req))
 
             if ledger is not None:
                 with ledger.measure("search"):
@@ -593,34 +646,13 @@ class ConservativeHybridCache:
                 return None
 
             # Evaluate top candidates
-            for sim, cand in top_candidates:
-                cand_req = json.loads(cand.request_json)
+            for sim, cand, cand_req in top_candidates:
                 cand_resp = json.loads(cand.response_json)
                 cand_q = cand_req["messages"][-1]["content"]
                 cand_ans = cand_resp["choices"][0]["message"]["content"]
 
                 binding = approval_binding(checked, cand_req, cand_resp, tenant_id=tenant_id, scope=asdict(scope))
                 binding_h = digest(binding)
-
-                # 1. Model match guard
-                if checked.get("model") != cand_req.get("model"):
-                    diagnosis["guard_rejections"].append(f"model_mismatch:{cand_req.get('model')}!={checked.get('model')}")
-                    continue
-
-                # 2. Response format match guard
-                if checked.get("response_format") != cand_req.get("response_format"):
-                    diagnosis["guard_rejections"].append("response_format_mismatch")
-                    continue
-
-                # 3. Context & Intermediate History Guard
-                incoming_msgs = checked.get("messages", [])
-                cand_msgs = cand_req.get("messages", [])
-                if len(incoming_msgs) != len(cand_msgs):
-                    diagnosis["guard_rejections"].append("history_length_mismatch")
-                    continue
-                if incoming_msgs[:-1] != cand_msgs[:-1]:
-                    diagnosis["guard_rejections"].append("history_mismatch")
-                    continue
 
                 # 4. Direction & Requirement Guards
                 guard_reason = requirement_guard(cand_q, incoming_query)
@@ -664,14 +696,10 @@ class ConservativeHybridCache:
                         el = (time.perf_counter() - started) * 1000.0
                         return ResponseCacheResult(cand_resp, "HIT", "entry_reviewed_hit", 0, False, el)
 
-                # 6. Answer-Aware Passage Verification
+                # 6. Answer-Aware Passage Verification with cached scoring
                 t_ver0 = time.perf_counter()
                 try:
-                    if ledger is not None:
-                        with ledger.measure("applicability"):
-                            score_data = self.passage_scorer.score(incoming_query, cand_ans)
-                    else:
-                        score_data = self.passage_scorer.score(incoming_query, cand_ans)
+                    score_data = self._score_passage(incoming_query, cand_ans, ledger)
                     ver_ms = (time.perf_counter() - t_ver0) * 1000.0
                     diagnosis["local_verifier_attempts"] += 1
                     diagnosis["local_verifier_ms"] += ver_ms

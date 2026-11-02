@@ -27,10 +27,16 @@ class LocalPairScorer:
         import torch
         from sentence_transformers import CrossEncoder
 
-        self.model = CrossEncoder(model, revision=revision, local_files_only=True,
-                                  device="cpu", trust_remote_code=False,
-                                  activation_fn=torch.nn.Identity(),
-                                  model_kwargs={"use_safetensors": True})
+        kwargs = {"local_files_only": True, "device": "cpu", "trust_remote_code": False}
+        import inspect
+        sig = inspect.signature(CrossEncoder.__init__)
+        if "activation_fn" in sig.parameters:
+            kwargs["activation_fn"] = torch.nn.Identity()
+            kwargs["model_kwargs"] = {"use_safetensors": True}
+        else:
+            kwargs["default_activation_function"] = torch.nn.Identity()
+            kwargs["automodel_args"] = {"use_safetensors": True}
+        self.model = CrossEncoder(model, revision=revision, **kwargs)
         self.identity = model + "@" + revision
 
     def score(self, first, second):
