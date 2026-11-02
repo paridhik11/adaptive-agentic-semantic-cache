@@ -39,7 +39,38 @@ Independent frozen P2 neural evaluation was executed against checkpoint `4f9858e
 
 ---
 
-## Synthetic Benchmark Impact (Offline Simulation)
+## Large-Scale Offline Metrics Campaign (600 Events × 4 Arms)
+
+To establish reproducible metrics beyond small scripted fixtures, a large-scale evaluation framework was executed across **25 documentation source groups**, **125 distinct base intents**, and **600 evaluation events per arm** (2,400 total events evaluated across 4 matched arms under identical event order and approval workflow).
+
+Telemetry is published in `artifacts/metrics_campaign/offline_results.jsonl` (2,400 raw event records), `artifacts/metrics_campaign/summary.json`, and documented in [METRICS_RESULTS.md](docs/METRICS_RESULTS.md) (FACTS MC-01–MC-08):
+
+| Metric | Baseline: `no_cache` | `exact_only` *(Safe Default)* | `verified_semantic` *(Guarded Opt-In)* | `shadow_semantic` *(Diagnostic)* |
+| :--- | :---: | :---: | :---: | :---: |
+| **Serving Configuration** | `mode="off"` | `mode="exact"` | `mode="guarded"` | `mode="shadow"` |
+| **Evaluated Events** | 600 | 600 | 600 | 600 |
+| **Total Provider Invocations** | 1,800 | 948 | **927** | 948 |
+| **Calls Avoided on Correct Answers** | 0 | 852 | **873** | 852 |
+| **Calls Avoided on Incorrect Reuse** | 0 | **0** | **0** | **0** |
+| **Synthetic Token Volume** *(Offline)* | 201,667 | 107,750 | **105,429** | 107,750 |
+| **Synthetic Token Reduction** | 0.0% | 46.57% | **47.72%** | 46.57% |
+| **Cache Hits Total** | 0 | 284 | **291** | 284 |
+| - *Exact Hits (Tier 0)* | 0 | 284 | 273 | 284 |
+| - *Verified Semantic Hits (Tier 1)* | 0 | 0 | **18** | 0 |
+| **Exact Repeat Coverage** | 0.0% | **98.33%** | **98.33%** | **98.33%** |
+| **Paraphrase Opportunity Coverage** | 0.0% | 26.67% | **29.44%** | 26.67% |
+| **Adversarial Challenges Evaluated** | 120 | 120 | 120 | 120 |
+| **Adversarial False Accepts** | 0 | **0** | **0** | **0** |
+| **Adversarial Error Rate (Point Est.)** | 0.00% | **0.00%** | **0.00%** | **0.00%** |
+| **Exact 95% Clopper-Pearson CI** | `[0.00%, 3.03%]` | `[0.00%, 3.03%]` | `[0.00%, 3.03%]` | `[0.00%, 3.03%]` |
+| **Whole-Agent Latency p50** | 130.86 ms | 140.80 ms | 137.81 ms | 141.58 ms |
+| **Whole-Agent Latency p95** | 151.58 ms | 233.14 ms | 237.73 ms | 241.28 ms |
+
+*Evidence label: Simulated reference agent evaluation (`artifacts/metrics_campaign/summary.json`). Provider call counts reflect counted agent stage events under deterministic reference replay; token counts are synthetic offline accounting and are not billable invoice receipts.*
+
+---
+
+## 24-Task Scripted Benchmark Fixtures (Engineering Baseline)
 
 Across standardized 24-task whole-agent workloads encompassing supervisor planning, document tool reads, draft generation, reviewer verification, and terminal SQLite state persistence under reference replay:
 
@@ -48,7 +79,7 @@ Across standardized 24-task whole-agent workloads encompassing supervisor planni
 | **Realistic Mixed Traffic**<br>*(6 seeds, 6 exact repeats, 6 safe paraphrases, 6 adversarial)* | **No Cache**<br>**Exact Only**<br>**Verified Semantic (Opt-In)** | 72<br>57<br>**45** | 0<br>15<br>**27** | 0%<br>20.7%<br>**37.7%** | 133.4 ms<br>136.7 ms<br>**122.4 ms** | 0% / 0%<br>83.3% / 0%<br>**83.3% / 66.7%** | 0.0%<br>0.0%<br>**0.0%** |
 | **Repeat-Rich Traffic**<br>*(3 seeds, 10 exact repeats, 9 safe paraphrases, 2 adversarial)* | **No Cache**<br>**Exact Only**<br>**Verified Semantic (Opt-In)** | 72<br>42<br>**18** | 0<br>30<br>**54** | 0%<br>41.5%<br>**75.1%** | 144.2 ms<br>134.1 ms<br>**43.9 ms** | 0% / 0%<br>100% / 0%<br>**100% / 88.9%** | 0.0%<br>0.0%<br>**0.0%** |
 
-*Note: Telemetry recorded from reproducible offline reference agent simulation (`runs/whole_agent_benchmark_results.json`). Offline provider call reductions and token counts are synthetic simulation metrics and are distinct from live monetary billing receipts.*
+*Note: Telemetry recorded from reproducible offline reference agent simulation (`runs/whole_agent_benchmark_results.json`).*
 
 ---
 

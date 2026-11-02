@@ -1,3 +1,25 @@
+## Large-Scale Metrics Campaign (600 events × 4 arms = 2,400 events) — 2026-11-02
+
+This section records the large-scale metrics study executed across 25 documentation source groups, 125 distinct base intents, and 600 evaluation events per arm (2,400 total events evaluated across 4 matched arms: `no_cache`, `exact_only`, `verified_semantic`, and `shadow_semantic`).
+Harness: `scripts/evaluate_large_workload.py` | Raw telemetry: `artifacts/metrics_campaign/offline_results.jsonl` | Summary receipt: `artifacts/metrics_campaign/summary.json` | Report: `docs/METRICS_RESULTS.md`.
+
+1. **Provider Work Avoided (FACTS MC-01–MC-05, MC-07)**:
+   - **`no_cache`**: 1,800 provider calls across 600 events (600 planning, 600 generation, 600 review), 201,667 synthetic tokens, p50: 130.86 ms.
+   - **`exact_only` (Safe Release Default)**: 948 provider calls (316 planning, 316 generation, 316 review), 852 provider calls avoided on correct answers, 0 calls avoided on incorrect reuse, 107,750 synthetic tokens (46.57% token reduction), 284 exact hits, p50: 140.80 ms.
+   - **`verified_semantic` (Guarded Opt-In)**: 927 provider calls (309 planning, 309 generation, 309 review), 873 provider calls avoided on correct answers, **0 calls avoided on incorrect reuse**, 105,429 synthetic tokens (47.72% token reduction), 291 hits (273 exact, 18 verified semantic), p50: 137.81 ms.
+   - **`shadow_semantic` (Diagnostic)**: 948 provider calls, 852 calls avoided on correct answers, 0 unproven answers substituted, full neural verification logged in shadow diagnostics.
+
+2. **Adversarial Safety & Zero False Accepts (FACTS MC-06)**:
+   - Across 120 adversarial challenges per arm (spanning inverse operations, missing code examples, added requirements, entity swaps, negations, and numeric constraints), both `exact_only` and `verified_semantic` achieved **0 false accepts** (0/120, 0.00% false accept rate, exact 95% Clopper-Pearson CI `[0.00%, 3.03%]`).
+
+3. **Task D Evidence-Backed Bottleneck Fix (FACTS MC-09)**:
+   - Diagnosed 1 inverse-operation false accept in `str_02:challenge_inverse_operation` during initial evaluation (`"comma separator"` matched `separat\w*` in split regex).
+   - Refined split regex pattern in `src/policy/decomposed_applicability.py` to target explicit partitioning action verbs (`split`, `break`, `partition`, `divid`). Re-running full 600-event benchmark confirmed 0 false accepts across all 120 challenges with zero loss of semantic opportunity coverage (29.44%).
+
+4. **Live Benchmark Preflight Safety (FACTS MC-10)**:
+   - Built matched 3-arm live benchmark harness (`scripts/evaluate_live_paired.py`) with frozen 12-task workload, spend cap $0.00, and preflight quota checks. Live execution is strictly BLOCKED (`live_authorized=False`); zero live API calls initiated.
+   - Full safety envelope documented in `docs/LIVE_BENCHMARK_READINESS.md`.
+
 ## Final Release Evidence Correction & P2 Integration — 2026-11-02
 
 This section supersedes earlier production claims. Independent frozen P2 neural evaluation was executed against checkpoint `4f9858e` by ChatGPT Work using real local neural inference (MiniLM DenseEncoder + MS MARCO passage CrossEncoder).

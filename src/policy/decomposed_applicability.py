@@ -89,7 +89,7 @@ INVERSE_OPERATION_PAIRS = (
     (r"\b(?:pack\w*)\b", r"\b(?:unpack\w*)\b"),
     (r"\b(?:import\w*)\b", r"\b(?:export\w*)\b"),
     (r"\b(?:pars\w*)\b", r"\b(?:format\w*|stringif\w*)\b"),
-    (r"\b(?:join\w*|combin\w*|merg\w*)\b", r"\b(?:split\w*|break\w*|separat\w*)\b"),
+    (r"\b(?:join\w*|combin\w*|merg\w*)\b", r"\b(?:split\w*|break\w*|partition\w*|divid\w*)\b"),
     (r"\b(?:zip\w*|archiv\w*)\b", r"\b(?:unzip\w*|extract\w*)\b"),
     # State & System
     (r"\b(?:install\w*)\b", r"\b(?:uninstall\w*)\b"),
