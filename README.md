@@ -118,16 +118,22 @@ pip install -e ".[dev]"
 Run the automated CLI demo to witness the 7 lifecycle execution scenarios followed by the Criterion 8 evidence summary table:
 
 ```bash
+# Safe default exact-only serving demo (semantic answers never substituted)
 python scripts/run_demo.py --cli
+
+# Experimental guarded semantic reuse demo (controlled opt-in)
+python scripts/run_demo.py --cli --experimental-semantic
 ```
 
 **Lifecycle Execution Scenarios Validated:**
 1. **Fresh Request:** Passes through supervisor planning, tool retrieval, drafting, and reviewer verification (3 provider calls, status `AWAITING_APPROVAL`).
 2. **Operator Approval & Admission:** Operator approves draft; admitted to durable SQLite storage (`COMPLETED`, 0 provider calls).
 3. **Safe Default Exact Repeat:** Immediate Tier 0 exact hit under default configuration (0 provider calls, 3 calls avoided, ~45 ms).
-4. **Experimental Semantic Paraphrase Reuse:** Semantic hit via cross-encoder answer verification under explicit opt-in (0 provider calls, 3 calls avoided, ~116 ms).
+4. **Paraphrase Query Behavior:**
+   - Under default exact serving (`python scripts/run_demo.py --cli`): Paraphrase query misses and runs fresh execution without substituting experimental semantic answers (3 provider calls, avoided 0).
+   - Under experimental opt-in (`--experimental-semantic`): Guarded semantic hit via cross-encoder answer verification (0 provider calls, avoided 3 calls, ~116 ms).
 5. **Changed Requirement (Fail Closed):** Direction reversal and inverse operations rejected by structural guard; fails closed to fresh execution (3 provider calls).
-6. **Scope Invalidation:** Tenant epoch incremented; subsequent paraphrase safely misses and runs fresh work (3 provider calls).
+6. **Scope Invalidation:** Tenant epoch incremented; subsequent request safely misses and runs fresh work (3 provider calls).
 7. **Restart Persistence:** Clean agent instance re-initialized from SQLite databases; verified answers survive process restarts with zero corrupt state.
 
 **Criterion 8 (Evidence Reporting):**

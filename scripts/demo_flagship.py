@@ -47,7 +47,7 @@ DEMO_DOCUMENTS = {
 }
 
 
-def run_demo(base_dir: Path, verbose: bool = True) -> dict:
+def run_demo(base_dir: Path, verbose: bool = True, experimental_semantic: bool = False) -> dict:
     base_dir.mkdir(parents=True, exist_ok=True)
     answers_db = base_dir / "demo_answers.db"
     tasks_db = base_dir / "demo_tasks.db"
@@ -70,12 +70,13 @@ def run_demo(base_dir: Path, verbose: bool = True) -> dict:
             eligibility=lambda _: EligibilityDecision(True, "demo_policy"),
             storage=exact_storage,
         )
+        mode = "guarded" if experimental_semantic else "exact"
         hybrid = ConservativeHybridCache(
             exact,
             scope=scope,
             encoder=encoder,
             passage_scorer=passage_scorer,
-            mode="guarded",
+            mode=mode,
             retrieval_threshold=0.60,
             verification_threshold=0.85,
         )
@@ -221,28 +222,43 @@ def run_demo(base_dir: Path, verbose: bool = True) -> dict:
         state4 = agent.decide(tid4, "approve", tenant=tenant, principal=principal)
     el4 = (time.perf_counter() - t0) * 1000.0
     calls4 = provider.attempts - p_before
-    tier4 = state4.get("trace", [{}])[0].get("tier", "SEMANTIC")
+    tier4 = state4.get("trace", [{}])[0].get("tier", "NONE") if state4.get("answer_cache_hit") else "NONE"
 
-    assert state4.get("answer_cache_hit"), "Safe paraphrase must hit semantic tier"
-    assert tier4 == "SEMANTIC", f"Expected SEMANTIC tier, got {tier4}"
-    assert calls4 == 0, f"Semantic hit must incur 0 provider calls, got {calls4}"
+    if experimental_semantic:
+        assert state4.get("answer_cache_hit"), "Safe paraphrase must hit semantic tier when experimental-semantic is enabled"
+        assert tier4 == "SEMANTIC", f"Expected SEMANTIC tier, got {tier4}"
+        assert calls4 == 0, f"Semantic hit must incur 0 provider calls, got {calls4}"
+        r4_name = "Guarded Paraphrase Hit (Opt-In)"
+        r4_hit = True
+        r4_avoided = 3
+    else:
+        assert not state4.get("answer_cache_hit"), "Default demo must never substitute experimental semantic answers"
+        assert tier4 == "NONE", f"Expected NONE tier in default exact mode, got {tier4}"
+        assert calls4 == 3, f"Expected 3 fresh provider calls in default exact mode, got {calls4}"
+        r4_name = "Paraphrase Exact Miss (Default)"
+        r4_hit = False
+        r4_avoided = 0
 
     r4 = {
         "step": 4,
-        "name": "Safe Paraphrase",
+        "name": r4_name,
         "question": q4,
         "status": state4["status"],
         "cache_tier": tier4,
-        "is_hit": True,
+        "is_hit": r4_hit,
         "provider_calls": calls4,
-        "avoided_calls": 3,
+        "avoided_calls": r4_avoided,
         "elapsed_ms": el4,
         "scope": scope.knowledge_base,
     }
     steps_receipts.append(r4)
     if verbose:
-        print(f"[Step 4] Safe Paraphrase: '{q4}'")
-        print(f"         Cache Tier: {tier4} HIT (Answer-Aware Verification) | Provider Calls: {calls4} (Avoided 3 calls) | Elapsed: {el4:.1f}ms\n")
+        if experimental_semantic:
+            print(f"[Step 4] Safe Paraphrase: '{q4}'")
+            print(f"         Cache Tier: {tier4} HIT (Answer-Aware Verification) | Provider Calls: {calls4} (Avoided 3 calls) | Elapsed: {el4:.1f}ms\n")
+        else:
+            print(f"[Step 4] Paraphrase Query (Default Exact Serving): '{q4}'")
+            print(f"         Status: {state4['status']} | Provider Calls: {calls4} (Fresh Execution) | Elapsed: {el4:.1f}ms | Tier: {tier4} (Semantic Substitution Disabled by Default)\n")
 
     # -------------------------------------------------------------------------
     # STEP 5: Changed Requirement Correctly Missing
@@ -363,7 +379,8 @@ def run_demo(base_dir: Path, verbose: bool = True) -> dict:
         "lifecycle_scenarios_executed": len(steps_receipts),
         "evidence_reporting_criterion": "VERIFIED",
         "default_serving_mode": "exact",
-        "experimental_semantic_opt_in": True,
+        "experimental_semantic_opt_in": experimental_semantic,
+        "serving_mode": "guarded" if experimental_semantic else "exact",
         "steps": steps_receipts,
         "models": {
             "dense_encoder": f"{ENCODER_MODEL}@{ENCODER_REVISION}",
@@ -380,9 +397,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--directory", type=Path, default=ROOT / "runs/flagship_demo")
     parser.add_argument("--json", action="store_true", help="Print json receipt")
+    parser.add_argument("--experimental-semantic", action="store_true", help="Explicit opt-in to experimental guarded semantic reuse (default: exact-only).")
     args = parser.parse_args()
 
-    receipt = run_demo(args.directory, verbose=not args.json)
+    receipt = run_demo(args.directory, verbose=not args.json, experimental_semantic=args.experimental_semantic)
     if args.json:
         print(json.dumps(receipt, indent=2))
     return 0

@@ -20,7 +20,7 @@ def main():
     args=p.parse_args()
     if args.cli:
         from scripts.demo_flagship import run_demo
-        run_demo(args.directory / 'flagship_demo')
+        run_demo(args.directory / 'flagship_demo', experimental_semantic=args.experimental_semantic)
         return
     if not 1024<=args.port<=65535:p.error('Port must be between 1024 and 65535')
     if args.live and not args.journal:p.error('Live mode requires your existing --journal path')
@@ -28,7 +28,8 @@ def main():
     profile='live' if args.live else 'reference-whole-answer' if args.whole_answer_cache else 'reference'
     if args.task_memory:profile+='-memory'
     try:app=create_demo_app(args.directory/profile,live=args.live,journal_path=args.journal,api_key=key,
-                            whole_answer_cache=args.whole_answer_cache,task_memory=args.task_memory)
+                            whole_answer_cache=args.whole_answer_cache,task_memory=args.task_memory,
+                            experimental_semantic=args.experimental_semantic)
     except ValueError as exc:p.error(str(exc))
     import uvicorn
     print('Open http://127.0.0.1:'+str(args.port),flush=True)

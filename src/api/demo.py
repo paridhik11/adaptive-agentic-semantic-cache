@@ -84,8 +84,9 @@ def _live_capacity(journal,required=3):
     return {'run_attempts':run,'run_limit':journal.max_calls,'daily_attempts':daily,'daily_limit':40}
 
 
-def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_answer_cache=False,task_memory=False):
+def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_answer_cache=False,task_memory=False,experimental_semantic=False):
     if type(task_memory) is not bool:raise ValueError('task_memory must be boolean')
+    if type(experimental_semantic) is not bool:raise ValueError('experimental_semantic must be boolean')
     if live and task_memory:raise ValueError('task memory demo is offline reference mode only')
     if type(whole_answer_cache) is not bool:
         raise ValueError('whole_answer_cache must be boolean')
@@ -118,11 +119,17 @@ def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_
     answers=None
     if whole_answer_cache:
         from src.agents.document_answer_cache import CompletedDocumentCache
-        from src.policy.semantic_runtime import GuardedSemanticCache,KnowledgeScope
+        from src.policy.hybrid_cache import ConservativeHybridCache
+        from src.policy.semantic_runtime import KnowledgeScope
         outer=ScopedResponseCache(eligibility=lambda _:EligibilityDecision(True,'standalone reference fixture'),
             storage=SQLiteResponseStore(directory/'answers.sqlite',namespace=namespace))
-        answers=CompletedDocumentCache(GuardedSemanticCache(outer,mode='exact',
-            scope=KnowledgeScope('reference-docs',reference['source_revision'],'local-operator','standalone-document-answer-v1')))
+        mode = 'guarded' if experimental_semantic else 'exact'
+        hybrid = ConservativeHybridCache(
+            outer,
+            scope=KnowledgeScope('reference-docs',reference['source_revision'],'local-operator','standalone-document-answer-v1'),
+            mode=mode,
+        )
+        answers=CompletedDocumentCache(hybrid)
     from src.policy.encoders import LexicalEncoder
     agent=DocumentAgent(service,DocumentTools(documents),directory/'tasks.sqlite',model=model,max_calls=3,max_revisions=0,
                         draft_instruction=INSTRUCTION,max_output_tokens=4096,source_revision=reference['source_revision'],

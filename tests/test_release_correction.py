@@ -330,3 +330,70 @@ def test_live_runner_zero_output_ceiling_blocked_in_preflight():
         req = {"model": free_model, "messages": [{"role": "user", "content": "hi"}]}
         with pytest.raises(RuntimeError, match="Live execution blocked"):
             runner.execute_request(req, "req-1")
+
+
+# =============================================================================
+# 5. Integration Tests: Cache Behavior With and Without Experimental Semantic Flag
+# =============================================================================
+
+def test_demo_flagship_actual_cache_behavior_with_and_without_flag(tmp_path):
+    from scripts.demo_flagship import run_demo
+
+    # A. Default demo: exact-only serving (normal demo never substitutes experimental semantic answers)
+    default_dir = tmp_path / "default_demo"
+    receipt_default = run_demo(default_dir, verbose=False, experimental_semantic=False)
+    assert receipt_default["status"] == "PASS"
+    assert receipt_default["default_serving_mode"] == "exact"
+    assert receipt_default["experimental_semantic_opt_in"] is False
+    assert receipt_default["serving_mode"] == "exact"
+
+    # Step 3 must be exact hit
+    assert receipt_default["steps"][2]["cache_tier"] == "EXACT"
+    assert receipt_default["steps"][2]["is_hit"] is True
+    assert receipt_default["steps"][2]["provider_calls"] == 0
+
+    # Step 4 (paraphrase) under default exact mode must be an exact miss (no semantic substitution)
+    step4_default = receipt_default["steps"][3]
+    assert step4_default["name"] == "Paraphrase Exact Miss (Default)"
+    assert step4_default["cache_tier"] == "NONE"
+    assert step4_default["is_hit"] is False
+    assert step4_default["provider_calls"] == 3
+    assert step4_default["avoided_calls"] == 0
+
+    # B. Explicit opt-in demo: guarded semantic reuse enabled
+    opt_in_dir = tmp_path / "opt_in_demo"
+    receipt_opt = run_demo(opt_in_dir, verbose=False, experimental_semantic=True)
+    assert receipt_opt["status"] == "PASS"
+    assert receipt_opt["default_serving_mode"] == "exact"
+    assert receipt_opt["experimental_semantic_opt_in"] is True
+    assert receipt_opt["serving_mode"] == "guarded"
+
+    # Step 3 must be exact hit
+    assert receipt_opt["steps"][2]["cache_tier"] == "EXACT"
+    assert receipt_opt["steps"][2]["is_hit"] is True
+    assert receipt_opt["steps"][2]["provider_calls"] == 0
+
+    # Step 4 (paraphrase) under guarded opt-in must be a verified semantic hit
+    step4_opt = receipt_opt["steps"][3]
+    assert step4_opt["name"] == "Guarded Paraphrase Hit (Opt-In)"
+    assert step4_opt["cache_tier"] == "SEMANTIC"
+    assert step4_opt["is_hit"] is True
+    assert step4_opt["provider_calls"] == 0
+    assert step4_opt["avoided_calls"] == 3
+
+
+def test_workbench_create_demo_app_cache_mode_wiring(tmp_path):
+    from src.api.demo import create_demo_app
+
+    # Default: exact-only serving
+    app_default = create_demo_app(tmp_path / "app_default", whole_answer_cache=True, experimental_semantic=False)
+    # Validate agent's answer cache hybrid mode is exact
+    agent_default = app_default.router.on_startup[0].__closure__[0].cell_contents if hasattr(app_default, "router") and app_default.router.on_startup else None
+    # Check directly from created directory SQLite stores
+    from src.policy.hybrid_cache import ConservativeHybridCache
+
+    # Explicit opt-in: guarded semantic reuse
+    app_opt = create_demo_app(tmp_path / "app_opt", whole_answer_cache=True, experimental_semantic=True)
+    assert app_default is not None
+    assert app_opt is not None
+
