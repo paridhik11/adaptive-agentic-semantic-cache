@@ -224,13 +224,19 @@ class LiveEvaluationRunner:
         if self.execute_live and not api_key:
             blockers.append("OPENROUTER_API_KEY environment variable missing.")
 
-        # 7. Journal capacity check
+        # 7. Journal capacity check — FIX #1: use plain path string, not file: URI.
+        # sqlite3.connect(f"file:{Path(...).resolve().as_uri()}?mode=ro", uri=True) is
+        # malformed because .as_uri() already produces "file:///..." which, when
+        # prepended with "file:", yields "file:file:///..." — an invalid URI that
+        # raises sqlite3.OperationalError on any platform.  Use the resolved
+        # POSIX path string directly with uri=False (the default).
         checks["journal_available"] = False
         checks["journal_path"] = str(self.journal_path)
         checks["journal_total_calls"] = 0
         if self.journal_path and Path(self.journal_path).is_file():
             try:
-                db = sqlite3.connect(f"file:{Path(self.journal_path).resolve().as_uri()}?mode=ro", uri=True)
+                db_path = str(Path(self.journal_path).resolve())
+                db = sqlite3.connect(db_path, timeout=5)
                 cur = db.cursor()
                 calls_made = cur.execute("SELECT COUNT(*) FROM pilot_calls").fetchone()[0]
                 checks["journal_available"] = True
@@ -239,7 +245,7 @@ class LiveEvaluationRunner:
             except Exception as e:
                 blockers.append(f"Failed to inspect journal at {self.journal_path}: {e}")
         elif self.execute_live:
-            # When live is authorized, the journal file will be initialized
+            # When live is authorized, the journal file will be initialized by PilotJournal.
             checks["journal_available"] = True
 
         status = "READY" if not blockers else "BLOCKED"
@@ -252,10 +258,13 @@ class LiveEvaluationRunner:
             "blockers": blockers,
         }
 
-        # Save preflight receipt
-        receipt_path = self.output_dir / "live_readiness_receipt.json"
+        # FIX #8: Receipt filename is unique per invocation timestamp so reruns
+        # produce distinct immutable files and never silently overwrite prior receipts.
+        run_ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        receipt_path = self.output_dir / f"live_readiness_receipt_{run_ts}.json"
         with open(receipt_path, "w", encoding="utf-8") as f:
             json.dump(receipt, f, indent=2)
+        receipt["receipt_path"] = str(receipt_path)
 
         return receipt
 
@@ -267,7 +276,7 @@ class LiveEvaluationRunner:
                 "status": "BLOCKED",
                 "message": "Live benchmark execution blocked pending explicit user authorization.",
                 "preflight": preflight,
-                "readiness_receipt": str(self.output_dir / "live_readiness_receipt.json"),
+                "readiness_receipt": preflight.get("receipt_path", ""),
             }
 
         # The genuine 3 matched arms:
@@ -277,15 +286,48 @@ class LiveEvaluationRunner:
         results = {}
         cumulative_calls = 0
 
+        # FIX #7: Check remaining study budget atomically BEFORE each arm by
+        # querying the journal for already-spent calls.  The old code only checked
+        # AFTER the arm completed, which allowed the budget to be exceeded.
+        journal_path = str(Path(self.journal_path).resolve())
+
         for arm in arms:
+            # Pre-arm atomic budget guard (FIX #7)
+            # Use >= so that reaching exactly the cap also blocks: matches PilotJournal
+            # reserve() which raises when count >= max_calls.
+            try:
+                db_pre = sqlite3.connect(journal_path, timeout=5)
+                already_spent = db_pre.execute("SELECT COUNT(*) FROM pilot_calls").fetchone()[0]
+                db_pre.close()
+            except Exception:
+                already_spent = cumulative_calls  # conservative: use running tally
+            if already_spent + cumulative_calls >= self.max_study_budget:
+                raise RunPaused(
+                    f"Pre-arm budget guard: journal already has {already_spent} calls; "
+                    f"running total {cumulative_calls}; cap {self.max_study_budget}"
+                )
+
             arm_res = self._run_arm(arm, base_run_id)
             results[arm] = arm_res
             cumulative_calls += arm_res["total_provider_calls"]
             if cumulative_calls > self.max_study_budget:
                 raise RunPaused(f"Study budget exceeded: {cumulative_calls} > {self.max_study_budget}")
 
+        # FIX #4: Validate all task terminal statuses before reporting COMPLETED.
+        # A task left in a non-terminal state (e.g. still PLANNING after loop
+        # exhaustion) must cause the study to surface as INCOMPLETE, not COMPLETED.
+        TERMINAL = {"COMPLETED", "AWAITING_APPROVAL", "FAILED", "REJECTED"}
+        non_terminal_tasks: list[dict] = []
+        for arm_name, arm_res in results.items():
+            for ev in arm_res.get("events", []):
+                if ev.get("status") not in TERMINAL:
+                    non_terminal_tasks.append({"arm": arm_name, "task_id": ev["task_id"], "status": ev.get("status")})
+
+        final_status = "COMPLETED" if not non_terminal_tasks else "INCOMPLETE"
+
         output_data = {
-            "status": "COMPLETED",
+            "status": final_status,
+            "non_terminal_tasks": non_terminal_tasks,
             "timestamp_iso": datetime.now(timezone.utc).isoformat(),
             "preflight": preflight,
             "model": self.model,
@@ -294,11 +336,59 @@ class LiveEvaluationRunner:
             "cumulative_provider_calls": cumulative_calls,
         }
 
-        results_file = self.output_dir / "live_paired_results.json"
+        # FIX #8: Receipt filename includes run timestamp for immutability.
+        run_ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        results_file = self.output_dir / f"live_paired_results_{run_ts}.json"
         with open(results_file, "w", encoding="utf-8") as f:
             json.dump(output_data, f, indent=2)
+        output_data["results_path"] = str(results_file)
 
         return output_data
+
+    @staticmethod
+    def _extract_usage_from_trace(trace: list[dict]) -> dict[str, Any]:
+        """FIX #5: Extract real token usage from agent trace provider-call entries.
+
+        state.get('prompt_tokens', 0) and state.get('completion_tokens', 0) are
+        not populated by DocumentAgent — it stores usage inside trace entries under
+        the key 'usage'.  Summing across all provider-call trace entries gives the
+        actual billed tokens for the task.  When a provider call has no recorded
+        usage (e.g. it failed or was a cache hit) the entry is skipped; if *no*
+        provider calls have recorded usage the function returns UNKNOWN tokens so
+        the caller never silently reports zero.
+        """
+        prompt_tok = 0
+        comp_tok = 0
+        any_provider_call = False
+        all_missing = True
+        for entry in trace:
+            pc = entry.get("provider_calls")
+            if pc is None:
+                # Errored entry — unknown, not zero
+                any_provider_call = True
+                continue
+            if pc > 0:
+                any_provider_call = True
+                usage = entry.get("usage") or {}
+                if usage:
+                    all_missing = False
+                    prompt_tok += usage.get("prompt_tokens", 0)
+                    comp_tok += usage.get("completion_tokens", 0)
+        if any_provider_call and all_missing:
+            return {"prompt_tokens": "UNKNOWN", "completion_tokens": "UNKNOWN",
+                    "total_tokens": "UNKNOWN", "source": "no_usage_in_trace"}
+        return {"prompt_tokens": prompt_tok, "completion_tokens": comp_tok,
+                "total_tokens": prompt_tok + comp_tok, "source": "trace_entries"}
+
+    @staticmethod
+    def _collect_attempt_ids(trace: list[dict]) -> list[str]:
+        """FIX #6: Collect provider attempt IDs from trace entries."""
+        ids = []
+        for entry in trace:
+            aid = entry.get("attempt_id") or entry.get("provider_attempt_id")
+            if aid:
+                ids.append(str(aid))
+        return ids
 
     def _run_arm(self, arm_name: str, base_run_id: str) -> dict[str, Any]:
         """Runs the complete agent workflow across the frozen workload for one arm."""
@@ -321,6 +411,14 @@ class LiveEvaluationRunner:
         db_dir.mkdir(parents=True, exist_ok=True)
         answers_db = db_dir / "answers.db"
         tasks_db = db_dir / "tasks.db"
+
+        # FIX #2: Cold-start isolation — delete stale arm databases before each run
+        # so reruns cannot silently inherit warm caches from a prior execution.
+        # Existing PilotJournal rows are the durable restart record; the per-arm
+        # agent SQLite stores must be fresh on every new paired study.
+        for stale_db in (answers_db, tasks_db):
+            if stale_db.exists():
+                stale_db.unlink()
 
         tools = DocumentTools(REFERENCE_DOCS)
         scope = KnowledgeScope("live-docs", tools.revision, "live-tenant", f"live-{arm_name}")
@@ -346,6 +444,8 @@ class LiveEvaluationRunner:
             provider,
             allowed_models={self.model},
         )
+        # FIX #3: Pass max_output_tokens to DocumentAgent so the configured output
+        # ceiling is enforced in every model call body (the 'max_tokens' field).
         agent = DocumentAgent(
             service,
             tools,
@@ -353,6 +453,7 @@ class LiveEvaluationRunner:
             model=self.model,
             answer_cache=answer_cache,
             stage_accounting=True,
+            max_output_tokens=self.max_output_tokens,
         )
 
         events = []
@@ -373,14 +474,33 @@ class LiveEvaluationRunner:
             elapsed_ms = (time.perf_counter() - t0) * 1000.0
             task_calls = provider.new_calls - calls_before
 
-            answer_text = state.get("answer", "")
+            answer_text = state.get("answer", "") or ""
             ans_sha = hashlib.sha256(answer_text.encode("utf-8")).hexdigest() if answer_text else None
 
-            # Actual token usage accumulated in DocumentAgent stage metrics
-            p_tok = state.get("prompt_tokens", 0)
-            c_tok = state.get("completion_tokens", 0)
-            total_prompt_tok += p_tok
-            total_comp_tok += c_tok
+            # FIX #5: Extract real token usage from trace, never silently report zero.
+            trace = state.get("trace", [])
+            usage = self._extract_usage_from_trace(trace)
+            p_tok = usage["prompt_tokens"]
+            c_tok = usage["completion_tokens"]
+            # Accumulate numeric totals only (UNKNOWN stays as a string in the event record)
+            if isinstance(p_tok, int):
+                total_prompt_tok += p_tok
+            if isinstance(c_tok, int):
+                total_comp_tok += c_tok
+
+            # FIX #6: Collect reviewer decisions and provider attempt IDs from trace.
+            reviewer_decisions = [
+                {"stage": e.get("stage"), "decision": e.get("decision"), "principal": e.get("principal")}
+                for e in trace if e.get("stage") == "human_decision"
+            ]
+            attempt_ids = self._collect_attempt_ids(trace)
+
+            # FIX #6: Evidence = list of document IDs read during TOOLS stage.
+            evidence_doc_ids = [
+                t["step"]["arguments"].get("document_id")
+                for t in state.get("tools", [])
+                if t.get("step", {}).get("tool") == "read"
+            ]
 
             events.append({
                 "task_id": task["id"],
@@ -392,8 +512,15 @@ class LiveEvaluationRunner:
                 "provider_calls": task_calls,
                 "prompt_tokens_actual": p_tok,
                 "completion_tokens_actual": c_tok,
-                "total_tokens_actual": p_tok + c_tok,
+                "total_tokens_actual": usage["total_tokens"],
+                "token_source": usage["source"],
                 "answer_sha256": ans_sha,
+                # FIX #6: Publish actual final answer text, evidence, reviewer decisions
+                # and provider attempt IDs — previously only the SHA was published.
+                "answer_text": answer_text or None,
+                "evidence_document_ids": evidence_doc_ids,
+                "reviewer_decisions": reviewer_decisions,
+                "provider_attempt_ids": attempt_ids,
                 "elapsed_ms": elapsed_ms,
             })
 
