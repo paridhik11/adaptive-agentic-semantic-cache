@@ -14,8 +14,8 @@
 Following independent review, this report incorporates three essential methodological corrections:
 
 1. **Workload-Expected (Eligible) Reuse vs Actual Answer Correctness:**
-   - Raw records track `is_eligible_reuse` (and legacy alias `is_correct_reuse`), defined as `is_hit and item["eligible"]`.
-   - This records whether a cache hit occurred on a benchmark-defined eligible query type (seed repeat or safe paraphrase), **not** that the answer was independently adjudicated as factually correct.
+   - Raw records track `is_eligible_reuse`. The legacy field `is_correct_reuse` is **DEPRECATED** as a misleading name: category eligibility tags never imply answer-level correctness.
+   - This records strictly whether a cache hit occurred on a benchmark-defined eligible query type (seed repeat or safe paraphrase), **not** that the answer was independently adjudicated as factually correct.
    - Avoided calls are labeled **workload-expected eligible reuse**. Actual answer correctness, semantic suitability, and safe coverage remain **unverified pending independent answer-level review**.
 2. **Defined vs Executed Coverage Disclosed:**
    - The workload framework defines **25 documentation source groups** and **125 distinct base intents**.
@@ -74,8 +74,8 @@ Following independent review, this report incorporates three essential methodolo
 | **Total Provider Invocations** | 1,200 | 1,023 | **975** | 1,023 |
 | **Calls Avoided on Eligible Reuse** | 0 | **177** | **222** | **177** |
 | **Calls Avoided on Ineligible Reuse** | 0 | **0** | **3** | **0** |
-| **Synthetic Token Volume** *(Offline)* | 134,228 | 114,453 | **109,302** | 114,453 |
-| **Synthetic Token Reduction** | 0.0% | 14.73% | **18.57%** | 14.73% |
+| **Synthetic Token Volume** *(Offline)* | 133,964 | 114,453 | **109,302** | 114,453 |
+| **Synthetic Token Reduction** | 0.0% | 14.56% | **18.41%** | 14.56% |
 | **Cache Hits Total** | 0 | 59 | **75** | 59 |
 | - *Exact Hits (Tier 0)* | 0 | 59 | 57 | 59 |
 | - *Verified Semantic Hits (Tier 1)* | 0 | 0 | **18** | 0 |

@@ -15,16 +15,19 @@ Harness: `scripts/evaluate_large_workload.py` | Telemetry: `artifacts/metrics_ca
    - **`shadow_semantic` (Diagnostic)**: 948 provider calls, 852 calls avoided on eligible reuse, 0 unproven answers substituted.
 
 3. **Workload Profile B: Lower-Repeat Breadth (400 Events per Arm; ALL 25 Groups, 125 Intents)**:
-   - **`no_cache`**: 1,200 provider calls, 134,228 synthetic tokens, p50: 89.70 ms.
-   - **`exact_only` (Safe Release Default)**: 1,023 provider calls, 177 calls avoided on eligible reuse, 0 on ineligible reuse, 114,453 synthetic tokens (14.73% token reduction), 59 exact hits, p50: 168.42 ms, **0 false accepts across 125 challenges** (0/125, 0.00%, exact 95% Clopper-Pearson CI `[0.00%, 2.91%]`).
-   - **`verified_semantic` (Guarded Opt-In, Untuned)**: 975 provider calls, 222 calls avoided on eligible reuse, 3 on ineligible reuse, 109,302 synthetic tokens (18.57% token reduction), 75 hits (57 exact, 18 semantic), p50: 180.60 ms, **1 false accept across 125 challenges** (1/125, 0.80%, exact 95% Clopper-Pearson CI `[0.02%, 4.38%]`) on `async_05:challenge_added_requirements`.
+   - **`no_cache`**: 1,200 provider calls, 133,964 synthetic tokens, p50: 89.70 ms.
+   - **`exact_only` (Safe Release Default)**: 1,023 provider calls, 177 calls avoided on eligible reuse, 0 on ineligible reuse, 114,453 synthetic tokens (14.56% token reduction), 59 exact hits, p50: 168.42 ms, **0 false accepts across 125 challenges** (0/125, 0.00%, exact 95% Clopper-Pearson CI `[0.00%, 2.91%]`).
+   - **`verified_semantic` (Guarded Opt-In, Untuned)**: 975 provider calls, 222 calls avoided on eligible reuse, 3 on ineligible reuse, 109,302 synthetic tokens (18.41% token reduction), 75 hits (57 exact, 18 semantic), p50: 180.60 ms, **1 false accept across 125 challenges** (1/125, 0.80%, exact 95% Clopper-Pearson CI `[0.02%, 4.38%]`) on `async_05:challenge_added_requirements`.
    - **`shadow_semantic` (Diagnostic)**: 1,023 provider calls, 177 calls avoided on eligible reuse, 0 on ineligible reuse, 59 exact hits, 0 unproven answers substituted, p50: 183.55 ms, 0 false accepts (0/125).
 
-4. **Architectural Confirmation**:
+4. **Architectural Confirmation & Field Deprecation**:
    - The 1 false accept in untuned `verified_semantic` (`"benchmark using cProfile"` query matching basic asyncio answer) conclusively proves that exact caching (`mode="exact"`) must remain the default serving mode, and semantic caching must remain shadow-only by default and experimental opt-in.
+   - Legacy field `is_correct_reuse` is deprecated across all documentation and telemetry: category eligibility tags do not denote actual answer-level correctness.
 
-5. **Live Benchmark Preflight Safety (FACTS MC-10)**:
-   - Matched 3-arm live runner (`scripts/evaluate_live_paired.py`) enforces $0.00 spend cap, free-tier allowlist, and hard blocks unauthorized live execution (`live_authorized=False`). Zero live API calls initiated. Documented in `docs/LIVE_BENCHMARK_READINESS.md`.
+5. **Audited Real-Provider Pilot Plan & Preflight Safety (FACTS MC-10, MC-17, MC-18)**:
+   - Prepared small frozen 4-task real-provider pilot (`scripts/evaluate_live_paired.py`) across `list_operations` and `dict_operations` comparing `no_cache` (12 calls) vs `exact_only` (6 calls) vs `shadow_semantic` (6 calls).
+   - Exact proposed provider requests: **24 calls total** (complying with single-run limit of 30 and daily cap of 40 in `PilotJournal`).
+   - Preflight status: **BLOCKED (live_authorized=False)**. Zero live API calls initiated. Shared quota enforcement, stable rate limits, zero paid fallback, free allowlist, and immutable receipts verified in `docs/LIVE_BENCHMARK_READINESS.md`.
 
 ## Final Release Evidence Correction & P2 Integration — 2026-11-02
 

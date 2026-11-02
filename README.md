@@ -77,9 +77,8 @@ Telemetry is published in `artifacts/metrics_campaign/repeat_rich/` and `artifac
 | **Evaluated Events** | 400 | 400 | 400 | 400 |
 | **Total Provider Invocations** | 1,200 | 1,023 | **975** | 1,023 |
 | **Calls Avoided on Eligible Reuse** | 0 | **177** | **222** | **177** |
-| **Calls Avoided on Ineligible Reuse** | 0 | **0** | **3** | **0** |
-| **Synthetic Token Volume** *(Offline)* | 134,228 | 114,453 | **109,302** | 114,453 |
-| **Synthetic Token Reduction** | 0.0% | 14.73% | **18.57%** | 14.73% |
+| **Synthetic Token Volume** *(Offline)* | 133,964 | 114,453 | **109,302** | 114,453 |
+| **Synthetic Token Reduction** | 0.0% | 14.56% | **18.41%** | 14.56% |
 | **Cache Hits Total** | 0 | 59 | **75** | 59 |
 | - *Exact Hits (Tier 0)* | 0 | 59 | 57 | 59 |
 | - *Verified Semantic Hits (Tier 1)* | 0 | 0 | **18** | 0 |
@@ -91,7 +90,7 @@ Telemetry is published in `artifacts/metrics_campaign/repeat_rich/` and `artifac
 | **Whole-Agent Latency p50** | 89.70 ms | 168.42 ms | 180.60 ms | 183.55 ms |
 | **Whole-Agent Latency p95** | 103.71 ms | 194.46 ms | 219.77 ms | 224.81 ms |
 
-*Methodological Disclosures: Calls avoided on eligible reuse reflect category matching under workload definitions; actual answer-level correctness and semantic suitability remain unverified pending independent review. The 1 false accept in untuned `verified_semantic` (`async_05:challenge_added_requirements`) validates `mode="exact"` as the mandatory safe default.*
+*Methodological Disclosures: Calls avoided on eligible reuse reflect category matching under workload definitions; legacy field `is_correct_reuse` is deprecated and does not denote actual answer-level correctness. Actual answer-level correctness and semantic suitability remain unverified pending independent review. The 1 false accept in untuned `verified_semantic` (`async_05:challenge_added_requirements`) validates `mode="exact"` as the mandatory safe default.*
 
 ---
 
