@@ -87,6 +87,9 @@ def sanitize_outbound_request(request_body: dict, model: str, max_output_tokens:
         sanitized_messages.append({"role": str(m["role"]), "content": str(m["content"])})
 
     # 4. Validate and clamp max_tokens
+    if not isinstance(max_output_tokens, int) or max_output_tokens <= 0:
+        raise ValueError(f"max_output_tokens ceiling must be a positive integer, got {max_output_tokens}")
+
     req_max_tokens = request_body.get("max_tokens")
     if req_max_tokens is not None:
         if not isinstance(req_max_tokens, int) or req_max_tokens <= 0:
@@ -175,6 +178,8 @@ class LiveBenchmarkRunner:
             blockers.append(f"Durable quota journal does not exist at {self.journal_path}; shared journal required")
         if self.execute_live and self.spend_cap_usd <= 0.00 and pricing and pricing["prompt_per_1m"] != 0.00:
             blockers.append("Spend cap is $0.00 on a non-free model; execution blocked")
+        if self.max_output_tokens <= 0:
+            blockers.append(f"max_output_tokens ceiling must be greater than zero, got {self.max_output_tokens}")
 
         return {
             "status": status if not blockers else "BLOCKED",

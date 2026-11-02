@@ -1067,3 +1067,22 @@ Telemetry: `runs/whole_agent_benchmark_results.json` and `artifacts/resume/whole
 | P5-01 | Flagship 8-Step Verification Demo | Validates all 8 criteria: fresh request, operator approval, exact repeat, safe paraphrase, changed requirement miss, scope invalidation, restart persistence, and per-request receipts (100% PASS) `[SIMULATED]` | `scripts/demo_flagship.py` | `python scripts/demo_flagship.py` |
 | P5-02 | Automated CLI Demo Flag | `python scripts/run_demo.py --cli` automated runner executing 8-step verification flow `[CODE]` | `scripts/run_demo.py` line 20 | `python scripts/run_demo.py --cli` |
 | P6-01 | Opt-in Live Agent Workflow Runner | Free-tier allowlisted live runner with spend cap and quota journal for full agent workflow `[CODE]` | `scripts/run_live_benchmark.py` | `python scripts/run_live_benchmark.py --check-only` |
+
+---
+
+## 7. Independent P2 Frozen Neural Evaluation Checkpoint (4f9858e) — 2026-11-02
+
+| # | Fact | Claim / Value | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| P2-08 | Frozen P2 neural evaluation workload | 144 requests across 12 documentation groups evaluated with real local neural inference (DenseEncoder + LocalPassageScorer) `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/documentation_rebuild/p2_frozen_eval.json` | ChatGPT Work independent evaluation |
+| P2-09 | P2 semantic accepts count | 25 semantic accepts admitted by cross-encoder threshold `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/documentation_rebuild/p2_frozen_eval.json` | ChatGPT Work independent evaluation |
+| P2-10 | P2 provisionally sufficient accepts | 16 / 25 accepts (64.00%, exact 95% Clopper-Pearson CI [42.52%, 82.03%]) provisionally sufficient under model-assisted review; no independent human certification `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/documentation_rebuild/p2_frozen_eval.json` | ChatGPT Work independent evaluation |
+| P2-11 | P2 insufficient accepts count | 9 / 25 accepts (36.00%, exact 95% Clopper-Pearson CI [17.97%, 57.48%]) insufficient under model-assisted review `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/documentation_rebuild/p2_frozen_eval.json` | ChatGPT Work independent evaluation |
+| P2-12 | P2 failure breakdown: missing executable examples | 7 failures involving missing explicitly requested executable examples `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/documentation_rebuild/p2_frozen_eval.json` | ChatGPT Work independent evaluation |
+| P2-13 | P2 failure breakdown: wrong-operation reuse | 2 failures involving wrong-operation reuse (e.g. inverse operations) `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/documentation_rebuild/p2_frozen_eval.json` | ChatGPT Work independent evaluation |
+| P2-14 | P2 scope challenge false hits | 0 hits across 60 scope challenges (0.00%, exact 95% Clopper-Pearson CI [0.00%, 5.96%]) `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/documentation_rebuild/p2_frozen_eval.json` | ChatGPT Work independent evaluation |
+| P2-15 | P2 qualification status | FAILED safety qualification; evaluated prototype with experimental semantic serving; no 98% precision or live monetary savings claim `[DOC]` | P2 independent evaluation findings | Qualification declaration |
+| P2-16 | Safe default serving configuration | Exact caching is default serving configuration (`mode="exact"`). Automatic neural semantic reuse is shadow-only by default (`mode="shadow"`); guarded semantic serving permitted only via explicit experimental opt-in (`mode="guarded"`) `[CODE]` | `src/policy/hybrid_cache.py` line 192 | `pytest tests/test_release_correction.py` |
+| P2-17 | Flagship demo criterion 8 nature | Criterion 8 is an evidence-reporting summary criterion across 7 lifecycle execution scenarios (not 8 independent lifecycle scenarios) `[DOC]` | `scripts/demo_flagship.py` lines 347-370 | `python scripts/demo_flagship.py` |
+| P2-18 | Live runner zero-output-ceiling validation | Request with max_output_tokens <= 0 blocked in preflight and raises ValueError, preventing zero-output network calls `[CODE]` | `scripts/run_live_benchmark.py` lines 89-91, 180-182 | `pytest tests/test_release_correction.py` |
+

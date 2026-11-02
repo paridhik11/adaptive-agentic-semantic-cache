@@ -91,6 +91,7 @@ def hybrid_cache():
         scope=scope,
         encoder=MockEncoder(),
         passage_scorer=MockPassageScorer(),
+        mode="guarded",
         retrieval_threshold=0.50,
         verification_threshold=0.85,
     )
@@ -485,6 +486,7 @@ def test_admission_timing_includes_synchronous_admission():
         scope=scope,
         encoder=MockEncoder(),
         passage_scorer=SlowScorer(),
+        mode="guarded",
     )
     req = make_request("Explain list conversion in Python.")
     resp = make_response("Use tuple() for list conversion in Python.")

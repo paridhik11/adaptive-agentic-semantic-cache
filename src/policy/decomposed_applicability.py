@@ -66,16 +66,95 @@ def call_names(text):
 def conversion_slots(text):
     # Generic grammatical slots, not a registry of question pairs or entities.
     patterns = [
-        (r"\b(?:convert|change|turns?)\s+(.+?)\s+(?:into|to)\s+(.+?)(?:[?.!]|$)", False),
-        (r"\b(?:make|create|obtain)\s+(.+?)\s+from\s+(.+?)(?:[?.!]|$)", True),
+        (r"\b(?:convert|change|turns?|transform|switch|cast|translate)\s+(.+?)\s+(?:into|to)\s+(.+?)(?:[?.!]|$)", False),
+        (r"\b(?:make|create|obtain|build|construct|extract|derive)\s+(.+?)\s+from\s+(.+?)(?:[?.!]|$)", True),
+        (r"\b(?:from\s+(.+?)\s+to\s+(.+?))(?:[?.!]|$)", False),
     ]
-    stop = {"a", "an", "the", "existing", "given", "elements", "items"}
+    stop = {"a", "an", "the", "existing", "given", "elements", "items", "in", "python"}
     for pattern, reverse in patterns:
         match = re.search(pattern, text.casefold())
         if match:
             parts = [frozenset(re.findall(r"\w+", x)) - stop for x in match.groups()]
             if all(parts):
                 return tuple(reversed(parts)) if reverse else tuple(parts)
+    return None
+
+
+INVERSE_OPERATION_PAIRS = (
+    # Encodings & Serialization
+    (r"\b(?:encod\w*)\b", r"\b(?:decod\w*)\b"),
+    (r"\b(?:serializ\w*)\b", r"\b(?:deserializ\w*)\b"),
+    (r"\b(?:compress\w*)\b", r"\b(?:decompress\w*)\b"),
+    (r"\b(?:encrypt\w*)\b", r"\b(?:decrypt\w*)\b"),
+    (r"\b(?:pack\w*)\b", r"\b(?:unpack\w*)\b"),
+    (r"\b(?:import\w*)\b", r"\b(?:export\w*)\b"),
+    (r"\b(?:pars\w*)\b", r"\b(?:format\w*|stringif\w*)\b"),
+    (r"\b(?:join\w*|combin\w*|merg\w*)\b", r"\b(?:split\w*|break\w*|separat\w*)\b"),
+    (r"\b(?:zip\w*|archiv\w*)\b", r"\b(?:unzip\w*|extract\w*)\b"),
+    # State & System
+    (r"\b(?:install\w*)\b", r"\b(?:uninstall\w*)\b"),
+    (r"\b(?:enable\w*|activat\w*)\b", r"\b(?:disable\w*|deactivat\w*)\b"),
+    (r"\b(?:connect\w*)\b", r"\b(?:disconnect\w*)\b"),
+    (r"\b(?:attach\w*)\b", r"\b(?:detach\w*)\b"),
+    (r"\b(?:lock\w*)\b", r"\b(?:unlock\w*)\b"),
+    (r"\b(?:open\w*)\b", r"\b(?:close\w*)\b"),
+    (r"\b(?:start\w*|launch\w*)\b", r"\b(?:stop\w*|terminat\w*)\b"),
+    (r"\b(?:mount\w*)\b", r"\b(?:unmount\w*)\b"),
+    (r"\b(?:push\w*)\b", r"\b(?:pop\w*)\b"),
+    # Sort order & Case
+    (r"\b(?:ascend\w*|smallest to largest|lowest to highest)\b", r"\b(?:descend\w*|largest to smallest|highest to lowest)\b"),
+    (r"\b(?:upper\w*|capital\w*)\b", r"\b(?:lower\w*)\b"),
+    (r"\b(?:min\w*|minimum|smallest)\b", r"\b(?:max\w*|maximum|largest)\b"),
+)
+
+
+def inverse_operation_mismatch(original: str, incoming: str) -> bool:
+    for pat_a, pat_b in INVERSE_OPERATION_PAIRS:
+        has_a_orig = bool(re.search(pat_a, original, re.I))
+        has_b_orig = bool(re.search(pat_b, original, re.I))
+        has_a_inc = bool(re.search(pat_a, incoming, re.I))
+        has_b_inc = bool(re.search(pat_b, incoming, re.I))
+        if (has_a_orig and not has_b_orig and has_b_inc and not has_a_inc) or \
+           (has_b_orig and not has_a_orig and has_a_inc and not has_b_inc):
+            return True
+    return False
+
+
+def requires_executable_example(text: str) -> bool:
+    patterns = [
+        r"\b(?:executable|runnable|working|run\b|execut\w*)\s+(?:example|snippet|code|script|sample|demo)\b",
+        r"\b(?:code\s+example|code\s+snippet|example\s+code|sample\s+code|demo\s+code)\b",
+        r"\b(?:give|provide|show|include|write|with)\s+(?:an?\s+)?(?:executable|runnable|code\b|working\s+code)\b",
+        r"\b(?:how\s+to\s+code|show\s+me\s+the\s+code|include\s+code|sample\s+snippet)\b",
+    ]
+    return any(re.search(pat, text, re.I) for pat in patterns)
+
+
+def contains_executable_example(answer_text: str) -> bool:
+    if not isinstance(answer_text, str) or not answer_text.strip():
+        return False
+    # Fenced markdown code blocks ```...```
+    if re.search(r"```(?:\w+)?\n[\s\S]+?\n```", answer_text):
+        return True
+    # Python interactive REPL sessions >>>
+    if re.search(r"(?:^|\n)>>>\s+.+", answer_text):
+        return True
+    # Indented code blocks (4 spaces or tab) with python statements/keywords
+    if re.search(r"(?:^|\n)(?:    |\t)(?:def |class |import |from |for |while |if |print\(|[a-zA-Z_]\w*\s*=).+", answer_text):
+        return True
+    # Inline code with function invocation or syntax: `func(...)` or `obj.method(...)`
+    if re.search(r"`[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*\([^`]*\)`", answer_text):
+        return True
+    return False
+
+
+def answer_satisfies_requirements(incoming_query: str, answer_text: str) -> str | None:
+    if requires_executable_example(incoming_query):
+        if not contains_executable_example(answer_text):
+            return "missing_explicit_executable_example"
+    req_numbers = numbers(incoming_query)
+    if req_numbers and not (req_numbers <= numbers(answer_text)):
+        return "incoming_numeric_requirement_unmet_in_answer"
     return None
 
 
@@ -99,6 +178,12 @@ def constraints(text):
 def requirement_guard(original, incoming):
     if numbers(original) != numbers(incoming):
         return "numeric_or_version_requirement_changed"
+    if requires_executable_example(incoming) and not requires_executable_example(original):
+        return "added_explicit_executable_example_requirement"
+    if requires_executable_example(original) and not requires_executable_example(incoming):
+        return "dropped_explicit_executable_example_requirement"
+    if inverse_operation_mismatch(original, incoming):
+        return "inverse_or_opposing_operation_mismatch"
     if constraints(incoming) - constraints(original):
         return "added_explicit_requirement"
     if constraints(original) - constraints(incoming):

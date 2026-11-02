@@ -1,14 +1,15 @@
-"""Flagship Reproducible 8-Step Verification Demo.
+"""Flagship Verification Demo: 7 Lifecycle Execution Scenarios + Criterion 8 Evidence Reporting.
 
-Validates the complete documentation agent workflow across:
+Demonstrates:
 1. Fresh request through planning, retrieval, drafting, review.
-2. Approval and durable answer storage.
-3. Exact repeat avoiding fresh agent work.
-4. Safe paraphrase reusing a verified cached answer.
-5. Changed requirement correctly missing.
+2. Approval and durable answer storage in SQLite.
+3. Safe default exact-only repeat avoiding fresh agent work (Tier 0).
+4. Experimental semantic paraphrase reuse under explicit opt-in (Tier 1 Guarded).
+5. Changed requirement correctly missing and falling back safely.
 6. Tenant/source-revision invalidation blocking stale reuse.
-7. Restart persistence and safe fallback.
-8. Per-request evidence: cache tier, provider calls, timing, scope and decision.
+7. Restart persistence and safe fallback across process re-initialization.
+Criterion 8 (Evidence Reporting): Formatted receipt table detailing provider calls,
+tier decisions, and stage latencies across all 7 execution scenarios.
 """
 from __future__ import annotations
 
@@ -344,22 +345,25 @@ def run_demo(base_dir: Path, verbose: bool = True) -> dict:
         print(f"         Reloaded Task {tid6} Status: {reloaded_completed['status']} | Zero Corrupt State | Elapsed: {el7:.1f}ms\n")
 
     # -------------------------------------------------------------------------
-    # STEP 8: Per-Request Evidence Summary Table
+    # CRITERION 8: Per-Request Evidence Reporting (Summary of 7 Scenarios)
     # -------------------------------------------------------------------------
     if verbose:
         print("================================================================================")
-        print("                     PER-REQUEST VERIFICATION EVIDENCE                          ")
+        print("           CRITERION 8: PER-REQUEST VERIFICATION EVIDENCE SUMMARY               ")
         print("================================================================================\n")
-        print("| Step | Flow Action | Question / Topic | Cache Tier | Calls | Avoided | Latency | Scope / Decision |")
+        print("| Step | Lifecycle Scenario | Question / Action | Cache Tier | Calls | Avoided | Latency | Outcome |")
         print("| :---: | :--- | :--- | :---: | :---: | :---: | :---: | :--- |")
         for r in steps_receipts:
             q_short = (r["question"][:35] + "...") if len(r["question"]) > 35 else r["question"]
             print(f"| {r['step']} | {r['name']} | {q_short} | **{r['cache_tier']}** | {r['provider_calls']} | {r['avoided_calls']} | {r['elapsed_ms']:.1f} ms | {r['status']} |")
-        print("\nAll 8 core flagship lifecycle criteria verified successfully (100% PASS).\n")
+        print("\nAll 7 lifecycle execution scenarios verified; Criterion 8 evidence reported successfully (PASS).\n")
 
     return {
         "status": "PASS",
-        "total_steps": len(steps_receipts),
+        "lifecycle_scenarios_executed": len(steps_receipts),
+        "evidence_reporting_criterion": "VERIFIED",
+        "default_serving_mode": "exact",
+        "experimental_semantic_opt_in": True,
         "steps": steps_receipts,
         "models": {
             "dense_encoder": f"{ENCODER_MODEL}@{ENCODER_REVISION}",

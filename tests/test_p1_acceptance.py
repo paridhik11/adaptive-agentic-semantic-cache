@@ -221,6 +221,7 @@ def test_admission_timing_includes_synchronous_admission():
         scope=KnowledgeScope("docs", "v1", "public", "p1"),
         encoder=MockEncoder(),
         passage_scorer=SlowScorer(),
+        mode="guarded",
         async_promotion=False,
     )
 
@@ -243,6 +244,7 @@ def test_semantic_hit_latency_in_milliseconds():
         scope=KnowledgeScope("docs", "v1", "public", "p1"),
         encoder=MockEncoder(),
         passage_scorer=ConstantScorer(prob=0.99),
+        mode="guarded",
     )
 
     req = make_request("How to sort a list?")
@@ -336,6 +338,7 @@ def test_race_revoke_tenant_during_neural_verification_falls_back_to_miss():
         scope=KnowledgeScope("docs", "v1", "public", "p1"),
         encoder=MockEncoder(),
         passage_scorer=BlockingScorer(),
+        mode="guarded",
     )
 
     req = make_request("How to convert a list?")

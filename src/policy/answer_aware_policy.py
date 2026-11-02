@@ -14,7 +14,7 @@ import threading
 import time
 from typing import Any, Callable
 
-from src.policy.decomposed_applicability import requirement_guard
+from src.policy.decomposed_applicability import answer_satisfies_requirements, requirement_guard
 from src.policy.response_cache import ScopedResponseCache
 from src.policy.semantic_runtime import ReuseDecision, digest
 
@@ -120,6 +120,20 @@ class AnswerAwareSemanticPolicy:
 
         # Stage 4: Answer-aware verification
         answer_text = answer["choices"][0]["message"]["content"]
+        ans_failure = answer_satisfies_requirements(new_query, answer_text)
+        if ans_failure is not None:
+            elapsed = (time.perf_counter() - started) * 1000.0
+            return PolicyAssessment(
+                False,
+                f"guard_rejected:{ans_failure}",
+                0,
+                elapsed,
+                {"answer_guard": ans_failure},
+                req_hash,
+                cand_hash,
+                ans_hash,
+            )
+
         try:
             score_data = self.scorer.score(new_query, answer_text)
         except Exception as exc:

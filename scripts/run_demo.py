@@ -15,7 +15,8 @@ def main():
     p.add_argument('--whole-answer-cache',action='store_true',help='Offline before-agent exact reuse of reviewed, approved standalone answers.')
     p.add_argument('--task-memory',action='store_true',help='Offline scoped local task retrieval and explicit specialist routes.')
     p.add_argument('--journal',type=Path,help='Existing shared journal, required in live mode.')
-    p.add_argument('--cli',action='store_true',help='Run the reproducible 8-step verification demo in the CLI.')
+    p.add_argument('--cli',action='store_true',help='Run the reproducible 7-scenario verification demo and evidence summary in the CLI.')
+    p.add_argument('--experimental-semantic',action='store_true',help='Explicit opt-in to experimental guarded semantic reuse (default: safe exact caching only).')
     args=p.parse_args()
     if args.cli:
         from scripts.demo_flagship import run_demo

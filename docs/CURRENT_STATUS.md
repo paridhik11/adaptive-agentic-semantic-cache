@@ -1,3 +1,32 @@
+## Final Release Evidence Correction & P2 Integration — 2026-11-02
+
+This section supersedes earlier production claims. Independent frozen P2 neural evaluation was executed against checkpoint `4f9858e` by ChatGPT Work using real local neural inference (MiniLM DenseEncoder + MS MARCO passage CrossEncoder).
+
+1. **Independent P2 Neural Evaluation Findings (FACTS P2-08–P2-15)**:
+   - **Workload**: 144 requests evaluated across 12 documentation groups.
+   - **Semantic Accepts**: 25 semantic answers accepted by cross-encoder threshold.
+   - **Model-Assisted Review**: 16 / 25 provisionally sufficient (point estimate 64.00%, exact 95% Clopper-Pearson CI [42.52%, 82.03%]); 9 / 25 insufficient (36.00%, exact 95% Clopper-Pearson CI [17.97%, 57.48%]).
+   - **Failure Breakdown**: 7 failures involving missing explicitly requested executable examples; 2 failures involving wrong-operation reuse (e.g. inverse operations).
+   - **Scope Challenges**: 0 hits across 60 scope challenges (0.00%, exact 95% Clopper-Pearson CI [0.00%, 5.96%]).
+   - **Status**: Failed safety qualification; not a production precision result. Evaluated prototype with experimental semantic serving. No claim of 98% precision, independent human truth, or live monetary savings.
+
+2. **Safe Release Configuration & Serving Modes (FACTS P2-16)**:
+   - **Default Serving Mode**: Exact caching is default (`mode="exact"`).
+   - **Shadow Semantic Reuse**: Automatic neural semantic reuse operates in shadow mode by default (`mode="shadow"`), evaluating candidates and logging diagnostics without substituting unproven answers.
+   - **Experimental Semantic Serving**: Guarded semantic serving (`mode="guarded"`) is enabled strictly via explicit opt-in for controlled demonstrations and evaluations.
+
+3. **Targeted Semantic Guardrail Improvements**:
+   - Added request/answer coverage checks for explicit executable-example requirements (`requires_executable_example`, `contains_executable_example`, `answer_satisfies_requirements`).
+   - Added direction and inverse operation compatibility guardrails (`inverse_operation_mismatch`, `conversion_slots`).
+   - Maintained fail-closed abstention for uncertain requests and preserved all atomic locking, race, scope, and revocation protections.
+
+4. **Lifecycle Demo Clarification (FACTS P2-17)**:
+   - Demo executes 7 independent lifecycle execution scenarios (fresh request, operator approval, exact repeat, experimental paraphrase reuse, changed requirement fallback, scope invalidation, restart persistence).
+   - Criterion 8 is the evidence-reporting summary criterion across all 7 scenarios (not 8 independent scenarios).
+
+5. **Live Runner Ceiling Safeguard (FACTS P2-18)**:
+   - Live benchmark runner validates zero-output ceiling (`max_output_tokens > 0`); requests with non-positive ceilings are rejected before transport dispatch. Live calls remain disabled.
+
 ## P3–P6 Flagship Delivery Checkpoint — 2026-11-02
 
 P3 (End-to-End Efficiency Evidence), P4 (Measured Latency Optimization), P5 (Working Demo & Release QA), and P6 (Flagship Release Documentation) are fully implemented, benchmarked, and verified (PASS).

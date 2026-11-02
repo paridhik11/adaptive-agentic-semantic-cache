@@ -39,7 +39,7 @@ import time
 from typing import Any, Callable
 
 from src.policy.answer_aware_policy import AnswerAwareSemanticPolicy
-from src.policy.decomposed_applicability import requirement_guard
+from src.policy.decomposed_applicability import answer_satisfies_requirements, requirement_guard
 from src.policy.encoders import DenseEncoder, normalize
 from src.policy.local_models import (
     ENCODER_MODEL, ENCODER_REVISION,
@@ -189,7 +189,7 @@ class ConservativeHybridCache:
         scope: KnowledgeScope,
         encoder: DenseEncoder | None = None,
         passage_scorer: LocalPassageScorer | None = None,
-        mode: str = "guarded",
+        mode: str = "exact",
         retrieval_threshold: float = 0.60,
         verification_threshold: float = 0.85,
         top_k: int = 3,
@@ -200,8 +200,8 @@ class ConservativeHybridCache:
     ):
         if not isinstance(exact_cache, ScopedResponseCache):
             raise TypeError("exact_cache must be ScopedResponseCache")
-        if mode not in {"off", "exact", "guarded"}:
-            raise ValueError("mode must be 'off', 'exact', or 'guarded'")
+        if mode not in {"off", "exact", "shadow", "guarded"}:
+            raise ValueError("mode must be 'off', 'exact', 'shadow', or 'guarded'")
         if not (0.0 <= retrieval_threshold <= 1.0):
             raise ValueError("retrieval_threshold must be in [0.0, 1.0]")
         if not (0.0 <= verification_threshold <= 1.0):
@@ -660,6 +660,12 @@ class ConservativeHybridCache:
                     diagnosis["guard_rejections"].append(f"guard_rejected:{guard_reason}")
                     continue
 
+                # 4b. Answer Requirement Satisfaction Guard
+                ans_reason = answer_satisfies_requirements(incoming_query, cand_ans)
+                if ans_reason is not None:
+                    diagnosis["guard_rejections"].append(f"answer_unmet_requirement:{ans_reason}")
+                    continue
+
                 # 5. Entry Review Decision Check
                 if binding_h in self._revoked_keys:
                     diagnosis["guard_rejections"].append(f"entry_revoked:{binding_h}")
@@ -684,6 +690,17 @@ class ConservativeHybridCache:
                         ):
                             diagnosis["guard_rejections"].append("stale_before_entry_hit")
                             continue
+
+                        if self.mode == "shadow":
+                            diagnosis.update(
+                                stage="shadow_entry_reviewed_candidate",
+                                candidate=cand.candidate_id,
+                                similarity=sim,
+                                tier="SEMANTIC",
+                                entry_decision=entry_review.reason,
+                                local_policy_recommendation=True,
+                            )
+                            return None
 
                         diagnosis.update(
                             stage="entry_reviewed_approved",
@@ -721,6 +738,16 @@ class ConservativeHybridCache:
                                 diagnosis["guard_rejections"].append("stale_during_verification")
                                 continue
 
+                            if self.mode == "shadow":
+                                diagnosis.update(
+                                    stage="shadow_candidate",
+                                    candidate=cand.candidate_id,
+                                    similarity=sim,
+                                    tier="SEMANTIC",
+                                    local_policy_recommendation=True,
+                                )
+                                return None
+
                             diagnosis.update(
                                 stage="verified_semantic_hit",
                                 candidate=cand.candidate_id,
@@ -742,14 +769,15 @@ class ConservativeHybridCache:
             diagnosis["stage"] = "all_candidates_rejected_fallback"
             return None
 
-        # Execute scoped exact cache with on_miss semantic hook (only in guarded mode)
+        # Execute scoped exact cache with on_miss semantic hook (guarded or shadow mode)
+        semantic_active = self.mode in ("guarded", "shadow") and not bypass
         exact_result = self.exact.process(
             request,
             tenant_id=tenant_id,
             provider=provider,
             bypass=bypass,
             key_context=asdict(scope),
-            on_miss=resolve_semantic if (self.mode == "guarded" and not bypass) else None,
+            on_miss=resolve_semantic if semantic_active else None,
         )
 
         if exact_result.status == "HIT":
@@ -791,8 +819,8 @@ class ConservativeHybridCache:
                 diagnosis,
             )
 
-        # Cache Miss: admitted to semantic candidates synchronously only in guarded mode
-        if exact_result.stored and self.mode == "guarded":
+        # Cache Miss: admitted to semantic candidates synchronously in guarded or shadow mode
+        if exact_result.stored and self.mode in ("guarded", "shadow"):
             try:
                 self.admit_candidate(request, exact_result.response, tenant_id=tenant_id)
             except Exception as exc:
