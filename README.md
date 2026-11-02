@@ -39,19 +39,22 @@ Independent frozen P2 neural evaluation was executed against checkpoint `4f9858e
 
 ---
 
-## Large-Scale Offline Metrics Campaign (600 Events × 4 Arms)
+## Large-Scale Offline Metrics Campaign (Multi-Profile Studies)
 
-To establish reproducible metrics beyond small scripted fixtures, a large-scale evaluation framework was executed across **25 documentation source groups**, **125 distinct base intents**, and **600 evaluation events per arm** (2,400 total events evaluated across 4 matched arms under identical event order and approval workflow).
+To establish reproducible metrics beyond small scripted fixtures, a large-scale evaluation framework was authored across **25 documentation source groups** and **125 distinct base intents**. Two standardized workload profiles were evaluated across all 4 matched caching arms under identical event order and approval workflow.
 
-Telemetry is published in `artifacts/metrics_campaign/offline_results.jsonl` (2,400 raw event records), `artifacts/metrics_campaign/summary.json`, and documented in [METRICS_RESULTS.md](docs/METRICS_RESULTS.md) (FACTS MC-01–MC-08):
+Telemetry is published in `artifacts/metrics_campaign/repeat_rich/` and `artifacts/metrics_campaign/lower_repeat/`, with full analysis in [METRICS_RESULTS.md](docs/METRICS_RESULTS.md) (FACTS MC-01–MC-16):
+
+### Profile A: Repeat-Rich Workload (600 Events per Arm; 12 Executed Groups, 60 Base Intents)
+*Models high query redundancy (4x exact repeats, 3x paraphrases) across the first 12 source groups.*
 
 | Metric | Baseline: `no_cache` | `exact_only` *(Safe Default)* | `verified_semantic` *(Guarded Opt-In)* | `shadow_semantic` *(Diagnostic)* |
 | :--- | :---: | :---: | :---: | :---: |
 | **Serving Configuration** | `mode="off"` | `mode="exact"` | `mode="guarded"` | `mode="shadow"` |
 | **Evaluated Events** | 600 | 600 | 600 | 600 |
 | **Total Provider Invocations** | 1,800 | 948 | **927** | 948 |
-| **Calls Avoided on Correct Answers** | 0 | 852 | **873** | 852 |
-| **Calls Avoided on Incorrect Reuse** | 0 | **0** | **0** | **0** |
+| **Calls Avoided on Eligible Reuse** | 0 | **852** | **873** | **852** |
+| **Calls Avoided on Ineligible Reuse** | 0 | **0** | **0** | **0** |
 | **Synthetic Token Volume** *(Offline)* | 201,667 | 107,750 | **105,429** | 107,750 |
 | **Synthetic Token Reduction** | 0.0% | 46.57% | **47.72%** | 46.57% |
 | **Cache Hits Total** | 0 | 284 | **291** | 284 |
@@ -59,14 +62,36 @@ Telemetry is published in `artifacts/metrics_campaign/offline_results.jsonl` (2,
 | - *Verified Semantic Hits (Tier 1)* | 0 | 0 | **18** | 0 |
 | **Exact Repeat Coverage** | 0.0% | **98.33%** | **98.33%** | **98.33%** |
 | **Paraphrase Opportunity Coverage** | 0.0% | 26.67% | **29.44%** | 26.67% |
-| **Adversarial Challenges Evaluated** | 120 | 120 | 120 | 120 |
-| **Adversarial False Accepts** | 0 | **0** | **0** | **0** |
-| **Adversarial Error Rate (Point Est.)** | 0.00% | **0.00%** | **0.00%** | **0.00%** |
+| **Adversarial Challenges Tested** | 120 | 120 | 120 | 120 |
+| **Adversarial False Accepts** | 0 | **0** | **0** *(dev regression)* | **0** |
 | **Exact 95% Clopper-Pearson CI** | `[0.00%, 3.03%]` | `[0.00%, 3.03%]` | `[0.00%, 3.03%]` | `[0.00%, 3.03%]` |
 | **Whole-Agent Latency p50** | 130.86 ms | 140.80 ms | 137.81 ms | 141.58 ms |
 | **Whole-Agent Latency p95** | 151.58 ms | 233.14 ms | 237.73 ms | 241.28 ms |
 
-*Evidence label: Simulated reference agent evaluation (`artifacts/metrics_campaign/summary.json`). Provider call counts reflect counted agent stage events under deterministic reference replay; token counts are synthetic offline accounting and are not billable invoice receipts.*
+### Profile B: Lower-Repeat Breadth Workload (400 Events per Arm; ALL 25 Groups, 125 Base Intents)
+*Models broad exploratory traffic across all 25 documentation groups, executed without further tuning.*
+
+| Metric | Baseline: `no_cache` | `exact_only` *(Safe Default)* | `verified_semantic` *(Guarded Opt-In)* | `shadow_semantic` *(Diagnostic)* |
+| :--- | :---: | :---: | :---: | :---: |
+| **Serving Configuration** | `mode="off"` | `mode="exact"` | `mode="guarded"` | `mode="shadow"` |
+| **Evaluated Events** | 400 | 400 | 400 | 400 |
+| **Total Provider Invocations** | 1,200 | 1,023 | **975** | 1,023 |
+| **Calls Avoided on Eligible Reuse** | 0 | **177** | **222** | **177** |
+| **Calls Avoided on Ineligible Reuse** | 0 | **0** | **3** | **0** |
+| **Synthetic Token Volume** *(Offline)* | 134,228 | 114,453 | **109,302** | 114,453 |
+| **Synthetic Token Reduction** | 0.0% | 14.73% | **18.57%** | 14.73% |
+| **Cache Hits Total** | 0 | 59 | **75** | 59 |
+| - *Exact Hits (Tier 0)* | 0 | 59 | 57 | 59 |
+| - *Verified Semantic Hits (Tier 1)* | 0 | 0 | **18** | 0 |
+| **Exact Repeat Coverage** | 0.0% | **98.33%** | **98.33%** | **98.33%** |
+| **Paraphrase Opportunity Coverage** | 0.0% | 0.00% | **10.00%** | 0.00% |
+| **Adversarial Challenges Tested** | 125 | 125 | 125 | 125 |
+| **Adversarial False Accepts** | 0 | **0** | **1** | **0** |
+| **Exact 95% Clopper-Pearson CI** | `[0.00%, 2.91%]` | `[0.00%, 2.91%]` | `[0.02%, 4.38%]` | `[0.00%, 2.91%]` |
+| **Whole-Agent Latency p50** | 89.70 ms | 168.42 ms | 180.60 ms | 183.55 ms |
+| **Whole-Agent Latency p95** | 103.71 ms | 194.46 ms | 219.77 ms | 224.81 ms |
+
+*Methodological Disclosures: Calls avoided on eligible reuse reflect category matching under workload definitions; actual answer-level correctness and semantic suitability remain unverified pending independent review. The 1 false accept in untuned `verified_semantic` (`async_05:challenge_added_requirements`) validates `mode="exact"` as the mandatory safe default.*
 
 ---
 

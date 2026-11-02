@@ -1,26 +1,27 @@
 {
-  "campaign_version": "v1.0",
+  "campaign_version": "v1.1",
   "timestamp_iso": "2026-11-02T14:32:31Z",
   "workload_profile": "repeat_rich",
   "total_events": 600,
-  "source_groups_count": 25,
-  "base_intents_count": 125,
-  "event_category_distribution": {
-    "seed": 60,
-    "exact_repeat": 240,
-    "natural_paraphrase": 180,
-    "adversarial_challenge": 120
-  },
-  "models": {
-    "dense_encoder": "sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
-    "passage_scorer": "cross-encoder/ms-marco-MiniLM-L-6-v2@233902d25c440f23af6f7d6e94d2946bac0bee0a",
-    "agent_model": "gpt-4o-mini-fixture"
-  },
-  "environment": {
-    "python_version": "3.14.5",
-    "platform": "win32"
-  },
-  "source_groups": [
+  "defined_source_groups_count": 25,
+  "executed_source_groups_count": 12,
+  "defined_base_intents_count": 125,
+  "executed_base_intents_count": 60,
+  "executed_source_groups": [
+    "list_operations",
+    "dict_operations",
+    "string_manipulation",
+    "file_io",
+    "json_handling",
+    "csv_processing",
+    "error_handling",
+    "datetime_operations",
+    "regex_patterns",
+    "math_statistics",
+    "pathlib_filesystem",
+    "itertools_recipes"
+  ],
+  "defined_source_groups": [
     "list_operations",
     "dict_operations",
     "string_manipulation",
@@ -46,5 +47,25 @@
     "context_managers",
     "object_oriented",
     "functional_programming"
-  ]
+  ],
+  "event_category_distribution": {
+    "seed": 60,
+    "exact_repeat": 240,
+    "natural_paraphrase": 180,
+    "adversarial_challenge": 120
+  },
+  "models": {
+    "dense_encoder": "sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "passage_scorer": "cross-encoder/ms-marco-MiniLM-L-6-v2@233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "agent_model": "gpt-4o-mini-fixture"
+  },
+  "environment": {
+    "python_version": "3.14.5",
+    "platform": "win32"
+  },
+  "evidence_classification": {
+    "workload_expected_reuse": "Eligible category matching; actual answer correctness unadjudicated",
+    "adversarial_false_accepts": "Development regression evidence following regex optimization, not untouched holdout",
+    "token_accounting": "Synthetic offline fixture accounting, not billable live invoices"
+  }
 }

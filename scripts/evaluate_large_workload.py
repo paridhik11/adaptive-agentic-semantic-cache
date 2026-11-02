@@ -954,8 +954,8 @@ def run_evaluation_arm(
             ctype = item.get("challenge_type", "unknown")
             false_accepts_by_type[ctype] = false_accepts_by_type.get(ctype, 0) + 1
 
-        is_correct_reuse = bool(is_hit and item["eligible"])
-        is_incorrect_reuse = bool(is_hit and not item["eligible"])
+        is_eligible_reuse = bool(is_hit and item["eligible"])
+        is_ineligible_reuse = bool(is_hit and not item["eligible"])
 
         rec = {
             "arm": arm_name,
@@ -967,8 +967,11 @@ def run_evaluation_arm(
             "question": item["question"],
             "is_hit": is_hit,
             "tier": tier,
-            "is_correct_reuse": is_correct_reuse,
-            "is_incorrect_reuse": is_incorrect_reuse,
+            "is_eligible_reuse": is_eligible_reuse,
+            "is_ineligible_reuse": is_ineligible_reuse,
+            "workload_expected_reuse": is_eligible_reuse,
+            "is_correct_reuse": is_eligible_reuse,
+            "is_incorrect_reuse": is_ineligible_reuse,
             "selected_cached_answer": state.get("answer") if is_hit else None,
             "matched_question": state.get("matched_question") if is_hit else None,
             "actual_response_answer": state.get("answer"),
@@ -986,8 +989,8 @@ def run_evaluation_arm(
     latencies = [r["elapsed_ms"] for r in event_records]
     total_calls = provider.attempts
     total_avoided = sum(r["avoided_calls"] for r in event_records)
-    total_avoided_correct = sum(r["avoided_calls"] for r in event_records if r["is_correct_reuse"])
-    total_avoided_incorrect = sum(r["avoided_calls"] for r in event_records if r["is_incorrect_reuse"])
+    total_avoided_eligible = sum(r["avoided_calls"] for r in event_records if r["is_eligible_reuse"])
+    total_avoided_ineligible = sum(r["avoided_calls"] for r in event_records if r["is_ineligible_reuse"])
     total_hits = sum(1 for r in event_records if r["is_hit"])
     exact_hits = sum(1 for r in event_records if r["tier"] == "EXACT")
     semantic_hits = sum(1 for r in event_records if r["tier"] == "SEMANTIC")
@@ -1010,8 +1013,10 @@ def run_evaluation_arm(
         "total_events": len(event_records),
         "total_provider_calls": total_calls,
         "calls_avoided_total": total_avoided,
-        "calls_avoided_correct": total_avoided_correct,
-        "calls_avoided_incorrect": total_avoided_incorrect,
+        "calls_avoided_eligible": total_avoided_eligible,
+        "calls_avoided_ineligible": total_avoided_ineligible,
+        "calls_avoided_correct": total_avoided_eligible,
+        "calls_avoided_incorrect": total_avoided_ineligible,
         "total_synthetic_tokens": provider.total_prompt_tokens + provider.total_completion_tokens,
         "cache_hits_total": total_hits,
         "exact_hits": exact_hits,
@@ -1022,8 +1027,11 @@ def run_evaluation_arm(
         "adversarial_false_accepts": total_false_accepts,
         "adversarial_false_accept_rate": round((total_false_accepts / len(adv_events) * 100.0) if adv_events else 0.0, 4),
         "adversarial_false_accept_ci95": false_accept_ci,
+        "adversarial_evidence_classification": "development_regression_evidence",
         "false_accepts_by_type": false_accepts_by_type,
-        "quality_review_status": "model_assisted_simulation",
+        "quality_review_status": "unadjudicated_workload_expected_reuse",
+        "semantic_suitability_status": "unverified_pending_independent_answer_level_review",
+        "safe_coverage_status": "unverified_pending_independent_answer_level_review",
         "latency_ms_p50": round(statistics.median(latencies), 2) if latencies else 0.0,
         "latency_ms_p90": round(statistics.quantiles(latencies, n=10)[8], 2) if len(latencies) >= 10 else round(max(latencies), 2),
         "latency_ms_p95": round(statistics.quantiles(latencies, n=20)[18], 2) if len(latencies) >= 20 else round(max(latencies), 2),
@@ -1061,18 +1069,25 @@ def run_large_workload_campaign(
     documents = {k: v["doc"] for k, v in CORPUS_SOURCE_GROUPS.items()}
 
     # Compute manifest metadata
+    executed_intents = sorted(list({item["intent_id"] for item in workload}))
+    executed_groups = sorted(list({item["group_id"] for item in workload}))
+
     category_counts = {}
     for item in workload:
         cat = item["category"]
         category_counts[cat] = category_counts.get(cat, 0) + 1
 
     manifest = {
-        "campaign_version": "v1.0",
+        "campaign_version": "v1.1",
         "timestamp_iso": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "workload_profile": profile,
         "total_events": len(workload),
-        "source_groups_count": len(CORPUS_SOURCE_GROUPS),
-        "base_intents_count": len(intents),
+        "defined_source_groups_count": len(CORPUS_SOURCE_GROUPS),
+        "executed_source_groups_count": len(executed_groups),
+        "defined_base_intents_count": len(intents),
+        "executed_base_intents_count": len(executed_intents),
+        "executed_source_groups": executed_groups,
+        "defined_source_groups": list(CORPUS_SOURCE_GROUPS.keys()),
         "event_category_distribution": category_counts,
         "models": {
             "dense_encoder": f"{ENCODER_MODEL}@{ENCODER_REVISION}",
@@ -1083,7 +1098,11 @@ def run_large_workload_campaign(
             "python_version": sys.version.split()[0],
             "platform": sys.platform,
         },
-        "source_groups": list(CORPUS_SOURCE_GROUPS.keys()),
+        "evidence_classification": {
+            "workload_expected_reuse": "Eligible category matching; actual answer correctness unadjudicated",
+            "adversarial_false_accepts": "Development regression evidence following regex optimization, not untouched holdout",
+            "token_accounting": "Synthetic offline fixture accounting, not billable live invoices",
+        },
     }
 
     manifest_path = output_dir / "manifest.json"
@@ -1119,7 +1138,7 @@ def run_large_workload_campaign(
         all_raw_records.extend(res["records"])
         if verbose:
             sm = res["summary"]
-            print(f"    Calls: {sm['total_provider_calls']} | Avoided (Correct/Incorr): {sm['calls_avoided_correct']}/{sm['calls_avoided_incorrect']} | Hits: {sm['cache_hits_total']} (Exact: {sm['exact_hits']}, Sem: {sm['semantic_hits']}) | p50: {sm['latency_ms_p50']}ms | False Accepts: {sm['adversarial_false_accepts']}")
+            print(f"    Calls: {sm['total_provider_calls']} | Avoided (Eligible/Inelig): {sm['calls_avoided_eligible']}/{sm['calls_avoided_ineligible']} | Hits: {sm['cache_hits_total']} (Exact: {sm['exact_hits']}, Sem: {sm['semantic_hits']}) | p50: {sm['latency_ms_p50']}ms | False Accepts: {sm['adversarial_false_accepts']}")
 
     # Export raw JSONL
     results_jsonl_path = output_dir / "offline_results.jsonl"
@@ -1141,12 +1160,12 @@ def run_large_workload_campaign(
         print("\n================================================================================")
         print("                        METRICS CAMPAIGN SUMMARY TABLE                          ")
         print("================================================================================\n")
-        print("| Arm | Provider Calls | Avoided (Correct/Incorr) | Hits (Exact / Sem) | Repeat Cov | Para Cov | p50 Latency | False Accepts (95% CI) |")
+        print("| Arm | Provider Calls | Avoided (Eligible / Inelig) | Hits (Exact / Sem) | Repeat Cov | Para Cov | p50 Latency | False Accepts (95% CI) |")
         print("| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
         for arm, sm in all_arm_summaries.items():
             hits_str = f"{sm['exact_hits']} / {sm['semantic_hits']}"
             ci_str = f"{sm['adversarial_false_accepts']} [{sm['adversarial_false_accept_ci95'][0]:.3f}, {sm['adversarial_false_accept_ci95'][1]:.3f}]"
-            avoided_str = f"{sm['calls_avoided_correct']} / {sm['calls_avoided_incorrect']}"
+            avoided_str = f"{sm['calls_avoided_eligible']} / {sm['calls_avoided_ineligible']}"
             print(f"| **{arm}** | {sm['total_provider_calls']} | {avoided_str} | {hits_str} | {sm['exact_repeat_coverage']}% | {sm['paraphrase_opportunity_coverage']}% | {sm['latency_ms_p50']} ms | {ci_str} |")
         print(f"\nArtifacts successfully written to: {output_dir}\n")
 

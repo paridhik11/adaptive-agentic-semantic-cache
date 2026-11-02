@@ -1,24 +1,30 @@
-## Large-Scale Metrics Campaign (600 events × 4 arms = 2,400 events) — 2026-11-02
+## Large-Scale Offline Metrics Campaign & Evidence Correction — 2026-11-02
 
-This section records the large-scale metrics study executed across 25 documentation source groups, 125 distinct base intents, and 600 evaluation events per arm (2,400 total events evaluated across 4 matched arms: `no_cache`, `exact_only`, `verified_semantic`, and `shadow_semantic`).
-Harness: `scripts/evaluate_large_workload.py` | Raw telemetry: `artifacts/metrics_campaign/offline_results.jsonl` | Summary receipt: `artifacts/metrics_campaign/summary.json` | Report: `docs/METRICS_RESULTS.md`.
+This section records large-scale evaluation results across 25 documentation source groups and 125 base intents under two standardized profiles: Repeat-Rich (600 events per arm, executed on 12 groups / 60 base intents) and Lower-Repeat Breadth (400 events per arm, executed across all 25 groups / 125 base intents).
+Harness: `scripts/evaluate_large_workload.py` | Telemetry: `artifacts/metrics_campaign/` | Detailed Report: `docs/METRICS_RESULTS.md`.
 
-1. **Provider Work Avoided (FACTS MC-01–MC-05, MC-07)**:
-   - **`no_cache`**: 1,800 provider calls across 600 events (600 planning, 600 generation, 600 review), 201,667 synthetic tokens, p50: 130.86 ms.
-   - **`exact_only` (Safe Release Default)**: 948 provider calls (316 planning, 316 generation, 316 review), 852 provider calls avoided on correct answers, 0 calls avoided on incorrect reuse, 107,750 synthetic tokens (46.57% token reduction), 284 exact hits, p50: 140.80 ms.
-   - **`verified_semantic` (Guarded Opt-In)**: 927 provider calls (309 planning, 309 generation, 309 review), 873 provider calls avoided on correct answers, **0 calls avoided on incorrect reuse**, 105,429 synthetic tokens (47.72% token reduction), 291 hits (273 exact, 18 verified semantic), p50: 137.81 ms.
-   - **`shadow_semantic` (Diagnostic)**: 948 provider calls, 852 calls avoided on correct answers, 0 unproven answers substituted, full neural verification logged in shadow diagnostics.
+1. **Evidence Corrections & Terminology (FACTS MC-01, MC-07, MC-11, MC-16)**:
+   - **Workload-Expected (Eligible) Reuse**: Avoided provider calls are labeled `calls_avoided_eligible` based on category matching (`is_eligible_reuse = is_hit and item["eligible"]`). Actual answer correctness, semantic suitability, and safe coverage remain **unverified pending independent answer-level review**.
+   - **Executed vs Defined Scope**: The repeat-rich profile executed 60 intents across the first 12 source groups (modeling query redundancy). The lower-repeat profile executed **all 125 intents across all 25 source groups** (modeling breadth).
+   - **Adversarial Classification**: The 0/120 result on repeat-rich represents **development regression evidence** following the Task D regex refinement, not untouched holdout precision.
 
-2. **Adversarial Safety & Zero False Accepts (FACTS MC-06)**:
-   - Across 120 adversarial challenges per arm (spanning inverse operations, missing code examples, added requirements, entity swaps, negations, and numeric constraints), both `exact_only` and `verified_semantic` achieved **0 false accepts** (0/120, 0.00% false accept rate, exact 95% Clopper-Pearson CI `[0.00%, 3.03%]`).
+2. **Workload Profile A: Repeat-Rich (600 Events per Arm; 12 Executed Groups, 60 Intents)**:
+   - **`no_cache`**: 1,800 provider calls across 600 events, 201,667 synthetic tokens, p50: 130.86 ms.
+   - **`exact_only` (Safe Release Default)**: 948 provider calls, 852 calls avoided on eligible reuse, 0 on ineligible reuse, 107,750 synthetic tokens (46.57% token reduction), 284 exact hits, p50: 140.80 ms, 0 false accepts (0/120).
+   - **`verified_semantic` (Guarded Opt-In)**: 927 provider calls, 873 calls avoided on eligible reuse, 0 on ineligible reuse, 105,429 synthetic tokens (47.72% token reduction), 291 hits (273 exact, 18 verified semantic), p50: 137.81 ms, 0 false accepts (0/120 development regression).
+   - **`shadow_semantic` (Diagnostic)**: 948 provider calls, 852 calls avoided on eligible reuse, 0 unproven answers substituted.
 
-3. **Task D Evidence-Backed Bottleneck Fix (FACTS MC-09)**:
-   - Diagnosed 1 inverse-operation false accept in `str_02:challenge_inverse_operation` during initial evaluation (`"comma separator"` matched `separat\w*` in split regex).
-   - Refined split regex pattern in `src/policy/decomposed_applicability.py` to target explicit partitioning action verbs (`split`, `break`, `partition`, `divid`). Re-running full 600-event benchmark confirmed 0 false accepts across all 120 challenges with zero loss of semantic opportunity coverage (29.44%).
+3. **Workload Profile B: Lower-Repeat Breadth (400 Events per Arm; ALL 25 Groups, 125 Intents)**:
+   - **`no_cache`**: 1,200 provider calls, 134,228 synthetic tokens, p50: 89.70 ms.
+   - **`exact_only` (Safe Release Default)**: 1,023 provider calls, 177 calls avoided on eligible reuse, 0 on ineligible reuse, 114,453 synthetic tokens (14.73% token reduction), 59 exact hits, p50: 168.42 ms, **0 false accepts across 125 challenges** (0/125, 0.00%, exact 95% Clopper-Pearson CI `[0.00%, 2.91%]`).
+   - **`verified_semantic` (Guarded Opt-In, Untuned)**: 975 provider calls, 222 calls avoided on eligible reuse, 3 on ineligible reuse, 109,302 synthetic tokens (18.57% token reduction), 75 hits (57 exact, 18 semantic), p50: 180.60 ms, **1 false accept across 125 challenges** (1/125, 0.80%, exact 95% Clopper-Pearson CI `[0.02%, 4.38%]`) on `async_05:challenge_added_requirements`.
+   - **`shadow_semantic` (Diagnostic)**: 1,023 provider calls, 177 calls avoided on eligible reuse, 0 on ineligible reuse, 59 exact hits, 0 unproven answers substituted, p50: 183.55 ms, 0 false accepts (0/125).
 
-4. **Live Benchmark Preflight Safety (FACTS MC-10)**:
-   - Built matched 3-arm live benchmark harness (`scripts/evaluate_live_paired.py`) with frozen 12-task workload, spend cap $0.00, and preflight quota checks. Live execution is strictly BLOCKED (`live_authorized=False`); zero live API calls initiated.
-   - Full safety envelope documented in `docs/LIVE_BENCHMARK_READINESS.md`.
+4. **Architectural Confirmation**:
+   - The 1 false accept in untuned `verified_semantic` (`"benchmark using cProfile"` query matching basic asyncio answer) conclusively proves that exact caching (`mode="exact"`) must remain the default serving mode, and semantic caching must remain shadow-only by default and experimental opt-in.
+
+5. **Live Benchmark Preflight Safety (FACTS MC-10)**:
+   - Matched 3-arm live runner (`scripts/evaluate_live_paired.py`) enforces $0.00 spend cap, free-tier allowlist, and hard blocks unauthorized live execution (`live_authorized=False`). Zero live API calls initiated. Documented in `docs/LIVE_BENCHMARK_READINESS.md`.
 
 ## Final Release Evidence Correction & P2 Integration — 2026-11-02
 

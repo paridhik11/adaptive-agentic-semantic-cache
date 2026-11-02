@@ -69,19 +69,21 @@ Each base intent generates 9 distinct event variations:
 
 ---
 
-## 4. Workload Profiles
+## 4. Workload Profiles: Defined vs Executed Scope
 
-Two reproducible workload profiles are defined:
-- **Repeat-Rich Workload (600 events):** Models high-redundancy, high-reuse environments.
-  - 60 Seeds
-  - 240 Exact Repeats (4x factor)
-  - 180 Natural Paraphrases (3x factor)
-  - 120 Adversarial Challenges (2 per seed across the 6 challenge families)
-- **Lower-Repeat Workload (400 events):** Models exploratory, broad-coverage environments.
-  - 125 Seeds (all 125 intents)
-  - 60 Exact Repeats
-  - 90 Natural Paraphrases
-  - 125 Adversarial Challenges (1 per intent, rotating challenge types)
+The benchmark framework defines **25 documentation source groups** and **125 distinct base intents** (5 intents per group). The two standardized profiles exercise distinct subsets:
+
+1. **Repeat-Rich Workload (600 events per arm):**
+   - **Defined Scope:** 25 source groups, 125 base intents.
+   - **Executed Scope:** First 12 source groups (`list_operations` through `itertools_recipes`), 60 base intents.
+   - **Composition:** 60 seeds, 240 exact repeats (4x), 180 natural paraphrases (3x), 120 adversarial challenges (2 per seed across 6 challenge archetypes).
+   - **Focus:** High-redundancy, high-reuse traffic modeling cache performance under heavy query clustering.
+
+2. **Lower-Repeat Workload (400 events per arm):**
+   - **Defined Scope:** 25 source groups, 125 base intents.
+   - **Executed Scope:** **All 25 source groups, all 125 base intents**.
+   - **Composition:** 125 seeds (1 per intent across all 25 groups), 60 exact repeats (subset), 90 natural paraphrases (subset), 125 adversarial challenges (1 per intent, rotating all 6 challenge archetypes across all 25 groups).
+   - **Focus:** Comprehensive breadth, exploratory traffic, and cross-domain guardrail stress testing.
 
 ---
 
@@ -100,11 +102,14 @@ All arms process the identical workload event sequence, source corpus, model set
 
 ---
 
-## 6. Scientific Truthfulness & Evidence Disclosures
+## 6. Field Semantics & Scientific Truthfulness Disclosures
 
 In accordance with standing repository integrity rules:
+- **Workload-Expected Reuse vs Actual Correctness:** Raw telemetry records `is_eligible_reuse` (and legacy alias `is_correct_reuse`), defined as `is_hit and item["eligible"]`. This metric flags whether a cache hit occurred on a benchmark-defined eligible query type (seed repeat or paraphrase), NOT that the answer has been independently adjudicated as factually correct. Avoided provider calls on eligible hits are labeled `calls_avoided_eligible`. Actual answer-level correctness, semantic suitability, and safe coverage remain unverified pending independent answer-level review.
+- **Adversarial Evidence Classification:** The 0/120 adversarial challenge result on the repeat-rich profile represents **development regression evidence** following the Task D regex optimization, not untouched holdout precision. Breadth evaluation on the 400-event lower-repeat profile across all 25 groups recorded 1 false accept in `verified_semantic` (`async_05:challenge_added_requirements`, 0.80% error rate, CI `[0.02%, 4.38%]`), while `exact_only` achieved 0/125 (0.00%, CI `[0.00%, 2.91%]`).
 - **Evidence Labeling:** All timing metrics are actual measured wall-clock latencies. Token counts and provider attempts are recorded from deterministic reference simulation and labeled synthetic.
 - **No Production Extrapolation:** Synthetic workloads demonstrate engineering mechanisms, boundary enforcement, and relative efficiency gains; they are not marketed as empirical production traffic distributions.
 - **Model Scores as Signals:** Local cross-encoder verification scores are relevance signals, not calibrated mathematical guarantees of factual accuracy.
 - **Binomial Confidence Intervals:** Binomial error and hit rates report exact Clopper-Pearson 95% confidence intervals, including exact upper bounds for zero observed errors.
-- **Quality Review Status:** Answers are audited through model-assisted verification against grounded source documentation; they are not claimed as human-certified ground truth.
+- **Quality Review Status:** Answers are logged with full per-event text in `offline_results.jsonl`. Their quality status is classified as `unadjudicated_workload_expected_reuse`.
+

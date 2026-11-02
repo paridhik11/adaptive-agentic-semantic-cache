@@ -1,6 +1,6 @@
 {
   "manifest": {
-    "campaign_version": "v1.0",
+    "campaign_version": "v1.1",
     "timestamp_iso": "2026-11-02T14:32:31Z",
     "workload_profile": "repeat_rich",
     "total_events": 600,
@@ -47,7 +47,30 @@
       "context_managers",
       "object_oriented",
       "functional_programming"
-    ]
+    ],
+    "defined_source_groups_count": 25,
+    "executed_source_groups_count": 12,
+    "defined_base_intents_count": 125,
+    "executed_base_intents_count": 60,
+    "executed_source_groups": [
+      "list_operations",
+      "dict_operations",
+      "string_manipulation",
+      "file_io",
+      "json_handling",
+      "csv_processing",
+      "error_handling",
+      "datetime_operations",
+      "regex_patterns",
+      "math_statistics",
+      "pathlib_filesystem",
+      "itertools_recipes"
+    ],
+    "evidence_classification": {
+      "workload_expected_reuse": "Eligible category matching; actual answer correctness unadjudicated",
+      "adversarial_false_accepts": "Development regression evidence following regex optimization, not untouched holdout",
+      "token_accounting": "Synthetic offline fixture accounting, not billable live invoices"
+    }
   },
   "arms": {
     "no_cache": {
@@ -71,7 +94,7 @@
         0.030273
       ],
       "false_accepts_by_type": {},
-      "quality_review_status": "model_assisted_simulation",
+      "quality_review_status": "unadjudicated_workload_expected_reuse",
       "latency_ms_p50": 130.86,
       "latency_ms_p90": 146.15,
       "latency_ms_p95": 151.58,
@@ -81,7 +104,12 @@
         "planning": 600,
         "generation": 600,
         "review": 600
-      }
+      },
+      "calls_avoided_eligible": 0,
+      "calls_avoided_ineligible": 0,
+      "adversarial_evidence_classification": "development_regression_evidence",
+      "semantic_suitability_status": "unverified_pending_independent_answer_level_review",
+      "safe_coverage_status": "unverified_pending_independent_answer_level_review"
     },
     "exact_only": {
       "arm": "exact_only",
@@ -104,7 +132,7 @@
         0.030273
       ],
       "false_accepts_by_type": {},
-      "quality_review_status": "model_assisted_simulation",
+      "quality_review_status": "unadjudicated_workload_expected_reuse",
       "latency_ms_p50": 140.8,
       "latency_ms_p90": 227.63,
       "latency_ms_p95": 233.14,
@@ -114,7 +142,12 @@
         "planning": 316,
         "generation": 316,
         "review": 316
-      }
+      },
+      "calls_avoided_eligible": 852,
+      "calls_avoided_ineligible": 0,
+      "adversarial_evidence_classification": "development_regression_evidence",
+      "semantic_suitability_status": "unverified_pending_independent_answer_level_review",
+      "safe_coverage_status": "unverified_pending_independent_answer_level_review"
     },
     "verified_semantic": {
       "arm": "verified_semantic",
@@ -137,7 +170,7 @@
         0.030273
       ],
       "false_accepts_by_type": {},
-      "quality_review_status": "model_assisted_simulation",
+      "quality_review_status": "unadjudicated_workload_expected_reuse",
       "latency_ms_p50": 137.81,
       "latency_ms_p90": 232.99,
       "latency_ms_p95": 237.73,
@@ -147,7 +180,12 @@
         "planning": 309,
         "generation": 309,
         "review": 309
-      }
+      },
+      "calls_avoided_eligible": 873,
+      "calls_avoided_ineligible": 0,
+      "adversarial_evidence_classification": "development_regression_evidence",
+      "semantic_suitability_status": "unverified_pending_independent_answer_level_review",
+      "safe_coverage_status": "unverified_pending_independent_answer_level_review"
     },
     "shadow_semantic": {
       "arm": "shadow_semantic",
@@ -170,7 +208,7 @@
         0.030273
       ],
       "false_accepts_by_type": {},
-      "quality_review_status": "model_assisted_simulation",
+      "quality_review_status": "unadjudicated_workload_expected_reuse",
       "latency_ms_p50": 141.58,
       "latency_ms_p90": 232.59,
       "latency_ms_p95": 241.28,
@@ -180,7 +218,12 @@
         "planning": 316,
         "generation": 316,
         "review": 316
-      }
+      },
+      "calls_avoided_eligible": 852,
+      "calls_avoided_ineligible": 0,
+      "adversarial_evidence_classification": "development_regression_evidence",
+      "semantic_suitability_status": "unverified_pending_independent_answer_level_review",
+      "safe_coverage_status": "unverified_pending_independent_answer_level_review"
     }
   },
   "raw_records_count": 2400
