@@ -1,7 +1,7 @@
 {
   "no_cache": {
     "arm": "no_cache",
-    "elapsed_seconds": 3.2267390000633895,
+    "elapsed_seconds": 3.3919001002795994,
     "all_traffic": {
       "total_tasks": 24,
       "hits_total": 0,
@@ -12,11 +12,14 @@
       "prompt_tokens_total": 4841,
       "completion_tokens_total": 1441,
       "total_tokens_consumed": 6282,
-      "latency_p50_ms": 116.94130022078753,
-      "latency_p95_ms": 123.87240026146173,
-      "latency_mean_ms": 116.44822919818883,
+      "latency_p50_ms": 140.24339988827705,
+      "latency_p95_ms": 156.26690024510026,
+      "latency_mean_ms": 141.25768331966052,
       "hit_p50_ms": 0.0,
-      "miss_p50_ms": 116.94130022078753
+      "hit_p95_ms": 0.0,
+      "miss_p50_ms": 140.24339988827705,
+      "miss_p95_ms": 156.26690024510026,
+      "miss_overhead_ms": 0.0
     },
     "eligible_traffic": {
       "total_tasks": 18,
@@ -28,11 +31,14 @@
       "prompt_tokens_total": 3596,
       "completion_tokens_total": 1072,
       "total_tokens_consumed": 4668,
-      "latency_p50_ms": 117.21150018274784,
-      "latency_p95_ms": 123.87240026146173,
-      "latency_mean_ms": 116.63383341187404,
+      "latency_p50_ms": 143.79240013659,
+      "latency_p95_ms": 158.22270000353456,
+      "latency_mean_ms": 143.02114443853498,
       "hit_p50_ms": 0.0,
-      "miss_p50_ms": 117.21150018274784
+      "hit_p95_ms": 0.0,
+      "miss_p50_ms": 143.79240013659,
+      "miss_p95_ms": 158.22270000353456,
+      "miss_overhead_ms": 3.54900024831295
     },
     "task_records": [
       {
@@ -47,7 +53,7 @@
         "prompt_tokens": 199,
         "completion_tokens": 59,
         "total_tokens": 258,
-        "elapsed_ms": 111.89980013296008,
+        "elapsed_ms": 152.56180008873343,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -73,7 +79,7 @@
         "prompt_tokens": 191,
         "completion_tokens": 57,
         "total_tokens": 248,
-        "elapsed_ms": 123.87240026146173,
+        "elapsed_ms": 134.6102999523282,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -99,7 +105,7 @@
         "prompt_tokens": 201,
         "completion_tokens": 60,
         "total_tokens": 261,
-        "elapsed_ms": 118.77990001812577,
+        "elapsed_ms": 136.31640002131462,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -125,7 +131,7 @@
         "prompt_tokens": 202,
         "completion_tokens": 60,
         "total_tokens": 262,
-        "elapsed_ms": 120.44219998642802,
+        "elapsed_ms": 143.79240013659,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -151,7 +157,7 @@
         "prompt_tokens": 196,
         "completion_tokens": 59,
         "total_tokens": 255,
-        "elapsed_ms": 115.44360034167767,
+        "elapsed_ms": 155.6170000694692,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -177,7 +183,7 @@
         "prompt_tokens": 204,
         "completion_tokens": 61,
         "total_tokens": 265,
-        "elapsed_ms": 120.26909971609712,
+        "elapsed_ms": 149.01760034263134,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -203,7 +209,7 @@
         "prompt_tokens": 199,
         "completion_tokens": 59,
         "total_tokens": 258,
-        "elapsed_ms": 116.94130022078753,
+        "elapsed_ms": 146.5031998232007,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -229,7 +235,7 @@
         "prompt_tokens": 191,
         "completion_tokens": 57,
         "total_tokens": 248,
-        "elapsed_ms": 116.2058999761939,
+        "elapsed_ms": 130.11179957538843,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -255,7 +261,7 @@
         "prompt_tokens": 201,
         "completion_tokens": 60,
         "total_tokens": 261,
-        "elapsed_ms": 117.21150018274784,
+        "elapsed_ms": 136.2364999949932,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -281,7 +287,7 @@
         "prompt_tokens": 202,
         "completion_tokens": 60,
         "total_tokens": 262,
-        "elapsed_ms": 121.35160015895963,
+        "elapsed_ms": 135.00020001083612,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -307,7 +313,7 @@
         "prompt_tokens": 196,
         "completion_tokens": 59,
         "total_tokens": 255,
-        "elapsed_ms": 106.64899973198771,
+        "elapsed_ms": 135.36550011485815,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -333,7 +339,7 @@
         "prompt_tokens": 204,
         "completion_tokens": 61,
         "total_tokens": 265,
-        "elapsed_ms": 121.99820019304752,
+        "elapsed_ms": 144.56429984420538,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -359,7 +365,7 @@
         "prompt_tokens": 195,
         "completion_tokens": 58,
         "total_tokens": 253,
-        "elapsed_ms": 121.0444001480937,
+        "elapsed_ms": 156.26690024510026,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -385,7 +391,7 @@
         "prompt_tokens": 191,
         "completion_tokens": 57,
         "total_tokens": 248,
-        "elapsed_ms": 112.44980012997985,
+        "elapsed_ms": 154.38189962878823,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -411,7 +417,7 @@
         "prompt_tokens": 205,
         "completion_tokens": 61,
         "total_tokens": 266,
-        "elapsed_ms": 113.19590033963323,
+        "elapsed_ms": 143.27779971063137,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -437,7 +443,7 @@
         "prompt_tokens": 198,
         "completion_tokens": 59,
         "total_tokens": 257,
-        "elapsed_ms": 112.81119985505939,
+        "elapsed_ms": 158.22270000353456,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -463,7 +469,7 @@
         "prompt_tokens": 209,
         "completion_tokens": 62,
         "total_tokens": 271,
-        "elapsed_ms": 117.934700101614,
+        "elapsed_ms": 132.7941999770701,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -489,7 +495,7 @@
         "prompt_tokens": 212,
         "completion_tokens": 63,
         "total_tokens": 275,
-        "elapsed_ms": 110.90849991887808,
+        "elapsed_ms": 129.74010035395622,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -515,7 +521,7 @@
         "prompt_tokens": 199,
         "completion_tokens": 59,
         "total_tokens": 258,
-        "elapsed_ms": 115.87099963799119,
+        "elapsed_ms": 140.24339988827705,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -541,7 +547,7 @@
         "prompt_tokens": 207,
         "completion_tokens": 61,
         "total_tokens": 268,
-        "elapsed_ms": 124.29860001429915,
+        "elapsed_ms": 133.46850033849478,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -567,7 +573,7 @@
         "prompt_tokens": 213,
         "completion_tokens": 63,
         "total_tokens": 276,
-        "elapsed_ms": 112.00129985809326,
+        "elapsed_ms": 130.58439968153834,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -593,7 +599,7 @@
         "prompt_tokens": 202,
         "completion_tokens": 60,
         "total_tokens": 262,
-        "elapsed_ms": 117.325599770993,
+        "elapsed_ms": 134.51350014656782,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -619,7 +625,7 @@
         "prompt_tokens": 216,
         "completion_tokens": 64,
         "total_tokens": 280,
-        "elapsed_ms": 111.41520040109754,
+        "elapsed_ms": 133.96639982238412,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -645,7 +651,7 @@
         "prompt_tokens": 208,
         "completion_tokens": 62,
         "total_tokens": 270,
-        "elapsed_ms": 114.43679966032505,
+        "elapsed_ms": 143.02759990096092,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -663,7 +669,7 @@
   },
   "exact_only": {
     "arm": "exact_only",
-    "elapsed_seconds": 2.916334700305015,
+    "elapsed_seconds": 3.3663634001277387,
     "all_traffic": {
       "total_tasks": 24,
       "hits_total": 5,
@@ -674,11 +680,14 @@
       "prompt_tokens_total": 3839,
       "completion_tokens_total": 1142,
       "total_tokens_consumed": 4981,
-      "latency_p50_ms": 103.35909994319081,
-      "latency_p95_ms": 112.6481001265347,
-      "latency_mean_ms": 87.11431666354959,
-      "hit_p50_ms": 19.987199921160936,
-      "miss_p50_ms": 103.56259997934103
+      "latency_p50_ms": 153.61189981922507,
+      "latency_p95_ms": 234.86150009557605,
+      "latency_mean_ms": 140.20394580438733,
+      "hit_p50_ms": 26.4146002009511,
+      "hit_p95_ms": 29.387500137090683,
+      "miss_p50_ms": 154.2357997968793,
+      "miss_p95_ms": 258.695499971509,
+      "miss_overhead_ms": 13.992399908602238
     },
     "eligible_traffic": {
       "total_tasks": 18,
@@ -690,11 +699,14 @@
       "prompt_tokens_total": 2594,
       "completion_tokens_total": 773,
       "total_tokens_consumed": 3367,
-      "latency_p50_ms": 103.52989984676242,
-      "latency_p95_ms": 113.85399987921119,
-      "latency_mean_ms": 81.85367221530113,
-      "hit_p50_ms": 19.987199921160936,
-      "miss_p50_ms": 104.48460001498461
+      "latency_p50_ms": 150.26480006054044,
+      "latency_p95_ms": 215.69119999185205,
+      "latency_mean_ms": 118.76626661978662,
+      "hit_p50_ms": 26.4146002009511,
+      "hit_p95_ms": 29.387500137090683,
+      "miss_p50_ms": 153.61189981922507,
+      "miss_p95_ms": 215.69119999185205,
+      "miss_overhead_ms": 13.368499930948019
     },
     "task_records": [
       {
@@ -709,7 +721,7 @@
         "prompt_tokens": 199,
         "completion_tokens": 59,
         "total_tokens": 258,
-        "elapsed_ms": 108.9947996661067,
+        "elapsed_ms": 215.69119999185205,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -735,7 +747,7 @@
         "prompt_tokens": 191,
         "completion_tokens": 57,
         "total_tokens": 248,
-        "elapsed_ms": 103.52989984676242,
+        "elapsed_ms": 117.61750001460314,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -761,7 +773,7 @@
         "prompt_tokens": 201,
         "completion_tokens": 60,
         "total_tokens": 261,
-        "elapsed_ms": 104.48460001498461,
+        "elapsed_ms": 150.26480006054044,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -787,7 +799,7 @@
         "prompt_tokens": 202,
         "completion_tokens": 60,
         "total_tokens": 262,
-        "elapsed_ms": 103.56259997934103,
+        "elapsed_ms": 156.39630006626248,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -813,7 +825,7 @@
         "prompt_tokens": 196,
         "completion_tokens": 59,
         "total_tokens": 255,
-        "elapsed_ms": 106.40509985387325,
+        "elapsed_ms": 153.61189981922507,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -839,7 +851,7 @@
         "prompt_tokens": 204,
         "completion_tokens": 61,
         "total_tokens": 265,
-        "elapsed_ms": 101.41689982265234,
+        "elapsed_ms": 151.91389992833138,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -865,7 +877,7 @@
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "elapsed_ms": 19.396899733692408,
+        "elapsed_ms": 26.033699978142977,
         "stages": {
           "planning": 0,
           "tool": 0,
@@ -891,7 +903,7 @@
         "prompt_tokens": 191,
         "completion_tokens": 57,
         "total_tokens": 248,
-        "elapsed_ms": 107.950400095433,
+        "elapsed_ms": 119.00279996916652,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -917,7 +929,7 @@
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "elapsed_ms": 19.225300289690495,
+        "elapsed_ms": 29.387500137090683,
         "stages": {
           "planning": 0,
           "tool": 0,
@@ -943,7 +955,7 @@
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "elapsed_ms": 20.81580040976405,
+        "elapsed_ms": 28.967299964278936,
         "stages": {
           "planning": 0,
           "tool": 0,
@@ -969,7 +981,7 @@
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "elapsed_ms": 19.987199921160936,
+        "elapsed_ms": 26.255599688738585,
         "stages": {
           "planning": 0,
           "tool": 0,
@@ -995,7 +1007,7 @@
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "elapsed_ms": 20.07710002362728,
+        "elapsed_ms": 26.4146002009511,
         "stages": {
           "planning": 0,
           "tool": 0,
@@ -1021,7 +1033,7 @@
         "prompt_tokens": 195,
         "completion_tokens": 58,
         "total_tokens": 253,
-        "elapsed_ms": 113.85399987921119,
+        "elapsed_ms": 174.4679003022611,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1047,7 +1059,7 @@
         "prompt_tokens": 191,
         "completion_tokens": 57,
         "total_tokens": 248,
-        "elapsed_ms": 107.76450019329786,
+        "elapsed_ms": 154.2357997968793,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1073,7 +1085,7 @@
         "prompt_tokens": 205,
         "completion_tokens": 61,
         "total_tokens": 266,
-        "elapsed_ms": 98.13620010390878,
+        "elapsed_ms": 149.0158997476101,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1099,7 +1111,7 @@
         "prompt_tokens": 198,
         "completion_tokens": 59,
         "total_tokens": 257,
-        "elapsed_ms": 103.35909994319081,
+        "elapsed_ms": 154.68689985573292,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1125,7 +1137,7 @@
         "prompt_tokens": 209,
         "completion_tokens": 62,
         "total_tokens": 271,
-        "elapsed_ms": 112.6481001265347,
+        "elapsed_ms": 154.13679974153638,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1151,7 +1163,7 @@
         "prompt_tokens": 212,
         "completion_tokens": 63,
         "total_tokens": 275,
-        "elapsed_ms": 101.75759997218847,
+        "elapsed_ms": 149.69239989295602,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1177,7 +1189,7 @@
         "prompt_tokens": 199,
         "completion_tokens": 59,
         "total_tokens": 258,
-        "elapsed_ms": 103.76660013571382,
+        "elapsed_ms": 201.73129998147488,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1203,7 +1215,7 @@
         "prompt_tokens": 207,
         "completion_tokens": 61,
         "total_tokens": 268,
-        "elapsed_ms": 106.87470017001033,
+        "elapsed_ms": 142.11890008300543,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1229,7 +1241,7 @@
         "prompt_tokens": 213,
         "completion_tokens": 63,
         "total_tokens": 276,
-        "elapsed_ms": 102.48219966888428,
+        "elapsed_ms": 229.9144002608955,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1255,7 +1267,7 @@
         "prompt_tokens": 202,
         "completion_tokens": 60,
         "total_tokens": 262,
-        "elapsed_ms": 103.15570002421737,
+        "elapsed_ms": 159.78029975667596,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1281,7 +1293,7 @@
         "prompt_tokens": 216,
         "completion_tokens": 64,
         "total_tokens": 280,
-        "elapsed_ms": 97.89220010861754,
+        "elapsed_ms": 258.695499971509,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1307,7 +1319,7 @@
         "prompt_tokens": 208,
         "completion_tokens": 62,
         "total_tokens": 270,
-        "elapsed_ms": 103.20609994232655,
+        "elapsed_ms": 234.86150009557605,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1325,7 +1337,7 @@
   },
   "verified_semantic": {
     "arm": "verified_semantic",
-    "elapsed_seconds": 2.5230511999689043,
+    "elapsed_seconds": 4.078940299805254,
     "all_traffic": {
       "total_tasks": 24,
       "hits_total": 9,
@@ -1336,11 +1348,14 @@
       "prompt_tokens_total": 3018,
       "completion_tokens_total": 898,
       "total_tokens_consumed": 3916,
-      "latency_p50_ms": 108.30050008371472,
-      "latency_p95_ms": 119.73660020157695,
-      "latency_mean_ms": 80.50468752238278,
-      "hit_p50_ms": 19.760900177061558,
-      "miss_p50_ms": 112.65369970351458
+      "latency_p50_ms": 165.64489994198084,
+      "latency_p95_ms": 270.6402996554971,
+      "latency_mean_ms": 169.87817076733336,
+      "hit_p50_ms": 50.70029990747571,
+      "hit_p95_ms": 114.16130000725389,
+      "miss_p50_ms": 248.81630018353462,
+      "miss_p95_ms": 280.1912999711931,
+      "miss_overhead_ms": 108.57290029525757
     },
     "eligible_traffic": {
       "total_tasks": 18,
@@ -1352,11 +1367,14 @@
       "prompt_tokens_total": 1773,
       "completion_tokens_total": 529,
       "total_tokens_consumed": 2302,
-      "latency_p50_ms": 98.76960003748536,
-      "latency_p95_ms": 118.531399872154,
-      "latency_mean_ms": 69.11801668401394,
-      "hit_p50_ms": 19.760900177061558,
-      "miss_p50_ms": 111.92680010572076
+      "latency_p50_ms": 157.1285999380052,
+      "latency_p95_ms": 280.1912999711931,
+      "latency_mean_ms": 153.2065165746543,
+      "hit_p50_ms": 50.70029990747571,
+      "hit_p95_ms": 114.16130000725389,
+      "miss_p50_ms": 248.81630018353462,
+      "miss_p95_ms": 280.1912999711931,
+      "miss_overhead_ms": 108.57290029525757
     },
     "task_records": [
       {
@@ -1371,7 +1389,7 @@
         "prompt_tokens": 199,
         "completion_tokens": 59,
         "total_tokens": 258,
-        "elapsed_ms": 118.531399872154,
+        "elapsed_ms": 280.1912999711931,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1397,7 +1415,7 @@
         "prompt_tokens": 191,
         "completion_tokens": 57,
         "total_tokens": 248,
-        "elapsed_ms": 98.76960003748536,
+        "elapsed_ms": 157.1285999380052,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1423,7 +1441,7 @@
         "prompt_tokens": 201,
         "completion_tokens": 60,
         "total_tokens": 261,
-        "elapsed_ms": 109.52220018953085,
+        "elapsed_ms": 244.97769959270954,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1449,7 +1467,7 @@
         "prompt_tokens": 202,
         "completion_tokens": 60,
         "total_tokens": 262,
-        "elapsed_ms": 114.36720006167889,
+        "elapsed_ms": 248.94129997119308,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1475,7 +1493,7 @@
         "prompt_tokens": 196,
         "completion_tokens": 59,
         "total_tokens": 255,
-        "elapsed_ms": 112.65369970351458,
+        "elapsed_ms": 270.6402996554971,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1501,7 +1519,7 @@
         "prompt_tokens": 204,
         "completion_tokens": 61,
         "total_tokens": 265,
-        "elapsed_ms": 111.92680010572076,
+        "elapsed_ms": 248.81630018353462,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1527,7 +1545,7 @@
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "elapsed_ms": 19.760900177061558,
+        "elapsed_ms": 47.73689992725849,
         "stages": {
           "planning": 0,
           "tool": 0,
@@ -1553,7 +1571,7 @@
         "prompt_tokens": 191,
         "completion_tokens": 57,
         "total_tokens": 248,
-        "elapsed_ms": 104.02810014784336,
+        "elapsed_ms": 165.64489994198084,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1579,7 +1597,7 @@
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "elapsed_ms": 16.862000338733196,
+        "elapsed_ms": 50.70029990747571,
         "stages": {
           "planning": 0,
           "tool": 0,
@@ -1605,7 +1623,7 @@
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "elapsed_ms": 18.59049964696169,
+        "elapsed_ms": 48.06139972060919,
         "stages": {
           "planning": 0,
           "tool": 0,
@@ -1631,7 +1649,7 @@
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "elapsed_ms": 16.492499969899654,
+        "elapsed_ms": 48.42460015788674,
         "stages": {
           "planning": 0,
           "tool": 0,
@@ -1657,7 +1675,7 @@
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "elapsed_ms": 18.180400133132935,
+        "elapsed_ms": 44.52309990301728,
         "stages": {
           "planning": 0,
           "tool": 0,
@@ -1683,7 +1701,7 @@
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "elapsed_ms": 39.10329984501004,
+        "elapsed_ms": 96.25809965655208,
         "stages": {
           "planning": 0,
           "tool": 0,
@@ -1709,7 +1727,7 @@
         "prompt_tokens": 191,
         "completion_tokens": 57,
         "total_tokens": 248,
-        "elapsed_ms": 117.20599979162216,
+        "elapsed_ms": 251.7463001422584,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1735,7 +1753,7 @@
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "elapsed_ms": 42.83510008826852,
+        "elapsed_ms": 93.73269975185394,
         "stages": {
           "planning": 0,
           "tool": 0,
@@ -1761,7 +1779,7 @@
         "prompt_tokens": 198,
         "completion_tokens": 59,
         "total_tokens": 257,
-        "elapsed_ms": 111.78679997101426,
+        "elapsed_ms": 244.4365001283586,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1787,7 +1805,7 @@
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "elapsed_ms": 38.201500196009874,
+        "elapsed_ms": 101.59569978713989,
         "stages": {
           "planning": 0,
           "tool": 0,
@@ -1813,7 +1831,7 @@
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0,
-        "elapsed_ms": 35.30630003660917,
+        "elapsed_ms": 114.16130000725389,
         "stages": {
           "planning": 0,
           "tool": 0,
@@ -1839,7 +1857,7 @@
         "prompt_tokens": 199,
         "completion_tokens": 59,
         "total_tokens": 258,
-        "elapsed_ms": 115.16909999772906,
+        "elapsed_ms": 251.9225999712944,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1865,7 +1883,7 @@
         "prompt_tokens": 207,
         "completion_tokens": 61,
         "total_tokens": 268,
-        "elapsed_ms": 108.30050008371472,
+        "elapsed_ms": 152.26109977811575,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1891,7 +1909,7 @@
         "prompt_tokens": 213,
         "completion_tokens": 63,
         "total_tokens": 276,
-        "elapsed_ms": 112.8278998658061,
+        "elapsed_ms": 243.96480014547706,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1917,7 +1935,7 @@
         "prompt_tokens": 202,
         "completion_tokens": 60,
         "total_tokens": 262,
-        "elapsed_ms": 107.8131003305316,
+        "elapsed_ms": 150.74469987303019,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1943,7 +1961,7 @@
         "prompt_tokens": 216,
         "completion_tokens": 64,
         "total_tokens": 280,
-        "elapsed_ms": 124.14099974557757,
+        "elapsed_ms": 268.48339987918735,
         "stages": {
           "planning": 1,
           "tool": 1,
@@ -1969,7 +1987,7 @@
         "prompt_tokens": 208,
         "completion_tokens": 62,
         "total_tokens": 270,
-        "elapsed_ms": 119.73660020157695,
+        "elapsed_ms": 251.9822004251182,
         "stages": {
           "planning": 1,
           "tool": 1,

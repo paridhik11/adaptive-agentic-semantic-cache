@@ -418,6 +418,18 @@ class ConservativeHybridCache:
         )
 
         with self._lock:
+            # Revalidate lifecycle under lock to prevent post-revocation or expired admission
+            cur_epoch = self.get_epoch(tenant_id)
+            if cur_epoch != epoch:
+                return False
+            cur_scope = self.get_scope(tenant_id)
+            if cur_scope != scope:
+                return False
+            if binding_h in self._revoked_keys:
+                return False
+            if self.clock() >= expires_at:
+                return False
+
             self._serving_candidates[candidate_id] = cand
             self._binding_to_exact_keys.setdefault(binding_h, set()).add(exact_k)
             # Evict if over limit
@@ -626,16 +638,31 @@ class ConservativeHybridCache:
                     if not entry_review.approved:
                         diagnosis["guard_rejections"].append(f"entry_veto:{entry_review.reason}")
                         continue
-                    diagnosis.update(
-                        stage="entry_reviewed_approved",
-                        candidate=cand.candidate_id,
-                        similarity=sim,
-                        tier="SEMANTIC",
-                        entry_decision=entry_review.reason,
-                        local_policy_recommendation=True,
-                    )
-                    el = (time.perf_counter() - started) * 1000.0
-                    return ResponseCacheResult(cand_resp, "HIT", "entry_reviewed_hit", 0, False, el)
+                    with self._lock:
+                        now_check = self.clock()
+                        cur_epoch = self.get_epoch(tenant_id)
+                        cur_scope = self.get_scope(tenant_id)
+                        if (
+                            cur_epoch != cand.epoch
+                            or cur_epoch != epoch
+                            or cand.candidate_id not in self._serving_candidates
+                            or binding_h in self._revoked_keys
+                            or now_check >= cand.expires_at
+                            or cur_scope != scope
+                        ):
+                            diagnosis["guard_rejections"].append("stale_before_entry_hit")
+                            continue
+
+                        diagnosis.update(
+                            stage="entry_reviewed_approved",
+                            candidate=cand.candidate_id,
+                            similarity=sim,
+                            tier="SEMANTIC",
+                            entry_decision=entry_review.reason,
+                            local_policy_recommendation=True,
+                        )
+                        el = (time.perf_counter() - started) * 1000.0
+                        return ResponseCacheResult(cand_resp, "HIT", "entry_reviewed_hit", 0, False, el)
 
                 # 6. Answer-Aware Passage Verification
                 t_ver0 = time.perf_counter()
@@ -651,15 +678,30 @@ class ConservativeHybridCache:
 
                     prob = score_data.get("probability", 0.0)
                     if prob >= self.verification_threshold:
-                        diagnosis.update(
-                            stage="verified_semantic_hit",
-                            candidate=cand.candidate_id,
-                            similarity=sim,
-                            tier="SEMANTIC",
-                            local_policy_recommendation=True,
-                        )
-                        el = (time.perf_counter() - started) * 1000.0
-                        return ResponseCacheResult(cand_resp, "HIT", "verified_semantic_hit", 0, False, el)
+                        with self._lock:
+                            now_check = self.clock()
+                            cur_epoch = self.get_epoch(tenant_id)
+                            cur_scope = self.get_scope(tenant_id)
+                            if (
+                                cur_epoch != cand.epoch
+                                or cur_epoch != epoch
+                                or cand.candidate_id not in self._serving_candidates
+                                or binding_h in self._revoked_keys
+                                or now_check >= cand.expires_at
+                                or cur_scope != scope
+                            ):
+                                diagnosis["guard_rejections"].append("stale_during_verification")
+                                continue
+
+                            diagnosis.update(
+                                stage="verified_semantic_hit",
+                                candidate=cand.candidate_id,
+                                similarity=sim,
+                                tier="SEMANTIC",
+                                local_policy_recommendation=True,
+                            )
+                            el = (time.perf_counter() - started) * 1000.0
+                            return ResponseCacheResult(cand_resp, "HIT", "verified_semantic_hit", 0, False, el)
                     else:
                         diagnosis["guard_rejections"].append(f"verifier_low_score:{prob:.4f}<{self.verification_threshold}")
                 except Exception as exc:
@@ -690,21 +732,24 @@ class ConservativeHybridCache:
                 # Cross-tier revocation consistency check
                 binding = approval_binding(request, request, exact_result.response, tenant_id=tenant_id, scope=asdict(scope))
                 binding_h = digest(binding)
-                if binding_h in self._revoked_keys:
-                    self.exact.invalidate_key(self.exact.request_key(request, tenant_id, asdict(scope)))
-                    fresh_response = provider(copy.deepcopy(request))
-                    total_elapsed = (time.perf_counter() - started) * 1000.0
-                    diagnosis.update(stage="exact_entry_revoked_fallback", tier="NONE")
-                    return ServingCacheResult(
-                        fresh_response,
-                        "MISS",
-                        "exact_entry_revoked",
-                        1,
-                        False,
-                        total_elapsed,
-                        "NONE",
-                        diagnosis,
-                    )
+                with self._lock:
+                    cur_epoch = self.get_epoch(tenant_id)
+                    cur_scope = self.get_scope(tenant_id)
+                    if cur_epoch != epoch or cur_scope != scope or binding_h in self._revoked_keys:
+                        self.exact.invalidate_key(self.exact.request_key(request, tenant_id, asdict(scope)))
+                        fresh_response = provider(copy.deepcopy(request))
+                        total_elapsed = (time.perf_counter() - started) * 1000.0
+                        diagnosis.update(stage="exact_entry_revoked_fallback", tier="NONE")
+                        return ServingCacheResult(
+                            fresh_response,
+                            "MISS",
+                            "exact_entry_revoked",
+                            1,
+                            False,
+                            total_elapsed,
+                            "NONE",
+                            diagnosis,
+                        )
                 diagnosis.update(stage="exact_hit", tier="EXACT")
             total_elapsed = (time.perf_counter() - started) * 1000.0
             return ServingCacheResult(

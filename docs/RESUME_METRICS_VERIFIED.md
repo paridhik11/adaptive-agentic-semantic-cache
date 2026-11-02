@@ -45,21 +45,22 @@ remain unverified; no headline application savings percentage is supported.
 
 ### 2. Whole-Agent Latency & Provider Accounting (Project 15 Agent Workflow)
 - **Claim:** Verified semantic caching eliminates multi-stage agent execution (planning, source document retrieval, draft generation, and review) for semantically equivalent requests while preserving strict safety.
-- **Evidence Label:** `measured-live (whole-agent execution benchmark, 24 tasks across 4 variation families; ConservativeHybridCache)`
-- **Accounting Scope Disclosure:** Simulated provider accounting using deterministic reference fixture completions. Token and attempt reductions represent avoided agent workflow stages, not measured billable API cost reductions.
-- **All-Traffic Results ($N=24$ tasks, `artifacts/resume/whole_agent_benchmark_results.json`):**
-  - No Cache: 72 provider calls, 6,282 tokens consumed, 0 hits (p50: 116.9 ms)
-  - Exact Only: 57 provider calls (15 calls / 20.8% reduction), 4,981 tokens (1,301 tokens / 20.7% reduction), 5 exact hits (p50: 103.4 ms)
-  - Verified Semantic: **45 provider calls** (27 calls / **37.5% reduction**), **3,916 tokens** (2,366 tokens / **37.7% reduction**), 9 hits (5 exact + 4 semantic; p50: **108.3 ms**)
+- **Evidence Label:** `simulated (offline deterministic agent workflow benchmark, 24 tasks across 4 variation families; ConservativeHybridCache)`
+- **Accounting Scope Disclosure:** Simulated provider accounting using deterministic reference fixture completions. Reductions in synthetic token counts are offline workflow accounting, not billable savings. No live provider calls were made.
+- **Complete Task Latency Boundary:** Encompasses complete task execution from creation through planning, tools, drafting, reviewer verification, human approval decision, candidate admission, and SQLite terminal-state persistence (`artifacts/resume/whole_agent_benchmark_results_p1_1.json`).
+- **All-Traffic Results ($N=24$ tasks):**
+  - No Cache: 72 provider calls, 6,282 tokens consumed, 0 hits (p50: **140.2 ms**, p95: **156.3 ms**)
+  - Exact Only: 57 provider calls (15 calls / **20.7% reduction**), 4,981 tokens (1,301 tokens / **20.7% reduction**), 5 exact hits (p50: **153.6 ms**, p95: **234.9 ms**; hit p50: **26.4 ms**, miss overhead: **14.0 ms**)
+  - Verified Semantic: **45 provider calls** (27 calls / **37.7% reduction**), **3,916 tokens** (2,366 tokens / **37.7% reduction**), 9 hits (5 exact + 4 semantic; p50: **165.6 ms**, p95: **270.6 ms**; hit p50: **50.7 ms**, miss overhead: **108.6 ms**)
 - **Eligible-Traffic Results ($N=18$ tasks with prior answer coverage):**
-  - No Cache: 54 provider calls, 4,668 tokens consumed (p50: 117.2 ms)
-  - Exact Only: 39 provider calls (15 avoided / 27.8% reduction), 3,367 tokens (1,301 avoided / 27.9% reduction; p50: 103.5 ms)
-  - Verified Semantic: **27 provider calls** (27 avoided / **50.0% reduction**), **2,302 tokens** (2,366 avoided / **50.7% reduction**), 9 hits (5 exact + 4 semantic; p50: **98.8 ms**)
+  - No Cache: 54 provider calls, 4,668 tokens consumed (p50: **143.8 ms**, p95: **156.3 ms**)
+  - Exact Only: 39 provider calls (15 avoided / **27.9% reduction**), 3,367 tokens (1,301 avoided / **27.9% reduction**; p50: **150.3 ms**, p95: **234.9 ms**)
+  - Verified Semantic: **27 provider calls** (27 avoided / **50.0% reduction**), **2,302 tokens** (2,366 avoided / **50.7% reduction**), 9 hits (5 exact + 4 semantic; p50: **157.1 ms**, p95: **270.6 ms**)
 - **Zero-Remote-Generation Invariant:** Exactly **0** remote provider calls attributable to any cache hit (exact or semantic).
 - **Adversarial Safety:** Exactly **0** hits across all 6 adversarial constraint tasks (direction reversal, negation, numeric constraint, task alteration). All 6 correctly executed full agent workflows.
 
 ### 3. Local Verification Overhead & Stage Timing Breakdown
-- **Evidence Label:** `measured-live (CPU execution on Intel/AMD x86_64, Windows)`
+- **Evidence Label:** `historical component measurement (local CPU micro-benchmark on Intel/AMD x86_64, Windows)`
 - **Stage Timings (Separated micro-benchmarking):**
   - MiniLM Dense Embedding: mean 27.08 ms (p50 ~25 ms)
   - Top-k Dense Retrieval: mean 0.25 ms

@@ -315,8 +315,6 @@ def run_arm(
             if state["status"] in {"COMPLETED", "AWAITING_APPROVAL", "FAILED", "REJECTED"}:
                 break
 
-        elapsed_ms = (time.perf_counter() - t0) * 1000.0
-
         prov_calls = provider.attempts - prov_before
         p_tokens = provider.total_prompt_tokens - p_tokens_before
         c_tokens = provider.total_completion_tokens - c_tokens_before
@@ -339,9 +337,14 @@ def run_arm(
         generation_calls = sum(1 for e in stages_run if e == "generation")
         review_calls = sum(1 for e in stages_run if e == "review")
 
-        # Operator approval to admit qualified answers for subsequent reuse
+        # Operator approval to admit qualified answers for subsequent reuse and persist terminal state
         if state["status"] == "AWAITING_APPROVAL":
             state = agent.decide(tid, "approve", tenant="tenant-main", principal="benchmark-user")
+
+        # Complete task latency boundary: encompasses task creation, planning, tools,
+        # draft generation, reviewer verification, human approval decision,
+        # candidate admission, and terminal SQLite state persistence.
+        elapsed_ms = (time.perf_counter() - t0) * 1000.0
 
         ans_text = state.get("answer")
         trace_entry = state.get("trace", [{}])[0] if state.get("trace") else {}
@@ -395,6 +398,11 @@ def run_arm(
         hit_lats = sorted(r["elapsed_ms"] for r in records if r["is_hit"])
         miss_lats = sorted(r["elapsed_ms"] for r in records if not r["is_hit"])
 
+        hit_p50 = hit_lats[int(len(hit_lats) * 0.50)] if hit_lats else 0.0
+        hit_p95 = hit_lats[int(len(hit_lats) * 0.95)] if hit_lats else 0.0
+        miss_p50 = miss_lats[int(len(miss_lats) * 0.50)] if miss_lats else 0.0
+        miss_p95 = miss_lats[int(len(miss_lats) * 0.95)] if miss_lats else 0.0
+
         return {
             "total_tasks": n,
             "hits_total": hits,
@@ -408,8 +416,10 @@ def run_arm(
             "latency_p50_ms": p50,
             "latency_p95_ms": p95,
             "latency_mean_ms": mean_l,
-            "hit_p50_ms": hit_lats[int(len(hit_lats) * 0.50)] if hit_lats else 0.0,
-            "miss_p50_ms": miss_lats[int(len(miss_lats) * 0.50)] if miss_lats else 0.0,
+            "hit_p50_ms": hit_p50,
+            "hit_p95_ms": hit_p95,
+            "miss_p50_ms": miss_p50,
+            "miss_p95_ms": miss_p95,
         }
 
     all_traffic_summary = compute_summary(task_records)
@@ -426,7 +436,7 @@ def run_arm(
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=ROOT / "runs/whole_agent_benchmark_results.json")
+    parser.add_argument("--output", type=Path, default=ROOT / "runs/whole_agent_benchmark_results_p1_1.json")
     args = parser.parse_args()
 
     workload = build_workload()
@@ -447,19 +457,30 @@ def main():
         benchmark_output[arm] = res
         all_s = res["all_traffic"]
         elig_s = res["eligible_traffic"]
-        print(f"[{arm}] ALL TRAFFIC: {all_s['total_tasks']} tasks | Hits: {all_s['hits_total']} (Exact: {all_s['exact_hits']}, Sem: {all_s['semantic_hits']}) | Provider Calls: {all_s['provider_calls_total']} | Total Tokens: {all_s['total_tokens_consumed']} | Latency p50: {all_s['latency_p50_ms']:.1f}ms")
+        print(f"[{arm}] ALL TRAFFIC: {all_s['total_tasks']} tasks | Hits: {all_s['hits_total']} (Exact: {all_s['exact_hits']}, Sem: {all_s['semantic_hits']}) | Provider Calls: {all_s['provider_calls_total']} | Total Tokens: {all_s['total_tokens_consumed']} | Latency p50: {all_s['latency_p50_ms']:.1f}ms | p95: {all_s['latency_p95_ms']:.1f}ms")
         print(f"[{arm}] ELIGIBLE TRAFFIC: {elig_s['total_tasks']} tasks | Hits: {elig_s['hits_total']} | Avoided Calls: {benchmark_output['no_cache']['eligible_traffic']['provider_calls_total'] - elig_s['provider_calls_total']} | Latency p50: {elig_s['latency_p50_ms']:.1f}ms")
 
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    with open(args.output, "w", encoding="utf-8") as f:
-        json.dump(benchmark_output, f, indent=2)
+    # Calculate miss overhead relative to no_cache baseline
+    baseline_miss_p50 = benchmark_output["no_cache"]["all_traffic"]["miss_p50_ms"]
+    for arm in arms:
+        miss_p50 = benchmark_output[arm]["all_traffic"]["miss_p50_ms"]
+        benchmark_output[arm]["all_traffic"]["miss_overhead_ms"] = max(0.0, miss_p50 - baseline_miss_p50)
+        elig_miss_p50 = benchmark_output[arm]["eligible_traffic"]["miss_p50_ms"]
+        benchmark_output[arm]["eligible_traffic"]["miss_overhead_ms"] = max(0.0, elig_miss_p50 - baseline_miss_p50)
 
-    resume_output = ROOT / "artifacts/resume/whole_agent_benchmark_results.json"
-    resume_output.parent.mkdir(parents=True, exist_ok=True)
-    with open(resume_output, "w", encoding="utf-8") as f:
-        json.dump(benchmark_output, f, indent=2)
+    # Save to both p1_1 explicit filenames and base paths for backward compatibility
+    save_targets = [
+        args.output,
+        ROOT / "runs/whole_agent_benchmark_results.json",
+        ROOT / "artifacts/resume/whole_agent_benchmark_results_p1_1.json",
+        ROOT / "artifacts/resume/whole_agent_benchmark_results.json",
+    ]
+    for target in save_targets:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        with open(target, "w", encoding="utf-8") as f:
+            json.dump(benchmark_output, f, indent=2)
 
-    print(f"\n=== WHOLE-AGENT BENCHMARK RESULTS SAVED TO {args.output} AND {resume_output} ===")
+    print(f"\n=== WHOLE-AGENT BENCHMARK RESULTS SAVED TO {save_targets} ===")
 
     # Print markdown comparison table
     print("\n### Whole-Agent Comparative Accounting\n")

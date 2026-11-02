@@ -1,7 +1,7 @@
 # SEMANTIC_P0_ROOT_CAUSE.md
 
 _Branch: `integration/documentation-rebuild`_  
-_Evidence type: measured-live (model probe + full diagnostic run)_  
+_Evidence type: historical component measurement (local model probe + full diagnostic run)_  
 _Written: 2026-11-02_
 
 ---
@@ -23,7 +23,7 @@ development packet. Root causes are concrete, reproducible, and measured.
 | Pair-only (any threshold) | **0** | 0 | 0 | N/A | 0% |
 | Combined (dense+pair+margin) | **0** | 0 | 0 | N/A | 0% |
 
-Source: `runs/semantic-dev/phase1-score-diagnostic.json` (measured-live, 2026-11-02).  
+Source: `runs/semantic-dev/phase1-score-diagnostic.json` (historical component measurement, 2026-11-02).  
 Human labels: 14 Y, 15 N, 1 ? (declared human review, not independently verified).  
 30-question packet is exposed/spent; these numbers must not be used as a final test.
 

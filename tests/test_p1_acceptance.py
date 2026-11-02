@@ -314,3 +314,327 @@ def test_live_runner_safeguards_allowlist_and_journal():
                 receipt = runner_free.receipts[-1]
                 assert receipt["status"] == "SUCCESS"
                 assert receipt["spend_usd"] == 0.0
+
+
+def test_race_revoke_tenant_during_neural_verification_falls_back_to_miss():
+    """Item 1: Tenant revocation occurring during neural verification must abort hit and fall back cleanly."""
+    import threading
+
+    scorer_started = threading.Event()
+    resume_scorer = threading.Event()
+
+    class BlockingScorer:
+        identity = "blocking-scorer"
+        def score(self, q: str, a: str) -> dict:
+            scorer_started.set()
+            resume_scorer.wait(timeout=5.0)
+            return {"probability": 0.99, "logit": 5.0, "input_tokens": 10}
+
+    exact = ScopedResponseCache(eligibility=lambda _: EligibilityDecision(True, "test"))
+    cache = ConservativeHybridCache(
+        exact,
+        scope=KnowledgeScope("docs", "v1", "public", "p1"),
+        encoder=MockEncoder(),
+        passage_scorer=BlockingScorer(),
+    )
+
+    req = make_request("How to convert a list?")
+    resp = make_response("Use tuple(list).")
+    cache.admit_candidate(req, resp, tenant_id="tenant-t")
+
+    para = make_request("How can I convert a list?")
+    provider_calls = []
+
+    def run_query():
+        return cache.process(
+            para,
+            tenant_id="tenant-t",
+            provider=lambda r: (provider_calls.append(1) or resp),
+        )
+
+    t = threading.Thread(target=run_query)
+    t.start()
+
+    # Wait until verifier is actively scoring candidate
+    assert scorer_started.wait(timeout=5.0)
+
+    # Invalidate / revoke tenant while scorer is blocked
+    cache.revoke_tenant("tenant-t")
+
+    # Release scorer
+    resume_scorer.set()
+    t.join(timeout=5.0)
+
+    # Zero stale return: must fall back to provider fresh miss
+    assert len(provider_calls) == 1
+
+
+def test_race_candidate_expiry_during_neural_verification_falls_back_to_miss():
+    """Item 1: Candidate expiring while neural verification is in flight must abort hit and fall back cleanly."""
+    import threading
+
+    scorer_started = threading.Event()
+    resume_scorer = threading.Event()
+
+    simulated_clock = [1000.0]
+
+    def mock_clock():
+        return simulated_clock[0]
+
+    class BlockingScorer:
+        identity = "blocking-scorer"
+        def score(self, q: str, a: str) -> dict:
+            scorer_started.set()
+            resume_scorer.wait(timeout=5.0)
+            return {"probability": 0.99, "logit": 5.0, "input_tokens": 10}
+
+    exact = ScopedResponseCache(eligibility=lambda _: EligibilityDecision(True, "test"), clock=mock_clock)
+    cache = ConservativeHybridCache(
+        exact,
+        scope=KnowledgeScope("docs", "v1", "public", "p1"),
+        encoder=MockEncoder(),
+        passage_scorer=BlockingScorer(),
+        ttl_seconds=10.0,
+        clock=mock_clock,
+    )
+
+    req = make_request("How to sort a list?")
+    resp = make_response("Use list.sort().")
+    cache.admit_candidate(req, resp, tenant_id="tenant-t")
+
+    para = make_request("How can I sort a list?")
+    provider_calls = []
+
+    t = threading.Thread(target=lambda: cache.process(
+        para,
+        tenant_id="tenant-t",
+        provider=lambda r: (provider_calls.append(1) or resp),
+    ))
+    t.start()
+
+    assert scorer_started.wait(timeout=5.0)
+
+    # Fast forward clock past TTL while verifier was computing
+    simulated_clock[0] += 50.0
+
+    resume_scorer.set()
+    t.join(timeout=5.0)
+
+    # Candidate expired during inference: zero stale return
+    assert len(provider_calls) == 1
+
+
+def test_race_revoke_tenant_during_synchronous_admission_abtains_safely():
+    """Item 1: Tenant revocation occurring during synchronous candidate admission must drop candidate."""
+    import threading
+
+    scorer_started = threading.Event()
+    resume_scorer = threading.Event()
+
+    class BlockingScorer:
+        identity = "blocking-scorer"
+        def score(self, q: str, a: str) -> dict:
+            scorer_started.set()
+            resume_scorer.wait(timeout=5.0)
+            return {"probability": 0.99, "logit": 5.0, "input_tokens": 10}
+
+    exact = ScopedResponseCache(eligibility=lambda _: EligibilityDecision(True, "test"))
+    cache = ConservativeHybridCache(
+        exact,
+        scope=KnowledgeScope("docs", "v1", "public", "p1"),
+        encoder=MockEncoder(),
+        passage_scorer=BlockingScorer(),
+        async_promotion=False,
+    )
+
+    req = make_request("How to read lines?")
+    resp = make_response("Use for line in f:")
+
+    admission_result = []
+
+    t = threading.Thread(target=lambda: admission_result.append(
+        cache.admit_candidate(req, resp, tenant_id="tenant-t")
+    ))
+    t.start()
+
+    assert scorer_started.wait(timeout=5.0)
+
+    # Revoke tenant while admission inference is running
+    cache.revoke_tenant("tenant-t")
+
+    resume_scorer.set()
+    t.join(timeout=5.0)
+
+    # Must return False and not store candidate in serving cache
+    assert admission_result == [False]
+    assert len(cache._serving_candidates) == 0
+
+
+def test_live_runner_restart_and_replay_safety():
+    """Item 2: Restarting runner with existing journal must replay completed requests without re-dispatching."""
+    with tempfile.TemporaryDirectory() as tmp:
+        journal_path = Path(tmp) / "runner_journal.db"
+        journal_path.touch()
+        output_dir = Path(tmp) / "receipts"
+
+        free_model = list(FREE_MODELS)[0]
+        runner1 = LiveBenchmarkRunner(
+            model=free_model,
+            execute_live=True,
+            journal_path=journal_path,
+            output_dir=output_dir,
+            run_id="stable-run-1",
+        )
+
+        class MockResponse:
+            def __enter__(self):
+                return self
+            def __exit__(self, *args):
+                pass
+            def read(self):
+                return b'{"choices":[{"message":{"content":"response-1"}}],"usage":{"prompt_tokens":10,"completion_tokens":10}}'
+
+        http_calls = []
+
+        def mock_urlopen(req, timeout=30):
+            http_calls.append(req)
+            return MockResponse()
+
+        body = {"model": free_model, "messages": [{"role": "user", "content": "hello"}]}
+
+        # Run 1: initial dispatch
+        with patch.dict(os.environ, {"OPENROUTER_API_KEY": "OFFLINE_PLACEHOLDER"}), \
+             patch("urllib.request.urlopen", side_effect=mock_urlopen):
+            resp1 = runner1.execute_request(body, "task-001")
+            assert resp1["choices"][0]["message"]["content"] == "response-1"
+            assert len(http_calls) == 1
+
+        # Run 2: Restart runner instance on the same journal and run_id
+        runner2 = LiveBenchmarkRunner(
+            model=free_model,
+            execute_live=True,
+            journal_path=journal_path,
+            output_dir=output_dir,
+            run_id="stable-run-1",
+        )
+
+        with patch.dict(os.environ, {"OPENROUTER_API_KEY": "OFFLINE_PLACEHOLDER"}), \
+             patch("urllib.request.urlopen", side_effect=mock_urlopen):
+            resp2 = runner2.execute_request(body, "task-001")
+            # Must replay from journal without making a second HTTP network call!
+            assert resp2["choices"][0]["message"]["content"] == "response-1"
+            assert len(http_calls) == 1  # Still 1, zero re-dispatch
+            receipt2 = runner2.receipts[-1]
+            assert receipt2["status"] == "REPLAY_COMPLETE"
+
+
+def test_live_runner_restart_uncertain_attempt_refuses_auto_repeat():
+    """Item 2: Uncertain reservation in journal must raise error and refuse automatic re-dispatch."""
+    with tempfile.TemporaryDirectory() as tmp:
+        journal_path = Path(tmp) / "runner_journal.db"
+        journal_path.touch()
+        output_dir = Path(tmp) / "receipts"
+
+        free_model = list(FREE_MODELS)[0]
+        runner = LiveBenchmarkRunner(
+            model=free_model,
+            execute_live=True,
+            journal_path=journal_path,
+            output_dir=output_dir,
+            run_id="stable-run-1",
+        )
+
+        from src.benchmark.schema import digest
+        from src.benchmark.free_pilot import PilotJournal
+        from scripts.run_live_benchmark import sanitize_outbound_request
+
+        fp = digest({"model": free_model, "cap": runner.max_attempts})
+        j = PilotJournal(journal_path, run_id="stable-run-1", fingerprint=fp, max_calls=min(runner.max_attempts, 30))
+
+        body = {"model": free_model, "messages": [{"role": "user", "content": "hello"}]}
+        sanitized = sanitize_outbound_request(body, free_model, runner.max_output_tokens)
+
+        # Simulate crashed attempt left in 'reserved' state
+        j.reserve(0, sanitized)
+
+        # Attempting to execute task-001 must raise RuntimeError refusing auto-repeat
+        with patch.dict(os.environ, {"OPENROUTER_API_KEY": "OFFLINE_PLACEHOLDER"}):
+            with pytest.raises(RuntimeError, match="uncertain_attempt_requires_review"):
+                runner.execute_request(body, "task-001")
+
+
+def test_live_runner_outbound_request_sanitization():
+    """Item 3: Request body must be sanitized, allowlisted, and reject caller-controlled routing."""
+    with tempfile.TemporaryDirectory() as tmp:
+        journal_path = Path(tmp) / "runner_journal.db"
+        journal_path.touch()
+        output_dir = Path(tmp) / "receipts"
+
+        free_model = list(FREE_MODELS)[0]
+        runner = LiveBenchmarkRunner(
+            model=free_model,
+            execute_live=True,
+            journal_path=journal_path,
+            output_dir=output_dir,
+            run_id="stable-run-1",
+        )
+
+        # 1. Rejects caller-controlled provider settings
+        bad_req = {
+            "model": free_model,
+            "messages": [{"role": "user", "content": "hi"}],
+            "provider": {"allow_fallbacks": True},
+        }
+        with patch.dict(os.environ, {"OPENROUTER_API_KEY": "OFFLINE_PLACEHOLDER"}):
+            with pytest.raises(ValueError, match="Forbidden request parameters"):
+                runner.execute_request(bad_req, "bad-1")
+
+        # 2. Rejects unsupported keys
+        bad_keys = {
+            "model": free_model,
+            "messages": [{"role": "user", "content": "hi"}],
+            "unsupported_plugin_opt": "invalid",
+        }
+        with patch.dict(os.environ, {"OPENROUTER_API_KEY": "OFFLINE_PLACEHOLDER"}):
+            with pytest.raises(ValueError, match="Unsupported request parameters"):
+                runner.execute_request(bad_keys, "bad-2")
+
+        # 3. Serialized outbound request body verification
+        class MockResponse:
+            def __enter__(self):
+                return self
+            def __exit__(self, *args):
+                pass
+            def read(self):
+                return b'{"choices":[{"message":{"content":"ok"}}],"usage":{"prompt_tokens":5,"completion_tokens":5}}'
+
+        dispatched = []
+
+        def mock_urlopen(req, timeout=30):
+            dispatched.append(json.loads(req.data.decode("utf-8")))
+            return MockResponse()
+
+        valid_req = {
+            "model": "paid-model-will-be-overridden",
+            "messages": [{"role": "user", "content": "test message"}],
+            "max_tokens": 2048,  # Exceeds max_output_tokens
+            "temperature": 0.5,
+        }
+
+        with patch.dict(os.environ, {"OPENROUTER_API_KEY": "OFFLINE_PLACEHOLDER"}), \
+             patch("urllib.request.urlopen", side_effect=mock_urlopen):
+            runner.execute_request(valid_req, "valid-1")
+
+        assert len(dispatched) == 1
+        outbound = dispatched[0]
+        # Only explicit allowlisted keys
+        assert set(outbound.keys()) == {"model", "messages", "max_tokens", "temperature", "provider"}
+        assert outbound["model"] == free_model
+        assert outbound["max_tokens"] == 1024  # Clamped to ceiling
+        assert outbound["temperature"] == 0.5
+        assert outbound["provider"] == {
+            "allow_fallbacks": False,
+            "max_price": {"prompt": 0.0, "completion": 0.0, "request": 0.0},
+            "require_parameters": True,
+        }
+

@@ -55,6 +55,73 @@ def compute_cost(model: str, prompt_tokens: int | None, completion_tokens: int |
     return (prompt_tokens * pricing["prompt_per_1m"] + completion_tokens * pricing["completion_per_1m"]) / 1_000_000.0
 
 
+def sanitize_outbound_request(request_body: dict, model: str, max_output_tokens: int) -> dict:
+    """Build an explicit allowlisted outbound request body rather than forwarding arbitrary caller fields.
+    
+    Rejects forbidden auxiliary routing, caller-controlled provider settings, and unsupported parameters.
+    Binds the verified free-only model and disables paid fallback.
+    """
+    if not isinstance(request_body, dict):
+        raise TypeError("request_body must be a dictionary")
+
+    # 1. Reject forbidden auxiliary routing and caller-controlled provider settings
+    forbidden = {"provider", "route", "models", "plugins", "tools", "web_search_options", "stream"}
+    found_forbidden = forbidden.intersection(request_body.keys())
+    if found_forbidden:
+        raise ValueError(f"Forbidden request parameters rejected: {sorted(found_forbidden)}")
+
+    # 2. Reject unsupported arbitrary keys
+    allowed_keys = {"model", "messages", "max_tokens", "temperature", "response_format"}
+    unsupported = set(request_body.keys()) - allowed_keys
+    if unsupported:
+        raise ValueError(f"Unsupported request parameters rejected: {sorted(unsupported)}")
+
+    # 3. Validate messages
+    messages = request_body.get("messages")
+    if not isinstance(messages, list) or not messages:
+        raise ValueError("Request must contain a non-empty 'messages' list")
+    sanitized_messages = []
+    for m in messages:
+        if not isinstance(m, dict) or "role" not in m or "content" not in m:
+            raise ValueError("Each message must have 'role' and 'content' strings")
+        sanitized_messages.append({"role": str(m["role"]), "content": str(m["content"])})
+
+    # 4. Validate and clamp max_tokens
+    req_max_tokens = request_body.get("max_tokens")
+    if req_max_tokens is not None:
+        if not isinstance(req_max_tokens, int) or req_max_tokens <= 0:
+            raise ValueError(f"Invalid max_tokens value: {req_max_tokens}")
+        final_max_tokens = min(req_max_tokens, max_output_tokens)
+    else:
+        final_max_tokens = max_output_tokens
+
+    # 5. Build explicit allowlisted outbound body binding verified free model and disabling paid fallback
+    outbound = {
+        "model": model,
+        "messages": sanitized_messages,
+        "max_tokens": final_max_tokens,
+        "provider": {
+            "allow_fallbacks": False,
+            "max_price": {"prompt": 0.0, "completion": 0.0, "request": 0.0},
+            "require_parameters": True,
+        },
+    }
+
+    if "temperature" in request_body:
+        temp = request_body["temperature"]
+        if not isinstance(temp, (int, float)) or not 0.0 <= temp <= 2.0:
+            raise ValueError(f"Invalid temperature value: {temp}")
+        outbound["temperature"] = float(temp)
+
+    if "response_format" in request_body:
+        rf = request_body["response_format"]
+        if not isinstance(rf, dict) or "type" not in rf:
+            raise ValueError(f"Invalid response_format: {rf}")
+        outbound["response_format"] = rf
+
+    return outbound
+
+
 class LiveBenchmarkRunner:
     """Hermetic opt-in runner for live provider evaluation with durable quota safeguards."""
 
@@ -68,6 +135,7 @@ class LiveBenchmarkRunner:
         max_output_tokens: int = 1024,
         journal_path: Path | None = None,
         output_dir: Path | None = None,
+        run_id: str | None = None,
     ):
         if model not in FREE_MODELS:
             raise ValueError(f"Model '{model}' is not in the free-only allowlist: {sorted(FREE_MODELS)}")
@@ -78,11 +146,13 @@ class LiveBenchmarkRunner:
         self.max_output_tokens = int(max_output_tokens)
         self.journal_path = journal_path or (ROOT / "runs/openrouter-free.sqlite")
         self.output_dir = output_dir or (ROOT / "artifacts/live_evaluation/receipts")
+        self.run_id = run_id or "live-benchmark-run-v1"
 
         self.current_spent_usd = 0.00
         self.attempts_made = 0
         self.receipts: list[dict] = []
         self._journal = None
+        self._request_ordinals: dict[str, int] = {}
 
     def preflight_check(self) -> dict:
         api_key_present = bool(os.environ.get("OPENROUTER_API_KEY") or os.environ.get("GEMINI_API_KEY"))
@@ -126,30 +196,81 @@ class LiveBenchmarkRunner:
         if preflight["status"] == "BLOCKED":
             raise RuntimeError(f"Live execution blocked: {preflight['blockers']}")
 
-        if self.attempts_made >= self.max_attempts:
-            raise RuntimeError(f"Hard maximum provider attempts reached ({self.max_attempts})")
+        # 1. Strict request body sanitization and allowlisting
+        outbound_body = sanitize_outbound_request(request_body, self.model, self.max_output_tokens)
 
-        # 1. Enforce output-token ceiling
-        req_max_tokens = request_body.get("max_tokens")
-        if req_max_tokens is None or req_max_tokens > self.max_output_tokens:
-            request_body["max_tokens"] = self.max_output_tokens
-
-        # 2. Bind request model to verified free-only runner model
-        request_body["model"] = self.model
-
-        # 3. Durable quota reservation before network dispatch
-        from src.benchmark.free_pilot import PilotJournal
+        # 2. Durable quota reservation with restart and concurrency protection
+        from src.benchmark.free_pilot import PilotJournal, RunPaused
         from src.benchmark.schema import digest
+
         if self._journal is None:
             self._journal = PilotJournal(
                 self.journal_path,
-                run_id=f"live-runner-{request_id}",
+                run_id=self.run_id,
                 fingerprint=digest({"model": self.model, "cap": self.max_attempts}),
                 max_calls=min(self.max_attempts, 30),
             )
 
-        ordinal = self.attempts_made
-        self._journal.reserve(ordinal, request_body)
+        ordinal = self._request_ordinals.setdefault(request_id, len(self._request_ordinals))
+
+        try:
+            res_state, res_payload = self._journal.reserve(ordinal, outbound_body)
+        except RunPaused as paused:
+            # Uncertain attempt, rate limit, or exhausted budget: never repeat automatically
+            receipt = {
+                "request_id": request_id,
+                "timestamp_iso": datetime.now(timezone.utc).isoformat(),
+                "model": self.model,
+                "status": "RESERVATION_PAUSED",
+                "reason": str(paused),
+                "elapsed_ms": 0.0,
+                "prompt_tokens": None,
+                "completion_tokens": None,
+                "usage_missing": True,
+                "spend_usd": None,
+            }
+            self.receipts.append(receipt)
+            self._persist_single_receipt(receipt)
+            raise RuntimeError(f"Journal reservation paused/blocked: {paused}") from paused
+
+        # Handle existing completed attempt without dispatching new network call
+        if res_state == "complete":
+            receipt = {
+                "request_id": request_id,
+                "timestamp_iso": datetime.now(timezone.utc).isoformat(),
+                "model": self.model,
+                "status": "REPLAY_COMPLETE",
+                "elapsed_ms": 0.0,
+                "prompt_tokens": res_payload.get("usage", {}).get("prompt_tokens"),
+                "completion_tokens": res_payload.get("usage", {}).get("completion_tokens"),
+                "usage_missing": False,
+                "spend_usd": 0.0,
+                "price_source": "journal_replay",
+            }
+            self.receipts.append(receipt)
+            self._persist_single_receipt(receipt)
+            return res_payload
+
+        # Handle existing recorded error without repeating call
+        if res_state == "error":
+            receipt = {
+                "request_id": request_id,
+                "timestamp_iso": datetime.now(timezone.utc).isoformat(),
+                "model": self.model,
+                "status": "REPLAY_ERROR",
+                "error": res_payload.get("error", "Previous attempt recorded error"),
+                "elapsed_ms": 0.0,
+                "prompt_tokens": None,
+                "completion_tokens": None,
+                "usage_missing": True,
+                "spend_usd": None,
+            }
+            self.receipts.append(receipt)
+            self._persist_single_receipt(receipt)
+            raise RuntimeError(f"Previous attempt at ordinal {ordinal} failed with recorded error: {res_payload}")
+
+        if self.attempts_made >= self.max_attempts:
+            raise RuntimeError(f"Hard maximum provider attempts reached ({self.max_attempts})")
 
         t0 = time.perf_counter()
         self.attempts_made += 1
@@ -159,7 +280,7 @@ class LiveBenchmarkRunner:
             raise RuntimeError("API key missing from environment")
 
         import urllib.request
-        req_data = json.dumps(request_body).encode("utf-8")
+        req_data = json.dumps(outbound_body).encode("utf-8")
         http_req = urllib.request.Request(
             "https://openrouter.ai/api/v1/chat/completions",
             data=req_data,

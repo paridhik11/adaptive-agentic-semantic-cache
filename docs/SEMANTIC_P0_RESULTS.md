@@ -9,7 +9,7 @@
 # SEMANTIC_P0_RESULTS.md
 
 _Branch: `integration/documentation-rebuild`_  
-_Evidence type: measured-live (local CPU forward passes) on fixed development evaluation suite_  
+_Evidence type: historical component measurement (local CPU forward passes on fixed development evaluation suite)_  
 _Evaluated: 2026-11-02_
 
 ---
