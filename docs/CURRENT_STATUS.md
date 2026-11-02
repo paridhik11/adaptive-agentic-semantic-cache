@@ -1,3 +1,13 @@
+## P1.1 Final Closure Checkpoint — 2026-11-02 (`05ce156`)
+
+All five supplemental independent audit blockers are closed with independently reproducible fixes (PASS).
+1. Revocation/expiry during verification: atomic revalidation under lock in `resolve_semantic` & `admit_candidate`.
+2. Live runner restart/reservation safety: explicit replay of completed/errored reservations, refusal to auto-repeat uncertain attempts.
+3. Provider request sanitization: strict outbound allowlisting, model binding, disabled paid fallback.
+4. Complete agent timing: boundary includes planning, tools, drafting, reviewer check, approval, admission, and SQLite terminal state persistence.
+5. Evidence & documentation: corrected `measured-live` labels to `historical component measurement` / `simulated`, preserved 11/12 model review, disclosed token reductions as offline accounting.
+281 regression tests passed (100%). P1.1 is closed; ready for P2 evaluation, P3 measurement, P5 demonstration, and P6 release workflow.
+
 ## Evidence correction — 2026-11-02 (supersedes publication/precision snapshots below)
 
 GitHub integration branch was verified at `8a272ff`. All 1,100 historical events
