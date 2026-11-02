@@ -123,12 +123,18 @@ def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_
         from src.policy.semantic_runtime import KnowledgeScope
         outer=ScopedResponseCache(eligibility=lambda _:EligibilityDecision(True,'standalone reference fixture'),
             storage=SQLiteResponseStore(directory/'answers.sqlite',namespace=namespace))
-        mode = 'guarded' if experimental_semantic else 'exact'
-        hybrid = ConservativeHybridCache(
-            outer,
-            scope=KnowledgeScope('reference-docs',reference['source_revision'],'local-operator','standalone-document-answer-v1'),
-            mode=mode,
-        )
+        if experimental_semantic:
+            hybrid = ConservativeHybridCache(
+                outer,
+                scope=KnowledgeScope('reference-docs',reference['source_revision'],'local-operator','standalone-document-answer-v1'),
+                mode='guarded',
+            )
+        else:
+            from src.policy.semantic_runtime import GuardedSemanticCache
+            hybrid = GuardedSemanticCache(
+                outer, mode='exact',
+                scope=KnowledgeScope('reference-docs',reference['source_revision'],'local-operator','standalone-document-answer-v1'),
+            )
         answers=CompletedDocumentCache(hybrid)
     from src.policy.encoders import LexicalEncoder
     agent=DocumentAgent(service,DocumentTools(documents),directory/'tasks.sqlite',model=model,max_calls=3,max_revisions=0,

@@ -36,7 +36,7 @@ from src.policy.local_models import (
     LocalPassageScorer,
 )
 from src.policy.response_cache import EligibilityDecision, ScopedResponseCache
-from src.policy.semantic_runtime import KnowledgeScope
+from src.policy.semantic_runtime import GuardedSemanticCache, KnowledgeScope
 from src.policy.sqlite_store import SQLiteResponseStore
 from scripts.benchmark_whole_agent import AgentBenchmarkProvider
 
@@ -61,8 +61,8 @@ def run_demo(base_dir: Path, verbose: bool = True, experimental_semantic: bool =
     tenant = "demo-tenant"
     principal = "demo-operator"
 
-    encoder = DenseEncoder(ENCODER_MODEL, ENCODER_REVISION)
-    passage_scorer = LocalPassageScorer(PASSAGE_MODEL, PASSAGE_REVISION)
+    encoder = DenseEncoder(ENCODER_MODEL, ENCODER_REVISION) if experimental_semantic else None
+    passage_scorer = LocalPassageScorer(PASSAGE_MODEL, PASSAGE_REVISION) if experimental_semantic else None
 
     def init_agent():
         exact_storage = SQLiteResponseStore(answers_db, namespace="demo-flagship")
@@ -70,16 +70,13 @@ def run_demo(base_dir: Path, verbose: bool = True, experimental_semantic: bool =
             eligibility=lambda _: EligibilityDecision(True, "demo_policy"),
             storage=exact_storage,
         )
-        mode = "guarded" if experimental_semantic else "exact"
-        hybrid = ConservativeHybridCache(
-            exact,
-            scope=scope,
-            encoder=encoder,
-            passage_scorer=passage_scorer,
-            mode=mode,
-            retrieval_threshold=0.60,
-            verification_threshold=0.85,
-        )
+        if experimental_semantic:
+            hybrid = ConservativeHybridCache(
+                exact, scope=scope, encoder=encoder, passage_scorer=passage_scorer,
+                mode="guarded", retrieval_threshold=0.60, verification_threshold=0.85,
+            )
+        else:
+            hybrid = GuardedSemanticCache(exact, scope=scope, mode="exact")
         ans_cache = CompletedDocumentCache(hybrid)
         prov = AgentBenchmarkProvider(DEMO_DOCUMENTS, delay_seconds=0.015)
         svc = GatewayService(

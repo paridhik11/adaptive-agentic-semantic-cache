@@ -118,12 +118,15 @@ pip install -e ".[dev]"
 Run the automated CLI demo to witness the 7 lifecycle execution scenarios followed by the Criterion 8 evidence summary table:
 
 ```bash
-# Safe default exact-only serving demo (semantic answers never substituted)
+# Safe default exact-only serving demo (no neural models required)
 python scripts/run_demo.py --cli
 
 # Experimental guarded semantic reuse demo (controlled opt-in)
 python scripts/run_demo.py --cli --experimental-semantic
 ```
+
+The web demo also defaults to exact-only: `python scripts/run_demo.py --whole-answer-cache`. To explicitly enable experimental semantic serving in the offline web demo, use `python scripts/run_demo.py --whole-answer-cache --experimental-semantic`. Experimental mode requires the pinned models in the local cache.
+
 
 **Lifecycle Execution Scenarios Validated:**
 1. **Fresh Request:** Passes through supervisor planning, tool retrieval, drafting, and reviewer verification (3 provider calls, status `AWAITING_APPROVAL`).
