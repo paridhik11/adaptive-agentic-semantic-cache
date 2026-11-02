@@ -6,7 +6,9 @@ or safe general semantic reuse. These bullets describe implemented engineering.
 
 ## Recommended entry
 
-**Adaptive Agentic Semantic Cache** | Python, FastAPI, SQLite, Pytest
+**Adaptive Agentic Semantic Cache** | Python, FastAPI, SQLite, Pytest  
+> **Repository:** [https://github.com/paridhik11/adaptive-agentic-semantic-cache/tree/integration/documentation-rebuild](https://github.com/paridhik11/adaptive-agentic-semantic-cache/tree/integration/documentation-rebuild)  
+> *(Direct link: [https://github.com/paridhik11/adaptive-agentic-semantic-cache](https://github.com/paridhik11/adaptive-agentic-semantic-cache))*
 
 - Built a scoped LLM response-cache gateway with authentication, persistent exact
   responses, TTL, invalidation and guarded semantic candidate/answer bindings.
@@ -14,6 +16,10 @@ or safe general semantic reuse. These bullets describe implemented engineering.
   document tools, persisted checkpoints and resumable human approve/modify/reject.
 - Developed paired evaluation and answer-bound review workflows that track model
   attempts, missing labels and orchestration overhead; documented negative results.
+- Reconciled reproducible offline exact-cache work avoidance across 25 documentation
+  groups (47.33% provider call avoidance in repeat-rich workloads, 14.75% in lower-repeat
+  breadth); documented that overall whole-agent application latency did not improve in
+  offline simulation and that autonomous semantic reuse retains quality limitations.
 
 Do not imply production adoption, validated semantic accuracy, learned adaptation
 or observed bill savings. FAISS and cross-encoders belong to the historical

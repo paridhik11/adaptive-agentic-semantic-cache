@@ -125,3 +125,8 @@ artifacts/stage_b/*/checkpoints/
 
 # Rebuilt product backups are delivered separately, never weights in Git
 artifacts/documentation_rebuild/*.zip
+
+# Local review packets and bundles
+*.bundle
+*.zip
+R5-Human-Review-Packet/
