@@ -286,25 +286,33 @@ class LiveEvaluationRunner:
         results = {}
         cumulative_calls = 0
 
-        # FIX #7: Check remaining study budget atomically BEFORE each arm by
-        # querying the journal for already-spent calls.  The old code only checked
-        # AFTER the arm completed, which allowed the budget to be exceeded.
         journal_path = str(Path(self.journal_path).resolve())
 
+        # Inspect initial journal state before study starts (prior external/unrelated calls)
+        initial_journal_calls = 0
+        try:
+            db_init = sqlite3.connect(journal_path, timeout=5)
+            initial_journal_calls = db_init.execute("SELECT COUNT(*) FROM pilot_calls").fetchone()[0]
+            db_init.close()
+        except Exception:
+            initial_journal_calls = 0
+
         for arm in arms:
-            # Pre-arm atomic budget guard (FIX #7)
-            # Use >= so that reaching exactly the cap also blocks: matches PilotJournal
-            # reserve() which raises when count >= max_calls.
+            # Pre-arm atomic budget guard:
+            # Check journal state without double-counting study's own completed calls.
+            # current_journal_calls includes calls already written by previous arms of this study.
             try:
                 db_pre = sqlite3.connect(journal_path, timeout=5)
-                already_spent = db_pre.execute("SELECT COUNT(*) FROM pilot_calls").fetchone()[0]
+                current_journal_calls = db_pre.execute("SELECT COUNT(*) FROM pilot_calls").fetchone()[0]
                 db_pre.close()
             except Exception:
-                already_spent = cumulative_calls  # conservative: use running tally
-            if already_spent + cumulative_calls >= self.max_study_budget:
+                current_journal_calls = initial_journal_calls + cumulative_calls
+
+            total_effective_spent = max(current_journal_calls, initial_journal_calls + cumulative_calls)
+            if total_effective_spent >= self.max_study_budget or cumulative_calls >= self.max_study_budget:
                 raise RunPaused(
-                    f"Pre-arm budget guard: journal already has {already_spent} calls; "
-                    f"running total {cumulative_calls}; cap {self.max_study_budget}"
+                    f"Pre-arm budget guard: journal has {current_journal_calls} calls (initial {initial_journal_calls}); "
+                    f"study cumulative calls {cumulative_calls}; cap {self.max_study_budget}"
                 )
 
             arm_res = self._run_arm(arm, base_run_id)
@@ -313,30 +321,49 @@ class LiveEvaluationRunner:
             if cumulative_calls > self.max_study_budget:
                 raise RunPaused(f"Study budget exceeded: {cumulative_calls} > {self.max_study_budget}")
 
-        # FIX #4: Validate all task terminal statuses before reporting COMPLETED.
-        # A task left in a non-terminal state (e.g. still PLANNING after loop
-        # exhaustion) must cause the study to surface as INCOMPLETE, not COMPLETED.
-        TERMINAL = {"COMPLETED", "AWAITING_APPROVAL", "FAILED", "REJECTED"}
+        # Completion status validation:
+        # A study can ONLY declare COMPLETED if all tasks in all arms completed successfully.
+        # FAILED, REJECTED, paused, or non-terminal tasks must never cause a false success declaration.
+        failed_tasks: list[dict] = []
+        rejected_tasks: list[dict] = []
         non_terminal_tasks: list[dict] = []
+
         for arm_name, arm_res in results.items():
             for ev in arm_res.get("events", []):
-                if ev.get("status") not in TERMINAL:
-                    non_terminal_tasks.append({"arm": arm_name, "task_id": ev["task_id"], "status": ev.get("status")})
+                ev_status = ev.get("status")
+                if ev_status == "FAILED":
+                    failed_tasks.append({"arm": arm_name, "task_id": ev["task_id"], "status": ev_status})
+                elif ev_status == "REJECTED":
+                    rejected_tasks.append({"arm": arm_name, "task_id": ev["task_id"], "status": ev_status})
+                elif ev_status != "COMPLETED":
+                    non_terminal_tasks.append({"arm": arm_name, "task_id": ev["task_id"], "status": ev_status})
 
-        final_status = "COMPLETED" if not non_terminal_tasks else "INCOMPLETE"
+        if failed_tasks:
+            final_status = "FAILED"
+        elif rejected_tasks:
+            final_status = "REJECTED"
+        elif non_terminal_tasks:
+            final_status = "INCOMPLETE"
+        else:
+            final_status = "COMPLETED"
 
         output_data = {
             "status": final_status,
-            "non_terminal_tasks": non_terminal_tasks,
+            "base_run_id": base_run_id,
             "timestamp_iso": datetime.now(timezone.utc).isoformat(),
-            "preflight": preflight,
             "model": self.model,
             "workload_type": "pilot" if self.use_pilot_workload else "extended",
-            "arms": results,
+            "max_study_budget": self.max_study_budget,
             "cumulative_provider_calls": cumulative_calls,
+            "journal_path": str(self.journal_path),
+            "failed_tasks": failed_tasks,
+            "rejected_tasks": rejected_tasks,
+            "non_terminal_tasks": non_terminal_tasks,
+            "preflight": preflight,
+            "arms": results,
         }
 
-        # FIX #8: Receipt filename includes run timestamp for immutability.
+        # Receipt filename includes run timestamp for immutability.
         run_ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
         results_file = self.output_dir / f"live_paired_results_{run_ts}.json"
         with open(results_file, "w", encoding="utf-8") as f:
@@ -347,38 +374,79 @@ class LiveEvaluationRunner:
 
     @staticmethod
     def _extract_usage_from_trace(trace: list[dict]) -> dict[str, Any]:
-        """FIX #5: Extract real token usage from agent trace provider-call entries.
+        """Extract real token usage from agent trace provider-call entries.
 
-        state.get('prompt_tokens', 0) and state.get('completion_tokens', 0) are
-        not populated by DocumentAgent — it stores usage inside trace entries under
-        the key 'usage'.  Summing across all provider-call trace entries gives the
-        actual billed tokens for the task.  When a provider call has no recorded
-        usage (e.g. it failed or was a cache hit) the entry is skipped; if *no*
-        provider calls have recorded usage the function returns UNKNOWN tokens so
-        the caller never silently reports zero.
+        Handles complete, zero (cache hits), missing, and partially missing usage.
+        Partially missing usage is explicitly flagged and never reported as a valid
+        complete measured total.
         """
         prompt_tok = 0
         comp_tok = 0
-        any_provider_call = False
-        all_missing = True
+        has_provider_calls = False
+        missing_usage_calls = 0
+        recorded_usage_calls = 0
+
         for entry in trace:
-            pc = entry.get("provider_calls")
+            if "provider_calls" not in entry:
+                continue
+            pc = entry["provider_calls"]
             if pc is None:
-                # Errored entry — unknown, not zero
-                any_provider_call = True
+                # Errored entry — provider attempt made, but no valid usage recorded
+                has_provider_calls = True
+                missing_usage_calls += 1
                 continue
             if pc > 0:
-                any_provider_call = True
-                usage = entry.get("usage") or {}
-                if usage:
-                    all_missing = False
-                    prompt_tok += usage.get("prompt_tokens", 0)
-                    comp_tok += usage.get("completion_tokens", 0)
-        if any_provider_call and all_missing:
-            return {"prompt_tokens": "UNKNOWN", "completion_tokens": "UNKNOWN",
-                    "total_tokens": "UNKNOWN", "source": "no_usage_in_trace"}
-        return {"prompt_tokens": prompt_tok, "completion_tokens": comp_tok,
-                "total_tokens": prompt_tok + comp_tok, "source": "trace_entries"}
+                has_provider_calls = True
+                usage = entry.get("usage")
+                if isinstance(usage, dict) and isinstance(usage.get("prompt_tokens"), int) and isinstance(usage.get("completion_tokens"), int):
+                    recorded_usage_calls += 1
+                    prompt_tok += usage["prompt_tokens"]
+                    comp_tok += usage["completion_tokens"]
+                else:
+                    missing_usage_calls += 1
+
+        if not has_provider_calls:
+            # Pure cache hit: zero provider calls, zero tokens consumed
+            return {
+                "prompt_tokens": 0,
+                "completion_tokens": 0,
+                "total_tokens": 0,
+                "source": "trace_entries",
+                "is_complete": True,
+            }
+
+        if recorded_usage_calls == 0:
+            # All provider calls lack usage receipts
+            return {
+                "prompt_tokens": "UNKNOWN",
+                "completion_tokens": "UNKNOWN",
+                "total_tokens": "UNKNOWN",
+                "source": "no_usage_in_trace",
+                "is_complete": False,
+            }
+
+        if missing_usage_calls > 0:
+            # Partially missing usage: some provider calls had receipts, some did not.
+            # Do NOT report incomplete totals as valid complete measured usage.
+            return {
+                "prompt_tokens": "PARTIAL",
+                "completion_tokens": "PARTIAL",
+                "total_tokens": "PARTIAL",
+                "partial_prompt_tokens": prompt_tok,
+                "partial_completion_tokens": comp_tok,
+                "partial_total_tokens": prompt_tok + comp_tok,
+                "source": "partial_usage_in_trace",
+                "is_complete": False,
+            }
+
+        # All provider calls have recorded receipts
+        return {
+            "prompt_tokens": prompt_tok,
+            "completion_tokens": comp_tok,
+            "total_tokens": prompt_tok + comp_tok,
+            "source": "trace_entries",
+            "is_complete": True,
+        }
 
     @staticmethod
     def _collect_attempt_ids(trace: list[dict]) -> list[str]:
@@ -412,13 +480,13 @@ class LiveEvaluationRunner:
         answers_db = db_dir / "answers.db"
         tasks_db = db_dir / "tasks.db"
 
-        # FIX #2: Cold-start isolation — delete stale arm databases before each run
+        # Cold-start isolation — delete stale arm databases and SQLite auxiliary files
         # so reruns cannot silently inherit warm caches from a prior execution.
-        # Existing PilotJournal rows are the durable restart record; the per-arm
-        # agent SQLite stores must be fresh on every new paired study.
-        for stale_db in (answers_db, tasks_db):
-            if stale_db.exists():
-                stale_db.unlink()
+        for base_file in (answers_db, tasks_db):
+            for suffix in ("", "-wal", "-shm", "-journal"):
+                stale_file = base_file.parent / (base_file.name + suffix)
+                if stale_file.exists():
+                    stale_file.unlink()
 
         tools = DocumentTools(REFERENCE_DOCS)
         scope = KnowledgeScope("live-docs", tools.revision, "live-tenant", f"live-{arm_name}")
@@ -444,7 +512,7 @@ class LiveEvaluationRunner:
             provider,
             allowed_models={self.model},
         )
-        # FIX #3: Pass max_output_tokens to DocumentAgent so the configured output
+        # Pass max_output_tokens to DocumentAgent so the configured output
         # ceiling is enforced in every model call body (the 'max_tokens' field).
         agent = DocumentAgent(
             service,
@@ -459,8 +527,11 @@ class LiveEvaluationRunner:
         events = []
         total_prompt_tok = 0
         total_comp_tok = 0
+        arm_token_accounting_complete = True
 
-        for task in self.workload:
+        workload = copy.deepcopy(self.workload)
+
+        for task in workload:
             t0 = time.perf_counter()
             calls_before = provider.new_calls
             tid = agent.create(task["question"], tenant="live-tenant", principal="live-evaluator", standalone_document_task=True)
@@ -477,30 +548,50 @@ class LiveEvaluationRunner:
             answer_text = state.get("answer", "") or ""
             ans_sha = hashlib.sha256(answer_text.encode("utf-8")).hexdigest() if answer_text else None
 
-            # FIX #5: Extract real token usage from trace, never silently report zero.
+            # Extract real token usage from trace, never silently report zero.
             trace = state.get("trace", [])
             usage = self._extract_usage_from_trace(trace)
             p_tok = usage["prompt_tokens"]
             c_tok = usage["completion_tokens"]
-            # Accumulate numeric totals only (UNKNOWN stays as a string in the event record)
-            if isinstance(p_tok, int):
+            # Accumulate numeric totals only when complete
+            if usage.get("is_complete") and isinstance(p_tok, int) and isinstance(c_tok, int):
                 total_prompt_tok += p_tok
-            if isinstance(c_tok, int):
                 total_comp_tok += c_tok
+            elif p_tok != 0 or c_tok != 0:
+                arm_token_accounting_complete = False
 
-            # FIX #6: Collect reviewer decisions and provider attempt IDs from trace.
+            # Collect reviewer decisions and provider attempt IDs from trace.
             reviewer_decisions = [
                 {"stage": e.get("stage"), "decision": e.get("decision"), "principal": e.get("principal")}
                 for e in trace if e.get("stage") == "human_decision"
             ]
-            attempt_ids = self._collect_attempt_ids(trace)
 
-            # FIX #6: Evidence = list of document IDs read during TOOLS stage.
+            # Reconcile attempt IDs with provider and journal records
+            trace_attempt_ids = self._collect_attempt_ids(trace)
+            expected_attempt_ids = [f"{journal.run_id}:{i}" for i in range(calls_before, calls_before + task_calls)]
+            if len(trace_attempt_ids) == task_calls and all(trace_attempt_ids):
+                attempt_ids = trace_attempt_ids
+            elif task_calls > 0:
+                attempt_ids = expected_attempt_ids
+            else:
+                attempt_ids = trace_attempt_ids
+
+            # Evidence = list of document IDs read during TOOLS stage.
             evidence_doc_ids = [
                 t["step"]["arguments"].get("document_id")
                 for t in state.get("tools", [])
                 if t.get("step", {}).get("tool") == "read"
             ]
+
+            # Cache lookup tier resolution
+            cache_lookup_tier = "NONE"
+            if state.get("answer_cache_hit"):
+                for entry in trace:
+                    if entry.get("stage") == "CACHE_LOOKUP" and entry.get("tier"):
+                        cache_lookup_tier = entry["tier"]
+                        break
+                if cache_lookup_tier == "NONE" and trace and trace[0].get("tier"):
+                    cache_lookup_tier = trace[0]["tier"]
 
             events.append({
                 "task_id": task["id"],
@@ -508,15 +599,14 @@ class LiveEvaluationRunner:
                 "question": task["question"],
                 "status": state["status"],
                 "is_hit": bool(state.get("answer_cache_hit")),
-                "tier": state.get("trace", [{}])[0].get("tier", "NONE") if state.get("answer_cache_hit") else "NONE",
+                "tier": cache_lookup_tier,
                 "provider_calls": task_calls,
                 "prompt_tokens_actual": p_tok,
                 "completion_tokens_actual": c_tok,
                 "total_tokens_actual": usage["total_tokens"],
                 "token_source": usage["source"],
+                "token_accounting_complete": usage.get("is_complete", False),
                 "answer_sha256": ans_sha,
-                # FIX #6: Publish actual final answer text, evidence, reviewer decisions
-                # and provider attempt IDs — previously only the SHA was published.
                 "answer_text": answer_text or None,
                 "evidence_document_ids": evidence_doc_ids,
                 "reviewer_decisions": reviewer_decisions,
@@ -524,15 +614,18 @@ class LiveEvaluationRunner:
                 "elapsed_ms": elapsed_ms,
             })
 
+        total_tokens_measured = total_prompt_tok + total_comp_tok
         return {
             "arm": arm_name,
+            "run_id": f"{base_run_id}-{arm_name}",
             "mode": mode,
             "total_tasks": len(events),
             "total_provider_calls": provider.new_calls,
             "replayed_calls": provider.replayed_calls,
-            "total_prompt_tokens_actual": total_prompt_tok,
-            "total_completion_tokens_actual": total_comp_tok,
-            "total_tokens_actual": total_prompt_tok + total_comp_tok,
+            "total_prompt_tokens_actual": total_prompt_tok if arm_token_accounting_complete else ("PARTIAL" if total_prompt_tok > 0 else "UNKNOWN"),
+            "total_completion_tokens_actual": total_comp_tok if arm_token_accounting_complete else ("PARTIAL" if total_comp_tok > 0 else "UNKNOWN"),
+            "total_tokens_actual": total_tokens_measured if arm_token_accounting_complete else ("PARTIAL" if total_tokens_measured > 0 else "UNKNOWN"),
+            "token_accounting_complete": arm_token_accounting_complete,
             "events": events,
         }
 

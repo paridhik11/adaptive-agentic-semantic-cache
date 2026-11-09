@@ -423,7 +423,9 @@ class DocumentAgent:
                 result=self.service.complete(body,tenant,bypass=not s['cache'] or stage!='DRAFTING'
                     or s.get('standalone_document_task',False) or (static_draft and context_dependent),**accounting)
                 s['provider_calls']+=result.provider_calls
+                attempt_id = (result.response.get('provider_attempt_id') or result.response.get('attempt_id')) if isinstance(getattr(result, 'response', None), dict) else None
                 s['trace'].append({'stage':stage,'cache_status':result.status,'provider_calls':result.provider_calls,
+                                    'attempt_id':attempt_id,'provider_attempt_id':attempt_id,
                                     'usage':result.response.get('usage') if result.provider_calls else None,
                                     'stage_contract':self.STATIC_CONTRACT if static_draft and not context_dependent else 'full-task-context',
                                     'context_bypass':static_draft and context_dependent})

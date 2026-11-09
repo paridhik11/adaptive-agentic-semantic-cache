@@ -1,6 +1,6 @@
 {
   "status": "BLOCKED",
-  "timestamp_iso": "2026-11-02T15:43:28.809962+00:00",
+  "timestamp_iso": "2026-11-09T12:28:27.623239+00:00",
   "model": "nvidia/nemotron-3-super-120b-a12b:free",
   "proposed_requests": {
     "workload_type": "pilot_4_tasks",

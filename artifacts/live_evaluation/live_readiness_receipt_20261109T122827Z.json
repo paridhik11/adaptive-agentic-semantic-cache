@@ -1,0 +1,29 @@
+{
+  "status": "BLOCKED",
+  "timestamp_iso": "2026-11-09T12:28:27.623239+00:00",
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "proposed_requests": {
+    "workload_type": "pilot_4_tasks",
+    "total_tasks_per_arm": 4,
+    "proposed_calls_no_cache": 12,
+    "proposed_calls_exact_only": 6,
+    "proposed_calls_shadow_semantic": 6,
+    "total_proposed_provider_requests": 24,
+    "budget_cap": 30,
+    "fits_within_budget": true
+  },
+  "checks": {
+    "model_allowed": true,
+    "spend_cap_zero": true,
+    "output_ceiling_valid": true,
+    "budget_cap_valid": true,
+    "live_authorized": false,
+    "api_key_configured": false,
+    "journal_available": false,
+    "journal_path": "C:\\Users\\parid\\Downloads\\Agentic AI\\adaptive-agentic-semantic-cache\\artifacts\\live_evaluation\\pilot_journal.sqlite",
+    "journal_total_calls": 0
+  },
+  "blockers": [
+    "Live execution flag '--execute-live' not passed. Operating in preflight verification mode."
+  ]
+}
