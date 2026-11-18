@@ -5,8 +5,10 @@ import hashlib
 import json
 from pathlib import Path
 import sqlite3
+import statistics
 
 from evaluate_risk_v2 import ROOT, SEAL, inputs, load_groups, proportion
+from src.policy.local_models import ENCODER_MODEL, ENCODER_REVISION, PASSAGE_MODEL, PASSAGE_REVISION
 
 DATA = ROOT / "artifacts" / "risk_v2"
 REPORT = ROOT / "docs" / "RISK_V2_RESULTS.md"
@@ -81,6 +83,28 @@ def reconcile(result):
         """).fetchall()
 
 
+def validate_pilot(pilot, seal):
+    expected = [group["id"] for group in load_groups() if group["split"] == "holdout"][:8]
+    receipts = pilot["receipts"]
+    if ([row["group"] for row in receipts] != expected or pilot["pairs"] != len(expected)
+            or pilot["fixture_sha256"] != seal["artifacts/risk_v2/fixtures.json"]):
+        raise ValueError("Pilot does not match the frozen fixture selection")
+    for row in receipts:
+        if (row["fresh_calls"] != 1 or row["cached_calls"] != 0 or row["cached_generated_tokens"] != 0
+                or any(row[key] <= 0 for key in ("fresh_ms", "cached_ms", "prime_ms", "fresh_completion_tokens"))
+                or len(row["answer_sha256"]) != 64):
+            raise ValueError(f"Invalid pilot receipt for {row['group']}")
+    recomputed = {
+        "fresh_p50_ms": statistics.median(row["fresh_ms"] for row in receipts),
+        "cached_p50_ms": statistics.median(row["cached_ms"] for row in receipts),
+        "paired_p50_ms_avoided": statistics.median(row["fresh_ms"] - row["cached_ms"] for row in receipts),
+        "fresh_completion_tokens": sum(row["fresh_completion_tokens"] for row in receipts),
+        "cached_completion_tokens": sum(row["cached_generated_tokens"] for row in receipts),
+    }
+    if any(pilot[key] != value for key, value in recomputed.items()):
+        raise ValueError("Pilot totals disagree with per-pair receipts")
+
+
 def rate(metric):
     if metric["n"] == 0:
         return "— (0 accepts)"
@@ -128,8 +152,10 @@ def render(holdout, scenarios, pilot):
     lines += [
         "",
         "Inputs are fictional operational reporting fixtures. Labels apply to the particular cached answer identified by its hash in each receipt. "
-        "Intent groups contain related variants. Exact intervals are event-level and descriptive under the binomial assumption. "
-        "The holdout is now spent for development, and repeats reproduce the frozen run. The experiment leaves serving policy decisions outside the harness.",
+        "Calibration and holdout use different base intents and share request templates. The results test those wording patterns. "
+        "The added rule checks labels, so it cannot establish the factual accuracy or provenance of their contents. "
+        "Intent groups contain related variants, so event-level exact intervals are descriptive under the binomial assumption. "
+        "The holdout is now spent for development, and repeats reproduce the frozen run.",
     ]
     if pilot is not None:
         lines += [
@@ -146,20 +172,26 @@ def render(holdout, scenarios, pilot):
         "",
         "## Reproduce",
         "",
-        "With the exact MiniLM encoder and passage scorer checkpoints already in the local Hugging Face cache:",
+        "Run from the repository root with Python 3.11 or newer. Install dependencies in a virtual environment and download the pinned checkpoints once:",
         "",
         "```bash",
+        'python -m pip install -e ".[dev]"',
+        f'hf download {ENCODER_MODEL} --revision {ENCODER_REVISION} --include "*.json" --include "*.txt" --include "*.safetensors"',
+        f'hf download {PASSAGE_MODEL} --revision {PASSAGE_REVISION} --include "*.json" --include "*.txt" --include "*.safetensors"',
         "python scripts/evaluate_risk_v2.py calibration --output calibration-replay.json",
         "python scripts/evaluate_risk_v2.py holdout --output holdout-replay.json",
         "python scripts/report_risk_v2.py --check",
         "```",
         "",
-        "[Frozen protocol](RISK_V2_PROTOCOL.md) · [Input hashes](../artifacts/risk_v2/seal.json) · [Holdout receipts](../artifacts/risk_v2/holdout.json)",
+        "[Frozen protocol](RISK_V2_PROTOCOL.md) · [Input hashes](../artifacts/risk_v2/seal.json) · [Holdout receipts](../artifacts/risk_v2/holdout.json) · [SQLite validation](../scripts/report_risk_v2.py)",
     ]
     if pilot is not None:
         lines += [
             "",
-            "With the pinned Qwen checkpoint already cached, run `python scripts/measure_risk_v2_exact.py --output local-pilot-replay.json`.",
+            "```bash",
+            f'hf download {pilot["model"]} --revision {pilot["revision"]} --include "*.json" --include "*.txt" --include "model.safetensors"',
+            "python scripts/measure_risk_v2_exact.py --output local-pilot-replay.json",
+            "```",
             "",
             "[Timing protocol](RISK_V2_LATENCY_PROTOCOL.md) · [Local timing receipts](../artifacts/risk_v2/local_exact_pilot.json)",
         ]
@@ -170,11 +202,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
-    if json.loads(SEAL.read_text(encoding="utf-8")) != inputs():
+    seal = json.loads(SEAL.read_text(encoding="utf-8"))
+    if seal != inputs():
         raise SystemExit("Frozen source or fixture changed")
     holdout = json.loads((DATA / "holdout.json").read_text(encoding="utf-8"))
     path = DATA / "local_exact_pilot.json"
     pilot = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else None
+    if pilot is not None:
+        validate_pilot(pilot, seal)
     report = render(holdout, reconcile(holdout), pilot)
     if args.check:
         if REPORT.read_text(encoding="utf-8") != report:

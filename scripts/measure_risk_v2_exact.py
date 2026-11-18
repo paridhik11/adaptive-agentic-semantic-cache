@@ -52,13 +52,13 @@ def run():
         if index == 8:
             break
         body = request(group["seed"])
-        prime = cache.process(body, provider=generate)
+        prime = cache.process(body, tenant_id="risk-pilot", provider=generate)
         if not prime.stored:
             raise ValueError(f"Could not prime {group['id']}")
         trials = {}
         for kind in (("fresh", "cached") if index % 2 == 0 else ("cached", "fresh")):
             started = time.perf_counter()
-            outcome = cache.process(body, provider=generate, bypass=(kind == "fresh"))
+            outcome = cache.process(body, tenant_id="risk-pilot", provider=generate, bypass=(kind == "fresh"))
             trials[kind] = (outcome, (time.perf_counter() - started) * 1_000)
         fresh, fresh_ms = trials["fresh"]
         cached, cached_ms = trials["cached"]

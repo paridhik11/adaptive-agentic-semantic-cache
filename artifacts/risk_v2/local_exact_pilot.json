@@ -1,0 +1,107 @@
+{
+  "evidence": "measured local CPU component pilot on warm literal repeats",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "machine": "x86_64",
+  "torch_version": "2.7.1+cpu",
+  "threads": 2,
+  "max_new_tokens": 32,
+  "fixture_sha256": "8932820a40451b1dccad4fd41d08f3f0aeeab1fe5e2cb2054a0c5386a9529af4",
+  "pairs": 8,
+  "fresh_p50_ms": 3307.350835,
+  "cached_p50_ms": 0.141395,
+  "paired_p50_ms_avoided": 3307.1917949999997,
+  "fresh_completion_tokens": 200,
+  "cached_completion_tokens": 0,
+  "receipts": [
+    {
+      "group": "batch-import",
+      "fresh_ms": 3449.63323,
+      "cached_ms": 0.17519,
+      "prime_ms": 3426.01165,
+      "fresh_completion_tokens": 25,
+      "cached_generated_tokens": 0,
+      "fresh_calls": 1,
+      "cached_calls": 0,
+      "answer_sha256": "636044ac9da4ae0f3fe8089191f72c134b4a2ac081a5cb9f60f371408faa7f41"
+    },
+    {
+      "group": "invoice-control",
+      "fresh_ms": 3088.33733,
+      "cached_ms": 0.10366,
+      "prime_ms": 3016.44783,
+      "fresh_completion_tokens": 21,
+      "cached_generated_tokens": 0,
+      "fresh_calls": 1,
+      "cached_calls": 0,
+      "answer_sha256": "e5f1f554963a8ab624c3864471457b0c4603cc03ffdd52776c68105b10ae228c"
+    },
+    {
+      "group": "upload-validity",
+      "fresh_ms": 4501.32923,
+      "cached_ms": 0.1399,
+      "prime_ms": 4446.36399,
+      "fresh_completion_tokens": 32,
+      "cached_generated_tokens": 0,
+      "fresh_calls": 1,
+      "cached_calls": 0,
+      "answer_sha256": "de99b2b2106eed1129c43d2dee51326fe666392659cd120ab5236325f7746462"
+    },
+    {
+      "group": "backup-validation",
+      "fresh_ms": 3165.06844,
+      "cached_ms": 0.14289,
+      "prime_ms": 3237.65375,
+      "fresh_completion_tokens": 22,
+      "cached_generated_tokens": 0,
+      "fresh_calls": 1,
+      "cached_calls": 0,
+      "answer_sha256": "8191d520d97b45fa9f6c03eee5705f6e8e4f124beb6c0511b1ecc5c43af1bb9d"
+    },
+    {
+      "group": "ticket-closure",
+      "fresh_ms": 2902.52069,
+      "cached_ms": 0.16934,
+      "prime_ms": 2978.89859,
+      "fresh_completion_tokens": 21,
+      "cached_generated_tokens": 0,
+      "fresh_calls": 1,
+      "cached_calls": 0,
+      "answer_sha256": "5bb3527e8b984f3162ee16e4ac54c42982bf7b07a6f90cd39e3624ed0dae37d4"
+    },
+    {
+      "group": "dividend-check",
+      "fresh_ms": 3009.32747,
+      "cached_ms": 0.10422,
+      "prime_ms": 2997.9356,
+      "fresh_completion_tokens": 21,
+      "cached_generated_tokens": 0,
+      "fresh_calls": 1,
+      "cached_calls": 0,
+      "answer_sha256": "562b78f2c7c7dd4f519cd636974f046f1b0937503a328ddc58e140a94a119b65"
+    },
+    {
+      "group": "fraud-triage",
+      "fresh_ms": 3555.853,
+      "cached_ms": 0.18038,
+      "prime_ms": 3643.68111,
+      "fresh_completion_tokens": 26,
+      "cached_generated_tokens": 0,
+      "fresh_calls": 1,
+      "cached_calls": 0,
+      "answer_sha256": "0dda06d105aadb52bdddc40e8abd63c6af4689d99c14c3d6fc7abc3f334ba560"
+    },
+    {
+      "group": "billing-match",
+      "fresh_ms": 4486.35666,
+      "cached_ms": 0.10651,
+      "prime_ms": 4275.92433,
+      "fresh_completion_tokens": 32,
+      "cached_generated_tokens": 0,
+      "fresh_calls": 1,
+      "cached_calls": 0,
+      "answer_sha256": "0ee259c99c089ba8cefa2a0dbadb1bad44b14d127cbe4b75817bd72b3ac6f7ca"
+    }
+  ]
+}

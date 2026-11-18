@@ -25,16 +25,30 @@ Gross savings include work avoided by returning unsuitable answers. Eligible sav
 | Scope change | 5 | 5 | 5 |
 | Entity change | 4 | 4 | 4 |
 
-Inputs are fictional operational reporting fixtures. Labels apply to the particular cached answer identified by its hash in each receipt. Intent groups contain related variants. Exact intervals are event-level and descriptive under the binomial assumption. The holdout is now spent for development, and repeats reproduce the frozen run. The experiment leaves serving policy decisions outside the harness.
+Inputs are fictional operational reporting fixtures. Labels apply to the particular cached answer identified by its hash in each receipt. Calibration and holdout use different base intents and share request templates. The results test those wording patterns. The added rule checks labels, so it cannot establish the factual accuracy or provenance of their contents. Intent groups contain related variants, so event-level exact intervals are descriptive under the binomial assumption. The holdout is now spent for development, and repeats reproduce the frozen run.
+
+## Paired local timing pilot
+
+On **8 warm literal repeats** using Qwen2.5-0.5B-Instruct on CPU, fresh generation measured **3307.35 ms p50** and exact reuse **0.141 ms p50**. The fresh arm generated **200 completion tokens**, and the reuse arm generated zero. The pilot verifies identical returned answers for each pair. Priming is measured separately. This is a local warm-cache component measurement with machine-specific timing.
 
 ## Reproduce
 
-With the exact MiniLM encoder and passage scorer checkpoints already in the local Hugging Face cache:
+Run from the repository root with Python 3.11 or newer. Install dependencies in a virtual environment and download the pinned checkpoints once:
 
 ```bash
+python -m pip install -e ".[dev]"
+hf download sentence-transformers/all-MiniLM-L6-v2 --revision 1110a243fdf4706b3f48f1d95db1a4f5529b4d41 --include "*.json" --include "*.txt" --include "*.safetensors"
+hf download cross-encoder/ms-marco-MiniLM-L-6-v2 --revision 233902d25c440f23af6f7d6e94d2946bac0bee0a --include "*.json" --include "*.txt" --include "*.safetensors"
 python scripts/evaluate_risk_v2.py calibration --output calibration-replay.json
 python scripts/evaluate_risk_v2.py holdout --output holdout-replay.json
 python scripts/report_risk_v2.py --check
 ```
 
-[Frozen protocol](RISK_V2_PROTOCOL.md) · [Input hashes](../artifacts/risk_v2/seal.json) · [Holdout receipts](../artifacts/risk_v2/holdout.json)
+[Frozen protocol](RISK_V2_PROTOCOL.md) · [Input hashes](../artifacts/risk_v2/seal.json) · [Holdout receipts](../artifacts/risk_v2/holdout.json) · [SQLite validation](../scripts/report_risk_v2.py)
+
+```bash
+hf download Qwen/Qwen2.5-0.5B-Instruct --revision 7ae557604adf67be50417f59c2c2f167def9a775 --include "*.json" --include "*.txt" --include "model.safetensors"
+python scripts/measure_risk_v2_exact.py --output local-pilot-replay.json
+```
+
+[Timing protocol](RISK_V2_LATENCY_PROTOCOL.md) · [Local timing receipts](../artifacts/risk_v2/local_exact_pilot.json)
