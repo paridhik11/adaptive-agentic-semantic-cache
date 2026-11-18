@@ -3,7 +3,8 @@ import argparse
 import os
 from pathlib import Path
 import sys
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 from src.api.demo import create_demo_app
 
 
@@ -27,9 +28,12 @@ def main():
     key=os.environ.get('OPENROUTER_API_KEY') if args.live else None
     profile='live' if args.live else 'reference-whole-answer' if args.whole_answer_cache else 'reference'
     if args.task_memory:profile+='-memory'
+    benchmark_directory = ROOT / "dashboard" / "interview"
+    if not (benchmark_directory / "report.json").is_file():
+        benchmark_directory = None
     try:app=create_demo_app(args.directory/profile,live=args.live,journal_path=args.journal,api_key=key,
                             whole_answer_cache=args.whole_answer_cache,task_memory=args.task_memory,
-                            experimental_semantic=args.experimental_semantic)
+                            experimental_semantic=args.experimental_semantic,benchmark_directory=benchmark_directory)
     except ValueError as exc:p.error(str(exc))
     import uvicorn
     print('Open http://127.0.0.1:'+str(args.port),flush=True)

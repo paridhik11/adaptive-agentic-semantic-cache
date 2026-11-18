@@ -15,6 +15,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse, Response
 from starlette.concurrency import run_in_threadpool
 from starlette.middleware.trustedhost import TrustedHostMiddleware
+from starlette.staticfiles import StaticFiles
 
 from src.agents.document_agent import DocumentAgent, DocumentTools, packed
 from src.api.gateway import _strict_json
@@ -84,7 +85,7 @@ def _live_capacity(journal,required=3):
     return {'run_attempts':run,'run_limit':journal.max_calls,'daily_attempts':daily,'daily_limit':40}
 
 
-def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_answer_cache=False,task_memory=False,experimental_semantic=False):
+def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_answer_cache=False,task_memory=False,experimental_semantic=False,benchmark_directory=None):
     if type(task_memory) is not bool:raise ValueError('task_memory must be boolean')
     if type(experimental_semantic) is not bool:raise ValueError('experimental_semantic must be boolean')
     if live and task_memory:raise ValueError('task memory demo is offline reference mode only')
@@ -162,8 +163,15 @@ def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_
             'Content-Security-Policy':"default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; frame-ancestors 'none'; form-action 'none'"})
         return response
 
+    benchmark_link = ""
+    if benchmark_directory is not None and not live:
+        app.mount("/benchmark", StaticFiles(directory=benchmark_directory, html=True), name="benchmark")
+        benchmark_link = '<a class="secondary-button benchmark-link" href="/benchmark/">Benchmark analysis ↗</a>'
+
     @app.get('/',response_class=HTMLResponse)
-    def page():return HTMLResponse(Path(__file__).with_name('workbench.html').read_text().replace('__SESSION__',session))
+    def page():
+        html = Path(__file__).with_name("workbench.html").read_text(encoding="utf-8")
+        return HTMLResponse(html.replace("__SESSION__", session).replace("__BENCHMARK_LINK__", benchmark_link))
 
     @app.get('/assets/{name}')
     def assets(name:str):

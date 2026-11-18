@@ -336,6 +336,7 @@ def test_live_runner_zero_output_ceiling_blocked_in_preflight():
 # 5. Integration Tests: Cache Behavior With and Without Experimental Semantic Flag
 # =============================================================================
 
+@pytest.mark.requires_model
 def test_demo_flagship_actual_cache_behavior_with_and_without_flag(tmp_path):
     from scripts.demo_flagship import run_demo
 
@@ -382,6 +383,7 @@ def test_demo_flagship_actual_cache_behavior_with_and_without_flag(tmp_path):
     assert step4_opt["avoided_calls"] == 3
 
 
+@pytest.mark.requires_model
 def test_workbench_create_demo_app_cache_mode_wiring(tmp_path):
     from src.api.demo import create_demo_app
 

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore the matched offline benchmark for Adaptive Agentic Semantic Cache.">
+  <title>Cache Benchmark | Trace</title>
+  <link rel="stylesheet" href="benchmark.css">
+  <script src="benchmark.js" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <nav aria-label="Project"><a href="/">← Workbench</a><div><a href="comparison.csv" download>Download CSV ↓</a><a href="report.json">JSON</a></div></nav>
+      <p class="eyebrow">Adaptive Agentic Semantic Cache</p>
+      <h1>Cache benchmark</h1>
+      <p>How much work does semantic reuse save beyond exact matching?</p>
+      <p id="scope" class="scope">Loading offline evidence…</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <p id="error" role="alert" hidden></p>
+    <div id="benchmark" hidden>
+      <div class="toolbar">
+        <label for="profile">Workload</label>
+        <select id="profile">
+          <option value="repeat_rich">Repeat-heavy</option>
+          <option value="lower_repeat">Lower-repeat breadth</option>
+        </select>
+        <span id="profile-scope"></span>
+      </div>
+      <div class="kpis" aria-live="polite">
+        <section class="kpi"><h2>Exact-only calls avoided</h2><strong id="exact-kpi"></strong><p id="exact-detail"></p></section>
+        <section class="kpi highlighted"><h2>Additional calls avoided</h2><strong id="increment-kpi"></strong><p id="increment-detail"></p></section>
+        <section class="kpi"><h2>Guarded false accepts</h2><strong id="quality-kpi"></strong><p id="quality-detail"></p></section>
+      </div>
+      <div class="grid">
+        <section class="panel">
+          <h2>Where the savings come from</h2>
+          <p>Scripted provider calls per configuration</p>
+          <ul id="chart" class="chart"></ul>
+        </section>
+        <section class="panel takeaway">
+          <h2>Why exact is the default</h2>
+          <p id="takeaway"></p>
+          <p>Answer-level correctness is unadjudicated. The replay measures local processing time and uses synthetic tokens.</p>
+          <a href="#case-study">Inspect the lower-repeat false accept ↓</a>
+        </section>
+      </div>
+      <section class="panel">
+        <h2>Configuration comparison</h2>
+        <p>Reductions use the paired no-cache denominator. Reviewed accepts are reported against total accepts.</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Configuration comparison">
+          <table>
+            <thead><tr><th scope="col">Configuration</th><th scope="col">Scripted calls</th><th scope="col">Calls avoided</th><th scope="col">Synthetic tokens</th><th scope="col">Tokens avoided</th><th scope="col">False accepts / challenges</th><th scope="col">Reviewed / accepts</th></tr></thead>
+            <tbody id="comparison"></tbody>
+          </table>
+        </div>
+        <p class="note" id="quality-note"></p>
+      </section>
+      <div class="grid analysis">
+        <section class="panel">
+          <div class="section-header">
+            <h2>Latency by path</h2>
+            <label for="path" class="visually-hidden">Latency path</label>
+            <select id="path"><option value="all">All requests</option><option value="hit">Cache hit</option><option value="miss">Cache miss</option></select>
+          </div>
+          <p>Historical end-to-end wall clock. Hit and miss groups can differ by configuration.</p>
+          <table>
+            <thead><tr><th scope="col">Configuration</th><th scope="col">n</th><th scope="col">p50 · ms</th><th scope="col">p95 · ms</th></tr></thead>
+            <tbody id="latency"></tbody>
+          </table>
+        </section>
+        <section class="panel">
+          <div class="section-header">
+            <h2>Coverage by request type</h2>
+            <label for="coverage-arm" class="visually-hidden">Coverage configuration</label>
+            <select id="coverage-arm"><option value="no_cache">No cache</option><option value="exact_only">Exact only</option><option value="verified_semantic" selected>Guarded semantic</option><option value="shadow_semantic">Shadow semantic</option></select>
+          </div>
+          <p>The harness considers all non-challenge requests eligible, including seeds. Counts describe workload labels.</p>
+          <table>
+            <thead><tr><th scope="col">Request type</th><th scope="col">Hits / requests</th><th scope="col">Eligible hits / eligible</th></tr></thead>
+            <tbody id="coverage"></tbody>
+          </table>
+        </section>
+      </div>
+      <section id="case-study" class="panel">
+        <div class="section-header"><h2>A cached answer missed an added requirement</h2><span class="case-label">Lower-repeat breadth</span></div>
+        <p id="event-id"></p>
+        <dl id="failure" class="trace"></dl>
+        <p class="note">The campaign record includes the selected prompt, returned text and decision. It did not capture individual historical guard decisions or the verifier score for this event.</p>
+      </section>
+      <details class="panel">
+        <summary>Evidence and methodology</summary>
+        <p>Each workload event was matched across four configurations using its event ID and request metadata. Latency uses the campaign convention: median and exclusive p95, with the maximum reported for fewer than 20 samples. Adversarial intervals are exact 95% Clopper–Pearson intervals. Requests cluster by base intent and source group, so these intervals are descriptive under a binomial assumption.</p>
+        <p>Repeat-heavy adversarial results are development regression evidence. Lower-repeat results describe the committed offline breadth replay. The campaign has zero independently reviewed accepts, so the answer-level incorrect reuse rate is unavailable. These logs provide no production traffic, billable usage or live quality estimate.</p>
+        <p id="source"></p>
+        <p>SHA-256 <code id="sha"></code></p>
+      </details>
+    </div>
+  </main>
+  <footer class="wrap">Regenerate from the repository root with <code>python scripts/report_interview.py</code>.</footer>
+</body>
+</html>

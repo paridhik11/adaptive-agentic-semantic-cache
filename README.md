@@ -1,299 +1,229 @@
 # Adaptive Agentic Semantic Cache
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Tests Passing](https://img.shields.io/badge/tests-68%20passed-brightgreen.svg)](tests/)
-[![Evidence Verified](https://img.shields.io/badge/evidence-reproducible-success.svg)](artifacts/resume/)
-[![Release Status](https://img.shields.io/badge/status-evaluated--prototype-orange.svg)](docs/CURRENT_STATUS.md)
+> **Current engineering status:** A runnable authenticated exact-response gateway is available; semantic reuse is off by default and the historical Phase A safety gate failed. An [opt-in guarded runtime](docs/semantic_cache_runtime.md) now exercises answer-bound reuse and shadow mode; semantic quality and live savings remain unproven. Start with [`docs/gateway.md`](docs/gateway.md), [`docs/RECOVERY_STATUS.md`](docs/RECOVERY_STATUS.md), and the [source-level Phase A audit](docs/audit/PHASE_A_SOURCE_AUDIT.md). Historical reports and [`docs/FACTS.md`](docs/FACTS.md) retain earlier experiments; a ledger entry alone does not certify a claim.
 
-> **A production-principled hybrid caching gateway and inspectable documentation agent** combining O(1) exact hash lookups, deterministic structural & directional constraint guards, and cross-encoder answer verification with rigorous negative results reporting and human-in-the-loop admission.
+An adaptive semantic response reuse engine designed to eliminate redundant LLM computation safely. While naive similarity caches suffer high false-positive reuse rates by confusing syntactically similar prompts with semantically identical ones, this system guards cache access through a gated architecture: a lexical/rule-based **StabilityClassifier** that filters volatile and time-sensitive queries, a dense **SemanticCache** using `all-MiniLM-L6-v2` embeddings in FAISS, a dual-signal **TierRouter** evaluating both similarity and stability confidence, and an **LLMJudge** (`nvidia/nemotron-3-super-120b-a12b:free`) that reasons over ambiguous-tier queries with a strict fail-closed contract.
 
 ---
 
-## The Problem: The Cost & Safety Dilemma in Agentic Systems
-
-Autonomous LLM agents do not just answer questions—they execute multi-step workflows. A single documentation request routinely triggers **supervisor planning, local tool invocations (search and read), specialist draft generation, and reviewer verification**, consuming 3x to 5x the provider calls of a standard conversational interface. In documentation and support workloads, repetitive questions waste significant computational budget.
-
-However, **naive semantic caching (e.g. cosine distance over prompt embeddings) fails dangerously in agentic workflows**:
-1. **Subtle Intent Shifts & Inverse Operations:** A query asking *"How do I convert a list to a tuple?"* has near-identical vector similarity to *"How do I convert a tuple to a list?"*, but returning the cached answer is completely wrong.
-2. **Missing Constraint Awareness:** Prompts asking for *"executable code snippets"* or *"recursive deep copies"* get falsely matched to general conceptual summaries.
-3. **Stale Scope & Multi-Tenant Leakage:** Unchecked caching risks serving answers across different access boundaries, tenant epochs, or modified documentation revisions.
-4. **Uncalibrated Confidence:** Vector distance does not measure answer correctness.
-
-### The Solution: Multi-Tier Guarded Caching
-
-This project implements a multi-tier, safe-by-default architecture:
-- **Tier 0 (Safe Default Exact Cache):** Immediate O(1) SQLite lookup bound to tenant epoch, source revision, and runtime parameters. Serves cache hits with **zero provider calls**.
-- **Structural & Directional Guards:** Deterministic pre-inference checks that block inverse operations, directional reversals, numeric/version constraints, and missing code examples before any neural model is called.
-- **Bounded Documentation Agent:** Inspectable orchestration with tool sandboxing, specialist drafting, reviewer verification, and durable human approval.
-- **Experimental Guarded Semantic Reuse:** Dense top-k retrieval (`all-MiniLM-L6-v2`) and cross-encoder answer verification (`ms-marco-MiniLM-L-6-v2`), safely constrained to shadow mode by default and explicit opt-in for research.
-
----
-
-## Interactive Documentation Workbench
-
-The system includes a local visual workbench demonstrating the entire agent workflow, document citations, real-time cache tier decisions, and operator approval controls:
-
-![Documentation Workbench](docs/images/workbench_screenshot.png)
-
-*The workbench in action: An exact repeat query triggers a Tier 0 cache hit (`Exact draft reused`, 2 scripted calls avoided, 57 ms processing). The right panel exposes the full agent execution timeline: Plan the document lookup → Search the source library → Read source evidence → Draft from evidence (exact cache hit) → Review the draft → Human operator approval decision.*
-
----
-
-## Architecture & Data Flow
-
-```mermaid
-flowchart TD
-    User([User Request]) --> Agent[Document Agent Orchestrator]
-    Agent --> CacheCheck{Before-Agent Cache Lookup}
-    
-    %% Tier 0 Exact Path
-    CacheCheck -->|Exact Hash Match| ExactHit[Tier 0: Exact SQLite Hit]
-    ExactHit --> EpochCheck{Tenant Epoch & Scope Valid?}
-    EpochCheck -->|Yes| ReusedAnswer[Return Verified Cached Answer\n0 Provider Calls]
-    EpochCheck -->|No / Stale| MissFallback[Miss: Fall Back to Fresh Agent Execution]
-    
-    %% Tier 1 Semantic Path (Opt-In Guarded Mode)
-    CacheCheck -->|Exact Miss| ModeCheck{Serving Mode?}
-    ModeCheck -->|exact: Safe Default| MissFallback
-    ModeCheck -->|shadow: Diagnostic Only| ShadowEval[Diagnostic Evaluation Only\nRecord Signals, No Substitution] --> MissFallback
-    ModeCheck -->|guarded: Explicit Opt-In| CandCheck{Compatible Candidates in Scope?}
-    CandCheck -->|None| MissFallback
-    CandCheck -->|Candidates Found| Guards{Structural & Directional Guards\n- Direction & Inverse Operation\n- Executable Example Coverage\n- Negation / Polarities\n- Parameter Alignment}
-    
-    Guards -->|Guard Rejection| MissFallback
-    Guards -->|Pass| NeuralRetrieve[Dense Semantic Top-K Retrieval\nall-MiniLM-L6-v2]
-    NeuralRetrieve --> CrossEncode[Answer-Aware Cross-Encoder Verification\nms-marco-MiniLM-L-6-v2]
-    
-    CrossEncode -->|Score >= 0.85| SemanticHit[Tier 1: Guarded Semantic Hit]
-    SemanticHit --> ReusedAnswer
-    CrossEncode -->|Score < 0.85| MissFallback
-    
-    %% Fresh Agent Execution
-    MissFallback --> Planner[Supervisor Planning Stage]
-    Planner --> Tools[Document Tools: Search & Read]
-    Tools --> Drafter[Specialist Answer Drafting]
-    Drafter --> Reviewer[Reviewer Verification Stage]
-    Reviewer --> Approval{Operator Approval Required?}
-    Approval -->|Approved| Admit[Admit & Persist to SQLite Cache\nverified=True, epoch=E]
-    Approval -->|Rejected / Modified| Revoke[Revoke / Invalidate Epoch]
-    Admit --> Response([Terminal State Persisted & Answer Returned])
-    Revoke --> Response
-    ReusedAnswer --> Response
-```
-
----
-
-## Implemented Engineering Components
-
-- **Scoped LLM Response Cache Gateway:** Multi-tenant SQLite store, cryptographic fingerprinting, TTL expiration, transactional invalidation, and strict payload bounds (`src/policy/`).
-- **Deterministic Guard Engine:** Regex- and taxonomy-based checks for inverse operations, directional conversions, polarity/negations, and executable code example requirements (`src/classifier/`).
-- **Bounded Document Agent Orchestrator:** Multi-role workflow (supervisor, tools, drafter, reviewer), structured tool schema, checkpoint persistence, and approval state machine (`src/agents/document_agent.py`).
-- **Cross-Encoder Answer Verifier:** Answer-aware semantic verification comparing candidate answers against query intent (`src/decision/`).
-- **Local Visual Workbench & CLI Runner:** Interactive web UI (`scripts/run_demo.py`) and automated 7-scenario flagship CLI test (`scripts/run_demo.py --cli`).
-
----
-
-## Reconciled Benchmark Results & Work Avoidance
-
-Large-scale evaluations across **25 documentation source groups** and **125 distinct base intents** evaluated all 4 matched caching arms under identical event order and approval workflow (full analysis in [METRICS_RESULTS.md](docs/METRICS_RESULTS.md), FACTS MC-01–MC-16):
-
-### Headline Work Avoidance Results
-
-- **Repeat-Rich Workload (Profile A, 600 events):**
-  - **47.33% Provider Call Avoidance:** Avoided **852 provider invocations** out of 1,800 baseline calls.
-  - **46.57%–47.72% Synthetic Token Reduction:** Reduced synthetic token consumption from 201,667 to 105,429.
-  - **98.33% Exact Repeat Coverage:** Successfully intercepted 284 exact repeats with zero provider calls.
-  - **0 Adversarial False Accepts** across 120 adversarial challenges (`[0.00%, 3.03%]` exact 95% CI).
-
-- **Lower-Repeat Breadth Workload (Profile B, 400 events across ALL 25 groups):**
-  - **14.75% Provider Call Avoidance:** Avoided **177 provider invocations** out of 1,200 baseline calls.
-  - **14.56%–18.41% Synthetic Token Reduction:** Reduced synthetic tokens from 133,964 to 109,302.
-  - **98.33% Exact Repeat Coverage:** Intercepted 59 exact repeats with zero provider calls.
-
-### Crucial Scientific Disclosures & Honest Limits
-
-1. **Overall Application Latency Did Not Improve in Offline Replay:**
-   - In Profile A, whole-agent p50 latency was **130.86 ms** for `no_cache` vs **140.80 ms** for `exact_only`.
-   - In Profile B, whole-agent p50 latency was **89.70 ms** for `no_cache` vs **168.42 ms** for `exact_only`.
-   - *Why?* Because offline reference agent execution is lightweight and instantaneous (sub-150 ms), cache lookups, database serialization, and orchestration checks introduce slight overhead. While caching saves seconds over real multi-second remote LLM network roundtrips, it does *not* reduce whole-agent latency in fast offline simulations.
-2. **Semantic Reuse Has Documented Quality Limitations:**
-   - Independent P2 frozen evaluation revealed that **36.0% (9/25)** of semantic accepts were insufficient under model-assisted review (7 missing requested executable examples, 2 wrong-operation/inverse reuse).
-   - In the untuned 400-event breadth study, guarded semantic mode accepted 1 adversarial challenge (`async_05:challenge_added_requirements`).
-   - Consequently, **exact caching is enforced as the safe default serving mode (`mode="exact"`)**, and neural semantic reuse remains strictly experimental.
-
-### Detailed Evaluation Tables
-
-#### Profile A: Repeat-Rich Workload (600 Events per Arm; 12 Executed Groups, 60 Base Intents)
-*Models high query redundancy (4x exact repeats, 3x paraphrases) across 12 source groups.*
-
-| Metric | Baseline: `no_cache` | `exact_only` *(Safe Default)* | `verified_semantic` *(Guarded Opt-In)* | `shadow_semantic` *(Diagnostic)* |
-| :--- | :---: | :---: | :---: | :---: |
-| **Serving Configuration** | `mode="off"` | `mode="exact"` | `mode="guarded"` | `mode="shadow"` |
-| **Evaluated Events** | 600 | 600 | 600 | 600 |
-| **Total Provider Invocations** | 1,800 | 948 | **927** | 948 |
-| **Calls Avoided on Eligible Reuse** | 0 | **852 (47.33%)** | **873 (48.50%)** | **852 (47.33%)** |
-| **Calls Avoided on Ineligible Reuse** | 0 | **0** | **0** | **0** |
-| **Synthetic Token Volume** *(Offline)* | 201,667 | 107,750 | **105,429** | 107,750 |
-| **Synthetic Token Reduction** | 0.0% | 46.57% | **47.72%** | 46.57% |
-| **Cache Hits Total** | 0 | 284 | **291** | 284 |
-| - *Exact Hits (Tier 0)* | 0 | 284 | 273 | 284 |
-| - *Verified Semantic Hits (Tier 1)* | 0 | 0 | **18** | 0 |
-| **Exact Repeat Coverage** | 0.0% | **98.33%** | **98.33%** | **98.33%** |
-| **Paraphrase Opportunity Coverage** | 0.0% | 26.67% | **29.44%** | 26.67% |
-| **Adversarial Challenges Tested** | 120 | 120 | 120 | 120 |
-| **Adversarial False Accepts** | 0 | **0** | **0** *(dev regression)* | **0** |
-| **Exact 95% Clopper-Pearson CI** | `[0.00%, 3.03%]` | `[0.00%, 3.03%]` | `[0.00%, 3.03%]` | `[0.00%, 3.03%]` |
-| **Whole-Agent Latency p50** | 130.86 ms | 140.80 ms | 137.81 ms | 141.58 ms |
-| **Whole-Agent Latency p95** | 151.58 ms | 233.14 ms | 237.73 ms | 241.28 ms |
-
-#### Profile B: Lower-Repeat Breadth Workload (400 Events per Arm; ALL 25 Groups, 125 Base Intents)
-*Models broad exploratory traffic across all 25 documentation groups, executed without further tuning.*
-
-| Metric | Baseline: `no_cache` | `exact_only` *(Safe Default)* | `verified_semantic` *(Guarded Opt-In)* | `shadow_semantic` *(Diagnostic)* |
-| :--- | :---: | :---: | :---: | :---: |
-| **Serving Configuration** | `mode="off"` | `mode="exact"` | `mode="guarded"` | `mode="shadow"` |
-| **Evaluated Events** | 400 | 400 | 400 | 400 |
-| **Total Provider Invocations** | 1,200 | 1,023 | **975** | 1,023 |
-| **Calls Avoided on Eligible Reuse** | 0 | **177 (14.75%)** | **222 (18.50%)** | **177 (14.75%)** |
-| **Synthetic Token Volume** *(Offline)* | 133,964 | 114,453 | **109,302** | 114,453 |
-| **Synthetic Token Reduction** | 0.0% | 14.56% | **18.41%** | 14.56% |
-| **Cache Hits Total** | 0 | 59 | **75** | 59 |
-| - *Exact Hits (Tier 0)* | 0 | 59 | 57 | 59 |
-| - *Verified Semantic Hits (Tier 1)* | 0 | 0 | **18** | 0 |
-| **Exact Repeat Coverage** | 0.0% | **98.33%** | **98.33%** | **98.33%** |
-| **Paraphrase Opportunity Coverage** | 0.0% | 0.00% | **10.00%** | 0.00% |
-| **Adversarial Challenges Tested** | 125 | 125 | 125 | 125 |
-| **Adversarial False Accepts** | 0 | **0** | **1** | **0** |
-| **Exact 95% Clopper-Pearson CI** | `[0.00%, 2.91%]` | `[0.00%, 2.91%]` | `[0.02%, 4.38%]` | `[0.00%, 2.91%]` |
-| **Whole-Agent Latency p50** | 89.70 ms | 168.42 ms | 180.60 ms | 183.55 ms |
-| **Whole-Agent Latency p95** | 103.71 ms | 194.46 ms | 219.77 ms | 224.81 ms |
-
----
-
-## Quickstart & Verification Demo
-
-### 1. Environment Setup
+## Run the gateway
 
 ```bash
-# Clone repository
+python -m pip install -e ".[dev,gateway]"
+python scripts/smoke_gateway.py
+```
+
+This starts and tests a local HTTP server with an explicitly **simulated fixture**
+provider, then shuts it down. See the [gateway guide](docs/gateway.md) for a
+persistent local server, live-provider configuration, supported request fields,
+and accounting limits. The smoke test does not measure real-model savings.
+
+## Recovery evaluation and operations
+
+The [answer-review workflow](docs/answer_evaluation.md) runs paired fresh-generation
+and exact-cache serving, records actual candidate/answer lineage, and exports an
+offline review page. Unreviewed answers remain unknown. The
+[dataset plan](docs/DATASET_PLAN.md) separates paraphrase, adversarial, domain and
+reference-answer evidence; existing training data remains development-only.
+
+An admin-authenticated metrics view is available at `/dashboard` (the static page
+is public; metrics are protected). See [deployment instructions](docs/deployment.md)
+for the gateway-only image, Compose setup, persistence and validation limits.
+The default exact runtime and guarded semantic extension are infrastructure for
+the recovery experiment; semantic safety and useful real-model savings remain
+unproven.
+
+The [semantic, streaming and agent guide](docs/semantic_streaming_agents.md) covers
+experimental retrieval/verification policies, SSE cache bypass, a bounded
+specialist/reviewer workflow, and reconciliation of independent human reviews.
+These are implemented engineering paths; live answer quality and semantic safety
+remain unestablished.
+
+For limited free-model quotas, use the [zero-budget pilot guide](docs/free_pilot.md).
+It plans by default and journals attempts before explicit live execution.
+
+## Historical experimental results
+
+Selected historical findings from the consolidated metrics table in [`docs/MASTER_REPORT.md`](docs/MASTER_REPORT.md), ordered strictly by evidentiary strength. Every metric preserves its verified evaluation nature label:
+
+1. **Decision-Path Latency Comparison** (**design-informed** & **blind**; [`LAT-05`](docs/FACTS.md))
+   When queries meet high-confidence cache reuse criteria (`AUTO_REUSE`), the recorded lookup/routing path completes in **10.56–61.91 ms** compared to **6,577.94–9,291.35 ms** for ambiguous-tier remote LLM judge calls, yielding a **99.20% to 99.84% difference between these decision paths** (**124.6x to 622.7x speedup**) across all three load test runs ([`LAT-01`..`LAT-05`](docs/FACTS.md)). This compares lookup/routing with remote judge calls; it does not measure end-to-end cached answering against fresh generation.
+   > *Sample Size Caveat ([`LAT-06`](docs/FACTS.md)):* In the scaled $N=338$ and blind $N=175$ runs, exactly $n=1$ query triggered the `AUTO_REUSE` path in each run (61.91 ms and 10.56 ms, respectively). The Phase 5 $N=70$ pilot produced $n=20$ `AUTO_REUSE` hits (mean 19.18 ms) and represents our most statistically reliable latency distribution.
+
+2. **Zero False Positives on Sealed Blind Evaluation** (**blind**; [`P6-04`](docs/FACTS.md))
+   Across 175 blind evaluation queries across 7 domains sealed prior to execution at commit `fc35744` ([`D-09`](docs/FACTS.md), [`P6-01`](docs/FACTS.md), [`P6-02`](docs/FACTS.md)), the pipeline admitted 8 cache hits (1 `AUTO_REUSE`, 7 judge-approved; [`P6-03`](docs/FACTS.md)) with **0 false positives**, yielding an empirical hazard rate ($IRR_{\text{cache}}$) of **0.00%** with an exact 95% Clopper-Pearson confidence interval of **[0.00%, 36.94%]** ([`P6-05`](docs/FACTS.md)).
+
+3. **Same-Set Incorrect-Reuse Reduction (Calibration Benchmark)** (**same-set**; [`P2-01`](docs/FACTS.md), [`P3-06`](docs/FACTS.md))
+   On the 120-pair baseline calibration benchmark, the best fixed cosine similarity threshold (0.85) failed the 10% safety ceiling with an empirical hazard rate of **20.83%** (5 FP / 24 hits, 95% CI [7.13%, 42.15%]; [`P2-01`](docs/FACTS.md), [`HR-01`](docs/FACTS.md)). Integrating the OpenRouter LLM judge (`nvidia/nemotron-3-super-120b-a12b:free`) for ambiguous pairs reduced the same-set point estimate to **8.33%** (1 FP / 12 hits, 95% CI [0.21%, 38.48%]; [`P3-06`](docs/FACTS.md)), achieving a 12.50 percentage point reduction ([`HR-02`](docs/FACTS.md)) and a 60.00% relative hazard reduction ([`HR-03`](docs/FACTS.md)).
+   > *Statistical Significance & Calibration Note ([`HR-04`](docs/FACTS.md), [`KL-06`](docs/FACTS.md)):* The 95% Clopper-Pearson confidence intervals overlap ([7.13%, 42.15%] vs [0.21%, 38.48%]), meaning the reduction is **same-set** and **not statistically established** at 95% confidence. This point estimate served architecture selection, not a proven blind safety bound.
+
+4. **Classifier Held-Out Accuracy and Zero Dangerous Errors** (**held-out**; [`P1-01`..`P1-04`](docs/FACTS.md))
+   The two-stage `StabilityClassifier` achieved **91.67% accuracy** (55/60 correct) on both the pristine held-out challenge benchmark ([`P1-03`](docs/FACTS.md)) and the final test benchmark ([`P1-01`](docs/FACTS.md)), committing **0 dangerous errors** across all dynamic queries in both sets (FP=0 on 24 challenge dynamic queries, FP=0 on 23 final test dynamic queries; [`P1-02`](docs/FACTS.md), [`P1-04`](docs/FACTS.md)), while maintaining a low conservative false rejection rate (13.51% final test, 13.89% challenge; [`P1-05`](docs/FACTS.md), [`P1-06`](docs/FACTS.md)).
+
+5. **High Local Resolution Rate Resolved Without a Judge Call** (**design-informed** & **blind**; [`LRR-04`](docs/FACTS.md))
+   Across all three load tests, **86.39% to 89.71%** of queries were resolved locally on-device without invoking a slow, costly remote LLM judge call (87.14% in the $N=70$ pilot, 86.39% in the $N=338$ scaled run, and 89.71% in the $N=175$ blind evaluation; [`LRR-01`..`LRR-03`](docs/FACTS.md)).
+
+---
+
+## Honest Limitations
+
+- **Statistical Power Limits:** To mathematically guarantee that the true cache hazard rate does not exceed 10% under a 95% Clopper-Pearson confidence interval when observing zero errors ($k=0$), an evaluation must observe at least **$n \ge 36$ hits** ([`P4-04`](docs/FACTS.md)). The blind run yielded $n=8$ hits (upper bound 36.94%; [`P6-05`](docs/FACTS.md)), and pooling the scaled run ($n=14$) and blind run ($n=8$) yielded $n=22$ hits with $k=0$ (upper bound **15.44%**; [`POOL-01`..`POOL-03`](docs/FACTS.md)). Because 15.44% remains above the 10% safety ceiling ([`C-13`](docs/FACTS.md)), the 10% ceiling is not certified under blind evaluation.
+- **Adaptive Mechanism Fallback:** The per-category adaptive threshold engine never altered an operating threshold in production; all 7 categories remained on the global 0.85 fallback due to finite-sample safety gates ([`P4-01`](docs/FACTS.md), [`KL-11`](docs/FACTS.md)).
+- **Uncorrected Benchmark Collisions:** 6 undetected near-duplicate collisions identified in Phase 5 remain uncorrected in `data/raw/new_dataset_v3.json` ([`P5B-06`](docs/FACTS.md), [`KL-01`](docs/FACTS.md)).
+- **Synthetic Distributions:** Evaluations utilized structured synthetic streams and StackExchange seeds rather than organic enterprise customer traffic ([`KL-08`](docs/FACTS.md)).
+- **Free-Tier Infrastructure:** The production judge relies on OpenRouter's free tier (`nvidia/nemotron-3-super-120b-a12b:free`), which imposes a 50 requests-per-day quota limit ([`KL-03`](docs/FACTS.md)) and introduces dual-role bias in Phase 4 calibration ([`KL-04`](docs/FACTS.md)).
+- **In-Memory Store:** The FAISS index operates strictly in-memory without disk persistence across restarts ([`KL-07`](docs/FACTS.md)).
+
+---
+
+## Verified Results Summary
+
+The table below summarizes measured empirical results across all phases of the project. Each evaluation is explicitly labeled by the nature of its data exposure: **same-set** (development/calibration data), **held-out** (unseen during tuning), or **blind** (operationally sealed prior to execution).
+
+| Pipeline Stage / Run | Dataset Role | N | Cache Hits (n) | False Positives (k) | Hazard Rate ($IRR_{\text{cache}}$) | 95% Clopper-Pearson CI | Local Resolution Rate | FACTS.md Rows |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **StabilityClassifier Final Test** | **Held-out** (seen once by a pytest assertion, see [`KL-10`](docs/FACTS.md)) | 60 | — | 0 dangerous FP | 0.00% FP on dynamic | — | — | [`P1-01`](docs/FACTS.md), [`P1-02`](docs/FACTS.md), [`D-04`](docs/FACTS.md) |
+| **StabilityClassifier Challenge** | **Held-out** | 60 | — | 0 dangerous FP | 0.00% FP on dynamic | — | — | [`P1-03`](docs/FACTS.md), [`P1-04`](docs/FACTS.md), [`D-03`](docs/FACTS.md) |
+| **Fixed Threshold Sweep (Best: 0.85)** | **Same-set** | 120 pairs | 24 | 5 | 20.83% | — | — | [`P2-01`](docs/FACTS.md), [`P2-04`](docs/FACTS.md), [`D-01`](docs/FACTS.md) |
+| **Phase 3 Non-LLM Decision Step** | **Same-set** | 120 pairs | 23 | 12 | 52.17% | — | — | [`P3-01`](docs/FACTS.md), [`D-01`](docs/FACTS.md) |
+| **Phase 3 OpenRouter Nemotron Judge** | **Same-set** (calibration benchmark) | 120 pairs | 12 | 1 | 8.33% | [0.21%, 38.48%] | — | [`P3-06`](docs/FACTS.md), [`P3-07`](docs/FACTS.md), [`KL-06`](docs/FACTS.md) |
+| **Phase 5 Pilot Load Test** | **Same-set** (design-informed) | 70 | 22 (20 auto, 2 judge) | 0 | 0.00% | [0.00%, 15.44%] | 87.14% | [`P5A-01`..`P5A-05`](docs/FACTS.md), [`D-07`](docs/FACTS.md) |
+| **Phase 5 Scaled Load Test (Initial)** | **Same-set** (design-informed) | 338 | 14 | 10 | 71.43% | [41.90%, 91.61%] | 86.39% | [`P5B-01`](docs/FACTS.md), [`P5B-03`](docs/FACTS.md), [`D-08`](docs/FACTS.md) |
+| **Phase 5 Scaled Load Test (Corrected)** | **Same-set** (collision-audited) | 338 | 14 (1 auto, 13 judge) | 0 | 0.00% | [0.00%, 23.16%] | 86.39% | [`P5B-02`](docs/FACTS.md), [`P5B-04`](docs/FACTS.md), [`P5B-07`](docs/FACTS.md) |
+| **Phase 6 Blind Evaluation** | **Blind** (sealed commit `fc35744`, [`P6-02`](docs/FACTS.md)) | 175 | 8 (1 auto, 7 judge) | 0 | **0.00%** | **[0.00%, 36.94%]** | **89.71%** | [`P6-01`..`P6-06`](docs/FACTS.md), [`D-09`](docs/FACTS.md) |
+| **Pooled Blind + Corrected Pilot** | **Design-informed + blind** (Phase 5 corr. + Phase 6 blind) | — | 22 | 0 | **0.00%** | **[0.00%, 15.44%]** | — | [`POOL-01`..`POOL-06`](docs/FACTS.md) |
+| **Phase 8 Real-Data Evaluation** | **Blind sealed stream** (commit `325d4c6`, hash `fbcf1437`; QQP/PAWS/MS MARCO; [`P8-D05`](docs/FACTS.md)) | 230 | 50 (41 canonical, 3 auto, 6 local) | 3 | **6.0%** | **[1.3%, 16.5%]** | **100%** | [`P8-R04`](docs/FACTS.md), [`P8-P01`..`P8-P04`](docs/FACTS.md) |
+
+---
+
+## Quickstart
+
+### 1. Installation
+
+Install dependencies into a Python virtual environment (tested and verified with Python 3.14.5 in fresh-clone test):
+
+```bash
 git clone https://github.com/paridhik11/adaptive-agentic-semantic-cache.git
 cd adaptive-agentic-semantic-cache
-
-# Create and activate virtual environment
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-
-# Install dependencies
 pip install -e ".[dev]"
 ```
 
-### 2. Run the Flagship Verification Demo (7 Scenarios + Evidence Summary)
+### 2. Environment Configuration
 
-Execute the automated CLI demo to witness all 7 lifecycle execution scenarios followed by the Criterion 8 verification table:
-
+Copy the example environment configuration:
 ```bash
-python scripts/run_demo.py --cli
+cp .env.example .env
 ```
 
-**Lifecycle Execution Scenarios Validated:**
-1. **Fresh Request:** Passes through supervisor planning, tool retrieval, drafting, and reviewer verification (3 provider calls, status `AWAITING_APPROVAL`).
-2. **Operator Approval & Admission:** Operator approves draft; admitted to durable SQLite storage (`COMPLETED`, 0 provider calls).
-3. **Safe Default Exact Repeat:** Immediate Tier 0 exact hit under default configuration (0 provider calls, 3 calls avoided, ~28 ms).
-4. **Paraphrase Query Behavior:** Under default exact serving, paraphrase query misses and runs fresh execution without substituting experimental semantic answers (3 provider calls, 0 avoided).
-5. **Changed Requirement (Fail Closed):** Direction reversal and inverse operations rejected by structural guard; fails closed to fresh execution (3 provider calls).
-6. **Scope Invalidation:** Tenant epoch incremented; subsequent request safely misses and runs fresh work (3 provider calls).
-7. **Restart Persistence:** Clean agent instance re-initialized from SQLite databases; verified answers survive process restarts with zero corrupt state.
-
-*Optional: To opt into experimental guarded semantic reuse, run `python scripts/run_demo.py --cli --experimental-semantic`.*
-
-### 3. Launch Local Web Workbench
-
-To interact with the visual documentation assistant:
-
-```bash
-python scripts/run_demo.py
+Edit `.env` to provide your OpenRouter API key for remote judge evaluation (optional for replay demo and fast tests):
+```env
+OPENROUTER_API_KEY=sk-or-v1-your-key-here
+OPENROUTER_MODEL=nvidia/nemotron-3-super-120b-a12b:free
 ```
-Open [http://127.0.0.1:8765](http://127.0.0.1:8765) in your browser.
+*(If unset or invalid, the pipeline adheres to its fail-closed invariant and routes ambiguous queries safely to BYPASS.)*
 
-### 4. Run Reproducible Benchmark Fixtures
+### 3. Run Pipeline Demo & Fast Test Suite
 
+Run the interactive demonstration in replay mode (no API key required):
 ```bash
-python scripts/benchmark_whole_agent.py --workload both
+python demo/run_demo.py
 ```
 
-### 5. Run Test Suite
-
+Run the default hermetic test suite (network-free):
 ```bash
-pytest tests/test_release_correction.py tests/test_p1_acceptance.py tests/test_hybrid_cache.py tests/test_harness_acceptance_8.py tests/test_workbench.py
+pytest
+```
+
+Run the Phase 5 load test demonstration:
+```bash
+python scripts/run_load_test.py
+```
+
+Evaluate the resulting telemetry:
+```bash
+python scripts/evaluate_load_test.py --telemetry data/load_test_telemetry.json
 ```
 
 ---
 
-## Detailed Audits, Research History & Provenance
+## Repository Layout
 
-### Independent P2 Frozen Neural Evaluation Findings
-
-Independent frozen P2 neural evaluation was executed against checkpoint `4f9858e` by ChatGPT Work using real local neural inference (DenseEncoder + LocalPassageScorer):
-
-- **Evaluation Workload:** 144 requests across 12 documentation groups.
-- **Semantic Accepts:** 25 semantic answers accepted by cross-encoder threshold.
-- **Provisional Sufficiency:** 16 / 25 accepts (64.0%, exact 95% Clopper-Pearson CI [42.5%, 82.0%]) provisionally sufficient under model-assisted review.
-- **Insufficient Accepts:** 9 / 25 accepts (36.0%, exact 95% Clopper-Pearson CI [18.0%, 57.5%]) insufficient under model-assisted review.
-- **Failure Root Causes:** 7 failures involving missing explicitly requested executable examples; 2 failures involving wrong-operation reuse (e.g. inverse operations).
-- **Scope Challenges:** 0 hits across 60 scope challenges (0.0%, exact 95% Clopper-Pearson CI [0.0%, 6.0%]).
-- **Assessment:** Failed safety qualification, not a production precision result. There is no claim of 98% precision, independent human truth, or live API monetary savings. Neural relevance scores are treated as uncalibrated relevance signals rather than guarantees of correctness.
-
-### 24-Task Scripted Benchmark Fixtures (Engineering Baseline)
-
-Across standardized 24-task whole-agent workloads encompassing supervisor planning, document tool reads, draft generation, reviewer verification, and terminal SQLite state persistence under reference replay:
-
-| Workload Profile *(Synthetic Reference)* | Arm | Provider Calls | Calls Avoided | Token Savings *(Offline)* | Whole-Agent p50 Latency | Opportunity Coverage | Adversarial False Hits |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Realistic Mixed Traffic**<br>*(6 seeds, 6 exact repeats, 6 safe paraphrases, 6 adversarial)* | **No Cache**<br>**Exact Only**<br>**Verified Semantic (Opt-In)** | 72<br>57<br>**45** | 0<br>15<br>**27** | 0%<br>20.7%<br>**37.7%** | 133.4 ms<br>136.7 ms<br>**122.4 ms** | 0% / 0%<br>83.3% / 0%<br>**83.3% / 66.7%** | 0.0%<br>0.0%<br>**0.0%** |
-| **Repeat-Rich Traffic**<br>*(3 seeds, 10 exact repeats, 9 safe paraphrases, 2 adversarial)* | **No Cache**<br>**Exact Only**<br>**Verified Semantic (Opt-In)** | 72<br>42<br>**18** | 0<br>30<br>**54** | 0%<br>41.5%<br>**75.1%** | 144.2 ms<br>134.1 ms<br>**43.9 ms** | 0% / 0%<br>100% / 0%<br>**100% / 88.9%** | 0.0%<br>0.0%<br>**0.0%** |
-
-*Note: Telemetry recorded from reproducible offline reference agent simulation (`runs/whole_agent_benchmark_results.json`).*
-
-### Latency Optimization (P4 Milestone)
-
-Profiling revealed that unoptimized hybrid misses incurred a ~60 ms overhead from unconditional dense embedding generation (~28 ms) and cross-encoder scoring (~32 ms). 
-
-Three narrow, safety-preserving optimizations were implemented:
-1. **Candidate Presence Pre-check:** Checks for valid, unexpired candidates in the current tenant epoch before calling neural encoders, dropping candidate-empty miss overhead to 0.01 ms.
-2. **Cheap Structural Guards Pre-filtering:** Filters candidates by model match, response format, and history length before dense top-k retrieval.
-3. **Thread-Safe LRU Embedding & Score Cache:** Bounded in-memory caching for query embeddings and passage scores.
-
-### Live Provider Evaluation (Opt-In Safety Boundary)
-
-A hermetic runner is provided for live API benchmarking against free-tier upstream providers:
-
-```bash
-# Safety check mode (default: spend cap $0.00, zero live calls made)
-python scripts/run_live_benchmark.py --check-only
-
-# Opt-in live execution (strictly requires explicit flag, spend cap, and existing journal)
-python scripts/run_live_benchmark.py --execute-live --spend-cap 0.00 --agent-workflow
+```text
+adaptive-agentic-semantic-cache/
+├── DESIGN.md                                 # Full architecture, design decisions, and math
+├── README.md                                 # Project overview and empirical results
+├── pyproject.toml                            # Dependencies and test markers
+├── .env.example                              # Environment variable configuration template
+├── src/
+│   ├── classifier/                           # StabilityClassifier (rules + lexical model)
+│   ├── cache/                                # Sentence-transformers embedding & FAISS store
+│   ├── decision/                             # TierRouter, JudgeDecisionStep, AdaptiveThresholdEngine
+│   └── evaluation/                           # Metrics calculation & Clopper-Pearson routines
+├── data/
+│   ├── raw/                                  # Pristine and synthetic benchmark datasets
+│   └── *.json                                # Telemetry logs from experimental runs
+├── docs/
+│   ├── FACTS.md                              # Single authoritative ledger of verified facts
+│   ├── phase7c_claim_check.md                # Mapping of every claim to its FACTS.md row
+│   ├── phase5_walkthrough.md                 # Execution log for Phase 5 load tests
+│   └── phase6_walkthrough.md                 # Execution log for Phase 6 blind evaluation
+├── scripts/                                  # Reproducible execution scripts per phase
+└── tests/                                    # Unit, integration, and evaluation test suites
 ```
-
-**Safety Invariants & Safeguards:**
-- Outbound requests are strictly allowlisted; paid fallbacks and caller-controlled routing parameters are rejected.
-- Only free-tier models are allowlisted (`nvidia/nemotron-3-super-120b-a12b:free`, `meta-llama/llama-3.2-3b-instruct:free`).
-- Zero-output ceiling safeguard: `max_output_tokens <= 0` is rejected during preflight and request sanitization.
-- No live calls are made without explicit user instruction, spend cap, and valid environment credentials.
 
 ---
 
-## Release Checklist & Tested Commit
+## How to Reproduce Each Phase
 
-- [x] Evaluated prototype release with experimental semantic serving; no unverified production claims.
-- [x] Safe default exact-only serving configuration (`mode="exact"`).
-- [x] Automatic neural semantic reuse shadow mode (`mode="shadow"`) for diagnostic logging without answer substitution.
-- [x] Targeted semantic guardrails: executable example requirement/answer coverage and direction/inverse operation compatibility.
-- [x] Complete whole-agent timing boundary (planning, tools, drafting, reviewer check, approval, admission, terminal SQLite persistence).
-- [x] Atomic revalidation under lock for tenant epochs, scopes, TTL, and tombstones.
-- [x] Latency optimization eliminating candidate-empty miss overhead.
-- [x] Reproducible 7-scenario flagship verification demo with Criterion 8 evidence summary (`scripts/run_demo.py --cli`).
-- [x] Matched efficiency benchmarks across mixed and repeat-rich synthetic workloads.
-- [x] Strict opt-in live runner with zero-output ceiling check; zero live calls executed.
-- [x] 100% passing acceptance and regression test suites.
+Every phase of the project is backed by standalone reproduction scripts cited in [`docs/FACTS.md`](file:///c:/Users/parid/Downloads/Agentic%20AI/adaptive-agentic-semantic-cache/docs/FACTS.md):
+
+- **Phase 1 — Classifier Evaluation:**
+  ```bash
+  python scripts/step0_final_test_eval.py      # Final test benchmark (91.67% accuracy; FACTS P1-01)
+  python scripts/step0b_heldout_test_eval.py    # Held-out challenge benchmark (91.67% accuracy; FACTS P1-03)
+  ```
+- **Phase 2 — Fixed Threshold Sweep:**
+  ```bash
+  python scripts/run_cache_threshold_sweep.py   # Baseline sweep across 120 pairs (best 20.83% IRR; FACTS P2-01)
+  ```
+- **Phase 3 — Ambiguous-Tier Judge Evaluation:**
+  ```bash
+  python scripts/run_openrouter_eval.py         # Evaluates OpenRouter judge on 120 pairs (8.33% IRR; FACTS P3-06)
+  ```
+- **Phase 4 — Adaptive Threshold Calibration:**
+  ```bash
+  python scripts/run_phase4_calibration.py      # Sweeps 7 categories (all stay on 0.85 fallback; FACTS P4-01)
+  ```
+- **Phase 5 — Load Tests & Scaled Evaluation:**
+  ```bash
+  python scripts/run_load_test.py               # N=70 pilot load test (FACTS P5A-01)
+  python scripts/evaluate_load_test.py --telemetry data/load_test_telemetry.json
+  python scripts/evaluate_load_test.py --telemetry data/scaled_load_test_telemetry_corrected.json # N=338 (FACTS P5B-02)
+  ```
+- **Phase 6 — Sealed Blind Evaluation:**
+  ```bash
+  python scripts/evaluate_load_test.py --telemetry data/phase6_telemetry.json # N=175 blind run (FACTS P6-04)
+  ```
+
+---
+
+## Further Documentation
+
+- [`docs/MASTER_REPORT.md`](docs/MASTER_REPORT.md): Authoritative Master Project Report containing the full project narrative, complete phase-by-phase walkthroughs, consolidated metrics, audited commit log, and limitations.
+- [`docs/FACTS.md`](docs/FACTS.md): Authoritative fact ledger with exact line citations and CLI reproduction steps for every metric.
+- [`DESIGN.md`](DESIGN.md): Detailed discussion of the failure modes of naive caching, four-stage architecture, tier routing rules, the adaptive mechanism analysis, self-audited bugs, and complete limitation disclosures.
+- [`docs/phase7c_claim_check.md`](docs/phase7c_claim_check.md): Comprehensive verification matrix mapping all numbers in documentation to [`docs/FACTS.md`](docs/FACTS.md).
+
+### Bounded documentation agent
+
+R4 adds validated document-tool plans, SQLite checkpoints, scoped task memory and
+human approve/modify/reject. Start with the [offline CLI](docs/document_agent.md)
+and inspect the [phase evidence](docs/audit/R4_CLOSEOUT.md). Fixture success is
+functional evidence; live task quality and net savings remain unmeasured.
+
+R5 now compares the actual cache and agent runtime using disclosed source replay.
+The [development report](docs/audit/R5_CLOSEOUT.md) retains the negative agent
+savings result. [Live collection instructions](docs/R5_LIVE_RUN.md) use the
+existing free-only journal and caps; quality and live savings remain pending.
