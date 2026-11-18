@@ -1,0 +1,13 @@
+# Reporting context control protocol
+
+## Decision
+
+Risk V2 blocked missing reporting evidence and left period, entity and scope exceptions. This comparison tests a separate application contract. The authorization layer provides canonical report coordinates for the entity, calendar month and population. A trusted caller binds those coordinates to the request so the runtime's existing exact and semantic boundaries can enforce them. When the coordinates are unresolved, bypass reuse and admission. This harness supplies coordinates as structured fixture inputs. It does not test interpreting free-form text or independently authenticate metadata.
+
+Compare exact-only, current guarded, Risk V2 reporting control, and the reporting control with bound coordinates. Keep the same pinned encoder and scorer, top-k, retrieval cut 0.60 and verifier cut 0.85. Use four local models of the path with one answer seeded per isolated intent and no admission after a probe. Four arms see the same user text and seeded answer. The context-control arm alone receives canonical coordinates in its trusted system message. Log the actual answer identity, tier, fallback and guard effects. One controlled fallback equals one scripted call. No provider APIs.
+
+## Dataset and decision criteria
+
+Use 30 fresh fictional reporting intents, six for wiring checks and 24 held out by intent. Each intent contributes one exact repeat, two suitable non-exact paraphrases, one suitable request with unresolved coordinates, a missing reported artifact and three unsuitable scope changes. The latter change the reporting month, entity or population. Use multiple phrasings and rotate which artifact is absent. Detect normalized cross-intent prompt collisions before scoring. Freeze source and inputs before calibration. Calibration is for protocol validation only. Leave V2 receipts frozen. Run the holdout once and reproduce from the seal thereafter.
+
+Report total scripted call savings and eligible call savings, the material-change misses and accepts, unsuitable accepts among actual semantic hits, suitable non-exact capture with and without resolved context, and paired gains and losses. The predeclared follow-up criterion is at least one material-change acceptance prevented, zero new unsuitable accepts and zero added suitable misses among requests with resolved coordinates. Show the cost of failing closed on unresolved coordinates separately. Retain exact-only as the serving default. Publish exact event-level intervals with raw counts. Intents cluster and fixtures use synthetic phrasing. Results describe this contract and this controlled replay only.

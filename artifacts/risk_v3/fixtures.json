@@ -1,0 +1,2672 @@
+[
+  {
+    "id": "limit-ack",
+    "split": "calibration",
+    "seed": "January trade-limit acknowledgement in the limits register, for salaried dealers: what was the pass rate?",
+    "context": {
+      "month": "2025-01",
+      "entity": "limits-register",
+      "population": "salaried-dealers"
+    },
+    "answer": "The pass rate for salaried dealers on the trade-limit acknowledgement in the limits register during January was 86%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "January trade-limit acknowledgement in the limits register, for salaried dealers: what was the pass rate?",
+        "context": {
+          "month": "2025-01",
+          "entity": "limits-register",
+          "population": "salaried-dealers"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "Give me the pass rate for salaried dealers on the trade-limit acknowledgement, from the limits register, during January.",
+        "context": {
+          "month": "2025-01",
+          "entity": "limits-register",
+          "population": "salaried-dealers"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "What pass rate did salaried dealers record during January, according to the trade-limit acknowledgement in the limits register?",
+        "context": {
+          "month": "2025-01",
+          "entity": "limits-register",
+          "population": "salaried-dealers"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "For the limits register's trade-limit acknowledgement, report the January pass rate applicable to salaried dealers.",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "January trade-limit acknowledgement in the limits register, for salaried dealers: what was the pass rate? Please include the evidence source.",
+        "context": {
+          "month": "2025-01",
+          "entity": "limits-register",
+          "population": "salaried-dealers"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "February trade-limit acknowledgement in the limits register, for salaried dealers: what was the pass rate?",
+        "context": {
+          "month": "2025-02",
+          "entity": "limits-register",
+          "population": "salaried-dealers"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "January trade-limit acknowledgement in the restriction register, for salaried dealers: what was the pass rate?",
+        "context": {
+          "month": "2025-01",
+          "entity": "restriction-register",
+          "population": "salaried-dealers"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "January trade-limit acknowledgement in the limits register, for contract dealers: what was the pass rate?",
+        "context": {
+          "month": "2025-01",
+          "entity": "limits-register",
+          "population": "contract-dealers"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "suspense",
+    "split": "calibration",
+    "seed": "Give me the pass rate for domestic accounts on the suspense-account clearance, from the operations ledger, during February.",
+    "context": {
+      "month": "2025-02",
+      "entity": "operations-ledger",
+      "population": "domestic-accounts"
+    },
+    "answer": "The pass rate for domestic accounts on the suspense-account clearance in the operations ledger during February was 87%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "Give me the pass rate for domestic accounts on the suspense-account clearance, from the operations ledger, during February.",
+        "context": {
+          "month": "2025-02",
+          "entity": "operations-ledger",
+          "population": "domestic-accounts"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "What pass rate did domestic accounts record during February, according to the suspense-account clearance in the operations ledger?",
+        "context": {
+          "month": "2025-02",
+          "entity": "operations-ledger",
+          "population": "domestic-accounts"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "For the operations ledger's suspense-account clearance, report the February pass rate applicable to domestic accounts.",
+        "context": {
+          "month": "2025-02",
+          "entity": "operations-ledger",
+          "population": "domestic-accounts"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "In February, how high was the pass rate on the suspense-account clearance for domestic accounts in the operations ledger?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "Give me the pass rate for domestic accounts on the suspense-account clearance, from the operations ledger, during February. Please include the responsible team.",
+        "context": {
+          "month": "2025-02",
+          "entity": "operations-ledger",
+          "population": "domestic-accounts"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "Give me the pass rate for domestic accounts on the suspense-account clearance, from the operations ledger, during March.",
+        "context": {
+          "month": "2025-03",
+          "entity": "operations-ledger",
+          "population": "domestic-accounts"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "Give me the pass rate for domestic accounts on the suspense-account clearance, from the settlement ledger, during February.",
+        "context": {
+          "month": "2025-02",
+          "entity": "settlement-ledger",
+          "population": "domestic-accounts"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "Give me the pass rate for international accounts on the suspense-account clearance, from the operations ledger, during February.",
+        "context": {
+          "month": "2025-02",
+          "entity": "operations-ledger",
+          "population": "international-accounts"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "intercompany",
+    "split": "calibration",
+    "seed": "What pass rate did head-office entries record during March, according to the intercompany balance matching in the treasury ledger?",
+    "context": {
+      "month": "2025-03",
+      "entity": "treasury-ledger",
+      "population": "head-office-entries"
+    },
+    "answer": "The pass rate for head-office entries on the intercompany balance matching in the treasury ledger during March was 88%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What pass rate did head-office entries record during March, according to the intercompany balance matching in the treasury ledger?",
+        "context": {
+          "month": "2025-03",
+          "entity": "treasury-ledger",
+          "population": "head-office-entries"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "For the treasury ledger's intercompany balance matching, report the March pass rate applicable to head-office entries.",
+        "context": {
+          "month": "2025-03",
+          "entity": "treasury-ledger",
+          "population": "head-office-entries"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "In March, how high was the pass rate on the intercompany balance matching for head-office entries in the treasury ledger?",
+        "context": {
+          "month": "2025-03",
+          "entity": "treasury-ledger",
+          "population": "head-office-entries"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "March intercompany balance matching in the treasury ledger, for head-office entries: what was the pass rate?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What pass rate did head-office entries record during March, according to the intercompany balance matching in the treasury ledger? Please include the calculation formula.",
+        "context": {
+          "month": "2025-03",
+          "entity": "treasury-ledger",
+          "population": "head-office-entries"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "What pass rate did head-office entries record during April, according to the intercompany balance matching in the treasury ledger?",
+        "context": {
+          "month": "2025-04",
+          "entity": "treasury-ledger",
+          "population": "head-office-entries"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "What pass rate did head-office entries record during March, according to the intercompany balance matching in the general ledger?",
+        "context": {
+          "month": "2025-03",
+          "entity": "general-ledger",
+          "population": "head-office-entries"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "What pass rate did regional entries record during March, according to the intercompany balance matching in the treasury ledger?",
+        "context": {
+          "month": "2025-03",
+          "entity": "treasury-ledger",
+          "population": "regional-entries"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "facility",
+    "split": "calibration",
+    "seed": "For the facilities portal's facility inspection completion, report the April pass rate applicable to occupied sites.",
+    "context": {
+      "month": "2025-04",
+      "entity": "facilities-portal",
+      "population": "occupied-sites"
+    },
+    "answer": "The pass rate for occupied sites on the facility inspection completion in the facilities portal during April was 89%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "For the facilities portal's facility inspection completion, report the April pass rate applicable to occupied sites.",
+        "context": {
+          "month": "2025-04",
+          "entity": "facilities-portal",
+          "population": "occupied-sites"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "In April, how high was the pass rate on the facility inspection completion for occupied sites in the facilities portal?",
+        "context": {
+          "month": "2025-04",
+          "entity": "facilities-portal",
+          "population": "occupied-sites"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "April facility inspection completion in the facilities portal, for occupied sites: what was the pass rate?",
+        "context": {
+          "month": "2025-04",
+          "entity": "facilities-portal",
+          "population": "occupied-sites"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "Give me the pass rate for occupied sites on the facility inspection completion, from the facilities portal, during April.",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "For the facilities portal's facility inspection completion, report the April pass rate applicable to occupied sites. Please include the exception breakdown.",
+        "context": {
+          "month": "2025-04",
+          "entity": "facilities-portal",
+          "population": "occupied-sites"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "For the facilities portal's facility inspection completion, report the May pass rate applicable to occupied sites.",
+        "context": {
+          "month": "2025-05",
+          "entity": "facilities-portal",
+          "population": "occupied-sites"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "For the vendor portal's facility inspection completion, report the April pass rate applicable to occupied sites.",
+        "context": {
+          "month": "2025-04",
+          "entity": "vendor-portal",
+          "population": "occupied-sites"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "For the facilities portal's facility inspection completion, report the April pass rate applicable to vacant sites.",
+        "context": {
+          "month": "2025-04",
+          "entity": "facilities-portal",
+          "population": "vacant-sites"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "licence",
+    "split": "calibration",
+    "seed": "In May, how high was the pass rate on the licence entitlement review for managed users in the licence library?",
+    "context": {
+      "month": "2025-05",
+      "entity": "licence-library",
+      "population": "managed-users"
+    },
+    "answer": "The pass rate for managed users on the licence entitlement review in the licence library during May was 90%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "In May, how high was the pass rate on the licence entitlement review for managed users in the licence library?",
+        "context": {
+          "month": "2025-05",
+          "entity": "licence-library",
+          "population": "managed-users"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "May licence entitlement review in the licence library, for managed users: what was the pass rate?",
+        "context": {
+          "month": "2025-05",
+          "entity": "licence-library",
+          "population": "managed-users"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "Give me the pass rate for managed users on the licence entitlement review, from the licence library, during May.",
+        "context": {
+          "month": "2025-05",
+          "entity": "licence-library",
+          "population": "managed-users"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "What pass rate did managed users record during May, according to the licence entitlement review in the licence library?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "In May, how high was the pass rate on the licence entitlement review for managed users in the licence library? Please include the evidence source.",
+        "context": {
+          "month": "2025-05",
+          "entity": "licence-library",
+          "population": "managed-users"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "In June, how high was the pass rate on the licence entitlement review for managed users in the licence library?",
+        "context": {
+          "month": "2025-06",
+          "entity": "licence-library",
+          "population": "managed-users"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "In May, how high was the pass rate on the licence entitlement review for managed users in the application library?",
+        "context": {
+          "month": "2025-05",
+          "entity": "application-library",
+          "population": "managed-users"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "In May, how high was the pass rate on the licence entitlement review for third-party users in the licence library?",
+        "context": {
+          "month": "2025-05",
+          "entity": "licence-library",
+          "population": "third-party-users"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "disclosure",
+    "split": "calibration",
+    "seed": "June disclosure dispatch completion in the disclosure journal, for retail recipients: what was the pass rate?",
+    "context": {
+      "month": "2025-06",
+      "entity": "disclosure-journal",
+      "population": "retail-recipients"
+    },
+    "answer": "The pass rate for retail recipients on the disclosure dispatch completion in the disclosure journal during June was 91%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "June disclosure dispatch completion in the disclosure journal, for retail recipients: what was the pass rate?",
+        "context": {
+          "month": "2025-06",
+          "entity": "disclosure-journal",
+          "population": "retail-recipients"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "Give me the pass rate for retail recipients on the disclosure dispatch completion, from the disclosure journal, during June.",
+        "context": {
+          "month": "2025-06",
+          "entity": "disclosure-journal",
+          "population": "retail-recipients"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "What pass rate did retail recipients record during June, according to the disclosure dispatch completion in the disclosure journal?",
+        "context": {
+          "month": "2025-06",
+          "entity": "disclosure-journal",
+          "population": "retail-recipients"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "For the disclosure journal's disclosure dispatch completion, report the June pass rate applicable to retail recipients.",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "June disclosure dispatch completion in the disclosure journal, for retail recipients: what was the pass rate? Please include the responsible team.",
+        "context": {
+          "month": "2025-06",
+          "entity": "disclosure-journal",
+          "population": "retail-recipients"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "July disclosure dispatch completion in the disclosure journal, for retail recipients: what was the pass rate?",
+        "context": {
+          "month": "2025-07",
+          "entity": "disclosure-journal",
+          "population": "retail-recipients"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "June disclosure dispatch completion in the statement journal, for retail recipients: what was the pass rate?",
+        "context": {
+          "month": "2025-06",
+          "entity": "statement-journal",
+          "population": "retail-recipients"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "June disclosure dispatch completion in the disclosure journal, for institutional recipients: what was the pass rate?",
+        "context": {
+          "month": "2025-06",
+          "entity": "disclosure-journal",
+          "population": "institutional-recipients"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "insurance",
+    "split": "holdout",
+    "seed": "Give me the pass rate for equipment policies on the insurance renewal checklist, from the cover register, during July.",
+    "context": {
+      "month": "2025-07",
+      "entity": "cover-register",
+      "population": "equipment-policies"
+    },
+    "answer": "The pass rate for equipment policies on the insurance renewal checklist in the cover register during July was 92%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "Give me the pass rate for equipment policies on the insurance renewal checklist, from the cover register, during July.",
+        "context": {
+          "month": "2025-07",
+          "entity": "cover-register",
+          "population": "equipment-policies"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "What pass rate did equipment policies record during July, according to the insurance renewal checklist in the cover register?",
+        "context": {
+          "month": "2025-07",
+          "entity": "cover-register",
+          "population": "equipment-policies"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "For the cover register's insurance renewal checklist, report the July pass rate applicable to equipment policies.",
+        "context": {
+          "month": "2025-07",
+          "entity": "cover-register",
+          "population": "equipment-policies"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "In July, how high was the pass rate on the insurance renewal checklist for equipment policies in the cover register?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "Give me the pass rate for equipment policies on the insurance renewal checklist, from the cover register, during July. Please include the calculation formula.",
+        "context": {
+          "month": "2025-07",
+          "entity": "cover-register",
+          "population": "equipment-policies"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "Give me the pass rate for equipment policies on the insurance renewal checklist, from the cover register, during August.",
+        "context": {
+          "month": "2025-08",
+          "entity": "cover-register",
+          "population": "equipment-policies"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "Give me the pass rate for equipment policies on the insurance renewal checklist, from the contract register, during July.",
+        "context": {
+          "month": "2025-07",
+          "entity": "contract-register",
+          "population": "equipment-policies"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "Give me the pass rate for vehicle policies on the insurance renewal checklist, from the cover register, during July.",
+        "context": {
+          "month": "2025-07",
+          "entity": "cover-register",
+          "population": "vehicle-policies"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "travel",
+    "split": "holdout",
+    "seed": "What pass rate did office staff record during August, according to the travel policy attestation in the travel register?",
+    "context": {
+      "month": "2025-08",
+      "entity": "travel-register",
+      "population": "office-staff"
+    },
+    "answer": "The pass rate for office staff on the travel policy attestation in the travel register during August was 93%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What pass rate did office staff record during August, according to the travel policy attestation in the travel register?",
+        "context": {
+          "month": "2025-08",
+          "entity": "travel-register",
+          "population": "office-staff"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "For the travel register's travel policy attestation, report the August pass rate applicable to office staff.",
+        "context": {
+          "month": "2025-08",
+          "entity": "travel-register",
+          "population": "office-staff"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "In August, how high was the pass rate on the travel policy attestation for office staff in the travel register?",
+        "context": {
+          "month": "2025-08",
+          "entity": "travel-register",
+          "population": "office-staff"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "August travel policy attestation in the travel register, for office staff: what was the pass rate?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What pass rate did office staff record during August, according to the travel policy attestation in the travel register? Please include the exception breakdown.",
+        "context": {
+          "month": "2025-08",
+          "entity": "travel-register",
+          "population": "office-staff"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "What pass rate did office staff record during September, according to the travel policy attestation in the travel register?",
+        "context": {
+          "month": "2025-09",
+          "entity": "travel-register",
+          "population": "office-staff"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "What pass rate did office staff record during August, according to the travel policy attestation in the expense register?",
+        "context": {
+          "month": "2025-08",
+          "entity": "expense-register",
+          "population": "office-staff"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "What pass rate did field staff record during August, according to the travel policy attestation in the travel register?",
+        "context": {
+          "month": "2025-08",
+          "entity": "travel-register",
+          "population": "field-staff"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "collateral",
+    "split": "holdout",
+    "seed": "For the custody dashboard's collateral statement reconciliation, report the September pass rate applicable to cash accounts.",
+    "context": {
+      "month": "2025-09",
+      "entity": "custody-dashboard",
+      "population": "cash-accounts"
+    },
+    "answer": "The pass rate for cash accounts on the collateral statement reconciliation in the custody dashboard during September was 94%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "For the custody dashboard's collateral statement reconciliation, report the September pass rate applicable to cash accounts.",
+        "context": {
+          "month": "2025-09",
+          "entity": "custody-dashboard",
+          "population": "cash-accounts"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "In September, how high was the pass rate on the collateral statement reconciliation for cash accounts in the custody dashboard?",
+        "context": {
+          "month": "2025-09",
+          "entity": "custody-dashboard",
+          "population": "cash-accounts"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "September collateral statement reconciliation in the custody dashboard, for cash accounts: what was the pass rate?",
+        "context": {
+          "month": "2025-09",
+          "entity": "custody-dashboard",
+          "population": "cash-accounts"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "Give me the pass rate for cash accounts on the collateral statement reconciliation, from the custody dashboard, during September.",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "For the custody dashboard's collateral statement reconciliation, report the September pass rate applicable to cash accounts. Please include the evidence source.",
+        "context": {
+          "month": "2025-09",
+          "entity": "custody-dashboard",
+          "population": "cash-accounts"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "For the custody dashboard's collateral statement reconciliation, report the October pass rate applicable to cash accounts.",
+        "context": {
+          "month": "2025-10",
+          "entity": "custody-dashboard",
+          "population": "cash-accounts"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "For the funding dashboard's collateral statement reconciliation, report the September pass rate applicable to cash accounts.",
+        "context": {
+          "month": "2025-09",
+          "entity": "funding-dashboard",
+          "population": "cash-accounts"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "For the custody dashboard's collateral statement reconciliation, report the September pass rate applicable to margin accounts.",
+        "context": {
+          "month": "2025-09",
+          "entity": "custody-dashboard",
+          "population": "margin-accounts"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "deduction",
+    "split": "holdout",
+    "seed": "In October, how high was the pass rate on the deduction validation checks for permanent staff in the earnings ledger?",
+    "context": {
+      "month": "2025-10",
+      "entity": "earnings-ledger",
+      "population": "permanent-staff"
+    },
+    "answer": "The pass rate for permanent staff on the deduction validation checks in the earnings ledger during October was 95%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "In October, how high was the pass rate on the deduction validation checks for permanent staff in the earnings ledger?",
+        "context": {
+          "month": "2025-10",
+          "entity": "earnings-ledger",
+          "population": "permanent-staff"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "October deduction validation checks in the earnings ledger, for permanent staff: what was the pass rate?",
+        "context": {
+          "month": "2025-10",
+          "entity": "earnings-ledger",
+          "population": "permanent-staff"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "Give me the pass rate for permanent staff on the deduction validation checks, from the earnings ledger, during October.",
+        "context": {
+          "month": "2025-10",
+          "entity": "earnings-ledger",
+          "population": "permanent-staff"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "What pass rate did permanent staff record during October, according to the deduction validation checks in the earnings ledger?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "In October, how high was the pass rate on the deduction validation checks for permanent staff in the earnings ledger? Please include the responsible team.",
+        "context": {
+          "month": "2025-10",
+          "entity": "earnings-ledger",
+          "population": "permanent-staff"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "In November, how high was the pass rate on the deduction validation checks for permanent staff in the earnings ledger?",
+        "context": {
+          "month": "2025-11",
+          "entity": "earnings-ledger",
+          "population": "permanent-staff"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "In October, how high was the pass rate on the deduction validation checks for permanent staff in the time ledger?",
+        "context": {
+          "month": "2025-10",
+          "entity": "time-ledger",
+          "population": "permanent-staff"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "In October, how high was the pass rate on the deduction validation checks for seasonal staff in the earnings ledger?",
+        "context": {
+          "month": "2025-10",
+          "entity": "earnings-ledger",
+          "population": "seasonal-staff"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "mailbox",
+    "split": "holdout",
+    "seed": "November mailbox permission review in the messaging directory, for internal mailboxes: what was the pass rate?",
+    "context": {
+      "month": "2025-11",
+      "entity": "messaging-directory",
+      "population": "internal-mailboxes"
+    },
+    "answer": "The pass rate for internal mailboxes on the mailbox permission review in the messaging directory during November was 96%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "November mailbox permission review in the messaging directory, for internal mailboxes: what was the pass rate?",
+        "context": {
+          "month": "2025-11",
+          "entity": "messaging-directory",
+          "population": "internal-mailboxes"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "Give me the pass rate for internal mailboxes on the mailbox permission review, from the messaging directory, during November.",
+        "context": {
+          "month": "2025-11",
+          "entity": "messaging-directory",
+          "population": "internal-mailboxes"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "What pass rate did internal mailboxes record during November, according to the mailbox permission review in the messaging directory?",
+        "context": {
+          "month": "2025-11",
+          "entity": "messaging-directory",
+          "population": "internal-mailboxes"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "For the messaging directory's mailbox permission review, report the November pass rate applicable to internal mailboxes.",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "November mailbox permission review in the messaging directory, for internal mailboxes: what was the pass rate? Please include the calculation formula.",
+        "context": {
+          "month": "2025-11",
+          "entity": "messaging-directory",
+          "population": "internal-mailboxes"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "December mailbox permission review in the messaging directory, for internal mailboxes: what was the pass rate?",
+        "context": {
+          "month": "2025-12",
+          "entity": "messaging-directory",
+          "population": "internal-mailboxes"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "November mailbox permission review in the files directory, for internal mailboxes: what was the pass rate?",
+        "context": {
+          "month": "2025-11",
+          "entity": "files-directory",
+          "population": "internal-mailboxes"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "November mailbox permission review in the messaging directory, for external mailboxes: what was the pass rate?",
+        "context": {
+          "month": "2025-11",
+          "entity": "messaging-directory",
+          "population": "external-mailboxes"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "workflow",
+    "split": "holdout",
+    "seed": "Give me the pass rate for current owners on the workflow ownership certification, from the process catalogue, during December.",
+    "context": {
+      "month": "2025-12",
+      "entity": "process-catalogue",
+      "population": "current-owners"
+    },
+    "answer": "The pass rate for current owners on the workflow ownership certification in the process catalogue during December was 97%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "Give me the pass rate for current owners on the workflow ownership certification, from the process catalogue, during December.",
+        "context": {
+          "month": "2025-12",
+          "entity": "process-catalogue",
+          "population": "current-owners"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "What pass rate did current owners record during December, according to the workflow ownership certification in the process catalogue?",
+        "context": {
+          "month": "2025-12",
+          "entity": "process-catalogue",
+          "population": "current-owners"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "For the process catalogue's workflow ownership certification, report the December pass rate applicable to current owners.",
+        "context": {
+          "month": "2025-12",
+          "entity": "process-catalogue",
+          "population": "current-owners"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "In December, how high was the pass rate on the workflow ownership certification for current owners in the process catalogue?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "Give me the pass rate for current owners on the workflow ownership certification, from the process catalogue, during December. Please include the exception breakdown.",
+        "context": {
+          "month": "2025-12",
+          "entity": "process-catalogue",
+          "population": "current-owners"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "Give me the pass rate for current owners on the workflow ownership certification, from the process catalogue, during January.",
+        "context": {
+          "month": "2025-01",
+          "entity": "process-catalogue",
+          "population": "current-owners"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "Give me the pass rate for current owners on the workflow ownership certification, from the application catalogue, during December.",
+        "context": {
+          "month": "2025-12",
+          "entity": "application-catalogue",
+          "population": "current-owners"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "Give me the pass rate for deputy owners on the workflow ownership certification, from the process catalogue, during December.",
+        "context": {
+          "month": "2025-12",
+          "entity": "process-catalogue",
+          "population": "deputy-owners"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "expense",
+    "split": "holdout",
+    "seed": "What pass rate did new claims record during January, according to the expense claim sampling in the claim tracker?",
+    "context": {
+      "month": "2025-01",
+      "entity": "claim-tracker",
+      "population": "new-claims"
+    },
+    "answer": "The pass rate for new claims on the expense claim sampling in the claim tracker during January was 98%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What pass rate did new claims record during January, according to the expense claim sampling in the claim tracker?",
+        "context": {
+          "month": "2025-01",
+          "entity": "claim-tracker",
+          "population": "new-claims"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "For the claim tracker's expense claim sampling, report the January pass rate applicable to new claims.",
+        "context": {
+          "month": "2025-01",
+          "entity": "claim-tracker",
+          "population": "new-claims"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "In January, how high was the pass rate on the expense claim sampling for new claims in the claim tracker?",
+        "context": {
+          "month": "2025-01",
+          "entity": "claim-tracker",
+          "population": "new-claims"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "January expense claim sampling in the claim tracker, for new claims: what was the pass rate?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What pass rate did new claims record during January, according to the expense claim sampling in the claim tracker? Please include the evidence source.",
+        "context": {
+          "month": "2025-01",
+          "entity": "claim-tracker",
+          "population": "new-claims"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "What pass rate did new claims record during February, according to the expense claim sampling in the claim tracker?",
+        "context": {
+          "month": "2025-02",
+          "entity": "claim-tracker",
+          "population": "new-claims"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "What pass rate did new claims record during January, according to the expense claim sampling in the invoice tracker?",
+        "context": {
+          "month": "2025-01",
+          "entity": "invoice-tracker",
+          "population": "new-claims"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "What pass rate did reopened claims record during January, according to the expense claim sampling in the claim tracker?",
+        "context": {
+          "month": "2025-01",
+          "entity": "claim-tracker",
+          "population": "reopened-claims"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "contract",
+    "split": "holdout",
+    "seed": "For the agreement register's contract renewal readiness, report the February pass rate applicable to active contracts.",
+    "context": {
+      "month": "2025-02",
+      "entity": "agreement-register",
+      "population": "active-contracts"
+    },
+    "answer": "The pass rate for active contracts on the contract renewal readiness in the agreement register during February was 86%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "For the agreement register's contract renewal readiness, report the February pass rate applicable to active contracts.",
+        "context": {
+          "month": "2025-02",
+          "entity": "agreement-register",
+          "population": "active-contracts"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "In February, how high was the pass rate on the contract renewal readiness for active contracts in the agreement register?",
+        "context": {
+          "month": "2025-02",
+          "entity": "agreement-register",
+          "population": "active-contracts"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "February contract renewal readiness in the agreement register, for active contracts: what was the pass rate?",
+        "context": {
+          "month": "2025-02",
+          "entity": "agreement-register",
+          "population": "active-contracts"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "Give me the pass rate for active contracts on the contract renewal readiness, from the agreement register, during February.",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "For the agreement register's contract renewal readiness, report the February pass rate applicable to active contracts. Please include the responsible team.",
+        "context": {
+          "month": "2025-02",
+          "entity": "agreement-register",
+          "population": "active-contracts"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "For the agreement register's contract renewal readiness, report the March pass rate applicable to active contracts.",
+        "context": {
+          "month": "2025-03",
+          "entity": "agreement-register",
+          "population": "active-contracts"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "For the supplier register's contract renewal readiness, report the February pass rate applicable to active contracts.",
+        "context": {
+          "month": "2025-02",
+          "entity": "supplier-register",
+          "population": "active-contracts"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "For the agreement register's contract renewal readiness, report the February pass rate applicable to draft contracts.",
+        "context": {
+          "month": "2025-02",
+          "entity": "agreement-register",
+          "population": "draft-contracts"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "document",
+    "split": "holdout",
+    "seed": "In March, how high was the pass rate on the document classification review for internal records in the records catalogue?",
+    "context": {
+      "month": "2025-03",
+      "entity": "records-catalogue",
+      "population": "internal-records"
+    },
+    "answer": "The pass rate for internal records on the document classification review in the records catalogue during March was 87%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "In March, how high was the pass rate on the document classification review for internal records in the records catalogue?",
+        "context": {
+          "month": "2025-03",
+          "entity": "records-catalogue",
+          "population": "internal-records"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "March document classification review in the records catalogue, for internal records: what was the pass rate?",
+        "context": {
+          "month": "2025-03",
+          "entity": "records-catalogue",
+          "population": "internal-records"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "Give me the pass rate for internal records on the document classification review, from the records catalogue, during March.",
+        "context": {
+          "month": "2025-03",
+          "entity": "records-catalogue",
+          "population": "internal-records"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "What pass rate did internal records record during March, according to the document classification review in the records catalogue?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "In March, how high was the pass rate on the document classification review for internal records in the records catalogue? Please include the calculation formula.",
+        "context": {
+          "month": "2025-03",
+          "entity": "records-catalogue",
+          "population": "internal-records"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "In April, how high was the pass rate on the document classification review for internal records in the records catalogue?",
+        "context": {
+          "month": "2025-04",
+          "entity": "records-catalogue",
+          "population": "internal-records"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "In March, how high was the pass rate on the document classification review for internal records in the images catalogue?",
+        "context": {
+          "month": "2025-03",
+          "entity": "images-catalogue",
+          "population": "internal-records"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "In March, how high was the pass rate on the document classification review for shared records in the records catalogue?",
+        "context": {
+          "month": "2025-03",
+          "entity": "records-catalogue",
+          "population": "shared-records"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "assignment",
+    "split": "holdout",
+    "seed": "April assignment approval review in the assignment desk, for open mandates: what was the pass rate?",
+    "context": {
+      "month": "2025-04",
+      "entity": "assignment-desk",
+      "population": "open-mandates"
+    },
+    "answer": "The pass rate for open mandates on the assignment approval review in the assignment desk during April was 88%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "April assignment approval review in the assignment desk, for open mandates: what was the pass rate?",
+        "context": {
+          "month": "2025-04",
+          "entity": "assignment-desk",
+          "population": "open-mandates"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "Give me the pass rate for open mandates on the assignment approval review, from the assignment desk, during April.",
+        "context": {
+          "month": "2025-04",
+          "entity": "assignment-desk",
+          "population": "open-mandates"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "What pass rate did open mandates record during April, according to the assignment approval review in the assignment desk?",
+        "context": {
+          "month": "2025-04",
+          "entity": "assignment-desk",
+          "population": "open-mandates"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "For the assignment desk's assignment approval review, report the April pass rate applicable to open mandates.",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "April assignment approval review in the assignment desk, for open mandates: what was the pass rate? Please include the exception breakdown.",
+        "context": {
+          "month": "2025-04",
+          "entity": "assignment-desk",
+          "population": "open-mandates"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "May assignment approval review in the assignment desk, for open mandates: what was the pass rate?",
+        "context": {
+          "month": "2025-05",
+          "entity": "assignment-desk",
+          "population": "open-mandates"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "April assignment approval review in the capacity desk, for open mandates: what was the pass rate?",
+        "context": {
+          "month": "2025-04",
+          "entity": "capacity-desk",
+          "population": "open-mandates"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "April assignment approval review in the assignment desk, for closed mandates: what was the pass rate?",
+        "context": {
+          "month": "2025-04",
+          "entity": "assignment-desk",
+          "population": "closed-mandates"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "receivable",
+    "split": "holdout",
+    "seed": "Give me the pass rate for standard invoices on the receivables note reconciliation, from the collections board, during May.",
+    "context": {
+      "month": "2025-05",
+      "entity": "collections-board",
+      "population": "standard-invoices"
+    },
+    "answer": "The pass rate for standard invoices on the receivables note reconciliation in the collections board during May was 89%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "Give me the pass rate for standard invoices on the receivables note reconciliation, from the collections board, during May.",
+        "context": {
+          "month": "2025-05",
+          "entity": "collections-board",
+          "population": "standard-invoices"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "What pass rate did standard invoices record during May, according to the receivables note reconciliation in the collections board?",
+        "context": {
+          "month": "2025-05",
+          "entity": "collections-board",
+          "population": "standard-invoices"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "For the collections board's receivables note reconciliation, report the May pass rate applicable to standard invoices.",
+        "context": {
+          "month": "2025-05",
+          "entity": "collections-board",
+          "population": "standard-invoices"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "In May, how high was the pass rate on the receivables note reconciliation for standard invoices in the collections board?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "Give me the pass rate for standard invoices on the receivables note reconciliation, from the collections board, during May. Please include the evidence source.",
+        "context": {
+          "month": "2025-05",
+          "entity": "collections-board",
+          "population": "standard-invoices"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "Give me the pass rate for standard invoices on the receivables note reconciliation, from the collections board, during June.",
+        "context": {
+          "month": "2025-06",
+          "entity": "collections-board",
+          "population": "standard-invoices"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "Give me the pass rate for standard invoices on the receivables note reconciliation, from the adjustments board, during May.",
+        "context": {
+          "month": "2025-05",
+          "entity": "adjustments-board",
+          "population": "standard-invoices"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "Give me the pass rate for priority invoices on the receivables note reconciliation, from the collections board, during May.",
+        "context": {
+          "month": "2025-05",
+          "entity": "collections-board",
+          "population": "priority-invoices"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "shift",
+    "split": "holdout",
+    "seed": "What pass rate did day shifts record during June, according to the shift rota approval in the workforce planner?",
+    "context": {
+      "month": "2025-06",
+      "entity": "workforce-planner",
+      "population": "day-shifts"
+    },
+    "answer": "The pass rate for day shifts on the shift rota approval in the workforce planner during June was 90%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What pass rate did day shifts record during June, according to the shift rota approval in the workforce planner?",
+        "context": {
+          "month": "2025-06",
+          "entity": "workforce-planner",
+          "population": "day-shifts"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "For the workforce planner's shift rota approval, report the June pass rate applicable to day shifts.",
+        "context": {
+          "month": "2025-06",
+          "entity": "workforce-planner",
+          "population": "day-shifts"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "In June, how high was the pass rate on the shift rota approval for day shifts in the workforce planner?",
+        "context": {
+          "month": "2025-06",
+          "entity": "workforce-planner",
+          "population": "day-shifts"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "June shift rota approval in the workforce planner, for day shifts: what was the pass rate?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What pass rate did day shifts record during June, according to the shift rota approval in the workforce planner? Please include the responsible team.",
+        "context": {
+          "month": "2025-06",
+          "entity": "workforce-planner",
+          "population": "day-shifts"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "What pass rate did day shifts record during July, according to the shift rota approval in the workforce planner?",
+        "context": {
+          "month": "2025-07",
+          "entity": "workforce-planner",
+          "population": "day-shifts"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "What pass rate did day shifts record during June, according to the shift rota approval in the resource planner?",
+        "context": {
+          "month": "2025-06",
+          "entity": "resource-planner",
+          "population": "day-shifts"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "What pass rate did night shifts record during June, according to the shift rota approval in the workforce planner?",
+        "context": {
+          "month": "2025-06",
+          "entity": "workforce-planner",
+          "population": "night-shifts"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "terminal",
+    "split": "holdout",
+    "seed": "For the device portal's terminal inspection closure, report the July pass rate applicable to fixed terminals.",
+    "context": {
+      "month": "2025-07",
+      "entity": "device-portal",
+      "population": "fixed-terminals"
+    },
+    "answer": "The pass rate for fixed terminals on the terminal inspection closure in the device portal during July was 91%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "For the device portal's terminal inspection closure, report the July pass rate applicable to fixed terminals.",
+        "context": {
+          "month": "2025-07",
+          "entity": "device-portal",
+          "population": "fixed-terminals"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "In July, how high was the pass rate on the terminal inspection closure for fixed terminals in the device portal?",
+        "context": {
+          "month": "2025-07",
+          "entity": "device-portal",
+          "population": "fixed-terminals"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "July terminal inspection closure in the device portal, for fixed terminals: what was the pass rate?",
+        "context": {
+          "month": "2025-07",
+          "entity": "device-portal",
+          "population": "fixed-terminals"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "Give me the pass rate for fixed terminals on the terminal inspection closure, from the device portal, during July.",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "For the device portal's terminal inspection closure, report the July pass rate applicable to fixed terminals. Please include the calculation formula.",
+        "context": {
+          "month": "2025-07",
+          "entity": "device-portal",
+          "population": "fixed-terminals"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "For the device portal's terminal inspection closure, report the August pass rate applicable to fixed terminals.",
+        "context": {
+          "month": "2025-08",
+          "entity": "device-portal",
+          "population": "fixed-terminals"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "For the service portal's terminal inspection closure, report the July pass rate applicable to fixed terminals.",
+        "context": {
+          "month": "2025-07",
+          "entity": "service-portal",
+          "population": "fixed-terminals"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "For the device portal's terminal inspection closure, report the July pass rate applicable to mobile terminals.",
+        "context": {
+          "month": "2025-07",
+          "entity": "device-portal",
+          "population": "mobile-terminals"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "asset",
+    "split": "holdout",
+    "seed": "In August, how high was the pass rate on the asset tagging completeness for leased equipment in the asset ledger?",
+    "context": {
+      "month": "2025-08",
+      "entity": "asset-ledger",
+      "population": "leased-equipment"
+    },
+    "answer": "The pass rate for leased equipment on the asset tagging completeness in the asset ledger during August was 92%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "In August, how high was the pass rate on the asset tagging completeness for leased equipment in the asset ledger?",
+        "context": {
+          "month": "2025-08",
+          "entity": "asset-ledger",
+          "population": "leased-equipment"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "August asset tagging completeness in the asset ledger, for leased equipment: what was the pass rate?",
+        "context": {
+          "month": "2025-08",
+          "entity": "asset-ledger",
+          "population": "leased-equipment"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "Give me the pass rate for leased equipment on the asset tagging completeness, from the asset ledger, during August.",
+        "context": {
+          "month": "2025-08",
+          "entity": "asset-ledger",
+          "population": "leased-equipment"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "What pass rate did leased equipment record during August, according to the asset tagging completeness in the asset ledger?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "In August, how high was the pass rate on the asset tagging completeness for leased equipment in the asset ledger? Please include the exception breakdown.",
+        "context": {
+          "month": "2025-08",
+          "entity": "asset-ledger",
+          "population": "leased-equipment"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "In September, how high was the pass rate on the asset tagging completeness for leased equipment in the asset ledger?",
+        "context": {
+          "month": "2025-09",
+          "entity": "asset-ledger",
+          "population": "leased-equipment"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "In August, how high was the pass rate on the asset tagging completeness for leased equipment in the stock ledger?",
+        "context": {
+          "month": "2025-08",
+          "entity": "stock-ledger",
+          "population": "leased-equipment"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "In August, how high was the pass rate on the asset tagging completeness for owned equipment in the asset ledger?",
+        "context": {
+          "month": "2025-08",
+          "entity": "asset-ledger",
+          "population": "owned-equipment"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "consent",
+    "split": "holdout",
+    "seed": "September consent register reconciliation in the client register, for individual clients: what was the pass rate?",
+    "context": {
+      "month": "2025-09",
+      "entity": "client-register",
+      "population": "individual-clients"
+    },
+    "answer": "The pass rate for individual clients on the consent register reconciliation in the client register during September was 93%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "September consent register reconciliation in the client register, for individual clients: what was the pass rate?",
+        "context": {
+          "month": "2025-09",
+          "entity": "client-register",
+          "population": "individual-clients"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "Give me the pass rate for individual clients on the consent register reconciliation, from the client register, during September.",
+        "context": {
+          "month": "2025-09",
+          "entity": "client-register",
+          "population": "individual-clients"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "What pass rate did individual clients record during September, according to the consent register reconciliation in the client register?",
+        "context": {
+          "month": "2025-09",
+          "entity": "client-register",
+          "population": "individual-clients"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "For the client register's consent register reconciliation, report the September pass rate applicable to individual clients.",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "September consent register reconciliation in the client register, for individual clients: what was the pass rate? Please include the evidence source.",
+        "context": {
+          "month": "2025-09",
+          "entity": "client-register",
+          "population": "individual-clients"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "October consent register reconciliation in the client register, for individual clients: what was the pass rate?",
+        "context": {
+          "month": "2025-10",
+          "entity": "client-register",
+          "population": "individual-clients"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "September consent register reconciliation in the account register, for individual clients: what was the pass rate?",
+        "context": {
+          "month": "2025-09",
+          "entity": "account-register",
+          "population": "individual-clients"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "September consent register reconciliation in the client register, for corporate clients: what was the pass rate?",
+        "context": {
+          "month": "2025-09",
+          "entity": "client-register",
+          "population": "corporate-clients"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "purchase",
+    "split": "holdout",
+    "seed": "Give me the pass rate for central requests on the purchase order confirmation, from the procurement desk, during October.",
+    "context": {
+      "month": "2025-10",
+      "entity": "procurement-desk",
+      "population": "central-requests"
+    },
+    "answer": "The pass rate for central requests on the purchase order confirmation in the procurement desk during October was 94%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "Give me the pass rate for central requests on the purchase order confirmation, from the procurement desk, during October.",
+        "context": {
+          "month": "2025-10",
+          "entity": "procurement-desk",
+          "population": "central-requests"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "What pass rate did central requests record during October, according to the purchase order confirmation in the procurement desk?",
+        "context": {
+          "month": "2025-10",
+          "entity": "procurement-desk",
+          "population": "central-requests"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "For the procurement desk's purchase order confirmation, report the October pass rate applicable to central requests.",
+        "context": {
+          "month": "2025-10",
+          "entity": "procurement-desk",
+          "population": "central-requests"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "In October, how high was the pass rate on the purchase order confirmation for central requests in the procurement desk?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "Give me the pass rate for central requests on the purchase order confirmation, from the procurement desk, during October. Please include the responsible team.",
+        "context": {
+          "month": "2025-10",
+          "entity": "procurement-desk",
+          "population": "central-requests"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "Give me the pass rate for central requests on the purchase order confirmation, from the procurement desk, during November.",
+        "context": {
+          "month": "2025-11",
+          "entity": "procurement-desk",
+          "population": "central-requests"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "Give me the pass rate for central requests on the purchase order confirmation, from the inventory desk, during October.",
+        "context": {
+          "month": "2025-10",
+          "entity": "inventory-desk",
+          "population": "central-requests"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "Give me the pass rate for regional requests on the purchase order confirmation, from the procurement desk, during October.",
+        "context": {
+          "month": "2025-10",
+          "entity": "procurement-desk",
+          "population": "regional-requests"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "training",
+    "split": "holdout",
+    "seed": "What pass rate did new staff record during November, according to the mandatory training attestations in the course tracker?",
+    "context": {
+      "month": "2025-11",
+      "entity": "course-tracker",
+      "population": "new-staff"
+    },
+    "answer": "The pass rate for new staff on the mandatory training attestations in the course tracker during November was 95%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What pass rate did new staff record during November, according to the mandatory training attestations in the course tracker?",
+        "context": {
+          "month": "2025-11",
+          "entity": "course-tracker",
+          "population": "new-staff"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "For the course tracker's mandatory training attestations, report the November pass rate applicable to new staff.",
+        "context": {
+          "month": "2025-11",
+          "entity": "course-tracker",
+          "population": "new-staff"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "In November, how high was the pass rate on the mandatory training attestations for new staff in the course tracker?",
+        "context": {
+          "month": "2025-11",
+          "entity": "course-tracker",
+          "population": "new-staff"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "November mandatory training attestations in the course tracker, for new staff: what was the pass rate?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What pass rate did new staff record during November, according to the mandatory training attestations in the course tracker? Please include the calculation formula.",
+        "context": {
+          "month": "2025-11",
+          "entity": "course-tracker",
+          "population": "new-staff"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "What pass rate did new staff record during December, according to the mandatory training attestations in the course tracker?",
+        "context": {
+          "month": "2025-12",
+          "entity": "course-tracker",
+          "population": "new-staff"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "What pass rate did new staff record during November, according to the mandatory training attestations in the enrolment tracker?",
+        "context": {
+          "month": "2025-11",
+          "entity": "enrolment-tracker",
+          "population": "new-staff"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "What pass rate did returning staff record during November, according to the mandatory training attestations in the course tracker?",
+        "context": {
+          "month": "2025-11",
+          "entity": "course-tracker",
+          "population": "returning-staff"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "workorder",
+    "split": "holdout",
+    "seed": "For the maintenance board's work order evidence check, report the December pass rate applicable to preventive jobs.",
+    "context": {
+      "month": "2025-12",
+      "entity": "maintenance-board",
+      "population": "preventive-jobs"
+    },
+    "answer": "The pass rate for preventive jobs on the work order evidence check in the maintenance board during December was 96%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "For the maintenance board's work order evidence check, report the December pass rate applicable to preventive jobs.",
+        "context": {
+          "month": "2025-12",
+          "entity": "maintenance-board",
+          "population": "preventive-jobs"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "In December, how high was the pass rate on the work order evidence check for preventive jobs in the maintenance board?",
+        "context": {
+          "month": "2025-12",
+          "entity": "maintenance-board",
+          "population": "preventive-jobs"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "December work order evidence check in the maintenance board, for preventive jobs: what was the pass rate?",
+        "context": {
+          "month": "2025-12",
+          "entity": "maintenance-board",
+          "population": "preventive-jobs"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "Give me the pass rate for preventive jobs on the work order evidence check, from the maintenance board, during December.",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "For the maintenance board's work order evidence check, report the December pass rate applicable to preventive jobs. Please include the exception breakdown.",
+        "context": {
+          "month": "2025-12",
+          "entity": "maintenance-board",
+          "population": "preventive-jobs"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "For the maintenance board's work order evidence check, report the January pass rate applicable to preventive jobs.",
+        "context": {
+          "month": "2025-01",
+          "entity": "maintenance-board",
+          "population": "preventive-jobs"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "For the facilities board's work order evidence check, report the December pass rate applicable to preventive jobs.",
+        "context": {
+          "month": "2025-12",
+          "entity": "facilities-board",
+          "population": "preventive-jobs"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "For the maintenance board's work order evidence check, report the December pass rate applicable to urgent jobs.",
+        "context": {
+          "month": "2025-12",
+          "entity": "maintenance-board",
+          "population": "urgent-jobs"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "archive",
+    "split": "holdout",
+    "seed": "In January, how high was the pass rate on the archive recovery review for monthly snapshots in the archive console?",
+    "context": {
+      "month": "2025-01",
+      "entity": "archive-console",
+      "population": "monthly-snapshots"
+    },
+    "answer": "The pass rate for monthly snapshots on the archive recovery review in the archive console during January was 97%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "In January, how high was the pass rate on the archive recovery review for monthly snapshots in the archive console?",
+        "context": {
+          "month": "2025-01",
+          "entity": "archive-console",
+          "population": "monthly-snapshots"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "January archive recovery review in the archive console, for monthly snapshots: what was the pass rate?",
+        "context": {
+          "month": "2025-01",
+          "entity": "archive-console",
+          "population": "monthly-snapshots"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "Give me the pass rate for monthly snapshots on the archive recovery review, from the archive console, during January.",
+        "context": {
+          "month": "2025-01",
+          "entity": "archive-console",
+          "population": "monthly-snapshots"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "What pass rate did monthly snapshots record during January, according to the archive recovery review in the archive console?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "In January, how high was the pass rate on the archive recovery review for monthly snapshots in the archive console? Please include the evidence source.",
+        "context": {
+          "month": "2025-01",
+          "entity": "archive-console",
+          "population": "monthly-snapshots"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "In February, how high was the pass rate on the archive recovery review for monthly snapshots in the archive console?",
+        "context": {
+          "month": "2025-02",
+          "entity": "archive-console",
+          "population": "monthly-snapshots"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "In January, how high was the pass rate on the archive recovery review for monthly snapshots in the backup console?",
+        "context": {
+          "month": "2025-01",
+          "entity": "backup-console",
+          "population": "monthly-snapshots"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "In January, how high was the pass rate on the archive recovery review for weekly snapshots in the archive console?",
+        "context": {
+          "month": "2025-01",
+          "entity": "archive-console",
+          "population": "weekly-snapshots"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "survey",
+    "split": "holdout",
+    "seed": "February survey disclosure checklist in the survey workspace, for internal surveys: what was the pass rate?",
+    "context": {
+      "month": "2025-02",
+      "entity": "survey-workspace",
+      "population": "internal-surveys"
+    },
+    "answer": "The pass rate for internal surveys on the survey disclosure checklist in the survey workspace during February was 98%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "February survey disclosure checklist in the survey workspace, for internal surveys: what was the pass rate?",
+        "context": {
+          "month": "2025-02",
+          "entity": "survey-workspace",
+          "population": "internal-surveys"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "Give me the pass rate for internal surveys on the survey disclosure checklist, from the survey workspace, during February.",
+        "context": {
+          "month": "2025-02",
+          "entity": "survey-workspace",
+          "population": "internal-surveys"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "What pass rate did internal surveys record during February, according to the survey disclosure checklist in the survey workspace?",
+        "context": {
+          "month": "2025-02",
+          "entity": "survey-workspace",
+          "population": "internal-surveys"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "For the survey workspace's survey disclosure checklist, report the February pass rate applicable to internal surveys.",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "February survey disclosure checklist in the survey workspace, for internal surveys: what was the pass rate? Please include the responsible team.",
+        "context": {
+          "month": "2025-02",
+          "entity": "survey-workspace",
+          "population": "internal-surveys"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "March survey disclosure checklist in the survey workspace, for internal surveys: what was the pass rate?",
+        "context": {
+          "month": "2025-03",
+          "entity": "survey-workspace",
+          "population": "internal-surveys"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "February survey disclosure checklist in the events workspace, for internal surveys: what was the pass rate?",
+        "context": {
+          "month": "2025-02",
+          "entity": "events-workspace",
+          "population": "internal-surveys"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "February survey disclosure checklist in the survey workspace, for external surveys: what was the pass rate?",
+        "context": {
+          "month": "2025-02",
+          "entity": "survey-workspace",
+          "population": "external-surveys"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "warranty",
+    "split": "holdout",
+    "seed": "Give me the pass rate for renewed claims on the warranty evidence review, from the warranty library, during March.",
+    "context": {
+      "month": "2025-03",
+      "entity": "warranty-library",
+      "population": "renewed-claims"
+    },
+    "answer": "The pass rate for renewed claims on the warranty evidence review in the warranty library during March was 86%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "Give me the pass rate for renewed claims on the warranty evidence review, from the warranty library, during March.",
+        "context": {
+          "month": "2025-03",
+          "entity": "warranty-library",
+          "population": "renewed-claims"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "What pass rate did renewed claims record during March, according to the warranty evidence review in the warranty library?",
+        "context": {
+          "month": "2025-03",
+          "entity": "warranty-library",
+          "population": "renewed-claims"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "For the warranty library's warranty evidence review, report the March pass rate applicable to renewed claims.",
+        "context": {
+          "month": "2025-03",
+          "entity": "warranty-library",
+          "population": "renewed-claims"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "In March, how high was the pass rate on the warranty evidence review for renewed claims in the warranty library?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "Give me the pass rate for renewed claims on the warranty evidence review, from the warranty library, during March. Please include the calculation formula.",
+        "context": {
+          "month": "2025-03",
+          "entity": "warranty-library",
+          "population": "renewed-claims"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "Give me the pass rate for renewed claims on the warranty evidence review, from the warranty library, during April.",
+        "context": {
+          "month": "2025-04",
+          "entity": "warranty-library",
+          "population": "renewed-claims"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "Give me the pass rate for renewed claims on the warranty evidence review, from the returns library, during March.",
+        "context": {
+          "month": "2025-03",
+          "entity": "returns-library",
+          "population": "renewed-claims"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "Give me the pass rate for initial claims on the warranty evidence review, from the warranty library, during March.",
+        "context": {
+          "month": "2025-03",
+          "entity": "warranty-library",
+          "population": "initial-claims"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "assetsale",
+    "split": "holdout",
+    "seed": "What pass rate did closed disposals record during April, according to the asset sale approval review in the disposals register?",
+    "context": {
+      "month": "2025-04",
+      "entity": "disposals-register",
+      "population": "closed-disposals"
+    },
+    "answer": "The pass rate for closed disposals on the asset sale approval review in the disposals register during April was 87%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What pass rate did closed disposals record during April, according to the asset sale approval review in the disposals register?",
+        "context": {
+          "month": "2025-04",
+          "entity": "disposals-register",
+          "population": "closed-disposals"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "For the disposals register's asset sale approval review, report the April pass rate applicable to closed disposals.",
+        "context": {
+          "month": "2025-04",
+          "entity": "disposals-register",
+          "population": "closed-disposals"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "In April, how high was the pass rate on the asset sale approval review for closed disposals in the disposals register?",
+        "context": {
+          "month": "2025-04",
+          "entity": "disposals-register",
+          "population": "closed-disposals"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "April asset sale approval review in the disposals register, for closed disposals: what was the pass rate?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What pass rate did closed disposals record during April, according to the asset sale approval review in the disposals register? Please include the exception breakdown.",
+        "context": {
+          "month": "2025-04",
+          "entity": "disposals-register",
+          "population": "closed-disposals"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "What pass rate did closed disposals record during May, according to the asset sale approval review in the disposals register?",
+        "context": {
+          "month": "2025-05",
+          "entity": "disposals-register",
+          "population": "closed-disposals"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "What pass rate did closed disposals record during April, according to the asset sale approval review in the valuation register?",
+        "context": {
+          "month": "2025-04",
+          "entity": "valuation-register",
+          "population": "closed-disposals"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "What pass rate did open disposals record during April, according to the asset sale approval review in the disposals register?",
+        "context": {
+          "month": "2025-04",
+          "entity": "disposals-register",
+          "population": "open-disposals"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "pricing",
+    "split": "holdout",
+    "seed": "For the pricing journal's pricing amendment check, report the May pass rate applicable to standard amendments.",
+    "context": {
+      "month": "2025-05",
+      "entity": "pricing-journal",
+      "population": "standard-amendments"
+    },
+    "answer": "The pass rate for standard amendments on the pricing amendment check in the pricing journal during May was 88%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "For the pricing journal's pricing amendment check, report the May pass rate applicable to standard amendments.",
+        "context": {
+          "month": "2025-05",
+          "entity": "pricing-journal",
+          "population": "standard-amendments"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "In May, how high was the pass rate on the pricing amendment check for standard amendments in the pricing journal?",
+        "context": {
+          "month": "2025-05",
+          "entity": "pricing-journal",
+          "population": "standard-amendments"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "May pricing amendment check in the pricing journal, for standard amendments: what was the pass rate?",
+        "context": {
+          "month": "2025-05",
+          "entity": "pricing-journal",
+          "population": "standard-amendments"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "Give me the pass rate for standard amendments on the pricing amendment check, from the pricing journal, during May.",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "For the pricing journal's pricing amendment check, report the May pass rate applicable to standard amendments. Please include the evidence source.",
+        "context": {
+          "month": "2025-05",
+          "entity": "pricing-journal",
+          "population": "standard-amendments"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "For the pricing journal's pricing amendment check, report the June pass rate applicable to standard amendments.",
+        "context": {
+          "month": "2025-06",
+          "entity": "pricing-journal",
+          "population": "standard-amendments"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "For the discount journal's pricing amendment check, report the May pass rate applicable to standard amendments.",
+        "context": {
+          "month": "2025-05",
+          "entity": "discount-journal",
+          "population": "standard-amendments"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "For the pricing journal's pricing amendment check, report the May pass rate applicable to urgent amendments.",
+        "context": {
+          "month": "2025-05",
+          "entity": "pricing-journal",
+          "population": "urgent-amendments"
+        },
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "receipt",
+    "split": "holdout",
+    "seed": "In June, how high was the pass rate on the delivery receipt confirmation for courier orders in the dispatch board?",
+    "context": {
+      "month": "2025-06",
+      "entity": "dispatch-board",
+      "population": "courier-orders"
+    },
+    "answer": "The pass rate for courier orders on the delivery receipt confirmation in the dispatch board during June was 89%.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "In June, how high was the pass rate on the delivery receipt confirmation for courier orders in the dispatch board?",
+        "context": {
+          "month": "2025-06",
+          "entity": "dispatch-board",
+          "population": "courier-orders"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_a",
+        "text": "June delivery receipt confirmation in the dispatch board, for courier orders: what was the pass rate?",
+        "context": {
+          "month": "2025-06",
+          "entity": "dispatch-board",
+          "population": "courier-orders"
+        },
+        "eligible": true
+      },
+      {
+        "type": "paraphrase_b",
+        "text": "Give me the pass rate for courier orders on the delivery receipt confirmation, from the dispatch board, during June.",
+        "context": {
+          "month": "2025-06",
+          "entity": "dispatch-board",
+          "population": "courier-orders"
+        },
+        "eligible": true
+      },
+      {
+        "type": "unresolved",
+        "text": "What pass rate did courier orders record during June, according to the delivery receipt confirmation in the dispatch board?",
+        "context": null,
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "In June, how high was the pass rate on the delivery receipt confirmation for courier orders in the dispatch board? Please include the responsible team.",
+        "context": {
+          "month": "2025-06",
+          "entity": "dispatch-board",
+          "population": "courier-orders"
+        },
+        "eligible": false
+      },
+      {
+        "type": "period",
+        "text": "In July, how high was the pass rate on the delivery receipt confirmation for courier orders in the dispatch board?",
+        "context": {
+          "month": "2025-07",
+          "entity": "dispatch-board",
+          "population": "courier-orders"
+        },
+        "eligible": false
+      },
+      {
+        "type": "entity",
+        "text": "In June, how high was the pass rate on the delivery receipt confirmation for courier orders in the fulfilment board?",
+        "context": {
+          "month": "2025-06",
+          "entity": "fulfilment-board",
+          "population": "courier-orders"
+        },
+        "eligible": false
+      },
+      {
+        "type": "scope",
+        "text": "In June, how high was the pass rate on the delivery receipt confirmation for pickup orders in the dispatch board?",
+        "context": {
+          "month": "2025-06",
+          "entity": "dispatch-board",
+          "population": "pickup-orders"
+        },
+        "eligible": false
+      }
+    ]
+  }
+]
