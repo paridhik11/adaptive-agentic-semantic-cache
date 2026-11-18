@@ -1,79 +1,130 @@
 # Adaptive Agentic Semantic Cache | Interview V1
 
-**Decision.** Keep exact reuse as the default. The exact cache captures most scripted call savings in both matched workloads. Guarded semantic reuse adds potential savings on broader traffic and accepted one request whose cached answer missed an added requirement.
+An agent answers Python documentation questions, shows the sources it read, and lets an operator approve the answer. Approved answers can be reused when the request and its context match. The benchmark asks how much more work a guarded semantic match can avoid and what risk comes with it.
 
-![Benchmark dashboard showing 14.75% exact-only savings, 48 additional guarded savings and one false accept in 125 challenges](images/interview-dashboard.png)
+**Decision.** Keep exact reuse as the default. In the broader offline workload, it avoided 177 of 1,200 scripted calls. Guarded semantic avoided 48 more, including 3 on an incorrect substitution. No API key or model weights are needed to run the interview demo.
 
-## Run the demo
+![Benchmark dashboard comparing four cache configurations on the broader workload](images/interview-dashboard.png)
 
-Use Python 3.11 or newer. The offline path was verified with Python 3.12.14. From the release checkout:
+## Run it from a fresh checkout
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install -r deploy/requirements-gateway.txt
-python scripts/run_demo.py --whole-answer-cache --task-memory --directory .venv/interview-state
+Use **Python 3.11 or newer** and Git. The release was exercised locally with Python 3.12.14. Internet access is needed for the initial clone and dependency install. The interview demo and report regeneration then run locally.
+
+### Windows PowerShell
+
+```powershell
+git clone --branch release/interview-v1 --single-branch https://github.com/paridhik11/adaptive-agentic-semantic-cache.git
+Set-Location adaptive-agentic-semantic-cache
+$env:PYTHONUTF8 = "1"
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r deploy/requirements-gateway.txt
+.\.venv\Scripts\python.exe scripts/run_demo.py --interview --fresh
 ```
 
-In Windows PowerShell, activate with `.venv\Scripts\Activate.ps1`. Open [the local workbench](http://127.0.0.1:8765/) or go straight to [the benchmark](http://127.0.0.1:8765/benchmark/). Use a fresh state directory for the first-run demo. No API key or model weights are needed.
+If Python 3.11 is installed, substitute `py -3.11`. If the launcher is unavailable, use `python -m venv .venv` after confirming `python --version`. Using the environment's Python directly avoids changing the PowerShell execution policy.
 
-1. Ask **How do I convert between tuples and lists?** In a fresh directory, planning, drafting and review use **3 scripted calls**. Approve the answer.
-2. Select **Ask this again**. The whole approved answer is reused with **0 scripted calls**. The activity timeline identifies the reuse, and the repeated answer still waits for your approval. The default launcher without `--whole-answer-cache` demonstrates the distinct draft-only path, where the repeat uses **2** calls.
-3. Ask **How do I convert between tuples and lists without using a built-in constructor?** The changed request triggers fresh processing and **3 scripted calls**. To show invalidation, clear **Manage task context** and ask the original question again.
-4. Open **Benchmark analysis**. Compare workloads, switch the latency path from all requests to hits or misses, and inspect the cProfile failure.
-
-For the model-free CLI lifecycle check:
+### macOS or Linux
 
 ```bash
-python scripts/run_demo.py --cli --directory .venv/interview-cli
+git clone --branch release/interview-v1 --single-branch https://github.com/paridhik11/adaptive-agentic-semantic-cache.git
+cd adaptive-agentic-semantic-cache
+python3 -m venv .venv
+.venv/bin/python -m pip install -r deploy/requirements-gateway.txt
+.venv/bin/python scripts/run_demo.py --interview --fresh
 ```
 
-## What the data says
+Open [the workbench](http://127.0.0.1:8765/) or [the benchmark](http://127.0.0.1:8765/benchmark/). The terminal prints `REFERENCE REPLAY` and `Fresh demo state is isolated for this session`. Press **Ctrl+C** and rerun with `--fresh` to start a new session. For persistence, omit `--fresh` and use `--directory runs/interview-v1`. Running without `--interview` demonstrates the distinct draft-only mode, where an exact draft hit leaves two scripted calls for planning and review.
 
-| Offline workload | Events per arm | No cache calls | Exact-only calls | Guarded calls | Exact call reduction | Exact synthetic token reduction | Guarded incremental calls avoided |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Repeat-heavy | 600 | 1,800 | 948 | 927 | **47.33%** | **46.57%** | **21** (1.17% of baseline) |
-| Lower-repeat breadth | 400 | 1,200 | 1,023 | 975 | **14.75%** | **14.56%** | **48** (4.00% of baseline) |
+## Five-minute demo
 
-The 600 and 400 workload events were each replayed across four configurations, yielding **4,000 executions**. The repeat-heavy workload spans 12 source groups. The breadth workload spans all 25. Shadow serving matched exact-only call totals and did not substitute semantic answers.
+| Time | What to do | What to say |
+| --- | --- | --- |
+| **0:00–0:45** | Ask **How do I convert between tuples and lists?** Open the activity timeline and approve the answer. | “A fresh request uses three scripted calls for planning, drafting and workflow review. It also reads the local documentation and waits for operator approval.” |
+| **0:45–1:30** | Select **Ask this again**. Point to **Exact answer reused** and **0 scripted calls**. Approve again. | “The workbench found an approved answer with matching context and source evidence. It skipped all three stages.” |
+| **1:30–2:15** | Ask **How do I convert between tuples and lists without using a built-in constructor?** The new request runs three calls. Optionally clear **Manage task context** and repeat the original question. | “An added requirement sends the request down the fresh path. Clearing task context also prevents the prior whole answer from being reused.” |
+| **2:15–3:30** | Open **Benchmark analysis**, choose **Lower-repeat breadth**, and compare the configurations. In the segment table, switch between **Request type** and **Documentation domain**. | “I matched each request across four configurations, then used SQLite to find which request types and domains drove the incremental savings.” |
+| **3:30–5:00** | Choose **Challenge** and filter to **Challenge accepted**. Open `async_05:challenge_added_requirements`. | “Guarded semantic saved three calls on this request by returning an asyncio overview, but the prompt also required benchmarking with cProfile. Counting that hit as a win would overstate useful savings.” |
 
-On the breadth workload, 45 of the additional 48 calls avoided were on workload-eligible hits. The other three came from the false accept below. Eligibility is defined by the fixture and does not establish answer correctness. The campaign contains zero independently reviewed accepts, so the answer-level incorrect reuse rate is unavailable. The repeat-heavy guarded result of 0/120 adversarial accepts is development regression evidence, with an exact 95% interval of 0.00%–3.03%. The breadth guarded result is 1/125 (0.80%, exact 95% interval 0.02%–4.38%). Related requests cluster within intents and source groups, so these intervals are descriptive under the binomial assumption.
+## Numbers to defend
 
-Exact-only median replay latency rose from **130.86 to 140.80 ms** on repeat-heavy and **89.70 to 168.42 ms** on breadth. This benchmark counts scripted calls and synthetic tokens and records historical local wall time. The results support a work-avoidance claim under the tested traffic mixes. A representative paired live study would be needed to quantify application speed or billable savings.
+All call counts are scripted and token counts are synthetic. Latencies are historical offline wall-clock measurements for the tested fixtures.
 
-## Inspect one failure
+| Metric | Repeat-heavy | Lower-repeat breadth |
+| --- | ---: | ---: |
+| Requests per configuration | 600 | 400 |
+| Source groups | 12 | 25 |
+| No-cache calls | 1,800 | 1,200 |
+| Exact-only calls | 948 | 1,023 |
+| Guarded semantic calls | 927 | 975 |
+| Shadow semantic calls | 948 | 1,023 |
+| Exact call reduction | **47.33%** | **14.75%** |
+| Exact synthetic token reduction | **46.57%** | **14.56%** |
+| Guarded incremental calls avoided over exact | **21** (1.17% of no-cache calls) | **48** (4.00% of no-cache calls) |
+| Guarded fewer / tied / more calls versus exact, by request | 7 / 593 / 0 | 16 / 384 / 0 |
+| Guarded adversarial false accepts | 0 / 120 | 1 / 125 |
+| Median latency, no cache → exact | 130.86 → 140.80 ms | 89.70 → 168.42 ms |
+| p95 latency, no cache → exact | 151.58 → 233.14 ms | 103.71 → 194.46 ms |
 
-In [the lower-repeat log](../artifacts/metrics_campaign/lower_repeat/offline_results.jsonl), search for `async_05:challenge_added_requirements`. Guarded semantic served a cached asyncio overview with no cProfile benchmarking. Exact-only fell back to three scripted calls. The event retains the matched prompt, returned answer and terminal decision. The historical guard decisions and cross-encoder score for this event were not captured.
+**What drove the gain?** The broader workload's 48-call guarded increment came from **27 on paraphrases, 18 on seeds, and 3 on the challenge that guarded accepted**. The asyncio domain alone accounts for 27 of those 48 calls, including the challenge. In the repeat-heavy workload, 15 of the additional calls avoided were on paraphrases and 6 were on seeds. Those are workload categories. A “seed” can still hit an earlier related intent within an arm, and a workload-eligible hit still needs answer review.
 
-The [development guard experiment](../scripts/interview_guard_experiment.py) replays the recorded prompt, candidate and answer through today's requirement checks. They allow the pair to proceed. A proposed cProfile check flags the added requirement and also catches an answer omitting cProfile when both prompts ask for it.
+![Request-type breakdown and paired receipt identifying the cProfile false accept](images/interview-drilldown.png)
 
-| Requirement-stage development cases | Cases | Current allowed through | Proposed allowed through |
-| --- | ---: | ---: | ---: |
-| Known campaign failure | 1 | 1 | 0 |
-| Authored equivalent requests | 2 | 2 | 2 |
-| Authored omission control | 1 | 1 | 0 |
+**How certain is the quality result?** The repeat-heavy challenge result of 0/120 is development regression evidence, with an exact 95% Clopper–Pearson interval of 0.00%–3.03%. The broader result is 1/125 (0.80%, exact 95% interval 0.02%–4.38%). Related requests cluster by base intent and source group, so the intervals are descriptive under the binomial assumption. No accepted answers in this campaign have independent review labels. The answer-level incorrect reuse rate is unavailable.
 
-This stage-level experiment changes no serving policy. Retrieval, verifier scores, net calls and latency were outside its scope. A fresh intent-grouped test would be needed to assess generalization and false rejections.
+## Reproduce the analysis
 
-## Reproduce the results
+In the commands below, use `python` from the virtual environment. Substitute `.\.venv\Scripts\python.exe` on Windows or `.venv/bin/python` on macOS/Linux if you have not activated it.
 
 ```bash
-python -m pip install 'scipy>=1.10,<2'
+python -m pip install "scipy>=1.10,<2"
 python scripts/report_interview.py
 python scripts/report_interview.py --check
 python scripts/interview_guard_experiment.py
+python scripts/evaluate_interview_guard.py --check
+python scripts/run_demo.py --cli --directory runs/interview-cli
 ```
 
-The report validates unique event IDs, one-to-one arm coverage, request metadata, manifest counts and logged calls avoided against each paired baseline. The dashboard reads [generated JSON](../dashboard/interview/report.json) and provides the same [comparison data as CSV](../dashboard/interview/comparison.csv). The JSON includes log SHA-256 hashes, counts, exact intervals, and p50/p95 by hit and miss path. Percentiles follow the original campaign convention. For fewer than 20 observations, p95 is reported as the sample maximum.
+The report command pairs **1,000 unique workload events across 4,000 executions**. It validates the event grain, metadata, category counts, and per-event calls avoided. The [SQL views](../scripts/interview_segments.sql) join the four arms on event ID within each workload and aggregate the pairs by request type and domain. The report reconciles SQL call totals against the raw benchmark. The CLI demo prints seven lifecycle scenarios and a verification receipt.
 
-| Repository area | Contents |
+| File | Use |
 | --- | --- |
-| [src/agents](../src/agents) and [src/policy](../src/policy) | Agent lifecycle, cache serving, guard and approval logic |
-| [src/api](../src/api) and [dashboard/interview](../dashboard/interview) | Workbench and benchmark views |
-| [artifacts/metrics_campaign](../artifacts/metrics_campaign) | Committed evidence by workload |
-| [scripts/report_interview.py](../scripts/report_interview.py) | Reconciliation and report generation |
-| [tests/test_interview_report.py](../tests/test_interview_report.py) | Alignment, published metrics and workbench integration checks |
+| [Configuration summary CSV](../dashboard/interview/comparison.csv) | Compare calls, synthetic tokens, timing, and challenge results |
+| [Segment CSV](../dashboard/interview/segments.csv) | Pivot by workload and dimension in Excel. Filter to one dimension before summing. |
+| [Paired event CSV](../dashboard/interview/paired-events.csv) | Audit one row per request across all four arms |
+| [Dashboard report JSON](../dashboard/interview/report.json) | Inspect definitions, input hashes, timings by hit/miss path, and review coverage |
+| [Benchmark logs](../artifacts/metrics_campaign) | Trace metrics back to the committed campaign inputs |
 
-## Interview summary
+## What happened when we tested a guard?
 
-> I evaluated four cache configurations on 1,000 matched requests. Exact caching cut scripted calls by 47.33% on repeat-heavy traffic and 14.75% on broader traffic. I isolated the incremental gain from semantic matching, then traced a false accept to an added profiling requirement. That trade-off is why I kept exact reuse as the default. I also measured end-to-end replay latency and found that fewer calls did not guarantee a faster request.
+The logged failure shows the request, matched prompt, returned answer, and terminal decision. The historical verifier score and guard outcomes for this event were not captured. The development replay runs the recorded pair through the current requirement checks and a candidate cProfile check. The candidate flags the added tool requirement.
+
+The [frozen protocol](INTERVIEW_GUARD_PROTOCOL.md) then uses a separate authored set of 28 cases across 12 intents. The table shows blocks at the requirement stage.
+
+| Authored cases | Cases | Current blocks | Candidate blocks |
+| --- | ---: | ---: | ---: |
+| Adequate paraphrases | 8 | 1 | 1 |
+| Request added cProfile | 8 | 1 | 8 |
+| Answer omitted cProfile | 8 | 1 | 8 |
+| Answer named cProfile without explaining how to use it | 4 | 0 | 0 |
+
+The candidate blocked **14 additional inadequate cases** and **zero additional adequate cases**. Four inadequate answers still passed because they mentioned the tool. Both policies blocked one adequate answer. These are functional results on authored candidates, with related variants grouped by intent. See the [per-case receipt](../artifacts/interview/guard_fixture_results.json). The experiment did not run retrieval, neural scoring, or live inference and made no serving-policy change.
+
+## Interview questions
+
+**Why compare requests one by one?** Averages alone would hide whether a gain came from different traffic. Pairing by event ID holds the request fixed, and the workload totals reconcile to the sum of the individual differences.
+
+**Why keep exact as the default?** Exact accounted for most work avoided in both workloads. The additional semantic gain varied by traffic, and an accepted mismatch can make the numbers look better by skipping work that should have run.
+
+**Did it make the app faster or cheaper?** The replay recorded fewer scripted calls and fewer synthetic tokens. Median local replay latency rose in both tested workloads. Measuring real cost and speed would require matched live executions with provider usage and timing.
+
+**What evidence would change your decision?** An intent-grouped evaluation with review labels tied to the returned answers, followed by a representative paired live comparison. I would evaluate answer quality, incremental calls avoided, and end-to-end latency together.
+
+## Troubleshooting and fallback
+
+| Symptom | What to do |
+| --- | --- |
+| Port 8765 is busy | Add `--port 8777` and use the URL printed in the terminal. |
+| First question already shows a hit | Stop the old workbench, start again with `--interview --fresh`, and open the new server URL. |
+| Repeat uses 2 calls | Launch with `--interview` and approve the first answer before repeating it. The 2-call mode reuses the draft only. |
+| Benchmark route is missing | Check out `release/interview-v1`, run the launcher from that checkout, and open the URL through the server. |
+| Live demo is interrupted | Use the two screenshots in this guide or the paired event CSV. Search for `async_05:challenge_added_requirements` to open the evidence for the same example. |

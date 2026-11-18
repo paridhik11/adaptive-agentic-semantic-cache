@@ -39,12 +39,8 @@ class MockEncoder:
     identity = "mock-encoder@v1"
 
     def encode(self, text: str):
-        vec = [0.0] * 384
-        for w in text.lower().split():
-            idx = abs(hash(w)) % 384
-            vec[idx] += 1.0
-        norm = sum(x*x for x in vec) ** 0.5
-        return [x / norm for x in vec] if norm > 0 else [1.0] + [0.0] * 383
+        # Routing tests fix retrieval similarity and exercise the downstream decision.
+        return [1.0] + [0.0] * 383
 
 
 class MockPassageScorer:

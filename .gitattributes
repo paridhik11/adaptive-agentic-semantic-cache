@@ -45,3 +45,5 @@ artifacts/metrics_campaign/** text eol=lf
 dashboard/interview/*.csv text eol=lf
 dashboard/interview/*.json text eol=lf
 scripts/interview_guard_experiment.py text eol=lf
+
+artifacts/interview/*.json text eol=lf
