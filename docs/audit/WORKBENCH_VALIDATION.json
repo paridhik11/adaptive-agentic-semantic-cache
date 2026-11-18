@@ -1,0 +1,50 @@
+{
+  "evidence_kind": "offline_integrated_product_validation",
+  "full_suite": {
+    "passed": 701,
+    "excluded": 23,
+    "seconds": 120.31
+  },
+  "workbench_api_tests": 10,
+  "smoke": {
+    "evidence_kind": "integrated_http_scripted_reference_replay",
+    "external_model_calls": 0,
+    "first_task_scripted_calls": 3,
+    "repeat_task_scripted_calls": 2,
+    "cache_off_task_scripted_calls": 3,
+    "repeat_exact_draft_hit": true,
+    "repeated_draft_identical": true,
+    "human_decision_endpoint_exercised": true,
+    "independent_human_reviews": 0,
+    "source_documents": 3,
+    "http_flow_verified": true,
+    "browser_visual_qa": false,
+    "live_savings_measured": false
+  },
+  "javascript_syntax": "node --check passed",
+  "wheel_build": "passed",
+  "wheel_assets_match_source": true,
+  "browser_visual_qa": false,
+  "browser_qa_limit": "Managed Sites environment without control-browser; no preview server or improvised browser started.",
+  "external_model_calls": 0,
+  "source_sha256": {
+    "src/api/demo.py": "d1db673926f796fc2e1d83c4cc3b0911d73f8e43f132fdd4953e664ba6610cd1",
+    "src/api/workbench.html": "fd3b2c6bc16db2e5aff7dd309ffc3e2b8845852211c5913a689d0a4f7c0277e0",
+    "src/api/workbench.css": "65185c9de33ec08e94faa17f4480a8c596da8c8160ba6ee69574f42f7c35777a",
+    "src/api/workbench.js": "456f73463ca2fa31c944f86219c91f03a159aae70f117cc3478a2e525855322a",
+    "src/api/demo_reference.json": "ec0ae31ff59b5386d8124098c6d3547b355bfa2b8a078a43389eded72eb3476a",
+    "scripts/run_demo.py": "37bec46abfaab1a02120d8c4ea9143b5b3d4bbd1912006c8268fcc3b265fdd4a",
+    "scripts/smoke_workbench.py": "4d612ad7054936c2947fa4e7479aefbe8377f92a168b1cba51784b0b8704c0c1"
+  },
+  "reproduce": [
+    "python -m pytest -q",
+    "python scripts/smoke_workbench.py",
+    "node --check src/api/workbench.js",
+    "python -m pip wheel --no-deps --no-build-isolation . --wheel-dir /tmp/trace-workbench-wheel"
+  ],
+  "limitations": [
+    "Scripted reference replay is not live model generation.",
+    "No independent human answer-quality labels or representative live savings follow.",
+    "Single-operator loopback app; public hosting and multi-user identity remain separate work."
+  ]
+}

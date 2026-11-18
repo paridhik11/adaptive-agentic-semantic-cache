@@ -1,0 +1,257 @@
+{
+  "schema_version": "r6-stage-freeze-v1",
+  "protocol_sha256": "cebbfd119ba549bc3a92a20bb6a0ec33e348b769bf30fe5237df23355b2b23ad",
+  "corpus_sha256": "0fe8140b1d3bb1bf752821d15e863b5552db324d17ed373b89952837620a7089",
+  "runtime_source_sha256": {
+    "pyproject.toml": "d1f51a266fef32e4a09e6afc72e3bbd5bda62f23df0fb793f640eb138a0fabed",
+    "scripts/demo_document_agent.py": "e86607e7036708826d127b52ddc4f28380829efaadc7666f68e480bcc163b2f1",
+    "scripts/run_r6_agent_stage.py": "1ca6686eb63142a25e0cb5182c5a731bc4194263a7a6875995d941c1eb7c7931",
+    "src/__init__.py": "f9489c92343d74f96db26f617e139bd6f54c0edcbcad73620127de44890ffe50",
+    "src/agents/__init__.py": "05f70b2769cfe6b5c1dc80ee60ee46866ff740fa6f2d16c098b60d4ca3ab44a1",
+    "src/agents/document_agent.py": "5c9a9b4d938ae432f1e2d3f3baac89d580b5890322b648a4c46de306cbf30337",
+    "src/agents/workflow.py": "fa6b9abe56ecd2042d3113ecda5d3df91195505145b9415e23ae2c8b1c85e12c",
+    "src/api/__init__.py": "f0fb9371b1cd8cfc6c932060ed0d717ca86442f93601f15e988730dd81722cb1",
+    "src/api/gateway.py": "651efb34f339dd3b72227498adc5f3a882c474e7982e24238ea2a9e88786d0f5",
+    "src/api/providers.py": "2448af44987a2b18262f9bb01da28361a969b1118e175391bf517a0ac7cae232",
+    "src/api/service.py": "6ac9a094a06824f08795d011d180dae66ca28ba4b3132f8c62a1a1f9eef65a45",
+    "src/api/streaming.py": "d190e9f7203234208b81480e807c49f6d0daaf7334ac03d71a512f74d3596b0f",
+    "src/benchmark/__init__.py": "e31037414bd04e31e07548fee493ec582fff4f7bca52b0c5197da5a586a2b17f",
+    "src/benchmark/control.py": "8fe48ff32d66a1a5ceca5931a9b8cd3edaba31c3409c815a524a9bfb212c0cee",
+    "src/benchmark/diagnostics.py": "fe0492a1e621ccdcfece07dbf9d8f9af2f1f35cc5abebaf0e677ac39f8a369c4",
+    "src/benchmark/faq_corpus.py": "59e36be2c389d1ee1f0f927e016861d0fb4cd34449e8d4cb29032eec21092119",
+    "src/benchmark/free_pilot.py": "fd7f8f06ba14043e65203e512ca622c97a42dd8637d93983040a3df0e096e83f",
+    "src/benchmark/natural_repetition.py": "63625ac0d6d01381ff18319f853c21693f569f923919b395545f1c244863ab47",
+    "src/benchmark/paired_runtime.py": "eeab8bdb4f7f452d6544541359b8539512fc1bfa65bc10018cbf18c0a8ed808e",
+    "src/benchmark/pilot_package.py": "709a520bc0393937f5b6cbdf2cbcd4ad423f1d3af279756f4ef8ec603fafc57b",
+    "src/benchmark/progress.py": "5cdf3b117d6304a3cc7eda9437ef151c9221218662ef49f05d7e302b0f9df8b4",
+    "src/benchmark/report.py": "26c3121208c2f734c273df88901ddc96c78fa7813381f6c61eb8193a2806efd8",
+    "src/benchmark/reuse_diagnosis.py": "61da28a5b991da178cd5ef6dcb16f8c4be7203dcd3b6774a80b5d62ebc9c6dc9",
+    "src/benchmark/review_agreement.py": "bf58d227f1e9a6bb078b0f236a004fea3b2c5c19e121ac989c2432f5624b2145",
+    "src/benchmark/runner.py": "b0ade877259fbf3ee0a022523998efdd216657931ec7d815852294c538f6c309",
+    "src/benchmark/schema.py": "a812466bf8505cdaa2cfcf52eb89da107be64f692cf19aade06cfb01911d7865",
+    "src/benchmark/semantic.py": "9e9bb6a8c966e63db312d4a53ce9f4b0864b1e9940d77df62c80a099e9a97e5b",
+    "src/benchmark/views.py": "7d831c1ca5a30ff54e33b25ac52593900ef394ce393393908bc1b0b5042089b4",
+    "src/cache/__init__.py": "7e27fb9b7c029bf5b6cf7f55015f60255aee9015ac4f68b5ee7812d90fd676b5",
+    "src/cache/embedding.py": "630bc89e0afcdae1d6140b8b40904ef6d673d6091a83545c4227179939629080",
+    "src/cache/normalizer.py": "2bfa718c2a8177a4b915c3aedc739915fb72b987e9ef6a9269f16e6da6579d83",
+    "src/cache/semantic_cache.py": "4052fa24fb12167d6bd643f2c21e945a49e050eb0e1cc268da541d94ca88d9b8",
+    "src/cache/vector_store.py": "1ed51fe88315016bef8cad08693124c58fe4afa67754e96986270d3e8d9c58d8",
+    "src/classifier/__init__.py": "6ef99a80b3d4ffa5cc4cf5b5df15c1a2824858d8d0213f97c0277f2bea1db4b5",
+    "src/classifier/fallback.py": "d9f1d59fd1f6102d8c9c73dd5834055d6009f1db5f2d35c0f52bbd9a57c14702",
+    "src/classifier/models.py": "360edd6fc905fdb645de292d4f84aacc4b3240b18eec99750c53b72bfdd06726",
+    "src/classifier/rules.py": "c0340527b7b83cc0dadb7e6bfba4bcc312399ac244f5633c9dcbff78d28b4bd0",
+    "src/classifier/stability_classifier.py": "0b8eadb17b68b478169d1b36bba2dd4a7faf10c855adf1e50bc3209b729400fc",
+    "src/decision/__init__.py": "eae2d7107541a083a84f1fa56bdb05c7d5ce57cfbb41616dadb55aafe6e155bd",
+    "src/decision/adaptive_threshold_engine.py": "c9272ecd70b9392daf3f5c9689b84ef35d7f4b0035a53d0b9e7d5eec3d92f667",
+    "src/decision/decision_step.py": "7ff3b71c848aeff1d2d4c6bae31b8c98038610713fafd353b353a52ef4a56cdb",
+    "src/decision/judge_call.py": "548558fa575ebcf579e52dfa87b31e4dab0b63c887aa79ad53a8572fd562fef6",
+    "src/decision/local_equivalence.py": "f63ed1ce3adb66a8bb2adc04cd4d1248c351f5903ad81600ec2c8c0708ac5023",
+    "src/decision/tier_router.py": "dcb5de0c2fdf821b9002005769d693449f47065148e42611a5125636b90dd7fa",
+    "src/decision_agent/__init__.py": "a3a727273010e1e82714ee3a5b70a3086ea37dc35ecf62b42c9ad3e82ffdb0d1",
+    "src/evaluation/__init__.py": "f4a8f90964fc52e901cbfb5ce816327aa3b2feb09963ab45b9676786ecb74cce",
+    "src/evaluation/cache_evaluator.py": "628a7c7c47cc81571e03c75552f97f81da781aa56ccbab898675e410a48a951e",
+    "src/evaluation/decision_evaluator.py": "856dcae750cfbda538752b733914dc06bd25e6632d5814590a5f33c8dfd8c4fb",
+    "src/evaluation/stability_evaluator.py": "73c24e1818f44c2cf53ff66f0dcbec8f5e7a4c4305777e8dc713d87f518c2326",
+    "src/policy/__init__.py": "2b9798f9a5e5200c4b18210d8e0b3e5a4c6d6cac44b4d54b57da78ab44f0b967",
+    "src/policy/encoders.py": "dbf4774bbded59cd5da862e75e3008fc25d67977fa95993144dedf9a2e110515",
+    "src/policy/response_cache.py": "4e6d1c227ce6df629f55b4ffc4ccb3bd8aceb51d09f98b898ad3afbbc2aba30d",
+    "src/policy/semantic_runtime.py": "05c8dccc45fb734ad1a123a2f6346dc497016b118f743b0dbbb5f6bc8e030402",
+    "src/policy/sqlite_store.py": "53047720824ffcede0788ac45285fc0fb33396e926e2376836fd10bd1d2dda04",
+    "src/utils/__init__.py": "c00482dc9ad2c401998082f89a20ecffe24f5c1288ec30591f532ba3bdf55978",
+    "tests/test_document_agent.py": "a2946a4e235dd1dc83a767201c81817c879bafe5a72bfbb3c0c7ce89c330d38a",
+    "tests/test_r6_criterion.py": "8007df13763e62208db3d1df771e05b26683f7f8bc17bde86698d1ec4d7780ce",
+    "tests/test_static_document_stage.py": "82f067e13e49075696a2318fe298ab5e591ff88c3397a57b2c509df15b1ca24e"
+  },
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "pytest": "9.1.1"
+  },
+  "workload": [
+    [
+      "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+      "seed"
+    ],
+    [
+      "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-828-why-does-22-10-return-3",
+      "seed"
+    ],
+    [
+      "python312-828-why-does-22-10-return-3",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-847-how-do-i-get-int-literal-attribute-instead-of-syntaxerror",
+      "seed"
+    ],
+    [
+      "python312-847-how-do-i-get-int-literal-attribute-instead-of-syntaxerror",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-868-how-do-i-convert-a-string-to-a-number",
+      "seed"
+    ],
+    [
+      "python312-868-how-do-i-convert-a-string-to-a-number",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-894-how-do-i-convert-a-number-to-a-string",
+      "seed"
+    ],
+    [
+      "python312-894-how-do-i-convert-a-number-to-a-string",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-905-how-do-i-modify-a-string-in-place",
+      "seed"
+    ],
+    [
+      "python312-905-how-do-i-modify-a-string-in-place",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-937-how-do-i-use-strings-to-call-functions-methods",
+      "seed"
+    ],
+    [
+      "python312-937-how-do-i-use-strings-to-call-functions-methods",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-989-is-there-an-equivalent-to-perl-s-chomp-for-removing-trailing-newlines-fr",
+      "seed"
+    ],
+    [
+      "python312-989-is-there-an-equivalent-to-perl-s-chomp-for-removing-trailing-newlines-fr",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-1008-is-there-a-scanf-or-sscanf-equivalent",
+      "seed"
+    ],
+    [
+      "python312-1008-is-there-a-scanf-or-sscanf-equivalent",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-1023-what-does-unicodedecodeerror-or-unicodeencodeerror-error-mean",
+      "seed"
+    ],
+    [
+      "python312-1023-what-does-unicodedecodeerror-or-unicodeencodeerror-error-mean",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-1031-can-i-end-a-raw-string-with-an-odd-number-of-backslashes",
+      "seed"
+    ],
+    [
+      "python312-1031-can-i-end-a-raw-string-with-an-odd-number-of-backslashes",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-1159-how-do-i-convert-between-tuples-and-lists",
+      "seed"
+    ],
+    [
+      "python312-1159-how-do-i-convert-between-tuples-and-lists",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-1176-what-s-a-negative-index",
+      "seed"
+    ],
+    [
+      "python312-1176-what-s-a-negative-index",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-1189-how-do-i-iterate-over-a-sequence-in-reverse-order",
+      "seed"
+    ],
+    [
+      "python312-1189-how-do-i-iterate-over-a-sequence-in-reverse-order",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-1201-how-do-you-remove-duplicates-from-a-list",
+      "seed"
+    ],
+    [
+      "python312-1201-how-do-you-remove-duplicates-from-a-list",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-1229-how-do-you-remove-multiple-items-from-a-list",
+      "seed"
+    ],
+    [
+      "python312-1229-how-do-you-remove-multiple-items-from-a-list",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-1244-how-do-you-make-an-array-in-python",
+      "seed"
+    ],
+    [
+      "python312-1244-how-do-you-make-an-array-in-python",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-1272-how-do-i-create-a-multidimensional-list",
+      "seed"
+    ],
+    [
+      "python312-1272-how-do-i-create-a-multidimensional-list",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-1324-how-do-i-apply-a-method-or-function-to-a-sequence-of-objects",
+      "seed"
+    ],
+    [
+      "python312-1324-how-do-i-apply-a-method-or-function-to-a-sequence-of-objects",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-1345-why-does-a-tuple-i-item-raise-an-exception-when-the-addition-works",
+      "seed"
+    ],
+    [
+      "python312-1345-why-does-a-tuple-i-item-raise-an-exception-when-the-addition-works",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-1432-i-want-to-do-a-complicated-sort-can-you-do-a-schwartzian-transform-in-py",
+      "seed"
+    ],
+    [
+      "python312-1432-i-want-to-do-a-complicated-sort-can-you-do-a-schwartzian-transform-in-py",
+      "constructed_exact_repeat"
+    ],
+    [
+      "python312-1443-how-can-i-sort-one-list-by-values-from-another-list",
+      "seed"
+    ],
+    [
+      "python312-1443-how-can-i-sort-one-list-by-values-from-another-list",
+      "constructed_exact_repeat"
+    ]
+  ],
+  "git_parent": "67414e91caa83c4be2e2a35aec0b68486fd103ed",
+  "baseline_archive_sha256": "df84b9326e0ee5ba816f96fb6829394f40697b5b5a5fb537783f4fb3523e9645",
+  "baseline_comparison": "verified raw R5 archive and source references",
+  "test_evidence": {
+    "focused": "............................................................             [100%]\n60 passed in 7.32s\n",
+    "full": "........................................................................ [ 10%]\n........................................................................ [ 21%]\n........................................................................ [ 32%]\n........................................................................ [ 43%]\n........................................................................ [ 54%]\n........................................................................ [ 65%]\n........................................................................ [ 76%]\n........................................................................ [ 87%]\n........................................................................ [ 98%]\n............                                                             [100%]\n660 passed, 23 deselected in 125.16s (0:02:05)\n",
+    "focused_sha256": "4bbf216c9b3f9419744fd2ac9748bf6009f39a204d30464e1836bd1505ac550b",
+    "full_sha256": "4ec5929bcb3a1f7fa965668e6dd744f86a8c7f667440909d85b9c7151649fe88"
+  }
+}

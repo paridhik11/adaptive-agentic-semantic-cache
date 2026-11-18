@@ -1,0 +1,249 @@
+{
+  "schema_version": "semantic-model-probe-v1",
+  "external_generation_calls": 0,
+  "evidence_type": "development_local_model_diagnostic",
+  "before": {
+    "python": "3.14.5",
+    "packages": {
+      "torch": "2.14.0",
+      "sentence-transformers": "6.0.1",
+      "transformers": "5.16.1",
+      "huggingface-hub": "1.23.0",
+      "socksio": null
+    },
+    "models": {
+      "encoder": {
+        "model": "sentence-transformers/all-MiniLM-L6-v2",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+        "snapshot_present": true,
+        "weights": [
+          {
+            "file": "model.safetensors",
+            "bytes": 90868376,
+            "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db"
+          }
+        ],
+        "inference_verified": false
+      },
+      "pair": {
+        "model": "cross-encoder/quora-distilroberta-base",
+        "revision": "f62e7a4b20b97195c2868e53ec59126df5eac743",
+        "snapshot_present": true,
+        "weights": [
+          {
+            "file": "model.safetensors",
+            "bytes": 328493408,
+            "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb"
+          }
+        ],
+        "inference_verified": false
+      }
+    },
+    "fine_tuned_checkpoint_available": true
+  },
+  "probe": {
+    "load_seconds": 57.724105699919164,
+    "seeds": [
+      "How do I convert a Python list into a tuple?",
+      "How do I convert a Python tuple into a list?",
+      "How do I convert Celsius to Fahrenheit?",
+      "How do I convert Fahrenheit to Celsius?",
+      "How can I sort a Python list in ascending order?"
+    ],
+    "rows": [
+      {
+        "kind": "paraphrase",
+        "query": "How can I make a tuple from an existing Python list?",
+        "nearest_seed": "How do I convert a Python list into a tuple?",
+        "cosine": 0.9156004690623678,
+        "authored_expected_seed": 0,
+        "selected_seed": 0,
+        "pair": {
+          "logit": -7.508241176605225,
+          "pair_score": 0.0005482442979129189,
+          "input_tokens": 27
+        },
+        "against_first_seed": {
+          "logit": -7.508241176605225,
+          "pair_score": 0.0005482442979129189,
+          "input_tokens": 27
+        },
+        "diagnostic_ms": 70.1377997174859
+      },
+      {
+        "kind": "paraphrase",
+        "query": "What is the way to change a tuple into a list in Python?",
+        "nearest_seed": "How do I convert a Python tuple into a list?",
+        "cosine": 0.9194837104303003,
+        "authored_expected_seed": 1,
+        "selected_seed": 1,
+        "pair": {
+          "logit": -3.7637369632720947,
+          "pair_score": 0.022670995624347986,
+          "input_tokens": 29
+        },
+        "against_first_seed": {
+          "logit": -6.694064140319824,
+          "pair_score": 0.0012367088087144136,
+          "input_tokens": 29
+        },
+        "diagnostic_ms": 43.62970031797886
+      },
+      {
+        "kind": "paraphrase",
+        "query": "Given a temperature in Celsius, how can I express it in Fahrenheit?",
+        "nearest_seed": "How do I convert Celsius to Fahrenheit?",
+        "cosine": 0.8792449569128589,
+        "authored_expected_seed": 2,
+        "selected_seed": 2,
+        "pair": {
+          "logit": 2.1773674488067627,
+          "pair_score": 0.8981986094459796,
+          "input_tokens": 26
+        },
+        "against_first_seed": {
+          "logit": -8.346781730651855,
+          "pair_score": 0.0002371023007885629,
+          "input_tokens": 29
+        },
+        "diagnostic_ms": 100.06729979068041
+      },
+      {
+        "kind": "direction_flip",
+        "query": "How do I convert a Python tuple into a list?",
+        "nearest_seed": "How do I convert a Python tuple into a list?",
+        "cosine": 1.0,
+        "authored_expected_seed": 1,
+        "selected_seed": 1,
+        "pair": {
+          "logit": 4.499312877655029,
+          "pair_score": 0.9890055884308016,
+          "input_tokens": 26
+        },
+        "against_first_seed": {
+          "logit": -3.5356082916259766,
+          "pair_score": 0.028315871816679935,
+          "input_tokens": 26
+        },
+        "diagnostic_ms": 39.08749995753169
+      },
+      {
+        "kind": "constraint",
+        "query": "How do I convert a nested Python list into a tuple recursively?",
+        "nearest_seed": "How do I convert a Python list into a tuple?",
+        "cosine": 0.8467618519480061,
+        "authored_expected_seed": null,
+        "selected_seed": 0,
+        "pair": {
+          "logit": -3.0898661613464355,
+          "pair_score": 0.043527206664516246,
+          "input_tokens": 30
+        },
+        "against_first_seed": {
+          "logit": -3.0898661613464355,
+          "pair_score": 0.043527206664516246,
+          "input_tokens": 30
+        },
+        "diagnostic_ms": 47.33930015936494
+      },
+      {
+        "kind": "negation",
+        "query": "Why should I not convert a Python list into a tuple?",
+        "nearest_seed": "How do I convert a Python list into a tuple?",
+        "cosine": 0.856055637043786,
+        "authored_expected_seed": null,
+        "selected_seed": 0,
+        "pair": {
+          "logit": -5.285590171813965,
+          "pair_score": 0.005038527333525581,
+          "input_tokens": 27
+        },
+        "against_first_seed": {
+          "logit": -5.285590171813965,
+          "pair_score": 0.005038527333525581,
+          "input_tokens": 27
+        },
+        "diagnostic_ms": 38.16919960081577
+      },
+      {
+        "kind": "unit_change",
+        "query": "How do I convert Celsius to Kelvin?",
+        "nearest_seed": "How do I convert Fahrenheit to Celsius?",
+        "cosine": 0.8234879143923239,
+        "authored_expected_seed": null,
+        "selected_seed": 3,
+        "pair": {
+          "logit": -3.7573421001434326,
+          "pair_score": 0.022813120088702697,
+          "input_tokens": 20
+        },
+        "against_first_seed": {
+          "logit": -8.323624610900879,
+          "pair_score": 0.00024265562618217985,
+          "input_tokens": 23
+        },
+        "diagnostic_ms": 37.130100186914206
+      },
+      {
+        "kind": "constraint",
+        "query": "How can I sort a Python list without changing its original order?",
+        "nearest_seed": "How can I sort a Python list in ascending order?",
+        "cosine": 0.8900813544069475,
+        "authored_expected_seed": null,
+        "selected_seed": 4,
+        "pair": {
+          "logit": -2.3330116271972656,
+          "pair_score": 0.08842560538513855,
+          "input_tokens": 28
+        },
+        "against_first_seed": {
+          "logit": -7.956199645996094,
+          "pair_score": 0.00035035975248143096,
+          "input_tokens": 28
+        },
+        "diagnostic_ms": 35.599700175225735
+      }
+    ],
+    "claim": "exposed authored development diagnostics; no answer applicability labels or serving decisions"
+  },
+  "after": {
+    "python": "3.14.5",
+    "packages": {
+      "torch": "2.14.0",
+      "sentence-transformers": "6.0.1",
+      "transformers": "5.16.1",
+      "huggingface-hub": "1.23.0",
+      "socksio": null
+    },
+    "models": {
+      "encoder": {
+        "model": "sentence-transformers/all-MiniLM-L6-v2",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+        "snapshot_present": true,
+        "weights": [
+          {
+            "file": "model.safetensors",
+            "bytes": 90868376,
+            "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db"
+          }
+        ],
+        "inference_verified": true
+      },
+      "pair": {
+        "model": "cross-encoder/quora-distilroberta-base",
+        "revision": "f62e7a4b20b97195c2868e53ec59126df5eac743",
+        "snapshot_present": true,
+        "weights": [
+          {
+            "file": "model.safetensors",
+            "bytes": 328493408,
+            "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb"
+          }
+        ],
+        "inference_verified": true
+      }
+    },
+    "fine_tuned_checkpoint_available": true
+  },
+  "status": "complete"
+}

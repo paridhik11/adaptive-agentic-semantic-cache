@@ -7,6 +7,8 @@ import math
 import re
 import threading
 import time
+from contextlib import nullcontext
+from src.policy.work_ledger import WorkLedger
 
 from src.classifier.models import StabilityLabel
 from src.classifier.rules import StabilityRuleEngine
@@ -135,7 +137,9 @@ class WorkMetrics:
                         "requests_rejected_busy_total", "stream_completed_total", "stream_failed_total",
                         "stream_cancelled_total", "stream_cleanup_errors_total", "stream_first_text_microseconds_total", "stream_first_text_count",
                         "exact_hits_total", "semantic_hits_total", "semantic_candidates_total", "semantic_shadow_candidates_total",
-                        "semantic_approval_rejections_total", "semantic_processing_errors_total", "semantic_verifier_attempts_total"):
+                        "semantic_approval_rejections_total", "semantic_processing_errors_total", "semantic_verifier_attempts_total",
+                        "semantic_local_verifier_attempts_total", "semantic_local_verifier_microseconds_total",
+                        "semantic_local_recommendations_total"):
                 lines += [f"# TYPE cache_gateway_{key} counter", f"cache_gateway_{key} {self._counts[key]}"]
             lines.append("# TYPE cache_gateway_processing_seconds histogram")
             for status, row in self._latency.items():
@@ -192,7 +196,11 @@ class GatewayService:
             self._slots.release()
             raise
 
-    def complete(self, body: dict, tenant_id: str, *, bypass: bool = False):
+    def complete(self, body: dict, tenant_id: str, *, bypass: bool = False, ledger=None, remote_stage=None):
+        if (ledger is None) != (remote_stage is None):
+            raise ValueError('ledger and remote stage must be supplied together')
+        if ledger is not None and (not isinstance(ledger, WorkLedger) or remote_stage not in {'planning','generation','review'}):
+            raise ValueError('invalid provider work accounting')
         validate_request(body, self.allowed_models, self.max_output_tokens)
         if not self._slots.acquire(blocking=False):
             self.metrics.increment("requests_rejected_busy_total")
@@ -203,7 +211,13 @@ class GatewayService:
             def generate(request):
                 self.metrics.increment("upstream_attempts_total")
                 try:
-                    response = self.provider(request)
+                    with ledger.measure(remote_stage) if ledger is not None else nullcontext() as event:
+                        response = self.provider(request)
+                        if event is not None:
+                            usage = response.get('usage') if isinstance(response,dict) else None
+                            event['usage'] = ({k:usage[k] for k in ('prompt_tokens','completion_tokens')}
+                                if isinstance(usage,dict) and all(type(usage.get(k)) is int and usage[k]>=0
+                                    for k in ('prompt_tokens','completion_tokens')) else None)
                     if not isinstance(response, dict):
                         raise TypeError("provider returned a non-object")
                     json.dumps(response, allow_nan=False)
@@ -212,7 +226,9 @@ class GatewayService:
                 except Exception:
                     self.metrics.increment("upstream_errors_total")
                     raise
-            result = self.cache.process(body, tenant_id=tenant_id, provider=generate, bypass=bypass)
+            from src.policy.semantic_runtime import GuardedSemanticCache
+            local_accounting = {'ledger':ledger} if isinstance(self.cache,GuardedSemanticCache) and ledger is not None else {}
+            result = self.cache.process(body, tenant_id=tenant_id, provider=generate, bypass=bypass,**local_accounting)
             status = result.status
             if status == "HIT":
                 self.metrics.increment("semantic_hits_total" if getattr(result, "tier", None) == "SEMANTIC" else "exact_hits_total")
@@ -226,6 +242,10 @@ class GatewayService:
                 if diagnosis.get("stage") in counters:
                     self.metrics.increment(counters[diagnosis["stage"]])
                 self.metrics.increment("semantic_verifier_attempts_total", diagnosis.get("verifier_calls", 0))
+                self.metrics.increment("semantic_local_verifier_attempts_total", diagnosis.get("local_verifier_attempts", 0))
+                self.metrics.increment("semantic_local_verifier_microseconds_total", round(diagnosis.get("local_verifier_ms", 0) * 1000))
+                if diagnosis.get("local_policy_recommendation") is True:
+                    self.metrics.increment("semantic_local_recommendations_total")
             return result
         finally:
             self.metrics.finish(status, time.perf_counter() - started)

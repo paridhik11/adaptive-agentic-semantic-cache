@@ -26,6 +26,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          # Checkout integrity tests inspect an immutable historical commit.
+          fetch-depth: 0
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
@@ -36,7 +39,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -e .[dev]
+          pip install -e ".[dev,gateway]"
 
       - name: Run unit tests (no model, no network)
         # The default pytest invocation excludes requires_model tests via pyproject.toml
@@ -77,9 +80,22 @@ jobs:
         id: hf-cache
         with:
           path: ~/.cache/huggingface
-          key: huggingface-all-MiniLM-L6-v2-${{ env.MODEL_REVISION }}
+          key: huggingface-interview-pinned-v1-${{ hashFiles('src/policy/local_models.py') }}
           restore-keys: |
             huggingface-all-MiniLM-L6-v2-
+
+      - name: Fetch pinned checkpoints for guarded demo integration
+        run: |
+          python - <<'PYTHON'
+          from huggingface_hub import snapshot_download
+          from src.policy.local_models import ENCODER_MODEL, ENCODER_REVISION, PASSAGE_MODEL, PASSAGE_REVISION
+
+          for model, revision in ((ENCODER_MODEL, ENCODER_REVISION), (PASSAGE_MODEL, PASSAGE_REVISION)):
+              snapshot_download(
+                  repo_id=model, revision=revision,
+                  allow_patterns=["*.json", "*.txt", "*.safetensors"],
+              )
+          PYTHON
 
       - name: Run model integration tests
         # Only tests marked @pytest.mark.requires_model are executed here.

@@ -1,0 +1,11 @@
+{
+  "evidence_type": "UI integration checks, not visual QA or live utility",
+  "api_regression": "61 passed in 2.45s",
+  "javascript_syntax": "passed",
+  "browser_qa": "blocked: Playwright package present, browser and headless-shell executables absent",
+  "push": "blocked by automatic approval review: destination-specific sharing authorization considered ambiguous",
+  "remote": "https://github.com/paridhik11/adaptive-agentic-semantic-cache.git",
+  "branch": "integration/documentation-rebuild",
+  "no_push_workaround_attempted": true,
+  "live_calls": 0
+}

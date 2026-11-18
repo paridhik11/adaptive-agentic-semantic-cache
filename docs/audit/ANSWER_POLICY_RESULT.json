@@ -1,0 +1,1235 @@
+{
+  "schema_version": "answer-policy-milestone-v1",
+  "source_parent": "4904fb7942ffc1cb490ceb815682b5c985cf4fda",
+  "evidence_type": "authored_development_model_assisted_diagnostics",
+  "human_reviews": 0,
+  "external_generation_calls": 0,
+  "serving_enabled": false,
+  "quality_gate": "not_evaluated",
+  "development_baseline_outcome": "both_unusable",
+  "models_and_environment": {
+    "models": [
+      {
+        "model": "google/flan-t5-base",
+        "revision": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+        "file": "model.safetensors",
+        "bytes": 990345061,
+        "sha256": "1dfb70afdcedceb9f9fae2f9b68e004ad934361fb35b9b2bd50b45ea90790fc8"
+      },
+      {
+        "model": "Qwen/Qwen3-0.6B",
+        "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+        "file": "model.safetensors",
+        "bytes": 1503300328,
+        "sha256": "f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b"
+      }
+    ],
+    "packages": {
+      "torch": "2.14.1+cpu",
+      "transformers": "5.20.1",
+      "sentence-transformers": "6.1.0",
+      "huggingface-hub": "1.33.0"
+    }
+  },
+  "source_sha256": {
+    "src/policy/answer_applicability.py": "c226aa5eae0d01b723d408a60b839fc15afc71f623c19f8b583c2b5f4988c27c",
+    "src/policy/semantic_runtime.py": "61c5f878f6d9cf651825a504b6be922ec8acbe8f9622bb9374631f8f2e887b16",
+    "src/api/service.py": "ebfae492f9d3f3499b3bff549c1182113f0c0ae6347fc09a5e81a62597d536e7",
+    "scripts/probe_answer_applicability.py": "bfb1894ee7dc1df11227dd2621f644cfdf921d5a648a69488b3626ff4bd54b85",
+    "tests/test_answer_applicability.py": "42a47f602a2d3779fa3242f46b7379d9a89580eb4a9d17e7ce695512205800ba"
+  },
+  "network_check": {
+    "python_socket_connections_blocked_for_both_inference_runs": true,
+    "host_wide_sandbox_claimed": false
+  },
+  "flan": {
+    "schema_version": "answer-applicability-dev-v1",
+    "evidence_type": "authored_development_model_diagnostics",
+    "model": "google/flan-t5-base@7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+    "policy": "answer-aware-diagnostic-v1:f7bbd9fcdbacf9279a3f7dc5a5c737b49521b021dd32cc2e6b44949f34b4f03b",
+    "threshold": 0.98,
+    "minimum_yes_mass": 0.9,
+    "rows": [
+      {
+        "id": "list-positive",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": true,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.4823657274246216,
+              "no_probability": 0.5017297863960266,
+              "conditional_yes": 0.4901614941337218,
+              "yes_no_mass": 0.9840955138206482,
+              "input_tokens": 353
+            },
+            "support": {
+              "yes_probability": 0.37392956018447876,
+              "no_probability": 0.5845914483070374,
+              "conditional_yes": 0.39011096978766785,
+              "yes_no_mass": 0.9585210084915161,
+              "input_tokens": 341
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 983.9058919999957,
+          "answer_sha256": "af8992938cdb28337146890b4aaddd1c72ea2551cff5fa421d633a17659feac7",
+          "incoming_sha256": "b4952ce8bcb6de1dff44898ecd697c4c8eaf2d27b07638c4b3a1503502057ab4",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "list-positive-2",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": true,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.43114787340164185,
+              "no_probability": 0.5529434084892273,
+              "conditional_yes": 0.43811776543047765,
+              "yes_no_mass": 0.9840912818908691,
+              "input_tokens": 350
+            },
+            "support": {
+              "yes_probability": 0.33258360624313354,
+              "no_probability": 0.630424439907074,
+              "conditional_yes": 0.3453591146747885,
+              "yes_no_mass": 0.9630080461502075,
+              "input_tokens": 338
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 1880.4118330000392,
+          "answer_sha256": "af8992938cdb28337146890b4aaddd1c72ea2551cff5fa421d633a17659feac7",
+          "incoming_sha256": "58f3c85bbe9cbe6a490fe8f77283be5980561a14d5c2955fa7a79f2d29e38a9e",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "temperature-positive",
+        "intent_group": "temperature",
+        "authored_expected_applicable": true,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.5600420832633972,
+              "no_probability": 0.42543622851371765,
+              "conditional_yes": 0.5682946814460811,
+              "yes_no_mass": 0.9854783117771149,
+              "input_tokens": 335
+            },
+            "support": {
+              "yes_probability": 0.4405827224254608,
+              "no_probability": 0.5150586366653442,
+              "conditional_yes": 0.46103354384392714,
+              "yes_no_mass": 0.955641359090805,
+              "input_tokens": 323
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 948.9265869999599,
+          "answer_sha256": "a7a5e0a4d16406f99a5925a7da58707fa4fff81cc88184015c2729fcd1d19e80",
+          "incoming_sha256": "3f5834d2b9e17e64d9630478c6ec7412b61a1ea54e1cce61b11c23089e28837f",
+          "candidate_sha256": "77379e8aabb45938cd24f1ae7528d7d92525d9a1ffe84d6bcdcd3ed2c1883d4d"
+        }
+      },
+      {
+        "id": "sort-positive",
+        "intent_group": "sort",
+        "authored_expected_applicable": true,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.5178658366203308,
+              "no_probability": 0.4663553833961487,
+              "conditional_yes": 0.5261681277423178,
+              "yes_no_mass": 0.9842212200164795,
+              "input_tokens": 340
+            },
+            "support": {
+              "yes_probability": 0.41377949714660645,
+              "no_probability": 0.5532932877540588,
+              "conditional_yes": 0.42786799877644016,
+              "yes_no_mass": 0.9670727849006653,
+              "input_tokens": 328
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 1301.4845250000349,
+          "answer_sha256": "d24a71c07213163d0aadf3743c40bedc1c3deaad976a823e3daff7921775f65b",
+          "incoming_sha256": "94e03b455e862ac7677433d1612ea9c4541e593a778124629ee9ac19e916d04c",
+          "candidate_sha256": "b997c456d2116487da9a67c4c18a1a76bfe976b38ec10b3a6fa6ce7fe555c461"
+        }
+      },
+      {
+        "id": "direction",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.4443458318710327,
+              "no_probability": 0.5405504703521729,
+              "conditional_yes": 0.4511600164078302,
+              "yes_no_mass": 0.9848963022232056,
+              "input_tokens": 353
+            },
+            "support": {
+              "yes_probability": 0.3442646265029907,
+              "no_probability": 0.6140968799591064,
+              "conditional_yes": 0.35922209331412275,
+              "yes_no_mass": 0.9583615064620972,
+              "input_tokens": 341
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 749.5981620000407,
+          "answer_sha256": "af8992938cdb28337146890b4aaddd1c72ea2551cff5fa421d633a17659feac7",
+          "incoming_sha256": "bc086f1ad4384561f5d00a77b34568d54c92c5fc1c4971f712eaf95b9fa59ab4",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "recursion",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.45455533266067505,
+              "no_probability": 0.5312648415565491,
+              "conditional_yes": 0.4610935589968099,
+              "yes_no_mass": 0.9858201742172241,
+              "input_tokens": 358
+            },
+            "support": {
+              "yes_probability": 0.35298874974250793,
+              "no_probability": 0.6107351779937744,
+              "conditional_yes": 0.36627579702379387,
+              "yes_no_mass": 0.9637239277362823,
+              "input_tokens": 346
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 1192.756333000034,
+          "answer_sha256": "af8992938cdb28337146890b4aaddd1c72ea2551cff5fa421d633a17659feac7",
+          "incoming_sha256": "dbf815cfdb57f5a4d4ac3d4436049af92cfad7f346e038ffa6ad09da861e6642",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "new-constraint",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.4619702100753784,
+              "no_probability": 0.5224447250366211,
+              "conditional_yes": 0.46928403216761316,
+              "yes_no_mass": 0.9844149351119995,
+              "input_tokens": 356
+            },
+            "support": {
+              "yes_probability": 0.36344677209854126,
+              "no_probability": 0.5977797508239746,
+              "conditional_yes": 0.37810730710334195,
+              "yes_no_mass": 0.9612265229225159,
+              "input_tokens": 344
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 861.6969880000056,
+          "answer_sha256": "af8992938cdb28337146890b4aaddd1c72ea2551cff5fa421d633a17659feac7",
+          "incoming_sha256": "1fccc5d9bd707e4e3e242237b82d8690674104b2a1c3461833aab44bd22c3384",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "negation",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.42513307929039,
+              "no_probability": 0.5634028315544128,
+              "conditional_yes": 0.43006336403810685,
+              "yes_no_mass": 0.9885359108448029,
+              "input_tokens": 354
+            },
+            "support": {
+              "yes_probability": 0.34103694558143616,
+              "no_probability": 0.6317280530929565,
+              "conditional_yes": 0.35058513211944753,
+              "yes_no_mass": 0.9727649986743927,
+              "input_tokens": 342
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 845.1618340000095,
+          "answer_sha256": "af8992938cdb28337146890b4aaddd1c72ea2551cff5fa421d633a17659feac7",
+          "incoming_sha256": "e1feaf534677337e4282233d031d3f52e251ee5c6fd8684dfd3af08241fcdbaf",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "units",
+        "intent_group": "temperature",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.5399008393287659,
+              "no_probability": 0.4469950497150421,
+              "conditional_yes": 0.5470697013966382,
+              "yes_no_mass": 0.986895889043808,
+              "input_tokens": 328
+            },
+            "support": {
+              "yes_probability": 0.3994710147380829,
+              "no_probability": 0.5598616600036621,
+              "conditional_yes": 0.41640509622547944,
+              "yes_no_mass": 0.959332674741745,
+              "input_tokens": 316
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 916.9048859999975,
+          "answer_sha256": "a7a5e0a4d16406f99a5925a7da58707fa4fff81cc88184015c2729fcd1d19e80",
+          "incoming_sha256": "0a8cad39e9940019f16ff580a0093614317a8d3cbd21e11c1058ddc002ee04fd",
+          "candidate_sha256": "77379e8aabb45938cd24f1ae7528d7d92525d9a1ffe84d6bcdcd3ed2c1883d4d"
+        }
+      },
+      {
+        "id": "temperature-direction",
+        "intent_group": "temperature",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.5697200894355774,
+              "no_probability": 0.4159850478172302,
+              "conditional_yes": 0.5779822666070361,
+              "yes_no_mass": 0.9857051372528076,
+              "input_tokens": 329
+            },
+            "support": {
+              "yes_probability": 0.43434104323387146,
+              "no_probability": 0.5191220641136169,
+              "conditional_yes": 0.4555404817310634,
+              "yes_no_mass": 0.9534631073474884,
+              "input_tokens": 317
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 751.0548569999855,
+          "answer_sha256": "a7a5e0a4d16406f99a5925a7da58707fa4fff81cc88184015c2729fcd1d19e80",
+          "incoming_sha256": "bf7fd2c533e234facdd5f94bd373e31b937818a6d9db04d681430d0bcb35f66e",
+          "candidate_sha256": "77379e8aabb45938cd24f1ae7528d7d92525d9a1ffe84d6bcdcd3ed2c1883d4d"
+        }
+      },
+      {
+        "id": "sort-direction",
+        "intent_group": "sort",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.5040875673294067,
+              "no_probability": 0.48081302642822266,
+              "conditional_yes": 0.5118156802060532,
+              "yes_no_mass": 0.9849005937576294,
+              "input_tokens": 339
+            },
+            "support": {
+              "yes_probability": 0.37738871574401855,
+              "no_probability": 0.5908325910568237,
+              "conditional_yes": 0.3897752642843309,
+              "yes_no_mass": 0.9682213068008423,
+              "input_tokens": 327
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 792.2696979999841,
+          "answer_sha256": "d24a71c07213163d0aadf3743c40bedc1c3deaad976a823e3daff7921775f65b",
+          "incoming_sha256": "e067e83217948173e9546ccd17221518ef07312274eb6aa9290ba8f771324a0c",
+          "candidate_sha256": "b997c456d2116487da9a67c4c18a1a76bfe976b38ec10b3a6fa6ce7fe555c461"
+        }
+      },
+      {
+        "id": "wrong-actual-answer",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.5434389114379883,
+              "no_probability": 0.4431733191013336,
+              "conditional_yes": 0.5508130698328387,
+              "yes_no_mass": 0.9866122305393219,
+              "input_tokens": 336
+            },
+            "support": {
+              "yes_probability": 0.43417826294898987,
+              "no_probability": 0.5393310189247131,
+              "conditional_yes": 0.44599293610568513,
+              "yes_no_mass": 0.973509281873703,
+              "input_tokens": 324
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 753.7545220000084,
+          "answer_sha256": "582c4b2564a9eb1ece65b18cc0118eec5eed6bac4b974b219dec65c04b0cc571",
+          "incoming_sha256": "5964c354f858f56dee8060ed0c3a77523305e1a66d9c8937afe12fcb4c7a19fe",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "unsupported-actual-answer",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.5251621603965759,
+              "no_probability": 0.46205589175224304,
+              "conditional_yes": 0.5319616666788929,
+              "yes_no_mass": 0.987218052148819,
+              "input_tokens": 344
+            },
+            "support": {
+              "yes_probability": 0.39061790704727173,
+              "no_probability": 0.5841063857078552,
+              "conditional_yes": 0.4007470727370123,
+              "yes_no_mass": 0.974724292755127,
+              "input_tokens": 332
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 801.906358999986,
+          "answer_sha256": "5725613e46190772fff6f3ecfe595c7feb8e8649dba16345d2e159a07785d44d",
+          "incoming_sha256": "5964c354f858f56dee8060ed0c3a77523305e1a66d9c8937afe12fcb4c7a19fe",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "irrelevant-actual-answer",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.48497501015663147,
+              "no_probability": 0.502812385559082,
+              "conditional_yes": 0.490971045247279,
+              "yes_no_mass": 0.9877873957157135,
+              "input_tokens": 340
+            },
+            "support": {
+              "yes_probability": 0.3546156883239746,
+              "no_probability": 0.6136469841003418,
+              "conditional_yes": 0.366239139877297,
+              "yes_no_mass": 0.9682626724243164,
+              "input_tokens": 328
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 743.2030159999954,
+          "answer_sha256": "a7a5e0a4d16406f99a5925a7da58707fa4fff81cc88184015c2729fcd1d19e80",
+          "incoming_sha256": "5964c354f858f56dee8060ed0c3a77523305e1a66d9c8937afe12fcb4c7a19fe",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "incomplete-actual-answer",
+        "intent_group": "temperature",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.5105394721031189,
+              "no_probability": 0.47599661350250244,
+              "conditional_yes": 0.5175071439882561,
+              "yes_no_mass": 0.9865360856056213,
+              "input_tokens": 317
+            },
+            "support": {
+              "yes_probability": 0.3960989713668823,
+              "no_probability": 0.5720548629760742,
+              "conditional_yes": 0.4091281336872433,
+              "yes_no_mass": 0.9681538343429565,
+              "input_tokens": 305
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 703.9152190000095,
+          "answer_sha256": "23e96704cc0914c746867682ba72e91c0f83be1263339587ab4bc1b3b88c2e07",
+          "incoming_sha256": "77379e8aabb45938cd24f1ae7528d7d92525d9a1ffe84d6bcdcd3ed2c1883d4d",
+          "candidate_sha256": "77379e8aabb45938cd24f1ae7528d7d92525d9a1ffe84d6bcdcd3ed2c1883d4d"
+        }
+      }
+    ],
+    "summary": {
+      "cases": 15,
+      "authored_intent_groups": 3,
+      "positive_cases": 4,
+      "negative_cases": 11,
+      "positive_recommendations": 0,
+      "negative_recommendations": 0
+    },
+    "cache_integration": {
+      "seed": {
+        "response": {
+          "model": "authored-reference-fixture",
+          "choices": [
+            {
+              "index": 0,
+              "finish_reason": "stop",
+              "message": {
+                "role": "assistant",
+                "content": "Use tuple(items) to create a tuple from the items in your list. This is a shallow conversion."
+              }
+            }
+          ]
+        },
+        "status": "MISS",
+        "reason": "generated_and_stored",
+        "provider_calls": 1,
+        "stored": true,
+        "total_latency_ms": 25.030583999978262,
+        "tier": "PROVIDER",
+        "diagnosis": {
+          "mode": "guarded",
+          "stage": "no_candidate",
+          "candidate": null,
+          "similarity": null,
+          "verifier_calls": 0,
+          "approval_signal": null,
+          "approver_identity": "answer-aware-diagnostic-v1:f7bbd9fcdbacf9279a3f7dc5a5c737b49521b021dd32cc2e6b44949f34b4f03b",
+          "local_verifier_attempts": 0,
+          "local_verifier_ms": 0.0,
+          "local_policy_recommendation": null
+        }
+      },
+      "exact_repeat": {
+        "response": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "content": "Use tuple(items) to create a tuple from the items in your list. This is a shallow conversion.",
+                "role": "assistant"
+              }
+            }
+          ],
+          "model": "authored-reference-fixture"
+        },
+        "status": "HIT",
+        "reason": "scoped_exact_hit",
+        "provider_calls": 0,
+        "stored": false,
+        "total_latency_ms": 0.23771200000055615,
+        "tier": "EXACT",
+        "diagnosis": {
+          "mode": "guarded",
+          "stage": "exact_hit",
+          "candidate": null,
+          "similarity": null,
+          "verifier_calls": 0,
+          "approval_signal": null,
+          "approver_identity": "answer-aware-diagnostic-v1:f7bbd9fcdbacf9279a3f7dc5a5c737b49521b021dd32cc2e6b44949f34b4f03b",
+          "local_verifier_attempts": 0,
+          "local_verifier_ms": 0.0,
+          "local_policy_recommendation": null
+        }
+      },
+      "paraphrase": {
+        "response": {
+          "model": "authored-reference-fixture",
+          "choices": [
+            {
+              "index": 0,
+              "finish_reason": "stop",
+              "message": {
+                "role": "assistant",
+                "content": "Use tuple(items) to create a tuple from the items in your list. This is a shallow conversion."
+              }
+            }
+          ]
+        },
+        "status": "MISS",
+        "reason": "generated_and_stored",
+        "provider_calls": 1,
+        "stored": true,
+        "total_latency_ms": 772.8700779999826,
+        "tier": "PROVIDER",
+        "diagnosis": {
+          "mode": "guarded",
+          "stage": "approval_rejected",
+          "candidate": "bf9919e2225b5cff4eb6aa57206a11115d8f23cbb13f5801a5c0a8d2d1ffcd2e",
+          "similarity": 0.9156005201155252,
+          "verifier_calls": 0,
+          "approval_signal": false,
+          "approver_identity": "answer-aware-diagnostic-v1:f7bbd9fcdbacf9279a3f7dc5a5c737b49521b021dd32cc2e6b44949f34b4f03b",
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 763.2696399999759,
+          "local_policy_recommendation": false,
+          "binding": {
+            "scope_sha256": "de67068d8ff77ad859ceb499a4e17107cb11ce560c3714b646058aa777a52581",
+            "incoming_request_sha256": "b4952ce8bcb6de1dff44898ecd697c4c8eaf2d27b07638c4b3a1503502057ab4",
+            "candidate_request_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef",
+            "candidate_response_sha256": "af8992938cdb28337146890b4aaddd1c72ea2551cff5fa421d633a17659feac7"
+          }
+        }
+      },
+      "fixture_provider_calls": 2
+    },
+    "external_generation_calls": 0,
+    "independent_human_reviews": 0,
+    "serving_enabled": false,
+    "final_quality_gate": "not_evaluated"
+  },
+  "qwen": {
+    "schema_version": "answer-applicability-dev-v1",
+    "evidence_type": "authored_development_model_diagnostics",
+    "model": "Qwen/Qwen3-0.6B@c1899de289a04d12100db370d81485cdf75e47ca:thinking-disabled:label-variants-v1",
+    "policy": "answer-aware-diagnostic-v1:15baa697faf8aaeab314e4cb683bc931b448573093e4de52b51eea476218ae0f",
+    "threshold": 0.98,
+    "minimum_yes_mass": 0.9,
+    "rows": [
+      {
+        "id": "list-positive",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": true,
+        "assessment": {
+          "recommended_reuse": true,
+          "reason": "diagnostic_positive",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.988824725151062,
+              "no_probability": 0.011173609644174576,
+              "conditional_yes": 0.9888263717494464,
+              "yes_no_mass": 0.9999983347952366,
+              "input_tokens": 289
+            },
+            "support": {
+              "yes_probability": 0.9865875840187073,
+              "no_probability": 0.013410279527306557,
+              "conditional_yes": 0.986589691822187,
+              "yes_no_mass": 0.9999978635460138,
+              "input_tokens": 276
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 2790.131319000011,
+          "answer_sha256": "af8992938cdb28337146890b4aaddd1c72ea2551cff5fa421d633a17659feac7",
+          "incoming_sha256": "b4952ce8bcb6de1dff44898ecd697c4c8eaf2d27b07638c4b3a1503502057ab4",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "list-positive-2",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": true,
+        "assessment": {
+          "recommended_reuse": true,
+          "reason": "diagnostic_positive",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.9843404293060303,
+              "no_probability": 0.01565694995224476,
+              "conditional_yes": 0.9843430090148256,
+              "yes_no_mass": 0.999997379258275,
+              "input_tokens": 286
+            },
+            "support": {
+              "yes_probability": 0.9871605634689331,
+              "no_probability": 0.012837630696594715,
+              "conditional_yes": 0.9871623461207274,
+              "yes_no_mass": 0.9999981941655278,
+              "input_tokens": 273
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 2141.12731900002,
+          "answer_sha256": "af8992938cdb28337146890b4aaddd1c72ea2551cff5fa421d633a17659feac7",
+          "incoming_sha256": "58f3c85bbe9cbe6a490fe8f77283be5980561a14d5c2955fa7a79f2d29e38a9e",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "temperature-positive",
+        "intent_group": "temperature",
+        "authored_expected_applicable": true,
+        "assessment": {
+          "recommended_reuse": true,
+          "reason": "diagnostic_positive",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.9977012276649475,
+              "no_probability": 0.0022977706976234913,
+              "conditional_yes": 0.9977022270008411,
+              "yes_no_mass": 0.999998998362571,
+              "input_tokens": 288
+            },
+            "support": {
+              "yes_probability": 0.9895906448364258,
+              "no_probability": 0.010407903231680393,
+              "conditional_yes": 0.9895920816567311,
+              "yes_no_mass": 0.9999985480681062,
+              "input_tokens": 275
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 2180.255015000057,
+          "answer_sha256": "a7a5e0a4d16406f99a5925a7da58707fa4fff81cc88184015c2729fcd1d19e80",
+          "incoming_sha256": "3f5834d2b9e17e64d9630478c6ec7412b61a1ea54e1cce61b11c23089e28837f",
+          "candidate_sha256": "77379e8aabb45938cd24f1ae7528d7d92525d9a1ffe84d6bcdcd3ed2c1883d4d"
+        }
+      },
+      {
+        "id": "sort-positive",
+        "intent_group": "sort",
+        "authored_expected_applicable": true,
+        "assessment": {
+          "recommended_reuse": true,
+          "reason": "diagnostic_positive",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.9913033843040466,
+              "no_probability": 0.008694031275808811,
+              "conditional_yes": 0.9913059462551036,
+              "yes_no_mass": 0.9999974155798554,
+              "input_tokens": 285
+            },
+            "support": {
+              "yes_probability": 0.9892630577087402,
+              "no_probability": 0.01073473785072565,
+              "conditional_yes": 0.9892652384851309,
+              "yes_no_mass": 0.9999977955594659,
+              "input_tokens": 272
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 2013.9078560000598,
+          "answer_sha256": "d24a71c07213163d0aadf3743c40bedc1c3deaad976a823e3daff7921775f65b",
+          "incoming_sha256": "94e03b455e862ac7677433d1612ea9c4541e593a778124629ee9ac19e916d04c",
+          "candidate_sha256": "b997c456d2116487da9a67c4c18a1a76bfe976b38ec10b3a6fa6ce7fe555c461"
+        }
+      },
+      {
+        "id": "direction",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.9744036793708801,
+              "no_probability": 0.02559315413236618,
+              "conditional_yes": 0.9744067648267377,
+              "yes_no_mass": 0.9999968335032463,
+              "input_tokens": 288
+            },
+            "support": {
+              "yes_probability": 0.9781127572059631,
+              "no_probability": 0.021884575486183167,
+              "conditional_yes": 0.9781153661407611,
+              "yes_no_mass": 0.9999973326921463,
+              "input_tokens": 275
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 2076.247287000001,
+          "answer_sha256": "af8992938cdb28337146890b4aaddd1c72ea2551cff5fa421d633a17659feac7",
+          "incoming_sha256": "bc086f1ad4384561f5d00a77b34568d54c92c5fc1c4971f712eaf95b9fa59ab4",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "recursion",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.9636139869689941,
+              "no_probability": 0.03638266772031784,
+              "conditional_yes": 0.9636172105679478,
+              "yes_no_mass": 0.999996654689312,
+              "input_tokens": 289
+            },
+            "support": {
+              "yes_probability": 0.9752680659294128,
+              "no_probability": 0.02472865767776966,
+              "conditional_yes": 0.9752712613011685,
+              "yes_no_mass": 0.9999967236071825,
+              "input_tokens": 276
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 2069.279338000001,
+          "answer_sha256": "af8992938cdb28337146890b4aaddd1c72ea2551cff5fa421d633a17659feac7",
+          "incoming_sha256": "dbf815cfdb57f5a4d4ac3d4436049af92cfad7f346e038ffa6ad09da861e6642",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "new-constraint",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": true,
+          "reason": "diagnostic_positive",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.9846643805503845,
+              "no_probability": 0.01533383596688509,
+              "conditional_yes": 0.9846661366854345,
+              "yes_no_mass": 0.9999982165172696,
+              "input_tokens": 291
+            },
+            "support": {
+              "yes_probability": 0.9833431243896484,
+              "no_probability": 0.016654426231980324,
+              "conditional_yes": 0.9833455329749283,
+              "yes_no_mass": 0.9999975506216288,
+              "input_tokens": 278
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 2210.491460000071,
+          "answer_sha256": "af8992938cdb28337146890b4aaddd1c72ea2551cff5fa421d633a17659feac7",
+          "incoming_sha256": "1fccc5d9bd707e4e3e242237b82d8690674104b2a1c3461833aab44bd22c3384",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "negation",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": false,
+          "reason": "diagnostic_abstain",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.9565361738204956,
+              "no_probability": 0.04346108436584473,
+              "conditional_yes": 0.9565387964716338,
+              "yes_no_mass": 0.9999972581863403,
+              "input_tokens": 289
+            },
+            "support": {
+              "yes_probability": 0.9722837805747986,
+              "no_probability": 0.027713578194379807,
+              "conditional_yes": 0.97228634860747,
+              "yes_no_mass": 0.9999973587691784,
+              "input_tokens": 276
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 2049.6655429999464,
+          "answer_sha256": "af8992938cdb28337146890b4aaddd1c72ea2551cff5fa421d633a17659feac7",
+          "incoming_sha256": "e1feaf534677337e4282233d031d3f52e251ee5c6fd8684dfd3af08241fcdbaf",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "units",
+        "intent_group": "temperature",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": true,
+          "reason": "diagnostic_positive",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.9950171113014221,
+              "no_probability": 0.004980648402124643,
+              "conditional_yes": 0.9950193404397214,
+              "yes_no_mass": 0.9999977597035468,
+              "input_tokens": 284
+            },
+            "support": {
+              "yes_probability": 0.9893619418144226,
+              "no_probability": 0.010636400431394577,
+              "conditional_yes": 0.9893635819360389,
+              "yes_no_mass": 0.9999983422458172,
+              "input_tokens": 271
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 2247.2874569999703,
+          "answer_sha256": "a7a5e0a4d16406f99a5925a7da58707fa4fff81cc88184015c2729fcd1d19e80",
+          "incoming_sha256": "0a8cad39e9940019f16ff580a0093614317a8d3cbd21e11c1058ddc002ee04fd",
+          "candidate_sha256": "77379e8aabb45938cd24f1ae7528d7d92525d9a1ffe84d6bcdcd3ed2c1883d4d"
+        }
+      },
+      {
+        "id": "temperature-direction",
+        "intent_group": "temperature",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": true,
+          "reason": "diagnostic_positive",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.9961224794387817,
+              "no_probability": 0.0038753130938857794,
+              "conditional_yes": 0.9961246783514682,
+              "yes_no_mass": 0.9999977925326675,
+              "input_tokens": 284
+            },
+            "support": {
+              "yes_probability": 0.9902348518371582,
+              "no_probability": 0.00976351648569107,
+              "conditional_yes": 0.9902364675833761,
+              "yes_no_mass": 0.9999983683228493,
+              "input_tokens": 271
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 2049.810668999953,
+          "answer_sha256": "a7a5e0a4d16406f99a5925a7da58707fa4fff81cc88184015c2729fcd1d19e80",
+          "incoming_sha256": "bf7fd2c533e234facdd5f94bd373e31b937818a6d9db04d681430d0bcb35f66e",
+          "candidate_sha256": "77379e8aabb45938cd24f1ae7528d7d92525d9a1ffe84d6bcdcd3ed2c1883d4d"
+        }
+      },
+      {
+        "id": "sort-direction",
+        "intent_group": "sort",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": true,
+          "reason": "diagnostic_positive",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.9912134408950806,
+              "no_probability": 0.008783227764070034,
+              "conditional_yes": 0.991216742975907,
+              "yes_no_mass": 0.9999966686591506,
+              "input_tokens": 285
+            },
+            "support": {
+              "yes_probability": 0.9884529113769531,
+              "no_probability": 0.011544495820999146,
+              "conditional_yes": 0.9884554742463308,
+              "yes_no_mass": 0.9999974071979523,
+              "input_tokens": 272
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 1936.7848980000417,
+          "answer_sha256": "d24a71c07213163d0aadf3743c40bedc1c3deaad976a823e3daff7921775f65b",
+          "incoming_sha256": "e067e83217948173e9546ccd17221518ef07312274eb6aa9290ba8f771324a0c",
+          "candidate_sha256": "b997c456d2116487da9a67c4c18a1a76bfe976b38ec10b3a6fa6ce7fe555c461"
+        }
+      },
+      {
+        "id": "wrong-actual-answer",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": true,
+          "reason": "diagnostic_positive",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.9948345422744751,
+              "no_probability": 0.005163772031664848,
+              "conditional_yes": 0.9948362192637816,
+              "yes_no_mass": 0.99999831430614,
+              "input_tokens": 275
+            },
+            "support": {
+              "yes_probability": 0.9886347055435181,
+              "no_probability": 0.011362710036337376,
+              "conditional_yes": 0.9886372605975701,
+              "yes_no_mass": 0.9999974155798554,
+              "input_tokens": 262
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 2023.122490999981,
+          "answer_sha256": "582c4b2564a9eb1ece65b18cc0118eec5eed6bac4b974b219dec65c04b0cc571",
+          "incoming_sha256": "5964c354f858f56dee8060ed0c3a77523305e1a66d9c8937afe12fcb4c7a19fe",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "unsupported-actual-answer",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": true,
+          "reason": "diagnostic_positive",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.9906809329986572,
+              "no_probability": 0.009316573850810528,
+              "conditional_yes": 0.9906834029215105,
+              "yes_no_mass": 0.9999975068494678,
+              "input_tokens": 280
+            },
+            "support": {
+              "yes_probability": 0.9860240817070007,
+              "no_probability": 0.013973533175885677,
+              "conditional_yes": 0.9860264334955218,
+              "yes_no_mass": 0.9999976148828864,
+              "input_tokens": 267
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 1944.0154730000359,
+          "answer_sha256": "5725613e46190772fff6f3ecfe595c7feb8e8649dba16345d2e159a07785d44d",
+          "incoming_sha256": "5964c354f858f56dee8060ed0c3a77523305e1a66d9c8937afe12fcb4c7a19fe",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "irrelevant-actual-answer",
+        "intent_group": "list-tuple",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": true,
+          "reason": "diagnostic_positive",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.9941430687904358,
+              "no_probability": 0.00585569255053997,
+              "conditional_yes": 0.9941443001962447,
+              "yes_no_mass": 0.9999987613409758,
+              "input_tokens": 289
+            },
+            "support": {
+              "yes_probability": 0.9869809150695801,
+              "no_probability": 0.01301728468388319,
+              "conditional_yes": 0.9869826918817529,
+              "yes_no_mass": 0.9999981997534633,
+              "input_tokens": 276
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 2026.5205919999971,
+          "answer_sha256": "a7a5e0a4d16406f99a5925a7da58707fa4fff81cc88184015c2729fcd1d19e80",
+          "incoming_sha256": "5964c354f858f56dee8060ed0c3a77523305e1a66d9c8937afe12fcb4c7a19fe",
+          "candidate_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef"
+        }
+      },
+      {
+        "id": "incomplete-actual-answer",
+        "intent_group": "temperature",
+        "authored_expected_applicable": false,
+        "assessment": {
+          "recommended_reuse": true,
+          "reason": "diagnostic_positive",
+          "scores": {
+            "sufficiency": {
+              "yes_probability": 0.9965877532958984,
+              "no_probability": 0.0034100275952368975,
+              "conditional_yes": 0.9965899648375238,
+              "yes_no_mass": 0.9999977808911353,
+              "input_tokens": 270
+            },
+            "support": {
+              "yes_probability": 0.9877978563308716,
+              "no_probability": 0.012199564836919308,
+              "conditional_yes": 0.9878004037023688,
+              "yes_no_mass": 0.9999974211677909,
+              "input_tokens": 257
+            }
+          },
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 1909.6804269998984,
+          "answer_sha256": "23e96704cc0914c746867682ba72e91c0f83be1263339587ab4bc1b3b88c2e07",
+          "incoming_sha256": "77379e8aabb45938cd24f1ae7528d7d92525d9a1ffe84d6bcdcd3ed2c1883d4d",
+          "candidate_sha256": "77379e8aabb45938cd24f1ae7528d7d92525d9a1ffe84d6bcdcd3ed2c1883d4d"
+        }
+      }
+    ],
+    "summary": {
+      "cases": 15,
+      "authored_intent_groups": 3,
+      "positive_cases": 4,
+      "negative_cases": 11,
+      "positive_recommendations": 4,
+      "negative_recommendations": 8
+    },
+    "cache_integration": {
+      "seed": {
+        "response": {
+          "model": "authored-reference-fixture",
+          "choices": [
+            {
+              "index": 0,
+              "finish_reason": "stop",
+              "message": {
+                "role": "assistant",
+                "content": "Use tuple(items) to create a tuple from the items in your list. This is a shallow conversion."
+              }
+            }
+          ]
+        },
+        "status": "MISS",
+        "reason": "generated_and_stored",
+        "provider_calls": 1,
+        "stored": true,
+        "total_latency_ms": 15.633411000067099,
+        "tier": "PROVIDER",
+        "diagnosis": {
+          "mode": "guarded",
+          "stage": "no_candidate",
+          "candidate": null,
+          "similarity": null,
+          "verifier_calls": 0,
+          "approval_signal": null,
+          "approver_identity": "answer-aware-diagnostic-v1:15baa697faf8aaeab314e4cb683bc931b448573093e4de52b51eea476218ae0f",
+          "local_verifier_attempts": 0,
+          "local_verifier_ms": 0.0,
+          "local_policy_recommendation": null
+        }
+      },
+      "exact_repeat": {
+        "response": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "content": "Use tuple(items) to create a tuple from the items in your list. This is a shallow conversion.",
+                "role": "assistant"
+              }
+            }
+          ],
+          "model": "authored-reference-fixture"
+        },
+        "status": "HIT",
+        "reason": "scoped_exact_hit",
+        "provider_calls": 0,
+        "stored": false,
+        "total_latency_ms": 0.1760129999865967,
+        "tier": "EXACT",
+        "diagnosis": {
+          "mode": "guarded",
+          "stage": "exact_hit",
+          "candidate": null,
+          "similarity": null,
+          "verifier_calls": 0,
+          "approval_signal": null,
+          "approver_identity": "answer-aware-diagnostic-v1:15baa697faf8aaeab314e4cb683bc931b448573093e4de52b51eea476218ae0f",
+          "local_verifier_attempts": 0,
+          "local_verifier_ms": 0.0,
+          "local_policy_recommendation": null
+        }
+      },
+      "paraphrase": {
+        "response": {
+          "model": "authored-reference-fixture",
+          "choices": [
+            {
+              "index": 0,
+              "finish_reason": "stop",
+              "message": {
+                "role": "assistant",
+                "content": "Use tuple(items) to create a tuple from the items in your list. This is a shallow conversion."
+              }
+            }
+          ]
+        },
+        "status": "MISS",
+        "reason": "generated_and_stored",
+        "provider_calls": 1,
+        "stored": true,
+        "total_latency_ms": 2265.34251999999,
+        "tier": "PROVIDER",
+        "diagnosis": {
+          "mode": "guarded",
+          "stage": "approval_rejected",
+          "candidate": "5b5a0b148a07c1c8ea075a0b4514c07f84e101ffe98526f8cb7fc899ea5ec95b",
+          "similarity": 0.9156005201155252,
+          "verifier_calls": 0,
+          "approval_signal": false,
+          "approver_identity": "answer-aware-diagnostic-v1:15baa697faf8aaeab314e4cb683bc931b448573093e4de52b51eea476218ae0f",
+          "local_verifier_attempts": 2,
+          "local_verifier_ms": 2255.8573000000024,
+          "local_policy_recommendation": true,
+          "binding": {
+            "scope_sha256": "10bc1b17ed030056b82be63e8ebcded37a21e56ba1b4773e93f577648ea632c7",
+            "incoming_request_sha256": "b4952ce8bcb6de1dff44898ecd697c4c8eaf2d27b07638c4b3a1503502057ab4",
+            "candidate_request_sha256": "5dc2ad82ca96b0c8c9b5787f0b61030118e320d1967a3dc42e520d1aa20f07ef",
+            "candidate_response_sha256": "af8992938cdb28337146890b4aaddd1c72ea2551cff5fa421d633a17659feac7"
+          }
+        }
+      },
+      "fixture_provider_calls": 2
+    },
+    "external_generation_calls": 0,
+    "independent_human_reviews": 0,
+    "serving_enabled": false,
+    "final_quality_gate": "not_evaluated"
+  },
+  "regression_tests": {
+    "command": "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONPATH=.venv/lib/python3.12/site-packages python -m pytest -q",
+    "returncode": 0,
+    "stdout": "........................................................................ [  9%]\n........................................................................ [ 19%]\n........................................................................ [ 29%]\n........................................................................ [ 39%]\n........................................................................ [ 49%]\n........................................................................ [ 59%]\n........................................................................ [ 69%]\n........................................................................ [ 79%]\n........................................................................ [ 89%]\n........................................................................ [ 99%]\n......                                                                   [100%]\n726 passed, 23 deselected in 119.43s (0:01:59)\n",
+    "stderr": "",
+    "elapsed_seconds": 121.69855310799994
+  },
+  "focused_tests_after_final_validation_guard_change": {
+    "command": "python -m pytest tests/test_answer_applicability.py -q",
+    "result": "17 passed"
+  },
+  "secret_scan": {
+    "files": [
+      "src/policy/answer_applicability.py",
+      "src/policy/semantic_runtime.py",
+      "src/api/service.py",
+      "scripts/probe_answer_applicability.py",
+      "tests/test_answer_applicability.py",
+      "docs/ANSWER_POLICY_DEVELOPMENT.md",
+      "docs/CURRENT_STATUS.md"
+    ],
+    "findings": 0,
+    "limits": "Changed-file token/private-key-header pattern scan; not exhaustive."
+  },
+  "limits": [
+    "Builder-authored expectations in 3 correlated groups, not independent human judgments.",
+    "Recommendations are local model-assisted diagnostics, not calibrated probabilities or cache hits.",
+    "No population precision, live latency, monetary savings or final gate pass is established.",
+    "Local stage counters cover returned requests, not a failure-complete work ledger."
+  ]
+}

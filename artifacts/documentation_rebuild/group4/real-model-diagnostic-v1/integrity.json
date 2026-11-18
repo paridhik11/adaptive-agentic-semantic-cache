@@ -1,0 +1,27 @@
+{
+  "prediction_source_hashes_match": true,
+  "facts_append_only": true,
+  "frozen_data_and_evaluation_unchanged": true,
+  "weights_outside_git": true,
+  "scan_scope": [
+    ".gitattributes",
+    "README.md",
+    "artifacts/documentation_rebuild/group4/model-inventory-restored-v1.json",
+    "artifacts/documentation_rebuild/group4/model-preflight-restored-v1.json",
+    "artifacts/documentation_rebuild/group4/model-restore-v1.json",
+    "artifacts/documentation_rebuild/group4/real-model-diagnostic-v1/comparison.json",
+    "artifacts/documentation_rebuild/group4/real-model-diagnostic-v1/prediction-manifest.json",
+    "artifacts/documentation_rebuild/group4/real-model-diagnostic-v1/predictions.jsonl",
+    "artifacts/documentation_rebuild/group4/real-model-diagnostic-v1/regression-tests.txt",
+    "artifacts/documentation_rebuild/group4/real-model-diagnostic-v1/runtime-issue.json",
+    "configs/document_product/exposed_diagnostic_v1.json",
+    "docs/CURRENT_STATUS.md",
+    "docs/FACTS.md",
+    "docs/REAL_DOCUMENT_MODEL_DIAGNOSTIC.md",
+    "scripts/report_document_diagnostic.py",
+    "scripts/score_document_diagnostic.py",
+    "src/policy/local_models.py",
+    "tests/test_semantic_preparation.py"
+  ],
+  "scan_limit": "obvious key patterns in new/changed text only"
+}

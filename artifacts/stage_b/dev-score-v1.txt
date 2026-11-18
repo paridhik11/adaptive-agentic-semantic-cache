@@ -1,0 +1,74 @@
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/configs/intent_stage_b_v1.json", "bytes": 1210, "sha256": "e2f992e83e980602416c2e619527f3be5088d92924bebee09b6a159bf5b8ff85"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/configs/intent_stage_b_calibration_v1.json", "bytes": 1002, "sha256": "8d4867329ccdab452c631e66c9abe2aa9d989421fb20e8e9d8b564c245d676e2"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/evaluation/intent_stage_b_model.py", "bytes": 2730, "sha256": "549001866ef338cbb5bd31748cd85c19836786ccc01973db75b1a55a625c15d1"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/evaluation/intent_stage_b_veto.py", "bytes": 4872, "sha256": "3d972405a3e318476a9545f98e9d335c85349bea5b338ded158216d6270c41ce"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/scripts/build_stage_b_intents.py", "bytes": 16143, "sha256": "52efac8c8ac3c391d2d40594ee7cd91deb428178487d68628871237d3c7e01c7"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/decision/local_equivalence.py", "bytes": 13256, "sha256": "f63ed1ce3adb66a8bb2adc04cd4d1248c351f5903ad81600ec2c8c0708ac5023"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/configs/intent_stage_b_v1.json", "bytes": 1210, "sha256": "e2f992e83e980602416c2e619527f3be5088d92924bebee09b6a159bf5b8ff85"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/data/intent_stage_b/v2/dev.jsonl", "bytes": 959072, "sha256": "2fa384c4f54a6ea6da3a60c658dbaa14b70b291350e3255ecea64865222a6687"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/d1514c3162bbe87b343f565fadc62e6c06f04f03", "bytes": 190, "sha256": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/44af2e3b0fa3a0b6239e48422972bf755f28fde0", "bytes": 10502, "sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/72b987fd805cfa2b58c4c8c952b274a11bfd5a00", "bytes": 612, "sha256": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/fd1b291129c607e5d49799f87cb219b27f98acdf", "bytes": 116, "sha256": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db", "bytes": 90868376, "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/952a9b81c0bfd99800fabf352f69c7ccd46c5e43", "bytes": 349, "sha256": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/59d594003bf59880a884c574bf88ef7555bb0202", "bytes": 53, "sha256": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/e7b0375001f109a6b8873d756ad4f7bbb15fbaa5", "bytes": 112, "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/cb202bfe2e3c98645018a6d12f182a434c9d3e02", "bytes": 466247, "sha256": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/c79f2b6a0cea6f4b564fed1938984bace9d30ff0", "bytes": 350, "sha256": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/fb140275c155a9c7c5a3b3e0e77a9e839594a938", "bytes": 231508, "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/blobs/7e9a62bedf12792f50641e4e4ce016b2d312d5c2", "bytes": 1299, "sha256": "59baa6da620d95c9045e86a091d84e00074c42ec40c1cc04d4799914ee4fe6b7"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/blobs/9534bd005f1c03d380538c4bb15bca30b132e746", "bytes": 607, "sha256": "4d3d424eb9a2e40b2bc7ae274147f274b031e508de73cdf28e75f759a4360a08"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/blobs/226b0752cac7789c48f0cb3ec53eda48b7be36cc", "bytes": 456318, "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/blobs/73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb", "bytes": 328493408, "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/blobs/a7816a407990c2e8d254b10d36beeb972016086e", "bytes": 1008, "sha256": "75cbec71553267dadc77a583ef15122c2aa7422eb6635acc72a184a413f17c1c"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/blobs/d8059234da10f3ae6513891308e25f256dc1db6d", "bytes": 3558642, "sha256": "2bb1a22cfbe25b8e5a232b7fc4d7fc5073923b45724a5f813b00811bb6620f66"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/blobs/7142c82d6c29f8c90e033b940456dcc7e45ad39d", "bytes": 1335, "sha256": "fe09e6fe347cc94002f77bec394efa02db0ac151393f940d0d854af765e8b165"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/blobs/4ebe4bb3f3114daf2e4cc349f24873a1175a35d7", "bytes": 798293, "sha256": "ed19656ea1707df69134c4af35c8ceda2cc9860bf2c3495026153a133670ab5e"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/blobs/1b013adee922cdde26976d6e46f4ec75a651dfdf", "bytes": 296, "sha256": "d02ebf56344d20f773449b15d0c10ee9a86a9178f3b3c9bfecb8b87d4350ce38"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/blobs/22182b995c80beb3c272c8f73a9f82dcbf0232c9", "bytes": 1214, "sha256": "82779b8d52566907948b15d853d113d24275004831b3cec0164af54ca97218d2"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/blobs/dbbee0e187afd1c4b39d2f21d997867acb365d26", "bytes": 205, "sha256": "1c962cd1cf6f96e82ce8aa900d5a2b8a572c46635eea564bef590be22b936240"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/blobs/f4d82e69a60b9ff8af6cc7605e21b38fd1f3396e41ccf390f4e75a5a3ecd2e26", "bytes": 596070136, "sha256": "f4d82e69a60b9ff8af6cc7605e21b38fd1f3396e41ccf390f4e75a5a3ecd2e26"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/blobs/f7640f94e81bb7f4f04daf1668850b38763a13d9", "bytes": 229, "sha256": "8f4b264b80206c830bebbdcae377e137925650a433b689343a63bdc9b3145460"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/blobs/0140ba1eac83a3c9b857d64baba91969d988624b", "bytes": 54, "sha256": "eb9b44b13c0f52a3b3685c3b1cbdea1ba8b04bea123b98f61610048940776eb1"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/blobs/6bf65ea14185a88eef7e24b41c86a953a58dcbad", "bytes": 694, "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/blobs/31e99eddb04ca32c7c1f66cde30dc3e54099402f", "bytes": 3583486, "sha256": "bb637767e8dfb8044597df6c58243bff2e592ae9e3b310c0bbdb8591f6ac543d"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/blobs/9f6e5c70b46122740fe7db666d3709a53906af2a", "bytes": 21028, "sha256": "ed56277917b937e8dfd5bea7c8ce6574b489a674d4ee6e80ad8cd963fe734201"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/blobs/f646e3569b8834a1b9fa9e046614253bb2b279e9", "bytes": 1422, "sha256": "f0c1fdbaa675181e2fc6d15787daff2e0570d885ec278eb9677c5512e455b243"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/blobs/6fddcc709be4d434efd1b0e0865e4608b280a083cc0a6772115c6607cfa8292a", "bytes": 299225554, "sha256": "6fddcc709be4d434efd1b0e0865e4608b280a083cc0a6772115c6607cfa8292a"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/blobs/6bf65ea14185a88eef7e24b41c86a953a58dcbad", "bytes": 694, "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/blobs/31e99eddb04ca32c7c1f66cde30dc3e54099402f", "bytes": 3583486, "sha256": "bb637767e8dfb8044597df6c58243bff2e592ae9e3b310c0bbdb8591f6ac543d"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/blobs/0f0ffebe3e5174288503af5e2dc799d66d5781ae", "bytes": 21031, "sha256": "626c86908d7c711f93b0feffd8657b782cc2727b391f9be190240e8cafb626d5"}
+{"split": "dev", "embedding": "minilm", "done": 0, "total": 657}
+{"split": "dev", "embedding": "minilm", "done": 512, "total": 657}
+{"split": "dev", "embedding": "redis_embedding", "done": 0, "total": 657}
+{"split": "dev", "embedding": "redis_embedding", "done": 512, "total": 657}
+{"split": "dev", "pair_model": "quora", "done": 0, "total": 1920}
+{"split": "dev", "pair_model": "quora", "done": 512, "total": 1920}
+{"split": "dev", "pair_model": "quora", "done": 1024, "total": 1920}
+{"split": "dev", "pair_model": "quora", "done": 1536, "total": 1920}
+{"finished_model": "quora", "seconds": 106.35134332500002}
+{"split": "dev", "pair_model": "redis_reranker", "done": 0, "total": 1920}
+{"split": "dev", "pair_model": "redis_reranker", "done": 512, "total": 1920}
+{"split": "dev", "pair_model": "redis_reranker", "done": 1024, "total": 1920}
+{"split": "dev", "pair_model": "redis_reranker", "done": 1536, "total": 1920}
+{"finished_model": "redis_reranker", "seconds": 290.26559747299984}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/artifacts/stage_b/models/11/adapter.safetensors", "bytes": 605120, "sha256": "89685b335847eb052d7bf3ba55f9ace99cbde6e9d08277e0cb16ebeed244b348"}
+{"split": "dev", "pair_model": "11", "done": 0, "total": 1920}
+{"split": "dev", "pair_model": "11", "done": 512, "total": 1920}
+{"split": "dev", "pair_model": "11", "done": 1024, "total": 1920}
+{"split": "dev", "pair_model": "11", "done": 1536, "total": 1920}
+{"finished_model": "11", "seconds": 110.06989430700014}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/artifacts/stage_b/models/29/adapter.safetensors", "bytes": 605120, "sha256": "1ffa69f9d4c373347b0c2dc12486a5a1929ee632dcc3b8bc6bc6ccfe51dadf73"}
+{"split": "dev", "pair_model": "29", "done": 0, "total": 1920}
+{"split": "dev", "pair_model": "29", "done": 512, "total": 1920}
+{"split": "dev", "pair_model": "29", "done": 1024, "total": 1920}
+{"split": "dev", "pair_model": "29", "done": 1536, "total": 1920}
+{"finished_model": "29", "seconds": 119.5346846020002}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/artifacts/stage_b/models/47/adapter.safetensors", "bytes": 605120, "sha256": "a64fe6ed77c3e6d721271a3c85b22b8ccdf4fe558f41623159a7b362e7e6c42b"}
+{"split": "dev", "pair_model": "47", "done": 0, "total": 1920}
+{"split": "dev", "pair_model": "47", "done": 512, "total": 1920}
+{"split": "dev", "pair_model": "47", "done": 1024, "total": 1920}
+{"split": "dev", "pair_model": "47", "done": 1536, "total": 1920}
+{"finished_model": "47", "seconds": 136.3336168169999}
+{"saved": "artifacts/stage_b/dev/scored.jsonl.gz", "queries": 832, "unique_pairs": 1920}

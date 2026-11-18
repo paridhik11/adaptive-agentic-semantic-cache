@@ -1,0 +1,20 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "packages": {
+    "pytest": "9.2.0",
+    "fastapi": "0.162.0",
+    "httpx": "0.28.1",
+    "pydantic": "2.14.1"
+  },
+  "tests": "250 passed, 1 Starlette/httpx deprecation warning in 3.82s",
+  "base_commit": "8a272ff483f7dc8d9f97fd633847ea7b86e4d4bf",
+  "secret_scan": {
+    "scope": "all changed/new text files before commit",
+    "files": 15,
+    "patterns": "OpenAI-style keys, GitHub tokens, private-key headers",
+    "matches": 0
+  },
+  "new_live_provider_calls": 0,
+  "neural_benchmark_rerun": false
+}

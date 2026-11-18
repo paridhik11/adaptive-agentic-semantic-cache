@@ -1,0 +1,34 @@
+{
+  "schema_version": "claim-hygiene-mixed-checkout-fix-v1",
+  "parent_commit": "3c5669c82116d722f015ad74baba0a79846bfc6b",
+  "failure_reported": "First CRLF fix passed pure-checkout tests but native user checkout failed at data/baseline_llm_measurements.json.",
+  "cause_covered": "A clean checkout may retain original LF files alongside files converted to CRLF. Requiring every file to match current smudge output is too strict.",
+  "fix": "Accept per-file exact original Git blob bytes OR exact current Git checkout representation. No whitespace stripping or arbitrary normalization.",
+  "focused_tests": {
+    "passed": 5,
+    "cases": [
+      "LF checkout",
+      "CRLF checkout",
+      "CRLF substantive telemetry edit rejected",
+      "mixed LF/CRLF checkout including baseline_llm_measurements.json",
+      "mixed checkout substantive baseline JSON edit rejected"
+    ]
+  },
+  "environment": "Local Git-clone simulations; user native Windows rerun still needed.",
+  "data_files_rewritten": false,
+  "runtime_code_changed": false,
+  "r6_implementation_started": false,
+  "new_replay_runs": 0,
+  "external_model_calls": 0,
+  "current_checkout_audit": "passed, including targeted secret-pattern scan",
+  "git_diff_check": "passed",
+  "development_failure": "Initial edit of the expanded test file had an indentation error; corrected before the five-test run.",
+  "sha256": {
+    "scripts/check_claim_hygiene.py": "74be696bd233609eb89f9134d70a0581b1f8e03dd98637144f03dbaaa5553967",
+    "tests/test_claim_hygiene_checkout.py": "4bdcf5faf290c672414fe9418fef34f85b4b629a7e2661f822f3f36f9a6e3dad"
+  },
+  "reproduce": [
+    "python -m unittest tests.test_claim_hygiene_checkout -v",
+    "python scripts/check_claim_hygiene.py"
+  ]
+}

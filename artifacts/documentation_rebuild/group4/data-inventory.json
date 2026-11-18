@@ -1,0 +1,49 @@
+{
+  "training_now": false,
+  "locked_final_records_opened": false,
+  "historical_training": {
+    "path": "data/intent_stage_b/v2",
+    "manifest_sha256": "6169212e09ed657fbdbd321995b80cc5df685430e1538a4b46426b698a38e9e2",
+    "provenance": "synthetic_template_held_out_not_human_ground_truth",
+    "public_data_used": false,
+    "splits": {
+      "train": {
+        "rows": 1344,
+        "groups": 96
+      },
+      "dev": {
+        "rows": 896,
+        "groups": 64
+      },
+      "calibration": {
+        "rows": 3584,
+        "groups": 256
+      }
+    },
+    "note": "Pair rows are not independent groups. Null/ambiguous/exact pairs are not all training examples; see B1 receipt.",
+    "status": "trained policies failed useful-coverage calibration; not promoted"
+  },
+  "product_tests": {
+    "path": "tests/test_*document* and tests/test_*cache*",
+    "provenance": "builder-authored deterministic fixtures; not independent natural-language labels"
+  },
+  "demo_sources": {
+    "path": "src/api/demo_reference.json",
+    "source": "CPython 3.12 Programming FAQ",
+    "revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24",
+    "sha256": "ec0ae31ff59b5386d8124098c6d3547b355bfa2b8a078a43389eded72eb3476a",
+    "documents": 3,
+    "questions": [
+      "How do I specify hexadecimal and octal integers?",
+      "How do I convert between tuples and lists?",
+      "What's a negative index?"
+    ],
+    "status": "exposed documentation excerpts; not a held-out model benchmark"
+  },
+  "independent_data": {
+    "status": "not returned",
+    "human_labels": 0,
+    "request": "data/document_product_review/v1/requests.jsonl"
+  },
+  "public_pair_benchmarks": "No public pair dataset approved/downloaded for these current product milestones; historical studies separate."
+}

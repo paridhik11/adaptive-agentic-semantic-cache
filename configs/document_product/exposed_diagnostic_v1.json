@@ -1,0 +1,20 @@
+{
+  "study": "exposed human diagnostic, not fresh final evaluation",
+  "encoder": {
+    "repo": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+  },
+  "pair_model": {
+    "repo": "cross-encoder/quora-distilroberta-base",
+    "revision": "f62e7a4b20b97195c2868e53ec59126df5eac743"
+  },
+  "dense_threshold": 0.8,
+  "pair_threshold": 0.7,
+  "pair_margin": 0.05,
+  "settings_origin": "Existing Stage A diagnostic thresholds and existing runtime margin; no selection on returned human labels",
+  "candidate_count": 3,
+  "threads": 2,
+  "serving_enabled": false,
+  "cohort_note": "30 model-authored questions over three exposed FAQ sources. Pair scores are not answer sufficiency.",
+  "candidate_label_rule": "Human answer label known only when selected seed matches reviewed seed; otherwise unknown."
+}

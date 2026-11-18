@@ -1,0 +1,26 @@
+{
+  "evidence_kind": "third_party_model_assisted_review",
+  "source_sha256": "0f1bdad1037b12c1338410fc0cb7fd80e91b87fd5760bf6dea09eab52ae8bc4b",
+  "review_canonical_sha256": "05e70f17af0e013d3d2d012b617dfd51ecdac17808afd59166ac8ff02bb36167",
+  "source_archive_sha256": "f0ef5737a5d1867e133d172bed3e0b6f2a0d2f1bd1f6209a88fa33f2ef2a670e",
+  "immutable_bindings_verified": true,
+  "items": 12,
+  "reviewers_as_declared": [
+    "Antigravity — model-assisted review"
+  ],
+  "label_counts_as_submitted": {
+    "correct_true_supported_true": 2,
+    "correct_true_supported_false": 9,
+    "correct_false_supported_false": 1
+  },
+  "labels_modified": false,
+  "human_reviews": 0,
+  "quality_gate": "INCONCLUSIVE",
+  "population_accuracy": null,
+  "external_model_calls_during_reconciliation": 0,
+  "limitations": [
+    "Reviewer model identity is self-declared, not authenticated.",
+    "Review judgments are disputed in the accompanying reconciliation note.",
+    "Small dependent development sample; no population accuracy or safety interval inferred."
+  ]
+}

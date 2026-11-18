@@ -1,0 +1,170 @@
+[
+  {
+    "binding": {
+      "incoming_request_sha256": "1bc0cb6e22db31a7dfa1fd55f9d96faf6ffa1e772c23f037d5c46ab82aec5b38",
+      "returned_response_sha256": "57af205c14a88159807a5bd97a734a763ea946e383739761d75a9a0cb631498b",
+      "tenant": "tenant-a",
+      "source_revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24"
+    },
+    "label": "sufficient",
+    "reviewer": "ChatGPT source-reading model-assisted review; not independent human ground truth",
+    "rationale": "Returned answer explains both 0o/0O octal and 0x/0X hexadecimal notation with examples.",
+    "rubric": "actual returned answer must address incoming request without material false behavioral claims",
+    "event_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers:paraphrase_1",
+    "evidence_kind": "model_assisted_development_review"
+  },
+  {
+    "binding": {
+      "incoming_request_sha256": "0342c6495aaf9c31e3ad696c785d0378cae95831cb5f6563d0cb4cbd141d1dde",
+      "returned_response_sha256": "85f7b60bd62891d1db6e31924e539645493ec8905b02fc6942db2649e0bfd6e8",
+      "tenant": "tenant-a",
+      "source_revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24"
+    },
+    "label": "sufficient",
+    "reviewer": "ChatGPT source-reading model-assisted review; not independent human ground truth",
+    "rationale": "Returned answer explains decimal-point parsing and supplies both whitespace and parenthesized literal solutions.",
+    "rubric": "actual returned answer must address incoming request without material false behavioral claims",
+    "event_id": "python312-847-how-do-i-get-int-literal-attribute-instead-of-syntaxerror:paraphrase_1",
+    "evidence_kind": "model_assisted_development_review"
+  },
+  {
+    "binding": {
+      "incoming_request_sha256": "de69ac90b92fc955a229009eb4e058fc390c71a7d82ab40f1d0e04ade5fa2aaa",
+      "returned_response_sha256": "d3aa06ad2b2b6b67fa27dd10c7f24849d094ae946bdfa1c1745a51e2c93c9efe",
+      "tenant": "tenant-a",
+      "source_revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24"
+    },
+    "label": "sufficient",
+    "reviewer": "ChatGPT source-reading model-assisted review; not independent human ground truth",
+    "rationale": "Returned answer supplies str conversion, hex/oct alternatives and formatting examples for the requested number-to-string direction.",
+    "rubric": "actual returned answer must address incoming request without material false behavioral claims",
+    "event_id": "python312-894-how-do-i-convert-a-number-to-a-string:paraphrase_1",
+    "evidence_kind": "model_assisted_development_review"
+  },
+  {
+    "binding": {
+      "incoming_request_sha256": "18d32edd40ca40a9baf6497f774f7d234427d5c87b76eb439a312c06cccd2627",
+      "returned_response_sha256": "d6b525555fb2b2c1c1ae4579cc6d8a67cb411865c224704785ec95ef66b3dc6b",
+      "tenant": "tenant-a",
+      "source_revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24"
+    },
+    "label": "sufficient",
+    "reviewer": "ChatGPT source-reading model-assisted review; not independent human ground truth",
+    "rationale": "Returned answer states strings cannot be modified in place and offers new strings or mutable buffer alternatives.",
+    "rubric": "actual returned answer must address incoming request without material false behavioral claims",
+    "event_id": "python312-905-how-do-i-modify-a-string-in-place:paraphrase_1",
+    "evidence_kind": "model_assisted_development_review"
+  },
+  {
+    "binding": {
+      "incoming_request_sha256": "7e6ff489b5435681c6451e1133a01cfac2084fc653eb81d83670ca7a4c551ccb",
+      "returned_response_sha256": "fa90a1809a0f0337cd706ced3584c0011e353a4aefcd92f3743f934dd3203597",
+      "tenant": "tenant-a",
+      "source_revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24"
+    },
+    "label": "sufficient",
+    "reviewer": "ChatGPT source-reading model-assisted review; not independent human ground truth",
+    "rationale": "Returned answer supplies dictionary dispatch, getattr and locals examples for calling from string names.",
+    "rubric": "actual returned answer must address incoming request without material false behavioral claims",
+    "event_id": "python312-937-how-do-i-use-strings-to-call-functions-methods:paraphrase_1",
+    "evidence_kind": "model_assisted_development_review"
+  },
+  {
+    "binding": {
+      "incoming_request_sha256": "6717fc87357e0ee4ae44944b5261f80d72f4da3eb5b18aa21abd475777e9a7b6",
+      "returned_response_sha256": "2274ea6bf88abd5fded9f19e06643d355c72b6eb3b2de422b06211154f21e1ec",
+      "tenant": "tenant-a",
+      "source_revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24"
+    },
+    "label": "sufficient",
+    "reviewer": "ChatGPT source-reading model-assisted review; not independent human ground truth",
+    "rationale": "Returned answer explains the odd trailing-backslash syntax restriction and supplies workarounds.",
+    "rubric": "actual returned answer must address incoming request without material false behavioral claims",
+    "event_id": "python312-1031-can-i-end-a-raw-string-with-an-odd-number-of-backslashes:paraphrase_1",
+    "evidence_kind": "model_assisted_development_review"
+  },
+  {
+    "binding": {
+      "incoming_request_sha256": "2c21254819d0dc5d40ffc36310aac5984a3002657b53447ed4901e83bbfc077f",
+      "returned_response_sha256": "69ce6b435731ed1b07e6a259f329aeb00b413e7db50a4d73805f7b4cf3f1a512",
+      "tenant": "tenant-a",
+      "source_revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24"
+    },
+    "label": "sufficient",
+    "reviewer": "ChatGPT source-reading model-assisted review; not independent human ground truth",
+    "rationale": "Returned answer covers both tuple(seq) and list(seq), ordering and copy behavior.",
+    "rubric": "actual returned answer must address incoming request without material false behavioral claims",
+    "event_id": "python312-1159-how-do-i-convert-between-tuples-and-lists:paraphrase_1",
+    "evidence_kind": "model_assisted_development_review"
+  },
+  {
+    "binding": {
+      "incoming_request_sha256": "4e00200624d1e717e281cf7d936ed1acaa8b3c707b0263ad178001573b68ccf3",
+      "returned_response_sha256": "f2589166b6efaabb9d1806e927f545085b63a5a75dc6299367d9d4dc2463feb7",
+      "tenant": "tenant-a",
+      "source_revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24"
+    },
+    "label": "sufficient",
+    "reviewer": "ChatGPT source-reading model-assisted review; not independent human ground truth",
+    "rationale": "Returned answer explains -1, -2 and seq[len(seq)-n], with a slicing example.",
+    "rubric": "actual returned answer must address incoming request without material false behavioral claims",
+    "event_id": "python312-1176-what-s-a-negative-index:paraphrase_1",
+    "evidence_kind": "model_assisted_development_review"
+  },
+  {
+    "binding": {
+      "incoming_request_sha256": "0b09d92687f28169492365e2c7eb3d78872d4026eb26c1118e6b633b7b221048",
+      "returned_response_sha256": "8782dd5b2d18be88d6d318c5fd291a106d72a16a337bb0df9665c40e7981e088",
+      "tenant": "tenant-a",
+      "source_revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24"
+    },
+    "label": "insufficient",
+    "reviewer": "ChatGPT source-reading model-assisted review; not independent human ground truth",
+    "rationale": "Loop using reversed is useful, but the returned answer falsely says it builds a new copy. A list_reverseiterator observes subsequent element mutation; strict whole-answer correctness fails.",
+    "rubric": "actual returned answer must address incoming request without material false behavioral claims",
+    "event_id": "python312-1189-how-do-i-iterate-over-a-sequence-in-reverse-order:paraphrase_1",
+    "evidence_kind": "model_assisted_development_review"
+  },
+  {
+    "binding": {
+      "incoming_request_sha256": "e02114813dd844dd36ec741cb03e171fb4443e3082d1007d63fb2aa811f67848",
+      "returned_response_sha256": "f69b03ecef15c8981297b07cd391bb23b24d9b8c92e440a561cc3789e47d6916",
+      "tenant": "tenant-a",
+      "source_revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24"
+    },
+    "label": "sufficient",
+    "reviewer": "ChatGPT source-reading model-assisted review; not independent human ground truth",
+    "rationale": "Returned answer supplies sort-and-delete and hashable set conversion approaches, explicitly disclosing reordering.",
+    "rubric": "actual returned answer must address incoming request without material false behavioral claims",
+    "event_id": "python312-1201-how-do-you-remove-duplicates-from-a-list:paraphrase_1",
+    "evidence_kind": "model_assisted_development_review"
+  },
+  {
+    "binding": {
+      "incoming_request_sha256": "76bdd2de349f52955ede77cbc680f2d4bf47fb556fb36e49cdec8f54f5ac1418",
+      "returned_response_sha256": "e45aceaa35da17827f531c328168d15cae152655b15d57d34c15bcc03fc34664",
+      "tenant": "tenant-a",
+      "source_revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24"
+    },
+    "label": "sufficient",
+    "reviewer": "ChatGPT source-reading model-assisted review; not independent human ground truth",
+    "rationale": "Returned answer describes a list, typed array module and other array structures for the broad question.",
+    "rubric": "actual returned answer must address incoming request without material false behavioral claims",
+    "event_id": "python312-1244-how-do-you-make-an-array-in-python:paraphrase_1",
+    "evidence_kind": "model_assisted_development_review"
+  },
+  {
+    "binding": {
+      "incoming_request_sha256": "b5e42719c6315ca78d06eb55a0c38b74e0a617ebb62680256a0f093bb7edbeaf",
+      "returned_response_sha256": "3d93f6b685d84f35f2f2489d5f3e8ea93d77c45a2f3f926c2899139f49d888a6",
+      "tenant": "tenant-a",
+      "source_revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24"
+    },
+    "label": "sufficient",
+    "reviewer": "ChatGPT source-reading model-assisted review; not independent human ground truth",
+    "rationale": "Returned answer explains row aliasing and gives independent-row loop and list-comprehension constructions.",
+    "rubric": "actual returned answer must address incoming request without material false behavioral claims",
+    "event_id": "python312-1272-how-do-i-create-a-multidimensional-list:paraphrase_1",
+    "evidence_kind": "model_assisted_development_review"
+  }
+]

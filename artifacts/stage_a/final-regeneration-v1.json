@@ -1,0 +1,48 @@
+{
+  "evidence_type": "deterministic_regeneration_hash_check_not_model_evaluation",
+  "base_commit": "9cb90830aa325253a6abb2e2a69f47529d7efafa",
+  "generator": {
+    "bytes": 13971,
+    "sha256": "79ee554a23bd1267ddf475893151054c4fe808eff13ddc4e0e15a860cd8ddffd"
+  },
+  "seed": "deterministic ordered enumeration; no random-number generator",
+  "isolated_command": "python scripts/build_stage_a_intents.py --output-dir regenerated",
+  "generator_exit_code": 0,
+  "final_records_inspected_or_evaluated": false,
+  "comparisons": {
+    "final.manifest.json": {
+      "recorded": {
+        "bytes": 493,
+        "sha256": "1d83b84584b62fc1d5662a45e0db7d5753f5871fa273dadb62f1f3a7b01e39af"
+      },
+      "regenerated": {
+        "bytes": 493,
+        "sha256": "1d83b84584b62fc1d5662a45e0db7d5753f5871fa273dadb62f1f3a7b01e39af"
+      },
+      "byte_hash_match": true
+    },
+    "final.jsonl": {
+      "recorded": {
+        "bytes": 308664,
+        "sha256": "0869f373fce124f5aa7039e09cd65069152632f09a6d918a30a07e9f6a82afba"
+      },
+      "regenerated": {
+        "bytes": 308664,
+        "sha256": "0869f373fce124f5aa7039e09cd65069152632f09a6d918a30a07e9f6a82afba"
+      },
+      "byte_hash_match": true
+    },
+    "final.answers.jsonl": {
+      "recorded": {
+        "bytes": 11208,
+        "sha256": "8c6de1ea48cde54330ebe7125566b1890bea686a3558af7d4bec973b3caf589f"
+      },
+      "regenerated": {
+        "bytes": 11208,
+        "sha256": "8c6de1ea48cde54330ebe7125566b1890bea686a3558af7d4bec973b3caf589f"
+      },
+      "byte_hash_match": true
+    }
+  },
+  "reproducible": true
+}

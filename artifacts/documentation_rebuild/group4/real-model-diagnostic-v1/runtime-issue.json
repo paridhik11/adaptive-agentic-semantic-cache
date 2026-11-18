@@ -1,0 +1,6 @@
+{
+  "failure": "CrossEncoder.__init__() got an unexpected keyword argument activation_fn",
+  "installed_sentence_transformers": "3.4.1",
+  "repair": "default_activation_function=torch.nn.Identity(), automodel_args={use_safetensors: true}",
+  "model_quality_failure": false
+}

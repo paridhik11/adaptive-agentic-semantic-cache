@@ -1,0 +1,265 @@
+{
+  "evidence": "authored requirement-stage fixture, no neural or live evaluation",
+  "policy_sha256": "260585f1f5796656be9aef5c90c58c7fbc17fcf41a2cd3584b62071f689e90fe",
+  "fixture_sha256": "87958b94d4c6225c9d9d1eda00aa5316f40b77ab3b601b79cc5037366f2b1ec1",
+  "intent_groups": 12,
+  "cases": 28,
+  "adequate": 8,
+  "inadequate": 20,
+  "newly_blocked_inadequate": 14,
+  "newly_blocked_adequate": 0,
+  "remaining_inadequate_passes": [
+    "json_normalization:name_only",
+    "inventory_join:name_only",
+    "audio_conversion:name_only",
+    "yaml_config_merge:name_only"
+  ],
+  "by_type": {
+    "adequate_paraphrase": {
+      "fixtures": 8,
+      "current_blocked": 1,
+      "proposed_blocked": 1
+    },
+    "added_tool": {
+      "fixtures": 8,
+      "current_blocked": 1,
+      "proposed_blocked": 8
+    },
+    "omitted_tool": {
+      "fixtures": 8,
+      "current_blocked": 1,
+      "proposed_blocked": 8
+    },
+    "name_only": {
+      "fixtures": 4,
+      "current_blocked": 0,
+      "proposed_blocked": 0
+    }
+  },
+  "outcomes": [
+    {
+      "id": "csv_aggregation:adequate_paraphrase",
+      "group": "csv_aggregation",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "current_block_reason": null,
+      "proposed_block_reason": null
+    },
+    {
+      "id": "csv_aggregation:added_tool",
+      "group": "csv_aggregation",
+      "type": "added_tool",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": "added_cprofile_requirement"
+    },
+    {
+      "id": "csv_aggregation:omitted_tool",
+      "group": "csv_aggregation",
+      "type": "omitted_tool",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": "answer_omits_cprofile"
+    },
+    {
+      "id": "image_resize:adequate_paraphrase",
+      "group": "image_resize",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "current_block_reason": null,
+      "proposed_block_reason": null
+    },
+    {
+      "id": "image_resize:added_tool",
+      "group": "image_resize",
+      "type": "added_tool",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": "added_cprofile_requirement"
+    },
+    {
+      "id": "image_resize:omitted_tool",
+      "group": "image_resize",
+      "type": "omitted_tool",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": "answer_omits_cprofile"
+    },
+    {
+      "id": "sqlite_import:adequate_paraphrase",
+      "group": "sqlite_import",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "current_block_reason": "added_explicit_requirement",
+      "proposed_block_reason": "added_explicit_requirement"
+    },
+    {
+      "id": "sqlite_import:added_tool",
+      "group": "sqlite_import",
+      "type": "added_tool",
+      "expected": "block",
+      "current_block_reason": "added_explicit_requirement",
+      "proposed_block_reason": "added_explicit_requirement"
+    },
+    {
+      "id": "sqlite_import:omitted_tool",
+      "group": "sqlite_import",
+      "type": "omitted_tool",
+      "expected": "block",
+      "current_block_reason": "added_explicit_requirement",
+      "proposed_block_reason": "added_explicit_requirement"
+    },
+    {
+      "id": "template_render:adequate_paraphrase",
+      "group": "template_render",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "current_block_reason": null,
+      "proposed_block_reason": null
+    },
+    {
+      "id": "template_render:added_tool",
+      "group": "template_render",
+      "type": "added_tool",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": "added_cprofile_requirement"
+    },
+    {
+      "id": "template_render:omitted_tool",
+      "group": "template_render",
+      "type": "omitted_tool",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": "answer_omits_cprofile"
+    },
+    {
+      "id": "numpy_multiplication:adequate_paraphrase",
+      "group": "numpy_multiplication",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "current_block_reason": null,
+      "proposed_block_reason": null
+    },
+    {
+      "id": "numpy_multiplication:added_tool",
+      "group": "numpy_multiplication",
+      "type": "added_tool",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": "added_cprofile_requirement"
+    },
+    {
+      "id": "numpy_multiplication:omitted_tool",
+      "group": "numpy_multiplication",
+      "type": "omitted_tool",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": "answer_omits_cprofile"
+    },
+    {
+      "id": "xml_tree_walk:adequate_paraphrase",
+      "group": "xml_tree_walk",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "current_block_reason": null,
+      "proposed_block_reason": null
+    },
+    {
+      "id": "xml_tree_walk:added_tool",
+      "group": "xml_tree_walk",
+      "type": "added_tool",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": "added_cprofile_requirement"
+    },
+    {
+      "id": "xml_tree_walk:omitted_tool",
+      "group": "xml_tree_walk",
+      "type": "omitted_tool",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": "answer_omits_cprofile"
+    },
+    {
+      "id": "decimal_invoice:adequate_paraphrase",
+      "group": "decimal_invoice",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "current_block_reason": null,
+      "proposed_block_reason": null
+    },
+    {
+      "id": "decimal_invoice:added_tool",
+      "group": "decimal_invoice",
+      "type": "added_tool",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": "added_cprofile_requirement"
+    },
+    {
+      "id": "decimal_invoice:omitted_tool",
+      "group": "decimal_invoice",
+      "type": "omitted_tool",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": "answer_omits_cprofile"
+    },
+    {
+      "id": "markdown_preview:adequate_paraphrase",
+      "group": "markdown_preview",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "current_block_reason": null,
+      "proposed_block_reason": null
+    },
+    {
+      "id": "markdown_preview:added_tool",
+      "group": "markdown_preview",
+      "type": "added_tool",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": "added_cprofile_requirement"
+    },
+    {
+      "id": "markdown_preview:omitted_tool",
+      "group": "markdown_preview",
+      "type": "omitted_tool",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": "answer_omits_cprofile"
+    },
+    {
+      "id": "json_normalization:name_only",
+      "group": "json_normalization",
+      "type": "name_only",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": null
+    },
+    {
+      "id": "inventory_join:name_only",
+      "group": "inventory_join",
+      "type": "name_only",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": null
+    },
+    {
+      "id": "audio_conversion:name_only",
+      "group": "audio_conversion",
+      "type": "name_only",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": null
+    },
+    {
+      "id": "yaml_config_merge:name_only",
+      "group": "yaml_config_merge",
+      "type": "name_only",
+      "expected": "block",
+      "current_block_reason": null,
+      "proposed_block_reason": null
+    }
+  ]
+}

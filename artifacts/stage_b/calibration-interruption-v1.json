@@ -1,0 +1,12 @@
+{
+  "evidence_type": "operational_failure_not_accuracy_result",
+  "status": "process no longer exists; execution session unavailable",
+  "cause": "unknown; no Python traceback in preserved log",
+  "last_log": "Redis reranker 2560/7631; Quora model completion logged at 459.74448946 seconds",
+  "completed_raw_score_file_written": false,
+  "partial_results_recoverable": false,
+  "trained_model_exports_intact": true,
+  "action": "preserve interrupted log, implement per-batch atomic numeric checkpoints and resume unchanged models/data; no calibration threshold selected",
+  "progress_log_semantics": "V1 done fields are zero-based batch starts, emitted after inference. Last logged Redis batch start 2560 confirms at least 2592 pairs processed; the precise final incomplete-run count is unknown.",
+  "statistical_sample_accounting": "Repeated offline computation is the SAME cohort and is never added as independent observations."
+}

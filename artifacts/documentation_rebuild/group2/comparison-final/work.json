@@ -1,0 +1,1960 @@
+{
+  "evidence_type": "constructed offline workflow fixtures; scripted approvals are NOT human review",
+  "not_measured": [
+    "independent natural-language quality",
+    "live model utility",
+    "real token savings",
+    "real cost savings",
+    "representative latency"
+  ],
+  "restart_after_task": 1,
+  "inner_stage_cache": "disabled",
+  "arms": [
+    {
+      "mode": "off",
+      "tasks": [
+        {
+          "question": "Explain immutable tuples",
+          "actual_fixture_provider_invocations": 3,
+          "state": {
+            "answer": "Tuples are immutable [tuples].",
+            "answer_cache_epoch": 0,
+            "answer_cache_request": {
+              "max_tokens": 1024,
+              "messages": [
+                {
+                  "content": "{\"contract\":\"standalone-document-answer-v1\",\"max_calls\":6,\"max_revisions\":1,\"principal\":\"fixture-operator\",\"relevant_memory\":[],\"runtime_binding\":\"046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4\",\"scope\":{\"access_scope\":\"public-docs\",\"declared_source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"knowledge_base\":\"local-documents\",\"policy_revision\":\"document-policy-v1\"},\"source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"task_epoch\":0,\"workflow\":\"document-agent-r4-v1\"}",
+                  "role": "system"
+                },
+                {
+                  "content": "Explain immutable tuples",
+                  "role": "user"
+                }
+              ],
+              "model": "fixture",
+              "temperature": 0
+            },
+            "answer_namespace_epoch": 0,
+            "cache": true,
+            "draft": "Tuples are immutable [tuples].",
+            "feedback": null,
+            "id": "20053665221c4e7997ff1796e574cc95",
+            "max_calls": 6,
+            "max_revisions": 1,
+            "model": "fixture",
+            "plan": {
+              "steps": [
+                {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              ]
+            },
+            "provider_calls": 3,
+            "question": "Explain immutable tuples",
+            "relevant_memory": [],
+            "require_approval": true,
+            "reserved_calls": 3,
+            "revisions": 0,
+            "runtime_binding": "046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4",
+            "standalone_document_task": true,
+            "static_document_stage": false,
+            "status": "COMPLETED",
+            "tools": [
+              {
+                "result": "Tuples are immutable.",
+                "step": {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              }
+            ],
+            "trace": [
+              {
+                "cache_status": "MISS",
+                "evidence_reused": false,
+                "provider_calls": 0,
+                "reason": "no_qualified_answer",
+                "stage": "CACHE_LOOKUP",
+                "tier": null
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "PLANNING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28,
+                  "total_tokens": 33
+                }
+              },
+              {
+                "provider_calls": 0,
+                "stage": "tool",
+                "tool": "read"
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "DRAFTING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30,
+                  "total_tokens": 37
+                }
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "REVIEWING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34,
+                  "total_tokens": 44
+                }
+              },
+              {
+                "stage": "human_decision",
+                "decision": "approve",
+                "principal": "fixture-operator"
+              },
+              {
+                "stage": "answer_admission",
+                "stored": false,
+                "provider_calls": 0
+              }
+            ],
+            "version": "document-agent-r4-v1",
+            "work": [
+              {
+                "completed": true,
+                "elapsed_ms": 0.068933999955334,
+                "error": null,
+                "stage": "planning",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.004646999968827004,
+                "error": null,
+                "stage": "tool"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.03413100012039649,
+                "error": null,
+                "stage": "generation",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.03265000009378127,
+                "error": null,
+                "stage": "review",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34
+                }
+              }
+            ],
+            "work_coverage": {
+              "classifier_veto_internals": false,
+              "provider_boundary": true,
+              "provider_internal_retries": "not_observed",
+              "timings": "stage observations; excludes queue, persistence and human wait",
+              "whole_answer_local_stages": true
+            },
+            "workflow_approved": true
+          }
+        },
+        {
+          "question": "Explain immutable tuples",
+          "actual_fixture_provider_invocations": 3,
+          "state": {
+            "answer": "Tuples are immutable [tuples].",
+            "answer_cache_epoch": 0,
+            "answer_cache_request": {
+              "max_tokens": 1024,
+              "messages": [
+                {
+                  "content": "{\"contract\":\"standalone-document-answer-v1\",\"max_calls\":6,\"max_revisions\":1,\"principal\":\"fixture-operator\",\"relevant_memory\":[],\"runtime_binding\":\"046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4\",\"scope\":{\"access_scope\":\"public-docs\",\"declared_source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"knowledge_base\":\"local-documents\",\"policy_revision\":\"document-policy-v1\"},\"source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"task_epoch\":0,\"workflow\":\"document-agent-r4-v1\"}",
+                  "role": "system"
+                },
+                {
+                  "content": "Explain immutable tuples",
+                  "role": "user"
+                }
+              ],
+              "model": "fixture",
+              "temperature": 0
+            },
+            "answer_namespace_epoch": 0,
+            "cache": true,
+            "draft": "Tuples are immutable [tuples].",
+            "feedback": null,
+            "id": "63042c82af974f76aad769f104c5fdd7",
+            "max_calls": 6,
+            "max_revisions": 1,
+            "model": "fixture",
+            "plan": {
+              "steps": [
+                {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              ]
+            },
+            "provider_calls": 3,
+            "question": "Explain immutable tuples",
+            "relevant_memory": [],
+            "require_approval": true,
+            "reserved_calls": 3,
+            "revisions": 0,
+            "runtime_binding": "046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4",
+            "standalone_document_task": true,
+            "static_document_stage": false,
+            "status": "COMPLETED",
+            "tools": [
+              {
+                "result": "Tuples are immutable.",
+                "step": {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              }
+            ],
+            "trace": [
+              {
+                "cache_status": "MISS",
+                "evidence_reused": false,
+                "provider_calls": 0,
+                "reason": "no_qualified_answer",
+                "stage": "CACHE_LOOKUP",
+                "tier": null
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "PLANNING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28,
+                  "total_tokens": 33
+                }
+              },
+              {
+                "provider_calls": 0,
+                "stage": "tool",
+                "tool": "read"
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "DRAFTING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30,
+                  "total_tokens": 37
+                }
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "REVIEWING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34,
+                  "total_tokens": 44
+                }
+              },
+              {
+                "stage": "human_decision",
+                "decision": "approve",
+                "principal": "fixture-operator"
+              },
+              {
+                "stage": "answer_admission",
+                "stored": false,
+                "provider_calls": 0
+              }
+            ],
+            "version": "document-agent-r4-v1",
+            "work": [
+              {
+                "completed": true,
+                "elapsed_ms": 0.032148999935088796,
+                "error": null,
+                "stage": "planning",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.004727000032289652,
+                "error": null,
+                "stage": "tool"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.026129999923796277,
+                "error": null,
+                "stage": "generation",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.02746099994510587,
+                "error": null,
+                "stage": "review",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34
+                }
+              }
+            ],
+            "work_coverage": {
+              "classifier_veto_internals": false,
+              "provider_boundary": true,
+              "provider_internal_retries": "not_observed",
+              "timings": "stage observations; excludes queue, persistence and human wait",
+              "whole_answer_local_stages": true
+            },
+            "workflow_approved": true
+          }
+        },
+        {
+          "question": "Describe tuple immutability",
+          "actual_fixture_provider_invocations": 3,
+          "state": {
+            "answer": "Tuples are immutable [tuples].",
+            "answer_cache_epoch": 0,
+            "answer_cache_request": {
+              "max_tokens": 1024,
+              "messages": [
+                {
+                  "content": "{\"contract\":\"standalone-document-answer-v1\",\"max_calls\":6,\"max_revisions\":1,\"principal\":\"fixture-operator\",\"relevant_memory\":[],\"runtime_binding\":\"046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4\",\"scope\":{\"access_scope\":\"public-docs\",\"declared_source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"knowledge_base\":\"local-documents\",\"policy_revision\":\"document-policy-v1\"},\"source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"task_epoch\":0,\"workflow\":\"document-agent-r4-v1\"}",
+                  "role": "system"
+                },
+                {
+                  "content": "Describe tuple immutability",
+                  "role": "user"
+                }
+              ],
+              "model": "fixture",
+              "temperature": 0
+            },
+            "answer_namespace_epoch": 0,
+            "cache": true,
+            "draft": "Tuples are immutable [tuples].",
+            "feedback": null,
+            "id": "c5d2b6c5484e4bf2aded6566a36ecb14",
+            "max_calls": 6,
+            "max_revisions": 1,
+            "model": "fixture",
+            "plan": {
+              "steps": [
+                {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              ]
+            },
+            "provider_calls": 3,
+            "question": "Describe tuple immutability",
+            "relevant_memory": [],
+            "require_approval": true,
+            "reserved_calls": 3,
+            "revisions": 0,
+            "runtime_binding": "046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4",
+            "standalone_document_task": true,
+            "static_document_stage": false,
+            "status": "COMPLETED",
+            "tools": [
+              {
+                "result": "Tuples are immutable.",
+                "step": {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              }
+            ],
+            "trace": [
+              {
+                "cache_status": "MISS",
+                "evidence_reused": false,
+                "provider_calls": 0,
+                "reason": "no_qualified_answer",
+                "stage": "CACHE_LOOKUP",
+                "tier": null
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "PLANNING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28,
+                  "total_tokens": 33
+                }
+              },
+              {
+                "provider_calls": 0,
+                "stage": "tool",
+                "tool": "read"
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "DRAFTING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30,
+                  "total_tokens": 37
+                }
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "REVIEWING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34,
+                  "total_tokens": 44
+                }
+              },
+              {
+                "stage": "human_decision",
+                "decision": "approve",
+                "principal": "fixture-operator"
+              },
+              {
+                "stage": "answer_admission",
+                "stored": false,
+                "provider_calls": 0
+              }
+            ],
+            "version": "document-agent-r4-v1",
+            "work": [
+              {
+                "completed": true,
+                "elapsed_ms": 0.039600000036443816,
+                "error": null,
+                "stage": "planning",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.002933999894594308,
+                "error": null,
+                "stage": "tool"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.0271010001142713,
+                "error": null,
+                "stage": "generation",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.029925000035291305,
+                "error": null,
+                "stage": "review",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34
+                }
+              }
+            ],
+            "work_coverage": {
+              "classifier_veto_internals": false,
+              "provider_boundary": true,
+              "provider_internal_retries": "not_observed",
+              "timings": "stage observations; excludes queue, persistence and human wait",
+              "whole_answer_local_stages": true
+            },
+            "workflow_approved": true
+          }
+        },
+        {
+          "question": "Explain tuple packing",
+          "actual_fixture_provider_invocations": 3,
+          "state": {
+            "answer": "Tuples are immutable [tuples].",
+            "answer_cache_epoch": 0,
+            "answer_cache_request": {
+              "max_tokens": 1024,
+              "messages": [
+                {
+                  "content": "{\"contract\":\"standalone-document-answer-v1\",\"max_calls\":6,\"max_revisions\":1,\"principal\":\"fixture-operator\",\"relevant_memory\":[],\"runtime_binding\":\"046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4\",\"scope\":{\"access_scope\":\"public-docs\",\"declared_source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"knowledge_base\":\"local-documents\",\"policy_revision\":\"document-policy-v1\"},\"source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"task_epoch\":0,\"workflow\":\"document-agent-r4-v1\"}",
+                  "role": "system"
+                },
+                {
+                  "content": "Explain tuple packing",
+                  "role": "user"
+                }
+              ],
+              "model": "fixture",
+              "temperature": 0
+            },
+            "answer_namespace_epoch": 0,
+            "cache": true,
+            "draft": "Tuples are immutable [tuples].",
+            "feedback": null,
+            "id": "d396a133f7094614bf50c8b80086baaa",
+            "max_calls": 6,
+            "max_revisions": 1,
+            "model": "fixture",
+            "plan": {
+              "steps": [
+                {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              ]
+            },
+            "provider_calls": 3,
+            "question": "Explain tuple packing",
+            "relevant_memory": [],
+            "require_approval": true,
+            "reserved_calls": 3,
+            "revisions": 0,
+            "runtime_binding": "046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4",
+            "standalone_document_task": true,
+            "static_document_stage": false,
+            "status": "COMPLETED",
+            "tools": [
+              {
+                "result": "Tuples are immutable.",
+                "step": {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              }
+            ],
+            "trace": [
+              {
+                "cache_status": "MISS",
+                "evidence_reused": false,
+                "provider_calls": 0,
+                "reason": "no_qualified_answer",
+                "stage": "CACHE_LOOKUP",
+                "tier": null
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "PLANNING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28,
+                  "total_tokens": 33
+                }
+              },
+              {
+                "provider_calls": 0,
+                "stage": "tool",
+                "tool": "read"
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "DRAFTING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30,
+                  "total_tokens": 37
+                }
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "REVIEWING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34,
+                  "total_tokens": 44
+                }
+              },
+              {
+                "stage": "human_decision",
+                "decision": "approve",
+                "principal": "fixture-operator"
+              },
+              {
+                "stage": "answer_admission",
+                "stored": false,
+                "provider_calls": 0
+              }
+            ],
+            "version": "document-agent-r4-v1",
+            "work": [
+              {
+                "completed": true,
+                "elapsed_ms": 0.04261399999450077,
+                "error": null,
+                "stage": "planning",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.002733999963311362,
+                "error": null,
+                "stage": "tool"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.023705999865342164,
+                "error": null,
+                "stage": "generation",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.02798299988171493,
+                "error": null,
+                "stage": "review",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34
+                }
+              }
+            ],
+            "work_coverage": {
+              "classifier_veto_internals": false,
+              "provider_boundary": true,
+              "provider_internal_retries": "not_observed",
+              "timings": "stage observations; excludes queue, persistence and human wait",
+              "whole_answer_local_stages": true
+            },
+            "workflow_approved": true
+          }
+        }
+      ],
+      "actual_fixture_provider_invocations": 12,
+      "stages": {
+        "planning": 4,
+        "generation": 4,
+        "review": 4
+      }
+    },
+    {
+      "mode": "exact",
+      "tasks": [
+        {
+          "question": "Explain immutable tuples",
+          "actual_fixture_provider_invocations": 3,
+          "state": {
+            "answer": "Tuples are immutable [tuples].",
+            "answer_cache_epoch": 0,
+            "answer_cache_request": {
+              "max_tokens": 1024,
+              "messages": [
+                {
+                  "content": "{\"contract\":\"standalone-document-answer-v1\",\"max_calls\":6,\"max_revisions\":1,\"principal\":\"fixture-operator\",\"relevant_memory\":[],\"runtime_binding\":\"046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4\",\"scope\":{\"access_scope\":\"public-docs\",\"declared_source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"knowledge_base\":\"local-documents\",\"policy_revision\":\"document-policy-v1\"},\"source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"task_epoch\":0,\"workflow\":\"document-agent-r4-v1\"}",
+                  "role": "system"
+                },
+                {
+                  "content": "Explain immutable tuples",
+                  "role": "user"
+                }
+              ],
+              "model": "fixture",
+              "temperature": 0
+            },
+            "answer_namespace_epoch": 0,
+            "cache": true,
+            "draft": "Tuples are immutable [tuples].",
+            "feedback": null,
+            "id": "0efb00fb4a254c21b97d5e301d0fc019",
+            "max_calls": 6,
+            "max_revisions": 1,
+            "model": "fixture",
+            "plan": {
+              "steps": [
+                {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              ]
+            },
+            "provider_calls": 3,
+            "question": "Explain immutable tuples",
+            "relevant_memory": [],
+            "require_approval": true,
+            "reserved_calls": 3,
+            "revisions": 0,
+            "runtime_binding": "046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4",
+            "standalone_document_task": true,
+            "static_document_stage": false,
+            "status": "COMPLETED",
+            "tools": [
+              {
+                "result": "Tuples are immutable.",
+                "step": {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              }
+            ],
+            "trace": [
+              {
+                "cache_status": "MISS",
+                "evidence_reused": false,
+                "provider_calls": 0,
+                "reason": "no_qualified_answer",
+                "stage": "CACHE_LOOKUP",
+                "tier": null
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "PLANNING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28,
+                  "total_tokens": 33
+                }
+              },
+              {
+                "provider_calls": 0,
+                "stage": "tool",
+                "tool": "read"
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "DRAFTING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30,
+                  "total_tokens": 37
+                }
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "REVIEWING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34,
+                  "total_tokens": 44
+                }
+              },
+              {
+                "stage": "human_decision",
+                "decision": "approve",
+                "principal": "fixture-operator"
+              },
+              {
+                "stage": "answer_admission",
+                "stored": true,
+                "provider_calls": 0
+              }
+            ],
+            "version": "document-agent-r4-v1",
+            "work": [
+              {
+                "completed": true,
+                "elapsed_ms": 0.03945900016333326,
+                "error": null,
+                "stage": "planning",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.003386000116734067,
+                "error": null,
+                "stage": "tool"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.027320999834046233,
+                "error": null,
+                "stage": "generation",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.030374999823834514,
+                "error": null,
+                "stage": "review",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34
+                }
+              },
+              {
+                "stage": "admission",
+                "completed": true,
+                "error": null,
+                "elapsed_ms": 3.527996000002531
+              }
+            ],
+            "work_coverage": {
+              "classifier_veto_internals": false,
+              "provider_boundary": true,
+              "provider_internal_retries": "not_observed",
+              "timings": "stage observations; excludes queue, persistence and human wait",
+              "whole_answer_local_stages": true
+            },
+            "workflow_approved": true
+          }
+        },
+        {
+          "question": "Explain immutable tuples",
+          "actual_fixture_provider_invocations": 0,
+          "state": {
+            "answer": "Tuples are immutable [tuples].",
+            "answer_cache_epoch": 0,
+            "answer_cache_hit": true,
+            "answer_cache_request": {
+              "max_tokens": 1024,
+              "messages": [
+                {
+                  "content": "{\"contract\":\"standalone-document-answer-v1\",\"max_calls\":6,\"max_revisions\":1,\"principal\":\"fixture-operator\",\"relevant_memory\":[],\"runtime_binding\":\"046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4\",\"scope\":{\"access_scope\":\"public-docs\",\"declared_source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"knowledge_base\":\"local-documents\",\"policy_revision\":\"document-policy-v1\"},\"source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"task_epoch\":0,\"workflow\":\"document-agent-r4-v1\"}",
+                  "role": "system"
+                },
+                {
+                  "content": "Explain immutable tuples",
+                  "role": "user"
+                }
+              ],
+              "model": "fixture",
+              "temperature": 0
+            },
+            "answer_namespace_epoch": 0,
+            "cache": true,
+            "draft": "Tuples are immutable [tuples].",
+            "feedback": null,
+            "id": "c15e9bf634d14548876e1d6719361a33",
+            "matched_question": "Explain immutable tuples",
+            "max_calls": 6,
+            "max_revisions": 1,
+            "model": "fixture",
+            "plan": null,
+            "provider_calls": 0,
+            "question": "Explain immutable tuples",
+            "relevant_memory": [],
+            "require_approval": true,
+            "reserved_calls": 0,
+            "revisions": 0,
+            "runtime_binding": "046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4",
+            "standalone_document_task": true,
+            "static_document_stage": false,
+            "status": "COMPLETED",
+            "tools": [
+              {
+                "result": "Tuples are immutable.",
+                "step": {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              }
+            ],
+            "trace": [
+              {
+                "cache_status": "HIT",
+                "evidence_reused": true,
+                "provider_calls": 0,
+                "reason": "scoped_exact_hit",
+                "stage": "CACHE_LOOKUP",
+                "tier": "EXACT"
+              },
+              {
+                "stage": "human_decision",
+                "decision": "approve",
+                "principal": "fixture-operator"
+              }
+            ],
+            "version": "document-agent-r4-v1",
+            "work": [],
+            "work_coverage": {
+              "classifier_veto_internals": false,
+              "provider_boundary": true,
+              "provider_internal_retries": "not_observed",
+              "timings": "stage observations; excludes queue, persistence and human wait",
+              "whole_answer_local_stages": true
+            },
+            "workflow_approved": true
+          }
+        },
+        {
+          "question": "Describe tuple immutability",
+          "actual_fixture_provider_invocations": 3,
+          "state": {
+            "answer": "Tuples are immutable [tuples].",
+            "answer_cache_epoch": 0,
+            "answer_cache_request": {
+              "max_tokens": 1024,
+              "messages": [
+                {
+                  "content": "{\"contract\":\"standalone-document-answer-v1\",\"max_calls\":6,\"max_revisions\":1,\"principal\":\"fixture-operator\",\"relevant_memory\":[],\"runtime_binding\":\"046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4\",\"scope\":{\"access_scope\":\"public-docs\",\"declared_source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"knowledge_base\":\"local-documents\",\"policy_revision\":\"document-policy-v1\"},\"source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"task_epoch\":0,\"workflow\":\"document-agent-r4-v1\"}",
+                  "role": "system"
+                },
+                {
+                  "content": "Describe tuple immutability",
+                  "role": "user"
+                }
+              ],
+              "model": "fixture",
+              "temperature": 0
+            },
+            "answer_namespace_epoch": 0,
+            "cache": true,
+            "draft": "Tuples are immutable [tuples].",
+            "feedback": null,
+            "id": "95754196a1374f31b2c1759e7d0032d4",
+            "max_calls": 6,
+            "max_revisions": 1,
+            "model": "fixture",
+            "plan": {
+              "steps": [
+                {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              ]
+            },
+            "provider_calls": 3,
+            "question": "Describe tuple immutability",
+            "relevant_memory": [],
+            "require_approval": true,
+            "reserved_calls": 3,
+            "revisions": 0,
+            "runtime_binding": "046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4",
+            "standalone_document_task": true,
+            "static_document_stage": false,
+            "status": "COMPLETED",
+            "tools": [
+              {
+                "result": "Tuples are immutable.",
+                "step": {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              }
+            ],
+            "trace": [
+              {
+                "cache_status": "MISS",
+                "evidence_reused": false,
+                "provider_calls": 0,
+                "reason": "no_qualified_answer",
+                "stage": "CACHE_LOOKUP",
+                "tier": null
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "PLANNING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28,
+                  "total_tokens": 33
+                }
+              },
+              {
+                "provider_calls": 0,
+                "stage": "tool",
+                "tool": "read"
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "DRAFTING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30,
+                  "total_tokens": 37
+                }
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "REVIEWING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34,
+                  "total_tokens": 44
+                }
+              },
+              {
+                "stage": "human_decision",
+                "decision": "approve",
+                "principal": "fixture-operator"
+              },
+              {
+                "stage": "answer_admission",
+                "stored": true,
+                "provider_calls": 0
+              }
+            ],
+            "version": "document-agent-r4-v1",
+            "work": [
+              {
+                "completed": true,
+                "elapsed_ms": 0.04170300007899641,
+                "error": null,
+                "stage": "planning",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.0027239998416916933,
+                "error": null,
+                "stage": "tool"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.03704599998854974,
+                "error": null,
+                "stage": "generation",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.03317000005154114,
+                "error": null,
+                "stage": "review",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34
+                }
+              },
+              {
+                "stage": "admission",
+                "completed": true,
+                "error": null,
+                "elapsed_ms": 1.8628629998147517
+              }
+            ],
+            "work_coverage": {
+              "classifier_veto_internals": false,
+              "provider_boundary": true,
+              "provider_internal_retries": "not_observed",
+              "timings": "stage observations; excludes queue, persistence and human wait",
+              "whole_answer_local_stages": true
+            },
+            "workflow_approved": true
+          }
+        },
+        {
+          "question": "Explain tuple packing",
+          "actual_fixture_provider_invocations": 3,
+          "state": {
+            "answer": "Tuples are immutable [tuples].",
+            "answer_cache_epoch": 0,
+            "answer_cache_request": {
+              "max_tokens": 1024,
+              "messages": [
+                {
+                  "content": "{\"contract\":\"standalone-document-answer-v1\",\"max_calls\":6,\"max_revisions\":1,\"principal\":\"fixture-operator\",\"relevant_memory\":[],\"runtime_binding\":\"046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4\",\"scope\":{\"access_scope\":\"public-docs\",\"declared_source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"knowledge_base\":\"local-documents\",\"policy_revision\":\"document-policy-v1\"},\"source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"task_epoch\":0,\"workflow\":\"document-agent-r4-v1\"}",
+                  "role": "system"
+                },
+                {
+                  "content": "Explain tuple packing",
+                  "role": "user"
+                }
+              ],
+              "model": "fixture",
+              "temperature": 0
+            },
+            "answer_namespace_epoch": 0,
+            "cache": true,
+            "draft": "Tuples are immutable [tuples].",
+            "feedback": null,
+            "id": "4b00bdeca0494e79ac2701128fe914da",
+            "max_calls": 6,
+            "max_revisions": 1,
+            "model": "fixture",
+            "plan": {
+              "steps": [
+                {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              ]
+            },
+            "provider_calls": 3,
+            "question": "Explain tuple packing",
+            "relevant_memory": [],
+            "require_approval": true,
+            "reserved_calls": 3,
+            "revisions": 0,
+            "runtime_binding": "046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4",
+            "standalone_document_task": true,
+            "static_document_stage": false,
+            "status": "COMPLETED",
+            "tools": [
+              {
+                "result": "Tuples are immutable.",
+                "step": {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              }
+            ],
+            "trace": [
+              {
+                "cache_status": "MISS",
+                "evidence_reused": false,
+                "provider_calls": 0,
+                "reason": "no_qualified_answer",
+                "stage": "CACHE_LOOKUP",
+                "tier": null
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "PLANNING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28,
+                  "total_tokens": 33
+                }
+              },
+              {
+                "provider_calls": 0,
+                "stage": "tool",
+                "tool": "read"
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "DRAFTING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30,
+                  "total_tokens": 37
+                }
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "REVIEWING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34,
+                  "total_tokens": 44
+                }
+              },
+              {
+                "stage": "human_decision",
+                "decision": "approve",
+                "principal": "fixture-operator"
+              },
+              {
+                "stage": "answer_admission",
+                "stored": true,
+                "provider_calls": 0
+              }
+            ],
+            "version": "document-agent-r4-v1",
+            "work": [
+              {
+                "completed": true,
+                "elapsed_ms": 0.0367949999144912,
+                "error": null,
+                "stage": "planning",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.002784999878713279,
+                "error": null,
+                "stage": "tool"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.030606000109401066,
+                "error": null,
+                "stage": "generation",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.028153000130259898,
+                "error": null,
+                "stage": "review",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34
+                }
+              },
+              {
+                "stage": "admission",
+                "completed": true,
+                "error": null,
+                "elapsed_ms": 1.5383229999770265
+              }
+            ],
+            "work_coverage": {
+              "classifier_veto_internals": false,
+              "provider_boundary": true,
+              "provider_internal_retries": "not_observed",
+              "timings": "stage observations; excludes queue, persistence and human wait",
+              "whole_answer_local_stages": true
+            },
+            "workflow_approved": true
+          }
+        }
+      ],
+      "actual_fixture_provider_invocations": 9,
+      "stages": {
+        "planning": 3,
+        "generation": 3,
+        "review": 3
+      }
+    },
+    {
+      "mode": "guarded",
+      "tasks": [
+        {
+          "question": "Explain immutable tuples",
+          "actual_fixture_provider_invocations": 3,
+          "state": {
+            "answer": "Tuples are immutable [tuples].",
+            "answer_cache_epoch": 0,
+            "answer_cache_request": {
+              "max_tokens": 1024,
+              "messages": [
+                {
+                  "content": "{\"contract\":\"standalone-document-answer-v1\",\"max_calls\":6,\"max_revisions\":1,\"principal\":\"fixture-operator\",\"relevant_memory\":[],\"runtime_binding\":\"046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4\",\"scope\":{\"access_scope\":\"public-docs\",\"declared_source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"knowledge_base\":\"local-documents\",\"policy_revision\":\"document-policy-v1\"},\"source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"task_epoch\":0,\"workflow\":\"document-agent-r4-v1\"}",
+                  "role": "system"
+                },
+                {
+                  "content": "Explain immutable tuples",
+                  "role": "user"
+                }
+              ],
+              "model": "fixture",
+              "temperature": 0
+            },
+            "answer_namespace_epoch": 0,
+            "cache": true,
+            "draft": "Tuples are immutable [tuples].",
+            "feedback": null,
+            "id": "29feb4d190b843598fd1544224a9e4e2",
+            "max_calls": 6,
+            "max_revisions": 1,
+            "model": "fixture",
+            "plan": {
+              "steps": [
+                {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              ]
+            },
+            "provider_calls": 3,
+            "question": "Explain immutable tuples",
+            "relevant_memory": [],
+            "require_approval": true,
+            "reserved_calls": 3,
+            "revisions": 0,
+            "runtime_binding": "046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4",
+            "standalone_document_task": true,
+            "static_document_stage": false,
+            "status": "COMPLETED",
+            "tools": [
+              {
+                "result": "Tuples are immutable.",
+                "step": {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              }
+            ],
+            "trace": [
+              {
+                "cache_status": "MISS",
+                "evidence_reused": false,
+                "provider_calls": 0,
+                "reason": "no_qualified_answer",
+                "stage": "CACHE_LOOKUP",
+                "tier": null
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "PLANNING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28,
+                  "total_tokens": 33
+                }
+              },
+              {
+                "provider_calls": 0,
+                "stage": "tool",
+                "tool": "read"
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "DRAFTING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30,
+                  "total_tokens": 37
+                }
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "REVIEWING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34,
+                  "total_tokens": 44
+                }
+              },
+              {
+                "stage": "human_decision",
+                "decision": "approve",
+                "principal": "fixture-operator"
+              },
+              {
+                "stage": "answer_admission",
+                "stored": true,
+                "provider_calls": 0
+              }
+            ],
+            "version": "document-agent-r4-v1",
+            "work": [
+              {
+                "completed": true,
+                "elapsed_ms": 0.013910999996369355,
+                "error": null,
+                "stage": "embedding"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.2823180000177672,
+                "error": null,
+                "stage": "search"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.03386200000932149,
+                "error": null,
+                "stage": "planning",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.0029240000003483146,
+                "error": null,
+                "stage": "tool"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.02548899988141784,
+                "error": null,
+                "stage": "generation",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.02551900001890317,
+                "error": null,
+                "stage": "review",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34
+                }
+              },
+              {
+                "stage": "admission",
+                "completed": true,
+                "error": null,
+                "elapsed_ms": 2.6257539998368884
+              },
+              {
+                "stage": "embedding",
+                "completed": true,
+                "error": null,
+                "elapsed_ms": 0.011115999996036408
+              }
+            ],
+            "work_coverage": {
+              "classifier_veto_internals": false,
+              "provider_boundary": true,
+              "provider_internal_retries": "not_observed",
+              "timings": "stage observations; excludes queue, persistence and human wait",
+              "whole_answer_local_stages": true
+            },
+            "workflow_approved": true
+          }
+        },
+        {
+          "question": "Explain immutable tuples",
+          "actual_fixture_provider_invocations": 0,
+          "state": {
+            "answer": "Tuples are immutable [tuples].",
+            "answer_cache_epoch": 0,
+            "answer_cache_hit": true,
+            "answer_cache_request": {
+              "max_tokens": 1024,
+              "messages": [
+                {
+                  "content": "{\"contract\":\"standalone-document-answer-v1\",\"max_calls\":6,\"max_revisions\":1,\"principal\":\"fixture-operator\",\"relevant_memory\":[],\"runtime_binding\":\"046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4\",\"scope\":{\"access_scope\":\"public-docs\",\"declared_source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"knowledge_base\":\"local-documents\",\"policy_revision\":\"document-policy-v1\"},\"source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"task_epoch\":0,\"workflow\":\"document-agent-r4-v1\"}",
+                  "role": "system"
+                },
+                {
+                  "content": "Explain immutable tuples",
+                  "role": "user"
+                }
+              ],
+              "model": "fixture",
+              "temperature": 0
+            },
+            "answer_namespace_epoch": 0,
+            "cache": true,
+            "draft": "Tuples are immutable [tuples].",
+            "feedback": null,
+            "id": "ae86a9da8f804ceb9596e7b081e6f0eb",
+            "matched_question": "Explain immutable tuples",
+            "max_calls": 6,
+            "max_revisions": 1,
+            "model": "fixture",
+            "plan": null,
+            "provider_calls": 0,
+            "question": "Explain immutable tuples",
+            "relevant_memory": [],
+            "require_approval": true,
+            "reserved_calls": 0,
+            "revisions": 0,
+            "runtime_binding": "046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4",
+            "standalone_document_task": true,
+            "static_document_stage": false,
+            "status": "COMPLETED",
+            "tools": [
+              {
+                "result": "Tuples are immutable.",
+                "step": {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              }
+            ],
+            "trace": [
+              {
+                "cache_status": "HIT",
+                "evidence_reused": true,
+                "provider_calls": 0,
+                "reason": "scoped_exact_hit",
+                "stage": "CACHE_LOOKUP",
+                "tier": "EXACT"
+              },
+              {
+                "stage": "human_decision",
+                "decision": "approve",
+                "principal": "fixture-operator"
+              }
+            ],
+            "version": "document-agent-r4-v1",
+            "work": [],
+            "work_coverage": {
+              "classifier_veto_internals": false,
+              "provider_boundary": true,
+              "provider_internal_retries": "not_observed",
+              "timings": "stage observations; excludes queue, persistence and human wait",
+              "whole_answer_local_stages": true
+            },
+            "workflow_approved": true
+          }
+        },
+        {
+          "question": "Describe tuple immutability",
+          "actual_fixture_provider_invocations": 0,
+          "state": {
+            "answer": "Tuples are immutable [tuples].",
+            "answer_cache_epoch": 0,
+            "answer_cache_hit": true,
+            "answer_cache_request": {
+              "max_tokens": 1024,
+              "messages": [
+                {
+                  "content": "{\"contract\":\"standalone-document-answer-v1\",\"max_calls\":6,\"max_revisions\":1,\"principal\":\"fixture-operator\",\"relevant_memory\":[],\"runtime_binding\":\"046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4\",\"scope\":{\"access_scope\":\"public-docs\",\"declared_source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"knowledge_base\":\"local-documents\",\"policy_revision\":\"document-policy-v1\"},\"source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"task_epoch\":0,\"workflow\":\"document-agent-r4-v1\"}",
+                  "role": "system"
+                },
+                {
+                  "content": "Describe tuple immutability",
+                  "role": "user"
+                }
+              ],
+              "model": "fixture",
+              "temperature": 0
+            },
+            "answer_namespace_epoch": 0,
+            "cache": true,
+            "draft": "Tuples are immutable [tuples].",
+            "feedback": null,
+            "id": "4f961096e5294ec7915897300469ac6c",
+            "matched_question": "Explain immutable tuples",
+            "max_calls": 6,
+            "max_revisions": 1,
+            "model": "fixture",
+            "plan": null,
+            "provider_calls": 0,
+            "question": "Describe tuple immutability",
+            "relevant_memory": [],
+            "require_approval": true,
+            "reserved_calls": 0,
+            "revisions": 0,
+            "runtime_binding": "046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4",
+            "standalone_document_task": true,
+            "static_document_stage": false,
+            "status": "COMPLETED",
+            "tools": [
+              {
+                "result": "Tuples are immutable.",
+                "step": {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              }
+            ],
+            "trace": [
+              {
+                "cache_status": "HIT",
+                "evidence_reused": true,
+                "provider_calls": 0,
+                "reason": "guarded_semantic_hit",
+                "stage": "CACHE_LOOKUP",
+                "tier": "SEMANTIC"
+              },
+              {
+                "stage": "human_decision",
+                "decision": "approve",
+                "principal": "fixture-operator"
+              }
+            ],
+            "version": "document-agent-r4-v1",
+            "work": [
+              {
+                "completed": true,
+                "elapsed_ms": 0.008732999958738219,
+                "error": null,
+                "stage": "embedding"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.27100099987364956,
+                "error": null,
+                "stage": "search"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.037827999904038734,
+                "error": null,
+                "stage": "applicability"
+              }
+            ],
+            "work_coverage": {
+              "classifier_veto_internals": false,
+              "provider_boundary": true,
+              "provider_internal_retries": "not_observed",
+              "timings": "stage observations; excludes queue, persistence and human wait",
+              "whole_answer_local_stages": true
+            },
+            "workflow_approved": true
+          }
+        },
+        {
+          "question": "Explain tuple packing",
+          "actual_fixture_provider_invocations": 3,
+          "state": {
+            "answer": "Tuples are immutable [tuples].",
+            "answer_cache_epoch": 0,
+            "answer_cache_request": {
+              "max_tokens": 1024,
+              "messages": [
+                {
+                  "content": "{\"contract\":\"standalone-document-answer-v1\",\"max_calls\":6,\"max_revisions\":1,\"principal\":\"fixture-operator\",\"relevant_memory\":[],\"runtime_binding\":\"046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4\",\"scope\":{\"access_scope\":\"public-docs\",\"declared_source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"knowledge_base\":\"local-documents\",\"policy_revision\":\"document-policy-v1\"},\"source_revision\":\"5d27a9dc1833f8fa199fea6dbb8027d3cbb318aa44103319c07c34eef5623acd\",\"task_epoch\":0,\"workflow\":\"document-agent-r4-v1\"}",
+                  "role": "system"
+                },
+                {
+                  "content": "Explain tuple packing",
+                  "role": "user"
+                }
+              ],
+              "model": "fixture",
+              "temperature": 0
+            },
+            "answer_namespace_epoch": 0,
+            "cache": true,
+            "draft": "Tuples are immutable [tuples].",
+            "feedback": null,
+            "id": "28d5cb4e55d340c3ab32df59569e6c1e",
+            "max_calls": 6,
+            "max_revisions": 1,
+            "model": "fixture",
+            "plan": {
+              "steps": [
+                {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              ]
+            },
+            "provider_calls": 3,
+            "question": "Explain tuple packing",
+            "relevant_memory": [],
+            "require_approval": true,
+            "reserved_calls": 3,
+            "revisions": 0,
+            "runtime_binding": "046ba3076100ebb8aed37d6709cb9d18af6638590cb89ac53593b7bf5dae60d4",
+            "standalone_document_task": true,
+            "static_document_stage": false,
+            "status": "COMPLETED",
+            "tools": [
+              {
+                "result": "Tuples are immutable.",
+                "step": {
+                  "arguments": {
+                    "document_id": "tuples"
+                  },
+                  "depends_on": [],
+                  "id": "read",
+                  "tool": "read"
+                }
+              }
+            ],
+            "trace": [
+              {
+                "cache_status": "MISS",
+                "evidence_reused": false,
+                "provider_calls": 0,
+                "reason": "no_qualified_answer",
+                "stage": "CACHE_LOOKUP",
+                "tier": null
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "PLANNING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28,
+                  "total_tokens": 33
+                }
+              },
+              {
+                "provider_calls": 0,
+                "stage": "tool",
+                "tool": "read"
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "DRAFTING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30,
+                  "total_tokens": 37
+                }
+              },
+              {
+                "cache_status": "BYPASS",
+                "context_bypass": false,
+                "provider_calls": 1,
+                "stage": "REVIEWING",
+                "stage_contract": "full-task-context",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34,
+                  "total_tokens": 44
+                }
+              },
+              {
+                "stage": "human_decision",
+                "decision": "approve",
+                "principal": "fixture-operator"
+              },
+              {
+                "stage": "answer_admission",
+                "stored": true,
+                "provider_calls": 0
+              }
+            ],
+            "version": "document-agent-r4-v1",
+            "work": [
+              {
+                "completed": true,
+                "elapsed_ms": 0.006750000011379598,
+                "error": null,
+                "stage": "embedding"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.3934159999516851,
+                "error": null,
+                "stage": "search"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.04399699992063688,
+                "error": null,
+                "stage": "applicability"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.15350300009231432,
+                "error": null,
+                "stage": "planning",
+                "usage": {
+                  "completion_tokens": 5,
+                  "prompt_tokens": 28
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.002733999963311362,
+                "error": null,
+                "stage": "tool"
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.026560000151221175,
+                "error": null,
+                "stage": "generation",
+                "usage": {
+                  "completion_tokens": 7,
+                  "prompt_tokens": 30
+                }
+              },
+              {
+                "completed": true,
+                "elapsed_ms": 0.03012599995599885,
+                "error": null,
+                "stage": "review",
+                "usage": {
+                  "completion_tokens": 10,
+                  "prompt_tokens": 34
+                }
+              },
+              {
+                "stage": "admission",
+                "completed": true,
+                "error": null,
+                "elapsed_ms": 2.9701760001898947
+              },
+              {
+                "stage": "embedding",
+                "completed": true,
+                "error": null,
+                "elapsed_ms": 0.010686999985409784
+              }
+            ],
+            "work_coverage": {
+              "classifier_veto_internals": false,
+              "provider_boundary": true,
+              "provider_internal_retries": "not_observed",
+              "timings": "stage observations; excludes queue, persistence and human wait",
+              "whole_answer_local_stages": true
+            },
+            "workflow_approved": true
+          }
+        }
+      ],
+      "actual_fixture_provider_invocations": 6,
+      "stages": {
+        "planning": 2,
+        "generation": 2,
+        "review": 2
+      }
+    }
+  ],
+  "timing_scope": "local fixture stage observations, not production latency",
+  "source_sha256": {
+    "src/agents/document_agent.py": "b96a8256ce067c301cff6c9d12f14b2a6176f54551a193d3c47fa2390bbc4671",
+    "src/agents/document_answer_cache.py": "f539f2c38f1882bae4642ec06c403efa08abab9086e60173446b97cec7b8a5a8",
+    "src/policy/work_ledger.py": "0402702cb370f39ca917446c8d0236792509a71c90b69fafde18a0b6aebdc6ba",
+    "src/policy/semantic_runtime.py": "87e5708468d6fb0a05d0508a77a54a33ad45fc0e2bca4cf3d92335b306f2f5a9",
+    "src/policy/sqlite_store.py": "9e81950ca37b07bb8b428f38de24236aac763634e7000f827b936381649b10c2",
+    "src/api/service.py": "2debb48f6d0e436bb95a968bf0fbe692f685564c2230b9e19e6d7ef4ffcfd2ce",
+    "scripts/check_before_agent_work.py": "8d414c1bbf805a0999a117d018aa639416d5d64539045f894cb9d736dcf5993f"
+  }
+}

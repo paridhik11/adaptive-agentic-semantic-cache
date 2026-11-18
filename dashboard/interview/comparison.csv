@@ -1,0 +1,9 @@
+workload,configuration,events,scripted_calls,calls_saved,calls_saved_pct,synthetic_tokens,synthetic_tokens_saved_pct,latency_p50_ms,latency_p95_ms,false_accepts,adversarial_challenges,reviewed_accepts,total_accepts
+repeat_rich,no_cache,600,1800,0,0.0,201667,0.0,130.8581,151.5782,0,120,0,0
+repeat_rich,exact_only,600,948,852,47.3333,107750,46.5703,140.8023,233.1437,0,120,0,284
+repeat_rich,verified_semantic,600,927,873,48.5,105429,47.7212,137.8125,237.7314,0,120,0,291
+repeat_rich,shadow_semantic,600,948,852,47.3333,107750,46.5703,141.5785,241.2777,0,120,0,284
+lower_repeat,no_cache,400,1200,0,0.0,133964,0.0,89.6993,103.7067,0,125,0,0
+lower_repeat,exact_only,400,1023,177,14.75,114453,14.5644,168.4233,194.4589,0,125,0,59
+lower_repeat,verified_semantic,400,975,225,18.75,109302,18.4094,180.5989,219.766,1,125,0,75
+lower_repeat,shadow_semantic,400,1023,177,14.75,114453,14.5644,183.5547,225.1913,0,125,0,59

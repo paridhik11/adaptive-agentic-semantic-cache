@@ -1,0 +1,4 @@
+Evidence: engineering clean-checkout check; existing installed dependencies reused, NOT a fresh dependency installation.
+Final stores absent from checkout; no final inference.
+..................                                                       [100%]
+18 passed in 4.92s

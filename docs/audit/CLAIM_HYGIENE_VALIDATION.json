@@ -1,0 +1,88 @@
+{
+  "schema_version": "claim-hygiene-validation-v1",
+  "base_commit": "4fbe298986427e92fb2404b0c9fd3ad770b8206f",
+  "runtime_data_r5_artifacts_unchanged": true,
+  "frozen_files_checked": 99,
+  "historical_bodies_preserved": [
+    "docs/archive/README.before_claim_hygiene.md",
+    "docs/archive/DESIGN.before_claim_hygiene.md",
+    "docs/archive/RESUME_BULLETS.before_claim_hygiene.md",
+    "docs/STATUS.md",
+    "docs/RECOVERY_STATUS.md",
+    "docs/MASTER_REPORT.md",
+    "docs/comprehensive_project_status_report.md",
+    "docs/comprehensive_project_status_report.html"
+  ],
+  "local_links_checked": 29,
+  "timing_recomputations": [
+    {
+      "file": "data/load_test_telemetry.json",
+      "sha256": "c96379f70d5bf245af5a423206af2dd8f99e218474a1c6a511ea3df7f0532ddc",
+      "workload_events": 70,
+      "auto_reuse_n": 20,
+      "ambiguous_n": 9,
+      "auto_total_pipeline_mean_ms": 19.1782,
+      "ambiguous_total_pipeline_mean_ms": 9291.345444444445,
+      "historical_component_reduction_percent": 99.79359071175782,
+      "baseline": "AMBIGUOUS total pipeline including remote judge; not fresh generation",
+      "evidence_kind": "historical_component_telemetry_recomputed",
+      "sampling_interval_for_reduction": null
+    },
+    {
+      "file": "data/scaled_load_test_telemetry_corrected.json",
+      "sha256": "836ffd5b7c91846dafd55f087861384becfab70f0638416d8c05ae901ee53aa1",
+      "workload_events": 338,
+      "auto_reuse_n": 1,
+      "ambiguous_n": 46,
+      "auto_total_pipeline_mean_ms": 61.914,
+      "ambiguous_total_pipeline_mean_ms": 7715.619413043478,
+      "historical_component_reduction_percent": 99.1975498442117,
+      "baseline": "AMBIGUOUS total pipeline including remote judge; not fresh generation",
+      "evidence_kind": "historical_component_telemetry_recomputed",
+      "sampling_interval_for_reduction": null
+    },
+    {
+      "file": "data/phase6_telemetry.json",
+      "sha256": "9e5cbdaf50245a1f2b69d3ed2241a8d9776205bb6d30e66d54a6fdfad84cde25",
+      "workload_events": 175,
+      "auto_reuse_n": 1,
+      "ambiguous_n": 18,
+      "auto_total_pipeline_mean_ms": 10.563,
+      "ambiguous_total_pipeline_mean_ms": 6577.936388888889,
+      "historical_component_reduction_percent": 99.83941772349999,
+      "baseline": "AMBIGUOUS total pipeline including remote judge; not fresh generation",
+      "evidence_kind": "historical_component_telemetry_recomputed",
+      "sampling_interval_for_reduction": null
+    }
+  ],
+  "external_model_calls": 0,
+  "new_benchmark_or_replay_runs": 0,
+  "redesign_implemented": false,
+  "redesign_evaluation_run": false,
+  "targeted_secret_pattern_findings": 0,
+  "scan_scope": [
+    "AGENTS.md",
+    "DESIGN.md",
+    "README.md",
+    "docs/CURRENT_STATUS.md",
+    "docs/FACTS.md",
+    "docs/MASTER_REPORT.md",
+    "docs/RECOVERY_STATUS.md",
+    "docs/RESUME_BULLETS.md",
+    "docs/STATUS.md",
+    "docs/archive/DESIGN.before_claim_hygiene.md",
+    "docs/archive/README.before_claim_hygiene.md",
+    "docs/archive/RESUME_BULLETS.before_claim_hygiene.md",
+    "docs/audit/CLAIM_HYGIENE_AUDIT.md",
+    "docs/audit/R6_AGENT_CACHE_PREREG.md",
+    "docs/comprehensive_project_status_report.html",
+    "docs/comprehensive_project_status_report.md",
+    "scripts/check_claim_hygiene.py"
+  ],
+  "scan_limit": "Targeted token/private-key patterns, not a full secret scanner or security certification.",
+  "tests": "Documentation-only change; full runtime suite not rerun. Project venv unavailable; standard-library checks run with system Python.",
+  "initial_check_failures": [
+    "Project .venv executable unavailable; used system Python for standard-library audit.",
+    "Expanded numeric scan exposed missing ledger entry for historical 620-test result; added evidence row from R5_VALIDATION.json, then passed."
+  ]
+}

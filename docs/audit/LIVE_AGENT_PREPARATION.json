@@ -1,0 +1,47 @@
+{
+  "evidence_kind": "offline_engineering_preparation",
+  "focused_tests": {
+    "passed": 70,
+    "seconds": 1.85
+  },
+  "full_suite_rerun": false,
+  "external_model_calls": 0,
+  "actual_corpus_plan_without_key": "passed",
+  "fixture_observation": {
+    "tasks": 4,
+    "off_provider_calls": 6,
+    "exact_provider_calls": 5,
+    "human_approvals": 0,
+    "terminal_status": "AWAITING_APPROVAL"
+  },
+  "negative_checks": [
+    "insufficient daily allowance before calls",
+    "missing shared journal",
+    "changed fingerprint",
+    "uncertain prior attempt",
+    "truncated prior response",
+    "invalid plan"
+  ],
+  "resume_export_checks": [
+    "quota pause with private ZIP",
+    "deterministic journal reconstruction",
+    "saved attempts unchanged",
+    "unique snapshots",
+    "no dummy credential in export",
+    "reconstructed latency invalid"
+  ],
+  "planned_live_attempt_cap": 12,
+  "planned_live_task_call_cap": 3,
+  "planned_live_revision_retries": 0,
+  "source_sha256": {
+    "scripts/run_live_agent_pilot.py": "aff8ef8a97e3cba7f7eae7aa2e18bb1ff2242fb52c5f6c636a741067c4a036fe",
+    "tests/test_live_agent_pilot.py": "4a32e363c2018b125a0913ca995c8d1582683442ed4ade047a09df1c741a9909",
+    "docs/LIVE_AGENT_PILOT_PROTOCOL.md": "a28a503946d54fd6db9c3ff4075a0b0fe676515e1e33c3f44515587368fdc3e4"
+  },
+  "reproduce": "PYTHONPATH=.venv/lib/python3.12/site-packages python -m pytest tests/test_live_agent_pilot.py tests/test_document_agent.py tests/test_static_document_stage.py tests/test_free_pilot.py -q",
+  "limitations": [
+    "Fixture plans/answers/reviews do not establish live planning or answer quality.",
+    "Actual live cache hit and complete collection remain unproven.",
+    "Existing application runtime and old R5/R6 experiments were not modified."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "intent-stage-a-v1",
+  "split": "final",
+  "locked": true,
+  "data_sha256": "0869f373fce124f5aa7039e09cd65069152632f09a6d918a30a07e9f6a82afba",
+  "groups": 24,
+  "rows": 312,
+  "source_lineages": [
+    "operation-source:insertion",
+    "operation-source:smallest"
+  ],
+  "generator_sha256": "79ee554a23bd1267ddf475893151054c4fe808eff13ddc4e0e15a860cd8ddffd",
+  "label_provenance": "template-generated; builder authored; not independent human labels",
+  "evaluation": "NOT RUN"
+}

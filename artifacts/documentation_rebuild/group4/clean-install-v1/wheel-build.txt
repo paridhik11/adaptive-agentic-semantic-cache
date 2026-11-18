@@ -1,0 +1,308 @@
+* Creating isolated environment: venv+pip...
+* Installing packages in isolated environment:
+  - setuptools>=61.0
+* Getting build dependencies for wheel...
+running egg_info
+creating adaptive_agentic_semantic_cache.egg-info
+writing adaptive_agentic_semantic_cache.egg-info/PKG-INFO
+writing dependency_links to adaptive_agentic_semantic_cache.egg-info/dependency_links.txt
+writing requirements to adaptive_agentic_semantic_cache.egg-info/requires.txt
+writing top-level names to adaptive_agentic_semantic_cache.egg-info/top_level.txt
+writing manifest file 'adaptive_agentic_semantic_cache.egg-info/SOURCES.txt'
+reading manifest file 'adaptive_agentic_semantic_cache.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'adaptive_agentic_semantic_cache.egg-info/SOURCES.txt'
+WARNING `project.license` as a TOML table is deprecated
+!!
+
+        ********************************************************************************
+        Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+        By 2027-Feb-18, you need to update your project and remove deprecated calls
+        or your builds will no longer be supported.
+
+        See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+        ********************************************************************************
+
+!!
+* Installed build dependency versions:
+  - setuptools==84.2.1
+* Building wheel...
+running bdist_wheel
+running build
+running build_py
+creating build/lib/src
+copying src/__init__.py -> build/lib/src
+creating build/lib/src/decision
+copying src/decision/decision_step.py -> build/lib/src/decision
+copying src/decision/tier_router.py -> build/lib/src/decision
+copying src/decision/adaptive_threshold_engine.py -> build/lib/src/decision
+copying src/decision/__init__.py -> build/lib/src/decision
+copying src/decision/judge_call.py -> build/lib/src/decision
+copying src/decision/local_equivalence.py -> build/lib/src/decision
+creating build/lib/src/api
+copying src/api/streaming.py -> build/lib/src/api
+copying src/api/gateway.py -> build/lib/src/api
+copying src/api/__init__.py -> build/lib/src/api
+copying src/api/service.py -> build/lib/src/api
+copying src/api/demo.py -> build/lib/src/api
+copying src/api/providers.py -> build/lib/src/api
+creating build/lib/src/utils
+copying src/utils/__init__.py -> build/lib/src/utils
+creating build/lib/src/benchmark
+copying src/benchmark/semantic.py -> build/lib/src/benchmark
+copying src/benchmark/runner.py -> build/lib/src/benchmark
+copying src/benchmark/progress.py -> build/lib/src/benchmark
+copying src/benchmark/faq_corpus.py -> build/lib/src/benchmark
+copying src/benchmark/report.py -> build/lib/src/benchmark
+copying src/benchmark/__init__.py -> build/lib/src/benchmark
+copying src/benchmark/natural_repetition.py -> build/lib/src/benchmark
+copying src/benchmark/diagnostics.py -> build/lib/src/benchmark
+copying src/benchmark/free_pilot.py -> build/lib/src/benchmark
+copying src/benchmark/pilot_package.py -> build/lib/src/benchmark
+copying src/benchmark/control.py -> build/lib/src/benchmark
+copying src/benchmark/review_agreement.py -> build/lib/src/benchmark
+copying src/benchmark/r5_revision.py -> build/lib/src/benchmark
+copying src/benchmark/views.py -> build/lib/src/benchmark
+copying src/benchmark/reuse_diagnosis.py -> build/lib/src/benchmark
+copying src/benchmark/paired_runtime.py -> build/lib/src/benchmark
+copying src/benchmark/schema.py -> build/lib/src/benchmark
+creating build/lib/src/evaluation
+copying src/evaluation/intent_stage_a.py -> build/lib/src/evaluation
+copying src/evaluation/__init__.py -> build/lib/src/evaluation
+copying src/evaluation/intent_stage_b_veto.py -> build/lib/src/evaluation
+copying src/evaluation/cache_evaluator.py -> build/lib/src/evaluation
+copying src/evaluation/intent_stage_b_model.py -> build/lib/src/evaluation
+copying src/evaluation/decision_evaluator.py -> build/lib/src/evaluation
+copying src/evaluation/intent_stage_b_policy.py -> build/lib/src/evaluation
+copying src/evaluation/stability_evaluator.py -> build/lib/src/evaluation
+creating build/lib/src/agents
+copying src/agents/document_agent.py -> build/lib/src/agents
+copying src/agents/document_answer_cache.py -> build/lib/src/agents
+copying src/agents/task_memory.py -> build/lib/src/agents
+copying src/agents/__init__.py -> build/lib/src/agents
+copying src/agents/workflow.py -> build/lib/src/agents
+copying src/agents/document_orchestration.py -> build/lib/src/agents
+creating build/lib/src/decision_agent
+copying src/decision_agent/__init__.py -> build/lib/src/decision_agent
+creating build/lib/src/cache
+copying src/cache/embedding.py -> build/lib/src/cache
+copying src/cache/__init__.py -> build/lib/src/cache
+copying src/cache/semantic_cache.py -> build/lib/src/cache
+copying src/cache/normalizer.py -> build/lib/src/cache
+copying src/cache/vector_store.py -> build/lib/src/cache
+creating build/lib/src/classifier
+copying src/classifier/fallback.py -> build/lib/src/classifier
+copying src/classifier/models.py -> build/lib/src/classifier
+copying src/classifier/stability_classifier.py -> build/lib/src/classifier
+copying src/classifier/__init__.py -> build/lib/src/classifier
+copying src/classifier/rules.py -> build/lib/src/classifier
+creating build/lib/src/policy
+copying src/policy/answer_applicability.py -> build/lib/src/policy
+copying src/policy/decomposed_applicability.py -> build/lib/src/policy
+copying src/policy/sqlite_store.py -> build/lib/src/policy
+copying src/policy/encoders.py -> build/lib/src/policy
+copying src/policy/__init__.py -> build/lib/src/policy
+copying src/policy/question_conditioned.py -> build/lib/src/policy
+copying src/policy/response_cache.py -> build/lib/src/policy
+copying src/policy/local_models.py -> build/lib/src/policy
+copying src/policy/work_ledger.py -> build/lib/src/policy
+copying src/policy/semantic_runtime.py -> build/lib/src/policy
+running egg_info
+writing adaptive_agentic_semantic_cache.egg-info/PKG-INFO
+writing dependency_links to adaptive_agentic_semantic_cache.egg-info/dependency_links.txt
+writing requirements to adaptive_agentic_semantic_cache.egg-info/requires.txt
+writing top-level names to adaptive_agentic_semantic_cache.egg-info/top_level.txt
+reading manifest file 'adaptive_agentic_semantic_cache.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'adaptive_agentic_semantic_cache.egg-info/SOURCES.txt'
+copying src/api/dashboard.html -> build/lib/src/api
+copying src/api/demo_reference.LICENSE -> build/lib/src/api
+copying src/api/demo_reference.json -> build/lib/src/api
+copying src/api/workbench.css -> build/lib/src/api
+copying src/api/workbench.html -> build/lib/src/api
+copying src/api/workbench.js -> build/lib/src/api
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_lib
+creating build/bdist.linux-x86_64/wheel
+creating build/bdist.linux-x86_64/wheel/src
+creating build/bdist.linux-x86_64/wheel/src/decision
+copying build/lib/src/decision/decision_step.py -> build/bdist.linux-x86_64/wheel/./src/decision
+copying build/lib/src/decision/tier_router.py -> build/bdist.linux-x86_64/wheel/./src/decision
+copying build/lib/src/decision/adaptive_threshold_engine.py -> build/bdist.linux-x86_64/wheel/./src/decision
+copying build/lib/src/decision/__init__.py -> build/bdist.linux-x86_64/wheel/./src/decision
+copying build/lib/src/decision/judge_call.py -> build/bdist.linux-x86_64/wheel/./src/decision
+copying build/lib/src/decision/local_equivalence.py -> build/bdist.linux-x86_64/wheel/./src/decision
+creating build/bdist.linux-x86_64/wheel/src/api
+copying build/lib/src/api/streaming.py -> build/bdist.linux-x86_64/wheel/./src/api
+copying build/lib/src/api/gateway.py -> build/bdist.linux-x86_64/wheel/./src/api
+copying build/lib/src/api/workbench.html -> build/bdist.linux-x86_64/wheel/./src/api
+copying build/lib/src/api/demo_reference.LICENSE -> build/bdist.linux-x86_64/wheel/./src/api
+copying build/lib/src/api/__init__.py -> build/bdist.linux-x86_64/wheel/./src/api
+copying build/lib/src/api/service.py -> build/bdist.linux-x86_64/wheel/./src/api
+copying build/lib/src/api/demo.py -> build/bdist.linux-x86_64/wheel/./src/api
+copying build/lib/src/api/workbench.css -> build/bdist.linux-x86_64/wheel/./src/api
+copying build/lib/src/api/providers.py -> build/bdist.linux-x86_64/wheel/./src/api
+copying build/lib/src/api/dashboard.html -> build/bdist.linux-x86_64/wheel/./src/api
+copying build/lib/src/api/workbench.js -> build/bdist.linux-x86_64/wheel/./src/api
+copying build/lib/src/api/demo_reference.json -> build/bdist.linux-x86_64/wheel/./src/api
+creating build/bdist.linux-x86_64/wheel/src/utils
+copying build/lib/src/utils/__init__.py -> build/bdist.linux-x86_64/wheel/./src/utils
+copying build/lib/src/__init__.py -> build/bdist.linux-x86_64/wheel/./src
+creating build/bdist.linux-x86_64/wheel/src/benchmark
+copying build/lib/src/benchmark/semantic.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/runner.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/progress.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/faq_corpus.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/report.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/__init__.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/natural_repetition.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/diagnostics.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/free_pilot.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/pilot_package.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/control.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/review_agreement.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/r5_revision.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/views.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/reuse_diagnosis.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/paired_runtime.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+copying build/lib/src/benchmark/schema.py -> build/bdist.linux-x86_64/wheel/./src/benchmark
+creating build/bdist.linux-x86_64/wheel/src/evaluation
+copying build/lib/src/evaluation/intent_stage_a.py -> build/bdist.linux-x86_64/wheel/./src/evaluation
+copying build/lib/src/evaluation/__init__.py -> build/bdist.linux-x86_64/wheel/./src/evaluation
+copying build/lib/src/evaluation/intent_stage_b_veto.py -> build/bdist.linux-x86_64/wheel/./src/evaluation
+copying build/lib/src/evaluation/cache_evaluator.py -> build/bdist.linux-x86_64/wheel/./src/evaluation
+copying build/lib/src/evaluation/intent_stage_b_model.py -> build/bdist.linux-x86_64/wheel/./src/evaluation
+copying build/lib/src/evaluation/decision_evaluator.py -> build/bdist.linux-x86_64/wheel/./src/evaluation
+copying build/lib/src/evaluation/intent_stage_b_policy.py -> build/bdist.linux-x86_64/wheel/./src/evaluation
+copying build/lib/src/evaluation/stability_evaluator.py -> build/bdist.linux-x86_64/wheel/./src/evaluation
+creating build/bdist.linux-x86_64/wheel/src/agents
+copying build/lib/src/agents/document_agent.py -> build/bdist.linux-x86_64/wheel/./src/agents
+copying build/lib/src/agents/document_answer_cache.py -> build/bdist.linux-x86_64/wheel/./src/agents
+copying build/lib/src/agents/task_memory.py -> build/bdist.linux-x86_64/wheel/./src/agents
+copying build/lib/src/agents/__init__.py -> build/bdist.linux-x86_64/wheel/./src/agents
+copying build/lib/src/agents/workflow.py -> build/bdist.linux-x86_64/wheel/./src/agents
+copying build/lib/src/agents/document_orchestration.py -> build/bdist.linux-x86_64/wheel/./src/agents
+creating build/bdist.linux-x86_64/wheel/src/decision_agent
+copying build/lib/src/decision_agent/__init__.py -> build/bdist.linux-x86_64/wheel/./src/decision_agent
+creating build/bdist.linux-x86_64/wheel/src/cache
+copying build/lib/src/cache/embedding.py -> build/bdist.linux-x86_64/wheel/./src/cache
+copying build/lib/src/cache/__init__.py -> build/bdist.linux-x86_64/wheel/./src/cache
+copying build/lib/src/cache/semantic_cache.py -> build/bdist.linux-x86_64/wheel/./src/cache
+copying build/lib/src/cache/normalizer.py -> build/bdist.linux-x86_64/wheel/./src/cache
+copying build/lib/src/cache/vector_store.py -> build/bdist.linux-x86_64/wheel/./src/cache
+creating build/bdist.linux-x86_64/wheel/src/classifier
+copying build/lib/src/classifier/fallback.py -> build/bdist.linux-x86_64/wheel/./src/classifier
+copying build/lib/src/classifier/models.py -> build/bdist.linux-x86_64/wheel/./src/classifier
+copying build/lib/src/classifier/stability_classifier.py -> build/bdist.linux-x86_64/wheel/./src/classifier
+copying build/lib/src/classifier/__init__.py -> build/bdist.linux-x86_64/wheel/./src/classifier
+copying build/lib/src/classifier/rules.py -> build/bdist.linux-x86_64/wheel/./src/classifier
+creating build/bdist.linux-x86_64/wheel/src/policy
+copying build/lib/src/policy/answer_applicability.py -> build/bdist.linux-x86_64/wheel/./src/policy
+copying build/lib/src/policy/decomposed_applicability.py -> build/bdist.linux-x86_64/wheel/./src/policy
+copying build/lib/src/policy/sqlite_store.py -> build/bdist.linux-x86_64/wheel/./src/policy
+copying build/lib/src/policy/encoders.py -> build/bdist.linux-x86_64/wheel/./src/policy
+copying build/lib/src/policy/__init__.py -> build/bdist.linux-x86_64/wheel/./src/policy
+copying build/lib/src/policy/question_conditioned.py -> build/bdist.linux-x86_64/wheel/./src/policy
+copying build/lib/src/policy/response_cache.py -> build/bdist.linux-x86_64/wheel/./src/policy
+copying build/lib/src/policy/local_models.py -> build/bdist.linux-x86_64/wheel/./src/policy
+copying build/lib/src/policy/work_ledger.py -> build/bdist.linux-x86_64/wheel/./src/policy
+copying build/lib/src/policy/semantic_runtime.py -> build/bdist.linux-x86_64/wheel/./src/policy
+running install_egg_info
+Copying adaptive_agentic_semantic_cache.egg-info to build/bdist.linux-x86_64/wheel/./adaptive_agentic_semantic_cache-0.1.0-py3.12.egg-info
+running install_scripts
+creating build/bdist.linux-x86_64/wheel/adaptive_agentic_semantic_cache-0.1.0.dist-info/WHEEL
+creating '/tmp/group4-wheel/.tmp-u6nsvou3/adaptive_agentic_semantic_cache-0.1.0-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'adaptive_agentic_semantic_cache-0.1.0.dist-info/licenses/LICENSE'
+adding 'src/__init__.py'
+adding 'src/agents/__init__.py'
+adding 'src/agents/document_agent.py'
+adding 'src/agents/document_answer_cache.py'
+adding 'src/agents/document_orchestration.py'
+adding 'src/agents/task_memory.py'
+adding 'src/agents/workflow.py'
+adding 'src/api/__init__.py'
+adding 'src/api/dashboard.html'
+adding 'src/api/demo.py'
+adding 'src/api/demo_reference.LICENSE'
+adding 'src/api/demo_reference.json'
+adding 'src/api/gateway.py'
+adding 'src/api/providers.py'
+adding 'src/api/service.py'
+adding 'src/api/streaming.py'
+adding 'src/api/workbench.css'
+adding 'src/api/workbench.html'
+adding 'src/api/workbench.js'
+adding 'src/benchmark/__init__.py'
+adding 'src/benchmark/control.py'
+adding 'src/benchmark/diagnostics.py'
+adding 'src/benchmark/faq_corpus.py'
+adding 'src/benchmark/free_pilot.py'
+adding 'src/benchmark/natural_repetition.py'
+adding 'src/benchmark/paired_runtime.py'
+adding 'src/benchmark/pilot_package.py'
+adding 'src/benchmark/progress.py'
+adding 'src/benchmark/r5_revision.py'
+adding 'src/benchmark/report.py'
+adding 'src/benchmark/reuse_diagnosis.py'
+adding 'src/benchmark/review_agreement.py'
+adding 'src/benchmark/runner.py'
+adding 'src/benchmark/schema.py'
+adding 'src/benchmark/semantic.py'
+adding 'src/benchmark/views.py'
+adding 'src/cache/__init__.py'
+adding 'src/cache/embedding.py'
+adding 'src/cache/normalizer.py'
+adding 'src/cache/semantic_cache.py'
+adding 'src/cache/vector_store.py'
+adding 'src/classifier/__init__.py'
+adding 'src/classifier/fallback.py'
+adding 'src/classifier/models.py'
+adding 'src/classifier/rules.py'
+adding 'src/classifier/stability_classifier.py'
+adding 'src/decision/__init__.py'
+adding 'src/decision/adaptive_threshold_engine.py'
+adding 'src/decision/decision_step.py'
+adding 'src/decision/judge_call.py'
+adding 'src/decision/local_equivalence.py'
+adding 'src/decision/tier_router.py'
+adding 'src/decision_agent/__init__.py'
+adding 'src/evaluation/__init__.py'
+adding 'src/evaluation/cache_evaluator.py'
+adding 'src/evaluation/decision_evaluator.py'
+adding 'src/evaluation/intent_stage_a.py'
+adding 'src/evaluation/intent_stage_b_model.py'
+adding 'src/evaluation/intent_stage_b_policy.py'
+adding 'src/evaluation/intent_stage_b_veto.py'
+adding 'src/evaluation/stability_evaluator.py'
+adding 'src/policy/__init__.py'
+adding 'src/policy/answer_applicability.py'
+adding 'src/policy/decomposed_applicability.py'
+adding 'src/policy/encoders.py'
+adding 'src/policy/local_models.py'
+adding 'src/policy/question_conditioned.py'
+adding 'src/policy/response_cache.py'
+adding 'src/policy/semantic_runtime.py'
+adding 'src/policy/sqlite_store.py'
+adding 'src/policy/work_ledger.py'
+adding 'src/utils/__init__.py'
+adding 'adaptive_agentic_semantic_cache-0.1.0.dist-info/METADATA'
+adding 'adaptive_agentic_semantic_cache-0.1.0.dist-info/WHEEL'
+adding 'adaptive_agentic_semantic_cache-0.1.0.dist-info/top_level.txt'
+adding 'adaptive_agentic_semantic_cache-0.1.0.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel
+WARNING `project.license` as a TOML table is deprecated
+!!
+
+        ********************************************************************************
+        Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+        By 2027-Feb-18, you need to update your project and remove deprecated calls
+        or your builds will no longer be supported.
+
+        See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+        ********************************************************************************
+
+!!
+Successfully built adaptive_agentic_semantic_cache-0.1.0-py3-none-any.whl

@@ -1,0 +1,85 @@
+{
+  "evidence_type": "exposed model-authored/human-reviewed diagnostic; not fresh final or serving evaluation",
+  "rows": 30,
+  "provider_calls": 0,
+  "serving_enabled": false,
+  "methods": {
+    "dense_only": {
+      "counts": {
+        "recommended": 3,
+        "known_sufficient": 2,
+        "known_insufficient": 1,
+        "unknown_selected_answer": 0,
+        "abstained": 27
+      },
+      "recommended_cases": [
+        {
+          "human_id": "H10",
+          "selected_seed": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "human_answer_label": true,
+          "candidate": {
+            "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+            "answer_sha256": "05f57de78aeaf46aa02551cc8c4267cd923a7b21c5165a3a6725ac86d8775ad5",
+            "dense_cosine": 0.8701935450826681,
+            "logit": -1.2089426517486572,
+            "pair_score": 0.22988819001078958,
+            "input_tokens": 38
+          }
+        },
+        {
+          "human_id": "H12",
+          "selected_seed": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "human_answer_label": false,
+          "candidate": {
+            "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+            "answer_sha256": "700ce894e9c1e054d9f05005b2cf24d5ca17bf2e48874436b148d5fe85fb8eeb",
+            "dense_cosine": 0.9234989537385168,
+            "logit": -5.508615970611572,
+            "pair_score": 0.004035361074145687,
+            "input_tokens": 29
+          }
+        },
+        {
+          "human_id": "H19",
+          "selected_seed": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "human_answer_label": true,
+          "candidate": {
+            "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+            "answer_sha256": "700ce894e9c1e054d9f05005b2cf24d5ca17bf2e48874436b148d5fe85fb8eeb",
+            "dense_cosine": 0.890021426985606,
+            "logit": -7.932187080383301,
+            "pair_score": 0.00035887155595558894,
+            "input_tokens": 32
+          }
+        }
+      ]
+    },
+    "pair_only": {
+      "counts": {
+        "recommended": 0,
+        "known_sufficient": 0,
+        "known_insufficient": 0,
+        "unknown_selected_answer": 0,
+        "abstained": 30
+      },
+      "recommended_cases": []
+    },
+    "combined_margin": {
+      "counts": {
+        "recommended": 0,
+        "known_sufficient": 0,
+        "known_insufficient": 0,
+        "unknown_selected_answer": 0,
+        "abstained": 30
+      },
+      "recommended_cases": []
+    }
+  },
+  "labels_sha256": "d50506918cf354fa278dd3e45fe16c3565fcc3d106d6f79798326b6ca29b82a7",
+  "predictions_sha256": "be9a56da5963b91f513953071e1aae9e4d108c4e209246afee4c2313afe68e4c",
+  "limitations": [
+    "Three correlated, exposed FAQ sources; questions model-authored.",
+    "Similarity is not actual-answer sufficiency. No serving promotion or threshold selection.",
+    "No representative coverage, latency or cost claim; only diagnostic counts reported."
+  ]
+}

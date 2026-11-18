@@ -1,0 +1,597 @@
+{
+  "evidence_type": "synthetic_designated_pair_classification_diagnostic_not_reuse_precision",
+  "train": {
+    "11": {
+      "n": 1056,
+      "accuracy": 1.0,
+      "seconds": 51.84659180199992
+    },
+    "29": {
+      "n": 1056,
+      "accuracy": 1.0,
+      "seconds": 45.60185496000008
+    },
+    "47": {
+      "n": 1056,
+      "accuracy": 1.0,
+      "seconds": 53.264273082000045
+    }
+  },
+  "held_out": [
+    {
+      "split": "dev",
+      "seed": 11,
+      "n": 704,
+      "accuracy": 0.4630681818181818,
+      "confusion": {
+        "same_intent -> different_intent": 186,
+        "new_more_specific -> different_intent": 128,
+        "new_more_general -> different_intent": 64,
+        "different_intent -> different_intent": 320,
+        "same_intent -> same_intent": 6
+      },
+      "per_lineage": {
+        "operation:capitalize": {
+          "n": 88,
+          "correct": 40
+        },
+        "operation:lowercase": {
+          "n": 88,
+          "correct": 42
+        },
+        "operation:reverse-text": {
+          "n": 88,
+          "correct": 40
+        },
+        "operation:split-lines": {
+          "n": 88,
+          "correct": 40
+        },
+        "operation:strip-space": {
+          "n": 88,
+          "correct": 40
+        },
+        "operation:titlecase": {
+          "n": 88,
+          "correct": 40
+        },
+        "operation:uppercase": {
+          "n": 88,
+          "correct": 44
+        },
+        "operation:word-count": {
+          "n": 88,
+          "correct": 40
+        }
+      },
+      "per_template": {
+        "dev:formatter-1:added_requirement": {
+          "n": 64,
+          "correct": 0
+        },
+        "dev:formatter-1:direction_inversion": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-1:paraphrase": {
+          "n": 64,
+          "correct": 6
+        },
+        "dev:formatter-1:quantity": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-2:entity_swap": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-2:paraphrase": {
+          "n": 64,
+          "correct": 0
+        },
+        "dev:formatter-2:removed_requirement": {
+          "n": 64,
+          "correct": 0
+        },
+        "dev:formatter-2:unit": {
+          "n": 64,
+          "correct": 0
+        },
+        "dev:formatter-3:negation": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-3:paraphrase": {
+          "n": 64,
+          "correct": 0
+        },
+        "dev:formatter-3:version": {
+          "n": 64,
+          "correct": 64
+        }
+      }
+    },
+    {
+      "split": "dev",
+      "seed": 29,
+      "n": 704,
+      "accuracy": 0.7315340909090909,
+      "confusion": {
+        "same_intent -> same_intent": 65,
+        "same_intent -> new_more_specific": 63,
+        "same_intent -> new_more_general": 64,
+        "new_more_specific -> new_more_specific": 128,
+        "new_more_general -> new_more_specific": 38,
+        "different_intent -> different_intent": 320,
+        "new_more_general -> different_intent": 24,
+        "new_more_general -> new_more_general": 2
+      },
+      "per_lineage": {
+        "operation:capitalize": {
+          "n": 88,
+          "correct": 64
+        },
+        "operation:lowercase": {
+          "n": 88,
+          "correct": 64
+        },
+        "operation:reverse-text": {
+          "n": 88,
+          "correct": 64
+        },
+        "operation:split-lines": {
+          "n": 88,
+          "correct": 64
+        },
+        "operation:strip-space": {
+          "n": 88,
+          "correct": 64
+        },
+        "operation:titlecase": {
+          "n": 88,
+          "correct": 64
+        },
+        "operation:uppercase": {
+          "n": 88,
+          "correct": 64
+        },
+        "operation:word-count": {
+          "n": 88,
+          "correct": 67
+        }
+      },
+      "per_template": {
+        "dev:formatter-1:added_requirement": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-1:direction_inversion": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-1:paraphrase": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-1:quantity": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-2:entity_swap": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-2:paraphrase": {
+          "n": 64,
+          "correct": 1
+        },
+        "dev:formatter-2:removed_requirement": {
+          "n": 64,
+          "correct": 2
+        },
+        "dev:formatter-2:unit": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-3:negation": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-3:paraphrase": {
+          "n": 64,
+          "correct": 0
+        },
+        "dev:formatter-3:version": {
+          "n": 64,
+          "correct": 64
+        }
+      }
+    },
+    {
+      "split": "dev",
+      "seed": 47,
+      "n": 704,
+      "accuracy": 0.6377840909090909,
+      "confusion": {
+        "same_intent -> same_intent": 60,
+        "same_intent -> new_more_specific": 60,
+        "same_intent -> new_more_general": 68,
+        "new_more_specific -> new_more_specific": 128,
+        "new_more_general -> different_intent": 47,
+        "different_intent -> different_intent": 261,
+        "different_intent -> new_more_specific": 59,
+        "new_more_general -> new_more_specific": 17,
+        "same_intent -> different_intent": 4
+      },
+      "per_lineage": {
+        "operation:capitalize": {
+          "n": 88,
+          "correct": 58
+        },
+        "operation:lowercase": {
+          "n": 88,
+          "correct": 56
+        },
+        "operation:reverse-text": {
+          "n": 88,
+          "correct": 56
+        },
+        "operation:split-lines": {
+          "n": 88,
+          "correct": 54
+        },
+        "operation:strip-space": {
+          "n": 88,
+          "correct": 56
+        },
+        "operation:titlecase": {
+          "n": 88,
+          "correct": 57
+        },
+        "operation:uppercase": {
+          "n": 88,
+          "correct": 56
+        },
+        "operation:word-count": {
+          "n": 88,
+          "correct": 56
+        }
+      },
+      "per_template": {
+        "dev:formatter-1:added_requirement": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-1:direction_inversion": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-1:paraphrase": {
+          "n": 64,
+          "correct": 60
+        },
+        "dev:formatter-1:quantity": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-2:entity_swap": {
+          "n": 64,
+          "correct": 5
+        },
+        "dev:formatter-2:paraphrase": {
+          "n": 64,
+          "correct": 0
+        },
+        "dev:formatter-2:removed_requirement": {
+          "n": 64,
+          "correct": 0
+        },
+        "dev:formatter-2:unit": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-3:negation": {
+          "n": 64,
+          "correct": 64
+        },
+        "dev:formatter-3:paraphrase": {
+          "n": 64,
+          "correct": 0
+        },
+        "dev:formatter-3:version": {
+          "n": 64,
+          "correct": 64
+        }
+      }
+    },
+    {
+      "split": "calibration",
+      "seed": 11,
+      "n": 2816,
+      "accuracy": 0.45454545454545453,
+      "confusion": {
+        "same_intent -> different_intent": 768,
+        "new_more_specific -> different_intent": 512,
+        "new_more_general -> different_intent": 256,
+        "different_intent -> different_intent": 1280
+      },
+      "per_lineage": {
+        "operation:count-digits": {
+          "n": 352,
+          "correct": 160
+        },
+        "operation:count-spaces": {
+          "n": 352,
+          "correct": 160
+        },
+        "operation:encode-base64": {
+          "n": 352,
+          "correct": 160
+        },
+        "operation:encode-json": {
+          "n": 352,
+          "correct": 160
+        },
+        "operation:encode-utf8": {
+          "n": 352,
+          "correct": 160
+        },
+        "operation:html-escape": {
+          "n": 352,
+          "correct": 160
+        },
+        "operation:remove-vowels": {
+          "n": 352,
+          "correct": 160
+        },
+        "operation:swap-case": {
+          "n": 352,
+          "correct": 160
+        }
+      },
+      "per_template": {
+        "calibration:formatter-1:added_requirement": {
+          "n": 256,
+          "correct": 0
+        },
+        "calibration:formatter-1:direction_inversion": {
+          "n": 256,
+          "correct": 256
+        },
+        "calibration:formatter-1:paraphrase": {
+          "n": 256,
+          "correct": 0
+        },
+        "calibration:formatter-1:quantity": {
+          "n": 256,
+          "correct": 256
+        },
+        "calibration:formatter-2:entity_swap": {
+          "n": 256,
+          "correct": 256
+        },
+        "calibration:formatter-2:paraphrase": {
+          "n": 256,
+          "correct": 0
+        },
+        "calibration:formatter-2:removed_requirement": {
+          "n": 256,
+          "correct": 0
+        },
+        "calibration:formatter-2:unit": {
+          "n": 256,
+          "correct": 0
+        },
+        "calibration:formatter-3:negation": {
+          "n": 256,
+          "correct": 256
+        },
+        "calibration:formatter-3:paraphrase": {
+          "n": 256,
+          "correct": 0
+        },
+        "calibration:formatter-3:version": {
+          "n": 256,
+          "correct": 256
+        }
+      }
+    },
+    {
+      "split": "calibration",
+      "seed": 29,
+      "n": 2816,
+      "accuracy": 0.6935369318181818,
+      "confusion": {
+        "same_intent -> new_more_specific": 544,
+        "same_intent -> different_intent": 200,
+        "new_more_specific -> new_more_specific": 495,
+        "new_more_general -> different_intent": 18,
+        "different_intent -> different_intent": 1257,
+        "different_intent -> new_more_specific": 23,
+        "new_more_general -> new_more_general": 185,
+        "new_more_general -> new_more_specific": 53,
+        "new_more_specific -> different_intent": 17,
+        "same_intent -> new_more_general": 8,
+        "same_intent -> same_intent": 16
+      },
+      "per_lineage": {
+        "operation:count-digits": {
+          "n": 352,
+          "correct": 248
+        },
+        "operation:count-spaces": {
+          "n": 352,
+          "correct": 255
+        },
+        "operation:encode-base64": {
+          "n": 352,
+          "correct": 218
+        },
+        "operation:encode-json": {
+          "n": 352,
+          "correct": 248
+        },
+        "operation:encode-utf8": {
+          "n": 352,
+          "correct": 223
+        },
+        "operation:html-escape": {
+          "n": 352,
+          "correct": 236
+        },
+        "operation:remove-vowels": {
+          "n": 352,
+          "correct": 264
+        },
+        "operation:swap-case": {
+          "n": 352,
+          "correct": 261
+        }
+      },
+      "per_template": {
+        "calibration:formatter-1:added_requirement": {
+          "n": 256,
+          "correct": 239
+        },
+        "calibration:formatter-1:direction_inversion": {
+          "n": 256,
+          "correct": 256
+        },
+        "calibration:formatter-1:paraphrase": {
+          "n": 256,
+          "correct": 0
+        },
+        "calibration:formatter-1:quantity": {
+          "n": 256,
+          "correct": 256
+        },
+        "calibration:formatter-2:entity_swap": {
+          "n": 256,
+          "correct": 233
+        },
+        "calibration:formatter-2:paraphrase": {
+          "n": 256,
+          "correct": 16
+        },
+        "calibration:formatter-2:removed_requirement": {
+          "n": 256,
+          "correct": 185
+        },
+        "calibration:formatter-2:unit": {
+          "n": 256,
+          "correct": 256
+        },
+        "calibration:formatter-3:negation": {
+          "n": 256,
+          "correct": 256
+        },
+        "calibration:formatter-3:paraphrase": {
+          "n": 256,
+          "correct": 0
+        },
+        "calibration:formatter-3:version": {
+          "n": 256,
+          "correct": 256
+        }
+      }
+    },
+    {
+      "split": "calibration",
+      "seed": 47,
+      "n": 2816,
+      "accuracy": 0.5671164772727273,
+      "confusion": {
+        "same_intent -> new_more_specific": 721,
+        "same_intent -> different_intent": 32,
+        "new_more_specific -> new_more_specific": 512,
+        "new_more_general -> new_more_specific": 192,
+        "different_intent -> different_intent": 1032,
+        "different_intent -> new_more_specific": 242,
+        "new_more_general -> new_more_general": 38,
+        "same_intent -> same_intent": 15,
+        "different_intent -> same_intent": 6,
+        "new_more_general -> same_intent": 26
+      },
+      "per_lineage": {
+        "operation:count-digits": {
+          "n": 352,
+          "correct": 200
+        },
+        "operation:count-spaces": {
+          "n": 352,
+          "correct": 200
+        },
+        "operation:encode-base64": {
+          "n": 352,
+          "correct": 192
+        },
+        "operation:encode-json": {
+          "n": 352,
+          "correct": 196
+        },
+        "operation:encode-utf8": {
+          "n": 352,
+          "correct": 192
+        },
+        "operation:html-escape": {
+          "n": 352,
+          "correct": 196
+        },
+        "operation:remove-vowels": {
+          "n": 352,
+          "correct": 222
+        },
+        "operation:swap-case": {
+          "n": 352,
+          "correct": 199
+        }
+      },
+      "per_template": {
+        "calibration:formatter-1:added_requirement": {
+          "n": 256,
+          "correct": 256
+        },
+        "calibration:formatter-1:direction_inversion": {
+          "n": 256,
+          "correct": 256
+        },
+        "calibration:formatter-1:paraphrase": {
+          "n": 256,
+          "correct": 0
+        },
+        "calibration:formatter-1:quantity": {
+          "n": 256,
+          "correct": 256
+        },
+        "calibration:formatter-2:entity_swap": {
+          "n": 256,
+          "correct": 8
+        },
+        "calibration:formatter-2:paraphrase": {
+          "n": 256,
+          "correct": 15
+        },
+        "calibration:formatter-2:removed_requirement": {
+          "n": 256,
+          "correct": 38
+        },
+        "calibration:formatter-2:unit": {
+          "n": 256,
+          "correct": 256
+        },
+        "calibration:formatter-3:negation": {
+          "n": 256,
+          "correct": 256
+        },
+        "calibration:formatter-3:paraphrase": {
+          "n": 256,
+          "correct": 0
+        },
+        "calibration:formatter-3:version": {
+          "n": 256,
+          "correct": 256
+        }
+      }
+    }
+  ]
+}

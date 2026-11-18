@@ -1,0 +1,13 @@
+{
+  "questions": 30,
+  "human_labels": 0,
+  "question_origin": "model_authored",
+  "model_judgments_in_human_form": false,
+  "blinding": "withheld in delivered form; not independently verified",
+  "model_responses_sha256": "073c4ddd629014aaf517c97c7a802dabe1ccc3ea216effb291e0d6be456d68e8",
+  "files": {
+    "mapping.json": "c834722b495b9ea9664f9a7697a026c1fc835535f0e0cb92c1010868e5cee0f7",
+    "human-responses.template.jsonl": "1d740cf68852dfe5148bbe37b482a5d8942ba4efb87212737594105bfa6f3cfe",
+    "Human_Answer_Review.md": "5ab459e2b8a81292140758a44b558fc71a96bd597529ebb8f2e468a007114050"
+  }
+}

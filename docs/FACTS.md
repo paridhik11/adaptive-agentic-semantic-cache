@@ -683,3 +683,441 @@ External model calls and independent reviews are zero. Tokens, answer correctnes
 and semantic precision remain unknown. These are development fixture results,
 not live latency or inference savings. `R5_PROTOCOL.md` is prospective for the
 live pilot, not retrospective preregistration of the initial exploratory replay.
+
+
+## Claim-hygiene audit evidence
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| CLAIM-AUDIT-SUITE | Historical R5 offline suite: 620 passed, 23 excluded, 114.29 seconds | Recorded engineering result, not a new run or accuracy/safety rate | docs/audit/R5_VALIDATION.json |
+| CLAIM-AUDIT-TIMING | Recomputed historical AUTO_REUSE sample counts: 20, 1, 1 in workloads 70, 338, 175 | Saved telemetry arithmetic only; baseline is AMBIGUOUS total pipeline including remote judging, not fresh generation | data/load_test_telemetry.json; data/scaled_load_test_telemetry_corrected.json; data/phase6_telemetry.json; docs/audit/CLAIM_HYGIENE_VALIDATION.json |
+
+
+## R6 static-document agent-stage engineering result
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| R6-STAGE-COUNTS | Single frozen source-reference replay: 44 tasks per arm; off 132 fixture provider calls, exact 110; 88 actual local tool dispatches per arm; 22 exact draft hits | Controlled development engineering PASS; identical task statuses/final text across arms and verified original R5 baseline. Not live model savings or semantic precision. | docs/audit/R6_AGENT_STAGE_RESULT.json; docs/audit/R6_STAGE_FREEZE.json |
+| R6-STAGE-WORK | Planner 44 calls and reviewer 44 calls in each arm; drafting 44 off versus 22 exact | All stages included; no tool memoization or omitted reviewer work | docs/audit/R6_STAGE_VALIDATION.json |
+| R6-STAGE-TESTS | Final offline suite 660 passed, 23 excluded, 125.16 seconds; focused tests 60 passed, 7.32 seconds | Engineering regressions; no model/API integration or independently reviewed accuracy observations | docs/audit/R6_STAGE_VALIDATION.json |
+| R6-STAGE-LIMITS | External model calls 0; independent answer reviews 0; criterion runs 1 | Semantic quality, actual model tokens, live latency and monetary savings unmeasured. Original R5 negative baseline and preregistration unchanged. | docs/audit/R6_AGENT_STAGE_CLOSEOUT.md |
+
+## R5 live-development profile repair (October 20, 2026)
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| R5-V1-USER-PAUSE | User-pasted live diagnostics: output_token_limit, finish_reason length, 1024 completion tokens, 225 prompt tokens, 3869 answer characters | Incomplete response; user-supplied evidence, local journal not independently inspected here. Total predecessor calls unknown until journal read. | docs/R5_LIVE_V2_PROTOCOL.md |
+| R5-V2-PROFILE | Planned revision: at most 180 words, 4096 output-token allowance, same free model with reasoning off, 8 events across 2 arms; combined v1+v2 cap 16, shared limits 40/day and 10/minute | Prospective development settings, not observed completion or quality. Old attempt counts are subtracted, never reset. | docs/R5_LIVE_V2_PROTOCOL.md; src/benchmark/r5_revision.py |
+| DELIVERY-20261020 | User allows approximately 8–10 days at about 3 focused hours/day; working target October 28–30 | Planning estimate supersedes earlier deadline; not an assurance of positive results, provider availability or unattended work. | User conversation; docs/EXECUTION_ROADMAP.md |
+| R5-V2-OFFLINE | Full suite: 678 passed, 23 excluded, 127.36 seconds; focused suite: 44 passed; external model calls 0 | Offline engineering checks including fixture CLI pause/resume/export. No live-v2 completion, answer-quality or savings claim. | docs/audit/R5_LIVE_V2_VALIDATION.json |
+
+
+## R5 stopped-collection recovery
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| R5-V2-BUDGET-STOP | User-pasted v2 reason run_attempt_budget_exhausted; retry_at null; resume disallowed | Reported collection stop, not a completed paired comparison. Per-run attempt split and complete responses require journal inspection. No cap reset or further inference authorized by the export. | User conversation; docs/R5_PARTIAL_EXPORT.md |
+| R5-PARTIAL-EXPORT-TESTS | 51 focused tests passed in 1.36 seconds, including 7 exporter tests; external model calls 0 | Offline engineering evidence. Full suite not rerun for the additive exporter; no new answer-quality, latency or savings measurements. | tests/test_r5_journal_export.py; docs/R5_PARTIAL_EXPORT.md |
+
+
+## R5 uploaded partial live evidence
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| R5-PARTIAL-LIVE-COUNTS | V1: 6 attempts, 5 complete responses, 1 truncated. V2: 10 attempts, 10 complete, 0 truncated. Combined 16 attempts; 12 unique request-bound review items from 15 complete responses. | User-supplied saved-live evidence verified offline. No completed paired comparison, independent quality labels or valid live-latency result. | docs/audit/R5_PARTIAL_LIVE_AUDIT.json |
+| R5-PARTIAL-LIVE-USAGE | V1 observed prompt/completion tokens 1314/2346; v2 2580/1347; reasoning tokens 0 in each | Includes original truncated attempt. Different profiles and incomplete coverage prevent a paired savings inference. | docs/audit/R5_PARTIAL_LIVE_AUDIT.json |
+| R5-PARTIAL-AUDIT-CHECKS | Manifest, request/response/review bindings verified; 5 negative mutations rejected; 0 new external model calls; human labels 0 | Internal consistency, not independent authentication of provider execution. Raw journal not supplied. | docs/audit/R5_PARTIAL_LIVE_CLOSEOUT.md; scripts/audit_r5_partial.py |
+
+
+## R5 Antigravity review reconciliation
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| R5-ANTIGRAVITY-LABELS | Final 12-item review: 2 correct/supported, 9 correct/unsupported, 1 incorrect/unsupported; 0 human reviews | Third-party model-assisted labels as submitted, with disputed judgments. No accuracy/safety rate or passed gate follows. | docs/audit/R5_ANTIGRAVITY_RECONCILIATION.json |
+| R5-ANTIGRAVITY-CHECKS | All 12 immutable bindings verified; 6 invalid temporary mutations rejected; 0 external model calls | Final second attachment accepted; earlier transcript draft has 3 immutable-field differences and is not imported. Original labels retained. | docs/audit/R5_ANTIGRAVITY_RECONCILIATION.md |
+
+
+## Live-agent pilot preparation
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| AGENT-LIVE-PROFILE | Planned 4 tasks, 3 generation calls maximum per task, 0 revision retries, new experiment cap 12; shared project limits 40/day and 10/minute; output allowance 4096; draft under 180 words | Prospective development profile, not a live result. Budget for zero hits; human approval required. | docs/LIVE_AGENT_PILOT_PROTOCOL.md |
+| AGENT-LIVE-PREPARATION | 70 focused tests passed in 1.85 seconds; actual-corpus no-key plan passed; fixture calls off 6 versus exact 5; 0 external model calls, 0 human approvals | Engineering preparation only. No completed live comparison or independent answer quality result. Full suite not rerun for additive runner. | docs/audit/LIVE_AGENT_PREPARATION.json |
+
+
+## Integrated local workbench
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| LIVE-AGENT-PARTIAL | User-uploaded pilot: 6 attempts, 5 complete responses, 1 recorded upstream HTTP 502; 2 document reads; 0 repeated tasks or observed draft hits | Off seed awaiting human approval; exact seed failed during workflow review. No completed live comparison or savings result. | docs/audit/LIVE_AGENT_PARTIAL_RESULT.json |
+| WORKBENCH-FLOW | Scripted HTTP flow: first task 3 calls, identical repeat 2 with exact draft HIT, cache-off task 3; 3 versioned source documents; 0 external model calls | Actual agent/tools/cache/decision integration with scripted responses; not live quality or savings. Default local address 127.0.0.1, port 8765. | docs/audit/WORKBENCH_VALIDATION.json |
+| WORKBENCH-TESTS | Full suite 701 passed, 23 excluded, 120.31 seconds; 10 workbench API tests included; JS syntax and wheel assets passed | Offline engineering evidence. Browser visual QA unavailable. | docs/audit/WORKBENCH_VALIDATION.json |
+| WORKBENCH-LIVE-PROFILE | Optional explicit live mode: fixed product-demo-v1 cap 12, task max calls 3, revision retries 0, output allowance 4096; shared project caps 40/day and 10/minute | Configuration only. New-task capacity checks budget for zero hits. No live workbench calls during development. | src/api/demo.py; docs/WORKBENCH.md |
+
+## Semantic preparation: actual local models (October 20, 2026)
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| SEMANTIC-PREP-MODELS | Pinned MiniLM and Quora pair model safetensors downloaded explicitly, content hashes recorded, both run locally; historical fine-tuned weights absent | Actual local model availability/inference, not reproduction of the missing trained checkpoint | docs/audit/SEMANTIC_PREPARATION_RESULT.json; src/policy/local_models.py |
+| SEMANTIC-PREP-PROBE | 5 authored seed questions, 8 exposed development probes including 3 positive paraphrases; dense top candidate matches authored intended seed on all 3 positives. Quora pair scores below 0.03 on 2 positives | Functional retrieval observation; exposes pair-model coverage risk. Not independent actual-answer precision, final evaluation or a serving policy | docs/audit/SEMANTIC_PREPARATION_RESULT.json; scripts/run_semantic_probe.py |
+| SEMANTIC-PREP-OFFLINE | Offline inference passed with socket connect/create_connection blocked; 0 remote generation calls, 0 human reviews. Focused offline tests: 45 passed | Local runtime and regression checks; full suite not rerun for additive preparation tools | docs/audit/SEMANTIC_PREPARATION_RESULT.json |
+| SEMANTIC-PREP-PLAN | Hypothetical 125 accepted groups with 2 failures: exact one-sided 95% lower bound 0.9504921627. Assumed 30% independent group acceptance: 417 positive groups for expected count, 470 for at least 95% sufficiency probability | Prospective planning arithmetic only; acceptance assumption unmeasured, reviewers unconfirmed, final cohort not frozen | scripts/plan_semantic_review.py; docs/SEMANTIC_EVALUATION_CONTRACT.md |
+
+## Answer-aware local policy development (October 21, 2026)
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| ANSWER-POLICY-BASELINES | 15 authored development cases in 3 correlated intent groups: 4 expected positives, 11 negatives. FLAN recommends 0 positive/0 negative reuses; Qwen recommends 4 positive/8 negative reuses | Both baselines unusable: zero positive coverage versus unsafe recommendations. Builder-authored expectations, not independent human or model-review ground truth. No population quality rate or gate pass | docs/audit/ANSWER_POLICY_RESULT.json; scripts/probe_answer_applicability.py |
+| ANSWER-POLICY-INTEGRATION | Each model's real dense/exact cache probe: seed MISS, exact repeat HIT, paraphrase MISS; 2 scripted provider calls, 0 remote verifier calls, 2 local checks on paraphrase | Diagnostic approval always false, including positive recommendations; no new semantic serving enabled. Provider answers are authored fixtures | docs/audit/ANSWER_POLICY_RESULT.json |
+| ANSWER-POLICY-VALIDATION | Full offline suite: 726 passed, 23 deselected in 119.43 seconds. Focused suite 62 passed; final guard check 17 passed. Both model inference runs block Python socket connections; 0 external generation calls, 0 human reviews | Engineering checks and model-assisted development diagnostics. No live savings, calibrated correctness probability or independent final evaluation | docs/audit/ANSWER_POLICY_RESULT.json |
+
+## Decomposed local applicability development
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| DECOMPOSED-RECOMMENDATIONS | 45 authored cases / 13 groups: 2/14 positive recommendations, 0/31 negative recommendations | Inadequate positive coverage; correlated authored fixtures cannot establish population safety or precision. Production policy always abstains | docs/audit/DECOMPOSED_POLICY_RESULT.json |
+| DECOMPOSED-CACHE | Expanded fixture replay: 2 semantic hits, 0 unsafe semantic hits, 1 known-bad seed reused by exact cache, 87 scripted provider invocations including seeds | Isolated socket-blocked experiment, not enabled serving or live savings. Complete-response admission does not establish factual quality | docs/audit/DECOMPOSED_POLICY_CLOSEOUT.md |
+| DECOMPOSED-VALIDATION | 744 passed, 23 deselected, 126.00 seconds; 80 focused tests passed; 0 external generation calls, 0 human reviews | Engineering regression checks and builder-authored model-assisted diagnostics; final quality gate not evaluated | docs/audit/DECOMPOSED_POLICY_RESULT.json |
+
+## Day 3 research and QA applicability experiments
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| DAY3-QA-DATA | 75 authored cases in 23 correlated groups, 24 positives/51 negatives; 45 original cases unchanged plus 30 additional development cases | Builder-authored expectations and source fixtures, not independent labels or final evaluation | docs/DAY3_RESEARCH_AND_PROTOCOL.md; docs/audit/day3/*.json.gz |
+| DAY3-QA-VARIANTS | Initial QA margin 0, support 0.95: strict 0 positive/0 negative accepts; call anchors 5/0; function rewrite 13/4; intent-gated hybrid 6/0 | Denominators 24 positives/51 negatives. Hybrid old cohort 2/14 positives, new cohort 4/10. No generalization claim from cohort expansion | docs/audit/DAY3_POLICY_RESULT.json |
+| DAY3-QA-CACHE | Isolated actual-cache replay across 75 cases: semantic hits strict 0 (0 unsafe), anchors 4 (0), function rewrite 7 (2), hybrid 4 (0); each variant also has 1 known-bad exact seed reuse | Scripted provider/socket-blocked local model experiments, not live savings or enabled production. Retrieval and approval denominators differ | docs/audit/DAY3_CLOSEOUT.md; docs/audit/day3/*.json.gz |
+| DAY3-QA-CURVES | 25 fixed grid points per QA variant, all 100 recomputed; none jointly attains >=30% positive coverage and zero negative accepts on these authored cases | Descriptive development failure, no threshold selected. Day 3 quality remains blocked | scripts/analyze_day3_policies.py; docs/audit/DAY3_POLICY_CURVES.svg |
+| DAY3-REGRESSIONS | Full offline suite 767 passed/23 deselected, 118.90 s. Final boundary hardening: 79 focused tests passed; 232 recorded QA triplet agreement decisions unchanged. Both runners reject evidence overwrite. 0 external generation calls/0 human reviews | Engineering verification, not model accuracy. Restored full-score baseline remains 2/14 positive and 0/31 negative recommendations on old 45 cases | docs/audit/DAY3_POLICY_RESULT.json |
+
+
+## Stage A final-split lock (created before any Stage A evaluation)
+
+Final manifest SHA-256: `1d83b84584b62fc1d5662a45e0db7d5753f5871fa273dadb62f1f3a7b01e39af`. Data SHA-256: `0869f373fce124f5aa7039e09cd65069152632f09a6d918a30a07e9f6a82afba`. Generator-created, template-authored labels; no final inference or per-case review. See `data/intent_stage_a/final.manifest.json`.
+
+## Intent-pair Stage A (uncommitted user-review work)
+
+| ID | Evidence | Interpretation | Source |
+| --- | --- | --- | --- |
+| INTENT-A-DATA | 215 groups: train 96, dev 59, calibration 36, final 24. Dev 668 new-question pairs, including 224 labeled non-exact positives | Authored/template-generated, source-lineage split, not independent human labels. Final locked and unevaluated; old spent cases dev-only | data/intent_stage_a/manifest.json |
+| INTENT-A-RETRIEVAL | Dev MiniLM designated-group recall@1 221/224; @3 and @5 224/224 | Conditional constructed positive-opportunity retrieval, separate from pair decisions and serving hit rate | artifacts/stage_a/baselines-v1/metrics.json |
+| INTENT-A-BASELINES | Real local MiniLM, Quora and approved Redis scores, fixed baseline grids, per-family errors and group/lineage counts; original and verified metrics preserved | No selected policy, calibration, training or enabled serving. Parsed-call comparator not run: unapproved QA/NLI checkpoints absent | artifacts/stage_a/verified/metrics.json; docs/audit/STAGE_A_REPORT.md |
+| INTENT-A-VALIDATION | 9 focused tests passed; no final evaluation, external model inference, training or Git publication | Engineering checks, not model-precision evidence. Redistribution/retrieval bundle contains working-tree artifacts; pretrained cache restored via pinned scripts | artifacts/stage_a/tests.txt; artifacts/stage_a/BACKUP_MANIFEST.json |
+
+
+## Stage A final regeneration verification (2026-10-21)
+
+Evidence type: deterministic hash check, not model evaluation. Isolated
+regeneration matched the final manifest and both final stores byte-for-byte.
+Final manifest SHA-256 remains
+`1d83b84584b62fc1d5662a45e0db7d5753f5871fa273dadb62f1f3a7b01e39af`.
+Receipt: `artifacts/stage_a/final-regeneration-v1.json`. Command:
+`python scripts/verify_stage_a_regeneration.py --receipt artifacts/stage_a/final-regeneration-v1.json`
+(use a new receipt filename on repetition). No final per-case inspection or
+evaluation occurred. Final question/answer stores stay out of Git and remain
+in the backup. Public generator reproducibility is not cryptographic sealing.
+
+
+## Stage B preregistered construction (before training)
+
+Evidence: synthetic template-held-out construction, not human truth. Version v2
+contains train 96 groups/24 lineages, dev 64/8, calibration 256/8. Manifest SHA-256:
+`6169212e09ed657fbdbd321995b80cc5df685430e1538a4b46426b698a38e9e2`.
+No final split was read/evaluated. Training and calibration settings are fixed in
+`configs/intent_stage_b_v1.json` and `configs/intent_stage_b_calibration_v1.json`.
+Natural-review request: 50 blank slots; public data not approved/downloaded.
+
+
+## Stage B B1 training
+
+Evidence: synthetic TRAIN-only fit, not generalization. All three fixed seeds
+(11, 29, 47) trained on 1,056 nonexact, nonnull labeled pairs with the fixed
+Quora-base LoRA architecture. Each post-fit train diagnostic was 1,056/1,056
+four-class correct. This is not reuse precision or a population accuracy claim.
+All learned tensors exported to safetensors; exact reconstruction probes passed.
+Hashes, hardware, config, per-epoch losses, wall time and command:
+`artifacts/stage_b/training-v1.json`, `train-classification-v1.json`,
+`model-receipts/`. Models frozen before dev/calibration experiments.
+
+
+## Stage B B4 calibration
+
+Evidence: synthetic calibration-only, conditional exact group-bound selection.
+All three prespecified seeds have no qualifying fixed-grid threshold. Selected
+policies always abstain semantically: zero safe coverage, precision undefined.
+No held-out tuning or final evaluation occurred. See calibration-v1/selection.json
+and docs/audit/STAGE_B_B4.md. This does not complete the Day 3 quality objective.
+
+
+## Stage B B5 closeout
+
+Evidence: Codex-authored synthetic template-held-out diagnostics; no independent
+human ground truth. Primary seed designated-pair agreement is train 100%,
+dev 46.31%, calibration 45.45%. All seeds select null thresholds and zero
+semantic coverage. The unchanged guard baseline at 0.7 records safe coverage
+128/256 dev and 1,014/1,024 calibration, with zero observed unsafe accepts under
+the authored oracle. This does not establish natural answer precision or warrant
+serving promotion. See docs/audit/STAGE_B_REPORT.md and the full raw tables.
+Stage B stops after B5; Day 3 quality remains unresolved.
+
+
+## Documentation product reconstruction — 2026-10-26
+
+Evidence type: builder-authored offline functional fixtures, not human truth.
+Durable source-bound candidates rebuilt from preserved Stage B `847d3f9`.
+Regression suite: 242 passed in 3.51s; raw
+`artifacts/documentation_rebuild/group1-tests.txt`. Four requests per arm with
+restart after seed: actual fixture invocations off 4, exact 3, guarded semantic 2.
+Answer-bound authored approvals and constant-vector test encoder; receipt and
+source hashes in `artifacts/documentation_rebuild/group1-work.json`.
+No real tokens, cost, representative latency or natural-language quality measured.
+Old missing integration results are not used. No training, live calls or final
+record evaluation. See docs/DOCUMENTATION_REBUILD.md.
+
+
+## Before-agent documentation cache — 2026-10-26
+
+Evidence: builder-authored offline whole-task fixtures; scripted approvals are
+NOT human review. Group 2 regression suite: 274 passed in 5.06s; raw
+`artifacts/documentation_rebuild/group2/tests.txt`. Four tasks per arm, restart
+after approved seed: off 12 fixture calls (4 planning/4 generation/4 review),
+exact 9 (3/3/3), guarded semantic 6 (2/2/2). Guarded task calls [3,0,0,3].
+Receipt: `artifacts/documentation_rebuild/group2/comparison-final-v2/work.json`, with actual
+states, answers, local-stage events, workload and source hashes. Constant-vector
+encoder; one frozen answer-bound authored paraphrase approval. Inner draft cache
+disabled. No natural-language quality, live cost/token/latency savings inferred.
+All comparison snapshots repeat the same fixtures and add no independent cases.
+No model training/downloads, live calls or final records read/evaluated.
+
+
+## Documentation orchestration and memory — 2026-10-31
+
+Evidence type: builder-authored offline functional fixtures, not independent human
+truth. Group 3 targeted regression suite: 293 passed in 12.94s; raw
+`artifacts/documentation_rebuild/group3/tests.txt`. New receipt:
+`artifacts/documentation_rebuild/group3/work.json`. Fresh standalone task, exact
+repeat after restart and contextual follow-up: [3,0,3] actual scripted provider
+calls (6 total). First vector retrieval computes candidate+query embeddings (2);
+restart reuses the stored vector and computes query only (1). Lexical hashing
+encoder; scripted approvals are not human review. Snapshot/revocation, isolation,
+read-only tool validation and authenticated memory management tested.
+No semantic memory precision, answer benefit, representative latency/cost, live
+savings, new training or final-split evaluation. Group 2 raw evidence is unchanged.
+
+
+## Group 4 data/evaluation preparation — 2026-11-01
+
+Evidence: engineering/schema fixtures only. 301 regression tests passed in 4.97s,
+`artifacts/documentation_rebuild/group4/tests.txt`. Installed-wheel HTTP smoke
+loaded packaged assets, approval, whole-answer reuse and memory management:
+scripted task calls [3,0], no ML-stack imports; dependencies reused from existing
+runtime, so this is NOT a clean dependency-install result. Receipt:
+`artifacts/documentation_rebuild/group4/package-smoke.json`.
+Data inventory: `artifacts/documentation_rebuild/group4/data-inventory.json`.
+New independent authoring request: 30 blank slots over 3 existing FAQ sources,
+0 new questions and 0 labels. No natural-quality observations or savings claim.
+No new training, model/data download, live calls or locked final evaluation.
+
+
+## Separate model and human review preparation — 2026-11-01
+
+User authorized a separate model-assisted review and volunteered human review.
+A separate assistant agent, instructed to see only bundled FAQ sources, authored
+and self-reviewed 30 questions. Policy blindness is by instruction, not externally
+verified. All 30 rows validate as model_assisted; no human judgments yet. No
+accuracy, precision, classifier performance or serving promotion follows.
+Model records: data/document_product_review/model_assisted_v1/.
+Human form: data/document_product_review/human_v1/Human_Answer_Review.md, shuffled,
+model labels/reasons withheld. Human returns will be recorded separately as
+human_review_of_model_authored; no human-authored wording claim. Original blank
+packet unchanged. No training, tuning, project provider call or final evaluation.
+
+
+## Complete declared human review — 2026-11-01
+
+Evidence: human review of 30 model-authored questions and source-excerpt answers,
+3 correlated FAQ sources. Latest complete user chat supersedes partial submissions.
+14 sufficient / 15 insufficient / 1 uncertain; no missing items. Model diagnostic
+judgments agree on 29 definite human labels. H05 human uncertain versus model yes;
+both rationales preserved, not resolved by overwriting either. No opposing binary
+judgments. Counts are diagnostic, not system predictions, accuracy, reuse precision
+or savings. Reviewer identity/independence/blinding not externally verified.
+`artifacts/documentation_rebuild/group4/human-review-v1/` holds comparison,
+input hashes, schema validation and tests. Raw labels remain local/private; no push.
+No training/tuning, serving promotion, live calls or locked final evaluation.
+
+
+## UI management and publication attempt — 2026-11-01
+
+Evidence: engineering regression checks, not visual/live utility. 61 focused
+API/agent tests passed in 2.45s; JS syntax passed. UI adds context list/clear and
+accurate whole-answer captions. Playwright could not launch: both its expected
+headless-shell and Chromium executables are absent; no browser downloaded and
+no visual pass claimed. Branch push was rejected by automatic approval review
+because destination-specific sharing authorization was considered ambiguous.
+No retry/workaround/push/merge occurred. See group4/ui-status.json and ui-tests.txt.
+
+
+## Release and actual-model preflight — 2026-11-01
+
+Engineering evidence: 176 focused tests passed in 3.41s; raw group4/release-preflight-tests.txt.
+Exact approved MiniLM and Quora cache snapshots both absent: group4/model-preflight.json.
+No checkpoint download, inference or synthetic score fallback. A manual GitHub
+workflow is prepared but unexecuted; no clean-install/browser success is inferred.
+Repository metadata confirms owner paridhik11 and push permission, but automatic
+approval review rejected branch publication again for unclear destination-specific
+sharing consent. No bypass or successful push. General semantic approval remains
+an unresolved core feature, not implied by completed infrastructure.
+
+
+## Actual local models restored and executed — 2026-11-01
+
+Evidence: pretrained-model diagnostic on exposed model-authored/human-reviewed
+questions, not fresh final evaluation. Exactly the two approved immutable MiniLM
+and Quora revisions restored with safetensors only, both Apache-2.0 per pinned
+cards. Per-file hashes/license, same-workspace provenance: group4/model-restore-v1.json;
+inventory rerun: model-inventory-restored-v1.json. No additional model or training.
+CrossEncoder activation_fn argument failed on installed SentenceTransformers 3.4.1;
+fixed to default_activation_function with explicit safetensors. Both models then
+executed. 30 queries x 3 actual candidates = 90 pair scorer invocations.
+Fixed .8 dense / .7 pair / .05 margin: dense recommends 3, of which 2 match human
+sufficient labels and 1 matches insufficient; Quora/combined each recommend 0.
+H12 unsafe dense recommendation cosine 0.9234989537385168. Unknown selected labels
+0 for recommendations. Similarity is not answer sufficiency. No serving promotion,
+threshold sweep, cost/latency claim or population accuracy inference. 120 focused
+regressions passed in 3.36s. Full predictions/comparison under real-model-diagnostic-v1/.
+GitHub work was paused at the user's request; only intermediate blob objects
+were uploaded before stopping, no new branch head/commit was published.
+
+
+## Resume engineering benchmark — 2026-11-01
+
+Evidence: measured local exact-cache component latency; constructed concurrency
+fixture. One fixed benchmark, five runs x 1,000 warm hits per store, three keys.
+SQLite p50 1.273999 ms / p95 1.78591505 ms (run p95 1.5945165–1.99776105 ms).
+Memory p50 .021452 ms / p95 .039598 ms. Raw samples, hardware/config/source hashes:
+artifacts/resume/cache-benchmark-v1.json. Per-store cold wave: 64 concurrent
+identical requests, 1 counted stub invocation, 1 MISS and 63 HITs. No actual LLM
+inference, external-provider traffic, production latency or monetary claim.
+320 targeted offline regressions passed in 6.09s; artifacts/resume/regression-tests.txt.
+Resume wording: docs/Resume_Ready_Project.md. No general semantic success claim.
+
+
+## Clean gateway wheel verification — 2026-11-02
+
+Evidence: installed-wheel real HTTP offline reference fixture. Fresh environment,
+minimal web runtime plus build/test tools, wheel installed without full research
+dependencies; module verified under environment site-packages outside source tree.
+Packaged assets, approval and memory list/clear passed; observed scripted calls
+[3,0] for source/exact-repeat tasks. No live inference or semantic-quality claim.
+174 focused regressions passed in 3.53s, one Starlette/httpx deprecation warning.
+Raw evidence, build log, wheel SHA and dependency versions: group4/clean-install-v1/.
+Automatic approval review rejected the renewed GitHub push because sharing consent
+for recorded review data after the prior pause was considered unclear. No push or
+alternate transport followed rejection. Browser QA and deployment remain open.
+
+
+## Answer-bound evidence correction — 2026-11-02
+
+Historical 8a272ff five-arm trace: 1,100 ordered records audited. All 129 semantic
+hit responses recovered by deterministic fixture reconstruction and full-response
+SHA-256 match (79 dense / 38 combined / 12 answer-aware). Source telemetry was
+not changed. Model-assisted source-reading review: answer-aware 11 sufficient /
+1 insufficient for strict whole-answer correctness; reversed-copy claim false.
+Not independent human truth or evidence of cache-induced degradation. Dense and
+combined retain 67 and 26 unknowns. Descriptive exact-binomial 11/12 interval
+[0.6152038348,0.9978924068] is not a population guarantee on selected exposed data.
+Raw review bindings and reconciliation: semantic_p0/answer_aware_model_reviews_v2.json,
+phase3_trace_audit_v2.json and phase3_trace_model_review_v2.json under
+artifacts/documentation_rebuild/. Historical call counts are inferred, not observed.
+
+New offline gateway replay: 220 requests/arm; observed no-cache 220 vs exact 198
+scripted attempts, 0 failures. Fixture delay 20 ms; no-cache p50/p95
+20.386301/20.636422 ms, exact 20.442820/20.614063 ms; nearest-rank quantiles.
+Not HTTP/whole-agent/live LLM timings. Usage synthetic; billable tokens and money
+null. Receipt: artifacts/documentation_rebuild/semantic_p0/answer_bound_exact_replay_v2.json.
+Corrected benchmark binds actual returned answers and scope; unknowns stay null.
+No thresholds changed, sealed final data read, models downloaded, or live API calls.
+See docs/BENCHMARK_EVIDENCE_CORRECTION.md for scope, reproduction and limitations.
+
+Validation of this correction: 250 offline regressions passed in 3.82s; one
+Starlette/httpx deprecation warning. Receipt: semantic_p0/answer_evidence_tests_v2.txt.
+
+
+## P3–P6 Flagship Delivery Checkpoint — 2026-11-02
+
+Evidence: Complete whole-agent empirical benchmarks (`scripts/benchmark_whole_agent.py`) and 8-step lifecycle demo (`scripts/demo_flagship.py`).
+Telemetry: `runs/whole_agent_benchmark_results.json` and `artifacts/resume/whole_agent_benchmark_results.json`.
+
+| # | Fact | Claim / Value | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| P3-01 | Mixed Workload: no_cache provider calls | 72 calls / 6,282 tokens (24 tasks, p50: 133.4 ms, p95: 147.2 ms) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload mixed` |
+| P3-02 | Mixed Workload: exact_only provider calls | 57 calls / 4,981 tokens (Avoided: 15 calls / 1,301 tokens, 20.7% savings, p50: 136.7 ms, p95: 175.9 ms) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload mixed` |
+| P3-03 | Mixed Workload: verified_semantic provider calls | 45 calls / 3,916 tokens (Avoided: 27 calls / 2,366 tokens, 37.7% savings, p50: 122.4 ms, p95: 163.3 ms) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload mixed` |
+| P3-04 | Mixed Workload: exact opportunity coverage | 83.3% (5 / 6 exact repeats hit exact tier) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload mixed` |
+| P3-05 | Mixed Workload: semantic opportunity coverage | 66.7% (4 / 6 safe paraphrases hit semantic tier) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload mixed` |
+| P3-06 | Mixed Workload: adversarial false hit rate | 0.0% (0 / 6 adversarial constraints hit cache; 100% fail closed to fresh agent execution) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload mixed` |
+| P3-07 | Repeat-Rich Workload: no_cache provider calls | 72 calls / 6,260 tokens (24 tasks, p50: 144.2 ms, p95: 165.5 ms) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload repeat_rich` |
+| P3-08 | Repeat-Rich Workload: exact_only provider calls | 42 calls / 3,659 tokens (Avoided: 30 calls / 2,601 tokens, 41.5% savings, p50: 134.1 ms, p95: 170.5 ms) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload repeat_rich` |
+| P3-09 | Repeat-Rich Workload: verified_semantic provider calls | 18 calls / 1,558 tokens (Avoided: 54 calls / 4,702 tokens, 75.1% savings, p50: 43.9 ms, p95: 144.2 ms) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload repeat_rich` |
+| P3-10 | Repeat-Rich Workload: exact opportunity coverage | 100.0% (10 / 10 exact repeats hit exact tier) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload repeat_rich` |
+| P3-11 | Repeat-Rich Workload: semantic opportunity coverage | 88.9% (8 / 9 safe paraphrases hit semantic tier) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload repeat_rich` |
+| P3-12 | Repeat-Rich Workload: adversarial false hit rate | 0.0% (0 / 2 adversarial constraints hit cache; 100% fail closed) `[HISTORICAL COMPONENT MEASUREMENT]` | `runs/whole_agent_benchmark_results.json` | `python scripts/benchmark_whole_agent.py --workload repeat_rich` |
+| P4-01 | Neural candidate pre-check optimization | Checks candidate presence and cheap structural guards before dense encoding / scoring; eliminates 28ms encoding overhead on candidate-empty misses `[CODE]` | `src/policy/hybrid_cache.py` lines 584-630 | `pytest tests/test_p1_acceptance.py` |
+| P4-02 | In-memory embedding & passage score cache | Thread-safe bounded cache avoids repeated SentenceTransformer inference on identical texts `[CODE]` | `src/policy/hybrid_cache.py` lines 237-270 | `pytest tests/test_p1_acceptance.py` |
+| P5-01 | Flagship 8-Step Verification Demo | Validates all 8 criteria: fresh request, operator approval, exact repeat, safe paraphrase, changed requirement miss, scope invalidation, restart persistence, and per-request receipts (100% PASS) `[SIMULATED]` | `scripts/demo_flagship.py` | `python scripts/demo_flagship.py` |
+| P5-02 | Automated CLI Demo Flag | `python scripts/run_demo.py --cli` automated runner executing 8-step verification flow `[CODE]` | `scripts/run_demo.py` line 20 | `python scripts/run_demo.py --cli` |
+| P6-01 | Opt-in Live Agent Workflow Runner | Free-tier allowlisted live runner with spend cap and quota journal for full agent workflow `[CODE]` | `scripts/run_live_benchmark.py` | `python scripts/run_live_benchmark.py --check-only` |
+
+---
+
+## 7. Independent P2 Frozen Neural Evaluation Checkpoint (4f9858e) — 2026-11-02
+
+| # | Fact | Claim / Value | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| P2-08 | Frozen P2 neural evaluation workload | 144 requests across 12 documentation groups evaluated with real local neural inference (DenseEncoder + LocalPassageScorer) `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/documentation_rebuild/p2_frozen_eval.json` | ChatGPT Work independent evaluation |
+| P2-09 | P2 semantic accepts count | 25 semantic accepts admitted by cross-encoder threshold `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/documentation_rebuild/p2_frozen_eval.json` | ChatGPT Work independent evaluation |
+| P2-10 | P2 provisionally sufficient accepts | 16 / 25 accepts (64.00%, exact 95% Clopper-Pearson CI [42.52%, 82.03%]) provisionally sufficient under model-assisted review; no independent human certification `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/documentation_rebuild/p2_frozen_eval.json` | ChatGPT Work independent evaluation |
+| P2-11 | P2 insufficient accepts count | 9 / 25 accepts (36.00%, exact 95% Clopper-Pearson CI [17.97%, 57.48%]) insufficient under model-assisted review `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/documentation_rebuild/p2_frozen_eval.json` | ChatGPT Work independent evaluation |
+| P2-12 | P2 failure breakdown: missing executable examples | 7 failures involving missing explicitly requested executable examples `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/documentation_rebuild/p2_frozen_eval.json` | ChatGPT Work independent evaluation |
+| P2-13 | P2 failure breakdown: wrong-operation reuse | 2 failures involving wrong-operation reuse (e.g. inverse operations) `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/documentation_rebuild/p2_frozen_eval.json` | ChatGPT Work independent evaluation |
+| P2-14 | P2 scope challenge false hits | 0 hits across 60 scope challenges (0.00%, exact 95% Clopper-Pearson CI [0.00%, 5.96%]) `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/documentation_rebuild/p2_frozen_eval.json` | ChatGPT Work independent evaluation |
+| P2-15 | P2 qualification status | FAILED safety qualification; evaluated prototype with experimental semantic serving; no 98% precision or live monetary savings claim `[DOC]` | P2 independent evaluation findings | Qualification declaration |
+| P2-16 | Safe default serving configuration | Exact caching is default serving configuration (`mode="exact"`). Automatic neural semantic reuse is shadow-only by default (`mode="shadow"`); guarded semantic serving permitted only via explicit experimental opt-in (`mode="guarded"`) `[CODE]` | `src/policy/hybrid_cache.py` line 192 | `pytest tests/test_release_correction.py` |
+| P2-17 | Flagship demo criterion 8 nature | Criterion 8 is an evidence-reporting summary criterion across 7 lifecycle execution scenarios (not 8 independent lifecycle scenarios) `[DOC]` | `scripts/demo_flagship.py` lines 347-370 | `python scripts/demo_flagship.py` |
+| P2-18 | Live runner zero-output-ceiling validation | Request with max_output_tokens <= 0 blocked in preflight and raises ValueError, preventing zero-output network calls `[CODE]` | `scripts/run_live_benchmark.py` lines 89-91, 180-182 | `pytest tests/test_release_correction.py` |
+
+---
+
+## 8. Large-Scale Metrics Campaign (Offline Multi-Arm Studies) — 2026-11-02
+
+Evidence: Large-scale reproducible evaluation harness (`scripts/evaluate_large_workload.py`) across 25 documentation source groups and 125 base intents under repeat-rich (600 events) and lower-repeat (400 events) profiles.
+Telemetry: `artifacts/metrics_campaign/repeat_rich/` (and root), `artifacts/metrics_campaign/lower_repeat/`.
+
+### Profile A: Repeat-Rich Workload (600 events × 4 arms = 2,400 events; Executed: 12 groups, 60 intents)
+| # | Fact | Claim / Value | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| MC-01 | Repeat-rich executed scope | 600 events per arm executing the first 12 documentation source groups and 60 base intents out of 25 groups / 125 intents defined (60 seeds, 240 exact repeats, 180 natural paraphrases, 120 adversarial challenges) `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/metrics_campaign/manifest.json` | `python scripts/evaluate_large_workload.py --profile repeat_rich` |
+| MC-02 | Repeat-rich no_cache provider invocations | 1,800 provider calls (600 planning, 600 generation, 600 review), 0 avoided calls, 201,667 synthetic tokens, p50: 130.86 ms `[SIMULATED]` | `artifacts/metrics_campaign/summary.json` lines 55-85 | `python scripts/evaluate_large_workload.py --profile repeat_rich` |
+| MC-03 | Repeat-rich exact_only provider invocations | 948 provider calls (316 planning, 316 generation, 316 review), 852 calls avoided on eligible reuse, 0 calls avoided on ineligible reuse, 107,750 synthetic tokens (46.57% token reduction), 284 exact hits, 0 semantic hits, p50: 140.80 ms `[SIMULATED]` | `artifacts/metrics_campaign/summary.json` lines 88-118 | `python scripts/evaluate_large_workload.py --profile repeat_rich` |
+| MC-04 | Repeat-rich verified_semantic provider invocations | 927 provider calls (309 planning, 309 generation, 309 review), 873 calls avoided on eligible reuse, 0 calls avoided on ineligible reuse, 105,429 synthetic tokens (47.72% token reduction), 291 hits (273 exact, 18 verified semantic), p50: 137.81 ms `[SIMULATED]` | `artifacts/metrics_campaign/summary.json` lines 122-151 | `python scripts/evaluate_large_workload.py --profile repeat_rich` |
+| MC-05 | Repeat-rich shadow_semantic provider invocations | 948 provider calls (316 planning, 316 generation, 316 review), 852 calls avoided on eligible reuse, 0 calls avoided on ineligible reuse, 107,750 synthetic tokens, 284 exact hits, 0 semantic answers substituted (diagnostic shadow scoring only), p50: 141.58 ms `[SIMULATED]` | `artifacts/metrics_campaign/summary.json` lines 155-184 | `python scripts/evaluate_large_workload.py --profile repeat_rich` |
+| MC-06 | Repeat-rich adversarial development regression check | 0 false accepts across 120 adversarial challenges per arm in exact_only and verified_semantic (0.00% error rate, exact 95% Clopper-Pearson CI [0.00%, 3.03%]); classified as development regression evidence following Task D regex fix `[SIMULATED]` | `artifacts/metrics_campaign/summary.json` lines 66-72, 99-105, 132-138 | `python scripts/evaluate_large_workload.py --profile repeat_rich` |
+| MC-07 | Workload-expected eligible reuse qualification | 873 calls avoided in verified_semantic correspond to benchmark-defined eligible query categories (`is_eligible_reuse`); actual answer correctness and semantic suitability unadjudicated pending independent review `[DOC]` | `docs/METRICS_RESULTS.md` | `python scripts/evaluate_large_workload.py --profile repeat_rich` |
+| MC-08 | Repeat-rich paraphrase opportunity coverage | 29.44% in verified_semantic (18 semantic hits + exact fallthroughs) vs 26.67% in exact_only `[SIMULATED]` | `artifacts/metrics_campaign/summary.json` lines 98, 131 | `python scripts/evaluate_large_workload.py --profile repeat_rich` |
+| MC-09 | Task D inverse operation regex optimization | Refined split regex pattern in `src/policy/decomposed_applicability.py` to prevent "separator" noun matches from triggering false inverse-operation mismatch; eliminated 1 adversarial false accept on str_02 challenge with zero loss of coverage `[CODE]` | `src/policy/decomposed_applicability.py` line 92 | `pytest tests/test_release_correction.py` |
+| MC-10 | Live benchmark readiness & preflight safety | Matched 3-arm live benchmark harness (`scripts/evaluate_live_paired.py`) enforces $0.00 spend cap, free-tier allowlist, preflight quota journal checks, and hard blocks unauthorized live execution (BLOCKED, live_authorized=False) `[CODE]` | `scripts/evaluate_live_paired.py` lines 102-120 | `python scripts/evaluate_live_paired.py --check-only` |
+
+### Profile B: Lower-Repeat Workload (400 events × 4 arms = 1,600 events; Executed: ALL 25 groups, 125 intents)
+| # | Fact | Claim / Value | Source file + location | How to re-run |
+| :---: | :--- | :--- | :--- | :--- |
+| MC-11 | Lower-repeat executed scope | 400 events per arm executing all 25 documentation source groups and all 125 base intents (125 seeds, 60 exact repeats, 90 natural paraphrases, 125 adversarial challenges) `[HISTORICAL COMPONENT MEASUREMENT]` | `artifacts/metrics_campaign/lower_repeat/manifest.json` | `python scripts/evaluate_large_workload.py --profile lower_repeat --output-dir artifacts/metrics_campaign/lower_repeat` |
+| MC-12 | Lower-repeat no_cache provider invocations | 1,200 provider calls (400 planning, 400 generation, 400 review), 0 avoided calls, 133,964 synthetic tokens, p50: 89.70 ms, p95: 103.71 ms `[SIMULATED]` | `artifacts/metrics_campaign/lower_repeat/summary.json` lines 86-124 | `python scripts/evaluate_large_workload.py --profile lower_repeat --output-dir artifacts/metrics_campaign/lower_repeat` |
+| MC-13 | Lower-repeat exact_only provider invocations | 1,023 provider calls (341 planning, 341 generation, 341 review), 177 calls avoided on eligible reuse, 0 calls avoided on ineligible reuse, 114,453 synthetic tokens (14.56% token reduction), 59 exact hits, 0 semantic hits, p50: 168.42 ms, p95: 194.46 ms, 0 false accepts across 125 challenges (0.00%, exact 95% Clopper-Pearson CI [0.00%, 2.91%]) `[SIMULATED]` | `artifacts/metrics_campaign/lower_repeat/summary.json` lines 125-162 | `python scripts/evaluate_large_workload.py --profile lower_repeat --output-dir artifacts/metrics_campaign/lower_repeat` |
+| MC-14 | Lower-repeat verified_semantic provider invocations | 975 provider calls (325 planning, 325 generation, 325 review), 222 calls avoided on eligible reuse, 3 calls avoided on ineligible reuse, 109,302 synthetic tokens (18.41% token reduction), 75 hits (57 exact, 18 semantic), p50: 180.60 ms, p95: 219.77 ms, 1 false accept across 125 challenges (0.80%, exact 95% Clopper-Pearson CI [0.02%, 4.38%]) on async_05:challenge_added_requirements `[SIMULATED]` | `artifacts/metrics_campaign/lower_repeat/summary.json` lines 163-202 | `python scripts/evaluate_large_workload.py --profile lower_repeat --output-dir artifacts/metrics_campaign/lower_repeat` |
+| MC-15 | Lower-repeat shadow_semantic provider invocations | 1,023 provider calls (341 planning, 341 generation, 341 review), 177 calls avoided on eligible reuse, 0 on ineligible reuse, 114,453 synthetic tokens, 59 exact hits, 0 unproven answers substituted, p50: 183.55 ms, p95: 224.81 ms, 0 false accepts across 125 challenges (0.00%, exact 95% Clopper-Pearson CI [0.00%, 2.91%]) `[SIMULATED]` | `artifacts/metrics_campaign/lower_repeat/summary.json` lines 203-241 | `python scripts/evaluate_large_workload.py --profile lower_repeat --output-dir artifacts/metrics_campaign/lower_repeat` |
+| MC-16 | Lower-repeat untuned execution & safety validation | Untuned 25-group execution exposed 1 false accept in verified_semantic (async_05 added requirements), confirming exact_only as the necessary safe default serving mode and demonstrating semantic suitability remains unverified `[SIMULATED]` | `artifacts/metrics_campaign/lower_repeat/summary.json` lines 186-191 | `python scripts/evaluate_large_workload.py --profile lower_repeat --output-dir artifacts/metrics_campaign/lower_repeat` |
+| MC-17 | Real-provider pilot workload and request budget | Frozen 4-task pilot (2 seeds, 2 exact repeats across list_operations and dict_operations) proposes exactly 24 provider requests (12 for no_cache, 6 for exact_only, 6 for shadow_semantic), complying with 30-call single run cap and 40-call daily project cap `[CODE]` | `scripts/evaluate_live_paired.py` lines 50-70, 115-140 | `python scripts/evaluate_live_paired.py --check-only` |
+| MC-18 | Shadow semantic mode for live evaluation | Initial live study keeps experimental semantic reuse in shadow mode (mode="shadow"), evaluating neural cross-encoder in background without substituting unverified answers `[CODE]` | `scripts/evaluate_live_paired.py` lines 210-230 | `python scripts/evaluate_live_paired.py --check-only` |
+
+
+

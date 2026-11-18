@@ -1,0 +1,68 @@
+{
+  "evidence_type": "train_only_synthetic_parameter_efficient_fine_tuning",
+  "seed": 47,
+  "base_repo": "cross-encoder/quora-distilroberta-base",
+  "base_revision": "f62e7a4b20b97195c2868e53ec59126df5eac743",
+  "base_safetensors_sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb",
+  "train_data": {
+    "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/data/intent_stage_b/v2/train.jsonl",
+    "bytes": 1424604,
+    "sha256": "7e4bb7ede0c5a25944dc03ec0b91be097fdd2ce49eb43ef14f867d5de5bc9580"
+  },
+  "config_identity": {
+    "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/configs/intent_stage_b_v1.json",
+    "bytes": 1210,
+    "sha256": "e2f992e83e980602416c2e619527f3be5088d92924bebee09b6a159bf5b8ff85"
+  },
+  "train_examples": 1056,
+  "class_counts": {
+    "same_intent": 288,
+    "new_more_specific": 192,
+    "new_more_general": 96,
+    "different_intent": 480
+  },
+  "trainable_parameters": 150532,
+  "total_parameters": 82268932,
+  "wall_seconds": 212.83202235599992,
+  "hardware": {
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "python": "3.12.14",
+    "torch": "2.6.0+cpu",
+    "logical_cpus": 9,
+    "torch_threads": 2,
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "memory_total": "MemTotal:       10206484 kB",
+    "device": "cpu"
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "weighted_loss": 0.8482401799975019,
+      "online_train_four_class_accuracy": 0.625,
+      "n": 1056,
+      "evidence_type": "training_diagnostic_not_generalization"
+    },
+    {
+      "epoch": 2,
+      "weighted_loss": 0.025282164338877366,
+      "online_train_four_class_accuracy": 0.9962121212121212,
+      "n": 1056,
+      "evidence_type": "training_diagnostic_not_generalization"
+    }
+  ],
+  "export": {
+    "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/artifacts/stage_b/models/47/adapter.safetensors",
+    "bytes": 605120,
+    "sha256": "a64fe6ed77c3e6d721271a3c85b22b8ccdf4fe558f41623159a7b362e7e6c42b"
+  },
+  "exact_reconstruction_probe_passed": true,
+  "export_is_standalone": false,
+  "loading_recipe": "src.evaluation.intent_stage_b_model.load_adapter(base_snapshot, config, seed, adapter_path)",
+  "command": "PYTHONPATH=.venv/lib/python3.12/site-packages python scripts/train_stage_b_classifier.py",
+  "dev_or_calibration_read": false,
+  "final_read": false,
+  "remote_inference_calls": 0,
+  "provenance_flags": [
+    "possible pretraining overlap with public pair data"
+  ]
+}

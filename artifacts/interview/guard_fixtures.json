@@ -1,0 +1,257 @@
+{
+  "evidence": "fresh authored requirement-stage fixtures",
+  "fixtures": [
+    {
+      "id": "csv_aggregation:adequate_paraphrase",
+      "group": "csv_aggregation",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "original": "How can I profile a routine to aggregate CSV rows by category with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will group CSV records by category and compute totals?",
+      "answer": "Call cProfile.run('aggregate_csv()'), then compare cumulative time in the reader and aggregation functions."
+    },
+    {
+      "id": "csv_aggregation:added_tool",
+      "group": "csv_aggregation",
+      "type": "added_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to aggregate CSV rows by category?",
+      "incoming": "How can I use cProfile to profile a routine that will group CSV records by category and compute totals?",
+      "answer": "Time the whole aggregation with time.perf_counter()."
+    },
+    {
+      "id": "csv_aggregation:omitted_tool",
+      "group": "csv_aggregation",
+      "type": "omitted_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to aggregate CSV rows by category with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will group CSV records by category and compute totals?",
+      "answer": "Time the whole aggregation with time.perf_counter()."
+    },
+    {
+      "id": "image_resize:adequate_paraphrase",
+      "group": "image_resize",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "original": "How can I profile a routine to resize many local images with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will batch-resize a directory of local images?",
+      "answer": "Call cProfile.run('resize_batch()') and sort the statistics by cumulative time to identify slow resize calls."
+    },
+    {
+      "id": "image_resize:added_tool",
+      "group": "image_resize",
+      "type": "added_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to resize many local images?",
+      "incoming": "How can I use cProfile to profile a routine that will batch-resize a directory of local images?",
+      "answer": "Measure total batch duration with a stopwatch."
+    },
+    {
+      "id": "image_resize:omitted_tool",
+      "group": "image_resize",
+      "type": "omitted_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to resize many local images with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will batch-resize a directory of local images?",
+      "answer": "Measure total batch duration with a stopwatch."
+    },
+    {
+      "id": "sqlite_import:adequate_paraphrase",
+      "group": "sqlite_import",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "original": "How can I profile a routine to import a record batch into SQLite with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will load a batch of records into SQLite?",
+      "answer": "Use cProfile.Profile().runcall(import_records) and sort the resulting pstats by cumulative time."
+    },
+    {
+      "id": "sqlite_import:added_tool",
+      "group": "sqlite_import",
+      "type": "added_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to import a record batch into SQLite?",
+      "incoming": "How can I use cProfile to profile a routine that will load a batch of records into SQLite?",
+      "answer": "Measure elapsed seconds around the database import."
+    },
+    {
+      "id": "sqlite_import:omitted_tool",
+      "group": "sqlite_import",
+      "type": "omitted_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to import a record batch into SQLite with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will load a batch of records into SQLite?",
+      "answer": "Measure elapsed seconds around the database import."
+    },
+    {
+      "id": "template_render:adequate_paraphrase",
+      "group": "template_render",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "original": "How can I profile a routine to render a report template repeatedly with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will produce the same report from its template in a loop?",
+      "answer": "Wrap render_batch in cProfile.Profile().runcall and inspect cumulative time spent inside rendering."
+    },
+    {
+      "id": "template_render:added_tool",
+      "group": "template_render",
+      "type": "added_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to render a report template repeatedly?",
+      "incoming": "How can I use cProfile to profile a routine that will produce the same report from its template in a loop?",
+      "answer": "Time the whole report loop with time.perf_counter()."
+    },
+    {
+      "id": "template_render:omitted_tool",
+      "group": "template_render",
+      "type": "omitted_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to render a report template repeatedly with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will produce the same report from its template in a loop?",
+      "answer": "Time the whole report loop with time.perf_counter()."
+    },
+    {
+      "id": "numpy_multiplication:adequate_paraphrase",
+      "group": "numpy_multiplication",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "original": "How can I profile a routine to multiply dense arrays with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will run multiplication on dense NumPy arrays?",
+      "answer": "Use cProfile.Profile().runcall(multiply_arrays) and inspect the Python wrapper's cumulative time."
+    },
+    {
+      "id": "numpy_multiplication:added_tool",
+      "group": "numpy_multiplication",
+      "type": "added_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to multiply dense arrays?",
+      "incoming": "How can I use cProfile to profile a routine that will run multiplication on dense NumPy arrays?",
+      "answer": "Record the time before and after the array operation."
+    },
+    {
+      "id": "numpy_multiplication:omitted_tool",
+      "group": "numpy_multiplication",
+      "type": "omitted_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to multiply dense arrays with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will run multiplication on dense NumPy arrays?",
+      "answer": "Record the time before and after the array operation."
+    },
+    {
+      "id": "xml_tree_walk:adequate_paraphrase",
+      "group": "xml_tree_walk",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "original": "How can I profile a routine to traverse a large XML tree with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will walk the nodes of a large XML document?",
+      "answer": "Run cProfile.Profile().runcall(walk_tree) and inspect its cumulative statistics in pstats."
+    },
+    {
+      "id": "xml_tree_walk:added_tool",
+      "group": "xml_tree_walk",
+      "type": "added_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to traverse a large XML tree?",
+      "incoming": "How can I use cProfile to profile a routine that will walk the nodes of a large XML document?",
+      "answer": "Compare wall-clock duration across repeated tree traversals."
+    },
+    {
+      "id": "xml_tree_walk:omitted_tool",
+      "group": "xml_tree_walk",
+      "type": "omitted_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to traverse a large XML tree with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will walk the nodes of a large XML document?",
+      "answer": "Compare wall-clock duration across repeated tree traversals."
+    },
+    {
+      "id": "decimal_invoice:adequate_paraphrase",
+      "group": "decimal_invoice",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "original": "How can I profile a routine to calculate invoice totals with Decimal with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will total invoices using Decimal arithmetic?",
+      "answer": "Use cProfile.Profile().runcall(total_invoices) and inspect which Python functions accumulate the most time."
+    },
+    {
+      "id": "decimal_invoice:added_tool",
+      "group": "decimal_invoice",
+      "type": "added_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to calculate invoice totals with Decimal?",
+      "incoming": "How can I use cProfile to profile a routine that will total invoices using Decimal arithmetic?",
+      "answer": "Record total processing time around the invoice loop."
+    },
+    {
+      "id": "decimal_invoice:omitted_tool",
+      "group": "decimal_invoice",
+      "type": "omitted_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to calculate invoice totals with Decimal with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will total invoices using Decimal arithmetic?",
+      "answer": "Record total processing time around the invoice loop."
+    },
+    {
+      "id": "markdown_preview:adequate_paraphrase",
+      "group": "markdown_preview",
+      "type": "adequate_paraphrase",
+      "expected": "allow",
+      "original": "How can I profile a routine to render Markdown previews in batches with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will batch-render previews from Markdown files?",
+      "answer": "Use cProfile.Profile().runcall(render_previews) and sort the profile by cumulative time."
+    },
+    {
+      "id": "markdown_preview:added_tool",
+      "group": "markdown_preview",
+      "type": "added_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to render Markdown previews in batches?",
+      "incoming": "How can I use cProfile to profile a routine that will batch-render previews from Markdown files?",
+      "answer": "Compare time.perf_counter() totals across several batches."
+    },
+    {
+      "id": "markdown_preview:omitted_tool",
+      "group": "markdown_preview",
+      "type": "omitted_tool",
+      "expected": "block",
+      "original": "How can I profile a routine to render Markdown previews in batches with cProfile?",
+      "incoming": "How can I use cProfile to profile a routine that will batch-render previews from Markdown files?",
+      "answer": "Compare time.perf_counter() totals across several batches."
+    },
+    {
+      "id": "json_normalization:name_only",
+      "group": "json_normalization",
+      "type": "name_only",
+      "expected": "block",
+      "original": "How can I profile my routine to normalize a large batch of JSON records with cProfile?",
+      "incoming": "How do I use cProfile to profile a routine that will normalize a large batch of JSON records?",
+      "answer": "cProfile is a profiling package. This answer does not explain how to use it."
+    },
+    {
+      "id": "inventory_join:name_only",
+      "group": "inventory_join",
+      "type": "name_only",
+      "expected": "block",
+      "original": "How can I profile my routine to join warehouse inventory tables with cProfile?",
+      "incoming": "How do I use cProfile to profile a routine that will join warehouse inventory tables?",
+      "answer": "Some people use cProfile. Time the full computation with a stopwatch."
+    },
+    {
+      "id": "audio_conversion:name_only",
+      "group": "audio_conversion",
+      "type": "name_only",
+      "expected": "block",
+      "original": "How can I profile my routine to convert a batch of local audio files with cProfile?",
+      "incoming": "How do I use cProfile to profile a routine that will convert a batch of local audio files?",
+      "answer": "cProfile exists. Look for slow functions by observation."
+    },
+    {
+      "id": "yaml_config_merge:name_only",
+      "group": "yaml_config_merge",
+      "type": "name_only",
+      "expected": "block",
+      "original": "How can I profile my routine to merge several local configuration maps with cProfile?",
+      "incoming": "How do I use cProfile to profile a routine that will merge several local configuration maps?",
+      "answer": "cProfile is one option. This answer covers only elapsed wall-clock time."
+    }
+  ]
+}

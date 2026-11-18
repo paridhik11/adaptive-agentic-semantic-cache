@@ -1,0 +1,1067 @@
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/AGENTS.md", "status": "present", "bytes": 2882, "sha256": "ef6b927f82f629c7caec432384aadb8eb5e32f53bdc8988608ebb8e31ec848e0"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/docs/CURRENT_STATUS.md", "status": "present", "bytes": 13547, "sha256": "6635dd7119369e7771681ba0e6d6e1e34695fd7e9094f62d2774acbebd126707"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/docs/FACTS.md", "status": "present", "bytes": 112832, "sha256": "d4c90d6c9e175425810f679f19dec7c78ef9ca7580e0de05bcf3dc8b5b65c4f0"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/docs/DAY3_RESEARCH_AND_PROTOCOL.md", "status": "present", "bytes": 8961, "sha256": "023b9fa0941e0da345f3b22d504099a5f66dc0ddce084734b31c03d3896f125b"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/docs/SEMANTIC_EVALUATION_CONTRACT.md", "status": "present", "bytes": 10689, "sha256": "828c428f46eba050b3f7655d354dc63bc9376e1eead5a11835858c9fd4a9797a"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/encoders.py", "status": "present", "bytes": 1965, "sha256": "9c75a78f768015b0baba6fe0cec0562029f8e7002e5adafa11b9cb1bca2c35f8"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/semantic_runtime.py", "status": "present", "bytes": 17956, "sha256": "61c5f878f6d9cf651825a504b6be922ec8acbe8f9622bb9374631f8f2e887b16"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/local_models.py", "status": "present", "bytes": 2186, "sha256": "aba5216373522267b18ed6765cd7bac6bbd9db46235518779b7e897e7d189521"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/decision/local_equivalence.py", "status": "present", "bytes": 13256, "sha256": "f63ed1ce3adb66a8bb2adc04cd4d1248c351f5903ad81600ec2c8c0708ac5023"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/scripts/inventory_intent_artifacts.py", "status": "present", "bytes": 9364, "sha256": "ddc6e4860079f0d1993b2eb44371d76ea5a54d3f96728e4a5c24f58a37da54f3"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling/config.json", "status": "present", "bytes": 190, "sha256": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md", "status": "present", "bytes": 10502, "sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json", "status": "present", "bytes": 612, "sha256": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json", "status": "present", "bytes": 116, "sha256": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors", "status": "present", "bytes": 90868376, "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json", "status": "present", "bytes": 349, "sha256": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json", "status": "present", "bytes": 53, "sha256": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json", "status": "present", "bytes": 112, "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json", "status": "present", "bytes": 466247, "sha256": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json", "status": "present", "bytes": 350, "sha256": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt", "status": "present", "bytes": 231508, "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/README.md", "status": "present", "bytes": 1299, "sha256": "59baa6da620d95c9045e86a091d84e00074c42ec40c1cc04d4799914ee4fe6b7"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/config.json", "status": "present", "bytes": 607, "sha256": "4d3d424eb9a2e40b2bc7ae274147f274b031e508de73cdf28e75f759a4360a08"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/merges.txt", "status": "present", "bytes": 456318, "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/model.safetensors", "status": "present", "bytes": 328493408, "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/special_tokens_map.json", "status": "present", "bytes": 1008, "sha256": "75cbec71553267dadc77a583ef15122c2aa7422eb6635acc72a184a413f17c1c"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer.json", "status": "present", "bytes": 3558642, "sha256": "2bb1a22cfbe25b8e5a232b7fc4d7fc5073923b45724a5f813b00811bb6620f66"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer_config.json", "status": "present", "bytes": 1335, "sha256": "fe09e6fe347cc94002f77bec394efa02db0ac151393f940d0d854af765e8b165"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/vocab.json", "status": "present", "bytes": 798293, "sha256": "ed19656ea1707df69134c4af35c8ceda2cc9860bf2c3495026153a133670ab5e"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/README.md", "status": "present", "bytes": 1299, "sha256": "59baa6da620d95c9045e86a091d84e00074c42ec40c1cc04d4799914ee4fe6b7"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/config.json", "status": "present", "bytes": 607, "sha256": "4d3d424eb9a2e40b2bc7ae274147f274b031e508de73cdf28e75f759a4360a08"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/merges.txt", "status": "present", "bytes": 456318, "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/model.safetensors", "status": "present", "bytes": 328493408, "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/special_tokens_map.json", "status": "present", "bytes": 1008, "sha256": "75cbec71553267dadc77a583ef15122c2aa7422eb6635acc72a184a413f17c1c"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer.json", "status": "present", "bytes": 3558642, "sha256": "2bb1a22cfbe25b8e5a232b7fc4d7fc5073923b45724a5f813b00811bb6620f66"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer_config.json", "status": "present", "bytes": 1335, "sha256": "fe09e6fe347cc94002f77bec394efa02db0ac151393f940d0d854af765e8b165"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/vocab.json", "status": "present", "bytes": 798293, "sha256": "ed19656ea1707df69134c4af35c8ceda2cc9860bf2c3495026153a133670ab5e"}
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/models/stability_fallback_lexical.joblib", "status": "present", "bytes": 384516, "sha256": "5b48bee9d98300e17e7062f22c3115922ee00fe89c1355c1a75a159a12bc6fa5"}
+{"path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/model.safetensors", "status": "present", "bytes": 328493408, "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/model.safetensors", "status": "present", "bytes": 596070136, "sha256": "f4d82e69a60b9ff8af6cc7605e21b38fd1f3396e41ccf390f4e75a5a3ecd2e26"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/model.safetensors", "status": "present", "bytes": 299225554, "sha256": "6fddcc709be4d434efd1b0e0865e4608b280a083cc0a6772115c6607cfa8292a"}
+{"path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors", "status": "present", "bytes": 90868376, "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db"}
+{"path": "artifacts/stage_b/checkpoint-restore-v1.json", "status": "present", "bytes": 9967, "sha256": "82aa1be9e27c5cf3c243a2c5285aacefc0a8d9882bd12268238c30fff4d73f08"}
+{"path": "artifacts/stage_b/redis-restore-v1.json", "status": "present", "bytes": 11329, "sha256": "aeaf2e72bb55cc1765f7a0c006f2d511028e47d999a3e37dbff1245b393229a3"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/1_Pooling/config.json", "status": "present", "bytes": 296, "sha256": "d02ebf56344d20f773449b15d0c10ee9a86a9178f3b3c9bfecb8b87d4350ce38"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/config.json", "status": "present", "bytes": 1214, "sha256": "82779b8d52566907948b15d853d113d24275004831b3cec0164af54ca97218d2"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/config_sentence_transformers.json", "status": "present", "bytes": 205, "sha256": "1c962cd1cf6f96e82ce8aa900d5a2b8a572c46635eea564bef590be22b936240"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/model.safetensors", "status": "present", "bytes": 596070136, "sha256": "f4d82e69a60b9ff8af6cc7605e21b38fd1f3396e41ccf390f4e75a5a3ecd2e26"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/modules.json", "status": "present", "bytes": 229, "sha256": "8f4b264b80206c830bebbdcae377e137925650a433b689343a63bdc9b3145460"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/sentence_bert_config.json", "status": "present", "bytes": 54, "sha256": "eb9b44b13c0f52a3b3685c3b1cbdea1ba8b04bea123b98f61610048940776eb1"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/special_tokens_map.json", "status": "present", "bytes": 694, "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/tokenizer.json", "status": "present", "bytes": 3583486, "sha256": "bb637767e8dfb8044597df6c58243bff2e592ae9e3b310c0bbdb8591f6ac543d"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/tokenizer_config.json", "status": "present", "bytes": 21028, "sha256": "ed56277917b937e8dfd5bea7c8ce6574b489a674d4ee6e80ad8cd963fe734201"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/config.json", "status": "present", "bytes": 1422, "sha256": "f0c1fdbaa675181e2fc6d15787daff2e0570d885ec278eb9677c5512e455b243"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/model.safetensors", "status": "present", "bytes": 299225554, "sha256": "6fddcc709be4d434efd1b0e0865e4608b280a083cc0a6772115c6607cfa8292a"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/special_tokens_map.json", "status": "present", "bytes": 694, "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/tokenizer.json", "status": "present", "bytes": 3583486, "sha256": "bb637767e8dfb8044597df6c58243bff2e592ae9e3b310c0bbdb8591f6ac543d"}
+{"path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/tokenizer_config.json", "status": "present", "bytes": 21031, "sha256": "626c86908d7c711f93b0feffd8657b782cc2727b391f9be190240e8cafb626d5"}
+{
+  "stage": "A1",
+  "evidence_type": "local_artifact_inventory_not_inference",
+  "status": "inventory_only",
+  "repository_head": "9c07956bd36845c8c8db88640b465cf5464356d4",
+  "sources": [
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/AGENTS.md",
+      "status": "present",
+      "bytes": 2882,
+      "sha256": "ef6b927f82f629c7caec432384aadb8eb5e32f53bdc8988608ebb8e31ec848e0"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/docs/CURRENT_STATUS.md",
+      "status": "present",
+      "bytes": 13547,
+      "sha256": "6635dd7119369e7771681ba0e6d6e1e34695fd7e9094f62d2774acbebd126707"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/docs/FACTS.md",
+      "status": "present",
+      "bytes": 112832,
+      "sha256": "d4c90d6c9e175425810f679f19dec7c78ef9ca7580e0de05bcf3dc8b5b65c4f0"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/docs/DAY3_RESEARCH_AND_PROTOCOL.md",
+      "status": "present",
+      "bytes": 8961,
+      "sha256": "023b9fa0941e0da345f3b22d504099a5f66dc0ddce084734b31c03d3896f125b"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/docs/SEMANTIC_EVALUATION_CONTRACT.md",
+      "status": "present",
+      "bytes": 10689,
+      "sha256": "828c428f46eba050b3f7655d354dc63bc9376e1eead5a11835858c9fd4a9797a"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/encoders.py",
+      "status": "present",
+      "bytes": 1965,
+      "sha256": "9c75a78f768015b0baba6fe0cec0562029f8e7002e5adafa11b9cb1bca2c35f8"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/semantic_runtime.py",
+      "status": "present",
+      "bytes": 17956,
+      "sha256": "61c5f878f6d9cf651825a504b6be922ec8acbe8f9622bb9374631f8f2e887b16"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/local_models.py",
+      "status": "present",
+      "bytes": 2186,
+      "sha256": "aba5216373522267b18ed6765cd7bac6bbd9db46235518779b7e897e7d189521"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/decision/local_equivalence.py",
+      "status": "present",
+      "bytes": 13256,
+      "sha256": "f63ed1ce3adb66a8bb2adc04cd4d1248c351f5903ad81600ec2c8c0708ac5023"
+    },
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/scripts/inventory_intent_artifacts.py",
+      "status": "present",
+      "bytes": 9364,
+      "sha256": "ddc6e4860079f0d1993b2eb44371d76ea5a54d3f96728e4a5c24f58a37da54f3"
+    }
+  ],
+  "cache_roots": [
+    "/root/.cache/huggingface/hub"
+  ],
+  "models": [
+    {
+      "role": "pinned_dense_encoder",
+      "repo_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "status": "weight_files_found_not_loaded",
+      "model_card_license": "apache-2.0",
+      "license_source": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+      "searched_snapshots": [
+        "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+      ],
+      "files": [
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling/config.json",
+          "status": "present",
+          "bytes": 190,
+          "sha256": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+          "status": "present",
+          "bytes": 10502,
+          "sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json",
+          "status": "present",
+          "bytes": 612,
+          "sha256": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json",
+          "status": "present",
+          "bytes": 116,
+          "sha256": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors",
+          "status": "present",
+          "bytes": 90868376,
+          "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json",
+          "status": "present",
+          "bytes": 349,
+          "sha256": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json",
+          "status": "present",
+          "bytes": 53,
+          "sha256": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json",
+          "status": "present",
+          "bytes": 112,
+          "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json",
+          "status": "present",
+          "bytes": 466247,
+          "sha256": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json",
+          "status": "present",
+          "bytes": 350,
+          "sha256": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt",
+          "status": "present",
+          "bytes": 231508,
+          "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+          "model_card_license": "apache-2.0"
+        }
+      ]
+    },
+    {
+      "role": "off_the_shelf_quora",
+      "repo_id": "cross-encoder/quora-distilroberta-base",
+      "revision": "f62e7a4b20b97195c2868e53ec59126df5eac743",
+      "status": "weight_files_found_not_loaded",
+      "model_card_license": "apache-2.0",
+      "license_source": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/README.md",
+      "searched_snapshots": [
+        "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743"
+      ],
+      "files": [
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/README.md",
+          "status": "present",
+          "bytes": 1299,
+          "sha256": "59baa6da620d95c9045e86a091d84e00074c42ec40c1cc04d4799914ee4fe6b7",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/config.json",
+          "status": "present",
+          "bytes": 607,
+          "sha256": "4d3d424eb9a2e40b2bc7ae274147f274b031e508de73cdf28e75f759a4360a08",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/merges.txt",
+          "status": "present",
+          "bytes": 456318,
+          "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/model.safetensors",
+          "status": "present",
+          "bytes": 328493408,
+          "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/special_tokens_map.json",
+          "status": "present",
+          "bytes": 1008,
+          "sha256": "75cbec71553267dadc77a583ef15122c2aa7422eb6635acc72a184a413f17c1c",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer.json",
+          "status": "present",
+          "bytes": 3558642,
+          "sha256": "2bb1a22cfbe25b8e5a232b7fc4d7fc5073923b45724a5f813b00811bb6620f66",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer_config.json",
+          "status": "present",
+          "bytes": 1335,
+          "sha256": "fe09e6fe347cc94002f77bec394efa02db0ac151393f940d0d854af765e8b165",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/vocab.json",
+          "status": "present",
+          "bytes": 798293,
+          "sha256": "ed19656ea1707df69134c4af35c8ceda2cc9860bf2c3495026153a133670ab5e",
+          "model_card_license": "apache-2.0"
+        }
+      ],
+      "provenance_flags": [
+        "possible pretraining overlap with public pair data"
+      ]
+    },
+    {
+      "role": "local_equivalence_default",
+      "repo_id": "cross-encoder/quora-distilroberta-base",
+      "revision": "f62e7a4b20b97195c2868e53ec59126df5eac743",
+      "status": "weight_files_found_not_loaded",
+      "model_card_license": "apache-2.0",
+      "license_source": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/README.md",
+      "searched_snapshots": [
+        "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743"
+      ],
+      "files": [
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/README.md",
+          "status": "present",
+          "bytes": 1299,
+          "sha256": "59baa6da620d95c9045e86a091d84e00074c42ec40c1cc04d4799914ee4fe6b7",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/config.json",
+          "status": "present",
+          "bytes": 607,
+          "sha256": "4d3d424eb9a2e40b2bc7ae274147f274b031e508de73cdf28e75f759a4360a08",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/merges.txt",
+          "status": "present",
+          "bytes": 456318,
+          "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/model.safetensors",
+          "status": "present",
+          "bytes": 328493408,
+          "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/special_tokens_map.json",
+          "status": "present",
+          "bytes": 1008,
+          "sha256": "75cbec71553267dadc77a583ef15122c2aa7422eb6635acc72a184a413f17c1c",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer.json",
+          "status": "present",
+          "bytes": 3558642,
+          "sha256": "2bb1a22cfbe25b8e5a232b7fc4d7fc5073923b45724a5f813b00811bb6620f66",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer_config.json",
+          "status": "present",
+          "bytes": 1335,
+          "sha256": "fe09e6fe347cc94002f77bec394efa02db0ac151393f940d0d854af765e8b165",
+          "model_card_license": "apache-2.0"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/vocab.json",
+          "status": "present",
+          "bytes": 798293,
+          "sha256": "ed19656ea1707df69134c4af35c8ceda2cc9860bf2c3495026153a133670ab5e",
+          "model_card_license": "apache-2.0"
+        }
+      ],
+      "provenance_flags": [
+        "possible pretraining overlap with public pair data"
+      ]
+    },
+    {
+      "role": "local_equivalence_ms_marco_option",
+      "repo_id": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+      "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+      "status": "missing_weights",
+      "model_card_license": null,
+      "license_source": null,
+      "searched_snapshots": [
+        "/root/.cache/huggingface/hub/models--cross-encoder--ms-marco-MiniLM-L-6-v2/snapshots/233902d25c440f23af6f7d6e94d2946bac0bee0a"
+      ],
+      "files": []
+    },
+    {
+      "repo_id": "redis/langcache-embed-v1",
+      "revision": "2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a",
+      "current_main": "2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a",
+      "revision_is_current_main": true,
+      "snapshot": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a",
+      "model_card_license": null,
+      "license_status": "not_declared_in_pinned_card_metadata",
+      "model_card_sha256": "aaec8923faed079490e3c21987fb9bb3b538d334e5c95beb11d9816fe91126ac",
+      "model_card_url": "https://huggingface.co/redis/langcache-embed-v1/resolve/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/README.md",
+      "provenance_flags": [
+        "possible pretraining overlap with public pair data"
+      ],
+      "files": [
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/1_Pooling/config.json",
+          "relative_path": "1_Pooling/config.json",
+          "bytes": 296,
+          "sha256": "d02ebf56344d20f773449b15d0c10ee9a86a9178f3b3c9bfecb8b87d4350ce38",
+          "model_card_license": null,
+          "license_status": "not_declared_in_pinned_card_metadata"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/config.json",
+          "relative_path": "config.json",
+          "bytes": 1214,
+          "sha256": "82779b8d52566907948b15d853d113d24275004831b3cec0164af54ca97218d2",
+          "model_card_license": null,
+          "license_status": "not_declared_in_pinned_card_metadata"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/config_sentence_transformers.json",
+          "relative_path": "config_sentence_transformers.json",
+          "bytes": 205,
+          "sha256": "1c962cd1cf6f96e82ce8aa900d5a2b8a572c46635eea564bef590be22b936240",
+          "model_card_license": null,
+          "license_status": "not_declared_in_pinned_card_metadata"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/model.safetensors",
+          "relative_path": "model.safetensors",
+          "bytes": 596070136,
+          "sha256": "f4d82e69a60b9ff8af6cc7605e21b38fd1f3396e41ccf390f4e75a5a3ecd2e26",
+          "model_card_license": null,
+          "license_status": "not_declared_in_pinned_card_metadata"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/modules.json",
+          "relative_path": "modules.json",
+          "bytes": 229,
+          "sha256": "8f4b264b80206c830bebbdcae377e137925650a433b689343a63bdc9b3145460",
+          "model_card_license": null,
+          "license_status": "not_declared_in_pinned_card_metadata"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/sentence_bert_config.json",
+          "relative_path": "sentence_bert_config.json",
+          "bytes": 54,
+          "sha256": "eb9b44b13c0f52a3b3685c3b1cbdea1ba8b04bea123b98f61610048940776eb1",
+          "model_card_license": null,
+          "license_status": "not_declared_in_pinned_card_metadata"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/special_tokens_map.json",
+          "relative_path": "special_tokens_map.json",
+          "bytes": 694,
+          "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+          "model_card_license": null,
+          "license_status": "not_declared_in_pinned_card_metadata"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/tokenizer.json",
+          "relative_path": "tokenizer.json",
+          "bytes": 3583486,
+          "sha256": "bb637767e8dfb8044597df6c58243bff2e592ae9e3b310c0bbdb8591f6ac543d",
+          "model_card_license": null,
+          "license_status": "not_declared_in_pinned_card_metadata"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/tokenizer_config.json",
+          "relative_path": "tokenizer_config.json",
+          "bytes": 21028,
+          "sha256": "ed56277917b937e8dfd5bea7c8ce6574b489a674d4ee6e80ad8cd963fe734201",
+          "model_card_license": null,
+          "license_status": "not_declared_in_pinned_card_metadata"
+        }
+      ],
+      "status": "weight_files_verified_not_loaded"
+    },
+    {
+      "repo_id": "redis/langcache-reranker-v2-bce",
+      "revision": "f59539f4208f9005e10e45160a379441bdb42e9b",
+      "current_main": "f59539f4208f9005e10e45160a379441bdb42e9b",
+      "revision_is_current_main": true,
+      "snapshot": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b",
+      "model_card_license": "apache-2.0",
+      "license_status": "declared",
+      "model_card_sha256": "8ed0b282ea0e950d580cb0bb5553114d4bf9dab1ae7f7f0ee8b29c5eea898492",
+      "model_card_url": "https://huggingface.co/redis/langcache-reranker-v2-bce/resolve/f59539f4208f9005e10e45160a379441bdb42e9b/README.md",
+      "provenance_flags": [
+        "possible pretraining overlap with public pair data"
+      ],
+      "files": [
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/config.json",
+          "relative_path": "config.json",
+          "bytes": 1422,
+          "sha256": "f0c1fdbaa675181e2fc6d15787daff2e0570d885ec278eb9677c5512e455b243",
+          "model_card_license": "apache-2.0",
+          "license_status": "declared"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/model.safetensors",
+          "relative_path": "model.safetensors",
+          "bytes": 299225554,
+          "sha256": "6fddcc709be4d434efd1b0e0865e4608b280a083cc0a6772115c6607cfa8292a",
+          "model_card_license": "apache-2.0",
+          "license_status": "declared"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/special_tokens_map.json",
+          "relative_path": "special_tokens_map.json",
+          "bytes": 694,
+          "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+          "model_card_license": "apache-2.0",
+          "license_status": "declared"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/tokenizer.json",
+          "relative_path": "tokenizer.json",
+          "bytes": 3583486,
+          "sha256": "bb637767e8dfb8044597df6c58243bff2e592ae9e3b310c0bbdb8591f6ac543d",
+          "model_card_license": "apache-2.0",
+          "license_status": "declared"
+        },
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/tokenizer_config.json",
+          "relative_path": "tokenizer_config.json",
+          "bytes": 21031,
+          "sha256": "626c86908d7c711f93b0feffd8657b782cc2727b391f9be190240e8cafb626d5",
+          "model_card_license": "apache-2.0",
+          "license_status": "declared"
+        }
+      ],
+      "status": "weight_files_verified_not_loaded"
+    }
+  ],
+  "project_weight_files": [
+    {
+      "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/models/stability_fallback_lexical.joblib",
+      "status": "present",
+      "bytes": 384516,
+      "sha256": "5b48bee9d98300e17e7062f22c3115922ee00fe89c1355c1a75a159a12bc6fa5"
+    }
+  ],
+  "other_cached_model_weights": [
+    {
+      "directory": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base",
+      "files": [
+        {
+          "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/model.safetensors",
+          "status": "present",
+          "bytes": 328493408,
+          "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb"
+        }
+      ]
+    },
+    {
+      "directory": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1",
+      "files": [
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/model.safetensors",
+          "status": "present",
+          "bytes": 596070136,
+          "sha256": "f4d82e69a60b9ff8af6cc7605e21b38fd1f3396e41ccf390f4e75a5a3ecd2e26"
+        }
+      ]
+    },
+    {
+      "directory": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce",
+      "files": [
+        {
+          "path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/model.safetensors",
+          "status": "present",
+          "bytes": 299225554,
+          "sha256": "6fddcc709be4d434efd1b0e0865e4608b280a083cc0a6772115c6607cfa8292a"
+        }
+      ]
+    },
+    {
+      "directory": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2",
+      "files": [
+        {
+          "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors",
+          "status": "present",
+          "bytes": 90868376,
+          "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db"
+        }
+      ]
+    }
+  ],
+  "redis_langcache": {
+    "status": "approved_pinned_artifacts_verified_not_loaded",
+    "artifacts": [
+      {
+        "directory": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1",
+        "files": [
+          {
+            "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/model.safetensors",
+            "status": "present",
+            "bytes": 596070136,
+            "sha256": "f4d82e69a60b9ff8af6cc7605e21b38fd1f3396e41ccf390f4e75a5a3ecd2e26"
+          }
+        ]
+      },
+      {
+        "directory": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce",
+        "files": [
+          {
+            "path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/model.safetensors",
+            "status": "present",
+            "bytes": 299225554,
+            "sha256": "6fddcc709be4d434efd1b0e0865e4608b280a083cc0a6772115c6607cfa8292a"
+          }
+        ]
+      }
+    ],
+    "provenance_flags": [
+      "possible pretraining overlap with public pair data"
+    ]
+  },
+  "lexical_substitution_used": false,
+  "model_inference": "not_run",
+  "downloads": 4,
+  "dataset_construction": "not_run",
+  "baseline_evaluation": "not_run",
+  "git_mutations": false,
+  "runtime": {
+    "workspace": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache",
+    "python": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "python_version": "3.12.14",
+    "machine": "x86_64",
+    "hostname_sha256": "ec555b8d51ebd4989724107e11e7dabce95bd5bb97d5ed1aebec557bfa6c3d3a"
+  },
+  "previous_inventory_sha256": null,
+  "download_receipt": {
+    "identity": {
+      "path": "artifacts/stage_b/checkpoint-restore-v1.json",
+      "status": "present",
+      "bytes": 9967,
+      "sha256": "82aa1be9e27c5cf3c243a2c5285aacefc0a8d9882bd12268238c30fff4d73f08"
+    },
+    "record": {
+      "evidence_type": "approved_checkpoint_download_not_inference",
+      "cache_root": "/root/.cache/huggingface/hub",
+      "trust_remote_code": false,
+      "model_code_executed": false,
+      "runtime": {
+        "workspace": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache",
+        "python": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "python_version": "3.12.14",
+        "machine": "x86_64",
+        "hostname_sha256": "ec555b8d51ebd4989724107e11e7dabce95bd5bb97d5ed1aebec557bfa6c3d3a"
+      },
+      "models": [
+        {
+          "repo_id": "sentence-transformers/all-MiniLM-L6-v2",
+          "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+          "snapshot": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+          "revision_source": {
+            "kind": "repository_file",
+            "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/local_models.py",
+            "constant": "ENCODER_REVISION",
+            "sha256": "aba5216373522267b18ed6765cd7bac6bbd9db46235518779b7e897e7d189521"
+          },
+          "license": "apache-2.0",
+          "license_source": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+          "license_source_sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+          "files": [
+            {
+              "relative_path": "1_Pooling/config.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling/config.json",
+              "bytes": 190,
+              "sha256": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "README.md",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+              "bytes": 10502,
+              "sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "config.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json",
+              "bytes": 612,
+              "sha256": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "config_sentence_transformers.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json",
+              "bytes": 116,
+              "sha256": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "model.safetensors",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors",
+              "bytes": 90868376,
+              "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "modules.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json",
+              "bytes": 349,
+              "sha256": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "sentence_bert_config.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json",
+              "bytes": 53,
+              "sha256": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "special_tokens_map.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json",
+              "bytes": 112,
+              "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "tokenizer.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json",
+              "bytes": 466247,
+              "sha256": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "tokenizer_config.json",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json",
+              "bytes": 350,
+              "sha256": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "vocab.txt",
+              "path": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt",
+              "bytes": 231508,
+              "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+              "model_card_license": "apache-2.0"
+            }
+          ],
+          "pickle_weights_downloaded": false,
+          "inference": "not_run"
+        },
+        {
+          "repo_id": "cross-encoder/quora-distilroberta-base",
+          "revision": "f62e7a4b20b97195c2868e53ec59126df5eac743",
+          "snapshot": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743",
+          "revision_source": {
+            "kind": "repository_file",
+            "path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/src/policy/local_models.py",
+            "constant": "PAIR_REVISION",
+            "sha256": "aba5216373522267b18ed6765cd7bac6bbd9db46235518779b7e897e7d189521"
+          },
+          "license": "apache-2.0",
+          "license_source": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/README.md",
+          "license_source_sha256": "59baa6da620d95c9045e86a091d84e00074c42ec40c1cc04d4799914ee4fe6b7",
+          "files": [
+            {
+              "relative_path": "README.md",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/README.md",
+              "bytes": 1299,
+              "sha256": "59baa6da620d95c9045e86a091d84e00074c42ec40c1cc04d4799914ee4fe6b7",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "config.json",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/config.json",
+              "bytes": 607,
+              "sha256": "4d3d424eb9a2e40b2bc7ae274147f274b031e508de73cdf28e75f759a4360a08",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "merges.txt",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/merges.txt",
+              "bytes": 456318,
+              "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "model.safetensors",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/model.safetensors",
+              "bytes": 328493408,
+              "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "special_tokens_map.json",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/special_tokens_map.json",
+              "bytes": 1008,
+              "sha256": "75cbec71553267dadc77a583ef15122c2aa7422eb6635acc72a184a413f17c1c",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "tokenizer.json",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer.json",
+              "bytes": 3558642,
+              "sha256": "2bb1a22cfbe25b8e5a232b7fc4d7fc5073923b45724a5f813b00811bb6620f66",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "tokenizer_config.json",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/tokenizer_config.json",
+              "bytes": 1335,
+              "sha256": "fe09e6fe347cc94002f77bec394efa02db0ac151393f940d0d854af765e8b165",
+              "model_card_license": "apache-2.0"
+            },
+            {
+              "relative_path": "vocab.json",
+              "path": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743/vocab.json",
+              "bytes": 798293,
+              "sha256": "ed19656ea1707df69134c4af35c8ceda2cc9860bf2c3495026153a133670ab5e",
+              "model_card_license": "apache-2.0"
+            }
+          ],
+          "pickle_weights_downloaded": false,
+          "inference": "not_run"
+        }
+      ]
+    }
+  },
+  "same_download_inventory_environment": true,
+  "extra_download_receipt": {
+    "identity": {
+      "path": "artifacts/stage_b/redis-restore-v1.json",
+      "status": "present",
+      "bytes": 11329,
+      "sha256": "aeaf2e72bb55cc1765f7a0c006f2d511028e47d999a3e37dbff1245b393229a3"
+    },
+    "record": {
+      "evidence_type": "approved_artifact_download_not_inference",
+      "trust_remote_code": false,
+      "pickle_downloaded": false,
+      "model_loading": "not_run",
+      "cache_root": "/root/.cache/huggingface/hub",
+      "related_hub_models_metadata_only": [
+        {
+          "repo_id": "redis/langcache-embed-medical-v1",
+          "main_revision": "a0c112e57f4214510e2de0ff9d96f1d8441c5608",
+          "created_at": "2025-03-20 01:27:35+00:00",
+          "last_modified": "2025-05-22 23:31:33+00:00"
+        },
+        {
+          "repo_id": "redis/langcache-embed-v1",
+          "main_revision": "2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a",
+          "created_at": "2025-03-21 02:26:39+00:00",
+          "last_modified": "2025-12-08 11:48:53+00:00"
+        },
+        {
+          "repo_id": "redis/langcache-embed-v2",
+          "main_revision": "c6c325ba8ccb6044172c97d4ba33e7e96c33f8e5",
+          "created_at": "2025-05-21 18:24:00+00:00",
+          "last_modified": "2025-05-22 23:27:12+00:00"
+        },
+        {
+          "repo_id": "redis/langcache-reranker-v1-bce",
+          "main_revision": "9ad8897b5c65390039adbdddad04e1bd58a334c8",
+          "created_at": "2025-08-13 05:39:19+00:00",
+          "last_modified": "2025-08-14 07:32:26+00:00"
+        },
+        {
+          "repo_id": "redis/langcache-embed-v3-experimental",
+          "main_revision": "372f936e196f3f841ae303150bc0f2a41316d409",
+          "created_at": "2025-09-02 08:07:33+00:00",
+          "last_modified": "2025-10-15 13:49:24+00:00"
+        },
+        {
+          "repo_id": "redis/langcache-embed-experimental",
+          "main_revision": "39cad4a3b8619a44f24568b5ca89b4da3e26efe4",
+          "created_at": "2025-09-29 11:55:10+00:00",
+          "last_modified": "2025-10-01 20:53:01+00:00"
+        },
+        {
+          "repo_id": "redis/langcache-embed-v3-mini-experimental",
+          "main_revision": "7f7923cac2328ca180e4fbe58599453b38e729c6",
+          "created_at": "2025-10-08 11:46:49+00:00",
+          "last_modified": "2025-11-26 15:41:12+00:00"
+        },
+        {
+          "repo_id": "redis/langcache-embed-v3-small",
+          "main_revision": "3625eb22a6c222119c99b80549a574fe8e5e0eee",
+          "created_at": "2025-10-15 11:35:36+00:00",
+          "last_modified": "2025-12-15 11:54:34+00:00"
+        },
+        {
+          "repo_id": "redis/langcache-embed-v3-mini-l12-experimental",
+          "main_revision": "d1ec33176c59d2a00583407071451fbca25c56f0",
+          "created_at": "2025-10-17 01:33:51+00:00",
+          "last_modified": "2025-10-17 11:44:37+00:00"
+        },
+        {
+          "repo_id": "redis/langcache-reranker-v2-bce",
+          "main_revision": "f59539f4208f9005e10e45160a379441bdb42e9b",
+          "created_at": "2025-10-21 15:53:48+00:00",
+          "last_modified": "2025-10-24 08:51:10+00:00"
+        },
+        {
+          "repo_id": "redis/langcache-embed-v3-mini-loss-scale-100",
+          "main_revision": "3ffdc3271eacdfbaf2e984cd2a1c84df0a7be76c",
+          "created_at": "2025-10-22 12:47:09+00:00",
+          "last_modified": "2025-10-22 22:28:51+00:00"
+        },
+        {
+          "repo_id": "redis/langcache-embed-v3-mini-syn",
+          "main_revision": "c26400156a14e6417e8122b609e05c1fc7f5708d",
+          "created_at": "2025-10-23 12:36:01+00:00",
+          "last_modified": "2025-10-23 20:25:17+00:00"
+        },
+        {
+          "repo_id": "redis/langcache-reranker-v1-mnrl",
+          "main_revision": "df7b75acb8a3b33ae5a02cc99b8a1f25f9e179a4",
+          "created_at": "2025-11-27 04:08:39+00:00",
+          "last_modified": "2025-11-29 12:01:24+00:00"
+        },
+        {
+          "repo_id": "redis/langcache-reranker-v2-mnrl",
+          "main_revision": "3b587cce65af0d41f6f7290b3966eba120066b63",
+          "created_at": "2025-12-06 09:54:46+00:00",
+          "last_modified": "2025-12-16 05:04:41+00:00"
+        }
+      ],
+      "models": [
+        {
+          "repo_id": "redis/langcache-embed-v1",
+          "revision": "2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a",
+          "current_main": "2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a",
+          "revision_is_current_main": true,
+          "snapshot": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a",
+          "model_card_license": null,
+          "license_status": "not_declared_in_pinned_card_metadata",
+          "model_card_sha256": "aaec8923faed079490e3c21987fb9bb3b538d334e5c95beb11d9816fe91126ac",
+          "model_card_url": "https://huggingface.co/redis/langcache-embed-v1/resolve/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/README.md",
+          "provenance_flags": [
+            "possible pretraining overlap with public pair data"
+          ],
+          "files": [
+            {
+              "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/1_Pooling/config.json",
+              "relative_path": "1_Pooling/config.json",
+              "bytes": 296,
+              "sha256": "d02ebf56344d20f773449b15d0c10ee9a86a9178f3b3c9bfecb8b87d4350ce38",
+              "model_card_license": null,
+              "license_status": "not_declared_in_pinned_card_metadata"
+            },
+            {
+              "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/config.json",
+              "relative_path": "config.json",
+              "bytes": 1214,
+              "sha256": "82779b8d52566907948b15d853d113d24275004831b3cec0164af54ca97218d2",
+              "model_card_license": null,
+              "license_status": "not_declared_in_pinned_card_metadata"
+            },
+            {
+              "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/config_sentence_transformers.json",
+              "relative_path": "config_sentence_transformers.json",
+              "bytes": 205,
+              "sha256": "1c962cd1cf6f96e82ce8aa900d5a2b8a572c46635eea564bef590be22b936240",
+              "model_card_license": null,
+              "license_status": "not_declared_in_pinned_card_metadata"
+            },
+            {
+              "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/model.safetensors",
+              "relative_path": "model.safetensors",
+              "bytes": 596070136,
+              "sha256": "f4d82e69a60b9ff8af6cc7605e21b38fd1f3396e41ccf390f4e75a5a3ecd2e26",
+              "model_card_license": null,
+              "license_status": "not_declared_in_pinned_card_metadata"
+            },
+            {
+              "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/modules.json",
+              "relative_path": "modules.json",
+              "bytes": 229,
+              "sha256": "8f4b264b80206c830bebbdcae377e137925650a433b689343a63bdc9b3145460",
+              "model_card_license": null,
+              "license_status": "not_declared_in_pinned_card_metadata"
+            },
+            {
+              "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/sentence_bert_config.json",
+              "relative_path": "sentence_bert_config.json",
+              "bytes": 54,
+              "sha256": "eb9b44b13c0f52a3b3685c3b1cbdea1ba8b04bea123b98f61610048940776eb1",
+              "model_card_license": null,
+              "license_status": "not_declared_in_pinned_card_metadata"
+            },
+            {
+              "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/special_tokens_map.json",
+              "relative_path": "special_tokens_map.json",
+              "bytes": 694,
+              "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+              "model_card_license": null,
+              "license_status": "not_declared_in_pinned_card_metadata"
+            },
+            {
+              "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/tokenizer.json",
+              "relative_path": "tokenizer.json",
+              "bytes": 3583486,
+              "sha256": "bb637767e8dfb8044597df6c58243bff2e592ae9e3b310c0bbdb8591f6ac543d",
+              "model_card_license": null,
+              "license_status": "not_declared_in_pinned_card_metadata"
+            },
+            {
+              "path": "/root/.cache/huggingface/hub/models--redis--langcache-embed-v1/snapshots/2f6ffda359ab94a9c222947bfd87ea8f85ea7e0a/tokenizer_config.json",
+              "relative_path": "tokenizer_config.json",
+              "bytes": 21028,
+              "sha256": "ed56277917b937e8dfd5bea7c8ce6574b489a674d4ee6e80ad8cd963fe734201",
+              "model_card_license": null,
+              "license_status": "not_declared_in_pinned_card_metadata"
+            }
+          ]
+        },
+        {
+          "repo_id": "redis/langcache-reranker-v2-bce",
+          "revision": "f59539f4208f9005e10e45160a379441bdb42e9b",
+          "current_main": "f59539f4208f9005e10e45160a379441bdb42e9b",
+          "revision_is_current_main": true,
+          "snapshot": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b",
+          "model_card_license": "apache-2.0",
+          "license_status": "declared",
+          "model_card_sha256": "8ed0b282ea0e950d580cb0bb5553114d4bf9dab1ae7f7f0ee8b29c5eea898492",
+          "model_card_url": "https://huggingface.co/redis/langcache-reranker-v2-bce/resolve/f59539f4208f9005e10e45160a379441bdb42e9b/README.md",
+          "provenance_flags": [
+            "possible pretraining overlap with public pair data"
+          ],
+          "files": [
+            {
+              "path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/config.json",
+              "relative_path": "config.json",
+              "bytes": 1422,
+              "sha256": "f0c1fdbaa675181e2fc6d15787daff2e0570d885ec278eb9677c5512e455b243",
+              "model_card_license": "apache-2.0",
+              "license_status": "declared"
+            },
+            {
+              "path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/model.safetensors",
+              "relative_path": "model.safetensors",
+              "bytes": 299225554,
+              "sha256": "6fddcc709be4d434efd1b0e0865e4608b280a083cc0a6772115c6607cfa8292a",
+              "model_card_license": "apache-2.0",
+              "license_status": "declared"
+            },
+            {
+              "path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/special_tokens_map.json",
+              "relative_path": "special_tokens_map.json",
+              "bytes": 694,
+              "sha256": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049",
+              "model_card_license": "apache-2.0",
+              "license_status": "declared"
+            },
+            {
+              "path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/tokenizer.json",
+              "relative_path": "tokenizer.json",
+              "bytes": 3583486,
+              "sha256": "bb637767e8dfb8044597df6c58243bff2e592ae9e3b310c0bbdb8591f6ac543d",
+              "model_card_license": "apache-2.0",
+              "license_status": "declared"
+            },
+            {
+              "path": "/root/.cache/huggingface/hub/models--redis--langcache-reranker-v2-bce/snapshots/f59539f4208f9005e10e45160a379441bdb42e9b/tokenizer_config.json",
+              "relative_path": "tokenizer_config.json",
+              "bytes": 21031,
+              "sha256": "626c86908d7c711f93b0feffd8657b782cc2727b391f9be190240e8cafb626d5",
+              "model_card_license": "apache-2.0",
+              "license_status": "declared"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "git_storage": {
+    "cache_roots_outside_worktree": true,
+    "cache_directory_gitignore_status": "not_applicable_outside_worktree",
+    "repository_safetensors_ignore_rule": ".gitignore:96:*.safetensors\tmodels/_stage_a_ignore_probe.safetensors",
+    "repository_safetensors_rule_verified": true
+  }
+}

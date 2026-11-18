@@ -1,0 +1,210 @@
+{
+  "schema": "stage-b-v2",
+  "evidence_type": "synthetic_template_held_out_not_human_ground_truth",
+  "generator_sha256": "52efac8c8ac3c391d2d40594ee7cd91deb428178487d68628871237d3c7e01c7",
+  "seed": "deterministic enumeration; no PRNG",
+  "final_split_created_read_or_evaluated": false,
+  "public_data_used": false,
+  "template_holdout": "whole question wrappers, requirements and negative wrappers disjoint; task wording remains structured",
+  "splits": {
+    "train": {
+      "sha256": "7e4bb7ede0c5a25944dc03ec0b91be097fdd2ce49eb43ef14f867d5de5bc9580",
+      "rows": 1344,
+      "groups": 96,
+      "lineages": {
+        "operation:sort": 56,
+        "operation:reverse": 56,
+        "operation:deduplicate": 56,
+        "operation:chunk": 56,
+        "operation:window": 56,
+        "operation:interleave": 56,
+        "operation:cartesian": 56,
+        "operation:permutations": 56,
+        "operation:combinations": 56,
+        "operation:frequency": 56,
+        "operation:cumulative-sum": 56,
+        "operation:rotate": 56,
+        "operation:positive-filter": 56,
+        "operation:even-filter": 56,
+        "operation:double": 56,
+        "operation:square": 56,
+        "operation:absolute": 56,
+        "operation:negative-filter": 56,
+        "operation:odd-filter": 56,
+        "operation:running-product": 56,
+        "operation:adjacent-difference": 56,
+        "operation:enumerate": 56,
+        "operation:nonzero-filter": 56,
+        "operation:stable-partition": 56
+      },
+      "families": {
+        "cached_control": 96,
+        "paraphrase": 288,
+        "exact_control": 96,
+        "added_requirement": 96,
+        "removed_requirement": 96,
+        "negation": 96,
+        "direction_inversion": 96,
+        "entity_swap": 96,
+        "version": 96,
+        "quantity": 96,
+        "unit": 96,
+        "ambiguity": 96
+      },
+      "templates": {
+        "train:formatter-0:cached_control": 96,
+        "train:formatter-1:paraphrase": 96,
+        "train:formatter-2:paraphrase": 96,
+        "train:formatter-3:paraphrase": 96,
+        "train:formatter-0:exact_control": 96,
+        "train:formatter-1:added_requirement": 96,
+        "train:formatter-2:removed_requirement": 96,
+        "train:formatter-3:negation": 96,
+        "train:formatter-1:direction_inversion": 96,
+        "train:formatter-2:entity_swap": 96,
+        "train:formatter-3:version": 96,
+        "train:formatter-1:quantity": 96,
+        "train:formatter-2:unit": 96,
+        "train:formatter-3:ambiguity": 96
+      },
+      "formatters": {
+        "train:formatter-0": 192,
+        "train:formatter-1": 384,
+        "train:formatter-2": 384,
+        "train:formatter-3": 384
+      },
+      "provenance": {
+        "builder_authored_synthetic": 1344
+      },
+      "relations": {
+        "same_intent": 480,
+        "new_more_specific": 192,
+        "new_more_general": 96,
+        "different_intent": 480,
+        "None": 96
+      }
+    },
+    "dev": {
+      "sha256": "2fa384c4f54a6ea6da3a60c658dbaa14b70b291350e3255ecea64865222a6687",
+      "rows": 896,
+      "groups": 64,
+      "lineages": {
+        "operation:lowercase": 112,
+        "operation:uppercase": 112,
+        "operation:capitalize": 112,
+        "operation:titlecase": 112,
+        "operation:word-count": 112,
+        "operation:strip-space": 112,
+        "operation:reverse-text": 112,
+        "operation:split-lines": 112
+      },
+      "families": {
+        "cached_control": 64,
+        "paraphrase": 192,
+        "exact_control": 64,
+        "added_requirement": 64,
+        "removed_requirement": 64,
+        "negation": 64,
+        "direction_inversion": 64,
+        "entity_swap": 64,
+        "version": 64,
+        "quantity": 64,
+        "unit": 64,
+        "ambiguity": 64
+      },
+      "templates": {
+        "dev:formatter-0:cached_control": 64,
+        "dev:formatter-1:paraphrase": 64,
+        "dev:formatter-2:paraphrase": 64,
+        "dev:formatter-3:paraphrase": 64,
+        "dev:formatter-0:exact_control": 64,
+        "dev:formatter-1:added_requirement": 64,
+        "dev:formatter-2:removed_requirement": 64,
+        "dev:formatter-3:negation": 64,
+        "dev:formatter-1:direction_inversion": 64,
+        "dev:formatter-2:entity_swap": 64,
+        "dev:formatter-3:version": 64,
+        "dev:formatter-1:quantity": 64,
+        "dev:formatter-2:unit": 64,
+        "dev:formatter-3:ambiguity": 64
+      },
+      "formatters": {
+        "dev:formatter-0": 128,
+        "dev:formatter-1": 256,
+        "dev:formatter-2": 256,
+        "dev:formatter-3": 256
+      },
+      "provenance": {
+        "builder_authored_synthetic": 896
+      },
+      "relations": {
+        "same_intent": 320,
+        "new_more_specific": 128,
+        "new_more_general": 64,
+        "different_intent": 320,
+        "None": 64
+      }
+    },
+    "calibration": {
+      "sha256": "80a585ff1276aefefae40f30e8dcf704fba81b986244c6d0b58dd5e130bb7968",
+      "rows": 3584,
+      "groups": 256,
+      "lineages": {
+        "operation:encode-utf8": 448,
+        "operation:encode-base64": 448,
+        "operation:encode-json": 448,
+        "operation:html-escape": 448,
+        "operation:count-digits": 448,
+        "operation:count-spaces": 448,
+        "operation:remove-vowels": 448,
+        "operation:swap-case": 448
+      },
+      "families": {
+        "cached_control": 256,
+        "paraphrase": 768,
+        "exact_control": 256,
+        "added_requirement": 256,
+        "removed_requirement": 256,
+        "negation": 256,
+        "direction_inversion": 256,
+        "entity_swap": 256,
+        "version": 256,
+        "quantity": 256,
+        "unit": 256,
+        "ambiguity": 256
+      },
+      "templates": {
+        "calibration:formatter-0:cached_control": 256,
+        "calibration:formatter-1:paraphrase": 256,
+        "calibration:formatter-2:paraphrase": 256,
+        "calibration:formatter-3:paraphrase": 256,
+        "calibration:formatter-0:exact_control": 256,
+        "calibration:formatter-1:added_requirement": 256,
+        "calibration:formatter-2:removed_requirement": 256,
+        "calibration:formatter-3:negation": 256,
+        "calibration:formatter-1:direction_inversion": 256,
+        "calibration:formatter-2:entity_swap": 256,
+        "calibration:formatter-3:version": 256,
+        "calibration:formatter-1:quantity": 256,
+        "calibration:formatter-2:unit": 256,
+        "calibration:formatter-3:ambiguity": 256
+      },
+      "formatters": {
+        "calibration:formatter-0": 512,
+        "calibration:formatter-1": 1024,
+        "calibration:formatter-2": 1024,
+        "calibration:formatter-3": 1024
+      },
+      "provenance": {
+        "builder_authored_synthetic": 3584
+      },
+      "relations": {
+        "same_intent": 1280,
+        "new_more_specific": 512,
+        "new_more_general": 256,
+        "different_intent": 1280,
+        "None": 256
+      }
+    }
+  }
+}

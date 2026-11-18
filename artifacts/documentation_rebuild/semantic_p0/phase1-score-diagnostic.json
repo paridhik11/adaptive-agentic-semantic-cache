@@ -1,0 +1,2087 @@
+{
+  "schema": "phase1-score-diagnostic-v1",
+  "evidence_type": "model_measurement_on_exposed_development_packet",
+  "human_label_provenance": "declared_human_review_not_independently_verified",
+  "model_label_provenance": "model_assisted_self_review",
+  "n_questions": 30,
+  "n_sources": 3,
+  "models": {
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "pair": "cross-encoder/quora-distilroberta-base@f62e7a4b20b97195c2868e53ec59126df5eac743"
+  },
+  "config": {
+    "dense_threshold": 0.85,
+    "pair_threshold": 0.5,
+    "pair_margin": 0.05
+  },
+  "load_ms": 24901.704600080848,
+  "score_distributions": {
+    "dense_cosine": {
+      "min": 0.2538018331580482,
+      "max": 0.9234989057960709,
+      "mean": 0.6248720504290605,
+      "human_Y": [
+        0.7698934503068426,
+        0.4272443226348863,
+        0.6700689173260896,
+        0.8701936458449403,
+        0.6870156118475087,
+        0.5601210033402321,
+        0.5900100659248196,
+        0.8900214161786748,
+        0.7065901264796665,
+        0.772095246621667,
+        0.6091189312347296,
+        0.7828320791043528,
+        0.30665471923371473,
+        0.33167651860472813
+      ],
+      "human_N": [
+        0.7488983198751575,
+        0.6448556640581494,
+        0.7059183634409937,
+        0.6054816538987131,
+        0.6337868709401946,
+        0.706305830875199,
+        0.9234989057960709,
+        0.7747160307219133,
+        0.764556304578306,
+        0.7036969308131927,
+        0.31133171957000877,
+        0.5857707222880895,
+        0.2538018331580482,
+        0.3564089020354638,
+        0.3873013784360716
+      ],
+      "human_uncertain": [
+        0.6662960277033918
+      ]
+    },
+    "pair_score": {
+      "min": 0.0002351986049563199,
+      "max": 0.22988958292831524,
+      "mean": 0.012370312503388303,
+      "human_Y": [
+        0.011640331365934524,
+        0.00024241790635584713,
+        0.00024904938114836254,
+        0.22988958292831524,
+        0.013956340338522452,
+        0.0002351986049563199,
+        0.00031634883197148437,
+        0.00035887189807951524,
+        0.0002642479263718722,
+        0.0011984719835730678,
+        0.00023709348442674496,
+        0.011185950068212082,
+        0.0002479985006091207,
+        0.00024452382539318844
+      ],
+      "human_N": [
+        0.004550574258715354,
+        0.0002414198592088183,
+        0.003961792201948737,
+        0.000258492951238605,
+        0.06164580560834537,
+        0.000257787822725625,
+        0.004035351491930897,
+        0.0008551013612913109,
+        0.0020310354192504777,
+        0.003139846639488059,
+        0.000239257160089513,
+        0.0003031216243041829,
+        0.000238776996092719,
+        0.0002511269230697159,
+        0.00023783293492977793
+      ]
+    }
+  },
+  "policy_summary": {
+    "dense_only": {
+      "accepted": 3,
+      "tp": 2,
+      "fp": 1,
+      "irr_cache": 0.3333333333333333,
+      "coverage": 0.14285714285714285,
+      "abstained_uncertain": 0
+    },
+    "pair_only": {
+      "accepted": 0,
+      "tp": 0,
+      "fp": 0,
+      "irr_cache": null,
+      "coverage": 0.0,
+      "abstained_uncertain": 0
+    },
+    "combined": {
+      "accepted": 0,
+      "tp": 0,
+      "fp": 0,
+      "irr_cache": null,
+      "coverage": 0.0,
+      "abstained_uncertain": 0
+    }
+  },
+  "rows": [
+    {
+      "item_id": "007",
+      "human_id": "H01",
+      "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+      "question": "How do I write octal, hexadecimal, and binary integer literals in Python?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 37.27000020444393,
+      "designated_scores": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.7488983198751575,
+        "pair_ms": 232.21089970320463,
+        "logit": -5.387940883636475,
+        "pair_score": 0.004550574258715354,
+        "input_tokens": 37
+      },
+      "dense_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.7488983198751575,
+        "pair_ms": 232.21089970320463,
+        "logit": -5.387940883636475,
+        "pair_score": 0.004550574258715354,
+        "input_tokens": 37
+      },
+      "pair_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.7488983198751575,
+        "pair_ms": 232.21089970320463,
+        "logit": -5.387940883636475,
+        "pair_score": 0.004550574258715354,
+        "input_tokens": 37
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.7488983198751575,
+          "pair_ms": 232.21089970320463,
+          "logit": -5.387940883636475,
+          "pair_score": 0.004550574258715354,
+          "input_tokens": 37
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.3267701402127747,
+          "pair_ms": 90.43480036780238,
+          "logit": -8.338377952575684,
+          "pair_score": 0.00023910277347117197,
+          "input_tokens": 34
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.11051635027733152,
+          "pair_ms": 109.20780012384057,
+          "logit": -8.321510314941406,
+          "pair_score": 0.00024316908985108198,
+          "input_tokens": 30
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "006",
+      "human_id": "H02",
+      "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+      "question": "How do I turn the decimal integer 165 into a string containing its hexadecimal representation?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 39.19919999316335,
+      "designated_scores": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.6448556640581494,
+        "pair_ms": 124.40550001338124,
+        "logit": -8.328731536865234,
+        "pair_score": 0.0002414198592088183,
+        "input_tokens": 36
+      },
+      "dense_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.6448556640581494,
+        "pair_ms": 124.40550001338124,
+        "logit": -8.328731536865234,
+        "pair_score": 0.0002414198592088183,
+        "input_tokens": 36
+      },
+      "pair_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.6448556640581494,
+        "pair_ms": 124.40550001338124,
+        "logit": -8.328731536865234,
+        "pair_score": 0.0002414198592088183,
+        "input_tokens": 36
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.6448556640581494,
+          "pair_ms": 124.40550001338124,
+          "logit": -8.328731536865234,
+          "pair_score": 0.0002414198592088183,
+          "input_tokens": 36
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.22710286453212286,
+          "pair_ms": 115.03180023282766,
+          "logit": -8.348982810974121,
+          "pair_score": 0.00023658111684145497,
+          "input_tokens": 33
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.06297293786566624,
+          "pair_ms": 102.62970020994544,
+          "logit": -8.336247444152832,
+          "pair_score": 0.0002396126047899221,
+          "input_tokens": 29
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "001",
+      "human_id": "H03",
+      "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+      "question": "How do I write octal and hexadecimal integer literals in Python?",
+      "human_label": "Y",
+      "model_label": true,
+      "embed_ms": 32.87280024960637,
+      "designated_scores": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.7698934503068426,
+        "pair_ms": 111.95320030674338,
+        "logit": -4.44157075881958,
+        "pair_score": 0.011640331365934524,
+        "input_tokens": 34
+      },
+      "dense_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.7698934503068426,
+        "pair_ms": 111.95320030674338,
+        "logit": -4.44157075881958,
+        "pair_score": 0.011640331365934524,
+        "input_tokens": 34
+      },
+      "pair_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.7698934503068426,
+        "pair_ms": 111.95320030674338,
+        "logit": -4.44157075881958,
+        "pair_score": 0.011640331365934524,
+        "input_tokens": 34
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.7698934503068426,
+          "pair_ms": 111.95320030674338,
+          "logit": -4.44157075881958,
+          "pair_score": 0.011640331365934524,
+          "input_tokens": 34
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.31243468814299485,
+          "pair_ms": 111.18459980934858,
+          "logit": -8.325437545776367,
+          "pair_score": 0.00024221621232492399,
+          "input_tokens": 31
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.1406921029779113,
+          "pair_ms": 103.74909965321422,
+          "logit": -8.330169677734375,
+          "pair_score": 0.0002410729966206069,
+          "input_tokens": 27
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "010",
+      "human_id": "H04",
+      "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+      "question": "How do I write octal 10 and hexadecimal a5, then add them and print the total in octal?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 39.455899968743324,
+      "designated_scores": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.7059183634409937,
+        "pair_ms": 185.65799994394183,
+        "logit": -5.5270891189575195,
+        "pair_score": 0.003961792201948737,
+        "input_tokens": 43
+      },
+      "dense_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.7059183634409937,
+        "pair_ms": 185.65799994394183,
+        "logit": -5.5270891189575195,
+        "pair_score": 0.003961792201948737,
+        "input_tokens": 43
+      },
+      "pair_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.7059183634409937,
+        "pair_ms": 185.65799994394183,
+        "logit": -5.5270891189575195,
+        "pair_score": 0.003961792201948737,
+        "input_tokens": 43
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.7059183634409937,
+          "pair_ms": 185.65799994394183,
+          "logit": -5.5270891189575195,
+          "pair_score": 0.003961792201948737,
+          "input_tokens": 43
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.14070615987264004,
+          "pair_ms": 133.45680013298988,
+          "logit": -8.339130401611328,
+          "pair_score": 0.00023892297145952738,
+          "input_tokens": 40
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.08376370511401134,
+          "pair_ms": 114.19470002874732,
+          "logit": -8.347396850585938,
+          "pair_score": 0.00023695653383285333,
+          "input_tokens": 36
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "005",
+      "human_id": "H05",
+      "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+      "question": "How can I enter octal ten and hexadecimal a5 in the Python interpreter, and what values do they have?",
+      "human_label": "?",
+      "model_label": true,
+      "embed_ms": 33.90520019456744,
+      "designated_scores": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.6662960277033918,
+        "pair_ms": 121.3026000186801,
+        "logit": -3.9660582542419434,
+        "pair_score": 0.018595624805150087,
+        "input_tokens": 43
+      },
+      "dense_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.6662960277033918,
+        "pair_ms": 121.3026000186801,
+        "logit": -3.9660582542419434,
+        "pair_score": 0.018595624805150087,
+        "input_tokens": 43
+      },
+      "pair_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.6662960277033918,
+        "pair_ms": 121.3026000186801,
+        "logit": -3.9660582542419434,
+        "pair_score": 0.018595624805150087,
+        "input_tokens": 43
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.6662960277033918,
+          "pair_ms": 121.3026000186801,
+          "logit": -3.9660582542419434,
+          "pair_score": 0.018595624805150087,
+          "input_tokens": 43
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.27849667833765285,
+          "pair_ms": 114.66239998117089,
+          "logit": -8.317325592041016,
+          "pair_score": 0.00024418856825447977,
+          "input_tokens": 40
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.16248156883607334,
+          "pair_ms": 103.57699962332845,
+          "logit": -8.329143524169922,
+          "pair_score": 0.00024132044177468517,
+          "input_tokens": 36
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "009",
+      "human_id": "H06",
+      "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+      "question": "How do I write hexadecimal floating-point literals in Python?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 30.79479979351163,
+      "designated_scores": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.6054816538987131,
+        "pair_ms": 107.27309994399548,
+        "logit": -8.260383605957031,
+        "pair_score": 0.000258492951238605,
+        "input_tokens": 33
+      },
+      "dense_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.6054816538987131,
+        "pair_ms": 107.27309994399548,
+        "logit": -8.260383605957031,
+        "pair_score": 0.000258492951238605,
+        "input_tokens": 33
+      },
+      "pair_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.6054816538987131,
+        "pair_ms": 107.27309994399548,
+        "logit": -8.260383605957031,
+        "pair_score": 0.000258492951238605,
+        "input_tokens": 33
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.6054816538987131,
+          "pair_ms": 107.27309994399548,
+          "logit": -8.260383605957031,
+          "pair_score": 0.000258492951238605,
+          "input_tokens": 33
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.2832922003616614,
+          "pair_ms": 114.99679973348975,
+          "logit": -8.309263229370117,
+          "pair_score": 0.00024616477616590276,
+          "input_tokens": 30
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.14531742612822496,
+          "pair_ms": 92.26529998704791,
+          "logit": -8.328851699829102,
+          "pair_score": 0.00024139085822813877,
+          "input_tokens": 26
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "008",
+      "human_id": "H07",
+      "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+      "question": "How do I parse the strings \"a5\" and \"10\" as hexadecimal and octal integers at runtime?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 39.7305004298687,
+      "designated_scores": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.6337868709401946,
+        "pair_ms": 137.6233003102243,
+        "logit": -2.722722291946411,
+        "pair_score": 0.06164580560834537,
+        "input_tokens": 43
+      },
+      "dense_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.6337868709401946,
+        "pair_ms": 137.6233003102243,
+        "logit": -2.722722291946411,
+        "pair_score": 0.06164580560834537,
+        "input_tokens": 43
+      },
+      "pair_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.6337868709401946,
+        "pair_ms": 137.6233003102243,
+        "logit": -2.722722291946411,
+        "pair_score": 0.06164580560834537,
+        "input_tokens": 43
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.6337868709401946,
+          "pair_ms": 137.6233003102243,
+          "logit": -2.722722291946411,
+          "pair_score": 0.06164580560834537,
+          "input_tokens": 43
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.176536878825555,
+          "pair_ms": 126.89970014616847,
+          "logit": -8.332478523254395,
+          "pair_score": 0.00024051717208769947,
+          "input_tokens": 40
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.019345490657365346,
+          "pair_ms": 120.72650017216802,
+          "logit": -8.320075988769531,
+          "pair_score": 0.00024351803889925396,
+          "input_tokens": 36
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "dense_fail"
+      }
+    },
+    {
+      "item_id": "002",
+      "human_id": "H08",
+      "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+      "question": "What prefixes do I put before base-eight and base-sixteen numbers in Python code?",
+      "human_label": "Y",
+      "model_label": true,
+      "embed_ms": 32.43449982255697,
+      "designated_scores": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.4272443226348863,
+        "pair_ms": 122.5957996211946,
+        "logit": -8.324604988098145,
+        "pair_score": 0.00024241790635584713,
+        "input_tokens": 37
+      },
+      "dense_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.4272443226348863,
+        "pair_ms": 122.5957996211946,
+        "logit": -8.324604988098145,
+        "pair_score": 0.00024241790635584713,
+        "input_tokens": 37
+      },
+      "pair_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.4272443226348863,
+        "pair_ms": 122.5957996211946,
+        "logit": -8.324604988098145,
+        "pair_score": 0.00024241790635584713,
+        "input_tokens": 37
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.4272443226348863,
+          "pair_ms": 122.5957996211946,
+          "logit": -8.324604988098145,
+          "pair_score": 0.00024241790635584713,
+          "input_tokens": 37
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.3655825449962224,
+          "pair_ms": 110.30519986525178,
+          "logit": -8.337724685668945,
+          "pair_score": 0.00023925898504700312,
+          "input_tokens": 34
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.16959135736889927,
+          "pair_ms": 102.76799974963069,
+          "logit": -8.345719337463379,
+          "pair_score": 0.00023735427069118713,
+          "input_tokens": 30
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "004",
+      "human_id": "H09",
+      "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+      "question": "When entering an integer in octal or hex, are uppercase prefix letters allowed?",
+      "human_label": "Y",
+      "model_label": true,
+      "embed_ms": 46.76899965852499,
+      "designated_scores": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.6700689173260896,
+        "pair_ms": 126.57349975779653,
+        "logit": -8.29761028289795,
+        "pair_score": 0.00024904938114836254,
+        "input_tokens": 35
+      },
+      "dense_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.6700689173260896,
+        "pair_ms": 126.57349975779653,
+        "logit": -8.29761028289795,
+        "pair_score": 0.00024904938114836254,
+        "input_tokens": 35
+      },
+      "pair_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.03922550770436055,
+        "pair_ms": 107.09969978779554,
+        "logit": -8.27545166015625,
+        "pair_score": 0.00025462814786938244,
+        "input_tokens": 32
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.6700689173260896,
+          "pair_ms": 126.57349975779653,
+          "logit": -8.29761028289795,
+          "pair_score": 0.00024904938114836254,
+          "input_tokens": 35
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.03922550770436055,
+          "pair_ms": 107.09969978779554,
+          "logit": -8.27545166015625,
+          "pair_score": 0.00025462814786938244,
+          "input_tokens": 32
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.15559304058695067,
+          "pair_ms": 103.91979990527034,
+          "logit": -8.301750183105469,
+          "pair_score": 0.0002480207280126712,
+          "input_tokens": 28
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "003",
+      "human_id": "H10",
+      "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+      "question": "Can you show how to assign a hexadecimal integer and an octal integer to a variable?",
+      "human_label": "Y",
+      "model_label": true,
+      "embed_ms": 35.468099638819695,
+      "designated_scores": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.8701936458449403,
+        "pair_ms": 125.89350016787648,
+        "logit": -1.2089347839355469,
+        "pair_score": 0.22988958292831524,
+        "input_tokens": 38
+      },
+      "dense_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.8701936458449403,
+        "pair_ms": 125.89350016787648,
+        "logit": -1.2089347839355469,
+        "pair_score": 0.22988958292831524,
+        "input_tokens": 38
+      },
+      "pair_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.8701936458449403,
+        "pair_ms": 125.89350016787648,
+        "logit": -1.2089347839355469,
+        "pair_score": 0.22988958292831524,
+        "input_tokens": 38
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.8701936458449403,
+          "pair_ms": 125.89350016787648,
+          "logit": -1.2089347839355469,
+          "pair_score": 0.22988958292831524,
+          "input_tokens": 38
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.1311640909642239,
+          "pair_ms": 120.66829996183515,
+          "logit": -8.323348999023438,
+          "pair_score": 0.00024272249793680248,
+          "input_tokens": 35
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.1264914199944741,
+          "pair_ms": 106.56770039349794,
+          "logit": -8.314167976379395,
+          "pair_score": 0.00024496065135352126,
+          "input_tokens": 31
+        }
+      ],
+      "policy": {
+        "dense_only_accept": true,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "pair_fail"
+      }
+    },
+    {
+      "item_id": "019",
+      "human_id": "H11",
+      "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+      "question": "How do I convert a list to a tuple while making a deep copy of every nested object?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 36.76099982112646,
+      "designated_scores": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.706305830875199,
+        "pair_ms": 118.40419983491302,
+        "logit": -8.263115882873535,
+        "pair_score": 0.000257787822725625,
+        "input_tokens": 33
+      },
+      "dense_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.706305830875199,
+        "pair_ms": 118.40419983491302,
+        "logit": -8.263115882873535,
+        "pair_score": 0.000257787822725625,
+        "input_tokens": 33
+      },
+      "pair_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.706305830875199,
+        "pair_ms": 118.40419983491302,
+        "logit": -8.263115882873535,
+        "pair_score": 0.000257787822725625,
+        "input_tokens": 33
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": -0.02964358671128174,
+          "pair_ms": 119.44219982251525,
+          "logit": -8.318129539489746,
+          "pair_score": 0.00024399238025032158,
+          "input_tokens": 36
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.706305830875199,
+          "pair_ms": 118.40419983491302,
+          "logit": -8.263115882873535,
+          "pair_score": 0.000257787822725625,
+          "input_tokens": 33
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": -0.05071877794284504,
+          "pair_ms": 95.86239978671074,
+          "logit": -8.329201698303223,
+          "pair_score": 0.00024130640696297856,
+          "input_tokens": 29
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "017",
+      "human_id": "H12",
+      "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+      "question": "How do I convert a list of lists into a tuple of tuples?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 28.9619998075068,
+      "designated_scores": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.9234989057960709,
+        "pair_ms": 81.02330006659031,
+        "logit": -5.508618354797363,
+        "pair_score": 0.004035351491930897,
+        "input_tokens": 29
+      },
+      "dense_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.9234989057960709,
+        "pair_ms": 81.02330006659031,
+        "logit": -5.508618354797363,
+        "pair_score": 0.004035351491930897,
+        "input_tokens": 29
+      },
+      "pair_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.9234989057960709,
+        "pair_ms": 81.02330006659031,
+        "logit": -5.508618354797363,
+        "pair_score": 0.004035351491930897,
+        "input_tokens": 29
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.02884804970400783,
+          "pair_ms": 100.5770000629127,
+          "logit": -8.35073471069336,
+          "pair_score": 0.00023616711108678375,
+          "input_tokens": 32
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.9234989057960709,
+          "pair_ms": 81.02330006659031,
+          "logit": -5.508618354797363,
+          "pair_score": 0.004035351491930897,
+          "input_tokens": 29
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": -0.06065179573005223,
+          "pair_ms": 79.02069995179772,
+          "logit": -8.346512794494629,
+          "pair_score": 0.00023716605962036556,
+          "input_tokens": 25
+        }
+      ],
+      "policy": {
+        "dense_only_accept": true,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "012",
+      "human_id": "H13",
+      "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+      "question": "Which constructors let me switch between lists and tuples while keeping the elements in order?",
+      "human_label": "Y",
+      "model_label": true,
+      "embed_ms": 35.9184998087585,
+      "designated_scores": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.6870156118475087,
+        "pair_ms": 108.40350016951561,
+        "logit": -4.2577667236328125,
+        "pair_score": 0.013956340338522452,
+        "input_tokens": 32
+      },
+      "dense_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.6870156118475087,
+        "pair_ms": 108.40350016951561,
+        "logit": -4.2577667236328125,
+        "pair_score": 0.013956340338522452,
+        "input_tokens": 32
+      },
+      "pair_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.6870156118475087,
+        "pair_ms": 108.40350016951561,
+        "logit": -4.2577667236328125,
+        "pair_score": 0.013956340338522452,
+        "input_tokens": 32
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.11930768747069811,
+          "pair_ms": 107.66769992187619,
+          "logit": -8.335556983947754,
+          "pair_score": 0.00023977806520391207,
+          "input_tokens": 35
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.6870156118475087,
+          "pair_ms": 108.40350016951561,
+          "logit": -4.2577667236328125,
+          "pair_score": 0.013956340338522452,
+          "input_tokens": 32
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.03894976867923179,
+          "pair_ms": 105.29089998453856,
+          "logit": -8.337871551513672,
+          "pair_score": 0.00023922385705975026,
+          "input_tokens": 28
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "016",
+      "human_id": "H14",
+      "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+      "question": "How do I convert a list into a tuple with the elements in reverse order?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 33.71710004284978,
+      "designated_scores": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.7747160307219133,
+        "pair_ms": 110.92890007421374,
+        "logit": -7.063435077667236,
+        "pair_score": 0.0008551013612913109,
+        "input_tokens": 30
+      },
+      "dense_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.7747160307219133,
+        "pair_ms": 110.92890007421374,
+        "logit": -7.063435077667236,
+        "pair_score": 0.0008551013612913109,
+        "input_tokens": 30
+      },
+      "pair_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.7747160307219133,
+        "pair_ms": 110.92890007421374,
+        "logit": -7.063435077667236,
+        "pair_score": 0.0008551013612913109,
+        "input_tokens": 30
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.11939580748130212,
+          "pair_ms": 116.47729994729161,
+          "logit": -8.32080364227295,
+          "pair_score": 0.00024334094970193107,
+          "input_tokens": 33
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.7747160307219133,
+          "pair_ms": 110.92890007421374,
+          "logit": -7.063435077667236,
+          "pair_score": 0.0008551013612913109,
+          "input_tokens": 30
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.13799917752722712,
+          "pair_ms": 93.46280014142394,
+          "logit": -8.309427261352539,
+          "pair_score": 0.0002461244105186169,
+          "input_tokens": 26
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "014",
+      "human_id": "H15",
+      "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+      "question": "Can list() and tuple() accept an iterable, and do they preserve its item order?",
+      "human_label": "Y",
+      "model_label": true,
+      "embed_ms": 39.7812002338469,
+      "designated_scores": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.5601210033402321,
+        "pair_ms": 121.36289989575744,
+        "logit": -8.35484504699707,
+        "pair_score": 0.0002351986049563199,
+        "input_tokens": 33
+      },
+      "dense_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.5601210033402321,
+        "pair_ms": 121.36289989575744,
+        "logit": -8.35484504699707,
+        "pair_score": 0.0002351986049563199,
+        "input_tokens": 33
+      },
+      "pair_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.02357554345017021,
+        "pair_ms": 121.2284998036921,
+        "logit": -8.31763744354248,
+        "pair_score": 0.00024411244814183416,
+        "input_tokens": 36
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.02357554345017021,
+          "pair_ms": 121.2284998036921,
+          "logit": -8.31763744354248,
+          "pair_score": 0.00024411244814183416,
+          "input_tokens": 36
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.5601210033402321,
+          "pair_ms": 121.36289989575744,
+          "logit": -8.35484504699707,
+          "pair_score": 0.0002351986049563199,
+          "input_tokens": 33
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.04946694265802454,
+          "pair_ms": 105.18200043588877,
+          "logit": -8.327898979187012,
+          "pair_score": 0.00024162089027482254,
+          "input_tokens": 29
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "020",
+      "human_id": "H16",
+      "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+      "question": "How do I convert a tuple to a list in place so existing references point to that list?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 32.9628000035882,
+      "designated_scores": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.764556304578306,
+        "pair_ms": 117.0474998652935,
+        "logit": -6.197176456451416,
+        "pair_score": 0.0020310354192504777,
+        "input_tokens": 33
+      },
+      "dense_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.764556304578306,
+        "pair_ms": 117.0474998652935,
+        "logit": -6.197176456451416,
+        "pair_score": 0.0020310354192504777,
+        "input_tokens": 33
+      },
+      "pair_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.764556304578306,
+        "pair_ms": 117.0474998652935,
+        "logit": -6.197176456451416,
+        "pair_score": 0.0020310354192504777,
+        "input_tokens": 33
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.020131765587914074,
+          "pair_ms": 122.83380003646016,
+          "logit": -8.32730770111084,
+          "pair_score": 0.00024176376310499804,
+          "input_tokens": 36
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.764556304578306,
+          "pair_ms": 117.0474998652935,
+          "logit": -6.197176456451416,
+          "pair_score": 0.0020310354192504777,
+          "input_tokens": 33
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.008536790002068863,
+          "pair_ms": 106.25169984996319,
+          "logit": -8.330122947692871,
+          "pair_score": 0.00024108425951900142,
+          "input_tokens": 29
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "015",
+      "human_id": "H17",
+      "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+      "question": "When I call tuple() on a tuple or list() on a list, do I get a copy?",
+      "human_label": "Y",
+      "model_label": true,
+      "embed_ms": 37.91159996762872,
+      "designated_scores": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.5900100659248196,
+        "pair_ms": 116.82969983667135,
+        "logit": -8.058348655700684,
+        "pair_score": 0.00031634883197148437,
+        "input_tokens": 35
+      },
+      "dense_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.5900100659248196,
+        "pair_ms": 116.82969983667135,
+        "logit": -8.058348655700684,
+        "pair_score": 0.00031634883197148437,
+        "input_tokens": 35
+      },
+      "pair_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.5900100659248196,
+        "pair_ms": 116.82969983667135,
+        "logit": -8.058348655700684,
+        "pair_score": 0.00031634883197148437,
+        "input_tokens": 35
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.015685486354667464,
+          "pair_ms": 116.87389994040132,
+          "logit": -8.353766441345215,
+          "pair_score": 0.00023545236860068481,
+          "input_tokens": 38
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.5900100659248196,
+          "pair_ms": 116.82969983667135,
+          "logit": -8.058348655700684,
+          "pair_score": 0.00031634883197148437,
+          "input_tokens": 35
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.019709385108697523,
+          "pair_ms": 109.46760000661016,
+          "logit": -8.356514930725098,
+          "pair_score": 0.0002348062705218396,
+          "input_tokens": 31
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "018",
+      "human_id": "H18",
+      "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+      "question": "How can I convert a tuple into a set and remove duplicate values?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 28.542800340801477,
+      "designated_scores": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.7036969308131927,
+        "pair_ms": 97.97400003299117,
+        "logit": -5.760436534881592,
+        "pair_score": 0.003139846639488059,
+        "input_tokens": 28
+      },
+      "dense_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.7036969308131927,
+        "pair_ms": 97.97400003299117,
+        "logit": -5.760436534881592,
+        "pair_score": 0.003139846639488059,
+        "input_tokens": 28
+      },
+      "pair_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.7036969308131927,
+        "pair_ms": 97.97400003299117,
+        "logit": -5.760436534881592,
+        "pair_score": 0.003139846639488059,
+        "input_tokens": 28
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.10402601812168324,
+          "pair_ms": 103.35890017449856,
+          "logit": -8.340985298156738,
+          "pair_score": 0.00023848031042636095,
+          "input_tokens": 31
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.7036969308131927,
+          "pair_ms": 97.97400003299117,
+          "logit": -5.760436534881592,
+          "pair_score": 0.003139846639488059,
+          "input_tokens": 28
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": -0.026375902285905375,
+          "pair_ms": 84.72639974206686,
+          "logit": -8.33526611328125,
+          "pair_score": 0.00023984780302335987,
+          "input_tokens": 24
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "011",
+      "human_id": "H19",
+      "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+      "question": "How do I convert a tuple into a list and a list into a tuple in Python?",
+      "human_label": "Y",
+      "model_label": true,
+      "embed_ms": 33.018500078469515,
+      "designated_scores": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.8900214161786748,
+        "pair_ms": 105.17130000516772,
+        "logit": -7.932186126708984,
+        "pair_score": 0.00035887189807951524,
+        "input_tokens": 32
+      },
+      "dense_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.8900214161786748,
+        "pair_ms": 105.17130000516772,
+        "logit": -7.932186126708984,
+        "pair_score": 0.00035887189807951524,
+        "input_tokens": 32
+      },
+      "pair_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.8900214161786748,
+        "pair_ms": 105.17130000516772,
+        "logit": -7.932186126708984,
+        "pair_score": 0.00035887189807951524,
+        "input_tokens": 32
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.040872439748145806,
+          "pair_ms": 113.70330024510622,
+          "logit": -8.34863567352295,
+          "pair_score": 0.000236663237823916,
+          "input_tokens": 35
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.8900214161786748,
+          "pair_ms": 105.17130000516772,
+          "logit": -7.932186126708984,
+          "pair_score": 0.00035887189807951524,
+          "input_tokens": 32
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": -0.006970545094832543,
+          "pair_ms": 97.70159982144833,
+          "logit": -8.346212387084961,
+          "pair_score": 0.00023723729985969594,
+          "input_tokens": 28
+        }
+      ],
+      "policy": {
+        "dense_only_accept": true,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "013",
+      "human_id": "H20",
+      "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+      "question": "What do tuple([1, 2, 3]) and list((1, 2, 3)) produce?",
+      "human_label": "Y",
+      "model_label": true,
+      "embed_ms": 36.55850002542138,
+      "designated_scores": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.7065901264796665,
+        "pair_ms": 116.66870024055243,
+        "logit": -8.238358497619629,
+        "pair_score": 0.0002642479263718722,
+        "input_tokens": 35
+      },
+      "dense_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.7065901264796665,
+        "pair_ms": 116.66870024055243,
+        "logit": -8.238358497619629,
+        "pair_score": 0.0002642479263718722,
+        "input_tokens": 35
+      },
+      "pair_top": {
+        "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+        "dense_cosine": 0.7065901264796665,
+        "pair_ms": 116.66870024055243,
+        "logit": -8.238358497619629,
+        "pair_score": 0.0002642479263718722,
+        "input_tokens": 35
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.07063477967260676,
+          "pair_ms": 124.12350019440055,
+          "logit": -8.336247444152832,
+          "pair_score": 0.0002396126047899221,
+          "input_tokens": 38
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.7065901264796665,
+          "pair_ms": 116.66870024055243,
+          "logit": -8.238358497619629,
+          "pair_score": 0.0002642479263718722,
+          "input_tokens": 35
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.1024849601185945,
+          "pair_ms": 106.63120029494166,
+          "logit": -8.342514038085938,
+          "pair_score": 0.000238116101325941,
+          "input_tokens": 31
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "027",
+      "human_id": "H21",
+      "seed_id": "python312-1176-what-s-a-negative-index",
+      "question": "How can I get the last character as a one-character slice rather than as an indexed element?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 31.72150021418929,
+      "designated_scores": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.31133171957000877,
+        "pair_ms": 104.86049996688962,
+        "logit": -8.337732315063477,
+        "pair_score": 0.000239257160089513,
+        "input_tokens": 30
+      },
+      "dense_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.31133171957000877,
+        "pair_ms": 104.86049996688962,
+        "logit": -8.337732315063477,
+        "pair_score": 0.000239257160089513,
+        "input_tokens": 30
+      },
+      "pair_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.1368074842042391,
+        "pair_ms": 122.19609972089529,
+        "logit": -8.33544921875,
+        "pair_score": 0.00023980390013008564,
+        "input_tokens": 37
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.1368074842042391,
+          "pair_ms": 122.19609972089529,
+          "logit": -8.33544921875,
+          "pair_score": 0.00023980390013008564,
+          "input_tokens": 37
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.14117836993265082,
+          "pair_ms": 109.91489980369806,
+          "logit": -8.342354774475098,
+          "pair_score": 0.000238154018543804,
+          "input_tokens": 34
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.31133171957000877,
+          "pair_ms": 104.86049996688962,
+          "logit": -8.337732315063477,
+          "pair_score": 0.000239257160089513,
+          "input_tokens": 30
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "028",
+      "human_id": "H22",
+      "seed_id": "python312-1176-what-s-a-negative-index",
+      "question": "What happens if a negative index is farther from the end than the sequence length, and does a slice behave the same way?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 35.413799807429314,
+      "designated_scores": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.5857707222880895,
+        "pair_ms": 118.24910016730428,
+        "logit": -8.101073265075684,
+        "pair_score": 0.0003031216243041829,
+        "input_tokens": 35
+      },
+      "dense_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.5857707222880895,
+        "pair_ms": 118.24910016730428,
+        "logit": -8.101073265075684,
+        "pair_score": 0.0003031216243041829,
+        "input_tokens": 35
+      },
+      "pair_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.5857707222880895,
+        "pair_ms": 118.24910016730428,
+        "logit": -8.101073265075684,
+        "pair_score": 0.0003031216243041829,
+        "input_tokens": 35
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.11427745148279851,
+          "pair_ms": 129.98609989881516,
+          "logit": -8.28803539276123,
+          "pair_score": 0.0002514448518944733,
+          "input_tokens": 42
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.0748240604930614,
+          "pair_ms": 125.75360015034676,
+          "logit": -8.299872398376465,
+          "pair_score": 0.00024848677925558667,
+          "input_tokens": 39
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.5857707222880895,
+          "pair_ms": 118.24910016730428,
+          "logit": -8.101073265075684,
+          "pair_score": 0.0003031216243041829,
+          "input_tokens": 35
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "029",
+      "human_id": "H23",
+      "seed_id": "python312-1176-what-s-a-negative-index",
+      "question": "Does S[:-1] remove the last character from S itself, and how can I update S with the result?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 37.66570007428527,
+      "designated_scores": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.2538018331580482,
+        "pair_ms": 107.52240009605885,
+        "logit": -8.339741706848145,
+        "pair_score": 0.000238776996092719,
+        "input_tokens": 34
+      },
+      "dense_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.2538018331580482,
+        "pair_ms": 107.52240009605885,
+        "logit": -8.339741706848145,
+        "pair_score": 0.000238776996092719,
+        "input_tokens": 34
+      },
+      "pair_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.2538018331580482,
+        "pair_ms": 107.52240009605885,
+        "logit": -8.339741706848145,
+        "pair_score": 0.000238776996092719,
+        "input_tokens": 34
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.11890461599886086,
+          "pair_ms": 134.20799979940057,
+          "logit": -8.343581199645996,
+          "pair_score": 0.00023786218892541704,
+          "input_tokens": 41
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.185132805657137,
+          "pair_ms": 120.50990015268326,
+          "logit": -8.345110893249512,
+          "pair_score": 0.00023749869715828476,
+          "input_tokens": 38
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.2538018331580482,
+          "pair_ms": 107.52240009605885,
+          "logit": -8.339741706848145,
+          "pair_score": 0.000238776996092719,
+          "input_tokens": 34
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "025",
+      "human_id": "H24",
+      "seed_id": "python312-1176-what-s-a-negative-index",
+      "question": "Can you explain zero-based positive indexing and how negative indexing counts from the end?",
+      "human_label": "Y",
+      "model_label": true,
+      "embed_ms": 32.4070998467505,
+      "designated_scores": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.772095246621667,
+        "pair_ms": 99.2912002839148,
+        "logit": -6.725508689880371,
+        "pair_score": 0.0011984719835730678,
+        "input_tokens": 29
+      },
+      "dense_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.772095246621667,
+        "pair_ms": 99.2912002839148,
+        "logit": -6.725508689880371,
+        "pair_score": 0.0011984719835730678,
+        "input_tokens": 29
+      },
+      "pair_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.772095246621667,
+        "pair_ms": 99.2912002839148,
+        "logit": -6.725508689880371,
+        "pair_score": 0.0011984719835730678,
+        "input_tokens": 29
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.09629474274965324,
+          "pair_ms": 122.53839988261461,
+          "logit": -8.332276344299316,
+          "pair_score": 0.00024056579281499322,
+          "input_tokens": 36
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": -0.03585811770749149,
+          "pair_ms": 111.14729987457395,
+          "logit": -8.34533977508545,
+          "pair_score": 0.00023744435714667499,
+          "input_tokens": 33
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.772095246621667,
+          "pair_ms": 99.2912002839148,
+          "logit": -6.725508689880371,
+          "pair_score": 0.0011984719835730678,
+          "input_tokens": 29
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "022",
+      "human_id": "H25",
+      "seed_id": "python312-1176-what-s-a-negative-index",
+      "question": "How do -1 and -2 work when indexing a list or string?",
+      "human_label": "Y",
+      "model_label": true,
+      "embed_ms": 31.206400133669376,
+      "designated_scores": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.6091189312347296,
+        "pair_ms": 96.67860018089414,
+        "logit": -8.346818923950195,
+        "pair_score": 0.00023709348442674496,
+        "input_tokens": 26
+      },
+      "dense_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.6091189312347296,
+        "pair_ms": 96.67860018089414,
+        "logit": -8.346818923950195,
+        "pair_score": 0.00023709348442674496,
+        "input_tokens": 26
+      },
+      "pair_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.6091189312347296,
+        "pair_ms": 96.67860018089414,
+        "logit": -8.346818923950195,
+        "pair_score": 0.00023709348442674496,
+        "input_tokens": 26
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.23245591484612585,
+          "pair_ms": 116.56149988994002,
+          "logit": -8.347064971923828,
+          "pair_score": 0.00023703516905759528,
+          "input_tokens": 33
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.24841386801618573,
+          "pair_ms": 108.38540038093925,
+          "logit": -8.351771354675293,
+          "pair_score": 0.00023592247445362624,
+          "input_tokens": 30
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.6091189312347296,
+          "pair_ms": 96.67860018089414,
+          "logit": -8.346818923950195,
+          "pair_score": 0.00023709348442674496,
+          "input_tokens": 26
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "021",
+      "human_id": "H26",
+      "seed_id": "python312-1176-what-s-a-negative-index",
+      "question": "What does a negative index mean for a Python sequence?",
+      "human_label": "Y",
+      "model_label": true,
+      "embed_ms": 28.22740003466606,
+      "designated_scores": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.7828320791043528,
+        "pair_ms": 84.35619994997978,
+        "logit": -4.481847763061523,
+        "pair_score": 0.011185950068212082,
+        "input_tokens": 21
+      },
+      "dense_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.7828320791043528,
+        "pair_ms": 84.35619994997978,
+        "logit": -4.481847763061523,
+        "pair_score": 0.011185950068212082,
+        "input_tokens": 21
+      },
+      "pair_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.7828320791043528,
+        "pair_ms": 84.35619994997978,
+        "logit": -4.481847763061523,
+        "pair_score": 0.011185950068212082,
+        "input_tokens": 21
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.12130746605979989,
+          "pair_ms": 101.66619997471571,
+          "logit": -8.31087589263916,
+          "pair_score": 0.00024576821268615574,
+          "input_tokens": 28
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.1869102303333584,
+          "pair_ms": 106.7032003775239,
+          "logit": -8.307854652404785,
+          "pair_score": 0.00024651167698422013,
+          "input_tokens": 25
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.7828320791043528,
+          "pair_ms": 84.35619994997978,
+          "logit": -4.481847763061523,
+          "pair_score": 0.011185950068212082,
+          "input_tokens": 21
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "030",
+      "human_id": "H27",
+      "seed_id": "python312-1176-what-s-a-negative-index",
+      "question": "How do I use one-based indexing so index 1 retrieves the first item in a Python sequence?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 29.69129988923669,
+      "designated_scores": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.3564089020354638,
+        "pair_ms": 107.72159975022078,
+        "logit": -8.289300918579102,
+        "pair_score": 0.0002511269230697159,
+        "input_tokens": 32
+      },
+      "dense_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.3564089020354638,
+        "pair_ms": 107.72159975022078,
+        "logit": -8.289300918579102,
+        "pair_score": 0.0002511269230697159,
+        "input_tokens": 32
+      },
+      "pair_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.3564089020354638,
+        "pair_ms": 107.72159975022078,
+        "logit": -8.289300918579102,
+        "pair_score": 0.0002511269230697159,
+        "input_tokens": 32
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.009420119674846912,
+          "pair_ms": 122.21210030838847,
+          "logit": -8.324348449707031,
+          "pair_score": 0.00024248008875155016,
+          "input_tokens": 39
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.23924008013955236,
+          "pair_ms": 117.45719984173775,
+          "logit": -8.331818580627441,
+          "pair_score": 0.0002406759137946282,
+          "input_tokens": 36
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.3564089020354638,
+          "pair_ms": 107.72159975022078,
+          "logit": -8.289300918579102,
+          "pair_score": 0.0002511269230697159,
+          "input_tokens": 32
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "026",
+      "human_id": "H28",
+      "seed_id": "python312-1176-what-s-a-negative-index",
+      "question": "How do I reverse a sequence using a slice with a negative step?",
+      "human_label": "N",
+      "model_label": false,
+      "embed_ms": 47.608799766749144,
+      "designated_scores": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.3873013784360716,
+        "pair_ms": 94.56989960744977,
+        "logit": -8.343704223632812,
+        "pair_score": 0.00023783293492977793,
+        "input_tokens": 24
+      },
+      "dense_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.3873013784360716,
+        "pair_ms": 94.56989960744977,
+        "logit": -8.343704223632812,
+        "pair_score": 0.00023783293492977793,
+        "input_tokens": 24
+      },
+      "pair_top": {
+        "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+        "dense_cosine": 0.16865352776109416,
+        "pair_ms": 167.65470011159778,
+        "logit": -8.319624900817871,
+        "pair_score": 0.00024362788496381992,
+        "input_tokens": 31
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.16865352776109416,
+          "pair_ms": 167.65470011159778,
+          "logit": -8.319624900817871,
+          "pair_score": 0.00024362788496381992,
+          "input_tokens": 31
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.2318193413312243,
+          "pair_ms": 107.49079985544086,
+          "logit": -8.353706359863281,
+          "pair_score": 0.0002354665120218034,
+          "input_tokens": 28
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.3873013784360716,
+          "pair_ms": 94.56989960744977,
+          "logit": -8.343704223632812,
+          "pair_score": 0.00023783293492977793,
+          "input_tokens": 24
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "023",
+      "human_id": "H29",
+      "seed_id": "python312-1176-what-s-a-negative-index",
+      "question": "How can I express seq[-n] using the length of seq?",
+      "human_label": "Y",
+      "model_label": true,
+      "embed_ms": 30.37069970741868,
+      "designated_scores": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.30665471923371473,
+        "pair_ms": 89.68590013682842,
+        "logit": -8.301839828491211,
+        "pair_score": 0.0002479985006091207,
+        "input_tokens": 25
+      },
+      "dense_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.30665471923371473,
+        "pair_ms": 89.68590013682842,
+        "logit": -8.301839828491211,
+        "pair_score": 0.0002479985006091207,
+        "input_tokens": 25
+      },
+      "pair_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.30665471923371473,
+        "pair_ms": 89.68590013682842,
+        "logit": -8.301839828491211,
+        "pair_score": 0.0002479985006091207,
+        "input_tokens": 25
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.22931273757821255,
+          "pair_ms": 102.154899854213,
+          "logit": -8.32719898223877,
+          "pair_score": 0.00024179004246185738,
+          "input_tokens": 32
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.22700082680756153,
+          "pair_ms": 98.0440997518599,
+          "logit": -8.327740669250488,
+          "pair_score": 0.0002416591350461078,
+          "input_tokens": 29
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.30665471923371473,
+          "pair_ms": 89.68590013682842,
+          "logit": -8.301839828491211,
+          "pair_score": 0.0002479985006091207,
+          "input_tokens": 25
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    },
+    {
+      "item_id": "024",
+      "human_id": "H30",
+      "seed_id": "python312-1176-what-s-a-negative-index",
+      "question": "What does S[:-1] select from a string?",
+      "human_label": "Y",
+      "model_label": true,
+      "embed_ms": 28.15840020775795,
+      "designated_scores": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.33167651860472813,
+        "pair_ms": 84.1151000931859,
+        "logit": -8.315953254699707,
+        "pair_score": 0.00024452382539318844,
+        "input_tokens": 22
+      },
+      "dense_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.33167651860472813,
+        "pair_ms": 84.1151000931859,
+        "logit": -8.315953254699707,
+        "pair_score": 0.00024452382539318844,
+        "input_tokens": 22
+      },
+      "pair_top": {
+        "seed_id": "python312-1176-what-s-a-negative-index",
+        "dense_cosine": 0.33167651860472813,
+        "pair_ms": 84.1151000931859,
+        "logit": -8.315953254699707,
+        "pair_score": 0.00024452382539318844,
+        "input_tokens": 22
+      },
+      "all_scores": [
+        {
+          "seed_id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+          "dense_cosine": 0.14290041267943096,
+          "pair_ms": 108.45910012722015,
+          "logit": -8.319676399230957,
+          "pair_score": 0.00024361534189384527,
+          "input_tokens": 29
+        },
+        {
+          "seed_id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+          "dense_cosine": 0.1968953261135355,
+          "pair_ms": 97.34459966421127,
+          "logit": -8.322898864746094,
+          "pair_score": 0.00024283175370980295,
+          "input_tokens": 26
+        },
+        {
+          "seed_id": "python312-1176-what-s-a-negative-index",
+          "dense_cosine": 0.33167651860472813,
+          "pair_ms": 84.1151000931859,
+          "logit": -8.315953254699707,
+          "pair_score": 0.00024452382539318844,
+          "input_tokens": 22
+        }
+      ],
+      "policy": {
+        "dense_only_accept": false,
+        "pair_only_accept": false,
+        "combined_accept": false,
+        "combined_reason": "margin_fail"
+      }
+    }
+  ],
+  "limitations": [
+    "30 correlated exposed model-authored questions over 3 FAQ sources; no fresh final evaluation.",
+    "Pair scores are question-similarity, not answer-applicability.",
+    "MiniLM was trained on MS MARCO, not FAQ answer reuse.",
+    "Quora CrossEncoder trained on Quora Question Pairs (QQP), measures question duplicate intent.",
+    "No serving activation. Human label provenance declared, not independently verified.",
+    "This packet is spent/exposed and must not be reused as a final test."
+  ],
+  "serving_enabled": false,
+  "external_generation_calls": 0
+}

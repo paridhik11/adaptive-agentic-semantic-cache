@@ -1,0 +1,9 @@
+Processing ./.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: adaptive-agentic-semantic-cache
+  Building wheel for adaptive-agentic-semantic-cache (pyproject.toml): started
+  Building wheel for adaptive-agentic-semantic-cache (pyproject.toml): finished with status 'done'
+  Created wheel for adaptive-agentic-semantic-cache: filename=adaptive_agentic_semantic_cache-0.1.0-py3-none-any.whl size=216126 sha256=ca7a1feaa2405e318664e6061eb1750da216ada5e1f25532a28c27aa5777187b
+  Stored in directory: /tmp/pip-ephem-wheel-cache-nz38hpsu/wheels/18/36/83/533046f6b5b7359f800eaa3abfae463fedab59ae58cedddc5b
+Successfully built adaptive-agentic-semantic-cache

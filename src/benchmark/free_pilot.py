@@ -102,6 +102,7 @@ class JournaledProvider:
     def __init__(self,provider,journal,observer=None):
         self.provider,self.journal,self.observer=provider,journal,observer
         self.ordinal=0;self.replayed_calls=0;self.new_calls=0
+        self.attempts=[]
     def _notify(self,kind,**details):
         if self.observer is not None:
             try:self.observer({'kind':kind,'new_calls':self.new_calls,'replayed_calls':self.replayed_calls,**details})
@@ -113,14 +114,21 @@ class JournaledProvider:
             raise RunPaused('quota_journal_unavailable_or_write_uncertain') from None
     def __call__(self,request):
         ordinal=self.ordinal;self.ordinal+=1
+        attempt_id=f"{self.journal.run_id}:{ordinal}"
         state,payload=self._journal_call(self.journal.reserve,ordinal,request)
         if state is not None:
             self.replayed_calls+=1
-            self._notify("provider_replayed",ordinal=ordinal)
+            self.attempts.append({'attempt_id':attempt_id,'ordinal':ordinal,'state':state,'replayed':True})
+            self._notify("provider_replayed",ordinal=ordinal,attempt_id=attempt_id)
             if state=='error':raise ProviderError(payload['code'],payload['status'])
-            return payload
+            replayed_payload=copy.deepcopy(payload)
+            if isinstance(replayed_payload,dict):
+                replayed_payload.setdefault('attempt_id',attempt_id)
+                replayed_payload.setdefault('provider_attempt_id',attempt_id)
+            return replayed_payload
         self.new_calls+=1
-        self._notify("provider_started",ordinal=ordinal,model=request.get("model"))
+        self.attempts.append({'attempt_id':attempt_id,'ordinal':ordinal,'state':'reserved','replayed':False})
+        self._notify("provider_started",ordinal=ordinal,model=request.get("model"),attempt_id=attempt_id)
         try:
             response=self.provider(request)
             canonical(response)
@@ -128,14 +136,22 @@ class JournaledProvider:
             code=exc.code if isinstance(exc,ProviderError) else 'upstream_or_processing_error'
             status=exc.status if isinstance(exc,ProviderError) else 502
             self._journal_call(self.journal.finish,ordinal,'error',{'code':code,'status':status})
-            self._notify('provider_error',ordinal=ordinal,code=code)
+            if self.attempts and self.attempts[-1]['ordinal']==ordinal:
+                self.attempts[-1]['state']='error'
+            self._notify('provider_error',ordinal=ordinal,code=code,attempt_id=attempt_id)
             if isinstance(exc,ProviderError) and exc.code=='upstream_rate_limited':
                 until=self._journal_call(self.journal.block_rate_limit)
                 raise RunPaused('upstream_rate_limit_pause',retry_at=until) from None
             raise RunPaused('upstream_attempt_failed_requires_inspection') from None
         self._journal_call(self.journal.finish,ordinal,'complete',response)
-        self._notify('provider_received',ordinal=ordinal)
-        return copy.deepcopy(response)
+        if self.attempts and self.attempts[-1]['ordinal']==ordinal:
+            self.attempts[-1]['state']='complete'
+        self._notify('provider_received',ordinal=ordinal,attempt_id=attempt_id)
+        out=copy.deepcopy(response)
+        if isinstance(out,dict):
+            out.setdefault('attempt_id',attempt_id)
+            out.setdefault('provider_attempt_id',attempt_id)
+        return out
 
 
 class CompleteAnswerProvider:

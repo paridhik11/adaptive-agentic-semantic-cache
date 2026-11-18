@@ -1,0 +1,26 @@
+{
+  "evidence_type": "declared human review of model-authored source-excerpt questions; model diagnostics separate",
+  "received": 30,
+  "counts": {
+    "human_yes": 14,
+    "human_no": 15,
+    "human_uncertain": 1,
+    "binary_agreements": 29,
+    "opposite_binary_judgments": 0
+  },
+  "differences": [
+    {
+      "human_id": "H05",
+      "item_id": "005",
+      "human_judgment": null,
+      "model_judgment": true,
+      "human_rationale": "\"octal ten\" could mean 0o10 (eight) or ten written as 0o12, and the answer only shows 0o10",
+      "model_rationale": "Both requested examples and their decimal results, 8 and 165, appear directly in the text."
+    }
+  ],
+  "identity_or_blinding_independently_verified": false,
+  "system_predictions_evaluated": false,
+  "accuracy": null,
+  "reuse_precision": null,
+  "savings": null
+}

@@ -1,0 +1,8 @@
+{
+  "evidence_type": "local build artifact metadata",
+  "filename": "adaptive_agentic_semantic_cache-0.1.0-py3-none-any.whl",
+  "bytes": 217694,
+  "sha256": "8cb52558431c8f4f82e96d9100094b2f37feaa63ddd38c0defa610314381c9d0",
+  "installed_without_full_ml_dependencies": true,
+  "dependency_resolution_check": "not claimed: gateway-only profile deliberately omits full research dependencies"
+}

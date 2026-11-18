@@ -1,3 +1,7 @@
+> **October 20 update:** the reported v1 run stopped on a truncated answer.
+> Preserve it; do not rerun that command. Use [the revised v2 instructions](R5_LIVE_V2_RUN.md).
+> The original procedure below is retained for history.
+
 # R5 zero-budget foreground pilot
 
 The offline development investigation is complete; live collection and independent

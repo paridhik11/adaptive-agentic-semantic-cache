@@ -1,0 +1,11 @@
+{
+  "evidence_type": "lossless_storage_check_not_model_evaluation",
+  "original_path": "artifacts/stage_a/verified/decisions.jsonl",
+  "original_bytes": 10380608,
+  "original_sha256": "642ce3477d21539134b00a52ba663470242ec6e8bc539169778f7ed24bee601e",
+  "candidate_path": "artifacts/stage_a/verified/decisions.jsonl.gz",
+  "candidate_bytes": 244844,
+  "candidate_sha256": "9b343a9e90378a998680f1335a0763716e92d1068946b56c110491dba1ef6699",
+  "decompressed_bytes_equal": true,
+  "commit_status": "user approved compressed copy; raw duplicate excluded"
+}

@@ -1,3 +1,19 @@
+> **October 20 scope correction:** prioritize general semantic answer reuse,
+> before agent planning, with no remote judge on hits. The active work order and
+> evidence requirements are in [SEMANTIC_EVALUATION_CONTRACT.md](SEMANTIC_EVALUATION_CONTRACT.md).
+> The pilot-first sequence below is superseded. Start with actual pretrained
+> weights, retrieval, written rubric and reviewer capacity; then applicability,
+> calibration, persistence, integration, freeze/evaluation and final demo QA.
+> Live comparison is optional and the first item dropped for provider problems.
+> The schedule does not guarantee enough independent review for the quality gate.
+
+> **Earlier October 20 planning update:** the user now allows approximately 8–10 days,
+> targeting October 28–30 at roughly three focused hours per day. This supersedes
+> the earlier deadline below. These are planning estimates, not delivery or positive-result guarantees.
+> Current sequence: pilot repair/collection, independent answer review, budgeted live
+> agent and semantic evaluation, frozen fresh evaluation, website/demo and final packaging.
+> See [CURRENT_STATUS.md](CURRENT_STATUS.md) for completed work; the old schedule is retained below.
+
 # Recovery execution roadmap
 
 Status (2026-10-18, Asia/Calcutta): R1 and R2 are published. R3 cache-lifecycle
@@ -369,3 +385,8 @@ https://arxiv.org/abs/2403.02694 and SCALM https://arxiv.org/abs/2406.00025.
 Their results are not transferable project metrics. The uploaded BASWE guide's
 Projects 7 and 15 motivate the build sequence; its advertised savings are not
 a guarantee for this implementation.
+
+R6 scoped agent-stage refinement was authorized on 2026-10-19 and passed its
+preregistered offline engineering criterion; see `audit/R6_AGENT_STAGE_CLOSEOUT.md`.
+The R5 live collection, independent review, semantic-quality gate and broader final
+delivery/utility validation remain open. This is not full roadmap completion.

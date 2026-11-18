@@ -1,0 +1,55 @@
+{
+  "schema_version": "r6-stage-validation-v1",
+  "user_authorization": "go ahead, 2026-10-19 04:26 Asia/Calcutta",
+  "preregistration_commit": "dd8f8e11176e07c7f78ea8a13ef1d556ceb49759",
+  "criterion_runs": 1,
+  "decision": "PASS",
+  "focused_tests": {
+    "passed": 60,
+    "seconds": 7.32
+  },
+  "full_offline_suite": {
+    "passed": 660,
+    "deselected": 23,
+    "seconds": 125.16
+  },
+  "fixture_cli_smoke": "AWAITING_APPROVAL, three simulated provider calls",
+  "stage_work": {
+    "off": {
+      "PLANNING_provider_calls": 44,
+      "tool_provider_calls": 0,
+      "DRAFTING_provider_calls": 44,
+      "REVIEWING_provider_calls": 44
+    },
+    "exact": {
+      "PLANNING_provider_calls": 44,
+      "tool_provider_calls": 0,
+      "DRAFTING_provider_calls": 22,
+      "REVIEWING_provider_calls": 44,
+      "draft_exact_hits": 22
+    }
+  },
+  "freeze_verified_after_run": true,
+  "baseline_raw_archive_verified": true,
+  "r5_aggregate_artifacts_unchanged": true,
+  "raw_answers_published": false,
+  "external_model_calls": 0,
+  "independent_reviews": 0,
+  "development_issues": [
+    "Restored missing virtualenv executable links using the existing Python environment; no inference dependencies were downloaded.",
+    "Fixed a legacy-checkpoint scope binding gap during unit development, before freeze.",
+    "The historical claim-hygiene checkout tests now explicitly check their immutable audit snapshot; legitimate R6 source changes are checked against the R6 freeze instead.",
+    "Earlier full-suite collections were superseded after adding criterion tests and legacy-scope regression. Final suite passed on the frozen source."
+  ],
+  "sha256": {
+    "docs/audit/R6_AGENT_CACHE_PREREG.md": "cebbfd119ba549bc3a92a20bb6a0ec33e348b769bf30fe5237df23355b2b23ad",
+    "docs/audit/R6_STAGE_FREEZE.json": "1e1a57d5f462f54081f68c1a69a71c1e26b3baa753085e39a225fd574885ee29",
+    "docs/audit/R6_AGENT_STAGE_RESULT.json": "6d0536ad5e2d8da92bd1a0d264d07d343138b94a747bc47426cb27a98edc92dc"
+  },
+  "local_private_trace_sha256": "433728311cd4d672eee1ae78c8570ba49d55dc00c3c8da39f64a1241b5a99faa",
+  "targeted_secret_pattern_findings": 0,
+  "secret_scan_limit": "Changed text files, targeted token/private-key patterns only; not full security certification.",
+  "local_links_checked": 26,
+  "numeric_ledger_check": "passed for active README/design/status/resume/agent/closeout docs",
+  "git_diff_check": "passed"
+}

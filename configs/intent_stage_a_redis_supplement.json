@@ -1,0 +1,11 @@
+{
+  "evidence_type": "same-set development diagnostic on saved scores",
+  "reason": "Primary grid accepted nothing; publisher model-card thresholds are much lower. Original grid and outputs preserved.",
+  "publisher_accuracy_threshold": 0.0888671875,
+  "publisher_f1_threshold": 0.07275390625,
+  "thresholds": [0.0, 0.01, 0.025, 0.05, 0.07275390625, 0.075, 0.0888671875, 0.1, 0.2, 0.3, 0.4, 0.5],
+  "source": "docs/audit/STAGE_A_REDIS_RECEIPT.json: pinned reranker model-card metadata",
+  "threshold_selection": "none",
+  "fresh_evaluation": false,
+  "new_inference": false
+}

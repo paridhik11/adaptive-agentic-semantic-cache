@@ -40,4 +40,9 @@ class DenseEncoder:
         self.identity = model + "@" + revision
 
     def encode(self, text):
+        if not isinstance(text, str) or not text.strip():
+            raise ValueError("nonempty text required")
+        tokens = self.model.tokenizer(text, truncation=False)["input_ids"]
+        if len(tokens) > self.model.max_seq_length:
+            raise ValueError("dense input exceeds model window; no silent truncation")
         return normalize(self.model.encode(text, normalize_embeddings=True).tolist())

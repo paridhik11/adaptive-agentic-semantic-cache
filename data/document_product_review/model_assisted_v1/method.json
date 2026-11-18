@@ -1,0 +1,21 @@
+{
+  "authoring": "model-authored",
+  "review": "self-reviewed by the same model agent; no human or independent author-reviewer separation",
+  "policy_blind": "policy-blind by instruction; only demo_reference.json was read for source content",
+  "source_file": "adaptive-agentic-semantic-cache/src/api/demo_reference.json",
+  "evaluation_unit": "the actual full document text as the cached answer",
+  "sufficiency_rule": "Sufficient only when the full cached answer directly answers every new requirement without changed code, changed facts, or additional reasoning; related information alone is insufficient.",
+  "sampling": "30 authored questions, ordered by source document: five equivalent-intent requests and five plausible mismatches or added requirements per document",
+  "evidence_type": "model_assisted",
+  "ground_truth": false,
+  "limitations": "Model-authored, self-reviewed judgments are not ground truth. No quality or performance claims are made.",
+  "counts": {
+    "items": 30,
+    "documents": 3,
+    "equivalent_intent_requests": 15,
+    "plausible_mismatch_or_added_requirement_requests": 15,
+    "answer_sufficient_true": 15,
+    "answer_sufficient_false": 15,
+    "answer_sufficient_null": 0
+  }
+}

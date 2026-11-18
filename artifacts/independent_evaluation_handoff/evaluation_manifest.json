@@ -1,0 +1,774 @@
+{
+  "schema": "independent-evaluation-handoff-v1",
+  "created_at_utc": "2026-11-01T22:05:20.774132+00:00",
+  "total_items": 20,
+  "groups_count": 4,
+  "policy_model": "AnswerAwareSemanticPolicy (MiniLM-L6 + MS MARCO)",
+  "rules": [
+    "Do not use generated variation labels as correctness evidence.",
+    "Reviewer evaluates actual selected cached answers blind to model judgments.",
+    "Separate applicability, factual correctness, cache-induced degradation, and unknowns."
+  ],
+  "items": [
+    {
+      "evaluation_id": "EVAL-001",
+      "group_id": "grp_context_managers",
+      "section": "Standard Library: contextlib",
+      "source_revision": "cpython-3.12-contextlib-d89f2a",
+      "source_context": "contextlib provides utilities for with-statement contexts. @contextmanager transforms a generator into a context manager.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: contextlib provides utilities for with-statement contexts. @contextmanager transforms a generator into a context manager."
+          },
+          {
+            "role": "user",
+            "content": "How can I write a context manager using the contextlib module?"
+          }
+        ]
+      },
+      "incoming_query": "How can I write a context manager using the contextlib module?",
+      "candidate_id": "cand-5a9bf3cdbf",
+      "candidate_query": "How do I create a custom context manager using contextlib in Python?",
+      "actual_cached_answer": "Use the @contextmanager decorator from contextlib over a generator function. Yield the resource inside a try...finally block to guarantee cleanup.",
+      "hashes": {
+        "incoming_query_sha256": "8a02505f9585efa329ce90c6c91bc3e2b2f6ceae156a0630cdce20cc7df9547c",
+        "candidate_answer_sha256": "4cbb1ec3fdbe7b9af6f41e7962095e0c24ca4014823a8da564084857c25f06de",
+        "binding_sha256": "beab7618a2eb81923272917d1e20f67ad88a4624ec4bfe2dbce611f6cb9ea3e2"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.937642585892775,
+        "guards_passed": true,
+        "guard_error": null,
+        "passage_verifier_prob": 0.9670515551784125,
+        "decision": "approved",
+        "reason": "verified_semantic_hit"
+      },
+      "variation_tag_unblinded_internal_only": "safe_paraphrase"
+    },
+    {
+      "evaluation_id": "EVAL-002",
+      "group_id": "grp_context_managers",
+      "section": "Standard Library: contextlib",
+      "source_revision": "cpython-3.12-contextlib-d89f2a",
+      "source_context": "contextlib provides utilities for with-statement contexts. @contextmanager transforms a generator into a context manager.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: contextlib provides utilities for with-statement contexts. @contextmanager transforms a generator into a context manager."
+          },
+          {
+            "role": "user",
+            "content": "What is the syntax for creating context managers with @contextmanager?"
+          }
+        ]
+      },
+      "incoming_query": "What is the syntax for creating context managers with @contextmanager?",
+      "candidate_id": "cand-5a9bf3cdbf",
+      "candidate_query": "How do I create a custom context manager using contextlib in Python?",
+      "actual_cached_answer": "Use the @contextmanager decorator from contextlib over a generator function. Yield the resource inside a try...finally block to guarantee cleanup.",
+      "hashes": {
+        "incoming_query_sha256": "e53c81f00b27ec4f7e02cc1ca1196d958db2b1093657434fb9437bab1a324096",
+        "candidate_answer_sha256": "4cbb1ec3fdbe7b9af6f41e7962095e0c24ca4014823a8da564084857c25f06de",
+        "binding_sha256": "7955716c8e346c9eec51ee8d58369893725996aa6f1443ee3fc27d3acd25adc3"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.677575522453148,
+        "guards_passed": true,
+        "guard_error": null,
+        "passage_verifier_prob": 0.9794595236893475,
+        "decision": "approved",
+        "reason": "verified_semantic_hit"
+      },
+      "variation_tag_unblinded_internal_only": "safe_paraphrase"
+    },
+    {
+      "evaluation_id": "EVAL-003",
+      "group_id": "grp_context_managers",
+      "section": "Standard Library: contextlib",
+      "source_revision": "cpython-3.12-contextlib-d89f2a",
+      "source_context": "contextlib provides utilities for with-statement contexts. @contextmanager transforms a generator into a context manager.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: contextlib provides utilities for with-statement contexts. @contextmanager transforms a generator into a context manager."
+          },
+          {
+            "role": "user",
+            "content": "How do I write an asynchronous context manager with asynccontextmanager in Python?"
+          }
+        ]
+      },
+      "incoming_query": "How do I write an asynchronous context manager with asynccontextmanager in Python?",
+      "candidate_id": "cand-5a9bf3cdbf",
+      "candidate_query": "How do I create a custom context manager using contextlib in Python?",
+      "actual_cached_answer": "Use the @contextmanager decorator from contextlib over a generator function. Yield the resource inside a try...finally block to guarantee cleanup.",
+      "hashes": {
+        "incoming_query_sha256": "6fa78a5da94f484a475860c41244c2fd11067869543f447bed43b8b6100dcc35",
+        "candidate_answer_sha256": "4cbb1ec3fdbe7b9af6f41e7962095e0c24ca4014823a8da564084857c25f06de",
+        "binding_sha256": "13b36f77a5a48ce11bf0b34f25a9e9fef6f1bd593e537fcf44c6a07524b90b0c"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.7181776528176259,
+        "guards_passed": true,
+        "guard_error": null,
+        "passage_verifier_prob": 0.004287466954966172,
+        "decision": "rejected",
+        "reason": "verifier_rejected:0.0043<0.85"
+      },
+      "variation_tag_unblinded_internal_only": "changed_requirement_async"
+    },
+    {
+      "evaluation_id": "EVAL-004",
+      "group_id": "grp_context_managers",
+      "section": "Standard Library: contextlib",
+      "source_revision": "cpython-3.12-contextlib-d89f2a",
+      "source_context": "contextlib provides utilities for with-statement contexts. @contextmanager transforms a generator into a context manager.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: contextlib provides utilities for with-statement contexts. @contextmanager transforms a generator into a context manager."
+          },
+          {
+            "role": "user",
+            "content": "How do I create a context manager in Python without using contextlib?"
+          }
+        ]
+      },
+      "incoming_query": "How do I create a context manager in Python without using contextlib?",
+      "candidate_id": "cand-5a9bf3cdbf",
+      "candidate_query": "How do I create a custom context manager using contextlib in Python?",
+      "actual_cached_answer": "Use the @contextmanager decorator from contextlib over a generator function. Yield the resource inside a try...finally block to guarantee cleanup.",
+      "hashes": {
+        "incoming_query_sha256": "d830154afab22ef74f038ebbc54b69ffc767e88b0850e2e27f8f2ae052ccc557",
+        "candidate_answer_sha256": "4cbb1ec3fdbe7b9af6f41e7962095e0c24ca4014823a8da564084857c25f06de",
+        "binding_sha256": "c503ac367b8a543be22d5c601abb5bb6bb73250b76e23f7ef77aa66c7c968db0"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.9629348046883865,
+        "guards_passed": false,
+        "guard_error": "added_explicit_requirement",
+        "passage_verifier_prob": 0.7321202086307281,
+        "decision": "rejected",
+        "reason": "guard_rejected:added_explicit_requirement"
+      },
+      "variation_tag_unblinded_internal_only": "negation_constraint"
+    },
+    {
+      "evaluation_id": "EVAL-005",
+      "group_id": "grp_context_managers",
+      "section": "Standard Library: contextlib",
+      "source_revision": "cpython-3.12-contextlib-d89f2a",
+      "source_context": "contextlib provides utilities for with-statement contexts. @contextmanager transforms a generator into a context manager.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: contextlib provides utilities for with-statement contexts. @contextmanager transforms a generator into a context manager."
+          },
+          {
+            "role": "user",
+            "content": "How do I write a custom context manager in Python 2.7?"
+          }
+        ]
+      },
+      "incoming_query": "How do I write a custom context manager in Python 2.7?",
+      "candidate_id": "cand-5a9bf3cdbf",
+      "candidate_query": "How do I create a custom context manager using contextlib in Python?",
+      "actual_cached_answer": "Use the @contextmanager decorator from contextlib over a generator function. Yield the resource inside a try...finally block to guarantee cleanup.",
+      "hashes": {
+        "incoming_query_sha256": "834063ee30dab0235b23f5aa18afd12684fe69bf97a9b14d639506e54e3e9e97",
+        "candidate_answer_sha256": "4cbb1ec3fdbe7b9af6f41e7962095e0c24ca4014823a8da564084857c25f06de",
+        "binding_sha256": "12a3bbc285bad61193a4eb736ead1286dbb6c27f41838e0a7e8ca56a2c6453e7"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.9378033388346783,
+        "guards_passed": false,
+        "guard_error": "numeric_or_version_requirement_changed",
+        "passage_verifier_prob": 0.005535413977873484,
+        "decision": "rejected",
+        "reason": "guard_rejected:numeric_or_version_requirement_changed"
+      },
+      "variation_tag_unblinded_internal_only": "version_mismatch"
+    },
+    {
+      "evaluation_id": "EVAL-006",
+      "group_id": "grp_functools_lru",
+      "section": "Standard Library: functools",
+      "source_revision": "cpython-3.12-functools-e12b4c",
+      "source_context": "functools.lru_cache wraps a function with a memoizing callable that saves up to maxsize results. Since a dictionary is used to cache results, function arguments must be hashable.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: functools.lru_cache wraps a function with a memoizing callable that saves up to maxsize results. Since a dictionary is used to cache results, function arguments must be hashable."
+          },
+          {
+            "role": "user",
+            "content": "How can I cache function return values with functools in Python?"
+          }
+        ]
+      },
+      "incoming_query": "How can I cache function return values with functools in Python?",
+      "candidate_id": "cand-a4aa823101",
+      "candidate_query": "How do I memoize a function in Python using functools?",
+      "actual_cached_answer": "Use the @functools.lru_cache(maxsize=128) decorator on your function. Arguments must be hashable because the cache uses an internal dictionary.",
+      "hashes": {
+        "incoming_query_sha256": "1810f3e01ac1a021cbc183b030ca2f090a79801d2560a8fd7f22228219b5e926",
+        "candidate_answer_sha256": "768be877e6e35ae2b9e34c15ae4768dc4e8857af89cb7ef87348ca529806512c",
+        "binding_sha256": "edcf487fdf900982d2cc84a2bcd1026272d2af9db6ed6a0f8832ea4e17f93ab1"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.698889219868366,
+        "guards_passed": true,
+        "guard_error": null,
+        "passage_verifier_prob": 0.9496670995894425,
+        "decision": "approved",
+        "reason": "verified_semantic_hit"
+      },
+      "variation_tag_unblinded_internal_only": "safe_paraphrase"
+    },
+    {
+      "evaluation_id": "EVAL-007",
+      "group_id": "grp_functools_lru",
+      "section": "Standard Library: functools",
+      "source_revision": "cpython-3.12-functools-e12b4c",
+      "source_context": "functools.lru_cache wraps a function with a memoizing callable that saves up to maxsize results. Since a dictionary is used to cache results, function arguments must be hashable.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: functools.lru_cache wraps a function with a memoizing callable that saves up to maxsize results. Since a dictionary is used to cache results, function arguments must be hashable."
+          },
+          {
+            "role": "user",
+            "content": "What decorator should I use to memoize function calls in Python?"
+          }
+        ]
+      },
+      "incoming_query": "What decorator should I use to memoize function calls in Python?",
+      "candidate_id": "cand-a4aa823101",
+      "candidate_query": "How do I memoize a function in Python using functools?",
+      "actual_cached_answer": "Use the @functools.lru_cache(maxsize=128) decorator on your function. Arguments must be hashable because the cache uses an internal dictionary.",
+      "hashes": {
+        "incoming_query_sha256": "9368749bc3dc5d445948feabf060e98e260ca31f12ea62f4099122129348a49e",
+        "candidate_answer_sha256": "768be877e6e35ae2b9e34c15ae4768dc4e8857af89cb7ef87348ca529806512c",
+        "binding_sha256": "1f58a642c82ae11b8250a1975c7c0b1f23439adb87e591d2005d37c242337021"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.8478119540124421,
+        "guards_passed": true,
+        "guard_error": null,
+        "passage_verifier_prob": 0.5936879841674919,
+        "decision": "rejected",
+        "reason": "verifier_rejected:0.5937<0.85"
+      },
+      "variation_tag_unblinded_internal_only": "safe_paraphrase"
+    },
+    {
+      "evaluation_id": "EVAL-008",
+      "group_id": "grp_functools_lru",
+      "section": "Standard Library: functools",
+      "source_revision": "cpython-3.12-functools-e12b4c",
+      "source_context": "functools.lru_cache wraps a function with a memoizing callable that saves up to maxsize results. Since a dictionary is used to cache results, function arguments must be hashable.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: functools.lru_cache wraps a function with a memoizing callable that saves up to maxsize results. Since a dictionary is used to cache results, function arguments must be hashable."
+          },
+          {
+            "role": "user",
+            "content": "How do I memoize a function that takes unhashable mutable lists in Python?"
+          }
+        ]
+      },
+      "incoming_query": "How do I memoize a function that takes unhashable mutable lists in Python?",
+      "candidate_id": "cand-a4aa823101",
+      "candidate_query": "How do I memoize a function in Python using functools?",
+      "actual_cached_answer": "Use the @functools.lru_cache(maxsize=128) decorator on your function. Arguments must be hashable because the cache uses an internal dictionary.",
+      "hashes": {
+        "incoming_query_sha256": "bfc0d40d5fb8de37803e8dc46b003b8734a420ad44ab2959c7684eb0b3332c72",
+        "candidate_answer_sha256": "768be877e6e35ae2b9e34c15ae4768dc4e8857af89cb7ef87348ca529806512c",
+        "binding_sha256": "7c22434e3f91c09fa6a4bd0b7a68c347b51f06b0796a7f62c112a01de1f6e1aa"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.6630153136799646,
+        "guards_passed": true,
+        "guard_error": null,
+        "passage_verifier_prob": 4.776761931252305e-05,
+        "decision": "rejected",
+        "reason": "verifier_rejected:0.0000<0.85"
+      },
+      "variation_tag_unblinded_internal_only": "added_unhashable_constraint"
+    },
+    {
+      "evaluation_id": "EVAL-009",
+      "group_id": "grp_functools_lru",
+      "section": "Standard Library: functools",
+      "source_revision": "cpython-3.12-functools-e12b4c",
+      "source_context": "functools.lru_cache wraps a function with a memoizing callable that saves up to maxsize results. Since a dictionary is used to cache results, function arguments must be hashable.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: functools.lru_cache wraps a function with a memoizing callable that saves up to maxsize results. Since a dictionary is used to cache results, function arguments must be hashable."
+          },
+          {
+            "role": "user",
+            "content": "How do I implement function memoization without using functools or standard libraries in Python?"
+          }
+        ]
+      },
+      "incoming_query": "How do I implement function memoization without using functools or standard libraries in Python?",
+      "candidate_id": "cand-a4aa823101",
+      "candidate_query": "How do I memoize a function in Python using functools?",
+      "actual_cached_answer": "Use the @functools.lru_cache(maxsize=128) decorator on your function. Arguments must be hashable because the cache uses an internal dictionary.",
+      "hashes": {
+        "incoming_query_sha256": "b22300fa245b57a917eccd5c4f53f110847ae5d61ab009c0ccd5d476728a2fac",
+        "candidate_answer_sha256": "768be877e6e35ae2b9e34c15ae4768dc4e8857af89cb7ef87348ca529806512c",
+        "binding_sha256": "54112b480f369667ad1ffee9cc75deae3b22248dcf3605a45c82ac5c978776cd"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.92803663159661,
+        "guards_passed": false,
+        "guard_error": "added_explicit_requirement",
+        "passage_verifier_prob": 0.03159779338861936,
+        "decision": "rejected",
+        "reason": "guard_rejected:added_explicit_requirement"
+      },
+      "variation_tag_unblinded_internal_only": "negation_constraint"
+    },
+    {
+      "evaluation_id": "EVAL-010",
+      "group_id": "grp_functools_lru",
+      "section": "Standard Library: functools",
+      "source_revision": "cpython-3.12-functools-e12b4c",
+      "source_context": "functools.lru_cache wraps a function with a memoizing callable that saves up to maxsize results. Since a dictionary is used to cache results, function arguments must be hashable.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: functools.lru_cache wraps a function with a memoizing callable that saves up to maxsize results. Since a dictionary is used to cache results, function arguments must be hashable."
+          },
+          {
+            "role": "user",
+            "content": "How do I memoize a function with unbounded cache size in Python?"
+          }
+        ]
+      },
+      "incoming_query": "How do I memoize a function with unbounded cache size in Python?",
+      "candidate_id": "cand-a4aa823101",
+      "candidate_query": "How do I memoize a function in Python using functools?",
+      "actual_cached_answer": "Use the @functools.lru_cache(maxsize=128) decorator on your function. Arguments must be hashable because the cache uses an internal dictionary.",
+      "hashes": {
+        "incoming_query_sha256": "bc269fee953e961698f20a1bfd823f0e3a42265a3a90bee49fa665b5b9d26ade",
+        "candidate_answer_sha256": "768be877e6e35ae2b9e34c15ae4768dc4e8857af89cb7ef87348ca529806512c",
+        "binding_sha256": "bf29f89c1da951f0cf8a37356b8315338ec0bd6dc66a80613cd51214d9587ff3"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.7590003434352556,
+        "guards_passed": true,
+        "guard_error": null,
+        "passage_verifier_prob": 0.039259479389816235,
+        "decision": "rejected",
+        "reason": "verifier_rejected:0.0393<0.85"
+      },
+      "variation_tag_unblinded_internal_only": "numeric_maxsize_none"
+    },
+    {
+      "evaluation_id": "EVAL-011",
+      "group_id": "grp_pathlib_operations",
+      "section": "Standard Library: pathlib",
+      "source_revision": "cpython-3.12-pathlib-f44a90",
+      "source_context": "pathlib.Path.rglob recursively yields all existing files matching the given relative pattern. Path.resolve returns a new path object with absolute path and symlinks resolved.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: pathlib.Path.rglob recursively yields all existing files matching the given relative pattern. Path.resolve returns a new path object with absolute path and symlinks resolved."
+          },
+          {
+            "role": "user",
+            "content": "How can I search for files matching a pattern recursively with pathlib in Python?"
+          }
+        ]
+      },
+      "incoming_query": "How can I search for files matching a pattern recursively with pathlib in Python?",
+      "candidate_id": "cand-40cf4193e6",
+      "candidate_query": "How do I recursively find all files matching a pattern using pathlib in Python?",
+      "actual_cached_answer": "Use Path.rglob(pattern) or Path.glob('**/' + pattern). For example, Path('.').rglob('*.py') recursively finds all Python files.",
+      "hashes": {
+        "incoming_query_sha256": "8927273f39481aff4999cd264522940994c19a0284bee2992f99282b6416ae9c",
+        "candidate_answer_sha256": "15965fdf4d5add1e6cf2dab5891238bea021a38a969806b6dd8f855af33a7987",
+        "binding_sha256": "0e4d7c2f69676be49a5fafb34c2f721f584c7ead497262375345fd8ba3ec4877"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.9323768971975819,
+        "guards_passed": true,
+        "guard_error": null,
+        "passage_verifier_prob": 0.9935408354735705,
+        "decision": "approved",
+        "reason": "verified_semantic_hit"
+      },
+      "variation_tag_unblinded_internal_only": "safe_paraphrase"
+    },
+    {
+      "evaluation_id": "EVAL-012",
+      "group_id": "grp_pathlib_operations",
+      "section": "Standard Library: pathlib",
+      "source_revision": "cpython-3.12-pathlib-f44a90",
+      "source_context": "pathlib.Path.rglob recursively yields all existing files matching the given relative pattern. Path.resolve returns a new path object with absolute path and symlinks resolved.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: pathlib.Path.rglob recursively yields all existing files matching the given relative pattern. Path.resolve returns a new path object with absolute path and symlinks resolved."
+          },
+          {
+            "role": "user",
+            "content": "What is the pathlib method to traverse directories recursively for matching files?"
+          }
+        ]
+      },
+      "incoming_query": "What is the pathlib method to traverse directories recursively for matching files?",
+      "candidate_id": "cand-40cf4193e6",
+      "candidate_query": "How do I recursively find all files matching a pattern using pathlib in Python?",
+      "actual_cached_answer": "Use Path.rglob(pattern) or Path.glob('**/' + pattern). For example, Path('.').rglob('*.py') recursively finds all Python files.",
+      "hashes": {
+        "incoming_query_sha256": "915c110868b4c232c2f8d50e14a8ba6800a11ebab221f0f348f23d10f3bdade2",
+        "candidate_answer_sha256": "15965fdf4d5add1e6cf2dab5891238bea021a38a969806b6dd8f855af33a7987",
+        "binding_sha256": "11de5da1a15b892f4463b88aa92521e711691774c180f1c0070efa448e6efa88"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.8184102870312967,
+        "guards_passed": true,
+        "guard_error": null,
+        "passage_verifier_prob": 0.11689547684909483,
+        "decision": "rejected",
+        "reason": "verifier_rejected:0.1169<0.85"
+      },
+      "variation_tag_unblinded_internal_only": "safe_paraphrase"
+    },
+    {
+      "evaluation_id": "EVAL-013",
+      "group_id": "grp_pathlib_operations",
+      "section": "Standard Library: pathlib",
+      "source_revision": "cpython-3.12-pathlib-f44a90",
+      "source_context": "pathlib.Path.rglob recursively yields all existing files matching the given relative pattern. Path.resolve returns a new path object with absolute path and symlinks resolved.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: pathlib.Path.rglob recursively yields all existing files matching the given relative pattern. Path.resolve returns a new path object with absolute path and symlinks resolved."
+          },
+          {
+            "role": "user",
+            "content": "How do I find files non-recursively in only the current directory using pathlib in Python?"
+          }
+        ]
+      },
+      "incoming_query": "How do I find files non-recursively in only the current directory using pathlib in Python?",
+      "candidate_id": "cand-40cf4193e6",
+      "candidate_query": "How do I recursively find all files matching a pattern using pathlib in Python?",
+      "actual_cached_answer": "Use Path.rglob(pattern) or Path.glob('**/' + pattern). For example, Path('.').rglob('*.py') recursively finds all Python files.",
+      "hashes": {
+        "incoming_query_sha256": "28120f31bc01d38e20bb68511e68614ebdd7f7a0e15792f28c24308333372b45",
+        "candidate_answer_sha256": "15965fdf4d5add1e6cf2dab5891238bea021a38a969806b6dd8f855af33a7987",
+        "binding_sha256": "d2cc94c6dd18c793be3315314f62d6c2facd81a4b30f2b1e06319ab31498d82b"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.8206781120452106,
+        "guards_passed": true,
+        "guard_error": null,
+        "passage_verifier_prob": 0.6898091810239289,
+        "decision": "rejected",
+        "reason": "verifier_rejected:0.6898<0.85"
+      },
+      "variation_tag_unblinded_internal_only": "direction_constraint_non_recursive"
+    },
+    {
+      "evaluation_id": "EVAL-014",
+      "group_id": "grp_pathlib_operations",
+      "section": "Standard Library: pathlib",
+      "source_revision": "cpython-3.12-pathlib-f44a90",
+      "source_context": "pathlib.Path.rglob recursively yields all existing files matching the given relative pattern. Path.resolve returns a new path object with absolute path and symlinks resolved.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: pathlib.Path.rglob recursively yields all existing files matching the given relative pattern. Path.resolve returns a new path object with absolute path and symlinks resolved."
+          },
+          {
+            "role": "user",
+            "content": "How do I search for files recursively in Python without using pathlib or os.walk?"
+          }
+        ]
+      },
+      "incoming_query": "How do I search for files recursively in Python without using pathlib or os.walk?",
+      "candidate_id": "cand-40cf4193e6",
+      "candidate_query": "How do I recursively find all files matching a pattern using pathlib in Python?",
+      "actual_cached_answer": "Use Path.rglob(pattern) or Path.glob('**/' + pattern). For example, Path('.').rglob('*.py') recursively finds all Python files.",
+      "hashes": {
+        "incoming_query_sha256": "cdf65b9f96a733cc73f0e8285a8d7e9cb612b62c5956e2ed230324cabab801d6",
+        "candidate_answer_sha256": "15965fdf4d5add1e6cf2dab5891238bea021a38a969806b6dd8f855af33a7987",
+        "binding_sha256": "7e32a139870f3d2778f7bf8d4579da1116bef37d4a648c321e1ce8e8f188e146"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.820026623457074,
+        "guards_passed": false,
+        "guard_error": "added_explicit_requirement",
+        "passage_verifier_prob": 0.9625779341661167,
+        "decision": "rejected",
+        "reason": "guard_rejected:added_explicit_requirement"
+      },
+      "variation_tag_unblinded_internal_only": "negation_constraint"
+    },
+    {
+      "evaluation_id": "EVAL-015",
+      "group_id": "grp_pathlib_operations",
+      "section": "Standard Library: pathlib",
+      "source_revision": "cpython-3.12-pathlib-f44a90",
+      "source_context": "pathlib.Path.rglob recursively yields all existing files matching the given relative pattern. Path.resolve returns a new path object with absolute path and symlinks resolved.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: pathlib.Path.rglob recursively yields all existing files matching the given relative pattern. Path.resolve returns a new path object with absolute path and symlinks resolved."
+          },
+          {
+            "role": "user",
+            "content": "How do I find files matching exactly 10 extensions recursively in Python?"
+          }
+        ]
+      },
+      "incoming_query": "How do I find files matching exactly 10 extensions recursively in Python?",
+      "candidate_id": "cand-40cf4193e6",
+      "candidate_query": "How do I recursively find all files matching a pattern using pathlib in Python?",
+      "actual_cached_answer": "Use Path.rglob(pattern) or Path.glob('**/' + pattern). For example, Path('.').rglob('*.py') recursively finds all Python files.",
+      "hashes": {
+        "incoming_query_sha256": "d67a05e6f5735c23c65b17905d87c1ffc75f41650e8ae973474bf3bc9be79fbc",
+        "candidate_answer_sha256": "15965fdf4d5add1e6cf2dab5891238bea021a38a969806b6dd8f855af33a7987",
+        "binding_sha256": "a18fe77cf4dd33fa367cc3b3cc10857f10c5b4f456dbf1c7ac89ffba80251083"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.7153123920885693,
+        "guards_passed": false,
+        "guard_error": "numeric_or_version_requirement_changed",
+        "passage_verifier_prob": 0.7702544471526578,
+        "decision": "rejected",
+        "reason": "guard_rejected:numeric_or_version_requirement_changed"
+      },
+      "variation_tag_unblinded_internal_only": "numeric_constraint"
+    },
+    {
+      "evaluation_id": "EVAL-016",
+      "group_id": "grp_dataclasses",
+      "section": "Standard Library: dataclasses",
+      "source_revision": "cpython-3.12-dataclasses-b77c31",
+      "source_context": "dataclasses.dataclass decorator automatically generates special methods such as __init__() and __repr__() for user-defined classes. Setting frozen=True generates an immutable dataclass.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: dataclasses.dataclass decorator automatically generates special methods such as __init__() and __repr__() for user-defined classes. Setting frozen=True generates an immutable dataclass."
+          },
+          {
+            "role": "user",
+            "content": "How can I define a frozen or read-only dataclass in Python?"
+          }
+        ]
+      },
+      "incoming_query": "How can I define a frozen or read-only dataclass in Python?",
+      "candidate_id": "cand-a739e53033",
+      "candidate_query": "How do I create an immutable dataclass in Python?",
+      "actual_cached_answer": "Decorate the class with @dataclass(frozen=True). Any attempt to modify field values after instantiation will raise a FrozenInstanceError.",
+      "hashes": {
+        "incoming_query_sha256": "2ad31f0903d11bebf3504447e2731658716a1675694c249507300575b926e6ff",
+        "candidate_answer_sha256": "96c834ad830f3c18181d26ea6f8e8469c4ba45f97d80d5736f3b003936970c79",
+        "binding_sha256": "718fce228ae2341e8cd8d25d3550d9aa37d0e33f4b91365bcb66f59dd3f38d15"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.6164254232719192,
+        "guards_passed": true,
+        "guard_error": null,
+        "passage_verifier_prob": 0.6497781316571813,
+        "decision": "rejected",
+        "reason": "verifier_rejected:0.6498<0.85"
+      },
+      "variation_tag_unblinded_internal_only": "safe_paraphrase"
+    },
+    {
+      "evaluation_id": "EVAL-017",
+      "group_id": "grp_dataclasses",
+      "section": "Standard Library: dataclasses",
+      "source_revision": "cpython-3.12-dataclasses-b77c31",
+      "source_context": "dataclasses.dataclass decorator automatically generates special methods such as __init__() and __repr__() for user-defined classes. Setting frozen=True generates an immutable dataclass.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: dataclasses.dataclass decorator automatically generates special methods such as __init__() and __repr__() for user-defined classes. Setting frozen=True generates an immutable dataclass."
+          },
+          {
+            "role": "user",
+            "content": "What is the syntax to make a dataclass immutable in Python?"
+          }
+        ]
+      },
+      "incoming_query": "What is the syntax to make a dataclass immutable in Python?",
+      "candidate_id": "cand-a739e53033",
+      "candidate_query": "How do I create an immutable dataclass in Python?",
+      "actual_cached_answer": "Decorate the class with @dataclass(frozen=True). Any attempt to modify field values after instantiation will raise a FrozenInstanceError.",
+      "hashes": {
+        "incoming_query_sha256": "fb8f74ac5a9e10ee79db3fd7b7fe05de4d138dc23974bfad57c9681c198fc708",
+        "candidate_answer_sha256": "96c834ad830f3c18181d26ea6f8e8469c4ba45f97d80d5736f3b003936970c79",
+        "binding_sha256": "081435f3cfca28f7cbfed8f54b148a566e4dcc61c6fcaae86ba07ee1e63454f8"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.9390857670712697,
+        "guards_passed": true,
+        "guard_error": null,
+        "passage_verifier_prob": 0.005495645416805904,
+        "decision": "rejected",
+        "reason": "verifier_rejected:0.0055<0.85"
+      },
+      "variation_tag_unblinded_internal_only": "safe_paraphrase"
+    },
+    {
+      "evaluation_id": "EVAL-018",
+      "group_id": "grp_dataclasses",
+      "section": "Standard Library: dataclasses",
+      "source_revision": "cpython-3.12-dataclasses-b77c31",
+      "source_context": "dataclasses.dataclass decorator automatically generates special methods such as __init__() and __repr__() for user-defined classes. Setting frozen=True generates an immutable dataclass.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: dataclasses.dataclass decorator automatically generates special methods such as __init__() and __repr__() for user-defined classes. Setting frozen=True generates an immutable dataclass."
+          },
+          {
+            "role": "user",
+            "content": "How do I create a mutable dataclass in Python?"
+          }
+        ]
+      },
+      "incoming_query": "How do I create a mutable dataclass in Python?",
+      "candidate_id": "cand-a739e53033",
+      "candidate_query": "How do I create an immutable dataclass in Python?",
+      "actual_cached_answer": "Decorate the class with @dataclass(frozen=True). Any attempt to modify field values after instantiation will raise a FrozenInstanceError.",
+      "hashes": {
+        "incoming_query_sha256": "f8bccd100300f931b9a907915183189712816ff8863c30efbc177111ba3610f8",
+        "candidate_answer_sha256": "96c834ad830f3c18181d26ea6f8e8469c4ba45f97d80d5736f3b003936970c79",
+        "binding_sha256": "655d4b128b44122d5d693d58318227632779ff30a4e8bb4310bcce5c64c528bc"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.7606118256707369,
+        "guards_passed": true,
+        "guard_error": null,
+        "passage_verifier_prob": 0.0016520637646699051,
+        "decision": "rejected",
+        "reason": "verifier_rejected:0.0017<0.85"
+      },
+      "variation_tag_unblinded_internal_only": "direction_reversal_mutable"
+    },
+    {
+      "evaluation_id": "EVAL-019",
+      "group_id": "grp_dataclasses",
+      "section": "Standard Library: dataclasses",
+      "source_revision": "cpython-3.12-dataclasses-b77c31",
+      "source_context": "dataclasses.dataclass decorator automatically generates special methods such as __init__() and __repr__() for user-defined classes. Setting frozen=True generates an immutable dataclass.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: dataclasses.dataclass decorator automatically generates special methods such as __init__() and __repr__() for user-defined classes. Setting frozen=True generates an immutable dataclass."
+          },
+          {
+            "role": "user",
+            "content": "How do I create an immutable class in Python without using dataclasses?"
+          }
+        ]
+      },
+      "incoming_query": "How do I create an immutable class in Python without using dataclasses?",
+      "candidate_id": "cand-a739e53033",
+      "candidate_query": "How do I create an immutable dataclass in Python?",
+      "actual_cached_answer": "Decorate the class with @dataclass(frozen=True). Any attempt to modify field values after instantiation will raise a FrozenInstanceError.",
+      "hashes": {
+        "incoming_query_sha256": "7c33cd15a1dbe7214a2071156580cdb77f15224bcfed2af06ab3edf2ed7a716c",
+        "candidate_answer_sha256": "96c834ad830f3c18181d26ea6f8e8469c4ba45f97d80d5736f3b003936970c79",
+        "binding_sha256": "5304d9e8676f868ecf5de8f47a409b6fbbdbe97a765edc9196bc59a8b89bfeb5"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.9689978046548364,
+        "guards_passed": false,
+        "guard_error": "added_explicit_requirement",
+        "passage_verifier_prob": 0.009071658069362623,
+        "decision": "rejected",
+        "reason": "guard_rejected:added_explicit_requirement"
+      },
+      "variation_tag_unblinded_internal_only": "negation_constraint"
+    },
+    {
+      "evaluation_id": "EVAL-020",
+      "group_id": "grp_dataclasses",
+      "section": "Standard Library: dataclasses",
+      "source_revision": "cpython-3.12-dataclasses-b77c31",
+      "source_context": "dataclasses.dataclass decorator automatically generates special methods such as __init__() and __repr__() for user-defined classes. Setting frozen=True generates an immutable dataclass.",
+      "incoming_request": {
+        "model": "gpt-4o-mini-fixture",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Answer using only Python reference: dataclasses.dataclass decorator automatically generates special methods such as __init__() and __repr__() for user-defined classes. Setting frozen=True generates an immutable dataclass."
+          },
+          {
+            "role": "user",
+            "content": "How do I create a frozen dataclass with inheritance in Python 3.6?"
+          }
+        ]
+      },
+      "incoming_query": "How do I create a frozen dataclass with inheritance in Python 3.6?",
+      "candidate_id": "cand-a739e53033",
+      "candidate_query": "How do I create an immutable dataclass in Python?",
+      "actual_cached_answer": "Decorate the class with @dataclass(frozen=True). Any attempt to modify field values after instantiation will raise a FrozenInstanceError.",
+      "hashes": {
+        "incoming_query_sha256": "c6a4b60e3b0a8353686c9af5e4560ef876e55af9ab3f7f1e12096fc1c6a16fc8",
+        "candidate_answer_sha256": "96c834ad830f3c18181d26ea6f8e8469c4ba45f97d80d5736f3b003936970c79",
+        "binding_sha256": "94cf6802682e3982a8a0239ccda1d183fea0b330e908986c9aa3c9009175eb48"
+      },
+      "policy_evaluation": {
+        "cosine_similarity": 0.6541156101073629,
+        "guards_passed": false,
+        "guard_error": "numeric_or_version_requirement_changed",
+        "passage_verifier_prob": 0.5700405374512438,
+        "decision": "rejected",
+        "reason": "guard_rejected:numeric_or_version_requirement_changed"
+      },
+      "variation_tag_unblinded_internal_only": "version_mismatch_3_6"
+    }
+  ]
+}

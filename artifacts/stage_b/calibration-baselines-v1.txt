@@ -1,0 +1,2 @@
+{"path": "/workspace/scratch/2722df406b2c/adaptive-agentic-semantic-cache/configs/intent_stage_b_v1.json", "bytes": 1210, "sha256": "e2f992e83e980602416c2e619527f3be5088d92924bebee09b6a159bf5b8ff85"}
+{"split": "calibration", "baseline_points": 41, "evidence_type": "synthetic_template_held_out_actual_candidate_diagnostic", "no_threshold_selected": true}

@@ -1,0 +1,94 @@
+{
+  "evidence_type": "synthetic_template_held_out_dev_diagnostic_not_human_truth",
+  "view": "designated pairs; classifier-conditional incremental effect reported separately after B3",
+  "per_family": {
+    "added_requirement": {
+      "n": 64,
+      "rejected": 64,
+      "true_positives_wrongly_rejected": 0,
+      "reasons": {
+        "requirements_mismatch": 64
+      }
+    },
+    "ambiguity": {
+      "n": 64,
+      "rejected": 64,
+      "true_positives_wrongly_rejected": 0,
+      "reasons": {
+        "unparsed_or_ambiguous_question": 64,
+        "operation_mismatch": 64,
+        "input_type_mismatch": 64,
+        "output_type_mismatch": 64,
+        "numbers_mismatch": 64,
+        "versions_mismatch": 64,
+        "requirements_mismatch": 64
+      }
+    },
+    "direction_inversion": {
+      "n": 64,
+      "rejected": 64,
+      "true_positives_wrongly_rejected": 0,
+      "reasons": {
+        "direction_mismatch": 64
+      }
+    },
+    "entity_swap": {
+      "n": 64,
+      "rejected": 64,
+      "true_positives_wrongly_rejected": 0,
+      "reasons": {
+        "input_type_mismatch": 64
+      }
+    },
+    "negation": {
+      "n": 64,
+      "rejected": 64,
+      "true_positives_wrongly_rejected": 0,
+      "reasons": {
+        "negated_mismatch": 64
+      }
+    },
+    "paraphrase": {
+      "n": 192,
+      "rejected": 0,
+      "true_positives_wrongly_rejected": 0,
+      "reasons": {}
+    },
+    "quantity": {
+      "n": 64,
+      "rejected": 64,
+      "true_positives_wrongly_rejected": 0,
+      "reasons": {
+        "numbers_mismatch": 64
+      }
+    },
+    "removed_requirement": {
+      "n": 64,
+      "rejected": 64,
+      "true_positives_wrongly_rejected": 0,
+      "reasons": {
+        "requirements_mismatch": 64
+      }
+    },
+    "unit": {
+      "n": 64,
+      "rejected": 64,
+      "true_positives_wrongly_rejected": 0,
+      "reasons": {
+        "units_mismatch": 64
+      }
+    },
+    "version": {
+      "n": 64,
+      "rejected": 64,
+      "true_positives_wrongly_rejected": 0,
+      "reasons": {
+        "numbers_mismatch": 64,
+        "versions_mismatch": 64
+      }
+    }
+  },
+  "legacy_metadata_used": false,
+  "rule_vocabulary": "builder-authored bounded domain, aligned with synthetic operations; not independent generalization evidence",
+  "accepts_possible_from_veto_alone": false
+}

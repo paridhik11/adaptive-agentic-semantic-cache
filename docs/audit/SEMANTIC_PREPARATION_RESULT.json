@@ -1,0 +1,249 @@
+{
+  "schema_version": "semantic-preparation-v1",
+  "evidence_type": "exposed_authored_local_model_development_probe",
+  "source_parent": "1c580fc733b41e635439e8cb78db97d26d253361",
+  "environment": {
+    "python": "3.12.14",
+    "packages": {
+      "torch": "2.14.1+cpu",
+      "sentence-transformers": "6.1.0",
+      "transformers": "5.20.1",
+      "huggingface-hub": "1.33.0",
+      "socksio": "1.0.0"
+    },
+    "models": {
+      "encoder": {
+        "model": "sentence-transformers/all-MiniLM-L6-v2",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+        "snapshot_present": true,
+        "weights": [
+          {
+            "file": "model.safetensors",
+            "bytes": 90868376,
+            "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db"
+          }
+        ],
+        "inference_verified": true
+      },
+      "pair": {
+        "model": "cross-encoder/quora-distilroberta-base",
+        "revision": "f62e7a4b20b97195c2868e53ec59126df5eac743",
+        "snapshot_present": true,
+        "weights": [
+          {
+            "file": "model.safetensors",
+            "bytes": 328493408,
+            "sha256": "73fd14ad7d08f3ef30eb25841c8f4ba89e91230f48159279233b37015ccb33fb"
+          }
+        ],
+        "inference_verified": true
+      }
+    },
+    "fine_tuned_checkpoint_available": false
+  },
+  "probe": {
+    "load_seconds": 5.151350703999924,
+    "seeds": [
+      "How do I convert a Python list into a tuple?",
+      "How do I convert a Python tuple into a list?",
+      "How do I convert Celsius to Fahrenheit?",
+      "How do I convert Fahrenheit to Celsius?",
+      "How can I sort a Python list in ascending order?"
+    ],
+    "rows": [
+      {
+        "kind": "paraphrase",
+        "query": "How can I make a tuple from an existing Python list?",
+        "nearest_seed": "How do I convert a Python list into a tuple?",
+        "cosine": 0.9156005201155252,
+        "authored_expected_seed": 0,
+        "selected_seed": 0,
+        "pair": {
+          "logit": -7.508234977722168,
+          "pair_score": 0.0005482476945625147,
+          "input_tokens": 27
+        },
+        "against_first_seed": {
+          "logit": -7.508234977722168,
+          "pair_score": 0.0005482476945625147,
+          "input_tokens": 27
+        },
+        "diagnostic_ms": 58.96847500025615
+      },
+      {
+        "kind": "paraphrase",
+        "query": "What is the way to change a tuple into a list in Python?",
+        "nearest_seed": "How do I convert a Python tuple into a list?",
+        "cosine": 0.9194837728905992,
+        "authored_expected_seed": 1,
+        "selected_seed": 1,
+        "pair": {
+          "logit": -3.763728141784668,
+          "pair_score": 0.022671191083058314,
+          "input_tokens": 29
+        },
+        "against_first_seed": {
+          "logit": -6.694064617156982,
+          "pair_score": 0.0012367082197351378,
+          "input_tokens": 29
+        },
+        "diagnostic_ms": 53.08300100023189
+      },
+      {
+        "kind": "paraphrase",
+        "query": "Given a temperature in Celsius, how can I express it in Fahrenheit?",
+        "nearest_seed": "How do I convert Celsius to Fahrenheit?",
+        "cosine": 0.8792448993175884,
+        "authored_expected_seed": 2,
+        "selected_seed": 2,
+        "pair": {
+          "logit": 2.1773507595062256,
+          "pair_score": 0.8981970834017879,
+          "input_tokens": 26
+        },
+        "against_first_seed": {
+          "logit": -8.346782684326172,
+          "pair_score": 0.0002371020747239092,
+          "input_tokens": 29
+        },
+        "diagnostic_ms": 65.51420300002064
+      },
+      {
+        "kind": "direction_flip",
+        "query": "How do I convert a Python tuple into a list?",
+        "nearest_seed": "How do I convert a Python tuple into a list?",
+        "cosine": 1.0000000000000002,
+        "authored_expected_seed": 1,
+        "selected_seed": 1,
+        "pair": {
+          "logit": 4.499314785003662,
+          "pair_score": 0.9890056091704033,
+          "input_tokens": 26
+        },
+        "against_first_seed": {
+          "logit": -3.535604238510132,
+          "pair_score": 0.02831598333465979,
+          "input_tokens": 26
+        },
+        "diagnostic_ms": 65.36755199977051
+      },
+      {
+        "kind": "constraint",
+        "query": "How do I convert a nested Python list into a tuple recursively?",
+        "nearest_seed": "How do I convert a Python list into a tuple?",
+        "cosine": 0.8467618284850998,
+        "authored_expected_seed": null,
+        "selected_seed": 0,
+        "pair": {
+          "logit": -3.0898683071136475,
+          "pair_score": 0.04352711733075945,
+          "input_tokens": 30
+        },
+        "against_first_seed": {
+          "logit": -3.0898683071136475,
+          "pair_score": 0.04352711733075945,
+          "input_tokens": 30
+        },
+        "diagnostic_ms": 54.40576399996644
+      },
+      {
+        "kind": "negation",
+        "query": "Why should I not convert a Python list into a tuple?",
+        "nearest_seed": "How do I convert a Python list into a tuple?",
+        "cosine": 0.856055626606864,
+        "authored_expected_seed": null,
+        "selected_seed": 0,
+        "pair": {
+          "logit": -5.285597324371338,
+          "pair_score": 0.0050384914768769355,
+          "input_tokens": 27
+        },
+        "against_first_seed": {
+          "logit": -5.285597324371338,
+          "pair_score": 0.0050384914768769355,
+          "input_tokens": 27
+        },
+        "diagnostic_ms": 70.64637600069545
+      },
+      {
+        "kind": "unit_change",
+        "query": "How do I convert Celsius to Kelvin?",
+        "nearest_seed": "How do I convert Fahrenheit to Celsius?",
+        "cosine": 0.8234879063009188,
+        "authored_expected_seed": null,
+        "selected_seed": 3,
+        "pair": {
+          "logit": -3.757354974746704,
+          "pair_score": 0.02281283308103398,
+          "input_tokens": 20
+        },
+        "against_first_seed": {
+          "logit": -8.323624610900879,
+          "pair_score": 0.00024265562618217985,
+          "input_tokens": 23
+        },
+        "diagnostic_ms": 47.46364899983746
+      },
+      {
+        "kind": "constraint",
+        "query": "How can I sort a Python list without changing its original order?",
+        "nearest_seed": "How can I sort a Python list in ascending order?",
+        "cosine": 0.8900813077863707,
+        "authored_expected_seed": null,
+        "selected_seed": 4,
+        "pair": {
+          "logit": -2.3330156803131104,
+          "pair_score": 0.08842527867812949,
+          "input_tokens": 28
+        },
+        "against_first_seed": {
+          "logit": -7.956200122833252,
+          "pair_score": 0.0003503595854754548,
+          "input_tokens": 28
+        },
+        "diagnostic_ms": 73.02384200011147
+      }
+    ],
+    "claim": "exposed authored development diagnostics; no answer applicability labels or serving decisions"
+  },
+  "probe_network_check": {
+    "offline_environment": true,
+    "socket_connect_and_create_connection_blocked": true,
+    "passed": true
+  },
+  "external_generation_calls": 0,
+  "independent_human_reviews": 0,
+  "answer_applicability_precision": null,
+  "semantic_serving_policy_validated": false,
+  "tests": {
+    "command": "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONPATH=.venv/lib/python3.12/site-packages python -m pytest tests/test_semantic_preparation.py tests/test_semantic_runtime.py -q",
+    "exit_code": 0,
+    "output": ".............................................                            [100%]\n45 passed in 1.53s"
+  },
+  "source_sha256": {
+    "src/policy/local_models.py": "aba5216373522267b18ed6765cd7bac6bbd9db46235518779b7e897e7d189521",
+    "scripts/run_semantic_probe.py": "fb97fe43ebecf8cb55dc2e3d92056d44a3039b66dfed8fdfddbff9dff3f79249",
+    "scripts/plan_semantic_review.py": "d4fe586dccc06d0eee8950ccb06db352e916ab1e6c410eb94f9be17b2a23eaa4",
+    "tests/test_semantic_preparation.py": "38dfce477dbdccd3cb79e9c58966539f777e80ee9faccdff445e3ce9b13d3d74"
+  },
+  "secret_scan": {
+    "scope": [
+      "src/policy/local_models.py",
+      "scripts/run_semantic_probe.py",
+      "scripts/plan_semantic_review.py",
+      "tests/test_semantic_preparation.py",
+      "docs/SEMANTIC_EVALUATION_CONTRACT.md",
+      "docs/CURRENT_STATUS.md",
+      "docs/EXECUTION_ROADMAP.md"
+    ],
+    "patterns": "OpenRouter-style key, GitHub token, private-key header",
+    "findings": 0,
+    "limits": "Changed-file pattern scan; not an exhaustive secret detector."
+  },
+  "limits": [
+    "Authored development examples are exposed and not independent final evaluation.",
+    "No actual-answer labels, safety rate, cost savings or representative coverage follows.",
+    "Quora pair scores are diagnostics; low positive scores are a development limitation.",
+    "Final review capacity and cohort remain unconfirmed."
+  ]
+}

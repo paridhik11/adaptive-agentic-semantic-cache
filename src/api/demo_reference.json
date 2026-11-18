@@ -1,0 +1,22 @@
+{
+  "source_revision": "0fb18b02c8ad56299d6a2910be0bab8ad601ef24",
+  "source": "CPython 3.12 Programming FAQ",
+  "source_url": "https://docs.python.org/3.12/faq/programming.html",
+  "documents": [
+    {
+      "id": "python312-805-how-do-i-specify-hexadecimal-and-octal-integers",
+      "title": "How do I specify hexadecimal and octal integers?",
+      "text": "To specify an octal digit, precede the octal value with a zero, and then a lower\nor uppercase \"o\".  For example, to set the variable \"a\" to the octal value \"10\"\n(8 in decimal), type::\n\n   >>> a = 0o10\n   >>> a\n   8\n\nHexadecimal is just as easy.  Simply precede the hexadecimal number with a zero,\nand then a lower or uppercase \"x\".  Hexadecimal digits can be specified in lower\nor uppercase.  For example, in the Python interpreter::\n\n   >>> a = 0xa5\n   >>> a\n   165\n   >>> b = 0XB2\n   >>> b\n   178"
+    },
+    {
+      "id": "python312-1159-how-do-i-convert-between-tuples-and-lists",
+      "title": "How do I convert between tuples and lists?",
+      "text": "The type constructor tuple(seq) converts any sequence (actually, any\niterable) into a tuple with the same items in the same order.\n\nFor example, tuple([1, 2, 3]) yields (1, 2, 3) and tuple('abc')\nyields ('a', 'b', 'c').  If the argument is a tuple, it does not make a copy\nbut returns the same object, so it is cheap to call tuple when you\naren't sure that an object is already a tuple.\n\nThe type constructor list(seq) converts any sequence or iterable into a list\nwith the same items in the same order.  For example, list((1, 2, 3)) yields\n[1, 2, 3] and list('abc') yields ['a', 'b', 'c'].  If the argument\nis a list, it makes a copy just like seq[:] would."
+    },
+    {
+      "id": "python312-1176-what-s-a-negative-index",
+      "title": "What's a negative index?",
+      "text": "Python sequences are indexed with positive numbers and negative numbers.  For\npositive numbers 0 is the first index 1 is the second index and so forth.  For\nnegative indices -1 is the last index and -2 is the penultimate (next to last)\nindex and so forth.  Think of seq[-n] as the same as seq[len(seq)-n].\n\nUsing negative indices can be very convenient.  For example S[:-1] is all of\nthe string except for its last character, which is useful for removing the\ntrailing newline from a string."
+    }
+  ]
+}

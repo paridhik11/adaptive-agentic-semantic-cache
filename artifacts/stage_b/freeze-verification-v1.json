@@ -1,0 +1,87 @@
+{
+  "evidence_type": "deterministic_freeze_integrity_checks_not_model_accuracy",
+  "all_passed": true,
+  "checks": [
+    {
+      "path": "configs/intent_stage_b_v1.json",
+      "sha256": "e2f992e83e980602416c2e619527f3be5088d92924bebee09b6a159bf5b8ff85",
+      "unchanged_since": "B0 before training"
+    },
+    {
+      "path": "configs/intent_stage_b_calibration_v1.json",
+      "sha256": "8d4867329ccdab452c631e66c9abe2aa9d989421fb20e8e9d8b564c245d676e2",
+      "unchanged_since": "B0 before training"
+    },
+    {
+      "path": "src/evaluation/intent_stage_b_veto.py",
+      "sha256": "3d972405a3e318476a9545f98e9d335c85349bea5b338ded158216d6270c41ce",
+      "unchanged_since": "B2 before dev scoring"
+    },
+    {
+      "path": "src/evaluation/intent_stage_b_policy.py",
+      "function": "choose",
+      "acceptance_logic_unchanged_since": "B2 before dev scoring"
+    },
+    {
+      "path": "src/evaluation/intent_stage_b_policy.py",
+      "function": "decision_view",
+      "acceptance_logic_unchanged_since": "B2 before dev scoring"
+    },
+    {
+      "path": "data/intent_stage_b/v2/calibration.answers.jsonl",
+      "sha256": "5a53a194ae7649657943a05879344ccfcdfdbfce1b9d16e2c73cc0e2912d3536",
+      "unchanged_since": "B0 before training"
+    },
+    {
+      "path": "data/intent_stage_b/v2/train.jsonl",
+      "sha256": "7e4bb7ede0c5a25944dc03ec0b91be097fdd2ce49eb43ef14f867d5de5bc9580",
+      "unchanged_since": "B0 before training"
+    },
+    {
+      "path": "data/intent_stage_b/v2/natural-review-request.jsonl",
+      "sha256": "3b14d55455a6b2dd80e640d5350e1fbfd62a4dd7a06f28eb5aa40c22c658dc0b",
+      "unchanged_since": "B0 before training"
+    },
+    {
+      "path": "data/intent_stage_b/v2/dev.jsonl",
+      "sha256": "2fa384c4f54a6ea6da3a60c658dbaa14b70b291350e3255ecea64865222a6687",
+      "unchanged_since": "B0 before training"
+    },
+    {
+      "path": "data/intent_stage_b/v2/manifest.json",
+      "sha256": "6169212e09ed657fbdbd321995b80cc5df685430e1538a4b46426b698a38e9e2",
+      "unchanged_since": "B0 before training"
+    },
+    {
+      "path": "data/intent_stage_b/v2/train.answers.jsonl",
+      "sha256": "b45b71fb7bd0185f783f45417c8a59aba71a9fe2dc82b07b0873fb5dec05725f",
+      "unchanged_since": "B0 before training"
+    },
+    {
+      "path": "data/intent_stage_b/v2/calibration.jsonl",
+      "sha256": "80a585ff1276aefefae40f30e8dcf704fba81b986244c6d0b58dd5e130bb7968",
+      "unchanged_since": "B0 before training"
+    },
+    {
+      "path": "data/intent_stage_b/v2/dev.answers.jsonl",
+      "sha256": "efa3eeb2be55e35a5b4d93330bca821f3734594899def400af859b154dae5293",
+      "unchanged_since": "B0 before training"
+    },
+    {
+      "path": "artifacts/stage_b/models/11/adapter.safetensors",
+      "sha256": "89685b335847eb052d7bf3ba55f9ace99cbde6e9d08277e0cb16ebeed244b348",
+      "unchanged_since": "B1 export"
+    },
+    {
+      "path": "artifacts/stage_b/models/29/adapter.safetensors",
+      "sha256": "1ffa69f9d4c373347b0c2dc12486a5a1929ee632dcc3b8bc6bc6ccfe51dadf73",
+      "unchanged_since": "B1 export"
+    },
+    {
+      "path": "artifacts/stage_b/models/47/adapter.safetensors",
+      "sha256": "a64fe6ed77c3e6d721271a3c85b22b8ccdf4fe558f41623159a7b362e7e6c42b",
+      "unchanged_since": "B1 export"
+    }
+  ],
+  "aggregation_change": "exact comparator/accounting only; original metrics preserved; all semantic fields identical on 41 dev baseline points"
+}

@@ -1,3 +1,7 @@
+> SUPERSEDED — historical record, not current project status.
+> See [CURRENT_STATUS.md](CURRENT_STATUS.md) for implementation and evidence status.
+> Historical claims below may have later corrections; see [claim audit](audit/CLAIM_HYGIENE_AUDIT.md).
+
 # Master Project Report: Adaptive Agentic Semantic Cache
 
 > **Document Status:** Authoritative Master Project Report for `adaptive-agentic-semantic-cache`.  

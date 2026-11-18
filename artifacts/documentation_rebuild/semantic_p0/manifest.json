@@ -1,0 +1,23 @@
+{
+  "schema": "semantic-p0-audit-manifest-v1",
+  "evidence_type": "measured-live (local model evaluation on dev split)",
+  "models": {
+    "dense_retrieval": "sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "quora_cross_encoder": "cross-encoder/quora-distilroberta-base@f62e7a4b20b97195c2868e53ec59126df5eac743",
+    "passage_verifier": "cross-encoder/ms-marco-MiniLM-L-6-v2@233902d25c440f23af6f7d6e94d2946bac0bee0a"
+  },
+  "files": {
+    "src/policy/local_models.py": "cf3d40b8408c13638af7874020243963139d4e6c5b95c6602b1b18fee68e88d4",
+    "src/policy/decomposed_applicability.py": "4c8b875bed795beb8d0286cd37a34790f2c30f7e4a83a968cbd8d2dfabde3cbc",
+    "src/policy/answer_aware_policy.py": "fafba7434da71749b5b2de65502786b63fa01e5281b2e625f5159f97325236f8",
+    "scripts/phase1_score_diagnostic.py": "afd7e49800631014c99b5847493649140be760c448a43d983fc5cc26ef6478ce",
+    "scripts/phase3_development_benchmark.py": "8a03bea7fad34b774366f323f3fe953b3513862155f28d38e9be37157fa1ec7c",
+    "tests/test_answer_aware_policy.py": "f409d87298dd44ad6dd13ff9a4ec008e31d57755343556b8ecc4e00393409793",
+    "runs/semantic-dev/phase3_dev_workload.json": "d76e70803539999fec018e944810f2836f7767fd53d02706446542e1b0533917",
+    "runs/semantic-dev/phase3_benchmark_results.json": "386c81dcf35feefaa14559f5d527d52d66fe6d0f62a8b98cf1ae5f61246dc24f",
+    "docs/SEMANTIC_P0_ROOT_CAUSE.md": "14cfb611a1cf292556922a0f8e178f61858f3559a99c2b5b5ebc8f5131d196ec",
+    "docs/SEMANTIC_P0_DESIGN.md": "21ccb59006b0d21001a0dfdc4c85af53a2126b9cc984f17fe3fcc9b045d8dc5a",
+    "docs/SEMANTIC_P0_RESULTS.md": "fa20e737684396a69abccc0059903993276eea733f123ef305baab76ce783bd5",
+    "docs/RESUME_METRICS_VERIFIED.md": "d07bb3e22eec5475aec9750abffeba80ba98392eb248aeac092f29071a97ba20"
+  }
+}

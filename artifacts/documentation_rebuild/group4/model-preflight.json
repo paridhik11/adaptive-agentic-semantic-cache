@@ -1,0 +1,34 @@
+{
+  "status": "BLOCKED_MISSING_APPROVED_CHECKPOINTS",
+  "models": [
+    {
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "snapshot": "/root/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "files_present": {
+        "config.json": false,
+        "model.safetensors": false,
+        "tokenizer.json": false
+      },
+      "ready": false,
+      "revision_origin": "approved user pins, checked against src/policy/local_models.py"
+    },
+    {
+      "model": "cross-encoder/quora-distilroberta-base",
+      "revision": "f62e7a4b20b97195c2868e53ec59126df5eac743",
+      "snapshot": "/root/.cache/huggingface/hub/models--cross-encoder--quora-distilroberta-base/snapshots/f62e7a4b20b97195c2868e53ec59126df5eac743",
+      "files_present": {
+        "config.json": false,
+        "model.safetensors": false,
+        "tokenizer.json": false
+      },
+      "ready": false,
+      "revision_origin": "approved user pins, checked against src/policy/local_models.py"
+    }
+  ],
+  "downloads": 0,
+  "inference_calls": 0,
+  "pickle_loaded": false,
+  "meaning": "File-presence preflight only; does not establish model loadability or semantic quality.",
+  "pin_source_sha256": "aba5216373522267b18ed6765cd7bac6bbd9db46235518779b7e897e7d189521"
+}

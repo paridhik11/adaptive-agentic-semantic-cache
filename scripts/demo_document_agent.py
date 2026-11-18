@@ -38,6 +38,7 @@ def main():
     parser.add_argument('--gateway-url',help='Explicit live gateway /v1/chat/completions endpoint')
     parser.add_argument('--allow-live-calls',action='store_true')
     parser.add_argument('--cache-off',action='store_true')
+    parser.add_argument('--static-document-stage',action='store_true',help='Opt in to fixed-reference factual drafting without prior-task suggestions; not for history-dependent questions')
     commands=parser.add_subparsers(dest='command',required=True)
     start=commands.add_parser('start');start.add_argument('question')
     for name in ('resume','inspect','delete'):
@@ -51,7 +52,7 @@ def main():
     service=GatewayService(ScopedResponseCache(eligibility=policy),provider,allowed_models={args.model})
     agent=DocumentAgent(service,DocumentTools(json.loads(args.documents.read_text())),args.database,model=args.model)
     scope={'tenant':args.tenant,'principal':args.principal}
-    if args.command=='start':tid=agent.create(args.question,cache=not args.cache_off,**scope)
+    if args.command=='start':tid=agent.create(args.question,cache=not args.cache_off,static_document_stage=args.static_document_stage,**scope)
     else:tid=args.task_id
     if args.command in ('start','resume'):
         for _ in range(30):

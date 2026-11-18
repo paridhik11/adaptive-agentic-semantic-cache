@@ -1,0 +1,16 @@
+{
+  "schema": "document-review-request-v1",
+  "status": "awaiting_external_authorship_and_review",
+  "slots": 30,
+  "sources": 3,
+  "non_null_questions": 0,
+  "non_null_labels": 0,
+  "evidence_type": "unlabeled authoring request; no quality observations",
+  "source_sha256": "ec0ae31ff59b5386d8124098c6d3547b355bfa2b8a078a43389eded72eb3476a",
+  "files": {
+    "INSTRUCTIONS.md": "45b7422a2a9d28db1396ad6272d409bf2ae4bedb31f7f395c270c3b1e3bf6b5d",
+    "SOURCE_LICENSE.txt": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+    "requests.jsonl": "1b850f84f2cfa6491fac969e11a4b40a338198bc252dad9149ae4c4e61dbca63",
+    "sources.json": "68510d859891a1f65b4187baaca991ab4cc07d71031503c22b2e67cba9d189e0"
+  }
+}

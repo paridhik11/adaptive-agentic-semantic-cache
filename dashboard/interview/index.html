@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head><link rel="icon" href="data:,">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore the matched offline benchmark for Adaptive Agentic Semantic Cache.">
+  <title>Cache Benchmark | Trace</title>
+  <link rel="stylesheet" href="benchmark.css">
+  <script src="benchmark.js" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <nav aria-label="Project"><a href="/">← Workbench</a><div><a href="comparison.csv" download>Download comparison ↓</a><a href="report.json">JSON</a></div></nav>
+      <p class="eyebrow">Adaptive Agentic Semantic Cache</p>
+      <h1>Cache benchmark</h1>
+      <p>How much work does semantic reuse save beyond exact matching?</p>
+      <p id="scope" class="scope">Loading offline evidence…</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <p id="error" role="alert" hidden></p>
+    <div id="benchmark" hidden>
+      <div class="toolbar">
+        <label for="profile">Workload</label>
+        <select id="profile">
+          <option value="repeat_rich">Repeat-heavy</option>
+          <option value="lower_repeat">Lower-repeat breadth</option>
+        </select>
+        <span id="profile-scope"></span>
+      </div>
+      <div class="kpis" aria-live="polite">
+        <section class="kpi"><h2>Exact-only calls avoided</h2><strong id="exact-kpi"></strong><p id="exact-detail"></p></section>
+        <section class="kpi highlighted"><h2>Additional calls avoided</h2><strong id="increment-kpi"></strong><p id="increment-detail"></p></section>
+        <section class="kpi"><h2>Guarded false accepts</h2><strong id="quality-kpi"></strong><p id="quality-detail"></p></section>
+      </div>
+      <div class="grid">
+        <section class="panel">
+          <h2>Where the savings come from</h2>
+          <p>Scripted provider calls per configuration</p>
+          <ul id="chart" class="chart"></ul>
+        </section>
+        <section class="panel takeaway">
+          <h2>Why exact is the default</h2>
+          <p id="takeaway"></p>
+          <p>Answer-level correctness is unadjudicated. The replay measures local processing time and uses synthetic tokens.</p>
+          <a href="#case-study">Inspect the lower-repeat false accept ↓</a>
+        </section>
+      </div>
+      <section class="panel">
+        <h2>Configuration comparison</h2>
+        <p>Reductions use the paired no-cache denominator. Reviewed accepts are reported against total accepts.</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Configuration comparison">
+          <table>
+            <thead><tr><th scope="col">Configuration</th><th scope="col">Scripted calls</th><th scope="col">Calls avoided</th><th scope="col">Synthetic tokens</th><th scope="col">Tokens avoided</th><th scope="col">False accepts / challenges</th><th scope="col">Reviewed / accepts</th></tr></thead>
+            <tbody id="comparison"></tbody>
+          </table>
+        </div>
+        <p class="note" id="quality-note"></p>
+      </section>
+      <div class="grid analysis">
+        <section class="panel">
+          <div class="section-header">
+            <h2>Latency by path</h2>
+            <label for="path" class="visually-hidden">Latency path</label>
+            <select id="path"><option value="all">All requests</option><option value="hit">Cache hit</option><option value="miss">Cache miss</option></select>
+          </div>
+          <p>Historical end-to-end wall clock. Hit and miss groups can differ by configuration.</p>
+          <table>
+            <thead><tr><th scope="col">Configuration</th><th scope="col">n</th><th scope="col">p50 · ms</th><th scope="col">p95 · ms</th></tr></thead>
+            <tbody id="latency"></tbody>
+          </table>
+        </section>
+        <section class="panel">
+          <div class="section-header">
+            <h2>Coverage by request type</h2>
+            <label for="coverage-arm" class="visually-hidden">Coverage configuration</label>
+            <select id="coverage-arm"><option value="no_cache">No cache</option><option value="exact_only">Exact only</option><option value="verified_semantic" selected>Guarded semantic</option><option value="shadow_semantic">Shadow semantic</option></select>
+          </div>
+          <p>The harness considers all non-challenge requests eligible, including seeds. Counts describe workload labels.</p>
+          <table>
+            <thead><tr><th scope="col">Request type</th><th scope="col">Hits / requests</th><th scope="col">Eligible hits / eligible</th></tr></thead>
+            <tbody id="coverage"></tbody>
+          </table>
+        </section>
+      </div>
+      <section class="panel" id="segments">
+        <div class="section-header">
+          <h2>Where guarded semantic changes the call count</h2>
+          <a href="segments.csv" download>Segment CSV ↓</a>
+        </div>
+        <p id="paired-summary"></p>
+        <div class="filter-row">
+          <label for="dimension">Group by</label>
+          <select id="dimension"><option value="request_type">Request type</option><option value="domain">Documentation domain</option></select>
+        </div>
+        <div class="table-wrap segment-table" tabindex="0" role="region" aria-label="Segment comparison">
+          <table>
+            <thead><tr><th scope="col">Segment</th><th scope="col">Requests</th><th scope="col">Exact calls avoided</th><th scope="col">Guarded increment</th><th scope="col">Challenge accepts</th></tr></thead>
+            <tbody id="segment-rows"></tbody>
+          </table>
+        </div>
+        <p class="note">The guarded increment is exact calls minus guarded calls. Select a segment to inspect its matched events.</p>
+      </section>
+      <section class="panel" id="event-inspector">
+        <div class="section-header">
+          <h2>Matched events</h2>
+          <a href="paired-events.csv" download>Event CSV ↓</a>
+        </div>
+        <p id="event-context" aria-live="polite"></p>
+        <div class="filter-row">
+          <label for="outcome">Guarded vs exact</label>
+          <select id="outcome"><option value="all">All outcomes</option><option value="fewer">Fewer calls</option><option value="same">Tied</option><option value="more">More calls</option><option value="false_accept">Challenge accepted</option></select>
+          <label for="event-search">Event ID</label>
+          <input type="search" id="event-search" placeholder="Search event ID">
+        </div>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Paired event evidence">
+          <table>
+            <thead><tr><th scope="col">Event ID</th><th scope="col">No cache</th><th scope="col">Exact</th><th scope="col">Guarded</th><th scope="col">Shadow</th><th scope="col">Guarded tier</th></tr></thead>
+            <tbody id="paired-events"></tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <p id="event-count" aria-live="polite"></p>
+          <button type="button" id="prev-events">Previous</button>
+          <button type="button" id="next-events">Next</button>
+        </div>
+        <p class="note">This table shows scripted calls. The event CSV also contains the synthetic tokens, cache tiers and local latency for each configuration.</p>
+      </section>
+      <section id="case-study" class="panel">
+        <div class="section-header"><h2>A cached answer missed an added requirement</h2><span class="case-label">Lower-repeat breadth</span></div>
+        <p id="event-id"></p>
+        <dl id="failure" class="trace"></dl>
+        <p class="note">The campaign record includes the selected prompt, returned text and decision. It did not capture individual historical guard decisions or the verifier score for this event.</p>
+      </section>
+      <details class="panel">
+        <summary>Evidence and methodology</summary>
+        <p>Each workload event was matched across four configurations using its event ID and request metadata. Latency uses the campaign convention: median and exclusive p95, with the maximum reported for fewer than 20 samples. Adversarial intervals are exact 95% Clopper–Pearson intervals. Requests cluster by base intent and source group, so these intervals are descriptive under a binomial assumption.</p>
+        <p>Repeat-heavy adversarial results are development regression evidence. Lower-repeat results describe the committed offline breadth replay. The campaign has zero independently reviewed accepts, so the answer-level incorrect reuse rate is unavailable. These logs provide no production traffic, billable usage or live quality estimate.</p>
+        <p id="source"></p>
+        <p>SHA-256 <code id="sha"></code></p>
+      </details>
+    </div>
+  </main>
+  <footer class="wrap">Regenerate from the repository root with <code>python scripts/report_interview.py</code>.</footer>
+</body>
+</html>

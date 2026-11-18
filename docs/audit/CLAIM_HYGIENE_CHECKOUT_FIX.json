@@ -1,0 +1,29 @@
+{
+  "schema_version": "claim-hygiene-checkout-fix-v1",
+  "previous_commit": "dd8f8e11176e07c7f78ea8a13ef1d556ceb49759",
+  "cause": "Raw worktree bytes were compared with raw Git blobs; valid Git LF-to-CRLF checkout conversion triggered a false positive.",
+  "fix": "Compare against git cat-file --filters --path expected checkout bytes. Keep original Git blob SHA-256 as provenance and separate checkout hash. Decode text explicitly as UTF-8.",
+  "focused_tests": {
+    "passed": 3,
+    "cases": [
+      "LF checkout passes",
+      "CRLF checkout passes",
+      "CRLF substantive telemetry edit rejected"
+    ],
+    "environment": "Local temporary Git clones; Windows-style EOL simulated, not a native Windows run"
+  },
+  "current_checkout_audit": "passed",
+  "git_diff_check": "passed",
+  "external_model_calls": 0,
+  "new_replay_runs": 0,
+  "r6_redesign_implemented": false,
+  "data_files_rewritten": false,
+  "sha256": {
+    "scripts/check_claim_hygiene.py": "4f4f3fff3e8aa4b5d9cdd3f3feacca7feb062b3917af1fa9b5951833b760dcc5",
+    "tests/test_claim_hygiene_checkout.py": "979ff9319e2a7c7d06178f3dc3a2ed261d73414f8b5976e80adf6443ff9a2e00"
+  },
+  "reproduce": [
+    "python -m unittest tests.test_claim_hygiene_checkout -v",
+    "python scripts/check_claim_hygiene.py"
+  ]
+}

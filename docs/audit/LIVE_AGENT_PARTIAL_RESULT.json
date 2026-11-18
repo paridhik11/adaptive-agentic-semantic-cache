@@ -1,0 +1,24 @@
+{
+  "evidence_kind": "user_uploaded_partial_live_agent_records",
+  "archive_sha256": "bbe2dcceda90097c79203fbcb2ce0b30b47bb74a318ea38ed6b19224ad4b4938",
+  "manifest_verified": true,
+  "saved_attempts": 6,
+  "received_complete_responses": 5,
+  "recorded_provider_errors": [
+    {
+      "code": "upstream_status",
+      "status": 502
+    }
+  ],
+  "seed_tasks_started": 2,
+  "off_seed_status": "AWAITING_APPROVAL",
+  "exact_seed_status": "FAILED",
+  "repeat_tasks_started": 0,
+  "observed_document_tool_dispatches": 2,
+  "observed_draft_cache_hits": 0,
+  "independent_reviews": 0,
+  "live_latency_valid": false,
+  "paired_savings": null,
+  "external_model_calls_during_inspection": 0,
+  "limitation": "Internal consistency of user-uploaded records, not independent provider authentication."
+}

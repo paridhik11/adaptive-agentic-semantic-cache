@@ -1,0 +1,1456 @@
+{
+  "schema_version": 2,
+  "evidence": "offline replay: scripted provider calls, synthetic tokens, historical wall-clock latency",
+  "events_replayed": 1000,
+  "executions": 4000,
+  "profiles": {
+    "repeat_rich": {
+      "events_per_arm": 600,
+      "source_groups": 12,
+      "intents": 60,
+      "source": "artifacts/metrics_campaign/repeat_rich/offline_results.jsonl",
+      "sha256": "8471d67d384ce4d09d34f51f5d3ba17227832448935f9781f05e7324a3e2d91f",
+      "arms": {
+        "no_cache": {
+          "calls": 1800,
+          "calls_saved": 0,
+          "calls_saved_pct": 0.0,
+          "calls_saved_on_eligible_hits": 0,
+          "calls_saved_on_ineligible_hits": 0,
+          "synthetic_tokens": 201667,
+          "synthetic_tokens_saved_pct": 0.0,
+          "latency_ms": {
+            "all": {
+              "n": 600,
+              "p50": 130.8581,
+              "p95": 151.5782
+            },
+            "hit": {
+              "n": 0,
+              "p50": null,
+              "p95": null
+            },
+            "miss": {
+              "n": 600,
+              "p50": 130.8581,
+              "p95": 151.5782
+            }
+          },
+          "answer_review": {
+            "total_accepts": 0,
+            "reviewed_accepts": 0,
+            "incorrect": null,
+            "incorrect_rate_pct": null,
+            "exact_95_ci_pct": null,
+            "label_source": "unadjudicated"
+          },
+          "adversarial_false_accepts": {
+            "hits": 0,
+            "n": 120,
+            "pct": 0.0,
+            "exact_95_ci_pct": [
+              0.0,
+              3.0273
+            ]
+          },
+          "coverage": {
+            "seed": {
+              "hits": 0,
+              "requests": 60,
+              "eligible_hits": 0,
+              "eligible": 60
+            },
+            "exact_repeat": {
+              "hits": 0,
+              "requests": 240,
+              "eligible_hits": 0,
+              "eligible": 240
+            },
+            "natural_paraphrase": {
+              "hits": 0,
+              "requests": 180,
+              "eligible_hits": 0,
+              "eligible": 180
+            },
+            "adversarial_challenge": {
+              "hits": 0,
+              "requests": 120,
+              "eligible_hits": 0,
+              "eligible": 0
+            }
+          }
+        },
+        "exact_only": {
+          "calls": 948,
+          "calls_saved": 852,
+          "calls_saved_pct": 47.3333,
+          "calls_saved_on_eligible_hits": 852,
+          "calls_saved_on_ineligible_hits": 0,
+          "synthetic_tokens": 107750,
+          "synthetic_tokens_saved_pct": 46.5703,
+          "latency_ms": {
+            "all": {
+              "n": 600,
+              "p50": 140.8023,
+              "p95": 233.1437
+            },
+            "hit": {
+              "n": 284,
+              "p50": 48.3904,
+              "p95": 59.9604
+            },
+            "miss": {
+              "n": 316,
+              "p50": 220.3481,
+              "p95": 241.5905
+            }
+          },
+          "answer_review": {
+            "total_accepts": 284,
+            "reviewed_accepts": 0,
+            "incorrect": null,
+            "incorrect_rate_pct": null,
+            "exact_95_ci_pct": null,
+            "label_source": "unadjudicated"
+          },
+          "adversarial_false_accepts": {
+            "hits": 0,
+            "n": 120,
+            "pct": 0.0,
+            "exact_95_ci_pct": [
+              0.0,
+              3.0273
+            ]
+          },
+          "coverage": {
+            "seed": {
+              "hits": 0,
+              "requests": 60,
+              "eligible_hits": 0,
+              "eligible": 60
+            },
+            "exact_repeat": {
+              "hits": 236,
+              "requests": 240,
+              "eligible_hits": 236,
+              "eligible": 240
+            },
+            "natural_paraphrase": {
+              "hits": 48,
+              "requests": 180,
+              "eligible_hits": 48,
+              "eligible": 180
+            },
+            "adversarial_challenge": {
+              "hits": 0,
+              "requests": 120,
+              "eligible_hits": 0,
+              "eligible": 0
+            }
+          }
+        },
+        "verified_semantic": {
+          "calls": 927,
+          "calls_saved": 873,
+          "calls_saved_pct": 48.5,
+          "calls_saved_on_eligible_hits": 873,
+          "calls_saved_on_ineligible_hits": 0,
+          "synthetic_tokens": 105429,
+          "synthetic_tokens_saved_pct": 47.7212,
+          "latency_ms": {
+            "all": {
+              "n": 600,
+              "p50": 137.8125,
+              "p95": 237.7314
+            },
+            "hit": {
+              "n": 291,
+              "p50": 45.8484,
+              "p95": 60.1606
+            },
+            "miss": {
+              "n": 309,
+              "p50": 222.6442,
+              "p95": 247.8433
+            }
+          },
+          "answer_review": {
+            "total_accepts": 291,
+            "reviewed_accepts": 0,
+            "incorrect": null,
+            "incorrect_rate_pct": null,
+            "exact_95_ci_pct": null,
+            "label_source": "unadjudicated"
+          },
+          "adversarial_false_accepts": {
+            "hits": 0,
+            "n": 120,
+            "pct": 0.0,
+            "exact_95_ci_pct": [
+              0.0,
+              3.0273
+            ]
+          },
+          "coverage": {
+            "seed": {
+              "hits": 2,
+              "requests": 60,
+              "eligible_hits": 2,
+              "eligible": 60
+            },
+            "exact_repeat": {
+              "hits": 236,
+              "requests": 240,
+              "eligible_hits": 236,
+              "eligible": 240
+            },
+            "natural_paraphrase": {
+              "hits": 53,
+              "requests": 180,
+              "eligible_hits": 53,
+              "eligible": 180
+            },
+            "adversarial_challenge": {
+              "hits": 0,
+              "requests": 120,
+              "eligible_hits": 0,
+              "eligible": 0
+            }
+          }
+        },
+        "shadow_semantic": {
+          "calls": 948,
+          "calls_saved": 852,
+          "calls_saved_pct": 47.3333,
+          "calls_saved_on_eligible_hits": 852,
+          "calls_saved_on_ineligible_hits": 0,
+          "synthetic_tokens": 107750,
+          "synthetic_tokens_saved_pct": 46.5703,
+          "latency_ms": {
+            "all": {
+              "n": 600,
+              "p50": 141.5785,
+              "p95": 241.2777
+            },
+            "hit": {
+              "n": 284,
+              "p50": 47.6015,
+              "p95": 56.0888
+            },
+            "miss": {
+              "n": 316,
+              "p50": 222.8734,
+              "p95": 254.1258
+            }
+          },
+          "answer_review": {
+            "total_accepts": 284,
+            "reviewed_accepts": 0,
+            "incorrect": null,
+            "incorrect_rate_pct": null,
+            "exact_95_ci_pct": null,
+            "label_source": "unadjudicated"
+          },
+          "adversarial_false_accepts": {
+            "hits": 0,
+            "n": 120,
+            "pct": 0.0,
+            "exact_95_ci_pct": [
+              0.0,
+              3.0273
+            ]
+          },
+          "coverage": {
+            "seed": {
+              "hits": 0,
+              "requests": 60,
+              "eligible_hits": 0,
+              "eligible": 60
+            },
+            "exact_repeat": {
+              "hits": 236,
+              "requests": 240,
+              "eligible_hits": 236,
+              "eligible": 240
+            },
+            "natural_paraphrase": {
+              "hits": 48,
+              "requests": 180,
+              "eligible_hits": 48,
+              "eligible": 180
+            },
+            "adversarial_challenge": {
+              "hits": 0,
+              "requests": 120,
+              "eligible_hits": 0,
+              "eligible": 0
+            }
+          }
+        }
+      },
+      "failures": [],
+      "semantic_increment": {
+        "calls_saved": 21,
+        "pct_of_baseline_calls": 1.1667,
+        "events_with_fewer_calls": 7,
+        "events_with_more_calls": 0,
+        "events_with_same_calls": 593,
+        "calls_saved_on_eligible_hits": 21
+      },
+      "segments": [
+        {
+          "dimension": "domain",
+          "segment": "list_operations",
+          "requests": 50,
+          "no_cache_calls": 150,
+          "exact_calls": 78,
+          "guarded_calls": 69,
+          "shadow_calls": 78,
+          "exact_calls_avoided": 72,
+          "guarded_increment": 9,
+          "guarded_gross_gain": 9,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 3,
+          "guarded_tied_requests": 47,
+          "guarded_more_requests": 0,
+          "challenges": 10,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "itertools_recipes",
+          "requests": 50,
+          "no_cache_calls": 150,
+          "exact_calls": 78,
+          "guarded_calls": 72,
+          "shadow_calls": 78,
+          "exact_calls_avoided": 72,
+          "guarded_increment": 6,
+          "guarded_gross_gain": 6,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 2,
+          "guarded_tied_requests": 48,
+          "guarded_more_requests": 0,
+          "challenges": 10,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "json_handling",
+          "requests": 50,
+          "no_cache_calls": 150,
+          "exact_calls": 81,
+          "guarded_calls": 75,
+          "shadow_calls": 81,
+          "exact_calls_avoided": 69,
+          "guarded_increment": 6,
+          "guarded_gross_gain": 6,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 2,
+          "guarded_tied_requests": 48,
+          "guarded_more_requests": 0,
+          "challenges": 10,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "csv_processing",
+          "requests": 50,
+          "no_cache_calls": 150,
+          "exact_calls": 78,
+          "guarded_calls": 78,
+          "shadow_calls": 78,
+          "exact_calls_avoided": 72,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 50,
+          "guarded_more_requests": 0,
+          "challenges": 10,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "datetime_operations",
+          "requests": 50,
+          "no_cache_calls": 150,
+          "exact_calls": 78,
+          "guarded_calls": 78,
+          "shadow_calls": 78,
+          "exact_calls_avoided": 72,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 50,
+          "guarded_more_requests": 0,
+          "challenges": 10,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "dict_operations",
+          "requests": 50,
+          "no_cache_calls": 150,
+          "exact_calls": 90,
+          "guarded_calls": 90,
+          "shadow_calls": 90,
+          "exact_calls_avoided": 60,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 50,
+          "guarded_more_requests": 0,
+          "challenges": 10,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "error_handling",
+          "requests": 50,
+          "no_cache_calls": 150,
+          "exact_calls": 78,
+          "guarded_calls": 78,
+          "shadow_calls": 78,
+          "exact_calls_avoided": 72,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 50,
+          "guarded_more_requests": 0,
+          "challenges": 10,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "file_io",
+          "requests": 50,
+          "no_cache_calls": 150,
+          "exact_calls": 78,
+          "guarded_calls": 78,
+          "shadow_calls": 78,
+          "exact_calls_avoided": 72,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 50,
+          "guarded_more_requests": 0,
+          "challenges": 10,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "math_statistics",
+          "requests": 50,
+          "no_cache_calls": 150,
+          "exact_calls": 78,
+          "guarded_calls": 78,
+          "shadow_calls": 78,
+          "exact_calls_avoided": 72,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 50,
+          "guarded_more_requests": 0,
+          "challenges": 10,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "pathlib_filesystem",
+          "requests": 50,
+          "no_cache_calls": 150,
+          "exact_calls": 78,
+          "guarded_calls": 78,
+          "shadow_calls": 78,
+          "exact_calls_avoided": 72,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 50,
+          "guarded_more_requests": 0,
+          "challenges": 10,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "regex_patterns",
+          "requests": 50,
+          "no_cache_calls": 150,
+          "exact_calls": 78,
+          "guarded_calls": 78,
+          "shadow_calls": 78,
+          "exact_calls_avoided": 72,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 50,
+          "guarded_more_requests": 0,
+          "challenges": 10,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "string_manipulation",
+          "requests": 50,
+          "no_cache_calls": 150,
+          "exact_calls": 75,
+          "guarded_calls": 75,
+          "shadow_calls": 75,
+          "exact_calls_avoided": 75,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 50,
+          "guarded_more_requests": 0,
+          "challenges": 10,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "request_type",
+          "segment": "natural_paraphrase",
+          "requests": 180,
+          "no_cache_calls": 540,
+          "exact_calls": 396,
+          "guarded_calls": 381,
+          "shadow_calls": 396,
+          "exact_calls_avoided": 144,
+          "guarded_increment": 15,
+          "guarded_gross_gain": 15,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 5,
+          "guarded_tied_requests": 175,
+          "guarded_more_requests": 0,
+          "challenges": 0,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "request_type",
+          "segment": "seed",
+          "requests": 60,
+          "no_cache_calls": 180,
+          "exact_calls": 180,
+          "guarded_calls": 174,
+          "shadow_calls": 180,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 6,
+          "guarded_gross_gain": 6,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 2,
+          "guarded_tied_requests": 58,
+          "guarded_more_requests": 0,
+          "challenges": 0,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "request_type",
+          "segment": "adversarial_challenge",
+          "requests": 120,
+          "no_cache_calls": 360,
+          "exact_calls": 360,
+          "guarded_calls": 360,
+          "shadow_calls": 360,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 120,
+          "guarded_more_requests": 0,
+          "challenges": 120,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "request_type",
+          "segment": "exact_repeat",
+          "requests": 240,
+          "no_cache_calls": 720,
+          "exact_calls": 12,
+          "guarded_calls": 12,
+          "shadow_calls": 12,
+          "exact_calls_avoided": 708,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 240,
+          "guarded_more_requests": 0,
+          "challenges": 0,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "workload",
+          "segment": "all",
+          "requests": 600,
+          "no_cache_calls": 1800,
+          "exact_calls": 948,
+          "guarded_calls": 927,
+          "shadow_calls": 948,
+          "exact_calls_avoided": 852,
+          "guarded_increment": 21,
+          "guarded_gross_gain": 21,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 7,
+          "guarded_tied_requests": 593,
+          "guarded_more_requests": 0,
+          "challenges": 120,
+          "guarded_false_accepts": 0
+        }
+      ]
+    },
+    "lower_repeat": {
+      "events_per_arm": 400,
+      "source_groups": 25,
+      "intents": 125,
+      "source": "artifacts/metrics_campaign/lower_repeat/offline_results.jsonl",
+      "sha256": "b0b5c274ce440ef4d99b83f82646a10447171eccd6f5d90c266f8474a4996ded",
+      "arms": {
+        "no_cache": {
+          "calls": 1200,
+          "calls_saved": 0,
+          "calls_saved_pct": 0.0,
+          "calls_saved_on_eligible_hits": 0,
+          "calls_saved_on_ineligible_hits": 0,
+          "synthetic_tokens": 133964,
+          "synthetic_tokens_saved_pct": 0.0,
+          "latency_ms": {
+            "all": {
+              "n": 400,
+              "p50": 89.6993,
+              "p95": 103.7067
+            },
+            "hit": {
+              "n": 0,
+              "p50": null,
+              "p95": null
+            },
+            "miss": {
+              "n": 400,
+              "p50": 89.6993,
+              "p95": 103.7067
+            }
+          },
+          "answer_review": {
+            "total_accepts": 0,
+            "reviewed_accepts": 0,
+            "incorrect": null,
+            "incorrect_rate_pct": null,
+            "exact_95_ci_pct": null,
+            "label_source": "unadjudicated"
+          },
+          "adversarial_false_accepts": {
+            "hits": 0,
+            "n": 125,
+            "pct": 0.0,
+            "exact_95_ci_pct": [
+              0.0,
+              2.908
+            ]
+          },
+          "coverage": {
+            "seed": {
+              "hits": 0,
+              "requests": 125,
+              "eligible_hits": 0,
+              "eligible": 125
+            },
+            "exact_repeat": {
+              "hits": 0,
+              "requests": 60,
+              "eligible_hits": 0,
+              "eligible": 60
+            },
+            "natural_paraphrase": {
+              "hits": 0,
+              "requests": 90,
+              "eligible_hits": 0,
+              "eligible": 90
+            },
+            "adversarial_challenge": {
+              "hits": 0,
+              "requests": 125,
+              "eligible_hits": 0,
+              "eligible": 0
+            }
+          }
+        },
+        "exact_only": {
+          "calls": 1023,
+          "calls_saved": 177,
+          "calls_saved_pct": 14.75,
+          "calls_saved_on_eligible_hits": 177,
+          "calls_saved_on_ineligible_hits": 0,
+          "synthetic_tokens": 114453,
+          "synthetic_tokens_saved_pct": 14.5644,
+          "latency_ms": {
+            "all": {
+              "n": 400,
+              "p50": 168.4233,
+              "p95": 194.4589
+            },
+            "hit": {
+              "n": 59,
+              "p50": 35.9967,
+              "p95": 43.2484
+            },
+            "miss": {
+              "n": 341,
+              "p50": 171.7084,
+              "p95": 195.3416
+            }
+          },
+          "answer_review": {
+            "total_accepts": 59,
+            "reviewed_accepts": 0,
+            "incorrect": null,
+            "incorrect_rate_pct": null,
+            "exact_95_ci_pct": null,
+            "label_source": "unadjudicated"
+          },
+          "adversarial_false_accepts": {
+            "hits": 0,
+            "n": 125,
+            "pct": 0.0,
+            "exact_95_ci_pct": [
+              0.0,
+              2.908
+            ]
+          },
+          "coverage": {
+            "seed": {
+              "hits": 0,
+              "requests": 125,
+              "eligible_hits": 0,
+              "eligible": 125
+            },
+            "exact_repeat": {
+              "hits": 59,
+              "requests": 60,
+              "eligible_hits": 59,
+              "eligible": 60
+            },
+            "natural_paraphrase": {
+              "hits": 0,
+              "requests": 90,
+              "eligible_hits": 0,
+              "eligible": 90
+            },
+            "adversarial_challenge": {
+              "hits": 0,
+              "requests": 125,
+              "eligible_hits": 0,
+              "eligible": 0
+            }
+          }
+        },
+        "verified_semantic": {
+          "calls": 975,
+          "calls_saved": 225,
+          "calls_saved_pct": 18.75,
+          "calls_saved_on_eligible_hits": 222,
+          "calls_saved_on_ineligible_hits": 3,
+          "synthetic_tokens": 109302,
+          "synthetic_tokens_saved_pct": 18.4094,
+          "latency_ms": {
+            "all": {
+              "n": 400,
+              "p50": 180.5989,
+              "p95": 219.766
+            },
+            "hit": {
+              "n": 75,
+              "p50": 36.9374,
+              "p95": 104.8784
+            },
+            "miss": {
+              "n": 325,
+              "p50": 185.6936,
+              "p95": 224.8931
+            }
+          },
+          "answer_review": {
+            "total_accepts": 75,
+            "reviewed_accepts": 0,
+            "incorrect": null,
+            "incorrect_rate_pct": null,
+            "exact_95_ci_pct": null,
+            "label_source": "unadjudicated"
+          },
+          "adversarial_false_accepts": {
+            "hits": 1,
+            "n": 125,
+            "pct": 0.8,
+            "exact_95_ci_pct": [
+              0.0203,
+              4.3767
+            ]
+          },
+          "coverage": {
+            "seed": {
+              "hits": 6,
+              "requests": 125,
+              "eligible_hits": 6,
+              "eligible": 125
+            },
+            "exact_repeat": {
+              "hits": 59,
+              "requests": 60,
+              "eligible_hits": 59,
+              "eligible": 60
+            },
+            "natural_paraphrase": {
+              "hits": 9,
+              "requests": 90,
+              "eligible_hits": 9,
+              "eligible": 90
+            },
+            "adversarial_challenge": {
+              "hits": 1,
+              "requests": 125,
+              "eligible_hits": 0,
+              "eligible": 0
+            }
+          }
+        },
+        "shadow_semantic": {
+          "calls": 1023,
+          "calls_saved": 177,
+          "calls_saved_pct": 14.75,
+          "calls_saved_on_eligible_hits": 177,
+          "calls_saved_on_ineligible_hits": 0,
+          "synthetic_tokens": 114453,
+          "synthetic_tokens_saved_pct": 14.5644,
+          "latency_ms": {
+            "all": {
+              "n": 400,
+              "p50": 183.5547,
+              "p95": 225.1913
+            },
+            "hit": {
+              "n": 59,
+              "p50": 32.4557,
+              "p95": 38.9521
+            },
+            "miss": {
+              "n": 341,
+              "p50": 186.1634,
+              "p95": 226.4158
+            }
+          },
+          "answer_review": {
+            "total_accepts": 59,
+            "reviewed_accepts": 0,
+            "incorrect": null,
+            "incorrect_rate_pct": null,
+            "exact_95_ci_pct": null,
+            "label_source": "unadjudicated"
+          },
+          "adversarial_false_accepts": {
+            "hits": 0,
+            "n": 125,
+            "pct": 0.0,
+            "exact_95_ci_pct": [
+              0.0,
+              2.908
+            ]
+          },
+          "coverage": {
+            "seed": {
+              "hits": 0,
+              "requests": 125,
+              "eligible_hits": 0,
+              "eligible": 125
+            },
+            "exact_repeat": {
+              "hits": 59,
+              "requests": 60,
+              "eligible_hits": 59,
+              "eligible": 60
+            },
+            "natural_paraphrase": {
+              "hits": 0,
+              "requests": 90,
+              "eligible_hits": 0,
+              "eligible": 90
+            },
+            "adversarial_challenge": {
+              "hits": 0,
+              "requests": 125,
+              "eligible_hits": 0,
+              "eligible": 0
+            }
+          }
+        }
+      },
+      "failures": [
+        {
+          "event_id": "async_05:challenge_added_requirements",
+          "question": "How do I optimize asynchronous programming with asyncio performance and benchmark using cProfile?",
+          "matched_question": "How do I perform asynchronous programming with asyncio in Python?",
+          "actual_response_answer": "Answer grounded in documentation: Asynchronous tasks use async and await syntax. Run coroutines using asyncio.run(coro()). Run multiple tasks concurrently using asyncio.gather(*tasks).",
+          "tier": "SEMANTIC",
+          "provider_calls": 0,
+          "exact_only_calls": 3
+        }
+      ],
+      "semantic_increment": {
+        "calls_saved": 48,
+        "pct_of_baseline_calls": 4.0,
+        "events_with_fewer_calls": 16,
+        "events_with_more_calls": 0,
+        "events_with_same_calls": 384,
+        "calls_saved_on_eligible_hits": 45
+      },
+      "segments": [
+        {
+          "dimension": "domain",
+          "segment": "asyncio_coroutines",
+          "requests": 15,
+          "no_cache_calls": 45,
+          "exact_calls": 45,
+          "guarded_calls": 18,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 27,
+          "guarded_gross_gain": 27,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 9,
+          "guarded_tied_requests": 6,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 1
+        },
+        {
+          "dimension": "domain",
+          "segment": "list_operations",
+          "requests": 20,
+          "no_cache_calls": 60,
+          "exact_calls": 45,
+          "guarded_calls": 36,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 15,
+          "guarded_increment": 9,
+          "guarded_gross_gain": 9,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 3,
+          "guarded_tied_requests": 17,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "itertools_recipes",
+          "requests": 20,
+          "no_cache_calls": 60,
+          "exact_calls": 45,
+          "guarded_calls": 39,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 15,
+          "guarded_increment": 6,
+          "guarded_gross_gain": 6,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 2,
+          "guarded_tied_requests": 18,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "collections_types",
+          "requests": 15,
+          "no_cache_calls": 45,
+          "exact_calls": 45,
+          "guarded_calls": 42,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 3,
+          "guarded_gross_gain": 3,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 1,
+          "guarded_tied_requests": 14,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "json_handling",
+          "requests": 20,
+          "no_cache_calls": 60,
+          "exact_calls": 45,
+          "guarded_calls": 42,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 15,
+          "guarded_increment": 3,
+          "guarded_gross_gain": 3,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 1,
+          "guarded_tied_requests": 19,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "binary_data",
+          "requests": 15,
+          "no_cache_calls": 45,
+          "exact_calls": 45,
+          "guarded_calls": 45,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 15,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "concurrency_threading",
+          "requests": 15,
+          "no_cache_calls": 45,
+          "exact_calls": 45,
+          "guarded_calls": 45,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 15,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "context_managers",
+          "requests": 10,
+          "no_cache_calls": 30,
+          "exact_calls": 30,
+          "guarded_calls": 30,
+          "shadow_calls": 30,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 10,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "csv_processing",
+          "requests": 20,
+          "no_cache_calls": 60,
+          "exact_calls": 45,
+          "guarded_calls": 45,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 15,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 20,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "datetime_operations",
+          "requests": 20,
+          "no_cache_calls": 60,
+          "exact_calls": 45,
+          "guarded_calls": 45,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 15,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 20,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "decorators_wrappers",
+          "requests": 10,
+          "no_cache_calls": 30,
+          "exact_calls": 30,
+          "guarded_calls": 30,
+          "shadow_calls": 30,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 10,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "dict_operations",
+          "requests": 20,
+          "no_cache_calls": 60,
+          "exact_calls": 48,
+          "guarded_calls": 48,
+          "shadow_calls": 48,
+          "exact_calls_avoided": 12,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 20,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "error_handling",
+          "requests": 20,
+          "no_cache_calls": 60,
+          "exact_calls": 45,
+          "guarded_calls": 45,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 15,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 20,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "file_io",
+          "requests": 20,
+          "no_cache_calls": 60,
+          "exact_calls": 45,
+          "guarded_calls": 45,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 15,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 20,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "functional_programming",
+          "requests": 10,
+          "no_cache_calls": 30,
+          "exact_calls": 30,
+          "guarded_calls": 30,
+          "shadow_calls": 30,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 10,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "generators_iterators",
+          "requests": 10,
+          "no_cache_calls": 30,
+          "exact_calls": 30,
+          "guarded_calls": 30,
+          "shadow_calls": 30,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 10,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "hash_cryptography",
+          "requests": 15,
+          "no_cache_calls": 45,
+          "exact_calls": 45,
+          "guarded_calls": 45,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 15,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "http_requests",
+          "requests": 15,
+          "no_cache_calls": 45,
+          "exact_calls": 45,
+          "guarded_calls": 45,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 15,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "math_statistics",
+          "requests": 20,
+          "no_cache_calls": 60,
+          "exact_calls": 45,
+          "guarded_calls": 45,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 15,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 20,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "object_oriented",
+          "requests": 10,
+          "no_cache_calls": 30,
+          "exact_calls": 30,
+          "guarded_calls": 30,
+          "shadow_calls": 30,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 10,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "pathlib_filesystem",
+          "requests": 20,
+          "no_cache_calls": 60,
+          "exact_calls": 45,
+          "guarded_calls": 45,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 15,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 20,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "regex_patterns",
+          "requests": 20,
+          "no_cache_calls": 60,
+          "exact_calls": 45,
+          "guarded_calls": 45,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 15,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 20,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "sorting_searching",
+          "requests": 10,
+          "no_cache_calls": 30,
+          "exact_calls": 30,
+          "guarded_calls": 30,
+          "shadow_calls": 30,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 10,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "sqlite_database",
+          "requests": 10,
+          "no_cache_calls": 30,
+          "exact_calls": 30,
+          "guarded_calls": 30,
+          "shadow_calls": 30,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 10,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "domain",
+          "segment": "string_manipulation",
+          "requests": 20,
+          "no_cache_calls": 60,
+          "exact_calls": 45,
+          "guarded_calls": 45,
+          "shadow_calls": 45,
+          "exact_calls_avoided": 15,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 20,
+          "guarded_more_requests": 0,
+          "challenges": 5,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "request_type",
+          "segment": "natural_paraphrase",
+          "requests": 90,
+          "no_cache_calls": 270,
+          "exact_calls": 270,
+          "guarded_calls": 243,
+          "shadow_calls": 270,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 27,
+          "guarded_gross_gain": 27,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 9,
+          "guarded_tied_requests": 81,
+          "guarded_more_requests": 0,
+          "challenges": 0,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "request_type",
+          "segment": "seed",
+          "requests": 125,
+          "no_cache_calls": 375,
+          "exact_calls": 375,
+          "guarded_calls": 357,
+          "shadow_calls": 375,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 18,
+          "guarded_gross_gain": 18,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 6,
+          "guarded_tied_requests": 119,
+          "guarded_more_requests": 0,
+          "challenges": 0,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "request_type",
+          "segment": "adversarial_challenge",
+          "requests": 125,
+          "no_cache_calls": 375,
+          "exact_calls": 375,
+          "guarded_calls": 372,
+          "shadow_calls": 375,
+          "exact_calls_avoided": 0,
+          "guarded_increment": 3,
+          "guarded_gross_gain": 3,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 1,
+          "guarded_tied_requests": 124,
+          "guarded_more_requests": 0,
+          "challenges": 125,
+          "guarded_false_accepts": 1
+        },
+        {
+          "dimension": "request_type",
+          "segment": "exact_repeat",
+          "requests": 60,
+          "no_cache_calls": 180,
+          "exact_calls": 3,
+          "guarded_calls": 3,
+          "shadow_calls": 3,
+          "exact_calls_avoided": 177,
+          "guarded_increment": 0,
+          "guarded_gross_gain": 0,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 0,
+          "guarded_tied_requests": 60,
+          "guarded_more_requests": 0,
+          "challenges": 0,
+          "guarded_false_accepts": 0
+        },
+        {
+          "dimension": "workload",
+          "segment": "all",
+          "requests": 400,
+          "no_cache_calls": 1200,
+          "exact_calls": 1023,
+          "guarded_calls": 975,
+          "shadow_calls": 1023,
+          "exact_calls_avoided": 177,
+          "guarded_increment": 48,
+          "guarded_gross_gain": 48,
+          "guarded_extra_calls": 0,
+          "guarded_fewer_requests": 16,
+          "guarded_tied_requests": 384,
+          "guarded_more_requests": 0,
+          "challenges": 125,
+          "guarded_false_accepts": 1
+        }
+      ]
+    }
+  }
+}

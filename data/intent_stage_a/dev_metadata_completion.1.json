@@ -1,0 +1,11 @@
+{
+  "evidence_type": "pre_baseline_dev_metadata_completion",
+  "before_sha256": "08248fa816dbde1f3e5aeb99f24a6060a81ad19ddb740085dec9700ab589b209",
+  "after_sha256": "f7a0027c60276c38e7bed7a316d3e3b5b7dca5d8b627109a825e18c0749b600e",
+  "changed_case_ids": [
+    "spent:legacy-list-tuple:4",
+    "spent:legacy-list-tuple:5"
+  ],
+  "final_data_read": false,
+  "final_data_modified": false
+}
