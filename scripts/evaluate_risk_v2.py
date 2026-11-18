@@ -109,7 +109,7 @@ def run_group(group, model, encoder, scorer):
         yield {
             "group": group["id"], "type": probe["type"], "policy": model, "eligible": probe["eligible"],
             "served": reused, "served_tier": result.tier, "calls": calls,
-            "elapsed_ms": round(result.elapsed_ms, 5),
+            "elapsed_ms": round(result.total_latency_ms, 5),
             "answer_origin": "verified_seed_identity" if reused else "scripted_fallback_marker",
             "answer_sha256": hashlib.sha256(
                 result.response["choices"][0]["message"]["content"].encode("utf-8")

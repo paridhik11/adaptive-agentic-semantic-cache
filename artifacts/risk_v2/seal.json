@@ -1,7 +1,7 @@
 {
   "artifacts/risk_v2/fixtures.json": "8932820a40451b1dccad4fd41d08f3f0aeeab1fe5e2cb2054a0c5386a9529af4",
   "docs/RISK_V2_PROTOCOL.md": "88014fdb27c95698d8fab24502bea9c4b17f126db01d950825e3306786cd42d1",
-  "scripts/evaluate_risk_v2.py": "d87a82b79d7dd55b4a7471b889fecf46688d2fbff6b553318d94cbd9c296afe1",
+  "scripts/evaluate_risk_v2.py": "3ec14357dda333f21ec12354624a58229d710f596a23a22d062e89c768d48258",
   "scripts/risk_v2_policy.py": "7a20c73e33c50d00789a41581e4832cefcc2cf51778d8c5aa607858bd638fe71",
   "src/policy/hybrid_cache.py": "a07e522abc34a34344521a9f8e2dcd2bae258c3e0880f37f901823cfd334521b",
   "src/policy/decomposed_applicability.py": "3e6f01b2278902b7f698450ad8ba7dffbb3c1b6ea97f1e14574dfb24f49fc450",
