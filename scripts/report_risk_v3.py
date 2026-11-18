@@ -1,16 +1,18 @@
 """Reconcile sealed context-control evidence and generate a short scorecard."""
 import argparse
+from collections import Counter
 from contextlib import closing
 import hashlib
 import json
 import sqlite3
+import statistics
 
 from evaluate_risk_v3 import ARMS, CHANGED, DATA, ROOT, compare, hashes, load, proportion, summarize
 
 REPORT = ROOT / "docs/RISK_V3_RESULTS.md"
 LABELS = {
     "exact": "Exact only", "guarded": "Current guarded",
-    "reporting": "Guarded + V2 reporting check", "context": "V2 + verified context",
+    "reporting": "Guarded + V2 reporting check", "context": "V2 + trusted context",
 }
 
 
@@ -73,6 +75,32 @@ def reconcile(report):
     return table, {arm: proportion(affected, n) for arm, n, affected in groups}
 
 
+def verify_timing(pilot):
+    scenarios = ("exact_repeat", "paraphrase_a", "period", "unresolved")
+    groups = [g["id"] for g in load() if g["split"] == "holdout"][:6]
+    rows = pilot["receipts"]
+    if (pilot["fixture_seal"] != hashes() or pilot["pairs"] != len(rows)
+            or len(pilot["preparation_ms"]) != len(groups)
+            or [(r["group"], r["scenario"]) for r in rows] != [(g, s) for g in groups for s in scenarios]):
+        raise ValueError("timing pilot does not match the frozen selection")
+    for row in rows:
+        if (row["fresh_calls"] != 1 or row["gated_calls"] != (row["gated_tier"] == "NONE")
+                or (row["scenario"] in ("period", "unresolved") and not row["gated_calls"])
+                or not row["gated_calls"] and row["gated_tokens"] != 0
+                or row["gated_calls"] and row["gated_tokens"] != row["fresh_tokens"]
+                or min(row["fresh_ms"], row["gated_ms"], row["fresh_tokens"]) <= 0):
+            raise ValueError("invalid timing receipt")
+    expected = {
+        **{field: sum(row[field] for row in rows)
+           for field in ("fresh_calls", "gated_calls", "fresh_tokens", "gated_tokens")},
+        **{f"{arm}_total_ms": sum(row[f"{arm}_ms"] for row in rows) for arm in ("fresh", "gated")},
+        **{f"{arm}_p50_ms": statistics.median(row[f"{arm}_ms"] for row in rows) for arm in ("fresh", "gated")},
+        "gated_hits_by_scenario": dict(Counter(row["scenario"] for row in rows if not row["gated_calls"])),
+    }
+    if any(pilot[key] != value for key, value in expected.items()):
+        raise ValueError("timing totals disagree with per-pair receipts")
+
+
 def display(metric):
     if metric["n"] == 0:
         return "—"
@@ -80,7 +108,7 @@ def display(metric):
     return f"{metric['count']}/{metric['n']} ({lo:.1%}–{hi:.1%} CI)"
 
 
-def render(report, table, groups):
+def render(report, table, groups, pilot):
     arms = report["arms"]
     before, after = arms["reporting"], arms["context"]
     delta = report["paired_reporting_vs_context"]
@@ -139,9 +167,45 @@ def render(report, table, groups):
         "All intervals use exact Clopper–Pearson 95% bounds. Event-level intervals are descriptive because related probes share intents.",
         "",
         "The data are synthetic. Coordinates are supplied by a trusted caller in this harness. The evaluation tests enforcing those coordinates at lookup. "
-        "It does not measure extraction or authorization from free-form user text. The held-out intent groups use shared wording patterns. "
+        "Extraction and authorization from free-form user text are outside this evaluation. The held-out intent groups use shared wording patterns. "
         "No billable inference or end-to-end production latency was measured here.",
         "",
+    ]
+    if pilot is not None:
+        prepared = sum(pilot["preparation_ms"])
+        heading += [
+            "## Measured CPU pilot on mixed requests",
+            "",
+            f"On **{pilot['pairs']} paired requests** spanning exact repeats, paraphrases, changed months and unresolved coordinates, "
+            f"local generation calls fell from **{pilot['fresh_calls']} to {pilot['gated_calls']}**. "
+            f"Generated completion tokens fell from **{pilot['fresh_tokens']} to {pilot['gated_tokens']}**.",
+            "",
+            f"Summed wall time was **{pilot['fresh_total_ms']/1000:.2f} s fresh** versus **{pilot['gated_total_ms']/1000:.2f} s gated** "
+            f"(**{(pilot['gated_total_ms'] + prepared)/1000:.2f} s** including cache preparation). "
+            f"Median request latency was **{pilot['fresh_p50_ms']/1000:.2f} s fresh** and **{pilot['gated_p50_ms']/1000:.2f} s gated**.",
+            "",
+            "| Timing scenario | Pairs | Fresh / gated generation calls | Fresh / gated completion tokens |",
+            "| --- | ---: | ---: | ---: |",
+        ]
+        for scenario in ("exact_repeat", "paraphrase_a", "period", "unresolved"):
+            subset = [row for row in pilot["receipts"] if row["scenario"] == scenario]
+            fresh_calls, gated_calls, fresh_tokens, gated_tokens = (
+                sum(row[field] for row in subset)
+                for field in ("fresh_calls", "gated_calls", "fresh_tokens", "gated_tokens")
+            )
+            heading.append(
+                f"| {scenario.replace('_', ' ').capitalize()} | {len(subset)} | "
+                f"{fresh_calls} / {gated_calls} | {fresh_tokens} / {gated_tokens} |"
+            )
+        heading += [
+            "",
+            "This separate timing replay uses a single local CPU model with fixed prewritten seed answers. "
+            "Preparation excludes generating those seeds. The results describe this request mix and hardware.",
+            "",
+            "[Timing protocol](RISK_V3_MIXED_TIMING.md) · [Per-request timing and token receipts](../artifacts/risk_v3/mixed_timing.json)",
+            "",
+        ]
+    heading += [
         "## Reproduce and audit",
         "",
         "Use the pinned local MiniLM checkpoints from the [V2 setup instructions](RISK_V2_RESULTS.md#reproduce).",
@@ -157,6 +221,15 @@ def render(report, table, groups):
         "",
         "[Protocol](RISK_V3_PROTOCOL.md) · [Frozen source hashes](../artifacts/risk_v3/seal.json) · [Holdout receipts](../artifacts/risk_v3/holdout.json) · [Original workload benchmarks](INTERVIEW_V1.md#numbers-to-defend)",
     ]
+    if pilot is not None:
+        heading += [
+            "",
+            "With the pinned Qwen checkpoint from the [V2 timing setup](RISK_V2_RESULTS.md#reproduce) available locally:",
+            "",
+            "```bash",
+            "python scripts/measure_risk_v3_mixed.py --output mixed-timing-replay.json",
+            "```",
+        ]
     return "\n".join(heading) + "\n"
 
 
@@ -167,7 +240,11 @@ def main():
     if json.loads((DATA / "seal.json").read_text(encoding="utf-8")) != hashes():
         raise SystemExit("source seal changed")
     result = json.loads((DATA / "holdout.json").read_text(encoding="utf-8"))
-    text = render(result, *reconcile(result))
+    pilot_path = DATA / "mixed_timing.json"
+    pilot = json.loads(pilot_path.read_text(encoding="utf-8")) if pilot_path.is_file() else None
+    if pilot is not None:
+        verify_timing(pilot)
+    text = render(result, *reconcile(result), pilot)
     if args.check:
         if REPORT.read_text(encoding="utf-8") != text:
             raise SystemExit("report differs from evidence")
