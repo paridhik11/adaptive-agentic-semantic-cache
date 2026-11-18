@@ -1,5 +1,7 @@
 # Adaptive Agentic Semantic Cache | Interview V1
 
+For the follow-up risk-control comparison, see the [Risk V2 oversight report](RISK_V2_RESULTS.md).
+
 An agent answers Python documentation questions, shows the sources it read, and lets an operator approve the answer. Approved answers can be reused when the request and its context match. The benchmark asks how much more work a guarded semantic match can avoid and what risk comes with it.
 
 **Decision.** Keep exact reuse as the default. In the broader offline workload, it avoided 177 of 1,200 scripted calls. Guarded semantic avoided 48 more, including 3 on an incorrect substitution. No API key or model weights are needed to run the interview demo.
