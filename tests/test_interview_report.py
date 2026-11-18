@@ -1,4 +1,6 @@
 from copy import deepcopy
+import csv
+import io
 import json
 
 import pytest
@@ -69,12 +71,35 @@ def test_campaign_reconciles_resume_and_incremental_savings():
         assert guarded["answer_review"]["incorrect_rate_pct"] is None
 
 
+def test_paired_sql_drilldown_matches_summary():
+    files = export(CAMPAIGN)
+    events = list(csv.DictReader(io.StringIO(files["paired-events.csv"])))
+    assert len({(e["workload"], e["event_id"]) for e in events}) == len(events) == 1000
+    segment_rows = list(csv.DictReader(io.StringIO(files["segments.csv"])))
+    report = json.loads(files["report.json"])
+    for profile, expected_outcomes in (("repeat_rich", (7, 593, 0)), ("lower_repeat", (16, 384, 0))):
+        inc = report["profiles"][profile]["semantic_increment"]
+        rows = [e for e in events if e["workload"] == profile]
+        deltas = [int(e["exact_calls"]) - int(e["guarded_calls"]) for e in rows]
+        assert (sum(d > 0 for d in deltas), sum(d == 0 for d in deltas), sum(d < 0 for d in deltas)) == expected_outcomes
+        assert sum(deltas) == inc["calls_saved"]
+        for dimension in ("request_type", "domain"):
+            groups = [r for r in segment_rows if r["workload"] == profile and r["dimension"] == dimension]
+            assert sum(int(group["requests"]) for group in groups) == len(rows)
+            assert sum(int(group["guarded_increment"]) for group in groups) == inc["calls_saved"]
+    false_accept, = [e for e in events if e["guarded_false_accept"] == "1"]
+    assert false_accept["event_id"] == "async_05:challenge_added_requirements"
+    assert [false_accept[k] for k in ("no_cache_calls", "exact_calls", "guarded_calls", "shadow_calls")] == ["3", "3", "0", "3"]
+
+
 def test_workbench_links_and_serves_benchmark(tmp_path):
     with TestClient(create_demo_app(tmp_path, benchmark_directory=OUTPUT)) as client:
         assert 'href="/benchmark/"' in client.get("/").text
         assert "Cache benchmark" in client.get("/benchmark/").text
         assert client.get("/benchmark/report.json").json()["executions"] == 4000
         assert client.get("/benchmark/comparison.csv").status_code == 200
+        assert client.get("/benchmark/segments.csv").status_code == 200
+        assert len(client.get("/benchmark/paired-events.json").json()["lower_repeat"]["rows"]) == 400
     with TestClient(create_demo_app(tmp_path)) as client:
         assert "__BENCHMARK_LINK__" not in client.get("/").text
         assert client.get("/benchmark/").status_code == 404

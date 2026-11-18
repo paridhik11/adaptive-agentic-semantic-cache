@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head>
+<head><link rel="icon" href="data:,">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Explore the matched offline benchmark for Adaptive Agentic Semantic Cache.">
@@ -11,7 +11,7 @@
 <body>
   <header class="hero">
     <div class="wrap">
-      <nav aria-label="Project"><a href="/">← Workbench</a><div><a href="comparison.csv" download>Download CSV ↓</a><a href="report.json">JSON</a></div></nav>
+      <nav aria-label="Project"><a href="/">← Workbench</a><div><a href="comparison.csv" download>Download comparison ↓</a><a href="report.json">JSON</a></div></nav>
       <p class="eyebrow">Adaptive Agentic Semantic Cache</p>
       <h1>Cache benchmark</h1>
       <p>How much work does semantic reuse save beyond exact matching?</p>
@@ -84,6 +84,49 @@
           </table>
         </section>
       </div>
+      <section class="panel" id="segments">
+        <div class="section-header">
+          <h2>Where guarded semantic changes the call count</h2>
+          <a href="segments.csv" download>Segment CSV ↓</a>
+        </div>
+        <p id="paired-summary"></p>
+        <div class="filter-row">
+          <label for="dimension">Group by</label>
+          <select id="dimension"><option value="request_type">Request type</option><option value="domain">Documentation domain</option></select>
+        </div>
+        <div class="table-wrap segment-table" tabindex="0" role="region" aria-label="Segment comparison">
+          <table>
+            <thead><tr><th scope="col">Segment</th><th scope="col">Requests</th><th scope="col">Exact calls avoided</th><th scope="col">Guarded increment</th><th scope="col">Challenge accepts</th></tr></thead>
+            <tbody id="segment-rows"></tbody>
+          </table>
+        </div>
+        <p class="note">The guarded increment is exact calls minus guarded calls. Select a segment to inspect its matched events.</p>
+      </section>
+      <section class="panel" id="event-inspector">
+        <div class="section-header">
+          <h2>Matched events</h2>
+          <a href="paired-events.csv" download>Event CSV ↓</a>
+        </div>
+        <p id="event-context" aria-live="polite"></p>
+        <div class="filter-row">
+          <label for="outcome">Guarded vs exact</label>
+          <select id="outcome"><option value="all">All outcomes</option><option value="fewer">Fewer calls</option><option value="same">Tied</option><option value="more">More calls</option><option value="false_accept">Challenge accepted</option></select>
+          <label for="event-search">Event ID</label>
+          <input type="search" id="event-search" placeholder="Search event ID">
+        </div>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Paired event evidence">
+          <table>
+            <thead><tr><th scope="col">Event ID</th><th scope="col">No cache</th><th scope="col">Exact</th><th scope="col">Guarded</th><th scope="col">Shadow</th><th scope="col">Guarded tier</th></tr></thead>
+            <tbody id="paired-events"></tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <p id="event-count" aria-live="polite"></p>
+          <button type="button" id="prev-events">Previous</button>
+          <button type="button" id="next-events">Next</button>
+        </div>
+        <p class="note">This table shows scripted calls. The event CSV also contains the synthetic tokens, cache tiers and local latency for each configuration.</p>
+      </section>
       <section id="case-study" class="panel">
         <div class="section-header"><h2>A cached answer missed an added requirement</h2><span class="case-label">Lower-repeat breadth</span></div>
         <p id="event-id"></p>

@@ -1,11 +1,13 @@
 """Reconcile the committed offline campaign and export the interview dashboard data."""
 import argparse
 from collections import Counter
+from contextlib import closing
 import csv
 import hashlib
 import io
 import json
 import math
+import sqlite3
 import statistics
 from pathlib import Path
 
@@ -24,6 +26,7 @@ REQUIRED = set(MATCH_FIELDS) | {
     "arm", "event_id", "is_hit", "tier", "provider_calls", "total_tokens_synthetic", "workload_expected_reuse",
     "elapsed_ms", "avoided_calls", "terminal_status", "matched_question", "actual_response_answer",
 }
+SQL = Path(__file__).with_name("interview_segments.sql")
 FAILURE_ID = "async_05:challenge_added_requirements"
 
 
@@ -135,6 +138,29 @@ def summarize(rows, baseline_calls, baseline_tokens):
     }
 
 
+def paired_analysis(arms):
+    with closing(sqlite3.connect(":memory:")) as database:
+        database.row_factory = sqlite3.Row
+        database.executescript(SQL.read_text(encoding="utf-8"))
+        database.executemany(
+            "INSERT INTO executions VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            (
+                (event, arm, row["category"], row["group_id"], row["provider_calls"],
+                 row["total_tokens_synthetic"], row["elapsed_ms"], row["tier"])
+                for arm, rows in arms.items() for event, row in rows.items()
+            ),
+        )
+        pairs = database.execute("SELECT * FROM paired_events ORDER BY event_id")
+        columns = [entry[0] for entry in pairs.description]
+        events = [tuple(row) for row in pairs]
+        groups = [dict(row) for row in database.execute(
+            "SELECT * FROM segment_summary ORDER BY dimension, guarded_increment DESC, segment"
+        )]
+    if len(events) != len(arms["no_cache"]):
+        raise ValueError("SQL pair count differs from validated baseline")
+    return {"columns": columns, "rows": events}, groups
+
+
 def profile_report(directory, profile):
     raw = (directory / "offline_results.jsonl").read_bytes()
     manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
@@ -146,7 +172,11 @@ def profile_report(directory, profile):
     baseline_tokens = sum(row["total_tokens_synthetic"] for row in arms["no_cache"].values())
     metrics = {arm: summarize(list(rows.values()), baseline_calls, baseline_tokens) for arm, rows in arms.items()}
     exact, semantic = arms["exact_only"], arms["verified_semantic"]
-    differences = [exact[event]["provider_calls"] - row["provider_calls"] for event, row in semantic.items()]
+    events, segments = paired_analysis(arms)
+    total = next(row for row in segments if row["dimension"] == "workload")
+    for arm, key in zip(ARMS, ("no_cache_calls", "exact_calls", "guarded_calls", "shadow_calls")):
+        if total[key] != metrics[arm]["calls"]:
+            raise ValueError(f"{arm}: SQL and benchmark call totals differ")
     failures = []
     if profile == "lower_repeat":
         failure = semantic[FAILURE_ID]
@@ -162,24 +192,28 @@ def profile_report(directory, profile):
         "source": f"artifacts/metrics_campaign/{profile}/offline_results.jsonl",
         "sha256": hashlib.sha256(raw).hexdigest(), "arms": metrics, "failures": failures,
         "semantic_increment": {
-            "calls_saved": sum(differences), "pct_of_baseline_calls": percent(sum(differences), baseline_calls),
-            "events_with_fewer_calls": sum(delta > 0 for delta in differences),
-            "events_with_more_calls": sum(delta < 0 for delta in differences),
+            "calls_saved": total["guarded_increment"],
+            "pct_of_baseline_calls": percent(total["guarded_increment"], baseline_calls),
+            "events_with_fewer_calls": total["guarded_fewer_requests"],
+            "events_with_more_calls": total["guarded_more_requests"],
+            "events_with_same_calls": total["guarded_tied_requests"],
             "calls_saved_on_eligible_hits": metrics["verified_semantic"]["calls_saved_on_eligible_hits"]
             - metrics["exact_only"]["calls_saved_on_eligible_hits"],
         },
-    }
+        "segments": segments,
+    }, events
 
 
 def export(campaign):
     reports = {}
+    paired = {}
     for profile in PROFILES:
         try:
-            reports[profile] = profile_report(campaign / profile, profile)
-        except (ValueError, KeyError, OSError, AttributeError) as error:
+            reports[profile], paired[profile] = profile_report(campaign / profile, profile)
+        except (ValueError, KeyError, OSError, AttributeError, sqlite3.Error) as error:
             raise ValueError(f"{profile}: {error}") from error
     report = {
-        "schema_version": 1,
+        "schema_version": 2,
         "evidence": "offline replay: scripted provider calls, synthetic tokens, historical wall-clock latency",
         "events_replayed": sum(profile["events_per_arm"] for profile in reports.values()),
         "executions": sum(profile["events_per_arm"] * len(ARMS) for profile in reports.values()),
@@ -196,7 +230,25 @@ def export(campaign):
             writer.writerow((title, arm, profile["events_per_arm"], row["calls"], row["calls_saved"], row["calls_saved_pct"],
                              row["synthetic_tokens"], row["synthetic_tokens_saved_pct"], timing["p50"], timing["p95"],
                              challenge["hits"], challenge["n"], review["reviewed_accepts"], review["total_accepts"]))
-    return {"report.json": json.dumps(report, indent=2) + "\n", "comparison.csv": csv_buffer.getvalue()}
+    segment_buffer = io.StringIO()
+    fields = list(reports[PROFILES[0]]["segments"][0])
+    segment_writer = csv.DictWriter(segment_buffer, ["workload", *fields], lineterminator="\n")
+    segment_writer.writeheader()
+    for profile, result in reports.items():
+        segment_writer.writerows({"workload": profile, **row} for row in result["segments"])
+
+    pair_buffer = io.StringIO()
+    pair_writer = csv.writer(pair_buffer, lineterminator="\n")
+    pair_writer.writerow(["workload", *paired[PROFILES[0]]["columns"]])
+    for profile, result in paired.items():
+        pair_writer.writerows((profile, *row) for row in result["rows"])
+    return {
+        "report.json": json.dumps(report, indent=2) + "\n",
+        "comparison.csv": csv_buffer.getvalue(),
+        "segments.csv": segment_buffer.getvalue(),
+        "paired-events.csv": pair_buffer.getvalue(),
+        "paired-events.json": json.dumps(paired, separators=(",", ":")) + "\n",
+    }
 
 
 def main():

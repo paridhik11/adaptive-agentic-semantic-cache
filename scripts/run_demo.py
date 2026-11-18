@@ -1,43 +1,75 @@
 """Launch the local integrated workbench; reference replay requires no key."""
+
 import argparse
+from contextlib import nullcontext
 import os
 from pathlib import Path
 import sys
+from tempfile import TemporaryDirectory
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src.api.demo import create_demo_app
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--port',type=int,default=8765)
-    p.add_argument('--directory',type=Path,default=Path('runs/workbench'))
-    p.add_argument('--live',action='store_true',help='Explicit free-provider mode; new fixed 12-attempt demo allowance.')
-    p.add_argument('--whole-answer-cache',action='store_true',help='Offline before-agent exact reuse of reviewed, approved standalone answers.')
-    p.add_argument('--task-memory',action='store_true',help='Offline scoped local task retrieval and explicit specialist routes.')
-    p.add_argument('--journal',type=Path,help='Existing shared journal, required in live mode.')
-    p.add_argument('--cli',action='store_true',help='Run the reproducible 7-scenario verification demo and evidence summary in the CLI.')
-    p.add_argument('--experimental-semantic',action='store_true',help='Explicit opt-in to experimental guarded semantic reuse (default: safe exact caching only).')
-    args=p.parse_args()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--port", type=int, default=8765)
+    parser.add_argument("--directory", type=Path, default=Path("runs/workbench"))
+    parser.add_argument("--live", action="store_true", help="Explicit free-provider mode.")
+    parser.add_argument("--whole-answer-cache", action="store_true", help="Offline exact reuse of approved answers.")
+    parser.add_argument("--task-memory", action="store_true", help="Offline scoped local task retrieval.")
+    parser.add_argument("--journal", type=Path, help="Existing shared journal, required in live mode.")
+    parser.add_argument("--cli", action="store_true", help="Run the seven-scenario verification demo.")
+    parser.add_argument("--experimental-semantic", action="store_true", help="Opt in to guarded semantic reuse.")
+    parser.add_argument("--interview", action="store_true", help="Open the offline workbench with exact whole-answer reuse and task memory.")
+    parser.add_argument("--fresh", action="store_true", help="Use temporary storage for this offline web session.")
+    args = parser.parse_args()
+    if args.interview and (args.live or args.cli or args.experimental_semantic):
+        parser.error("--interview selects the offline exact web demo")
+    if args.fresh and (args.live or args.cli):
+        parser.error("--fresh applies to the offline web demo")
     if args.cli:
         from scripts.demo_flagship import run_demo
-        run_demo(args.directory / 'flagship_demo', experimental_semantic=args.experimental_semantic)
+        run_demo(args.directory / "flagship_demo", experimental_semantic=args.experimental_semantic)
         return
-    if not 1024<=args.port<=65535:p.error('Port must be between 1024 and 65535')
-    if args.live and not args.journal:p.error('Live mode requires your existing --journal path')
-    key=os.environ.get('OPENROUTER_API_KEY') if args.live else None
-    profile='live' if args.live else 'reference-whole-answer' if args.whole_answer_cache else 'reference'
-    if args.task_memory:profile+='-memory'
+    if not 1024 <= args.port <= 65535:
+        parser.error("Port must be between 1024 and 65535")
+    if args.live and not args.journal:
+        parser.error("Live mode requires your existing --journal path")
+
+    key = os.environ.get("OPENROUTER_API_KEY") if args.live else None
+    whole_answer = args.interview or args.whole_answer_cache
+    task_memory = args.interview or args.task_memory
+    profile = "live" if args.live else "reference-whole-answer" if whole_answer else "reference"
+    if task_memory:
+        profile += "-memory"
     benchmark_directory = ROOT / "dashboard" / "interview"
     if not (benchmark_directory / "report.json").is_file():
         benchmark_directory = None
-    try:app=create_demo_app(args.directory/profile,live=args.live,journal_path=args.journal,api_key=key,
-                            whole_answer_cache=args.whole_answer_cache,task_memory=args.task_memory,
-                            experimental_semantic=args.experimental_semantic,benchmark_directory=benchmark_directory)
-    except ValueError as exc:p.error(str(exc))
-    import uvicorn
-    print('Open http://127.0.0.1:'+str(args.port),flush=True)
-    print('LIVE FREE MODEL — shared journal, fixed 12-attempt allowance.' if args.live else 'REFERENCE REPLAY — scripted answers; real tools, cache and approval; no external model calls.',flush=True)
-    uvicorn.run(app,host='127.0.0.1',port=args.port,access_log=False)
 
-if __name__=='__main__':main()
+    import uvicorn
+
+    with (TemporaryDirectory(prefix="cache-interview-", ignore_cleanup_errors=True)
+          if args.fresh else nullcontext(args.directory)) as directory:
+        try:
+            app = create_demo_app(
+                Path(directory) / profile, live=args.live, journal_path=args.journal, api_key=key,
+                whole_answer_cache=whole_answer, task_memory=task_memory,
+                experimental_semantic=args.experimental_semantic, benchmark_directory=benchmark_directory,
+            )
+        except ValueError as exc:
+            parser.error(str(exc))
+
+        print(f"Open http://127.0.0.1:{args.port}", flush=True)
+        if args.live:
+            print("LIVE FREE MODEL — shared journal, fixed 12-attempt allowance.", flush=True)
+        else:
+            print("REFERENCE REPLAY — scripted answers; real tools, cache and approval; no external model calls.", flush=True)
+        if args.fresh:
+            print("Fresh demo state is isolated for this session.", flush=True)
+        uvicorn.run(app, host="127.0.0.1", port=args.port, access_log=False)
+
+
+if __name__ == "__main__":
+    main()

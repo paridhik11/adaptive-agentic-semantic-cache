@@ -121,17 +121,101 @@ function showFailure(failure) {
   }
 }
 
+function segmentName(segment) {
+  return categories[segment] || segment.replaceAll("_", " ");
+}
+
+function showSegments(profile, selection, selectSegment) {
+  const increment = profile.semantic_increment;
+  put("paired-summary", `Guarded used fewer calls on ${increment.events_with_fewer_calls} of ${profile.events_per_arm} requests, tied on ${increment.events_with_same_calls}, and used more on ${increment.events_with_more_calls}.`);
+  const groups = profile.segments.filter((item) => item.dimension === byId("dimension").value);
+  byId("segment-rows").replaceChildren(...groups.map((item) => {
+    const tr = row(segmentName(item.segment), [
+      item.requests, item.exact_calls_avoided, item.guarded_increment,
+      item.challenges ? `${item.guarded_false_accepts} / ${item.challenges}` : "—",
+    ]);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "segment-button";
+    button.textContent = segmentName(item.segment);
+    button.setAttribute("aria-pressed", String(item.segment === selection));
+    button.addEventListener("click", () => {
+      for (const other of byId("segment-rows").querySelectorAll("button")) {
+        other.setAttribute("aria-pressed", String(other === button));
+      }
+      selectSegment(item.segment);
+    });
+    tr.firstChild.replaceChildren(button);
+    return tr;
+  }));
+}
+
+function eventInspector(events, selection, page) {
+  const key = byId("dimension").value;
+  const outcome = byId("outcome").value;
+  const search = byId("event-search").value.trim().toLowerCase();
+  const rows = events.filter((event) => event[key] === selection && event.event_id.toLowerCase().includes(search))
+    .filter((event) => ({
+      all: true, fewer: event.guarded_increment > 0, same: event.guarded_increment === 0,
+      more: event.guarded_increment < 0, false_accept: event.guarded_false_accept === 1,
+    })[outcome]);
+  const pageSize = 10;
+  const start = page * pageSize;
+  put("event-context", `Showing ${segmentName(selection)}. Each row pairs the same request across all four configurations.`);
+  put("event-count", rows.length ? `${start + 1}–${Math.min(start + pageSize, rows.length)} of ${rows.length} events` : "No events match these filters.");
+  byId("prev-events").disabled = page === 0;
+  byId("next-events").disabled = start + pageSize >= rows.length;
+  byId("paired-events").replaceChildren(...rows.slice(start, start + pageSize).map((event) => {
+    const entry = row(event.event_id, [event.no_cache_calls, event.exact_calls, event.guarded_calls,
+      event.shadow_calls, event.guarded_false_accept ? `${event.guarded_tier} · false accept` : event.guarded_tier]);
+    if (event.guarded_false_accept) {
+      entry.lastChild.classList.add("flagged");
+      const link = document.createElement("a");
+      link.href = "#case-study";
+      link.textContent = event.event_id;
+      entry.firstChild.replaceChildren(link);
+    }
+    return entry;
+  }));
+}
+
 async function start() {
-  const response = await fetch("report.json");
-  if (!response.ok) throw new Error("Report could not be loaded");
-  const report = await response.json();
+  const responses = await Promise.all([fetch("report.json"), fetch("paired-events.json")]);
+  if (responses.some((response) => !response.ok)) throw new Error("Report could not be loaded");
+  const [report, paired] = await Promise.all(responses.map((response) => response.json()));
+  const events = Object.fromEntries(Object.entries(paired).map(([workload, tables]) => [
+    workload, tables.rows.map((values) => Object.fromEntries(tables.columns.map((col, index) => [col, values[index]]))),
+  ]));
   put("scope", `${number.format(report.executions)} offline executions · ${number.format(report.events_replayed)} matched events · 4 configurations`);
   const profile = () => report.profiles[byId("profile").value];
+  let selection;
+  let page = 0;
+  const showEvents = () => eventInspector(events[byId("profile").value], selection, page);
+  const resetPage = () => {
+    page = 0;
+    showEvents();
+  };
+  const selectSegment = (segment) => {
+    selection = segment;
+    byId("outcome").value = "all";
+    byId("event-search").value = "";
+    resetPage();
+  };
+  const refreshSegments = () => {
+    selectSegment(profile().segments.find((item) => item.dimension === byId("dimension").value).segment);
+    showSegments(profile(), selection, selectSegment);
+  };
   const refresh = () => {
     showComparison(profile(), byId("profile").value === "repeat_rich");
     showLatency(profile());
     showCoverage(profile());
+    refreshSegments();
   };
+  byId("dimension").addEventListener("change", refreshSegments);
+  byId("outcome").addEventListener("change", resetPage);
+  byId("event-search").addEventListener("input", resetPage);
+  byId("prev-events").addEventListener("click", () => { page -= 1; showEvents(); });
+  byId("next-events").addEventListener("click", () => { page += 1; showEvents(); });
   byId("profile").addEventListener("change", refresh);
   byId("path").addEventListener("change", () => showLatency(profile()));
   byId("coverage-arm").addEventListener("change", () => showCoverage(profile()));

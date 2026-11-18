@@ -11,7 +11,29 @@ function renderInfo(data){info=data;$('memory-button').hidden=data.task_memory!=
 $('source-provenance').textContent=data.reference.source+' · revision '+data.reference.source_revision.slice(0,12);$('source-documents').replaceChildren();for(const doc of data.reference.documents){const entry=document.createElement('details');entry.className='source-document';entry.dataset.id=doc.id;entry.append(textElement('summary',doc.title),textElement('p',doc.text),textElement('code',doc.id));$('source-documents').append(entry);}
 if(!$('suggestions').children.length){const documents=[...data.reference.documents].sort((a,b)=>Number(b.id.includes('convert-between'))-Number(a.id.includes('convert-between')));for(const doc of documents){const button=textElement('button',doc.title);button.type='button';button.onclick=()=>{if(busy)return;$('question').value=doc.title;$('char-count').textContent=doc.title.length+' / 4000';$('question').focus();};$('suggestions').append(button);}}}
 function stageName(stage){return {supervisor_route:'Route to specialist',CACHE_LOOKUP:'Check saved answers',answer_admission:'Save approved answer',PLANNING:'Plan the document lookup',DRAFTING:'Draft from the evidence',REVIEWING:'Review the draft',tool:'Read local documentation',human_decision:'Your decision'}[stage]||stage;}
-function renderTask(state){current=state;lastQuestion=state.question;$('empty-state').hidden=true;$('answer-state').hidden=false;$('result-question').textContent=state.question+(state.matched_question?' · Matched saved question: '+state.matched_question:'');$('task-status').textContent={CACHE_LOOKUP:'Checking saved answers',PLANNING:'Planning',TOOLS:'Reading sources',DRAFTING:'Drafting',REVIEWING:'Reviewing',AWAITING_APPROVAL:'Ready for your review',COMPLETED:'Approved',REJECTED:'Rejected',FAILED:'Stopped'}[state.status]||state.status;
+function renderCacheReceipt(state) {
+  const receipt = $("cache-receipt");
+  const lookup = state.trace.find((entry) => entry.stage === "CACHE_LOOKUP");
+  let detail = "";
+  if (state.answer_cache_hit) {
+    detail = lookup?.tier === "SEMANTIC"
+      ? "Experimental semantic reuse skipped planning, drafting and workflow review."
+      : "The approved answer and its source evidence matched. Planning, drafting and workflow review were skipped.";
+  } else if (state.draft_cache_hit) {
+    detail = "The drafting inputs matched. Planning and workflow review still ran.";
+  } else if (lookup?.cache_status === "MISS") {
+    detail = {
+      ineligible: "This request could not use the answer cache. The workbench ran the normal workflow.",
+      no_qualified_answer: "No approved answer matched this request and its current context.",
+      invalid_cached_evidence: "The stored evidence could not be verified. The workbench fell back to fresh execution.",
+      task_scope_revoked: "The task context changed. The workbench fell back to fresh execution.",
+      cache_unavailable: "The answer cache was unavailable. The workbench fell back to fresh execution.",
+    }[lookup.reason] || "The answer cache did not return a reusable result.";
+  }
+  receipt.textContent = detail;
+  receipt.hidden = !detail;
+}
+function renderTask(state){renderCacheReceipt(state);current=state;lastQuestion=state.question;$('empty-state').hidden=true;$('answer-state').hidden=false;$('result-question').textContent=state.question+(state.matched_question?' · Matched saved question: '+state.matched_question:'');$('task-status').textContent={CACHE_LOOKUP:'Checking saved answers',PLANNING:'Planning',TOOLS:'Reading sources',DRAFTING:'Drafting',REVIEWING:'Reviewing',AWAITING_APPROVAL:'Ready for your review',COMPLETED:'Approved',REJECTED:'Rejected',FAILED:'Stopped'}[state.status]||state.status;
 const hit=state.draft_cache_hit||state.answer_cache_hit;const answerTier=state.trace.find(s=>s.stage==='CACHE_LOOKUP')?.tier;$('cache-result').textContent=state.status==='FAILED'?'Stopped safely':state.answer_cache_hit?(answerTier==='SEMANTIC'?'Semantic answer reused':'Exact answer reused'):hit?'Exact draft reused':state.cache?'Fresh draft':'Cache off';$('cache-result').className='tag'+(hit?' hit':'')+(state.status==='FAILED'?' failure':'');$('work-result').textContent=state.observed_attempts+' '+(state.provider_mode==='live'?'provider':'scripted')+' calls · '+(state.elapsed_ms<1000?Math.round(state.elapsed_ms)+' ms':(state.elapsed_ms/1000).toFixed(1)+' s')+' processing';
 $('answer').textContent=state.answer||state.draft||'';$('progress-message').hidden=finished.has(state.status);$('progress-message').textContent={CACHE_LOOKUP:'Checking qualified saved answers before starting the agent…',PLANNING:'Choosing which documentation to read…',TOOLS:'Reading the selected local evidence…',DRAFTING:'Preparing a draft with source citations…',REVIEWING:'Checking the draft against its evidence…'}[state.status]||'';
 $('source-links').replaceChildren();for(const id of new Set(state.source_ids)){const doc=info?.reference.documents.find(d=>d.id===id);const button=textElement('button','▧ '+(doc?.title||id));button.onclick=()=>openSources(id);$('source-links').append(button);}

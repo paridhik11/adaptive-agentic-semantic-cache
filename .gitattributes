@@ -39,3 +39,9 @@ src/policy/local_models.py text eol=lf
 artifacts/resume/** -text -whitespace
 scripts/benchmark_resume_cache.py text eol=lf
 scripts/check_document_install.py text eol=lf
+
+# Interview report verifies raw checkout bytes and generated exports.
+artifacts/metrics_campaign/** text eol=lf
+dashboard/interview/*.csv text eol=lf
+dashboard/interview/*.json text eol=lf
+scripts/interview_guard_experiment.py text eol=lf

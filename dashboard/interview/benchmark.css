@@ -75,3 +75,14 @@ footer { color: var(--muted); padding-block: .7rem 2.25rem; font-size: .88rem; }
   .trace { grid-template-columns: 1fr; gap: .2rem; }
   .trace dd { margin-bottom: .55rem; }
 }
+
+.filter-row, .pagination { display: flex; align-items: center; flex-wrap: wrap; gap: .55rem .85rem; margin-top: .9rem; }
+.filter-row label { font-weight: 650; }
+.filter-row input, .pagination button { font: inherit; color: var(--ink); background: white; border: 1px solid #92a69d; border-radius: .42rem; padding: .36rem .55rem; }
+.pagination button:disabled { opacity: .48; }
+.segment-table { max-height: 22rem; overflow: auto; }
+.segment-table thead th { position: sticky; top: 0; background: white; }
+.segment-button { font: inherit; color: #125e4d; background: transparent; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: .2em; padding: .18rem .28rem; text-align: left; }
+.segment-button[aria-pressed="true"] { background: var(--mint); border-radius: .24rem; font-weight: 700; }
+#paired-events th { overflow-wrap: anywhere; min-width: 8rem; }
+#paired-events .flagged { color: #784252; font-weight: 650; }

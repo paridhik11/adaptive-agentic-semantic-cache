@@ -3,3 +3,4 @@
 .workspace-tools{display:flex;justify-content:flex-end;margin:12px 0}.workspace-tools button{max-width:100%}
 
 .benchmark-link{display:inline-block;margin:0 8px 8px 0;text-decoration:none}.benchmark-link:hover{text-decoration:underline}
+.cache-receipt{font-size:11px;line-height:1.55;color:#405a45;margin:0 0 13px}

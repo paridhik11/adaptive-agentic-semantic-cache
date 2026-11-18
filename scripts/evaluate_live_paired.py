@@ -49,7 +49,7 @@ from src.policy.encoders import DenseEncoder
 from src.policy.hybrid_cache import ConservativeHybridCache
 from src.policy.local_models import ENCODER_MODEL, ENCODER_REVISION, PASSAGE_MODEL, PASSAGE_REVISION
 from src.policy.response_cache import EligibilityDecision, ScopedResponseCache
-from src.policy.semantic_runtime import KnowledgeScope
+from src.policy.semantic_runtime import GuardedSemanticCache, KnowledgeScope
 from src.policy.sqlite_store import SQLiteResponseStore
 
 FREE_MODELS = frozenset({
@@ -501,11 +501,10 @@ class LiveEvaluationRunner:
             eligibility=lambda _: EligibilityDecision(arm_name != "no_cache", "live_eval_policy"),
             storage=exact_storage,
         )
-        hybrid = ConservativeHybridCache(
-            exact,
-            scope=scope,
-            mode=mode,
-        )
+        if mode == "shadow":
+            hybrid = ConservativeHybridCache(exact, scope=scope, mode=mode)
+        else:
+            hybrid = GuardedSemanticCache(exact, scope=scope, mode=mode)
         answer_cache = CompletedDocumentCache(hybrid)
         service = GatewayService(
             ScopedResponseCache(eligibility=lambda _: EligibilityDecision(False, "gateway_off")),
