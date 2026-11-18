@@ -540,6 +540,9 @@ class ConservativeHybridCache:
                     admitted += 1
         return admitted
 
+    def _answer_requirement_reason(self, query: str, answer: str) -> str | None:
+        return answer_satisfies_requirements(query, answer)
+
     def process(
         self,
         request: dict,
@@ -661,7 +664,7 @@ class ConservativeHybridCache:
                     continue
 
                 # 4b. Answer Requirement Satisfaction Guard
-                ans_reason = answer_satisfies_requirements(incoming_query, cand_ans)
+                ans_reason = self._answer_requirement_reason(incoming_query, cand_ans)
                 if ans_reason is not None:
                     diagnosis["guard_rejections"].append(f"answer_unmet_requirement:{ans_reason}")
                     continue

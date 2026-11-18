@@ -47,3 +47,12 @@ dashboard/interview/*.json text eol=lf
 scripts/interview_guard_experiment.py text eol=lf
 
 artifacts/interview/*.json text eol=lf
+
+# Frozen risk evaluation hashes are independent of checkout platform.
+artifacts/risk_v2/*.json text eol=lf
+docs/RISK_V2_PROTOCOL.md text eol=lf
+scripts/*risk_v2*.py text eol=lf
+src/policy/hybrid_cache.py text eol=lf
+src/policy/decomposed_applicability.py text eol=lf
+src/policy/encoders.py text eol=lf
+src/policy/response_cache.py text eol=lf

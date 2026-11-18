@@ -1,0 +1,992 @@
+[
+  {
+    "id": "access-review",
+    "split": "calibration",
+    "seed": "What was the March pass rate for the access certification review in the identity platform?",
+    "answer": "The March pass rate for the access certification review in the identity platform was 96%.\nSource: the access certification review evidence register.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the access certification review in the identity platform?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the access certification review for the identity platform.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the access certification review in the identity platform? Please provide the evidence source.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the access certification review in the identity platform? Please include the responsible team.",
+        "eligible": false
+      },
+      {
+        "type": "entity_change",
+        "text": "What was the March pass rate for the access certification review in the privileged access platform?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "retro-payroll",
+    "split": "calibration",
+    "seed": "What was the March pass rate for the retroactive payroll quality review in the payroll service?",
+    "answer": "The March pass rate for the retroactive payroll quality review in the payroll service was 91%.\nOwner: Payroll quality.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the retroactive payroll quality review in the payroll service?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the retroactive payroll quality review for the payroll service.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the retroactive payroll quality review in the payroll service? Please provide the responsible team.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the retroactive payroll quality review in the payroll service? Please include the calculation formula.",
+        "eligible": false
+      },
+      {
+        "type": "period_change",
+        "text": "What was the April pass rate for the retroactive payroll quality review in the payroll service?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "vendor-access",
+    "split": "calibration",
+    "seed": "What was the March pass rate for the vendor access renewal review in the vendor portal?",
+    "answer": "The March pass rate for the vendor access renewal review in the vendor portal was 88%.\nFormula: passed checks divided by completed checks.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the vendor access renewal review in the vendor portal?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the vendor access renewal review for the vendor portal.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the vendor access renewal review in the vendor portal? Please provide the calculation formula.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the vendor access renewal review in the vendor portal? Please include the exception breakdown.",
+        "eligible": false
+      },
+      {
+        "type": "numeric_requirement",
+        "text": "What was the March pass rate for the vendor access renewal review in the vendor portal, and did it exceed the 99% target?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "records-retention",
+    "split": "calibration",
+    "seed": "What was the March pass rate for the records retention review in the document archive?",
+    "answer": "The March pass rate for the records retention review in the document archive was 97%.\nBreakdown: unresolved cases and late closures.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the records retention review in the document archive?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the records retention review for the document archive.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the records retention review in the document archive? Please provide the exception breakdown.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the records retention review in the document archive? Please include the evidence source.",
+        "eligible": false
+      },
+      {
+        "type": "scope_change",
+        "text": "What was the March pass rate for the records retention review in the document archive for the pilot group only?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "settlement-breaks",
+    "split": "calibration",
+    "seed": "What was the March pass rate for the settlement break closure review in the settlement queue?",
+    "answer": "The March pass rate for the settlement break closure review in the settlement queue was 94%.\nSource: the settlement break closure review evidence register.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the settlement break closure review in the settlement queue?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the settlement break closure review for the settlement queue.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the settlement break closure review in the settlement queue? Please provide the evidence source.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the settlement break closure review in the settlement queue? Please include the responsible team.",
+        "eligible": false
+      },
+      {
+        "type": "negation",
+        "text": "What was the March pass rate for the settlement break closure review in the settlement queue, excluding automated checks?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "mail-reconciliation",
+    "split": "calibration",
+    "seed": "What was the March pass rate for the mail delivery reconciliation in the notice system?",
+    "answer": "The March pass rate for the mail delivery reconciliation in the notice system was 92%.\nOwner: Client communications.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the mail delivery reconciliation in the notice system?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the mail delivery reconciliation for the notice system.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the mail delivery reconciliation in the notice system? Please provide the responsible team.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the mail delivery reconciliation in the notice system? Please include the calculation formula.",
+        "eligible": false
+      },
+      {
+        "type": "entity_change",
+        "text": "What was the March pass rate for the mail delivery reconciliation in the statement system?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "batch-import",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the batch import completeness review in the ingestion service?",
+    "answer": "The March pass rate for the batch import completeness review in the ingestion service was 98%.\nFormula: passed checks divided by completed checks.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the batch import completeness review in the ingestion service?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the batch import completeness review for the ingestion service.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the batch import completeness review in the ingestion service? Please provide the calculation formula.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the batch import completeness review in the ingestion service? Please include the exception breakdown.",
+        "eligible": false
+      },
+      {
+        "type": "period_change",
+        "text": "What was the April pass rate for the batch import completeness review in the ingestion service?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "invoice-control",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the invoice approval control review in the invoice system?",
+    "answer": "The March pass rate for the invoice approval control review in the invoice system was 86%.\nBreakdown: unresolved cases and late closures.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the invoice approval control review in the invoice system?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the invoice approval control review for the invoice system.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the invoice approval control review in the invoice system? Please provide the exception breakdown.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the invoice approval control review in the invoice system? Please include the evidence source.",
+        "eligible": false
+      },
+      {
+        "type": "numeric_requirement",
+        "text": "What was the March pass rate for the invoice approval control review in the invoice system, and did it exceed the 99% target?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "upload-validity",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the upload validation review in the upload gateway?",
+    "answer": "The March pass rate for the upload validation review in the upload gateway was 93%.\nSource: the upload validation review evidence register.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the upload validation review in the upload gateway?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the upload validation review for the upload gateway.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the upload validation review in the upload gateway? Please provide the evidence source.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the upload validation review in the upload gateway? Please include the responsible team.",
+        "eligible": false
+      },
+      {
+        "type": "scope_change",
+        "text": "What was the March pass rate for the upload validation review in the upload gateway for the pilot group only?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "backup-validation",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the backup restoration review in the backup vault?",
+    "answer": "The March pass rate for the backup restoration review in the backup vault was 89%.\nOwner: Resilience engineering.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the backup restoration review in the backup vault?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the backup restoration review for the backup vault.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the backup restoration review in the backup vault? Please provide the responsible team.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the backup restoration review in the backup vault? Please include the calculation formula.",
+        "eligible": false
+      },
+      {
+        "type": "negation",
+        "text": "What was the March pass rate for the backup restoration review in the backup vault, excluding automated checks?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "ticket-closure",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the incident closure quality review in the service desk?",
+    "answer": "The March pass rate for the incident closure quality review in the service desk was 90%.\nFormula: passed checks divided by completed checks.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the incident closure quality review in the service desk?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the incident closure quality review for the service desk.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the incident closure quality review in the service desk? Please provide the calculation formula.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the incident closure quality review in the service desk? Please include the exception breakdown.",
+        "eligible": false
+      },
+      {
+        "type": "entity_change",
+        "text": "What was the March pass rate for the incident closure quality review in the support mailbox?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "dividend-check",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the dividend posting quality review in the distribution ledger?",
+    "answer": "The March pass rate for the dividend posting quality review in the distribution ledger was 95%.\nBreakdown: unresolved cases and late closures.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the dividend posting quality review in the distribution ledger?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the dividend posting quality review for the distribution ledger.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the dividend posting quality review in the distribution ledger? Please provide the exception breakdown.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the dividend posting quality review in the distribution ledger? Please include the evidence source.",
+        "eligible": false
+      },
+      {
+        "type": "period_change",
+        "text": "What was the April pass rate for the dividend posting quality review in the distribution ledger?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "fraud-triage",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the fraud alert triage review in the monitoring queue?",
+    "answer": "The March pass rate for the fraud alert triage review in the monitoring queue was 87%.\nSource: the fraud alert triage review evidence register.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the fraud alert triage review in the monitoring queue?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the fraud alert triage review for the monitoring queue.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the fraud alert triage review in the monitoring queue? Please provide the evidence source.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the fraud alert triage review in the monitoring queue? Please include the responsible team.",
+        "eligible": false
+      },
+      {
+        "type": "numeric_requirement",
+        "text": "What was the March pass rate for the fraud alert triage review in the monitoring queue, and did it exceed the 99% target?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "billing-match",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the billing reconciliation review in the billing portal?",
+    "answer": "The March pass rate for the billing reconciliation review in the billing portal was 96%.\nOwner: Billing operations.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the billing reconciliation review in the billing portal?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the billing reconciliation review for the billing portal.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the billing reconciliation review in the billing portal? Please provide the responsible team.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the billing reconciliation review in the billing portal? Please include the calculation formula.",
+        "eligible": false
+      },
+      {
+        "type": "scope_change",
+        "text": "What was the March pass rate for the billing reconciliation review in the billing portal for the pilot group only?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "leaver-revocation",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the departing user revocation review in the workforce directory?",
+    "answer": "The March pass rate for the departing user revocation review in the workforce directory was 99%.\nFormula: passed checks divided by completed checks.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the departing user revocation review in the workforce directory?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the departing user revocation review for the workforce directory.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the departing user revocation review in the workforce directory? Please provide the calculation formula.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the departing user revocation review in the workforce directory? Please include the exception breakdown.",
+        "eligible": false
+      },
+      {
+        "type": "negation",
+        "text": "What was the March pass rate for the departing user revocation review in the workforce directory, excluding automated checks?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "model-inventory",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the model inventory completeness review in the inventory register?",
+    "answer": "The March pass rate for the model inventory completeness review in the inventory register was 91%.\nBreakdown: unresolved cases and late closures.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the model inventory completeness review in the inventory register?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the model inventory completeness review for the inventory register.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the model inventory completeness review in the inventory register? Please provide the exception breakdown.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the model inventory completeness review in the inventory register? Please include the evidence source.",
+        "eligible": false
+      },
+      {
+        "type": "entity_change",
+        "text": "What was the March pass rate for the model inventory completeness review in the validation register?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "branch-receipts",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the branch receipt completeness review in the receipt archive?",
+    "answer": "The March pass rate for the branch receipt completeness review in the receipt archive was 85%.\nSource: the branch receipt completeness review evidence register.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the branch receipt completeness review in the receipt archive?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the branch receipt completeness review for the receipt archive.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the branch receipt completeness review in the receipt archive? Please provide the evidence source.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the branch receipt completeness review in the receipt archive? Please include the responsible team.",
+        "eligible": false
+      },
+      {
+        "type": "period_change",
+        "text": "What was the April pass rate for the branch receipt completeness review in the receipt archive?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "storage-rotation",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the storage rotation control review in the storage registry?",
+    "answer": "The March pass rate for the storage rotation control review in the storage registry was 92%.\nOwner: Infrastructure control.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the storage rotation control review in the storage registry?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the storage rotation control review for the storage registry.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the storage rotation control review in the storage registry? Please provide the responsible team.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the storage rotation control review in the storage registry? Please include the calculation formula.",
+        "eligible": false
+      },
+      {
+        "type": "numeric_requirement",
+        "text": "What was the March pass rate for the storage rotation control review in the storage registry, and did it exceed the 99% target?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "case-independence",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the case independence review in the case workflow?",
+    "answer": "The March pass rate for the case independence review in the case workflow was 90%.\nFormula: passed checks divided by completed checks.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the case independence review in the case workflow?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the case independence review for the case workflow.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the case independence review in the case workflow? Please provide the calculation formula.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the case independence review in the case workflow? Please include the exception breakdown.",
+        "eligible": false
+      },
+      {
+        "type": "scope_change",
+        "text": "What was the March pass rate for the case independence review in the case workflow for the pilot group only?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "change-register",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the change approval review in the release register?",
+    "answer": "The March pass rate for the change approval review in the release register was 84%.\nBreakdown: unresolved cases and late closures.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the change approval review in the release register?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the change approval review for the release register.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the change approval review in the release register? Please provide the exception breakdown.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the change approval review in the release register? Please include the evidence source.",
+        "eligible": false
+      },
+      {
+        "type": "negation",
+        "text": "What was the March pass rate for the change approval review in the release register, excluding automated checks?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "tax-extract",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the tax extract completeness review in the tax workspace?",
+    "answer": "The March pass rate for the tax extract completeness review in the tax workspace was 97%.\nSource: the tax extract completeness review evidence register.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the tax extract completeness review in the tax workspace?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the tax extract completeness review for the tax workspace.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the tax extract completeness review in the tax workspace? Please provide the evidence source.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the tax extract completeness review in the tax workspace? Please include the responsible team.",
+        "eligible": false
+      },
+      {
+        "type": "entity_change",
+        "text": "What was the March pass rate for the tax extract completeness review in the finance workspace?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "statement-review",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the client statement quality review in the statement workflow?",
+    "answer": "The March pass rate for the client statement quality review in the statement workflow was 93%.\nOwner: Statement controls.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the client statement quality review in the statement workflow?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the client statement quality review for the statement workflow.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the client statement quality review in the statement workflow? Please provide the responsible team.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the client statement quality review in the statement workflow? Please include the calculation formula.",
+        "eligible": false
+      },
+      {
+        "type": "period_change",
+        "text": "What was the April pass rate for the client statement quality review in the statement workflow?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "recovery-drill",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the recovery drill evidence review in the resilience workspace?",
+    "answer": "The March pass rate for the recovery drill evidence review in the resilience workspace was 88%.\nFormula: passed checks divided by completed checks.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the recovery drill evidence review in the resilience workspace?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the recovery drill evidence review for the resilience workspace.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the recovery drill evidence review in the resilience workspace? Please provide the calculation formula.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the recovery drill evidence review in the resilience workspace? Please include the exception breakdown.",
+        "eligible": false
+      },
+      {
+        "type": "numeric_requirement",
+        "text": "What was the March pass rate for the recovery drill evidence review in the resilience workspace, and did it exceed the 99% target?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "certificate-audit",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the certificate renewal review in the certificate inventory?",
+    "answer": "The March pass rate for the certificate renewal review in the certificate inventory was 95%.\nBreakdown: unresolved cases and late closures.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the certificate renewal review in the certificate inventory?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the certificate renewal review for the certificate inventory.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the certificate renewal review in the certificate inventory? Please provide the exception breakdown.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the certificate renewal review in the certificate inventory? Please include the evidence source.",
+        "eligible": false
+      },
+      {
+        "type": "scope_change",
+        "text": "What was the March pass rate for the certificate renewal review in the certificate inventory for the pilot group only?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "training-records",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the training completion evidence review in the training portal?",
+    "answer": "The March pass rate for the training completion evidence review in the training portal was 91%.\nSource: the training completion evidence review evidence register.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the training completion evidence review in the training portal?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the training completion evidence review for the training portal.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the training completion evidence review in the training portal? Please provide the evidence source.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the training completion evidence review in the training portal? Please include the responsible team.",
+        "eligible": false
+      },
+      {
+        "type": "negation",
+        "text": "What was the March pass rate for the training completion evidence review in the training portal, excluding automated checks?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "complaint-followup",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the complaint follow-up quality review in the complaint register?",
+    "answer": "The March pass rate for the complaint follow-up quality review in the complaint register was 89%.\nOwner: Client oversight.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the complaint follow-up quality review in the complaint register?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the complaint follow-up quality review for the complaint register.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the complaint follow-up quality review in the complaint register? Please provide the responsible team.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the complaint follow-up quality review in the complaint register? Please include the calculation formula.",
+        "eligible": false
+      },
+      {
+        "type": "entity_change",
+        "text": "What was the March pass rate for the complaint follow-up quality review in the feedback register?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "feed-freshness",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the reference feed freshness review in the reference data hub?",
+    "answer": "The March pass rate for the reference feed freshness review in the reference data hub was 96%.\nFormula: passed checks divided by completed checks.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the reference feed freshness review in the reference data hub?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the reference feed freshness review for the reference data hub.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the reference feed freshness review in the reference data hub? Please provide the calculation formula.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the reference feed freshness review in the reference data hub? Please include the exception breakdown.",
+        "eligible": false
+      },
+      {
+        "type": "period_change",
+        "text": "What was the April pass rate for the reference feed freshness review in the reference data hub?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "budget-evidence",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the budget exception evidence review in the budget system?",
+    "answer": "The March pass rate for the budget exception evidence review in the budget system was 90%.\nBreakdown: unresolved cases and late closures.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the budget exception evidence review in the budget system?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the budget exception evidence review for the budget system.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the budget exception evidence review in the budget system? Please provide the exception breakdown.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the budget exception evidence review in the budget system? Please include the evidence source.",
+        "eligible": false
+      },
+      {
+        "type": "numeric_requirement",
+        "text": "What was the March pass rate for the budget exception evidence review in the budget system, and did it exceed the 99% target?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "policy-evidence",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the policy attestation quality review in the attestation register?",
+    "answer": "The March pass rate for the policy attestation quality review in the attestation register was 98%.\nSource: the policy attestation quality review evidence register.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the policy attestation quality review in the attestation register?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the policy attestation quality review for the attestation register.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the policy attestation quality review in the attestation register? Please provide the evidence source.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the policy attestation quality review in the attestation register? Please include the responsible team.",
+        "eligible": false
+      },
+      {
+        "type": "scope_change",
+        "text": "What was the March pass rate for the policy attestation quality review in the attestation register for the pilot group only?",
+        "eligible": false
+      }
+    ]
+  },
+  {
+    "id": "override-review",
+    "split": "holdout",
+    "seed": "What was the March pass rate for the manual override review in the override workflow?",
+    "answer": "The March pass rate for the manual override review in the override workflow was 87%.\nOwner: Operations assurance.",
+    "probes": [
+      {
+        "type": "exact_repeat",
+        "text": "What was the March pass rate for the manual override review in the override workflow?",
+        "eligible": true
+      },
+      {
+        "type": "paraphrase",
+        "text": "Give me the March pass rate from the manual override review for the override workflow.",
+        "eligible": true
+      },
+      {
+        "type": "present_artifact",
+        "text": "What was the March pass rate for the manual override review in the override workflow? Please provide the responsible team.",
+        "eligible": true
+      },
+      {
+        "type": "missing_artifact",
+        "text": "What was the March pass rate for the manual override review in the override workflow? Please include the calculation formula.",
+        "eligible": false
+      },
+      {
+        "type": "negation",
+        "text": "What was the March pass rate for the manual override review in the override workflow, excluding automated checks?",
+        "eligible": false
+      }
+    ]
+  }
+]
