@@ -23,13 +23,19 @@ If you already created `.venv`, keep it and run the install line after updating 
 4. Ask **What is risk measurement?** or **What is risk management? Give a worked example.** These take the fresh path. Try **Compare precision and recall** followed by **Precision vs recall?** to show comparison reuse. Reversing the terms, changing a term, or adding a population or period asks the model again.
 5. Select **Benchmark analysis** to open the historical offline evidence and workload projections.
 
-Definition reuse is enabled by default. The cache checks that the saved answer opens by defining the same short topic. It permits an unrecognized typo in one long word when the other topic words agree, and falls back to the model when the match is ambiguous. The default check uses a local spelling dictionary.
+Definition reuse is enabled by default. The cache checks that the saved answer opens by defining the same short topic. It can account for a spelling variation in one long word and a singular or plural form of the final noun in the same prompt. For rare spellings outside the local dictionary, the answer opening can corroborate the intended topic and an incoming prompt can reuse it with the same spelling or the spelling used in the answer. The chat falls back to the model when the match is ambiguous.
 
 If the three prompts already have separate exact answers, add `--directory runs\definition-reuse-demo` when starting the server to demonstrate the sequence with a separate cache. The provider quota journal stays shared.
 
 The default is `nvidia/nemotron-3.5-lightning:free`. If its availability changes, use `--model` followed by an explicit model ID ending in `:free`. The provider enforces zero price and disables automatic fallback. The persistent quota journal uses the existing free-only allowance (30 chat attempts with shared daily and rolling-minute caps). Use `--journal <path>` to share your existing quota journal. Reopening the chat preserves the allowance and cache. Eligible cached answers can still be served when the quota is exhausted.
 
 Live chat uses the model's knowledge without web search. Response time covers server-side processing through answer availability, including time waiting for the provider slot. Provider time starts after the slot opens and includes the quota journal. Cache hits for other questions can complete while the provider works.
+
+## Check a spelling and plural variation
+
+Ask **what do u mean by bioluminiscent beaches** and then **what is a bioluminiscent beach?**. When the first answer opens by describing a bioluminescent beach, the second uses that stored answer and shows **Semantic hit · 0 provider calls**. The text similarity shown on the receipt compares the ordered topic phrases. The cache also verifies the defined topic against the answer. **What is a phosphorescent beach?** asks for a different concept and calls the model.
+
+The offline regression replay reused the seed answer on all 11 tested rephrasings. All 11 changed requests took the fresh path. [Recorded results](FACTS.md#live-chat-definition-replay)
 
 ## See a semantic hit in the default chat
 

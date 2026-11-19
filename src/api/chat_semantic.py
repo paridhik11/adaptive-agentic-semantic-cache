@@ -38,7 +38,7 @@ _DIRECTIONAL_COMPARISON = re.compile(
     r"(?:how (?:does|do) (.+?) differ from (.+)|what distinguishes (.+?) from (.+)"
     r"|how (?:is|are) (.+?) different from (.+))", re.I)
 _ANSWER_DEFINITION = re.compile(
-    r"([a-z][a-z0-9 -]{0,99}?) (?:is|are|means|refers to)\b(?!\s+(?:not|unclear|unknown)\b)", re.I)
+    r"([a-z][a-z0-9 -]{0,99}?) (?:is|are|means|refers to|defines|describes|measures|quantifies|represents)\b(?!\s+(?:not|unclear|unknown)\b)", re.I)
 
 _ALIAS_DEFINITION = re.compile(
     r"([a-z][a-z0-9 -]{0,80}?)\s*(?:\(\s*(?:short for|also known as) ([a-z][a-z0-9 -]{0,80})\)"
@@ -90,26 +90,63 @@ def _spelling():
     return SpellChecker(language="en")
 
 
-def _topic_match(typed, confirmed):
+# Some plural heads commonly denote a different concept (for example,
+# safety glasses versus safety glass). Do not fold those forms together.
+_NONINTERCHANGEABLE_PLURALS = frozenset(
+    "arm content custom glass good ground manner mean premise spectacle work".split()
+)
+_IRREGULAR_PLURALS = {"analysis": "analyses", "criterion": "criteria", "index": "indices", "matrix": "matrices"}
+
+
+def _same_head_number_variant(left, right):
+    if left == right or not (left.isascii() and left.isalpha() and right.isascii() and right.isalpha()):
+        return False
+    if _IRREGULAR_PLURALS.get(left) == right or _IRREGULAR_PLURALS.get(right) == left:
+        return True
+    singular, plural = sorted((left, right), key=len)
+    if len(singular) < 3 or singular in _NONINTERCHANGEABLE_PLURALS:
+        return False
+    if singular.endswith("y") and singular[-2] not in "aeiou":
+        return plural == singular[:-1] + "ies"
+    suffix = "es" if singular.endswith(("s", "x", "z", "ch", "sh")) else "s"
+    return plural == singular + suffix
+
+
+def _topic_match(typed, confirmed, *, source_topic=()):
     if typed == confirmed:
         return 2
-    if len(typed) != len(confirmed) or len(typed) < 2:
+    if len(typed) != len(confirmed):
         return 0
-    differences = [(left, right) for left, right in zip(typed, confirmed) if left != right]
-    if len(differences) != 1:
+    # Treat number as a property of the last noun. All modifiers remain in
+    # order, and at most one remaining word can require a spelling repair.
+    typed_words = typed
+    if _same_head_number_variant(typed[-1], confirmed[-1]):
+        typed_words = (*typed[:-1], confirmed[-1])
+    differences = [(i, left, right) for i, (left, right) in enumerate(zip(typed_words, confirmed)) if left != right]
+    if not differences:
+        return 1
+    if len(differences) != 1 or len(typed) < 2:
         return 0
-    left, right = differences[0]
+    index, left, right = differences[0]
     if (min(len(left), len(right)) < 8 or left[:5] != right[:5] or left[-1] != right[-1]
             or not left.isalpha() or not right.isalpha()):
         return 0
     edits = sum(max(j - i, n - m) for op, i, j, m, n in
                 SequenceMatcher(None, left, right, autojunk=False).get_opcodes() if op != "equal")
-    if edits <= 2:
-        try:
-            if _spelling().known((left, right)) == {right}:
-                return 1
-        except (ImportError, OSError):
-            pass
+    if edits > 2:
+        return 0
+    try:
+        known = _spelling().known((left, right))
+    except (ImportError, OSError):
+        return 0
+    if known == {right}:
+        return 1
+    # Technical terms can be absent from the dictionary. The answer can
+    # corroborate one substituted letter when the user keeps the original
+    # spelling in the same position. Do not conflate two new near-neighbors.
+    if (not known and len(left) == len(right) >= 11 and edits == 1
+            and len(source_topic) == len(typed) and source_topic[index] == left):
+        return 1
     return 0
 
 
@@ -121,7 +158,7 @@ def confirmed_definition(question, answer):
     opening = answer.lstrip()[:200].translate(str.maketrans("", "", "*_`"))
     match = _ANSWER_DEFINITION.match(opening)
     confirmed = _topic_words(match[1]) if match else None
-    return confirmed if confirmed and _topic_match(subject, confirmed) else None
+    return confirmed if confirmed and _topic_match(subject, confirmed, source_topic=subject) else None
 
 
 def definition_alias(answer):
@@ -317,7 +354,8 @@ class ChatSemanticReuse:
                         continue
                     confirmed = confirmed_definition(saved_question, content)
                     if confirmed:
-                        strength = _topic_match(subject, confirmed)
+                        source_topic = definition_subject(saved_question, shorthand=True)
+                        strength = _topic_match(subject, confirmed, source_topic=source_topic)
                         if strength and not answer_satisfies_requirements(question, content):
                             matches_by_topic[confirmed] = (strength, identity, key, token, saved_question, answer)
                     other_subject = definition_subject(saved_question)
@@ -342,6 +380,13 @@ class ChatSemanticReuse:
                             kind = "wording"
                         decision = f"{kind}_verified"
                         match = {"matched_question": saved_question, "similarity": None}
+                        if kind == "definition":
+                            saved_topic = definition_subject(saved_question, shorthand=True)
+                            if saved_topic and _same_head_number_variant(saved_topic[-1], subject[-1]):
+                                decision = "definition_number_verified"
+                                match["lexical_similarity"] = round(SequenceMatcher(
+                                    None, " ".join(saved_topic), " ".join(subject), autojunk=False
+                                ).ratio(), 4)
                         reason = f"{kind}_reuse_hit"
                         return ResponseCacheResult(answer, "HIT", reason, 0, False,
                                                    (time.perf_counter() - started) * 1_000)

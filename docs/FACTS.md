@@ -1125,3 +1125,9 @@ Telemetry: `artifacts/metrics_campaign/repeat_rich/` (and root), `artifacts/metr
 | --- | --- | --- |
 | LK-01 | Authored offline development replay over 55 requests and nine isolated caches. Both revisions received nine seeds, 18 paraphrases and 28 changed requests. Semantic hits increased from 0/18 on `facd79c` to 18/18. The tool called the fixture transport on all 28 changed requests. Total fixture calls went from 55 to 37. Questions within each group share a seed answer. | `KEYWORD_REPLAY` in [test_live_chat.py](../tests/test_live_chat.py). Run `python -m pytest -q tests/test_live_chat.py -k ordered_keyword_reuse`. |
 | LK-02 | ComQA public development replay. On 135 groups with 405 requests, the baseline `facd79c` yielded 0/135 semantic hits and 405 fixture calls. With keywords it yielded 1/135 hits (0.02%–4.06% two-sided exact 95% interval under independence), 0/135 changed-question hits (0%–2.70%), and 404 fixture calls. Controls can recur. | `python scripts/evaluate_chat_paraphrases.py comqa_dev.json` using the pinned ComQA development dataset. [Download and instructions](LIVE_CHAT.md#replay-evidence). |
+
+## Live chat definition replay
+
+| ID | Evidence | Source and reproduction |
+| --- | --- | --- |
+| LD-01 | Offline development replay. A provider fixture supplied an opening definition for each of five seed questions. The chat reused the seed answer on 11/11 rephrasings with zero provider calls and called the fixture on all 11 changed requests. The screenshot wording is a regression case. Each group shares a seed and the counts describe the fixtures. | `DEFINITION_VARIANTS` in [test_live_chat.py](../tests/test_live_chat.py). Run `python -m pytest -q tests/test_live_chat.py -k "head_number or lexicalized"`. |

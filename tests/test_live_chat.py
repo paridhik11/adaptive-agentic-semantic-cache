@@ -527,3 +527,52 @@ def test_keyword_definition_keeps_case_sensitive_abbreviations(tmp_path):
         assert c.post("/api/chat", json={"question": seed}).json()["stored"]
         result = c.post("/api/chat", json={"question": "What is VAR?"}).json()
         assert result["provider_calls"] == 1 and result["cache_tier"] is None
+
+
+DEFINITION_VARIANTS = [
+    ("what do u mean by bioluminiscent beaches",
+     "A **bioluminescent beach** is a shoreline where the water glows when disturbed.",
+     ("what is a bioluminiscent beach?", "Define a bioluminescent beach.", "Bioluminescent beaches?"),
+     ("What is a phosphorescent beach?", "What is a bioluminescent organism?",
+      "Where are bioluminescent beaches in Japan?")),
+    ("What do you mean by memory caches?", "A memory cache is fast storage for reusable data.",
+     ("What is a memory cache?", "Define memory cache."),
+     ("What is a memory barrier?", "What is a web cache?")),
+    ("What is an access policy?", "An access policy defines who can use a resource.",
+     ("What are access policies?", "What does access policies mean?"),
+     ("Define an access control list.", "What is an access policy with a worked example?")),
+    ("What are classifiction thresholds?",
+     "A classification threshold is a cutoff used to assign a predicted label.",
+     ("What is a classification threshold?", "Define a classifiction threshold."),
+     ("What is a classification metric?", "What is a regression threshold?")),
+    ("What is a loss function?", "A loss function quantifies the error in a prediction.",
+     ("What are loss functions?", "What do you mean by loss functions?"),
+     ("What is a gain function?", "What is a function loss?")),
+]
+
+
+@pytest.mark.parametrize(("seed", "answer", "paraphrases", "changes"), DEFINITION_VARIANTS)
+def test_definition_reuse_handles_spelling_and_head_number(tmp_path, seed, answer, paraphrases, changes):
+    transport = AnswersTransport({seed: answer})
+    with client(tmp_path, transport) as c:
+        cold = c.post("/api/chat", json={"question": seed}).json()
+        assert cold["provider_calls"] == 1 and cold["stored"]
+    with client(tmp_path, transport) as c:
+        for question in paraphrases:
+            result = c.post("/api/chat", json={"question": question}).json()
+            assert result["cache_tier"] == "SEMANTIC" and result["provider_calls"] == 0, result
+            assert result["answer"] == answer
+            assert result["semantic_match"]["matched_question"] == seed
+        for question in changes:
+            result = c.post("/api/chat", json={"question": question}).json()
+            assert result["provider_calls"] == 1 and result["cache_tier"] is None, result
+        assert len(transport.requests) == 1 + len(changes)
+
+
+def test_definition_reuse_preserves_lexicalized_plurals(tmp_path):
+    seed = "What is safety glass?"
+    transport = AnswersTransport({seed: "Safety glass is made to reduce injury when broken."})
+    with client(tmp_path, transport) as c:
+        assert c.post("/api/chat", json={"question": seed}).json()["stored"]
+        result = c.post("/api/chat", json={"question": "What are safety glasses?"}).json()
+        assert result["provider_calls"] == 1 and result["cache_tier"] is None

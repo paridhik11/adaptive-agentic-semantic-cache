@@ -168,11 +168,12 @@ async function send(question, includeHistory, {clearDraft = true, autoContext = 
       details.push(`Earlier fresh response ${time(freshTimings.get(source))}`);
     }
     if (result.semantic_match) {
-      const { similarity } = result.semantic_match;
+      const { similarity, lexical_similarity } = result.semantic_match;
       const detail = result.semantic_decision === "intent_verified" ? "same subject and requested fact or calculation" :
         result.semantic_decision === "keyword_verified" ? "same ordered keywords and request type" :
         result.semantic_decision === "wording_verified" ? "same request with different framing" :
         result.semantic_decision === "comparison_verified" ? "same comparison" :
+        Number.isFinite(lexical_similarity) ? `same defined topic · text similarity ${lexical_similarity.toFixed(2)}` :
         similarity === null ? "same defined topic" : `similarity ${similarity.toFixed(2)}`;
       pending.append(node("p", `Matched saved question “${source}” · ${detail}`, "muted"));
     }
