@@ -19,7 +19,8 @@ MAX_CANDIDATES = 128
 MAX_BYTES = 4 * 1024 * 1024
 _DEFINITION = re.compile(
     r"(?:what (?:is|are) |define |explain (?:the (?:meaning|concept) of )?)(?P<subject>.+)|"
-    r"what does (?P<meaning>.+) mean", re.IGNORECASE,
+    r"what does (?P<meaning>.+) mean|what do (?:you|u) mean by (?P<clarification>.+)",
+    re.IGNORECASE,
 )
 _QUALIFIER = re.compile(r"\b(?:with|without|using|in|versus|vs|between|except|include|example|examples|steps|compare)\b", re.I)
 
@@ -29,7 +30,7 @@ def definition_subject(text):
     match = _DEFINITION.fullmatch(text.strip().rstrip("?.!").strip())
     if not match:
         return None
-    subject = (match["subject"] or match["meaning"]).casefold()
+    subject = (match["subject"] or match["meaning"] or match["clarification"]).casefold()
     if _QUALIFIER.search(subject) or not re.fullmatch(r"[a-z][a-z0-9 -]*", subject):
         return None
     words = subject.split()

@@ -2,6 +2,28 @@
 import sys
 import pytest
 from scripts import demo_flagship, run_demo
+
+
+def test_default_launcher_prompts_for_key_and_opens_general_chat(tmp_path, monkeypatch):
+    from fastapi.testclient import TestClient
+    import uvicorn
+
+    apps = []
+    monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
+    monkeypatch.setattr(sys.stdin, "isatty", lambda: True)
+    monkeypatch.setattr(run_demo, "getpass", lambda prompt: "test-placeholder")
+    monkeypatch.setattr(uvicorn, "run", lambda app, **kwargs: apps.append(app))
+    monkeypatch.setattr(sys, "argv", [
+        "run_demo", "--directory", str(tmp_path), "--journal", str(tmp_path / "quota.sqlite"),
+    ])
+
+    run_demo.main()
+
+    with TestClient(apps[0]) as client:
+        assert "Ask about any topic" in client.get("/").text
+        assert client.get("/benchmark/").status_code == 200
+
+
 class Encoder:
     identity = 'controlled'
     def __init__(self,*a,**k): pass

@@ -12,18 +12,18 @@ In your existing repository folder, using the Python environment from your pilot
 ```powershell
 git pull --ff-only
 $py = "C:\Users\parid\Downloads\Agentic AI\adaptive-agentic-semantic-cache-pilot\.venv\Scripts\python.exe"
-& $py scripts/run_demo.py
+& $py scripts/run_demo.py --offline
 ```
 
 Open http://127.0.0.1:8765 in your browser. Keep the terminal running; Ctrl+C stops
-the server. There is no model quota cost for this default reference-replay mode.
+the server. There is no model quota cost for reference-replay mode.
 The source excerpts and license are bundled, so no corpus preparation is required.
 
 If starting from a clean Python environment, install only the web runtime first:
 
 ```powershell
 python -m pip install -r deploy/requirements-gateway.txt
-python scripts/run_demo.py
+python scripts/run_demo.py --offline
 ```
 
 The launcher binds to literal loopback, not a public network interface. This is

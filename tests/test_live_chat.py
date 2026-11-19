@@ -56,6 +56,17 @@ def test_live_chat_miss_exact_hit_and_restart(tmp_path):
         assert new["provider_calls"] == 1 and new["used"] == 2
 
 
+def test_general_chat_reuses_a_plain_language_risk_definition(tmp_path):
+    transport = FakeTransport()
+    question = "what do u mean by risk management ?"
+    with client(tmp_path, transport) as c:
+        fresh = c.post("/api/chat", json={"question": question}).json()
+        repeat = c.post("/api/chat", json={"question": question}).json()
+        assert transport.requests[0]["messages"][-1]["content"] == question
+        assert fresh["provider_calls"] == 1 and fresh["stored"]
+        assert repeat["provider_calls"] == 0 and repeat["cache_tier"] == "EXACT"
+
+
 def test_live_chat_context_and_time_sensitive_questions_bypass(tmp_path):
     transport = FakeTransport()
     with client(tmp_path, transport) as c:

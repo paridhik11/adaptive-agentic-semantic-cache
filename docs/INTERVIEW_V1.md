@@ -1,6 +1,6 @@
 # Adaptive Agentic Semantic Cache | Interview V1
 
-For a general question that should call a real model on a cache miss, use the [live chat PowerShell setup](LIVE_CHAT.md).
+**Start with [live general chat](LIVE_CHAT.md)** to ask about risk, SQL, or any other topic. It runs on `optimize-v2` and calls OpenRouter on a cache miss.
 
 For the data analyst walkthrough, open the [workload population and eligibility analysis](WORKLOAD_POPULATION_ANALYSIS.md).
 
@@ -12,7 +12,7 @@ An agent answers Python documentation questions, shows the sources it read, and 
 
 ![Benchmark dashboard comparing four cache configurations on the broader workload](images/interview-dashboard.png)
 
-## Run it from a fresh checkout
+## Run the offline documentation replay
 
 Use **Python 3.11 or newer** and Git. The release was exercised locally with Python 3.12.14. Internet access is needed for the initial clone and dependency install. The interview demo and report regeneration then run locally.
 

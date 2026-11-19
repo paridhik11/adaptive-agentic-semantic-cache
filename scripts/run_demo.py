@@ -1,11 +1,13 @@
-"""Launch the local integrated workbench; reference replay requires no key."""
+"""Launch live general chat, or select an offline documentation demo."""
 
 import argparse
 from contextlib import nullcontext
+from getpass import GetPassWarning, getpass
 import os
 from pathlib import Path
 import sys
 from tempfile import TemporaryDirectory
+import warnings
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -16,25 +18,28 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--port", type=int, default=8765)
     parser.add_argument("--directory", type=Path, default=Path("runs/workbench"))
-    live_modes = parser.add_mutually_exclusive_group()
-    live_modes.add_argument("--live", action="store_true", help="Free-provider documentation workflow.")
-    live_modes.add_argument("--live-chat", action="store_true", help="General chat with a live free model and exact caching.")
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument("--live", action="store_true", help="Free-provider documentation workflow.")
+    modes.add_argument("--live-chat", action="store_true", help="General chat with a live free model (the default).")
+    modes.add_argument("--offline", action="store_true", help="Replay the local Python documentation demo.")
+    modes.add_argument("--cli", action="store_true", help="Run the seven-scenario verification demo.")
+    modes.add_argument("--interview", action="store_true", help="Replay the documentation workbench with exact whole-answer reuse.")
     parser.add_argument("--model", help="An explicit OpenRouter :free model ID for live chat.")
     parser.add_argument("--whole-answer-cache", action="store_true", help="Offline exact reuse of approved answers.")
     parser.add_argument("--task-memory", action="store_true", help="Offline scoped local task retrieval.")
     parser.add_argument("--journal", type=Path, help="Existing shared journal, required in live mode.")
-    parser.add_argument("--cli", action="store_true", help="Run the seven-scenario verification demo.")
     parser.add_argument("--experimental-semantic", action="store_true", help="Opt in to guarded semantic reuse.")
-    parser.add_argument("--interview", action="store_true", help="Open the offline workbench with exact whole-answer reuse and task memory.")
     parser.add_argument("--fresh", action="store_true", help="Use temporary storage for this offline web session.")
     args = parser.parse_args()
-    if args.interview and (args.live or args.live_chat or args.cli or args.experimental_semantic):
+    if args.interview and args.experimental_semantic:
         parser.error("--interview selects the offline exact web demo")
     if args.fresh and (args.live or args.live_chat or args.cli):
         parser.error("--fresh applies to the offline web demo")
-    if args.model and not args.live_chat:
-        parser.error("--model applies to --live-chat")
-    if args.live_chat and (args.cli or args.whole_answer_cache or args.task_memory):
+    offline_options = args.fresh or args.whole_answer_cache or args.task_memory
+    live_chat = args.live_chat or not (args.live or args.offline or args.interview or args.cli or offline_options)
+    if args.model and not live_chat:
+        parser.error("--model applies to live chat")
+    if args.live_chat and (args.whole_answer_cache or args.task_memory):
         parser.error("--live-chat has its own exact cache and follow-up context")
     if args.cli:
         from scripts.demo_flagship import run_demo
@@ -45,7 +50,7 @@ def main():
     if args.live and not args.journal:
         parser.error("Live mode requires your existing --journal path")
 
-    key = os.environ.get("OPENROUTER_API_KEY") if args.live or args.live_chat else None
+    key = os.environ.get("OPENROUTER_API_KEY", "").strip() if args.live or live_chat else None
     whole_answer = args.interview or args.whole_answer_cache
     task_memory = args.interview or args.task_memory
     profile = "live" if args.live else "reference-whole-answer" if whole_answer else "reference"
@@ -57,15 +62,22 @@ def main():
 
     import uvicorn
 
-    if args.live_chat:
+    if live_chat:
         from src.api.live_chat import DEFAULT_MODEL, create_live_chat_app
 
+        if not key and sys.stdin.isatty():
+            try:
+                with warnings.catch_warnings():
+                    warnings.simplefilter("error", GetPassWarning)
+                    key = getpass("OpenRouter API key (input hidden): ").strip()
+            except (EOFError, GetPassWarning):
+                pass
+        if not key:
+            parser.error("Set OPENROUTER_API_KEY to launch general chat. Use --interview --fresh for the offline documentation demo.")
         semantic_models = None
         if args.experimental_semantic:
             from src.api.chat_semantic import load_chat_models
 
-            if not key:
-                parser.error("Set OPENROUTER_API_KEY before launching live chat.")
             try:
                 semantic_models = load_chat_models()
             except (ImportError, OSError, RuntimeError, ValueError) as exc:
