@@ -1131,3 +1131,9 @@ Telemetry: `artifacts/metrics_campaign/repeat_rich/` (and root), `artifacts/metr
 | ID | Evidence | Source and reproduction |
 | --- | --- | --- |
 | LD-01 | Offline development replay. A provider fixture supplied an opening definition for each of five seed questions. The chat reused the seed answer on 11/11 rephrasings with zero provider calls and called the fixture on all 11 changed requests. The screenshot wording is a regression case. Each group shares a seed and the counts describe the fixtures. | `DEFINITION_VARIANTS` in [test_live_chat.py](../tests/test_live_chat.py). Run `python -m pytest -q tests/test_live_chat.py -k "head_number or lexicalized"`. |
+
+## Live chat cosine benchmark
+
+| ID | Evidence | Source and reproduction |
+| --- | --- | --- |
+| LC-01 | Public ComQA test offline replay on `49fa7de`. The gallery contained 1,434 seeds and 422 probes. Full-question MiniLM cosine at 0.84 yielded 279 exact-answer-set matches, 19 disjoint hits and three overlapping hits in the gallery. Cosine selected 47/422 disjoint controls. Full verification yielded 9 supported main hits and zero disjoint hits in both cohorts. Both API modes yielded zero supported hits on paired seeds and flagged one disjoint control, an answer date that correctly supplied the requested year. Counts, dependency limits and exact intervals are documented with the protocol. | [Aggregate JSON](../artifacts/live_chat/comqa_cosine_49fa7de.json) · [Protocol and reproduction](LIVE_CHAT_COSINE_EVALUATION.md) |

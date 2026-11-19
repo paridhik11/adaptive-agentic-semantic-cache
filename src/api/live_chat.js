@@ -174,7 +174,7 @@ async function send(question, includeHistory, {clearDraft = true, autoContext = 
         result.semantic_decision === "wording_verified" ? "same request with different framing" :
         result.semantic_decision === "comparison_verified" ? "same comparison" :
         Number.isFinite(lexical_similarity) ? `same defined topic · text similarity ${lexical_similarity.toFixed(2)}` :
-        similarity === null ? "same defined topic" : `similarity ${similarity.toFixed(2)}`;
+        similarity === null ? "same defined topic" : `cosine similarity ${similarity.toFixed(2)}`;
       pending.append(node("p", `Matched saved question “${source}” · ${detail}`, "muted"));
     }
     const receipt = node("ul", "", "chat-receipt");

@@ -1,0 +1,203 @@
+{
+  "source_sha256": "b81e19c4108198781167ddb30d26172571e76cc8e684aabb181537a45e816867",
+  "gallery_seeds": 1434,
+  "probes": 422,
+  "unique_hard_negative_seeds": 362,
+  "ranking": {
+    "top1_same_answers": 336,
+    "top5_same_answers": 364
+  },
+  "thresholds": {
+    "cosine": 0.84,
+    "pair": 0.8,
+    "passage": 0.85
+  },
+  "model_ids": [
+    "sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "cross-encoder/quora-distilroberta-base@f62e7a4b20b97195c2868e53ec59126df5eac743",
+    "cross-encoder/ms-marco-MiniLM-L-6-v2@233902d25c440f23af6f7d6e94d2946bac0bee0a"
+  ],
+  "guard_outcomes": {
+    "gallery_top1:supported:answer_relevance": 168,
+    "gallery_top1:supported:question_pair": 72,
+    "hard_negative:wrong:answer_relevance": 10,
+    "hard_negative:wrong:question_pair": 30,
+    "gallery_top1:supported:requirements": 30,
+    "hard_negative:wrong:requirements": 7,
+    "gallery_top1:wrong:question_pair": 12,
+    "gallery_top1:supported:accepted": 9,
+    "gallery_top1:wrong:requirements": 3,
+    "gallery_top1:wrong:answer_relevance": 4,
+    "gallery_top1:overlapping:question_pair": 1,
+    "gallery_top1:overlapping:answer_relevance": 2
+  },
+  "results": {
+    "default_live_chat": {
+      "paired": {
+        "supported": 0,
+        "wrong": 0,
+        "overlapping": 0,
+        "hit_interval_per_probe": [
+          0.0,
+          0.008703
+        ],
+        "wrong_interval_per_probe": [
+          0.0,
+          0.008703
+        ],
+        "wrong_interval_per_hit": null,
+        "overlap_interval_per_probe": [
+          0.0,
+          0.008703
+        ]
+      },
+      "hard_negative": {
+        "supported": 0,
+        "wrong": 1,
+        "overlapping": 0,
+        "hit_interval_per_probe": [
+          0.0,
+          0.008703
+        ],
+        "wrong_interval_per_probe": [
+          6e-05,
+          0.013132
+        ],
+        "wrong_interval_per_hit": [
+          0.025,
+          1.0
+        ],
+        "overlap_interval_per_probe": [
+          0.0,
+          0.008703
+        ]
+      }
+    },
+    "optional_live_chat": {
+      "paired": {
+        "supported": 0,
+        "wrong": 0,
+        "overlapping": 0,
+        "hit_interval_per_probe": [
+          0.0,
+          0.008703
+        ],
+        "wrong_interval_per_probe": [
+          0.0,
+          0.008703
+        ],
+        "wrong_interval_per_hit": null,
+        "overlap_interval_per_probe": [
+          0.0,
+          0.008703
+        ]
+      },
+      "hard_negative": {
+        "supported": 0,
+        "wrong": 1,
+        "overlapping": 0,
+        "hit_interval_per_probe": [
+          0.0,
+          0.008703
+        ],
+        "wrong_interval_per_probe": [
+          6e-05,
+          0.013132
+        ],
+        "wrong_interval_per_hit": [
+          0.025,
+          1.0
+        ],
+        "overlap_interval_per_probe": [
+          0.0,
+          0.008703
+        ]
+      }
+    },
+    "full_question_cosine": {
+      "gallery_top1": {
+        "supported": 279,
+        "wrong": 19,
+        "overlapping": 3,
+        "hit_interval_per_probe": [
+          0.613783,
+          0.706213
+        ],
+        "wrong_interval_per_probe": [
+          0.027322,
+          0.069419
+        ],
+        "wrong_interval_per_hit": [
+          0.03882,
+          0.097778
+        ],
+        "overlap_interval_per_probe": [
+          0.001468,
+          0.020634
+        ]
+      },
+      "hard_negative": {
+        "supported": 0,
+        "wrong": 47,
+        "overlapping": 0,
+        "hit_interval_per_probe": [
+          0.0,
+          0.008703
+        ],
+        "wrong_interval_per_probe": [
+          0.08299,
+          0.145342
+        ],
+        "wrong_interval_per_hit": [
+          0.924514,
+          1.0
+        ],
+        "overlap_interval_per_probe": [
+          0.0,
+          0.008703
+        ]
+      }
+    },
+    "full_question_verified": {
+      "gallery_top1": {
+        "supported": 9,
+        "wrong": 0,
+        "overlapping": 0,
+        "hit_interval_per_probe": [
+          0.009797,
+          0.040098
+        ],
+        "wrong_interval_per_probe": [
+          0.0,
+          0.008703
+        ],
+        "wrong_interval_per_hit": [
+          0.0,
+          0.336267
+        ],
+        "overlap_interval_per_probe": [
+          0.0,
+          0.008703
+        ]
+      },
+      "hard_negative": {
+        "supported": 0,
+        "wrong": 0,
+        "overlapping": 0,
+        "hit_interval_per_probe": [
+          0.0,
+          0.008703
+        ],
+        "wrong_interval_per_probe": [
+          0.0,
+          0.008703
+        ],
+        "wrong_interval_per_hit": null,
+        "overlap_interval_per_probe": [
+          0.0,
+          0.008703
+        ]
+      }
+    }
+  }
+}

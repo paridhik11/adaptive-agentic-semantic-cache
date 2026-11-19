@@ -85,6 +85,10 @@ $ordinal = Read-Host 'Interrupted attempt ordinal'
 .\.venv\Scripts\python.exe scripts\run_demo.py --journal runs\live-quota.sqlite --resolve-interrupted $ordinal
 ```
 
+## How chat scores similarity
+
+The default chat uses ordered keywords and answer-backed normalization. A **text similarity** score is the character-sequence overlap of the two topic phrases, calculated as twice the number of matched characters divided by the sum of the phrase lengths. The optional model mode returns **cosine similarity** from the dot product of two normalized MiniLM embeddings. It compares short definition questions and also checks the two questions and the saved answer before reusing it. [Dataset benchmark and methods](LIVE_CHAT_COSINE_EVALUATION.md)
+
 ## Enable semantic reuse for paraphrases
 
 Local models handle broader rephrasings such as different words for the same topic.
