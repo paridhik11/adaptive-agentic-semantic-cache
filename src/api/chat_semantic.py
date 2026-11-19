@@ -1,4 +1,4 @@
-"""Local reuse for stable definitions and comparisons in live chat."""
+"""Local reuse for stable requests in live chat."""
 from collections import OrderedDict
 from difflib import SequenceMatcher
 from functools import lru_cache
@@ -8,6 +8,7 @@ import sqlite3
 from threading import Lock
 import time
 
+from src.api.chat_intents import direct_question, question_intent, reusable_fact_answer, wording_key
 from src.policy.decomposed_applicability import answer_satisfies_requirements, requirement_guard
 from src.policy.encoders import normalize
 from src.policy.hybrid_cache import request_boundary
@@ -35,10 +36,15 @@ _COMPARISON = re.compile(
 _ANSWER_DEFINITION = re.compile(
     r"([a-z][a-z0-9 -]{0,99}?) (?:is|are|means|refers to)\b(?!\s+(?:not|unclear|unknown)\b)", re.I)
 
+_ALIAS_DEFINITION = re.compile(
+    r"([a-z][a-z0-9 -]{0,80}?)\s*(?:\(\s*(?:short for|also known as) ([a-z][a-z0-9 -]{0,80})\)"
+    r"|, (?:short for|also known as) ([a-z][a-z0-9 -]{0,80}),) "
+    r"(?:is|are|refers to)\b(?!\s+(?:not|unclear|unknown)\b)", re.I)
+
 
 def definition_subject(text, *, shorthand=False):
     """Restrict semantic reuse to short definitions with no extra instructions."""
-    text = text.strip()
+    text = direct_question(text)
     statement = text.rstrip("?.!").strip()
     match = _DEFINITION.fullmatch(statement)
     if match:
@@ -59,7 +65,7 @@ def _topic_words(subject):
 
 
 def comparison_subjects(question):
-    match = _COMPARISON.fullmatch(question.strip().rstrip("?.!").strip())
+    match = _COMPARISON.fullmatch(direct_question(question).rstrip("?.!").strip())
     if not match:
         return None
     left = _topic_words(match[1] or match[3])
@@ -114,6 +120,21 @@ def confirmed_definition(question, answer):
     return confirmed if confirmed and _topic_match(subject, confirmed) else None
 
 
+def definition_alias(answer):
+    """Recognize an explicit equivalence in the opening of a definition."""
+    opening = answer.lstrip()[:240].translate(str.maketrans("", "", "*_`"))
+    match = _ALIAS_DEFINITION.match(opening)
+    if not match:
+        return None
+    head = _topic_words(match[1])
+    alias_text = (match[2] or match[3]).strip()
+    alias = _topic_words(alias_text)
+    # A bare initialism can have several expansions. Only serve the named sense.
+    if not head or not alias or (len(alias) == 1 and alias_text.isupper()):
+        return None
+    return head, alias
+
+
 def load_chat_models():
     from src.policy.encoders import DenseEncoder
     from src.policy.local_models import ENCODER_MODEL, ENCODER_REVISION, LocalPairScorer, LocalPassageScorer
@@ -130,12 +151,16 @@ class ChatResponseCache(ScopedResponseCache):
             return False
         question = request["messages"][-1]["content"]
         content = response["choices"][0]["message"]["content"]
+        intent = question_intent(question)
+        if intent:
+            return bool(intent.subject) and reusable_fact_answer(content)
         comparison = comparison_subjects(question)
         if comparison:
             return question.lower().startswith(("compare ", "what ", "explain ")) or _covers_comparison(
                 comparison, content)
-        if not definition_subject(question) and definition_subject(question, shorthand=True):
-            return confirmed_definition(question, content) is not None
+        if not definition_subject(question) and (subject := definition_subject(question, shorthand=True)):
+            alias = definition_alias(content)
+            return bool((alias and subject in alias) or confirmed_definition(question, content))
         return True
 
 
@@ -153,16 +178,21 @@ class ChatSemanticReuse:
         question = body["messages"][-1]["content"]
         if len(body["messages"]) != 2 or bypass:
             return self.exact.process(body, tenant_id=tenant_id, provider=provider, bypass=bypass), None, None
-        comparison = comparison_subjects(question)
-        subject = None if comparison else definition_subject(question, shorthand=True)
-        if not subject and not comparison:
+        intent = question_intent(question)
+        comparison = None if intent else comparison_subjects(question)
+        subject = None if intent or comparison else definition_subject(question, shorthand=True)
+        wording = None if intent else wording_key(question)
+        if not (subject or comparison or intent or wording):
             return self.exact.process(body, tenant_id=tenant_id, provider=provider), None, None
 
-        namespace = digest({
-            "tenant": tenant_id, "request": request_boundary(body),
-            "models": [model.identity for model in self.models or ()],
-            "contract": "live-definition-reuse-v1",
-        })
+        boundary = {"tenant": tenant_id, "request": request_boundary(body)}
+        if intent:
+            # Filter by the fact before scanning candidates. Precision is
+            # checked against the actual cached answer after retrieval.
+            boundary.update(contract="live-fact-reuse-v1", fact=[intent.relation, intent.subject, intent.rank])
+        else:
+            boundary.update(contract="live-definition-reuse-v1", models=[model.identity for model in self.models or ()])
+        namespace = digest(boundary)
         source_key = self.exact.request_key(body, tenant_id)
         explicit = definition_subject(question) if subject else None
         canonical = "what is a " + " ".join(subject or ())
@@ -182,16 +212,32 @@ class ChatSemanticReuse:
                     if self.exact.request_key(original, tenant_id) != key:
                         continue
                     saved_question = original["messages"][-1]["content"]
-                    if requirement_guard(saved_question, question):
+                    if intent is None and requirement_guard(saved_question, question):
                         continue
                     answer = json.loads(response_json)
                     if not self.exact._admissible(answer, checked):
                         continue
                     content = answer["choices"][0]["message"]["content"]
+                    equal_intent = intent is not None and intent.accepts(question_intent(saved_question), content)
+                    if intent is not None and not equal_intent:
+                        continue
+                    if equal_intent:
+                        matches_by_topic[intent] = (2, identity, key, token, saved_question, answer)
+                        continue
                     if comparison:
                         if (comparison_subjects(saved_question) == comparison
                                 and _covers_comparison(comparison, content)):
                             matches_by_topic[comparison] = (2, identity, key, token, saved_question, answer)
+                        continue
+                    if wording and wording_key(saved_question) == wording:
+                        matches_by_topic[("wording", wording)] = (3, identity, key, token, saved_question, answer)
+                        continue
+                    if not subject:
+                        continue
+                    alias = definition_alias(content)
+                    if (alias and alias[1] == subject and definition_subject(saved_question, shorthand=True) == alias[0]
+                            and not answer_satisfies_requirements(question, content)):
+                        matches_by_topic[alias[0]] = (2, identity, key, token, saved_question, answer)
                         continue
                     confirmed = confirmed_definition(saved_question, content)
                     if confirmed:
@@ -211,15 +257,18 @@ class ChatSemanticReuse:
                     if len(matches) != 1:
                         decision = "ambiguous_candidates"
                         return None
-                    _, identity, key, token, saved_question, answer = matches[0]
+                    strength, identity, key, token, saved_question, answer = matches[0]
                     if self.storage.candidate_current(identity, key, token, namespace, tenant_id, epoch):
-                        decision = "comparison_verified" if comparison else "definition_verified"
+                        kind = "intent" if intent else "comparison" if comparison else "definition"
+                        if strength == 3:
+                            kind = "wording"
+                        decision = f"{kind}_verified"
                         match = {"matched_question": saved_question, "similarity": None}
-                        reason = "comparison_reuse_hit" if comparison else "definition_reuse_hit"
+                        reason = f"{kind}_reuse_hit"
                         return ResponseCacheResult(answer, "HIT", reason, 0, False,
                                                    (time.perf_counter() - started) * 1_000)
                     return None
-                if not self.models or not explicit or not ranked:
+                if not ranked:
                     return None
                 encoder, pair_scorer, answer_scorer = self.models
                 with self._model_lock:

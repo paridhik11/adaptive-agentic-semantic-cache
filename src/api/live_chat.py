@@ -1,4 +1,4 @@
-"""General-purpose local chat with a live provider and a scoped exact cache."""
+"""General-purpose chat with a live provider and scoped response reuse."""
 import re
 import secrets
 import sqlite3
@@ -10,6 +10,7 @@ from fastapi import Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from starlette.concurrency import run_in_threadpool
 
+from src.api.chat_intents import direct_question, question_intent, scope_reply
 from src.api.chat_semantic import ChatResponseCache, ChatSemanticReuse, comparison_subjects, definition_subject
 from src.api.demo import workbench_shell
 from src.api.gateway import _strict_json
@@ -60,12 +61,16 @@ _MESSAGES = {
 
 
 def request_from_payload(value, model):
-    if not isinstance(value, dict) or set(value) - {"question", "history", "cache"}:
+    if not isinstance(value, dict) or set(value) - {"question", "history", "cache", "previous_question"}:
         raise ValueError("Send a question, optional history, and cache preference.")
     question = value.get("question")
     if not isinstance(question, str) or not question.strip() or len(question) > MAX_QUESTION:
         raise ValueError("Enter a question under 4,000 characters.")
     question.encode("utf-8")
+    previous = value.get("previous_question", "")
+    if not isinstance(previous, str) or len(previous) > MAX_QUESTION:
+        raise ValueError("Invalid previous question.")
+    previous.encode("utf-8")
     history = value.get("history", [])
     enabled = value.get("cache", True)
     if type(enabled) is not bool or not isinstance(history, list) or len(history) > 6 or len(history) % 2:
@@ -81,7 +86,7 @@ def request_from_payload(value, model):
         "model": model, "temperature": 0, "max_tokens": MAX_ANSWER_TOKENS,
         "messages": [{"role": "system", "content": INSTRUCTION}, *history,
                      {"role": "user", "content": question.strip()}],
-    }, enabled
+    }, enabled, previous
 
 
 def open_chat_journal(path):
@@ -101,15 +106,20 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
     stability = StabilityRuleEngine()
 
     def eligibility(body):
-        # Keep the full system prompt in the cache key, and route conversations
-        # through the provider. Common educational definitions can reuse exactly.
         turns = body["messages"][1:]
-        decision = policy({"messages": turns})
         if len(turns) != 1:
-            return decision
-        question = turns[0]["content"]
-        if _FRESHNESS.search(question) or stability.evaluate(question).label == StabilityLabel.DYNAMIC:
+            return policy({"messages": turns})
+        question = direct_question(turns[0]["content"])
+        decision = policy({"messages": [{"role": "user", "content": question}]})
+        rule = stability.evaluate(question)
+        intent = question_intent(question)
+        # The shared role rule treats an office without a temporal anchor
+        # as current. An explicit, parsed ordinal supplies that anchor here.
+        ranked_role = intent and intent.rank and rule.rule_name == "dynamic_answer_type_current_role"
+        if _FRESHNESS.search(question) or (rule.label == StabilityLabel.DYNAMIC and not ranked_role):
             return EligibilityDecision(False, "freshness_requires_provider")
+        if intent and intent.subject and decision.reason == "not_rule_confirmed_static":
+            return EligibilityDecision(True, "standalone_structured_question")
         if decision.reason == "not_rule_confirmed_static" and (
                 _DEFINITION.match(question) or definition_subject(question, shorthand=True)
                 or comparison_subjects(question)):
@@ -154,11 +164,34 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
             raise ProviderError("upstream_incomplete_answer")
         return response
 
-    def execute(body, enabled):
+    def execute(body, enabled, previous):
         nonlocal exact_hits, semantic_hits
         provider = JournaledProvider(complete_answer, journal, append=True)
         started = time.perf_counter()
         upstream_ms = None
+        resolved_question = None
+        if len(body["messages"]) == 2:
+            question = body["messages"][-1]["content"]
+            intent = question_intent(question)
+            prior = question_intent(previous) if previous else None
+            if prior and prior.rank and not prior.subject and not intent and (name := scope_reply(question)):
+                resolved_question = prior.scoped_question(name)
+            elif intent and intent.rank and not intent.subject:
+                if prior and prior.rank and prior.relation == intent.relation and prior.subject:
+                    resolved_question = intent.scoped_question(prior.subject)
+                else:
+                    with stats_lock:
+                        counters = stats()
+                    return {
+                        "answer": "Which country or organization do you mean? You can reply with its name in automatic context.",
+                        "cache_status": "CLARIFY", "cache_reason": "missing_subject", "stored": False,
+                        "cache_tier": None, "semantic_match": None, "semantic_decision": None,
+                        "resolved_question": None, "provider_calls": 0, "provider_ms": None,
+                        "generated_tokens": 0, "latency_ms": (time.perf_counter() - started) * 1_000,
+                        **counters,
+                    }
+            if resolved_question:
+                body["messages"][-1]["content"] = resolved_question
 
         def generate(request):
             nonlocal upstream_ms
@@ -193,6 +226,7 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
             "cache_status": result.status, "cache_reason": result.reason, "stored": result.stored,
             "cache_tier": "SEMANTIC" if match else "EXACT" if result.status == "HIT" else None,
             "semantic_match": match, "semantic_decision": semantic_decision,
+            "resolved_question": resolved_question,
             "provider_calls": calls, "provider_ms": upstream_ms if calls else None,
             "latency_ms": (time.perf_counter() - started) * 1_000,
             "generated_tokens": (usage if type(usage) is int and usage >= 0 else None) if calls else 0,
@@ -210,11 +244,11 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
                 if len(raw) > 200_000:
                     raise ValueError("Chat request is too large.")
             payload = _strict_json(bytes(raw))
-            body, enabled = request_from_payload(payload, model)
+            body, enabled, previous = request_from_payload(payload, model)
         except UnicodeError:
             return JSONResponse({"error": "Use valid Unicode text for the question and conversation."}, status_code=400)
         except ValueError as exc:
             return JSONResponse({"error": str(exc)}, status_code=400)
-        return await run_in_threadpool(execute, body, enabled)
+        return await run_in_threadpool(execute, body, enabled, previous)
 
     return app

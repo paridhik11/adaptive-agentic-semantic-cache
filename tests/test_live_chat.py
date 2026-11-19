@@ -309,3 +309,116 @@ def test_photo_paraphrase_with_pinned_local_models(tmp_path):
         for text in ("what is a photon", "what is photography", "what is a digital photo"):
             different = c.post("/api/chat", json={"question": text}).json()
             assert different["provider_calls"] == 1 and different["cache_tier"] is None
+
+
+# Each group gets an empty store and independent transport. The seed returns
+# the supported answer. Every provider call for other prompts returns a
+# different string so the replay cannot confuse a miss with a cached answer.
+FACT_REPLAY = [
+    ("1st prime minister of india?", "Jawaharlal Nehru was the first prime minister of India.",
+     ["india's first prime ministerr?", "Who was the first PM of India?"],
+     ["1st prime minister of Pakistan?", "Who is the current prime minister of India?",
+      "2nd prime minister of India?"]),
+    ("Who was the second president of Ireland?", "Seán T. O'Kelly.",
+     ["Ireland's 2nd president?", "2nd president of Ireland?"],
+     ["Ireland's first president?", "Second president of Iceland?"]),
+    ("Who was the first governor of California?", "Peter Hardeman Burnett.",
+     ["California's 1st governor?", "1st governor of California?"],
+     ["Who was the first female governor of California?", "First governor of Nevada?"]),
+    ("Where was Ada Lovelace born?", "London, England.",
+     ["What was Ada Lovelace's birthplace?", "Place of birth of Ada Lovelace?"],
+     ["When was Ada Lovelace born?", "Where was Mary Shelley born?"]),
+    ("When was Alan Turing born?", "23 June 1912.",
+     ["Alan Turing's date of birth?", "What was Alan Turing's birth date?"],
+     ["Alan Turing's place of birth?", "When was Alan Kay born?"]),
+    ("Who wrote The Hobbit?", "J. R. R. Tolkien.",
+     ["Who is the author of The Hobbit?", "Who was The Hobbit written by?"],
+     ["Who wrote The Silmarillion?", "Who translated The Hobbit?"]),
+    ("How do I calculate sample variance?", "Divide the sum of squared deviations from the mean by n minus one.",
+     ["How can I compute sample variance?", "How is sample variance calculated?"],
+     ["How is population variance calculated?", "How do I calculate sample variance in Excel?"]),
+    ("How do I calculate expected credit loss?", "A simple estimate multiplies PD by LGD and EAD.",
+     ["How can I compute expected credit loss?", "How is expected credit loss calculated?"],
+     ["How do I calculate unexpected credit loss?", "How is expected credit loss calculated for secured loans?"]),
+]
+
+
+class AnswersTransport(FakeTransport):
+    def __init__(self, answers):
+        super().__init__()
+        self.answers = answers
+
+    def __call__(self, body):
+        response = super().__call__(body)
+        question = body["messages"][-1]["content"]
+        if question in self.answers:
+            response["choices"][0]["message"]["content"] = self.answers[question]
+        return response
+
+
+@pytest.mark.parametrize(("seed", "answer", "rephrases", "changed"), FACT_REPLAY)
+def test_factual_semantic_reuse_and_changed_requirements(tmp_path, seed, answer, rephrases, changed):
+    transport = AnswersTransport({seed: answer})
+    with client(tmp_path, transport) as c:
+        assert c.post("/api/chat", json={"question": seed}).json()["stored"]
+    with client(tmp_path, transport) as c:
+        for question in rephrases:
+            hit = c.post("/api/chat", json={"question": question}).json()
+            assert hit["cache_tier"] == "SEMANTIC" and hit["provider_calls"] == 0, hit
+            assert hit["answer"] == answer
+            assert hit["semantic_match"]["matched_question"] == seed
+        for question in changed:
+            response = c.post("/api/chat", json={"question": question}).json()
+            assert response["provider_calls"] == 1 and response["cache_tier"] is None
+            assert response["answer"] != answer
+        assert len(transport.requests) == 1 + len(changed)
+
+
+def test_ranked_role_context_is_explicit_and_requires_a_scope(tmp_path):
+    seed = "1st prime minister of india?"
+    answer = "Jawaharlal Nehru."
+    ambiguous = "1st prime minister?"
+    transport = AnswersTransport({seed: answer})
+    with client(tmp_path, transport) as c:
+        assert c.post("/api/chat", json={"question": seed}).json()["provider_calls"] == 1
+        hit = c.post("/api/chat", json={"question": ambiguous, "previous_question": seed}).json()
+        assert hit["answer"] == answer and hit["cache_tier"] == "SEMANTIC" and hit["provider_calls"] == 0
+        assert hit["resolved_question"] == "Who was the 1st prime minister of india?"
+        for previous in ("", "Who was the first president of France?", "Define portfolio risk."):
+            ask = c.post("/api/chat", json={"question": ambiguous, "previous_question": previous}).json()
+            assert ask["cache_status"] == "CLARIFY" and ask["provider_calls"] == 0
+        reply = c.post("/api/chat", json={"question": "India", "previous_question": ambiguous}).json()
+        assert reply["answer"] == answer and reply["provider_calls"] == 0
+        changed_rank = c.post("/api/chat", json={"question": "2nd PM?", "previous_question": seed}).json()
+        assert changed_rank["provider_calls"] == 1
+        assert transport.requests[-1]["messages"][-1]["content"] == "Who was the 2nd prime minister of india?"
+        assert len(transport.requests) == 2
+
+
+def test_explicit_aliases_and_polite_wrappers_reuse_without_models(tmp_path):
+    transport = AnswersTransport({
+        "what is a photo?": "A photo (short for photograph) is an image captured with light.",
+        "What is VIF?": "VIF (short for variance inflation factor) is a measure of multicollinearity.",
+    })
+    with client(tmp_path, transport) as c:
+        c.post("/api/chat", json={"question": "what is a photo?"})
+        for question in ("What is a photograph?", "Could you tell me what is a photo?"):
+            r = c.post("/api/chat", json={"question": question}).json()
+            assert r["cache_tier"] == "SEMANTIC" and r["provider_calls"] == 0
+        assert c.post("/api/chat", json={"question": "What is a photon?"}).json()["provider_calls"] == 1
+        c.post("/api/chat", json={"question": "What is VIF?"})
+        r = c.post("/api/chat", json={"question": "Define variance inflation factor"}).json()
+        assert r["cache_tier"] == "SEMANTIC" and r["provider_calls"] == 0
+
+
+def test_event_time_preserves_precision_date_and_case_sensitive_measure(tmp_path):
+    transport = AnswersTransport({"When did the Berlin Wall fall?": "1989."})
+    with client(tmp_path, transport) as c:
+        c.post("/api/chat", json={"question": "When did the Berlin Wall fall?"})
+        year = c.post("/api/chat", json={"question": "In which year did the Berlin Wall fall?"}).json()
+        assert year["cache_tier"] == "SEMANTIC" and year["answer"] == "1989."
+        date = c.post("/api/chat", json={"question": "On what date did the Berlin Wall fall?"}).json()
+        assert date["provider_calls"] == 1 and date["cache_tier"] is None
+        c.post("/api/chat", json={"question": "How do I calculate VaR?"})
+        var = c.post("/api/chat", json={"question": "How can I compute VAR?"}).json()
+        assert var["provider_calls"] == 1 and var["cache_tier"] is None

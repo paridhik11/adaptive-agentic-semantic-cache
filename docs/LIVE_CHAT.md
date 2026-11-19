@@ -1,6 +1,6 @@
 # Live general chat
 
-Ask about risk management, SQL, or any other topic. New questions go to a free OpenRouter model. The local SQLite cache stores complete eligible answers for one hour. Automatic context covers short follow-ups such as “Give me an example.” Set **Context** to **Include recent turns** or **Standalone question** when you want explicit control.
+Ask about risk management, SQL, or any other topic. New questions go to a free OpenRouter model. The local SQLite cache stores complete eligible answers for one hour. Automatic context handles short follow-ups such as “Give me an example” and can recover the scope of a ranked officeholder question from the preceding turn. Set **Context** to **Include recent turns** or **Standalone question** when you want explicit control.
 
 ## PowerShell
 
@@ -30,6 +30,29 @@ If the three prompts already have separate exact answers, add `--directory runs\
 The default is `nvidia/nemotron-3.5-lightning:free`. If its availability changes, use `--model` followed by an explicit model ID ending in `:free`. The provider enforces zero price and disables automatic fallback. The persistent quota journal uses the existing free-only allowance (30 chat attempts with shared daily and rolling-minute caps). Use `--journal <path>` to share your existing quota journal. Reopening the chat preserves the allowance and cache. Eligible cached answers can still be served when the quota is exhausted.
 
 Live chat uses the model's knowledge without web search. Response time covers server-side processing through answer availability, including time waiting for the provider slot. Provider time starts after the slot opens and includes the quota journal. Cache hits for other questions can complete while the provider works.
+
+## See a semantic hit in the default chat
+
+Leave **Context** on **Automatic** and keep cache reuse enabled.
+
+1. Ask **1st prime minister of India?** In a cold cache the model answers once.
+2. Ask **1st prime minister?** The chat fills in India from the preceding question and displays the wording it used. Ask **India's first prime ministerr?** to see the same answer through an explicitly scoped paraphrase. Both semantic hits show **0 provider calls**.
+3. Ask **Who was the first prime minister of Pakistan?** or **Who is the current prime minister of India?** These require fresh generation. In **Standalone question** mode, **1st prime minister?** asks for the missing country or organization. Choose **Automatic** to reply with the name.
+4. Ask **How do I calculate sample variance?** and then **How is sample variance calculated?** The second reuses the first answer. Changing **sample** to **population** requires fresh generation.
+
+The local checks compare the requested fact, named subject, rank, qualifiers and answer precision. They also recognize alternate names explicitly stated at the start of a stored definition, such as “A photo (short for photograph) is…”. Arbitrary rephrasings can still miss. The context handling follows the approach of making an incomplete question self-contained before retrieval. [Conversational query rewriting research](https://aclanthology.org/2022.emnlp-main.679/) · [Scoped semantic cache retrieval documentation](https://docs.redisvl.com/en/stable/api/cache.html)
+
+### Replay evidence
+
+A constructed offline replay ran the default chat against 41 requests in eight isolated groups. Relative to commit `1c595e4`, it moved from 0/16 to 16/16 semantic hits on intended paraphrases. All 17 changed requests called the fixture provider. Total fixture provider calls fell from 41 to 25. Reproduce the current behavior with `python -m pytest -q tests/test_live_chat.py -k factual_semantic_reuse`. The groups share an answer within each group, and their check results describe these fixtures.
+
+A separate replay selected the first two distinct questions in each of 135 eligible clusters from the published ComQA development set. It used the supplied short answers and the most lexically similar question with disjoint annotated answers as a control per group. Controls may recur across groups. Both revisions returned **0/135 semantic hits** on the paraphrases and **0/135 cache hits** on controls. For 0/135, the two-sided exact 95% binomial interval is 0%–2.70% under independence. Shared controls limit that interpretation. ComQA includes complex natural factoid questions. These results show a remaining coverage gap on that workload. [ComQA paper](https://aclanthology.org/N19-1027/) · [Dataset and annotations](https://qa.mpi-inf.mpg.de/comqa/)
+
+```powershell
+Invoke-WebRequest https://qa.mpi-inf.mpg.de/comqa/comqa_dev.json -OutFile comqa_dev.json
+.\.venv\Scripts\python.exe -m pip install httpx
+.\.venv\Scripts\python.exe scripts\evaluate_chat_paraphrases.py comqa_dev.json
+```
 
 ## Recover an interrupted provider request
 

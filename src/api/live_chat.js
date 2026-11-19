@@ -111,7 +111,7 @@ function stats(data) {
   byId("quota").textContent = `${data.used ?? "—"} / ${data.limit}`;
   byId("hits").textContent = data.hits;
   byId("hit-label").textContent = `${data.exact_hits} exact · ${data.semantic_hits} semantic`;
-  byId("model").textContent = `Live · ${data.model} · ${data.semantic_enabled ? "local models on" : "definitions + comparisons"}`;
+  byId("model").textContent = `Live · ${data.model} · ${data.semantic_enabled ? "local models on" : "local reuse on"}`;
 }
 
 const bypassLabels = {
@@ -124,7 +124,7 @@ const bypassLabels = {
   cache_storage_unavailable: "Cached storage was unavailable. The model answered directly.",
 };
 
-async function send(question, includeHistory, {clearDraft = true} = {}) {
+async function send(question, includeHistory, {clearDraft = true, autoContext = false} = {}) {
   if (busy || !ready || !question.trim()) return;
   question = question.trim();
   busy = true;
@@ -135,14 +135,18 @@ async function send(question, includeHistory, {clearDraft = true} = {}) {
   appendMessage("You", question, "question");
   const pending = appendMessage("Trace", "Checking the cache or waiting for the model…", "answer");
   try {
-    const [ok, result] = await api({ question, history, cache: byId("cache-toggle").checked });
+    const body = {question, history, cache: byId("cache-toggle").checked};
+    if (autoContext && !includeHistory && turns.length) {
+      body.previous_question = turns[turns.length - 2].content;
+    }
+    const [ok, result] = await api(body);
     if (!ok) {
       let detail = result.error || "Live request failed.";
       if (result.retry_at) detail += ` Retry after ${new Date(result.retry_at * 1000).toLocaleString()}.`;
       if (typeof result.provider_calls === "number") detail += ` Provider attempts for this request: ${result.provider_calls}.`;
       throw new Error(detail);
     }
-    const names = { HIT: "Exact hit", MISS: "Fresh answer", BYPASS: "Fresh answer · cache bypassed" };
+    const names = { CLARIFY: "Clarification needed", HIT: "Exact hit", MISS: "Fresh answer", BYPASS: "Fresh answer · cache bypassed" };
     const label = result.cache_tier === "SEMANTIC" ? "Semantic hit" : names[result.cache_status];
     pending.replaceChildren(node("h2", label), answerContent(result.answer));
     const details = [
@@ -151,17 +155,23 @@ async function send(question, includeHistory, {clearDraft = true} = {}) {
     ];
     if (result.provider_ms !== null) details.push(`Provider ${time(result.provider_ms)}`);
     if (result.generated_tokens !== null) details.push(`${result.generated_tokens} generated tokens`);
+    const effectiveQuestion = result.resolved_question || question;
+    if (result.resolved_question) {
+      pending.append(node("p", `Used the preceding question to resolve “${result.resolved_question}”`, "muted"));
+    }
     if (!history.length && result.stored) {
       if (freshTimings.size >= 64) freshTimings.delete(freshTimings.keys().next().value);
-      freshTimings.set(question, result.latency_ms);
+      freshTimings.set(effectiveQuestion, result.latency_ms);
     }
-    const source = result.semantic_match?.matched_question ?? question;
+    const source = result.semantic_match?.matched_question ?? effectiveQuestion;
     if (result.cache_status === "HIT" && freshTimings.has(source)) {
       details.push(`Earlier fresh response ${time(freshTimings.get(source))}`);
     }
     if (result.semantic_match) {
       const { similarity } = result.semantic_match;
-      const detail = result.semantic_decision === "comparison_verified" ? "same comparison" :
+      const detail = result.semantic_decision === "intent_verified" ? "same subject and requested fact or calculation" :
+        result.semantic_decision === "wording_verified" ? "same request with different framing" :
+        result.semantic_decision === "comparison_verified" ? "same comparison" :
         similarity === null ? "same defined topic" : `similarity ${similarity.toFixed(2)}`;
       pending.append(node("p", `Matched saved question “${source}” · ${detail}`, "muted"));
     }
@@ -187,10 +197,10 @@ async function send(question, includeHistory, {clearDraft = true} = {}) {
     // Keep only complete usable turns. Oversize answers remain visible but are
     // excluded from the bounded follow-up payload.
     if (result.answer.length <= 8000) {
-      turns.push({ role: "user", content: question }, { role: "assistant", content: result.answer });
+      turns.push({ role: "user", content: effectiveQuestion }, { role: "assistant", content: result.answer });
       if (turns.length > 6) turns.splice(0, 2);
     }
-    previousQuestion = question;
+    previousQuestion = effectiveQuestion;
     if (clearDraft) byId("question").value = "";
     pending.scrollIntoView({ block: "nearest" });
   } catch (err) {
@@ -209,7 +219,7 @@ byId("chat-form").addEventListener("submit", (event) => {
   const question = byId("question").value.trim();
   const context = byId("follow-up").value;
   send(question, turns.length > 0 && (context === "follow-up" ||
-    (context === "auto" && simpleFollowUp.test(question))));
+    (context === "auto" && simpleFollowUp.test(question))), {autoContext: context === "auto"});
 });
 byId("repeat").addEventListener("click", () => {
   send(previousQuestion, false, {clearDraft: false});
