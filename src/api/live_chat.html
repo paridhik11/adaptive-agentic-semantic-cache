@@ -38,7 +38,13 @@
       <textarea id="question" rows="3" maxlength="4000" placeholder="Ask a question…" required></textarea>
       <div class="chat-controls">
         <label><input id="cache-toggle" type="checkbox" checked> Reuse eligible cached answers</label>
-        <label><input id="follow-up" type="checkbox" disabled> Include recent turns</label>
+        <label>Context
+          <select id="follow-up" disabled>
+            <option value="auto">Automatic</option>
+            <option value="standalone">Standalone question</option>
+            <option value="follow-up">Include recent turns</option>
+          </select>
+        </label>
       </div>
       <p id="chat-error" role="alert" hidden></p>
       <div class="chat-actions">
@@ -48,8 +54,9 @@
     </form>
     <details class="chat-method">
       <summary>How reuse and timing work</summary>
-      <p>A fresh request goes to the free OpenRouter model. Eligible answers stay cached for one hour. Short definitions can reuse a saved answer across wording changes and clear typos when the answer defines the same topic. Optional local models check broader rephrasings. Follow-ups and time-sensitive requests go to the model. The chat uses model knowledge, with no web search.</p>
-      <p>Response time measures server-side processing from cache lookup through the returned answer. Provider time includes the free-provider call and its quota journal. Fresh and repeat timings are shown for the matching question.</p>
+      <p>Fresh questions go to the free OpenRouter model. Eligible answers stay cached for one hour. Definitions can match across wording and clear typos. Comparisons can match when both terms and their order agree. Optional local models check broader definition rephrasings.</p>
+      <p>Automatic context recognizes short follow-ups like “Give me an example.” Follow-ups and time-sensitive requests go to the model. The chat answers from model knowledge.</p>
+      <p>Response time includes any wait for a provider slot. Provider time starts when the slot opens and includes journal handling.</p>
     </details>
   </main>
 </body>

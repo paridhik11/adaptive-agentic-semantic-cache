@@ -5,6 +5,7 @@ from contextlib import nullcontext
 from getpass import GetPassWarning, getpass
 import os
 from pathlib import Path
+import sqlite3
 import sys
 from tempfile import TemporaryDirectory
 import warnings
@@ -24,6 +25,8 @@ def main():
     modes.add_argument("--offline", action="store_true", help="Replay the local Python documentation demo.")
     modes.add_argument("--cli", action="store_true", help="Run the seven-scenario verification demo.")
     modes.add_argument("--interview", action="store_true", help="Replay the documentation workbench with exact whole-answer reuse.")
+    modes.add_argument("--resolve-interrupted", type=int, metavar="ORDINAL",
+                       help="After stopping all servers, mark an interrupted live chat attempt as spent.")
     parser.add_argument("--model", help="An explicit OpenRouter :free model ID for live chat.")
     parser.add_argument("--whole-answer-cache", action="store_true", help="Offline exact reuse of approved answers.")
     parser.add_argument("--task-memory", action="store_true", help="Offline scoped local task retrieval.")
@@ -31,6 +34,20 @@ def main():
     parser.add_argument("--experimental-semantic", action="store_true", help="Opt in to guarded semantic reuse.")
     parser.add_argument("--fresh", action="store_true", help="Use temporary storage for this offline web session.")
     args = parser.parse_args()
+    if args.resolve_interrupted is not None:
+        from src.api.live_chat import DEFAULT_JOURNAL, open_chat_journal
+
+        path = args.journal or DEFAULT_JOURNAL
+        if args.resolve_interrupted < 0 or not path.is_file():
+            parser.error("Supply a nonnegative attempt ordinal and the existing live chat journal.")
+        try:
+            resolved = open_chat_journal(path).resolve_interrupted(args.resolve_interrupted)
+        except (sqlite3.Error, ValueError):
+            parser.error("Could not open the live chat journal. Check its path and file permissions.")
+        if not resolved:
+            parser.error("No matching reserved attempt at least two minutes old.")
+        print(f"Attempt {args.resolve_interrupted} marked interrupted. It still counts against the quota.")
+        return
     if args.interview and args.experimental_semantic:
         parser.error("--interview selects the offline exact web demo")
     if args.fresh and (args.live or args.live_chat or args.cli):
@@ -63,7 +80,7 @@ def main():
     import uvicorn
 
     if live_chat:
-        from src.api.live_chat import DEFAULT_MODEL, create_live_chat_app
+        from src.api.live_chat import DEFAULT_JOURNAL, DEFAULT_MODEL, create_live_chat_app
 
         if not key and sys.stdin.isatty():
             try:
@@ -85,7 +102,7 @@ def main():
         try:
             app = create_live_chat_app(
                 args.directory / "live-chat", api_key=key, model=args.model or DEFAULT_MODEL,
-                journal_path=args.journal or Path("runs/live-quota.sqlite"),
+                journal_path=args.journal or DEFAULT_JOURNAL,
                 benchmark_directory=benchmark_directory, semantic_models=semantic_models,
             )
         except ValueError as exc:

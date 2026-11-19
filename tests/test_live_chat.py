@@ -1,5 +1,7 @@
+from concurrent.futures import ThreadPoolExecutor
 import re
 import sqlite3
+from threading import Event
 
 import pytest
 from fastapi.testclient import TestClient
@@ -113,6 +115,90 @@ def test_live_chat_context_and_time_sensitive_questions_bypass(tmp_path):
         assert manual["cache_reason"] == "cache_disabled_by_caller" and manual["provider_calls"] == 1
         assert c.post("/api/chat", json={"question": QUESTION, "history": [{"role": "system", "content": "unsafe"}]}).status_code == 400
         assert c.post("/api/chat", headers={"Origin": "https://elsewhere.test"}, json={"question": QUESTION}).status_code == 403
+
+
+@pytest.mark.parametrize(("left", "right", "different"), [
+    ("precision", "recall", "specificity"),
+    ("bonds", "equities", "derivatives"),
+    ("binary search", "linear search", "hash lookup"),
+    ("variance", "standard deviation", "interquartile range"),
+])
+def test_comparison_reuse_across_domains_preserves_order_and_scope(tmp_path, left, right, different):
+    seed = f"Compare {left} and {right}."
+    answer = f"**{left}** and **{right}** describe different concepts. Here is the distinction."
+
+    class ComparisonTransport(FakeTransport):
+        def __call__(self, body):
+            result = super().__call__(body)
+            if body["messages"][-1]["content"] == seed:
+                result["choices"][0]["message"]["content"] = answer
+            return result
+
+    with client(tmp_path, ComparisonTransport()) as c:
+        assert c.post("/api/chat", json={"question": seed}).json()["provider_calls"] == 1
+        for wording in (f"{left} vs. {right}?", f"What's the difference between {left} and {right}?"):
+            hit = c.post("/api/chat", json={"question": wording}).json()
+            assert hit["answer"] == answer and hit["semantic_decision"] == "comparison_verified", hit
+            assert hit["provider_calls"] == 0
+        for wording in (f"{right} vs {left}?", f"{left} vs {different}?",
+                        f"{left} vs {right} for retail clients?",
+                        f"Compare {left} and {right} as of Q3."):
+            miss = c.post("/api/chat", json={"question": wording}).json()
+            assert miss["provider_calls"] == 1 and miss["cache_tier"] is None, miss
+
+
+def test_cached_answer_and_status_can_finish_while_provider_is_busy(tmp_path):
+    started = Event()
+    release = Event()
+
+    class BlockingTransport(FakeTransport):
+        def __call__(self, body):
+            if body["messages"][-1]["content"] != QUESTION:
+                started.set()
+                assert release.wait(timeout=5)
+            return super().__call__(body)
+
+    with client(tmp_path, BlockingTransport()) as c, ThreadPoolExecutor(max_workers=3) as pool:
+        assert c.post("/api/chat", json={"question": QUESTION}).json()["provider_calls"] == 1
+        # A fresh creative request bypasses the cache, isolating the provider lock.
+        slow = pool.submit(c.post, "/api/chat", json={"question": "Draft a weekly exercise plan."})
+        try:
+            assert started.wait(timeout=3)
+            info = pool.submit(c.get, "/api/chat").result(timeout=2).json()
+            assert info["used"] == 2  # includes the outstanding reservation
+            repeat = pool.submit(c.post, "/api/chat", json={"question": QUESTION}).result(timeout=2).json()
+            assert repeat["cache_tier"] == "EXACT" and repeat["provider_calls"] == 0
+        finally:
+            release.set()
+        assert slow.result(timeout=3).json()["provider_calls"] == 1
+
+
+def test_live_chat_records_incomplete_answer_as_spent_error_and_allows_manual_retry(tmp_path):
+    class IncompleteTransport(FakeTransport):
+        def __call__(self, body):
+            result = super().__call__(body)
+            if len(self.requests) == 1:
+                result["choices"][0]["finish_reason"] = "length"
+            return result
+
+    with client(tmp_path, IncompleteTransport()) as c:
+        failure = c.post("/api/chat", json={"question": QUESTION})
+        assert failure.status_code == 503 and failure.json()["provider_calls"] == 1
+        assert "shorter question" in failure.json()["error"]
+        retry = c.post("/api/chat", json={"question": QUESTION}).json()
+        assert retry["provider_calls"] == 1 and retry["used"] == 2
+        with sqlite3.connect(tmp_path / "quota.sqlite") as db:
+            assert db.execute("SELECT state FROM pilot_calls ORDER BY ordinal").fetchall() == [
+                ("error",), ("complete",)]
+
+
+def test_invalid_unicode_does_not_use_provider_quota(tmp_path):
+    transport = FakeTransport()
+    with client(tmp_path, transport) as c:
+        result = c.post("/api/chat", content=b'{"question":"bad \\ud800"}',
+                        headers={"Content-Type": "application/json"})
+        assert result.status_code == 400
+        assert c.get("/api/chat").json()["used"] == 0 and not transport.requests
 
 
 def test_live_chat_failure_is_not_cached_and_hits_survive_quota(tmp_path):

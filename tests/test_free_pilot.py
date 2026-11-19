@@ -187,3 +187,24 @@ def test_persistence_failure_after_send_leaves_uncertain_call_without_retry(tmp_
     assert raw.calls==1 and j.status()=={'reserved':1}
     with pytest.raises(RunPaused,match='uncertain_attempt'):JournaledProvider(raw,j)(BODY)
     assert raw.calls==1
+
+
+def test_interactive_reservations_are_atomic_and_recovery_preserves_quota(tmp_path):
+    path = tmp_path / 'calls.sqlite'
+    now = [160.0]
+    first = journal(path, max_calls=2, clock=lambda: now[0])
+    second = journal(path, max_calls=2, clock=lambda: now[0])
+
+    assert first.reserve_next(BODY) == 0
+    with pytest.raises(RunPaused, match='uncertain_attempt'):
+        second.reserve_next(BODY)
+    assert not second.resolve_interrupted(0)
+
+    now[0] += 120
+    assert second.resolve_interrupted(0)
+    assert not first.resolve_interrupted(0)
+    assert first.status() == {'error': 1}
+    assert second.reserve_next(BODY) == 1
+    second.finish(1, 'complete', {})
+    with pytest.raises(RunPaused, match='run_attempt_budget'):
+        first.reserve_next(BODY)

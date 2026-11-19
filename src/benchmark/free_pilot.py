@@ -66,14 +66,29 @@ class PilotJournal:
             db.rollback();raise
         finally:db.close()
     def reserve(self,ordinal,request):
+        _, state, payload = self._reserve(ordinal, request)
+        return state, payload
+
+    def reserve_next(self, request):
+        """Append an interactive call without replaying any prior reservation."""
+        ordinal, _, _ = self._reserve(None, request)
+        return ordinal
+
+    def _reserve(self,ordinal,request):
         now=self.clock();request_sha=digest(request)
         midnight=datetime.fromtimestamp(now,timezone.utc).replace(hour=0,minute=0,second=0,microsecond=0).timestamp()
         with self.transaction() as db:
+            if ordinal is None:
+                if db.execute("SELECT 1 FROM pilot_calls WHERE run=? AND state='reserved' LIMIT 1",
+                              (self.run_id,)).fetchone():
+                    raise RunPaused('uncertain_attempt_requires_review')
+                ordinal = db.execute('SELECT COALESCE(MAX(ordinal), -1) + 1 FROM pilot_calls WHERE run=?',
+                                     (self.run_id,)).fetchone()[0]
             existing=db.execute('SELECT request_sha,state,payload FROM pilot_calls WHERE run=? AND ordinal=?',(self.run_id,ordinal)).fetchone()
             if existing:
                 if existing[0]!=request_sha:raise RunPaused('reconstruction_diverged')
                 if existing[1]=='reserved':raise RunPaused('uncertain_attempt_requires_review')
-                return existing[1],json.loads(existing[2])
+                return ordinal,existing[1],json.loads(existing[2])
             until=db.execute('SELECT blocked_until FROM pilot_control WHERE id=1').fetchone()[0]
             if until>now:raise RunPaused('upstream_rate_limit_pause',retry_at=until)
             count=db.execute('SELECT COUNT(*) FROM pilot_calls WHERE run=?',(self.run_id,)).fetchone()[0]
@@ -83,11 +98,22 @@ class PilotJournal:
             recent=db.execute('SELECT started FROM pilot_calls WHERE started>? ORDER BY started',(now-60,)).fetchall()
             if len(recent)>=self.minute_limit:raise RunPaused('project_minute_quota',retry_at=recent[0][0]+60)
             db.execute('INSERT INTO pilot_calls VALUES (?,?,?,?,?,NULL)',(self.run_id,ordinal,request_sha,now,'reserved'))
-            return None,None
+            return ordinal,None,None
     def finish(self,ordinal,state,payload):
         with self.transaction() as db:
             changed=db.execute("UPDATE pilot_calls SET state=?,payload=? WHERE run=? AND ordinal=? AND state='reserved'",(state,canonical(payload),self.run_id,ordinal)).rowcount
             if changed!=1:raise RunPaused('journal_state_changed')
+
+    def resolve_interrupted(self, ordinal):
+        """Close an old pending call as spent after an explicit operator decision."""
+        payload = canonical({'code':'operator_marked_interrupted','status':502})
+        with self.transaction() as db:
+            return db.execute(
+                "UPDATE pilot_calls SET state='error',payload=? WHERE run=? AND ordinal=? "
+                "AND state='reserved' AND started<=?",
+                (payload, self.run_id, ordinal, self.clock()-120),
+            ).rowcount == 1
+
     def block_rate_limit(self):
         now=self.clock();next_day=datetime.fromtimestamp(now,timezone.utc).replace(hour=0,minute=0,second=0,microsecond=0).timestamp()+86400
         with self.transaction() as db:db.execute('UPDATE pilot_control SET blocked_until=MAX(blocked_until,?) WHERE id=1',(next_day,))
@@ -99,8 +125,9 @@ class PilotJournal:
 
 class JournaledProvider:
     mode='live'
-    def __init__(self,provider,journal,observer=None):
+    def __init__(self,provider,journal,observer=None,*,append=False):
         self.provider,self.journal,self.observer=provider,journal,observer
+        self.append=append
         self.ordinal=0;self.replayed_calls=0;self.new_calls=0
         self.attempts=[]
     def _notify(self,kind,**details):
@@ -113,9 +140,13 @@ class JournaledProvider:
         except sqlite3.Error:
             raise RunPaused('quota_journal_unavailable_or_write_uncertain') from None
     def __call__(self,request):
-        ordinal=self.ordinal;self.ordinal+=1
+        if self.append:
+            ordinal=self._journal_call(self.journal.reserve_next,request)
+            state,payload=None,None
+        else:
+            ordinal=self.ordinal;self.ordinal+=1
+            state,payload=self._journal_call(self.journal.reserve,ordinal,request)
         attempt_id=f"{self.journal.run_id}:{ordinal}"
-        state,payload=self._journal_call(self.journal.reserve,ordinal,request)
         if state is not None:
             self.replayed_calls+=1
             self.attempts.append({'attempt_id':attempt_id,'ordinal':ordinal,'state':state,'replayed':True})
@@ -135,14 +166,14 @@ class JournaledProvider:
         except Exception as exc:
             code=exc.code if isinstance(exc,ProviderError) else 'upstream_or_processing_error'
             status=exc.status if isinstance(exc,ProviderError) else 502
+            until = self._journal_call(self.journal.block_rate_limit) if code=='upstream_rate_limited' else None
             self._journal_call(self.journal.finish,ordinal,'error',{'code':code,'status':status})
             if self.attempts and self.attempts[-1]['ordinal']==ordinal:
                 self.attempts[-1]['state']='error'
             self._notify('provider_error',ordinal=ordinal,code=code,attempt_id=attempt_id)
-            if isinstance(exc,ProviderError) and exc.code=='upstream_rate_limited':
-                until=self._journal_call(self.journal.block_rate_limit)
+            if until is not None:
                 raise RunPaused('upstream_rate_limit_pause',retry_at=until) from None
-            raise RunPaused('upstream_attempt_failed_requires_inspection') from None
+            raise RunPaused('upstream_attempt_failed_requires_inspection',diagnostics={'code':code}) from None
         self._journal_call(self.journal.finish,ordinal,'complete',response)
         if self.attempts and self.attempts[-1]['ordinal']==ordinal:
             self.attempts[-1]['state']='complete'

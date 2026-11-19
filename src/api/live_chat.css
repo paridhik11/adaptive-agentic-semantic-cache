@@ -16,6 +16,13 @@
 .chat-history h2{margin:0 0 .35rem;font-size:15px}
 .chat-history article p,.chat-history article ul{margin:.5rem 0 0}
 .chat-history .message{white-space:pre-wrap;overflow-wrap:anywhere}
+.answer-content{overflow-wrap:anywhere}
+.answer-content ol,.answer-content ul{padding-inline-start:1.5rem}
+.answer-content li+li{margin-top:.25rem}
+.answer-content h3{margin:.9rem 0 .4rem;font-size:1rem}
+.answer-content code{padding:.06rem .22rem;background:#edf3ee;border-radius:4px}
+.answer-content pre{max-width:100%;overflow:auto;padding:.8rem;background:#edf3ee;border:1px solid #dce5d9;border-radius:8px}
+.answer-content pre code{padding:0;background:none;overflow-wrap:normal}
 .chat-history .question{background:#eef4eb}
 .chat-receipt{display:flex;flex-wrap:wrap;gap:.35rem .8rem;list-style:none;padding:0;color:#315644;font-size:12px}
 .chat-form{display:grid;gap:.55rem;margin-top:1rem}
@@ -23,6 +30,7 @@
 .chat-form textarea{width:100%;min-height:6rem;font:inherit;background:#f8faf7;border:1px solid #b5c5b9;border-radius:8px;padding:.7rem;color:#182a2a}
 .chat-controls,.chat-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.6rem 1rem}
 .chat-controls label{display:flex;gap:.3rem;align-items:center}
+.chat-controls select{font:inherit;color:inherit;border:1px solid #b5c5b9;border-radius:6px;background:white;padding:.2rem .35rem}
 .chat-actions button{width:auto;margin:0;font-size:12px}
 #chat-error{color:#863c2b;margin:0}
 .chat-method{margin:1rem 0 2rem;color:#4e6458}

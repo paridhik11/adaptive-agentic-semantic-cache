@@ -88,7 +88,9 @@ class HTTPChatProvider:
             return parsed
         except HTTPError as exc:
             exc.close()
-            raise ProviderError("upstream_rate_limited" if exc.code == 429 else "upstream_status",
+            code = {401: "upstream_auth_rejected", 403: "upstream_access_denied",
+                    404: "upstream_model_unavailable", 429: "upstream_rate_limited"}.get(exc.code, "upstream_status")
+            raise ProviderError(code,
                                 503 if exc.code == 429 else 502) from None
         except (TimeoutError, socket.timeout):
             raise ProviderError("upstream_timeout", 504) from None

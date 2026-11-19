@@ -1,10 +1,11 @@
-"""Local semantic reuse for short standalone definitions in live chat."""
+"""Local reuse for stable definitions and comparisons in live chat."""
 from collections import OrderedDict
 from difflib import SequenceMatcher
 from functools import lru_cache
 import json
 import re
 import sqlite3
+from threading import Lock
 import time
 
 from src.policy.decomposed_applicability import answer_satisfies_requirements, requirement_guard
@@ -25,7 +26,12 @@ _DEFINITION = re.compile(
     r"define |explain (?:the (?:meaning|concept) of )?)(?P<subject>.+)",
     re.IGNORECASE,
 )
-_QUALIFIER = re.compile(r"\b(?:with|without|using|in|versus|vs|between|except|include|example|examples|steps|compare)\b", re.I)
+_QUALIFIER = re.compile(
+    r"\b(?:with|without|using|in|for|per|under|within|after|before|at|and|or|not|"
+    r"versus|vs|between|except|include|example|examples|steps|compare)\b", re.I)
+_COMPARISON = re.compile(
+    r"(?:compare|(?:what is|what['’]s|explain) the difference between|difference between) (.+?) and (.+)"
+    r"|(.+?) (?:vs\.?|versus) (.+)", re.I)
 _ANSWER_DEFINITION = re.compile(
     r"([a-z][a-z0-9 -]{0,99}?) (?:is|are|means|refers to)\b(?!\s+(?:not|unclear|unknown)\b)", re.I)
 
@@ -50,6 +56,21 @@ def _topic_words(subject):
     if words and words[0] in ("a", "an", "the"):
         words = words[1:]
     return tuple(words) if 0 < len(words) <= 5 else None
+
+
+def comparison_subjects(question):
+    match = _COMPARISON.fullmatch(question.strip().rstrip("?.!").strip())
+    if not match:
+        return None
+    left = _topic_words(match[1] or match[3])
+    right = _topic_words(match[2] or match[4])
+    return (left, right) if left and right and left != right else None
+
+
+def _covers_comparison(subjects, answer):
+    text = " ".join(answer.casefold().translate(str.maketrans("", "", "*_`")).split())
+    return all(re.search(r"(?<![\w-])" + re.escape(" ".join(topic)) + r"(?![\w-])", text)
+               for topic in subjects)
 
 
 @lru_cache(maxsize=1)
@@ -100,6 +121,24 @@ def load_chat_models():
     return DenseEncoder(ENCODER_MODEL, ENCODER_REVISION), LocalPairScorer(), LocalPassageScorer()
 
 
+class ChatResponseCache(ScopedResponseCache):
+    """Require answer evidence before admitting ambiguous topic shorthand."""
+
+    @staticmethod
+    def _admissible(response, request):
+        if not ScopedResponseCache._admissible(response, request):
+            return False
+        question = request["messages"][-1]["content"]
+        content = response["choices"][0]["message"]["content"]
+        comparison = comparison_subjects(question)
+        if comparison:
+            return question.lower().startswith(("compare ", "what ", "explain ")) or _covers_comparison(
+                comparison, content)
+        if not definition_subject(question) and definition_subject(question, shorthand=True):
+            return confirmed_definition(question, content) is not None
+        return True
+
+
 class ChatSemanticReuse:
     """Resolve guarded matches through the existing exact cache and source-bound index."""
 
@@ -107,12 +146,17 @@ class ChatSemanticReuse:
         self.exact, self.storage = exact, storage
         self.models = models
         self.warmed = OrderedDict()
+        self._warm_lock = Lock()
+        self._model_lock = Lock()
 
     def process(self, body, *, tenant_id, provider, bypass=False):
         question = body["messages"][-1]["content"]
-        subject = definition_subject(question, shorthand=True) if len(body["messages"]) == 2 and not bypass else None
-        if not subject:
+        if len(body["messages"]) != 2 or bypass:
             return self.exact.process(body, tenant_id=tenant_id, provider=provider, bypass=bypass), None, None
+        comparison = comparison_subjects(question)
+        subject = None if comparison else definition_subject(question, shorthand=True)
+        if not subject and not comparison:
+            return self.exact.process(body, tenant_id=tenant_id, provider=provider), None, None
 
         namespace = digest({
             "tenant": tenant_id, "request": request_boundary(body),
@@ -120,9 +164,9 @@ class ChatSemanticReuse:
             "contract": "live-definition-reuse-v1",
         })
         source_key = self.exact.request_key(body, tenant_id)
-        explicit = definition_subject(question)
-        canonical = "what is a " + " ".join(subject)
-        subject_terms = frozenset(subject)
+        explicit = definition_subject(question) if subject else None
+        canonical = "what is a " + " ".join(subject or ())
+        subject_terms = frozenset(subject or ())
         started = time.perf_counter()
         epoch, vector, match, decision = None, None, None, None
 
@@ -131,7 +175,7 @@ class ChatSemanticReuse:
             try:
                 epoch = self.storage.invalidation_epoch
                 ranked = []
-                definitions = {}
+                matches_by_topic = {}
                 for record in self.storage.recover_candidates(namespace, tenant_id, epoch):
                     identity, key, token, candidate_json, vector_json, response_json, _ = record
                     original = json.loads(candidate_json)
@@ -144,11 +188,16 @@ class ChatSemanticReuse:
                     if not self.exact._admissible(answer, checked):
                         continue
                     content = answer["choices"][0]["message"]["content"]
+                    if comparison:
+                        if (comparison_subjects(saved_question) == comparison
+                                and _covers_comparison(comparison, content)):
+                            matches_by_topic[comparison] = (2, identity, key, token, saved_question, answer)
+                        continue
                     confirmed = confirmed_definition(saved_question, content)
                     if confirmed:
                         strength = _topic_match(subject, confirmed)
                         if strength and not answer_satisfies_requirements(question, content):
-                            definitions[confirmed] = (strength, identity, key, token, saved_question, answer)
+                            matches_by_topic[confirmed] = (strength, identity, key, token, saved_question, answer)
                     other_subject = definition_subject(saved_question)
                     if not self.models or not explicit or not other_subject:
                         continue
@@ -156,23 +205,25 @@ class ChatSemanticReuse:
                     if subject_terms < other_terms or other_terms < subject_terms:
                         continue
                     ranked.append((vector_json, identity, key, token, saved_question, other_subject, answer))
-                if definitions:
-                    strongest = max(item[0] for item in definitions.values())
-                    matches = [item for item in definitions.values() if item[0] == strongest]
+                if matches_by_topic:
+                    strongest = max(item[0] for item in matches_by_topic.values())
+                    matches = [item for item in matches_by_topic.values() if item[0] == strongest]
                     if len(matches) != 1:
                         decision = "ambiguous_candidates"
                         return None
                     _, identity, key, token, saved_question, answer = matches[0]
                     if self.storage.candidate_current(identity, key, token, namespace, tenant_id, epoch):
-                        decision = "definition_verified"
+                        decision = "comparison_verified" if comparison else "definition_verified"
                         match = {"matched_question": saved_question, "similarity": None}
-                        return ResponseCacheResult(answer, "HIT", "definition_reuse_hit", 0, False,
+                        reason = "comparison_reuse_hit" if comparison else "definition_reuse_hit"
+                        return ResponseCacheResult(answer, "HIT", reason, 0, False,
                                                    (time.perf_counter() - started) * 1_000)
                     return None
                 if not self.models or not explicit or not ranked:
                     return None
                 encoder, pair_scorer, answer_scorer = self.models
-                vector = normalize(encoder.encode(canonical))
+                with self._model_lock:
+                    vector = normalize(encoder.encode(canonical))
                 scored = []
                 for vector_json, identity, key, token, saved_question, other_subject, answer in ranked:
                     existing = normalize(json.loads(vector_json))
@@ -191,14 +242,15 @@ class ChatSemanticReuse:
                     decision = "answer_not_verified"
                     return None
                 canonical_source = "what is a " + " ".join(other_subject)
-                pair = min(pair_scorer.score(canonical, canonical_source)["pair_score"],
-                           pair_scorer.score(canonical_source, canonical)["pair_score"])
-                if not pair >= PAIR_MIN:
-                    decision = "meaning_not_verified"
-                    return None
-                if not answer_scorer.score(question, content)["probability"] >= ANSWER_MIN:
-                    decision = "answer_not_verified"
-                    return None
+                with self._model_lock:
+                    pair = min(pair_scorer.score(canonical, canonical_source)["pair_score"],
+                               pair_scorer.score(canonical_source, canonical)["pair_score"])
+                    if not pair >= PAIR_MIN:
+                        decision = "meaning_not_verified"
+                        return None
+                    if not answer_scorer.score(question, content)["probability"] >= ANSWER_MIN:
+                        decision = "answer_not_verified"
+                        return None
                 if not self.storage.candidate_current(identity, key, token, namespace, tenant_id, epoch):
                     return None
                 decision = "verified"
@@ -210,29 +262,28 @@ class ChatSemanticReuse:
                 decision = "local_check_unavailable"
                 return None
 
-        def admit_response(_request, response):
-            return bool(explicit or confirmed_definition(
-                question, response["choices"][0]["message"]["content"]))
-
-        result = self.exact.process(body, tenant_id=tenant_id, provider=provider,
-                                    on_miss=resolve, admit_response=admit_response)
+        result = self.exact.process(body, tenant_id=tenant_id, provider=provider, on_miss=resolve)
         warm_key = namespace, source_key
-        if result.stored or (result.reason == "scoped_exact_hit" and warm_key not in self.warmed):
+        with self._warm_lock:
+            was_warmed = warm_key in self.warmed
+        if result.stored or (result.reason == "scoped_exact_hit" and not was_warmed):
             try:
                 # Existing exact answers can seed semantic reuse on their first
                 # visit. Admission is tied to the original source and expiry.
                 if epoch is None:
                     epoch = self.storage.invalidation_epoch
                 if vector is None:
-                    vector = normalize(self.models[0].encode(canonical)) if self.models and explicit else []
+                    with self._model_lock:
+                        vector = normalize(self.models[0].encode(canonical)) if self.models and explicit else []
                 if self.storage.admit_candidate(
                     namespace=namespace, source_key=source_key, tenant=tenant_id, payload=_serialize(result.response),
                     epoch=epoch, request=_serialize(body), vector=vector, max_entries=MAX_CANDIDATES, max_bytes=MAX_BYTES,
                 ):
-                    self.warmed[warm_key] = None
-                    self.warmed.move_to_end(warm_key)
-                    if len(self.warmed) > MAX_CANDIDATES:
-                        self.warmed.popitem(last=False)
+                    with self._warm_lock:
+                        self.warmed[warm_key] = None
+                        self.warmed.move_to_end(warm_key)
+                        if len(self.warmed) > MAX_CANDIDATES:
+                            self.warmed.popitem(last=False)
             except Exception:
                 pass  # A completed answer remains usable even if indexing fails.
         return ResponseCacheResult(result.response, result.status, result.reason, result.provider_calls,
