@@ -9,6 +9,7 @@ from threading import Lock
 import time
 
 from src.api.chat_intents import direct_question, question_intent, reusable_fact_answer, wording_key
+from src.api.chat_keywords import keyword_signature
 from src.policy.decomposed_applicability import answer_satisfies_requirements, requirement_guard
 from src.policy.encoders import normalize
 from src.policy.hybrid_cache import request_boundary
@@ -33,6 +34,9 @@ _QUALIFIER = re.compile(
 _COMPARISON = re.compile(
     r"(?:compare|(?:what is|what['’]s|explain) the difference between|difference between) (.+?) and (.+)"
     r"|(.+?) (?:vs\.?|versus) (.+)", re.I)
+_DIRECTIONAL_COMPARISON = re.compile(
+    r"(?:how (?:does|do) (.+?) differ from (.+)|what distinguishes (.+?) from (.+)"
+    r"|how (?:is|are) (.+?) different from (.+))", re.I)
 _ANSWER_DEFINITION = re.compile(
     r"([a-z][a-z0-9 -]{0,99}?) (?:is|are|means|refers to)\b(?!\s+(?:not|unclear|unknown)\b)", re.I)
 
@@ -65,11 +69,11 @@ def _topic_words(subject):
 
 
 def comparison_subjects(question):
-    match = _COMPARISON.fullmatch(direct_question(question).rstrip("?.!").strip())
+    text = direct_question(question).rstrip("?.!").strip()
+    match = _COMPARISON.fullmatch(text) or _DIRECTIONAL_COMPARISON.fullmatch(text)
     if not match:
         return None
-    left = _topic_words(match[1] or match[3])
-    right = _topic_words(match[2] or match[4])
+    left, right = map(_topic_words, filter(None, match.groups()))
     return (left, right) if left and right and left != right else None
 
 
@@ -135,6 +139,17 @@ def definition_alias(answer):
     return head, alias
 
 
+def _lookup_tag(body, signature):
+    return digest({"contract": "ordered-keywords-v1", "boundary": request_boundary(body), "keywords": signature})
+
+
+def _usable_keyword_answer(content):
+    return not re.match(
+        r"(?:i (?:do not know|don't know|cannot|can't|am not sure)|please clarify|could you clarify)\b",
+        content.lstrip(), re.I,
+    ) and not (content.rstrip().endswith("?") and len(content.split()) < 14)
+
+
 def load_chat_models():
     from src.policy.encoders import DenseEncoder
     from src.policy.local_models import ENCODER_MODEL, ENCODER_REVISION, LocalPairScorer, LocalPassageScorer
@@ -158,6 +173,8 @@ class ChatResponseCache(ScopedResponseCache):
         if comparison:
             return question.lower().startswith(("compare ", "what ", "explain ")) or _covers_comparison(
                 comparison, content)
+        if keyword_signature(question):
+            return _usable_keyword_answer(content)
         if not definition_subject(question) and (subject := definition_subject(question, shorthand=True)):
             alias = definition_alias(content)
             return bool((alias and subject in alias) or confirmed_definition(question, content))
@@ -174,6 +191,49 @@ class ChatSemanticReuse:
         self._warm_lock = Lock()
         self._model_lock = Lock()
 
+    def backfill_keywords(self, tenant_id):
+        def tag_request(source_key, raw_request):
+            try:
+                body = json.loads(raw_request)
+                if len(body["messages"]) == 2 and self.exact.request_key(body, tenant_id) == source_key:
+                    signature = keyword_signature(body["messages"][-1]["content"])
+                    if signature:
+                        return _lookup_tag(body, signature)
+            except (ValueError, KeyError, IndexError, TypeError):
+                pass
+            return None
+
+        try:
+            self.storage.backfill_candidate_tags(tenant_id, tag_request, max_bytes=MAX_BYTES)
+        except sqlite3.Error:
+            pass  # Old records can be indexed when their exact questions are asked again.
+
+    def _lookup_keywords(self, checked, tenant_id, signature, tag, epoch):
+        question = checked["messages"][-1]["content"]
+        for identity, key, token, raw_request, raw_answer, namespace in self.storage.recover_tagged_candidates(
+            tag, tenant_id, epoch,
+        ):
+            original = json.loads(raw_request)
+            if (self.exact.request_key(original, tenant_id) != key
+                    or request_boundary(original) != request_boundary(checked)
+                    or self.exact._eligibility_reason(original) is not None):
+                continue
+            saved = original["messages"][-1]["content"]
+            # The signature preserves the ordered content and requirements.
+            # Raw wording guards also match verbs in grammatical framing,
+            # such as "written" in a request for the same formula.
+            if keyword_signature(saved) != signature:
+                continue
+            answer = json.loads(raw_answer)
+            if not self.exact._admissible(answer, checked):
+                continue
+            content = answer["choices"][0]["message"]["content"]
+            if not _usable_keyword_answer(content) or answer_satisfies_requirements(question, content):
+                continue
+            if self.storage.candidate_current(identity, key, token, namespace, tenant_id, epoch):
+                return saved, answer
+        return None
+
     def process(self, body, *, tenant_id, provider, bypass=False):
         question = body["messages"][-1]["content"]
         if len(body["messages"]) != 2 or bypass:
@@ -182,7 +242,9 @@ class ChatSemanticReuse:
         comparison = None if intent else comparison_subjects(question)
         subject = None if intent or comparison else definition_subject(question, shorthand=True)
         wording = None if intent else wording_key(question)
-        if not (subject or comparison or intent or wording):
+        signature = keyword_signature(question)
+        tag = _lookup_tag(body, signature) if signature else None
+        if not (subject or comparison or intent or wording or signature):
             return self.exact.process(body, tenant_id=tenant_id, provider=provider), None, None
 
         boundary = {"tenant": tenant_id, "request": request_boundary(body)}
@@ -204,6 +266,14 @@ class ChatSemanticReuse:
             nonlocal epoch, vector, match, decision
             try:
                 epoch = self.storage.invalidation_epoch
+                if tag and not comparison:
+                    keyword_hit = self._lookup_keywords(checked, tenant_id, signature, tag, epoch)
+                    if keyword_hit:
+                        saved, answer = keyword_hit
+                        decision = "keyword_verified"
+                        match = {"matched_question": saved, "similarity": None}
+                        return ResponseCacheResult(answer, "HIT", "ordered_keyword_hit", 0, False,
+                                                   (time.perf_counter() - started) * 1_000)
                 ranked = []
                 matches_by_topic = {}
                 for record in self.storage.recover_candidates(namespace, tenant_id, epoch):
@@ -234,6 +304,12 @@ class ChatSemanticReuse:
                         continue
                     if not subject:
                         continue
+                    if signature and signature[0] == "definition":
+                        source_signature = keyword_signature(saved_question)
+                        if source_signature and source_signature[0] == "definition":
+                            before, after = source_signature[1], signature[1]
+                            if before != after and [w.casefold() for w in before] == [w.casefold() for w in after]:
+                                continue  # Acronyms and mixed-case identifiers are distinct keywords.
                     alias = definition_alias(content)
                     if (alias and alias[1] == subject and definition_subject(saved_question, shorthand=True) == alias[0]
                             and not answer_satisfies_requirements(question, content)):
@@ -247,6 +323,8 @@ class ChatSemanticReuse:
                     other_subject = definition_subject(saved_question)
                     if not self.models or not explicit or not other_subject:
                         continue
+                    if subject != other_subject and sorted(subject) == sorted(other_subject):
+                        continue  # The same terms in a different order can name a different concept.
                     other_terms = frozenset(other_subject)
                     if subject_terms < other_terms or other_terms < subject_terms:
                         continue
@@ -327,6 +405,7 @@ class ChatSemanticReuse:
                 if self.storage.admit_candidate(
                     namespace=namespace, source_key=source_key, tenant=tenant_id, payload=_serialize(result.response),
                     epoch=epoch, request=_serialize(body), vector=vector, max_entries=MAX_CANDIDATES, max_bytes=MAX_BYTES,
+                    lookup_tag=tag,
                 ):
                     with self._warm_lock:
                         self.warmed[warm_key] = None

@@ -170,6 +170,7 @@ async function send(question, includeHistory, {clearDraft = true, autoContext = 
     if (result.semantic_match) {
       const { similarity } = result.semantic_match;
       const detail = result.semantic_decision === "intent_verified" ? "same subject and requested fact or calculation" :
+        result.semantic_decision === "keyword_verified" ? "same ordered keywords and request type" :
         result.semantic_decision === "wording_verified" ? "same request with different framing" :
         result.semantic_decision === "comparison_verified" ? "same comparison" :
         similarity === null ? "same defined topic" : `similarity ${similarity.toFixed(2)}`;

@@ -11,6 +11,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from starlette.concurrency import run_in_threadpool
 
 from src.api.chat_intents import direct_question, question_intent, scope_reply
+from src.api.chat_keywords import educational_keywords, keyword_signature
 from src.api.chat_semantic import ChatResponseCache, ChatSemanticReuse, comparison_subjects, definition_subject
 from src.api.demo import workbench_shell
 from src.api.gateway import _strict_json
@@ -121,7 +122,8 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
         if intent and intent.subject and decision.reason == "not_rule_confirmed_static":
             return EligibilityDecision(True, "standalone_structured_question")
         if decision.reason == "not_rule_confirmed_static" and (
-                _DEFINITION.match(question) or definition_subject(question, shorthand=True)
+                _DEFINITION.match(question) or educational_keywords(keyword_signature(question))
+                or definition_subject(question, shorthand=True)
                 or comparison_subjects(question)):
             return EligibilityDecision(True, "standalone_educational_request")
         return decision
@@ -129,6 +131,7 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
     storage = SQLiteResponseStore(directory / "chat.sqlite", namespace="general-chat-v1")
     cache = ChatResponseCache(eligibility=eligibility, storage=storage)
     semantic = ChatSemanticReuse(cache, storage, semantic_models)
+    semantic.backfill_keywords(TENANT)
     provider_lock = threading.Lock()
     stats_lock = threading.Lock()
     session = secrets.token_urlsafe(32)

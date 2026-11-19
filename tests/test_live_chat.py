@@ -136,11 +136,12 @@ def test_comparison_reuse_across_domains_preserves_order_and_scope(tmp_path, lef
 
     with client(tmp_path, ComparisonTransport()) as c:
         assert c.post("/api/chat", json={"question": seed}).json()["provider_calls"] == 1
-        for wording in (f"{left} vs. {right}?", f"What's the difference between {left} and {right}?"):
+        for wording in (f"{left} vs. {right}?", f"What's the difference between {left} and {right}?",
+                        f"How does {left} differ from {right}?"):
             hit = c.post("/api/chat", json={"question": wording}).json()
             assert hit["answer"] == answer and hit["semantic_decision"] == "comparison_verified", hit
             assert hit["provider_calls"] == 0
-        for wording in (f"{right} vs {left}?", f"{left} vs {different}?",
+        for wording in (f"{right} vs {left}?", f"How does {right} differ from {left}?", f"{left} vs {different}?",
                         f"{left} vs {right} for retail clients?",
                         f"Compare {left} and {right} as of Q3."):
             miss = c.post("/api/chat", json={"question": wording}).json()
@@ -422,3 +423,107 @@ def test_event_time_preserves_precision_date_and_case_sensitive_measure(tmp_path
         c.post("/api/chat", json={"question": "How do I calculate VaR?"})
         var = c.post("/api/chat", json={"question": "How can I compute VAR?"}).json()
         assert var["provider_calls"] == 1 and var["cache_tier"] is None
+
+
+KEYWORD_REPLAY = [
+    ("Who designed the Sydney Opera House?", "Jørn Utzon designed the Sydney Opera House.",
+     ["Who was the Sydney Opera House designed by?", "Could you tell me who designed the Sydney Opera House?"],
+     ["Who was the Sydney Opera House named by?", "Who designed the Oslo Opera House?",
+      "Who was the Sydney Opera House designed for?"]),
+    ("What is the capital of Japan?", "Tokyo is the capital of Japan.",
+     ["Japan's capital city?", "Capital city of Japan?"],
+     ["What is the capital of China?", "What was the capital of Japan?", "What was the capital of Japan in 1600?",
+      "What is the largest city in Japan?"]),
+    ("Why is ice less dense than liquid water?", "Ice forms an open crystal lattice.",
+     ["Explain why ice is less dense than liquid water.", "Could you explain why ice is less dense than liquid water?"],
+     ["Why is liquid water less dense than ice?", "Why is ice denser than liquid water?",
+      "What is ice less dense than?"]),
+    ("How does a heat pump work?", "A heat pump moves heat by compressing and expanding refrigerant.",
+     ["Explain how a heat pump operates.", "How does the heat pump function?"],
+     ["How does a ground-source heat pump work?", "What is a heat pump used for?",
+      "How does a heat pump work below 0°C?"]),
+    ("How do I sort rows by revenue descending?", "Sort the rows using revenue as a descending sort key.",
+     ["Show me how to sort rows by revenue descending.", "How can one sort rows by revenue descending?"],
+     ["How to sort rows by revenue ascending?", "How to sort rows by descending revenue then region?",
+      "How to sort rows by revenue descending in Excel?"]),
+    ("How to convert a tuple to a list?", "Pass the tuple to list() to create a list.",
+     ["Can you explain how to convert from a tuple to a list?",
+      "How can I convert to a list from a tuple?"],
+     ["How do I convert a list to a tuple?", "How to convert a tuple to a list without copying?",
+      "How to convert a tuple to a list with an example?"]),
+    ("What is the purpose of an index fund?", "An index fund aims to track a market index.",
+     ["What is an index fund used for?", "What do people use an index fund for?"],
+     ["What is an index fund?", "What is the purpose of a bond index fund?",
+      "What is the purpose of an index fund today?"]),
+    ("What is the formula for weighted average?", "Divide the sum of weighted values by the sum of the weights.",
+     ["Give me the formula for weighted average.", "How is the formula for weighted average written?"],
+     ["Give me the formula for weighted median.", "Give me the formula for weighted average with an example.",
+      "Give me the formula for weighted average of returns."]),
+    ("Who was India's first prime minister?", "Jawaharlal Nehru was the first prime minister of India.",
+     ["Who served as the first prime minister of India?", "Name the first person to serve as India's prime minister."],
+     ["Who served as the second prime minister of India?", "Who served as the first prime minister of Pakistan?",
+      "Who serves as the current prime minister of India?"]),
+]
+
+
+@pytest.mark.parametrize(("seed", "answer", "rephrases", "changed"), KEYWORD_REPLAY)
+def test_ordered_keyword_reuse(tmp_path, seed, answer, rephrases, changed):
+    transport = AnswersTransport({seed: answer})
+    with client(tmp_path, transport) as c:
+        first = c.post("/api/chat", json={"question": seed}).json()
+        assert first["stored"] and first["provider_calls"] == 1, first
+    with client(tmp_path, transport) as c:
+        for question in rephrases:
+            result = c.post("/api/chat", json={"question": question}).json()
+            assert result["cache_tier"] == "SEMANTIC" and result["provider_calls"] == 0, result
+            assert result["answer"] == answer
+            assert result["semantic_match"]["matched_question"] == seed
+        for question in changed:
+            result = c.post("/api/chat", json={"question": question}).json()
+            assert result["provider_calls"] == 1 and result["cache_tier"] is None, result
+        assert len(transport.requests) == 1 + len(changed)
+
+
+def test_keyword_upgrade_backfills_existing_answers_and_respects_source_expiry(tmp_path):
+    seed = "How does a heat pump work?"
+    paraphrase = "Explain how a heat pump operates."
+    answer = "A heat pump moves heat across a temperature gradient."
+    transport = AnswersTransport({seed: answer})
+    with client(tmp_path, transport) as c:
+        assert c.post("/api/chat", json={"question": seed}).json()["stored"]
+    database = tmp_path / "chat" / "chat.sqlite"
+    with sqlite3.connect(database) as db:
+        source = db.execute("SELECT key, expires, source_token FROM entries").fetchone()
+        db.execute("DROP INDEX semantic_candidates_lookup_tag")
+        db.execute("ALTER TABLE semantic_candidates DROP COLUMN lookup_tag")
+    with client(tmp_path, transport) as c:
+        result = c.post("/api/chat", json={"question": paraphrase}).json()
+        assert result["cache_reason"] == "ordered_keyword_hit" and result["provider_calls"] == 0
+        assert result["answer"] == answer
+        with sqlite3.connect(database) as db:
+            assert db.execute("SELECT key, expires, source_token FROM entries").fetchone() == source
+            assert db.execute("SELECT lookup_tag FROM semantic_candidates").fetchone()[0]
+            db.execute("UPDATE entries SET expires = 0")
+        result = c.post("/api/chat", json={"question": paraphrase}).json()
+        assert result["provider_calls"] == 1 and result["cache_tier"] is None
+
+
+def test_keyword_order_retains_primary_sort_key(tmp_path):
+    seed = "How do I sort rows by region then revenue?"
+    transport = AnswersTransport({seed: "Sort by region first, then revenue within each region."})
+    with client(tmp_path, transport) as c:
+        assert c.post("/api/chat", json={"question": seed}).json()["stored"]
+        reverse = c.post("/api/chat", json={"question": "How to sort rows by revenue then region?"}).json()
+        assert reverse["provider_calls"] == 1 and reverse["cache_tier"] is None
+        match = c.post("/api/chat", json={"question": "Show me how to sort rows by region then revenue."}).json()
+        assert match["provider_calls"] == 0 and match["semantic_match"]["matched_question"] == seed
+
+
+
+def test_keyword_definition_keeps_case_sensitive_abbreviations(tmp_path):
+    seed = "Define VaR."
+    transport = AnswersTransport({seed: "VaR is a quantile-based measure of portfolio losses."})
+    with client(tmp_path, transport) as c:
+        assert c.post("/api/chat", json={"question": seed}).json()["stored"]
+        result = c.post("/api/chat", json={"question": "What is VAR?"}).json()
+        assert result["provider_calls"] == 1 and result["cache_tier"] is None

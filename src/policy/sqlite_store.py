@@ -27,6 +27,9 @@ class SQLiteResponseStore:
             if 'source_token' not in {row[1] for row in db.execute('PRAGMA table_info(entries)')}:
                 db.execute('ALTER TABLE entries ADD COLUMN source_token TEXT')
             db.execute('CREATE TABLE IF NOT EXISTS semantic_candidates (id TEXT PRIMARY KEY, namespace TEXT NOT NULL, source_key TEXT NOT NULL, source_token TEXT NOT NULL, epoch INTEGER NOT NULL, request TEXT NOT NULL, vector TEXT NOT NULL, bytes INTEGER NOT NULL, touched INTEGER NOT NULL)')
+            if 'lookup_tag' not in {row[1] for row in db.execute('PRAGMA table_info(semantic_candidates)')}:
+                db.execute('ALTER TABLE semantic_candidates ADD COLUMN lookup_tag TEXT')
+            db.execute('CREATE INDEX IF NOT EXISTS semantic_candidates_lookup_tag ON semantic_candidates(lookup_tag) WHERE lookup_tag IS NOT NULL')
 
     def _check(self, db):
         row = db.execute('SELECT namespace, epoch FROM metadata WHERE id=1').fetchone()
@@ -77,10 +80,10 @@ class SQLiteResponseStore:
         db.execute('DELETE FROM semantic_candidates WHERE epoch != ? OR NOT EXISTS (SELECT 1 FROM entries e WHERE e.key=semantic_candidates.source_key AND e.source_token=semantic_candidates.source_token AND e.expires>?)', (self._check(db), self.clock()))
 
     def admit_candidate(self, *, namespace, source_key, tenant, payload, epoch,
-                        request, vector, max_entries, max_bytes):
+                        request, vector, max_entries, max_bytes, lookup_tag=None):
         """Bind a retrieval record to an exact admission, never to a hit alias."""
         vector = json.dumps(vector, allow_nan=False)
-        size = sum(len(s.encode()) for s in (namespace, source_key, request, vector, payload))
+        size = sum(len(s.encode()) for s in (namespace, source_key, request, vector, payload, lookup_tag or ""))
         if size > max_bytes:
             return False
         with self._transaction() as db:
@@ -93,7 +96,12 @@ class SQLiteResponseStore:
             identity = uuid.uuid4().hex
             # One record per source/namespace, bounded globally across namespaces.
             db.execute('DELETE FROM semantic_candidates WHERE namespace=? AND source_key=?', (namespace, source_key))
-            db.execute('INSERT INTO semantic_candidates VALUES (?,?,?,?,?,?,?,?,(SELECT COALESCE(MAX(touched),0)+1 FROM semantic_candidates))', (identity, namespace, source_key, source[0], epoch, request, vector, size))
+            db.execute(
+                'INSERT INTO semantic_candidates '
+                '(id, namespace, source_key, source_token, epoch, request, vector, bytes, lookup_tag, touched) '
+                'VALUES (?,?,?,?,?,?,?,?,?,(SELECT COALESCE(MAX(touched),0)+1 FROM semantic_candidates))',
+                (identity, namespace, source_key, source[0], epoch, request, vector, size, lookup_tag),
+            )
             while True:
                 count, total = db.execute('SELECT COUNT(*),COALESCE(SUM(bytes),0) FROM semantic_candidates').fetchone()
                 if count <= max_entries and total <= max_bytes:
@@ -107,6 +115,41 @@ class SQLiteResponseStore:
                 return []
             self._prune_candidates(db)
             return db.execute('SELECT c.id,c.source_key,c.source_token,c.request,c.vector,e.payload,e.expires FROM semantic_candidates c JOIN entries e ON e.key=c.source_key AND e.source_token=c.source_token WHERE c.namespace=? AND e.tenant=? AND c.epoch=? AND e.expires>? ORDER BY c.touched', (namespace, tenant, epoch, self.clock())).fetchall()
+
+    def recover_tagged_candidates(self, tag, tenant, epoch):
+        """Fetch only persisted rows matching a scoped lookup tag."""
+        with self._transaction() as db:
+            if self._check(db) != epoch:
+                return []
+            self._prune_candidates(db)
+            return db.execute(
+                'SELECT c.id,c.source_key,c.source_token,c.request,e.payload,c.namespace '
+                'FROM semantic_candidates c JOIN entries e ON e.key=c.source_key AND e.source_token=c.source_token '
+                'WHERE c.lookup_tag=? AND e.tenant=? AND c.epoch=? AND e.expires>? ORDER BY c.touched DESC',
+                (tag, tenant, epoch, self.clock()),
+            ).fetchall()
+
+    def backfill_candidate_tags(self, tenant, tag_request, *, max_bytes):
+        """Tag existing candidates without replacing their source or expiry."""
+        with self._transaction() as db:
+            self._prune_candidates(db)
+            rows = db.execute(
+                'SELECT c.id,c.source_key,c.request FROM semantic_candidates c '
+                'JOIN entries e ON e.key=c.source_key AND e.source_token=c.source_token '
+                'WHERE e.tenant=? AND c.lookup_tag IS NULL',
+                (tenant,),
+            ).fetchall()
+            total = db.execute('SELECT COALESCE(SUM(bytes),0) FROM semantic_candidates').fetchone()[0]
+            for identity, key, request in rows:
+                tag = tag_request(key, request)
+                if tag is None:
+                    continue
+                size = len(tag.encode('utf-8'))
+                if total + size > max_bytes:
+                    break
+                db.execute('UPDATE semantic_candidates SET lookup_tag=?, bytes=bytes+? WHERE id=?',
+                           (tag, size, identity))
+                total += size
 
     def candidate_current(self, identity, source_key, source_token, namespace, tenant, epoch):
         """Final approval-time snapshot: source, record, expiry and epoch together."""

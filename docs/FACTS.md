@@ -1119,5 +1119,9 @@ Telemetry: `artifacts/metrics_campaign/repeat_rich/` (and root), `artifacts/metr
 | MC-17 | Real-provider pilot workload and request budget | Frozen 4-task pilot (2 seeds, 2 exact repeats across list_operations and dict_operations) proposes exactly 24 provider requests (12 for no_cache, 6 for exact_only, 6 for shadow_semantic), complying with 30-call single run cap and 40-call daily project cap `[CODE]` | `scripts/evaluate_live_paired.py` lines 50-70, 115-140 | `python scripts/evaluate_live_paired.py --check-only` |
 | MC-18 | Shadow semantic mode for live evaluation | Initial live study keeps experimental semantic reuse in shadow mode (mode="shadow"), evaluating neural cross-encoder in background without substituting unverified answers `[CODE]` | `scripts/evaluate_live_paired.py` lines 210-230 | `python scripts/evaluate_live_paired.py --check-only` |
 
+## Live chat keyword replay
 
-
+| ID | Evidence | Source and reproduction |
+| --- | --- | --- |
+| LK-01 | Authored offline development replay over 55 requests and nine isolated caches. Both revisions received nine seeds, 18 paraphrases and 28 changed requests. Semantic hits increased from 0/18 on `facd79c` to 18/18. The tool called the fixture transport on all 28 changed requests. Total fixture calls went from 55 to 37. Questions within each group share a seed answer. | `KEYWORD_REPLAY` in [test_live_chat.py](../tests/test_live_chat.py). Run `python -m pytest -q tests/test_live_chat.py -k ordered_keyword_reuse`. |
+| LK-02 | ComQA public development replay. On 135 groups with 405 requests, the baseline `facd79c` yielded 0/135 semantic hits and 405 fixture calls. With keywords it yielded 1/135 hits (0.02%–4.06% two-sided exact 95% interval under independence), 0/135 changed-question hits (0%–2.70%), and 404 fixture calls. Controls can recur. | `python scripts/evaluate_chat_paraphrases.py comqa_dev.json` using the pinned ComQA development dataset. [Download and instructions](LIVE_CHAT.md#replay-evidence). |

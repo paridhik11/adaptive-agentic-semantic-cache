@@ -150,7 +150,16 @@ def question_intent(question):
         if _object(clause):
             return QuestionIntent("event time " + auxiliary.lower(), clause, precision=precision)
     text = text.casefold()
-    text = re.sub(r"^(?:who (?:was|is) |name )?(?:the )?", "", text)
+    # English can put the country before the title or after it and can
+    # express the job as a role somebody served in.
+    service = re.fullmatch(rf"(?:name |who was )?(?:the )?({_RANK}) person to serve as (.+)", text)
+    if service:
+        rank, office = service.groups()
+        if scoped := re.fullmatch(r"(.+)'s (.+)", office):
+            text = f"{scoped[1]}'s {rank} {scoped[2]}"
+        else:
+            text = f"{rank} {office.removeprefix('the ')}"
+    text = re.sub(r"^(?:who (?:was|is|served as|held the office of) |name )?(?:the )?", "", text)
     possessive = re.fullmatch(rf"(.+)'s ({_RANK}) (.+)", text)
     if possessive:
         entity, ordinal, role = possessive.groups()

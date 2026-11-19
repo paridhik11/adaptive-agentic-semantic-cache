@@ -42,11 +42,21 @@ Leave **Context** on **Automatic** and keep cache reuse enabled.
 
 The local checks compare the requested fact, named subject, rank, qualifiers and answer precision. They also recognize alternate names explicitly stated at the start of a stored definition, such as “A photo (short for photograph) is…”. Arbitrary rephrasings can still miss. The context handling follows the approach of making an incomplete question self-contained before retrieval. [Conversational query rewriting research](https://aclanthology.org/2022.emnlp-main.679/) · [Scoped semantic cache retrieval documentation](https://docs.redisvl.com/en/stable/api/cache.html)
 
+## Keyword lookup
+
+The default chat indexes the request type and ordered keywords when it saves an eligible answer. It recognizes common changes in framing, such as “How does a heat pump work?” and “Explain how a heat pump operates.” It also recognizes grammatical changes that preserve roles, such as asking who designed a building in either the active or passive voice.
+
+Try **How to convert a tuple to a list?** and then **How can I convert to a list from a tuple?**. The cache recognizes the same source and destination and shows **Semantic hit · 0 provider calls** with the original question. **How to convert a list to a tuple?** reverses the operation and gets a fresh answer. Changed values, named subjects, word order that changes the request, and added instructions can also require a fresh answer.
+
+On startup, the app adds keyword entries for eligible questions already in the semantic index. Those answers retain their original expiration. An older answer with only an exact-cache record can be indexed when you ask its original question again. No new dependencies or launcher flags are required.
+
 ### Replay evidence
 
 A constructed offline replay ran the default chat against 41 requests in eight isolated groups. Relative to commit `1c595e4`, it moved from 0/16 to 16/16 semantic hits on intended paraphrases. All 17 changed requests called the fixture provider. Total fixture provider calls fell from 41 to 25. Reproduce the current behavior with `python -m pytest -q tests/test_live_chat.py -k factual_semantic_reuse`. The groups share an answer within each group, and their check results describe these fixtures.
 
-A separate replay selected the first two distinct questions in each of 135 eligible clusters from the published ComQA development set. It used the supplied short answers and the most lexically similar question with disjoint annotated answers as a control per group. Controls may recur across groups. Both revisions returned **0/135 semantic hits** on the paraphrases and **0/135 cache hits** on controls. For 0/135, the two-sided exact 95% binomial interval is 0%–2.70% under independence. Shared controls limit that interpretation. ComQA includes complex natural factoid questions. These results show a remaining coverage gap on that workload. [ComQA paper](https://aclanthology.org/N19-1027/) · [Dataset and annotations](https://qa.mpi-inf.mpg.de/comqa/)
+In an authored keyword replay, the app matched 18/18 rephrasings across nine independent cache setups. The preceding revision `facd79c` matched 0/18. All 28 changed requests made fresh calls in both revisions. Total fixture calls fell from 55 to 37. Reproduce with `python -m pytest -q tests/test_live_chat.py -k "ordered_keyword or keyword_order or keyword_upgrade"`. The questions in each group share an answer. These deterministic counts describe the fixtures. [Recorded results](FACTS.md#live-chat-keyword-replay)
+
+The ComQA development replay used the first two distinct questions in each of 135 eligible clusters. It used their supplied short answers and the most lexically similar question with disjoint annotated answers as a control per group. The keyword update matched **1/135 paraphrases**, up from **0/135** on `facd79c`. It returned **0/135 cache hits** on controls. The two-sided exact 95% intervals under independence are 0.02%–4.06% for 1/135 and 0%–2.70% for 0/135. Controls may recur across groups. ComQA includes complex natural factoid questions, and most still miss. [ComQA paper](https://aclanthology.org/N19-1027/) · [Dataset and annotations](https://qa.mpi-inf.mpg.de/comqa/)
 
 ```powershell
 Invoke-WebRequest https://qa.mpi-inf.mpg.de/comqa/comqa_dev.json -OutFile comqa_dev.json
