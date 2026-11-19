@@ -41,7 +41,7 @@ where = ["."]
 include = ["src", "src.*"]
 
 [tool.setuptools.package-data]
-"src.api" = ["dashboard.html", "workbench.html", "workbench.css", "workbench.js", "demo_reference.json", "demo_reference.LICENSE"]
+"src.api" = ["dashboard.html", "workbench.html", "workbench.css", "workbench.js", "live_chat.html", "live_chat.js", "live_chat.css", "demo_reference.json", "demo_reference.LICENSE"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

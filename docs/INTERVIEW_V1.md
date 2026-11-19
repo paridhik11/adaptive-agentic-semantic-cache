@@ -1,5 +1,7 @@
 # Adaptive Agentic Semantic Cache | Interview V1
 
+For a general question that should call a real model on a cache miss, use the [live chat PowerShell setup](LIVE_CHAT.md).
+
 For the data analyst walkthrough, open the [workload population and eligibility analysis](WORKLOAD_POPULATION_ANALYSIS.md).
 
 For the follow-up studies, see the [reporting requirement check](RISK_V2_RESULTS.md) and the [reporting context scorecard](RISK_V3_RESULTS.md).

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="demo-session" content="__SESSION__">
+  <link rel="icon" href="data:,">
+  <title>Trace · Live chat</title>
+  <link rel="stylesheet" href="/assets/workbench.css">
+  <link rel="stylesheet" href="/assets/live_chat.css">
+  <script src="/assets/live_chat.js" defer></script>
+</head>
+<body>
+  <header class="chat-top">
+    <div class="chat-wrap">
+      <a class="chat-brand" href="/">trace.</a>
+      <span id="model" class="mode-pill live">Connecting…</span>
+    </div>
+  </header>
+  <main class="chat-wrap">
+    <div class="chat-heading">
+      <div>
+        <h1>Live chat</h1>
+        <p>Ask a new question, then ask it again to see the cache decision.</p>
+      </div>
+      __BENCHMARK_LINK__
+    </div>
+    <div class="chat-metrics" aria-live="polite">
+      <div><strong id="quota">—</strong><span>Provider attempts used</span></div>
+      <div><strong id="hits">—</strong><span>Exact hits this session</span></div>
+      <div><strong id="last-time">—</strong><span>Last response time</span></div>
+    </div>
+    <section id="conversation" class="chat-history" aria-label="Conversation" aria-live="polite">
+      <p id="start-hint">Try “What is the difference between INNER JOIN and LEFT JOIN?”</p>
+    </section>
+    <form id="chat-form" class="chat-form">
+      <label for="question">Your question</label>
+      <textarea id="question" rows="3" maxlength="4000" placeholder="Ask a question…" required></textarea>
+      <div class="chat-controls">
+        <label><input id="cache-toggle" type="checkbox" checked> Reuse eligible exact matches</label>
+        <label><input id="follow-up" type="checkbox" disabled> Include recent turns</label>
+      </div>
+      <p id="chat-error" role="alert" hidden></p>
+      <div class="chat-actions">
+        <button id="send" class="primary-button" type="submit" disabled>Send</button>
+        <button id="repeat" class="secondary-button" type="button" disabled>Repeat as new question</button>
+      </div>
+    </form>
+    <details class="chat-method">
+      <summary>How reuse and timing work</summary>
+      <p>A fresh request goes to the configured free OpenRouter model. A complete eligible answer can be reused for one hour under the same standalone request. The cache policy passes follow-ups and time-sensitive questions to the model. The chat uses model knowledge, with no web search.</p>
+      <p>Response time measures server-side processing from cache lookup through the returned answer. Provider time includes the free-provider call and its quota journal. Fresh and repeat timings are shown for the matching question.</p>
+    </details>
+  </main>
+</body>
+</html>

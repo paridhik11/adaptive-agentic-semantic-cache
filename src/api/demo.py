@@ -85,6 +85,38 @@ def _live_capacity(journal,required=3):
     return {'run_attempts':run,'run_limit':journal.max_calls,'daily_attempts':daily,'daily_limit':40}
 
 
+def workbench_shell(title, session, benchmark_directory, assets):
+    app=FastAPI(title=title,docs_url=None,redoc_url=None,openapi_url=None)
+    app.add_middleware(TrustedHostMiddleware,allowed_hosts=['127.0.0.1','localhost','[::1]','testserver'])
+
+    @app.middleware('http')
+    async def protect(request,call_next):
+        if request.url.path.startswith('/api/'):
+            token=request.headers.get('x-demo-session','')
+            if not secrets.compare_digest(token.encode(),session.encode()):return JSONResponse({'error':'Open the workbench page to start a local session.'},status_code=401)
+            origin=request.headers.get('origin')
+            if origin and origin!=str(request.base_url).rstrip('/'):
+                return JSONResponse({'error':'Cross-origin requests are disabled.'},status_code=403)
+        response=await call_next(request)
+        response.headers.update({'Cache-Control':'no-store','X-Content-Type-Options':'nosniff',
+            'Content-Security-Policy':"default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; frame-ancestors 'none'; form-action 'none'"})
+        return response
+
+    benchmark_link = ""
+    if benchmark_directory is not None:
+        app.mount("/benchmark", StaticFiles(directory=benchmark_directory, html=True), name="benchmark")
+        benchmark_link = '<a class="secondary-button benchmark-link" href="/benchmark/">Benchmark analysis ↗</a>'
+
+    @app.get('/assets/{name}')
+    def serve_asset(name: str):
+        if name not in assets:
+            return Response(status_code=404)
+        media = 'text/css' if name.endswith('.css') else 'text/javascript'
+        return Response(Path(__file__).with_name(name).read_text(encoding='utf-8'), media_type=media)
+
+    return app, benchmark_link
+
+
 def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_answer_cache=False,task_memory=False,experimental_semantic=False,benchmark_directory=None):
     if type(task_memory) is not bool:raise ValueError('task_memory must be boolean')
     if type(experimental_semantic) is not bool:raise ValueError('experimental_semantic must be boolean')
@@ -94,7 +126,7 @@ def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_
     if live and whole_answer_cache:
         raise ValueError('before-agent demo is offline reference mode only pending live budget integration')
     directory=Path(directory);directory.mkdir(parents=True,exist_ok=True)
-    reference=json.loads(Path(__file__).with_name('demo_reference.json').read_text())
+    reference=json.loads(Path(__file__).with_name('demo_reference.json').read_text(encoding='utf-8'))
     documents={d['id']:'# '+d['title']+'\n\n'+d['text'] for d in reference['documents']}
     model=MODEL if live else 'fixture-model';journal=None
     if live:
@@ -147,36 +179,15 @@ def create_demo_app(directory,*,live=False,journal_path=None,api_key=None,whole_
     database=directory/'tasks.sqlite'
     with sqlite3.connect(database) as db:
         db.execute('CREATE TABLE IF NOT EXISTS demo_tasks (id TEXT PRIMARY KEY, created REAL NOT NULL, question TEXT NOT NULL, calls INTEGER NOT NULL DEFAULT 0, elapsed_ms REAL NOT NULL DEFAULT 0, error TEXT)')
-    app=FastAPI(title='Trace · documentation workbench',docs_url=None,redoc_url=None,openapi_url=None)
-    app.add_middleware(TrustedHostMiddleware,allowed_hosts=['127.0.0.1','localhost','[::1]','testserver'])
-
-    @app.middleware('http')
-    async def protect(request,call_next):
-        if request.url.path.startswith('/api/'):
-            token=request.headers.get('x-demo-session','')
-            if not secrets.compare_digest(token.encode(),session.encode()):return JSONResponse({'error':'Open the workbench page to start a local session.'},status_code=401)
-            origin=request.headers.get('origin')
-            if origin and origin!=str(request.base_url).rstrip('/'):
-                return JSONResponse({'error':'Cross-origin requests are disabled.'},status_code=403)
-        response=await call_next(request)
-        response.headers.update({'Cache-Control':'no-store','X-Content-Type-Options':'nosniff',
-            'Content-Security-Policy':"default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; frame-ancestors 'none'; form-action 'none'"})
-        return response
-
-    benchmark_link = ""
-    if benchmark_directory is not None and not live:
-        app.mount("/benchmark", StaticFiles(directory=benchmark_directory, html=True), name="benchmark")
-        benchmark_link = '<a class="secondary-button benchmark-link" href="/benchmark/">Benchmark analysis ↗</a>'
+    app, benchmark_link = workbench_shell(
+        'Trace · documentation workbench', session, None if live else benchmark_directory,
+        {'workbench.css', 'workbench.js'},
+    )
 
     @app.get('/',response_class=HTMLResponse)
     def page():
         html = Path(__file__).with_name("workbench.html").read_text(encoding="utf-8")
         return HTMLResponse(html.replace("__SESSION__", session).replace("__BENCHMARK_LINK__", benchmark_link))
-
-    @app.get('/assets/{name}')
-    def assets(name:str):
-        if name not in ('workbench.css','workbench.js'):return Response(status_code=404)
-        return Response(Path(__file__).with_name(name).read_text(),media_type='text/css' if name.endswith('.css') else 'text/javascript')
 
     def state_view(tid):
         state=agent.inspect(tid,**scope)
