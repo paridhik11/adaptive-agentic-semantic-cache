@@ -1,5 +1,7 @@
 # Adaptive Agentic Semantic Cache | Interview V1
 
+For the data analyst walkthrough, open the [workload population and eligibility analysis](WORKLOAD_POPULATION_ANALYSIS.md).
+
 For the follow-up studies, see the [reporting requirement check](RISK_V2_RESULTS.md) and the [reporting context scorecard](RISK_V3_RESULTS.md).
 
 An agent answers Python documentation questions, shows the sources it read, and lets an operator approve the answer. Approved answers can be reused when the request and its context match. The benchmark asks how much more work a guarded semantic match can avoid and what risk comes with it.

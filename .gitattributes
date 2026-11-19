@@ -60,3 +60,6 @@ src/policy/response_cache.py text eol=lf
 artifacts/risk_v3/*.json text eol=lf
 scripts/*risk_v3*.py text eol=lf
 docs/RISK_V3_PROTOCOL.md text eol=lf
+
+artifacts/workload_analysis/*.csv text eol=lf
+docs/WORKLOAD_POPULATION_ANALYSIS.md text eol=lf

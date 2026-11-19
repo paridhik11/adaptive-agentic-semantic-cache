@@ -1,0 +1,9 @@
+workload,request_type,requests,baseline_calls,exact_calls,guarded_calls,shadow_calls,exact_calls_avoided,additional_guarded_calls_avoided,guarded_challenge_accepts
+lower_repeat,adversarial_challenge,125,375,375,372,375,0,3,1
+lower_repeat,exact_repeat,60,180,3,3,3,177,0,0
+lower_repeat,natural_paraphrase,90,270,270,243,270,0,27,0
+lower_repeat,seed,125,375,375,357,375,0,18,0
+repeat_rich,adversarial_challenge,120,360,360,360,360,0,0,0
+repeat_rich,exact_repeat,240,720,12,12,12,708,0,0
+repeat_rich,natural_paraphrase,180,540,396,381,396,144,15,0
+repeat_rich,seed,60,180,180,174,180,0,6,0

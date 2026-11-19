@@ -1,0 +1,5 @@
+request_type,repeat_heavy_n,broader_n,repeat_heavy_baseline_share_pct,broader_baseline_share_pct,repeat_heavy_segment_saving_pct,broader_segment_saving_pct,mix_gap_pp,within_segment_gap_pp
+adversarial_challenge,120,125,20.000000,31.250000,0.000000,0.000000,-0.000000,0.000000
+exact_repeat,240,60,40.000000,15.000000,98.333333,98.333333,24.583333,0.000000
+natural_paraphrase,180,90,30.000000,22.500000,26.666667,0.000000,1.000000,7.000000
+seed,60,125,10.000000,31.250000,0.000000,0.000000,-0.000000,0.000000

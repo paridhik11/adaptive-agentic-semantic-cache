@@ -76,10 +76,22 @@ const { chromium } = require("playwright-core");
     }
     await page.setViewportSize({ width: 390, height: 844 });
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false);
+    await page.getByRole("link", { name: "Workload population" }).click();
+    await page.locator("#population").waitFor({ state: "visible" });
+    assert.equal(await page.locator("#savings-gap").innerText(), "32.58 pp");
+    assert.equal(await page.locator("#composition-gap").innerText(), "25.58 pp");
+    assert.match(await page.locator("#projection-summary").innerText(), /241\.1 suitable calls avoided/);
+    await page.locator("#trusted-share").selectOption("100");
+    assert.match(await page.locator("#projection-summary").innerText(), /514\.3 suitable calls avoided/);
+    await page.locator("#repeat-share").selectOption("30");
+    assert.match(await page.locator("#projection-summary").innerText(), /600\.0 suitable calls avoided/);
+    assert.equal(await page.locator("#projected-outcomes tr").count(), 4);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false);
+    await page.getByRole("link", { name: /Cache benchmark/ }).click();
     await page.getByRole("link", { name: /Workbench/ }).click();
     assert.equal(await page.getByRole("link", { name: /Benchmark analysis/ }).isVisible(), true);
     assert.deepEqual(logs, []);
-    console.log("PASS: browser approval, 3→0 whole-answer repeat, changed requirement miss, context invalidation, request and domain drilldowns, CSV exports, mobile layout.");
+    console.log("PASS: browser approval, 3→0 whole-answer repeat, changed requirement miss, context invalidation, request and domain drilldowns, CSV exports, population scenario filters, mobile layout.");
   } finally {
     await browser.close();
   }

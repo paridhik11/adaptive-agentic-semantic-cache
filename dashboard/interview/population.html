@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore how request mix and trusted reporting context affect cache efficiency.">
+  <link rel="icon" href="data:,">
+  <title>Workload population | Trace</title>
+  <link rel="stylesheet" href="benchmark.css">
+  <script src="population.js" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <nav aria-label="Analysis navigation">
+        <a href="./">← Cache benchmark</a>
+        <a href="workload-population.json" download>Download scenario data</a>
+      </nav>
+      <p class="eyebrow">Adaptive Agentic Semantic Cache</p>
+      <h1>Workload population</h1>
+      <p>How do request mix and reporting context change the value of reuse?</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <p id="population-status" role="status">Loading population analysis…</p>
+    <div id="population" hidden>
+      <div class="toolbar">Observed offline benchmark · 1,000 matched requests across four policies</div>
+      <div class="kpis">
+        <section class="kpi"><h2>Exact savings gap</h2><strong id="savings-gap"></strong><p>Repeat-heavy versus broader workload</p></section>
+        <section class="kpi highlighted"><h2>Request mix</h2><strong id="composition-gap"></strong><p>Different shares of each request type</p></section>
+        <section class="kpi"><h2>Within request types</h2><strong id="rate-gap"></strong><p>Different savings rates within each type</p></section>
+      </div>
+      <section class="panel">
+        <h2>Where the observed gap comes from</h2>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Historical savings decomposition">
+          <table>
+            <thead><tr><th scope="col">Request type</th><th scope="col">Repeat-heavy requests</th><th scope="col">Broader requests</th><th scope="col">Mix contribution</th><th scope="col">Within-type contribution</th></tr></thead>
+            <tbody id="gap-by-type"></tbody>
+          </table>
+        </div>
+        <p class="note">Contributions are percentage points. The decomposition weights each segment by its share of baseline scripted calls.</p>
+      </section>
+      <section class="panel">
+        <h2>What if the traffic mix changes?</h2>
+        <p>Conditional projections per 1,000 requests using the separate synthetic reporting holdout.</p>
+        <div class="filter-row">
+          <label for="repeat-share">Exact-repeat share</label>
+          <select id="repeat-share"><option value="05">5%</option><option value="15" selected>15%</option><option value="30">30%</option></select>
+          <label for="trusted-share">Trusted context among eligible paraphrases</label>
+          <select id="trusted-share"><option value="025" selected>25%</option><option value="050">50%</option><option value="075">75%</option><option value="100">100%</option></select>
+        </div>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Projected policy outcomes">
+          <table>
+            <thead><tr><th scope="col">Policy</th><th scope="col">Suitable calls avoided</th><th scope="col">Unsuitable reuses</th><th scope="col">Fresh fallbacks</th></tr></thead>
+            <tbody id="projected-outcomes"></tbody>
+          </table>
+        </div>
+        <p class="note" id="projection-summary" aria-live="polite"></p>
+        <p class="note">The calculation holds the eligible share of non-exact requests and each segment’s observed outcomes constant. A projected zero reflects the inputs from this synthetic fixture. See the <a href="https://github.com/paridhik11/adaptive-agentic-semantic-cache/blob/90c1c67/docs/RISK_V3_RESULTS.md#four-configurations-on-the-same-requests">risk scorecard</a> for observed uncertainty bounds.</p>
+      </section>
+      <section class="panel">
+        <h2>Decision to explain</h2>
+        <p>Track suitable calls avoided, unsuitable reuse, and fallbacks together. Exact matching remains the release default. Semantic reuse depends on whether the application can establish the reporting context.</p>
+      </section>
+    </div>
+  </main>
+  <footer class="wrap">Rebuild from committed evidence with <code>python scripts/report_workload_population.py</code>.</footer>
+</body>
+</html>

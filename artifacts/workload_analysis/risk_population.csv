@@ -1,0 +1,17 @@
+policy,stratum,requests,eligible_requests,gross_calls_avoided,suitable_calls_avoided,unsuitable_reuses,fallback_requests
+context,challenge,96,0,0,0,0,96
+context,exact_repeat,24,24,24,24,0,0
+context,resolved_paraphrase,48,48,48,48,0,0
+context,unresolved_paraphrase,24,24,0,0,0,24
+exact,challenge,96,0,0,0,0,96
+exact,exact_repeat,24,24,24,24,0,0
+exact,resolved_paraphrase,48,48,0,0,0,48
+exact,unresolved_paraphrase,24,24,0,0,0,24
+guarded,challenge,96,0,94,0,94,2
+guarded,exact_repeat,24,24,24,24,0,0
+guarded,resolved_paraphrase,48,48,48,48,0,0
+guarded,unresolved_paraphrase,24,24,24,24,0,0
+reporting,challenge,96,0,70,0,70,26
+reporting,exact_repeat,24,24,24,24,0,0
+reporting,resolved_paraphrase,48,48,48,48,0,0
+reporting,unresolved_paraphrase,24,24,24,24,0,0
