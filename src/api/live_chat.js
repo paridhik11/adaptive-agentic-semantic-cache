@@ -47,7 +47,7 @@ function stats(data) {
   byId("quota").textContent = `${data.used} / ${data.limit}`;
   byId("hits").textContent = data.hits;
   byId("hit-label").textContent = `${data.exact_hits} exact · ${data.semantic_hits} semantic`;
-  byId("model").textContent = `Live · ${data.model} · ${data.semantic_enabled ? "exact + semantic" : "exact only"}`;
+  byId("model").textContent = `Live · ${data.model} · ${data.semantic_enabled ? "exact + semantic" : "exact + definition reuse"}`;
 }
 
 const bypassLabels = {
@@ -96,7 +96,9 @@ async function send(question, includeHistory) {
       details.push(`Earlier fresh response ${time(freshTimings.get(source))}`);
     }
     if (result.semantic_match) {
-      pending.append(node("p", `Matched saved question “${source}” · similarity ${result.semantic_match.similarity.toFixed(2)}`, "muted"));
+      const { similarity } = result.semantic_match;
+      const detail = similarity === null ? "same defined topic" : `similarity ${similarity.toFixed(2)}`;
+      pending.append(node("p", `Matched saved question “${source}” · ${detail}`, "muted"));
     }
     const receipt = node("ul", "", "chat-receipt");
     receipt.append(...details.map((detail) => node("li", detail)));

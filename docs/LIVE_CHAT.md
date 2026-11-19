@@ -15,18 +15,25 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe scripts\run_demo.py
 ```
 
-If you already created `.venv` and installed the requirements, run the last line after updating the branch. Stop any earlier workbench server with **Ctrl+C** first. The launcher uses `OPENROUTER_API_KEY` when set, or prompts for it with hidden input. Open [Live chat](http://127.0.0.1:8765/) and look for **Live** next to the model name.
+If you already created `.venv`, keep it and run the install line after updating the branch to pick up the spelling dictionary. Stop any earlier server with **Ctrl+C** first. The launcher uses `OPENROUTER_API_KEY` when set, or prompts for it with hidden input. Open [Live chat](http://127.0.0.1:8765/) and look for **Live** next to the model name.
 
-1. Ask **What do you mean by risk management?** A cache miss shows **1 provider call**, elapsed time and completion tokens if reported by OpenRouter.
+1. Ask **what is risk managemnet**. A cache miss shows **1 provider call**, elapsed time and completion tokens if reported by OpenRouter.
 2. Select **Repeat as new question**. An eligible exact hit shows **0 provider calls**, **0 generated tokens**, and the new response time alongside the earlier fresh response.
-3. Ask a different question. For a contextual question such as **Give me a small example**, select **Include recent turns**. The follow-up sends up to three recent turns to the provider.
-4. Select **Benchmark analysis** to open the historical offline evidence and workload projections.
+3. Ask **what do u mean by risk managemgcnt** and then **risk management?** as standalone questions. If the stored answer opens by defining risk management, both show **Semantic hit · 0 provider calls**. An earlier exact answer enters the definition index when its original question is asked again.
+4. Ask **What is risk measurement?** or **What is risk management? Give a worked example.** These take the fresh path. For a contextual follow-up such as **Give me a small example**, select **Include recent turns**.
+5. Select **Benchmark analysis** to open the historical offline evidence and workload projections.
+
+Definition reuse is enabled by default. The cache checks that the saved answer opens by defining the same short topic. It permits an unrecognized typo in one long word when the other topic words agree, and falls back to the model when the match is ambiguous. The default check uses a local spelling dictionary.
+
+If the three prompts already have separate exact answers, add `--directory runs\definition-reuse-demo` when starting the server to demonstrate the sequence with a separate cache. The provider quota journal stays shared.
 
 The default is `nvidia/nemotron-3.5-lightning:free`. If its availability changes, use `--model` followed by an explicit model ID ending in `:free`. The provider enforces zero price and disables automatic fallback. The persistent quota journal uses the existing free-only allowance (30 chat attempts with shared daily and rolling-minute caps). Use `--journal <path>` to share your existing quota journal. Reopening the chat preserves the allowance and cache. Eligible cached answers can still be served when the quota is exhausted.
 
 Live chat uses the model's knowledge without web search. Response time includes server-side lookup and local verification through answer availability.
 
 ## Enable semantic reuse for paraphrases
+
+Local models handle broader rephrasings such as different words for the same topic.
 
 Run this one-time setup in the same PowerShell environment:
 

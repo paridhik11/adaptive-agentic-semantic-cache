@@ -48,7 +48,7 @@
     </form>
     <details class="chat-method">
       <summary>How reuse and timing work</summary>
-      <p>A fresh request goes to the configured free OpenRouter model. Exact reuse stays active for complete eligible answers for one hour. Optional local semantic verification can reuse a saved definition when its meaning and answer match. The cache policy passes follow-ups and time-sensitive questions to the model. The chat uses model knowledge, with no web search.</p>
+      <p>A fresh request goes to the free OpenRouter model. Eligible answers stay cached for one hour. Short definitions can reuse a saved answer across wording changes and clear typos when the answer defines the same topic. Optional local models check broader rephrasings. Follow-ups and time-sensitive requests go to the model. The chat uses model knowledge, with no web search.</p>
       <p>Response time measures server-side processing from cache lookup through the returned answer. Provider time includes the free-provider call and its quota journal. Fresh and repeat timings are shown for the matching question.</p>
     </details>
   </main>

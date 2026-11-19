@@ -67,6 +67,37 @@ def test_general_chat_reuses_a_plain_language_risk_definition(tmp_path):
         assert repeat["provider_calls"] == 0 and repeat["cache_tier"] == "EXACT"
 
 
+def test_default_chat_reuses_risk_definition_across_typos_and_shorthand(tmp_path):
+    first_question = "what is risk managemnet"
+    definition = "**Risk management** is the process of identifying, assessing, and controlling risks."
+
+    class DefinitionTransport(FakeTransport):
+        def __call__(self, body):
+            result = super().__call__(body)
+            if body["messages"][-1]["content"] == first_question:
+                result["choices"][0]["message"]["content"] = definition
+            return result
+
+    transport = DefinitionTransport()
+    with client(tmp_path, transport) as c:
+        first = c.post("/api/chat", json={"question": first_question}).json()
+        assert first["provider_calls"] == 1 and first["stored"]
+    with client(tmp_path, transport) as c:
+        for query in ("what do u mean by risk managemgcnt", "risk management?",
+                      "What's risk management?", "Explain what risk management means."):
+            hit = c.post("/api/chat", json={"question": query}).json()
+            assert hit["cache_tier"] == "SEMANTIC" and hit["provider_calls"] == 0, hit
+            assert hit["answer"] == definition and hit["generated_tokens"] == 0
+            assert hit["semantic_match"] == {"matched_question": first_question, "similarity": None}
+        assert len(transport.requests) == 1
+        for query in ("What is risk measurement?", "What is market risk management?",
+                      "What is risk management? Give a worked example."):
+            fresh = c.post("/api/chat", json={"question": query}).json()
+            assert fresh["provider_calls"] == 1 and fresh["cache_tier"] is None
+        unconfirmed = c.post("/api/chat", json={"question": "risk treatment?"}).json()
+        assert unconfirmed["provider_calls"] == 1 and not unconfirmed["stored"]
+
+
 def test_live_chat_context_and_time_sensitive_questions_bypass(tmp_path):
     transport = FakeTransport()
     with client(tmp_path, transport) as c:

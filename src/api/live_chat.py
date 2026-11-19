@@ -97,13 +97,14 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
         question = turns[0]["content"]
         if _FRESHNESS.search(question) or stability.evaluate(question).label == StabilityLabel.DYNAMIC:
             return EligibilityDecision(False, "freshness_requires_provider")
-        if decision.reason == "not_rule_confirmed_static" and (_DEFINITION.match(question) or definition_subject(question)):
+        if decision.reason == "not_rule_confirmed_static" and (
+                _DEFINITION.match(question) or definition_subject(question, shorthand=True)):
             return EligibilityDecision(True, "standalone_definition")
         return decision
 
     storage = SQLiteResponseStore(directory / "chat.sqlite", namespace="general-chat-v1")
     cache = ScopedResponseCache(eligibility=eligibility, storage=storage)
-    semantic = ChatSemanticReuse(cache, storage, semantic_models) if semantic_models is not None else None
+    semantic = ChatSemanticReuse(cache, storage, semantic_models)
     lock = threading.RLock()
     session = secrets.token_urlsafe(32)
     exact_hits = semantic_hits = 0
@@ -115,7 +116,7 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
         return {
             "model": model, "used": sum(journal.status().values()), "limit": RUN_LIMIT,
             "hits": exact_hits + semantic_hits, "exact_hits": exact_hits, "semantic_hits": semantic_hits,
-            "semantic_enabled": semantic is not None,
+            "semantic_enabled": semantic_models is not None,
         }
 
     @app.get("/", response_class=HTMLResponse)
@@ -159,11 +160,8 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
                     upstream_ms = (time.perf_counter() - contact) * 1_000
 
             try:
-                if semantic is not None:
-                    result, match, semantic_decision = semantic.process(body, tenant_id=TENANT, provider=generate, bypass=not enabled)
-                else:
-                    result = cache.process(body, tenant_id=TENANT, provider=generate, bypass=not enabled)
-                    match = semantic_decision = None
+                result, match, semantic_decision = semantic.process(
+                    body, tenant_id=TENANT, provider=generate, bypass=not enabled)
             except RunPaused as exc:
                 return JSONResponse({
                     "error": _MESSAGES.get(exc.reason, "The provider request stopped. Check the shared quota journal."),

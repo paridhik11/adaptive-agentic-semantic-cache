@@ -162,6 +162,7 @@ class ScopedResponseCache:
         bypass: bool = False,
         key_context: Mapping[str, Any] | None = None,
         on_miss: Callable[[JsonObject], ResponseCacheResult | None] | None = None,
+        admit_response: Callable[[JsonObject, JsonObject], bool] | None = None,
     ) -> ResponseCacheResult:
         """Return a stored answer or execute the supplied provider exactly once.
 
@@ -169,6 +170,7 @@ class ScopedResponseCache:
         key_context is trusted server-side scope and is never forwarded upstream.
         on_miss is a trusted extension invoked only after eligible exact lookup.
         Its hits are never readmitted as fresh generations or given a new TTL.
+        admit_response may veto storing a fresh, otherwise admissible answer.
         Usage inside a cached response describes its original generation;
         ``provider_calls`` distinguishes a hit from newly consumed work.
         """
@@ -246,7 +248,8 @@ class ScopedResponseCache:
             # upstream work is running. Invalid responses are never cached.
             reason = self._eligibility_reason(body)
             response_json = None
-            if reason is None and self._admissible(response, body):
+            if (reason is None and self._admissible(response, body)
+                    and (admit_response is None or admit_response(body, response))):
                 try:
                     response_json = _serialize(response)
                 except (TypeError, ValueError):
