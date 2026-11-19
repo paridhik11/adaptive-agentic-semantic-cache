@@ -17,6 +17,8 @@ on:
       - tests/test_risk_v3_context.py
       - tests/test_live_chat.py
       - src/api/live_chat*
+      - src/api/chat_semantic.py
+      - scripts/setup_live_chat_semantic.py
       - src/api/demo.py
       - scripts/run_demo.py
       - src/policy/hybrid_cache.py

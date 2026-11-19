@@ -34,7 +34,7 @@ def main():
         parser.error("--fresh applies to the offline web demo")
     if args.model and not args.live_chat:
         parser.error("--model applies to --live-chat")
-    if args.live_chat and (args.cli or args.whole_answer_cache or args.task_memory or args.experimental_semantic):
+    if args.live_chat and (args.cli or args.whole_answer_cache or args.task_memory):
         parser.error("--live-chat has its own exact cache and follow-up context")
     if args.cli:
         from scripts.demo_flagship import run_demo
@@ -60,11 +60,21 @@ def main():
     if args.live_chat:
         from src.api.live_chat import DEFAULT_MODEL, create_live_chat_app
 
+        semantic_models = None
+        if args.experimental_semantic:
+            from src.api.chat_semantic import load_chat_models
+
+            if not key:
+                parser.error("Set OPENROUTER_API_KEY before launching live chat.")
+            try:
+                semantic_models = load_chat_models()
+            except (ImportError, OSError, RuntimeError, ValueError) as exc:
+                parser.error(f"Local semantic models are unavailable. Run the setup in docs/LIVE_CHAT.md. ({type(exc).__name__})")
         try:
             app = create_live_chat_app(
                 args.directory / "live-chat", api_key=key, model=args.model or DEFAULT_MODEL,
                 journal_path=args.journal or Path("runs/live-quota.sqlite"),
-                benchmark_directory=benchmark_directory,
+                benchmark_directory=benchmark_directory, semantic_models=semantic_models,
             )
         except ValueError as exc:
             parser.error(str(exc))

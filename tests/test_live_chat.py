@@ -28,9 +28,9 @@ class FakeTransport:
         }
 
 
-def client(tmp_path, transport):
+def client(tmp_path, transport, semantic_models=None):
     app = create_live_chat_app(tmp_path / "chat", journal_path=tmp_path / "quota.sqlite",
-                               api_key="test-placeholder", transport=transport)
+                               api_key="test-placeholder", transport=transport, semantic_models=semantic_models)
     c = TestClient(app)
     page = c.get("/")
     c.headers["x-demo-session"] = re.search(r'name="demo-session" content="([^"]+)"', page.text)[1]
@@ -99,3 +99,85 @@ def test_live_chat_requires_key_and_explicit_free_model(tmp_path):
     with pytest.raises(ValueError, match="free model IDs"):
         create_live_chat_app(tmp_path, journal_path=tmp_path / "quota.sqlite", api_key="test-placeholder",
                              model="some/model")
+
+
+class Encoder:
+    identity = "fixture-encoder"
+
+    def encode(self, text):
+        return [1.0, 0.0]
+
+
+class PairScorer:
+    identity = "fixture-pair"
+
+    def score(self, question, original):
+        return {"pair_score": 0.1 if "photon" in question or "photon" in original else 0.99}
+
+
+class AnswerScorer:
+    identity = "fixture-answer"
+
+    def score(self, question, answer):
+        return {"probability": 0.99}
+
+
+def test_semantic_hit_persists_and_exact_stays_first(tmp_path):
+    models = Encoder(), PairScorer(), AnswerScorer()
+    transport = FakeTransport()
+    with client(tmp_path, transport) as c:
+        first = c.post("/api/chat", json={"question": "what is a photo"}).json()
+        assert first["provider_calls"] == 1
+    with client(tmp_path, transport, models) as c:
+        warmed = c.post("/api/chat", json={"question": "what is a photo"}).json()
+        assert warmed["cache_tier"] == "EXACT" and warmed["provider_calls"] == 0
+    with client(tmp_path, transport, models) as c:
+        semantic = c.post("/api/chat", json={"question": "what is a photograph"}).json()
+        assert semantic["cache_tier"] == "SEMANTIC" and semantic["provider_calls"] == 0
+        assert semantic["answer"] == first["answer"] and semantic["generated_tokens"] == 0
+        assert semantic["semantic_match"]["matched_question"] == "what is a photo"
+        assert semantic["semantic_hits"] == 1 and len(transport.requests) == 1
+        assert c.post("/api/chat", json={"question": "what is a photo"}).json()["cache_tier"] == "EXACT"
+
+
+def test_similarity_alone_is_insufficient_and_bypass_is_preserved(tmp_path):
+    transport = FakeTransport()
+    with client(tmp_path, transport, (Encoder(), PairScorer(), AnswerScorer())) as c:
+        c.post("/api/chat", json={"question": "what is a photo"})
+        changed = c.post("/api/chat", json={"question": "what is a digital photo"}).json()
+        assert changed["provider_calls"] == 1 and changed["cache_tier"] is None
+        for text, extra in [
+            ("what is a photograph", {"cache": False}),
+            ("what is a photograph", {"history": [{"role": "user", "content": "In optics"},
+                                                   {"role": "assistant", "content": "Okay."}]}),
+            ("what is a photo without a lens", {}),
+            ("what is a photon", {}),
+        ]:
+            fresh = c.post("/api/chat", json={"question": text, **extra}).json()
+            assert fresh["provider_calls"] == 1 and fresh["cache_tier"] is None
+
+
+@pytest.mark.requires_model
+def test_photo_paraphrase_with_pinned_local_models(tmp_path):
+    from src.api.chat_semantic import load_chat_models
+
+    class RealisticTransport(FakeTransport):
+        def __call__(self, body):
+            result = super().__call__(body)
+            if body["messages"][-1]["content"] == "what is a photo":
+                result["choices"][0]["message"]["content"] = (
+                    "A photo, short for photograph, is an image made when light falls "
+                    "on photographic film or an electronic image sensor."
+                )
+            return result
+
+    transport = RealisticTransport()
+    with client(tmp_path, transport, load_chat_models()) as c:
+        first = c.post("/api/chat", json={"question": "what is a photo"}).json()
+        for text in ("what is a photograph", "define a photograph", "what does photograph mean"):
+            paraphrase = c.post("/api/chat", json={"question": text}).json()
+            assert paraphrase["cache_tier"] == "SEMANTIC" and paraphrase["provider_calls"] == 0, paraphrase
+            assert paraphrase["answer"] == first["answer"]
+        for text in ("what is a photon", "what is photography", "what is a digital photo"):
+            different = c.post("/api/chat", json={"question": text}).json()
+            assert different["provider_calls"] == 1 and different["cache_tier"] is None

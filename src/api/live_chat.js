@@ -46,7 +46,8 @@ async function api(body) {
 function stats(data) {
   byId("quota").textContent = `${data.used} / ${data.limit}`;
   byId("hits").textContent = data.hits;
-  byId("model").textContent = `Live · ${data.model}`;
+  byId("hit-label").textContent = `${data.exact_hits} exact · ${data.semantic_hits} semantic`;
+  byId("model").textContent = `Live · ${data.model} · ${data.semantic_enabled ? "exact + semantic" : "exact only"}`;
 }
 
 const bypassLabels = {
@@ -78,7 +79,8 @@ async function send(question, includeHistory) {
       throw new Error(detail);
     }
     const names = { HIT: "Exact hit", MISS: "Fresh answer", BYPASS: "Fresh answer · cache bypassed" };
-    pending.replaceChildren(node("h2", names[result.cache_status]), node("p", result.answer, "message"));
+    const label = result.cache_tier === "SEMANTIC" ? "Semantic hit" : names[result.cache_status];
+    pending.replaceChildren(node("h2", label), node("p", result.answer, "message"));
     const details = [
       `${result.provider_calls} provider call${result.provider_calls === 1 ? "" : "s"}`,
       `Response ${time(result.latency_ms)}`,
@@ -89,14 +91,28 @@ async function send(question, includeHistory) {
       if (freshTimings.size >= 64) freshTimings.delete(freshTimings.keys().next().value);
       freshTimings.set(question, result.latency_ms);
     }
-    if (result.cache_status === "HIT" && freshTimings.has(question)) {
-      details.push(`Earlier fresh response ${time(freshTimings.get(question))}`);
+    const source = result.semantic_match?.matched_question ?? question;
+    if (result.cache_status === "HIT" && freshTimings.has(source)) {
+      details.push(`Earlier fresh response ${time(freshTimings.get(source))}`);
+    }
+    if (result.semantic_match) {
+      pending.append(node("p", `Matched saved question “${source}” · similarity ${result.semantic_match.similarity.toFixed(2)}`, "muted"));
     }
     const receipt = node("ul", "", "chat-receipt");
     receipt.append(...details.map((detail) => node("li", detail)));
     pending.append(receipt);
     if (result.cache_status === "BYPASS" && bypassLabels[result.cache_reason]) {
       pending.append(node("p", bypassLabels[result.cache_reason], "muted"));
+    }
+    const semanticReasons = {
+      no_close_candidate: "No eligible saved question was similar enough.",
+      ambiguous_candidates: "Several saved questions matched closely. Trace asked the model.",
+      meaning_not_verified: "Local checks could not verify that the questions meant the same thing.",
+      answer_not_verified: "Local checks could not verify that the saved answer fits this question.",
+      local_check_unavailable: "Local semantic verification was unavailable. Trace asked the model.",
+    };
+    if (semanticReasons[result.semantic_decision]) {
+      pending.append(node("p", semanticReasons[result.semantic_decision], "muted"));
     }
     stats(result);
     if (!includeHistory || result.answer.length > 8000) turns.length = 0;

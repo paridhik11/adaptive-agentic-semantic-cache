@@ -10,6 +10,7 @@ from fastapi import Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from starlette.concurrency import run_in_threadpool
 
+from src.api.chat_semantic import ChatSemanticReuse, definition_subject
 from src.api.demo import ObservedProvider, workbench_shell
 from src.api.gateway import _strict_json
 from src.api.service import ConservativeRulesPolicy
@@ -72,7 +73,7 @@ def request_from_payload(value, model):
     }, enabled
 
 
-def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODEL, benchmark_directory=None, transport=None):
+def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODEL, benchmark_directory=None, transport=None, semantic_models=None):
     if not isinstance(api_key, str) or not api_key.strip():
         raise ValueError("Set OPENROUTER_API_KEY in PowerShell before launching live chat.")
     upstream = FreeOpenRouterProvider(api_key, models={model}, reasoning_enabled=False, transport=transport)
@@ -96,23 +97,26 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
         question = turns[0]["content"]
         if _FRESHNESS.search(question) or stability.evaluate(question).label == StabilityLabel.DYNAMIC:
             return EligibilityDecision(False, "freshness_requires_provider")
-        if decision.reason == "not_rule_confirmed_static" and _DEFINITION.match(question):
+        if decision.reason == "not_rule_confirmed_static" and (_DEFINITION.match(question) or definition_subject(question)):
             return EligibilityDecision(True, "standalone_definition")
         return decision
 
-    cache = ScopedResponseCache(
-        eligibility=eligibility,
-        storage=SQLiteResponseStore(directory / "chat.sqlite", namespace="general-chat-v1"),
-    )
+    storage = SQLiteResponseStore(directory / "chat.sqlite", namespace="general-chat-v1")
+    cache = ScopedResponseCache(eligibility=eligibility, storage=storage)
+    semantic = ChatSemanticReuse(cache, storage, semantic_models) if semantic_models is not None else None
     lock = threading.RLock()
     session = secrets.token_urlsafe(32)
-    hits = 0
+    exact_hits = semantic_hits = 0
     app, benchmark_link = workbench_shell(
         "Trace · Live chat", session, benchmark_directory, {"workbench.css", "live_chat.css", "live_chat.js"},
     )
 
     def stats():
-        return {"model": model, "used": sum(journal.status().values()), "limit": RUN_LIMIT, "hits": hits}
+        return {
+            "model": model, "used": sum(journal.status().values()), "limit": RUN_LIMIT,
+            "hits": exact_hits + semantic_hits, "exact_hits": exact_hits, "semantic_hits": semantic_hits,
+            "semantic_enabled": semantic is not None,
+        }
 
     @app.get("/", response_class=HTMLResponse)
     def page():
@@ -125,7 +129,7 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
             return stats()
 
     def execute(body, enabled):
-        nonlocal hits
+        nonlocal exact_hits, semantic_hits
         with lock:
             before = provider.new_calls
             started = time.perf_counter()
@@ -155,7 +159,11 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
                     upstream_ms = (time.perf_counter() - contact) * 1_000
 
             try:
-                result = cache.process(body, tenant_id=TENANT, provider=generate, bypass=not enabled)
+                if semantic is not None:
+                    result, match, semantic_decision = semantic.process(body, tenant_id=TENANT, provider=generate, bypass=not enabled)
+                else:
+                    result = cache.process(body, tenant_id=TENANT, provider=generate, bypass=not enabled)
+                    match = semantic_decision = None
             except RunPaused as exc:
                 return JSONResponse({
                     "error": _MESSAGES.get(exc.reason, "The provider request stopped. Check the shared quota journal."),
@@ -163,13 +171,16 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
                     "latency_ms": (time.perf_counter() - started) * 1_000,
                 }, status_code=503)
 
-            hits += result.status == "HIT"
+            semantic_hits += match is not None
+            exact_hits += result.status == "HIT" and match is None
             calls = provider.new_calls - before
             usage = result.response.get("usage")
             usage = usage.get("completion_tokens") if isinstance(usage, dict) else None
             return {
                 "answer": result.response["choices"][0]["message"]["content"],
                 "cache_status": result.status, "cache_reason": result.reason, "stored": result.stored,
+                "cache_tier": "SEMANTIC" if match else "EXACT" if result.status == "HIT" else None,
+                "semantic_match": match, "semantic_decision": semantic_decision,
                 "provider_calls": calls, "provider_ms": upstream_ms if calls else None,
                 "latency_ms": result.total_latency_ms,
                 "generated_tokens": (usage if type(usage) is int and usage >= 0 else None) if calls else 0,

@@ -21,13 +21,13 @@
     <div class="chat-heading">
       <div>
         <h1>Live chat</h1>
-        <p>Ask a new question, then ask it again to see the cache decision.</p>
+        <p>Ask a question, then try the same wording or a paraphrase.</p>
       </div>
       __BENCHMARK_LINK__
     </div>
     <div class="chat-metrics" aria-live="polite">
       <div><strong id="quota">—</strong><span>Provider attempts used</span></div>
-      <div><strong id="hits">—</strong><span>Exact hits this session</span></div>
+      <div><strong id="hits">—</strong><span id="hit-label">Cache hits this session</span></div>
       <div><strong id="last-time">—</strong><span>Last response time</span></div>
     </div>
     <section id="conversation" class="chat-history" aria-label="Conversation" aria-live="polite">
@@ -37,7 +37,7 @@
       <label for="question">Your question</label>
       <textarea id="question" rows="3" maxlength="4000" placeholder="Ask a question…" required></textarea>
       <div class="chat-controls">
-        <label><input id="cache-toggle" type="checkbox" checked> Reuse eligible exact matches</label>
+        <label><input id="cache-toggle" type="checkbox" checked> Reuse eligible cached answers</label>
         <label><input id="follow-up" type="checkbox" disabled> Include recent turns</label>
       </div>
       <p id="chat-error" role="alert" hidden></p>
@@ -48,7 +48,7 @@
     </form>
     <details class="chat-method">
       <summary>How reuse and timing work</summary>
-      <p>A fresh request goes to the configured free OpenRouter model. A complete eligible answer can be reused for one hour under the same standalone request. The cache policy passes follow-ups and time-sensitive questions to the model. The chat uses model knowledge, with no web search.</p>
+      <p>A fresh request goes to the configured free OpenRouter model. Exact reuse stays active for complete eligible answers for one hour. Optional local semantic verification can reuse a saved definition when its meaning and answer match. The cache policy passes follow-ups and time-sensitive questions to the model. The chat uses model knowledge, with no web search.</p>
       <p>Response time measures server-side processing from cache lookup through the returned answer. Provider time includes the free-provider call and its quota journal. Fresh and repeat timings are shown for the matching question.</p>
     </details>
   </main>

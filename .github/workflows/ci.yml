@@ -80,21 +80,24 @@ jobs:
         id: hf-cache
         with:
           path: ~/.cache/huggingface
-          key: huggingface-interview-pinned-v1-${{ hashFiles('src/policy/local_models.py') }}
+          key: huggingface-interview-pinned-v2-${{ hashFiles('src/policy/local_models.py') }}
           restore-keys: |
+            huggingface-interview-pinned-v1-
             huggingface-all-MiniLM-L6-v2-
 
       - name: Fetch pinned checkpoints for guarded demo integration
         run: |
           python - <<'PYTHON'
           from huggingface_hub import snapshot_download
-          from src.policy.local_models import ENCODER_MODEL, ENCODER_REVISION, PASSAGE_MODEL, PASSAGE_REVISION
+          from src.policy.local_models import ENCODER_MODEL, ENCODER_REVISION, PAIR_MODEL, PAIR_REVISION, PASSAGE_MODEL, PASSAGE_REVISION
 
           for model, revision in ((ENCODER_MODEL, ENCODER_REVISION), (PASSAGE_MODEL, PASSAGE_REVISION)):
               snapshot_download(
                   repo_id=model, revision=revision,
                   allow_patterns=["*.json", "*.txt", "*.safetensors"],
               )
+          snapshot_download(repo_id=PAIR_MODEL, revision=PAIR_REVISION,
+                            allow_patterns=["*.json", "model.safetensors"])
           PYTHON
 
       - name: Run model integration tests
