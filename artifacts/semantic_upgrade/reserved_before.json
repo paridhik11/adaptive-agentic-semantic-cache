@@ -1,0 +1,542 @@
+{
+  "split": "reserved",
+  "revision": "98bd87e",
+  "fixture_sha256": "6bd58d482e5e2e62dc0131db812dc5875c10bf0bb5d1dbc88ecda1609d25a769",
+  "results": {
+    "no_cache": {
+      "exact_hits": 0,
+      "correct_semantic": 0,
+      "unsuitable_semantic": 0,
+      "probe_fallbacks": 12,
+      "provider_calls": 24,
+      "synthetic_completion_tokens": 204,
+      "shadow_correct": 0,
+      "shadow_unsuitable": 0,
+      "requests_excluding_priming": 24,
+      "probes": 12,
+      "suitable_probes": 5,
+      "suitable_capture_interval": [
+        0.0,
+        0.521824
+      ],
+      "precision_interval": null,
+      "unsuitable_rate_interval": [
+        0.0,
+        0.409616
+      ],
+      "end_to_end": {
+        "p50_ms": 7.983,
+        "p95_ms": 18.01
+      },
+      "probe_end_to_end": {
+        "p50_ms": 6.594,
+        "p95_ms": 11.422
+      },
+      "total_probe_verification_ms": null,
+      "maximum_cache_file_bytes": 28672,
+      "rejections": {},
+      "cases": [
+        {
+          "case": "list_to_tuple",
+          "group": "Python immutability",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "list_to_tuple_bad_code",
+          "group": "Python immutability",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "group_order",
+          "group": "Data preparation",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "head_inflection",
+          "group": "Data glossary",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "sample_deviation",
+          "group": "Statistical estimation",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "population_deviation",
+          "group": "Statistical estimation",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "reporting_period",
+          "group": "Risk reporting",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "reporting_entity",
+          "group": "Risk reporting",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "profiling_cli",
+          "group": "Python batch jobs",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "profiling_glossary",
+          "group": "Python batch jobs",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "active_passive",
+          "group": "Public buildings",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "same_entity_new_relation",
+          "group": "Public buildings",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        }
+      ],
+      "net_calls_avoided": 0,
+      "synthetic_tokens_avoided": 0
+    },
+    "exact": {
+      "exact_hits": 10,
+      "correct_semantic": 0,
+      "unsuitable_semantic": 0,
+      "probe_fallbacks": 12,
+      "provider_calls": 14,
+      "synthetic_completion_tokens": 110,
+      "shadow_correct": 0,
+      "shadow_unsuitable": 0,
+      "requests_excluding_priming": 24,
+      "probes": 12,
+      "suitable_probes": 5,
+      "suitable_capture_interval": [
+        0.0,
+        0.521824
+      ],
+      "precision_interval": null,
+      "unsuitable_rate_interval": [
+        0.0,
+        0.409616
+      ],
+      "end_to_end": {
+        "p50_ms": 10.036,
+        "p95_ms": 48.0
+      },
+      "probe_end_to_end": {
+        "p50_ms": 11.74,
+        "p95_ms": 48.53
+      },
+      "total_probe_verification_ms": null,
+      "maximum_cache_file_bytes": 28672,
+      "rejections": {},
+      "cases": [
+        {
+          "case": "list_to_tuple",
+          "group": "Python immutability",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "not_rule_confirmed_static",
+          "rejections": {}
+        },
+        {
+          "case": "list_to_tuple_bad_code",
+          "group": "Python immutability",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "group_order",
+          "group": "Data preparation",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "head_inflection",
+          "group": "Data glossary",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "sample_deviation",
+          "group": "Statistical estimation",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "population_deviation",
+          "group": "Statistical estimation",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "reporting_period",
+          "group": "Risk reporting",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "freshness_requires_provider",
+          "rejections": {}
+        },
+        {
+          "case": "reporting_entity",
+          "group": "Risk reporting",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "freshness_requires_provider",
+          "rejections": {}
+        },
+        {
+          "case": "profiling_cli",
+          "group": "Python batch jobs",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "profiling_glossary",
+          "group": "Python batch jobs",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "active_passive",
+          "group": "Public buildings",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "same_entity_new_relation",
+          "group": "Public buildings",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        }
+      ],
+      "net_calls_avoided": 10,
+      "synthetic_tokens_avoided": 94
+    },
+    "guarded": {
+      "exact_hits": 10,
+      "correct_semantic": 4,
+      "unsuitable_semantic": 2,
+      "probe_fallbacks": 6,
+      "provider_calls": 8,
+      "synthetic_completion_tokens": 56,
+      "shadow_correct": 0,
+      "shadow_unsuitable": 0,
+      "requests_excluding_priming": 24,
+      "probes": 12,
+      "suitable_probes": 5,
+      "suitable_capture_interval": [
+        0.283582,
+        0.994949
+      ],
+      "precision_interval": [
+        0.222778,
+        0.956728
+      ],
+      "unsuitable_rate_interval": [
+        0.036693,
+        0.709579
+      ],
+      "end_to_end": {
+        "p50_ms": 4.712,
+        "p95_ms": 30.059
+      },
+      "probe_end_to_end": {
+        "p50_ms": 5.21,
+        "p95_ms": 30.059
+      },
+      "total_probe_verification_ms": null,
+      "maximum_cache_file_bytes": 28672,
+      "rejections": {},
+      "cases": [
+        {
+          "case": "list_to_tuple",
+          "group": "Python immutability",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "not_rule_confirmed_static",
+          "rejections": {}
+        },
+        {
+          "case": "list_to_tuple_bad_code",
+          "group": "Python immutability",
+          "probe_suitable": false,
+          "probe_tier": "SEMANTIC",
+          "reason": "ordered_keyword_hit",
+          "rejections": {}
+        },
+        {
+          "case": "group_order",
+          "group": "Data preparation",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "head_inflection",
+          "group": "Data glossary",
+          "probe_suitable": true,
+          "probe_tier": "SEMANTIC",
+          "reason": "definition_reuse_hit",
+          "rejections": {}
+        },
+        {
+          "case": "sample_deviation",
+          "group": "Statistical estimation",
+          "probe_suitable": true,
+          "probe_tier": "SEMANTIC",
+          "reason": "intent_reuse_hit",
+          "rejections": {}
+        },
+        {
+          "case": "population_deviation",
+          "group": "Statistical estimation",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "reporting_period",
+          "group": "Risk reporting",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "freshness_requires_provider",
+          "rejections": {}
+        },
+        {
+          "case": "reporting_entity",
+          "group": "Risk reporting",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "freshness_requires_provider",
+          "rejections": {}
+        },
+        {
+          "case": "profiling_cli",
+          "group": "Python batch jobs",
+          "probe_suitable": true,
+          "probe_tier": "SEMANTIC",
+          "reason": "ordered_keyword_hit",
+          "rejections": {}
+        },
+        {
+          "case": "profiling_glossary",
+          "group": "Python batch jobs",
+          "probe_suitable": false,
+          "probe_tier": "SEMANTIC",
+          "reason": "ordered_keyword_hit",
+          "rejections": {}
+        },
+        {
+          "case": "active_passive",
+          "group": "Public buildings",
+          "probe_suitable": true,
+          "probe_tier": "SEMANTIC",
+          "reason": "ordered_keyword_hit",
+          "rejections": {}
+        },
+        {
+          "case": "same_entity_new_relation",
+          "group": "Public buildings",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        }
+      ],
+      "net_calls_avoided": 16,
+      "synthetic_tokens_avoided": 148
+    },
+    "shadow": {
+      "exact_hits": 10,
+      "correct_semantic": 0,
+      "unsuitable_semantic": 0,
+      "probe_fallbacks": 12,
+      "provider_calls": 14,
+      "synthetic_completion_tokens": 110,
+      "shadow_correct": 4,
+      "shadow_unsuitable": 2,
+      "requests_excluding_priming": 24,
+      "probes": 12,
+      "suitable_probes": 5,
+      "suitable_capture_interval": [
+        0.0,
+        0.521824
+      ],
+      "precision_interval": null,
+      "unsuitable_rate_interval": [
+        0.0,
+        0.409616
+      ],
+      "end_to_end": {
+        "p50_ms": 7.874,
+        "p95_ms": 45.098
+      },
+      "probe_end_to_end": {
+        "p50_ms": 27.08,
+        "p95_ms": 46.79
+      },
+      "total_probe_verification_ms": null,
+      "maximum_cache_file_bytes": 28672,
+      "rejections": {},
+      "cases": [
+        {
+          "case": "list_to_tuple",
+          "group": "Python immutability",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "not_rule_confirmed_static",
+          "rejections": {}
+        },
+        {
+          "case": "list_to_tuple_bad_code",
+          "group": "Python immutability",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "group_order",
+          "group": "Data preparation",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "head_inflection",
+          "group": "Data glossary",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "sample_deviation",
+          "group": "Statistical estimation",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "population_deviation",
+          "group": "Statistical estimation",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "reporting_period",
+          "group": "Risk reporting",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "freshness_requires_provider",
+          "rejections": {}
+        },
+        {
+          "case": "reporting_entity",
+          "group": "Risk reporting",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "freshness_requires_provider",
+          "rejections": {}
+        },
+        {
+          "case": "profiling_cli",
+          "group": "Python batch jobs",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "profiling_glossary",
+          "group": "Python batch jobs",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "active_passive",
+          "group": "Public buildings",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "same_entity_new_relation",
+          "group": "Public buildings",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        }
+      ],
+      "net_calls_avoided": 10,
+      "synthetic_tokens_avoided": 94
+    }
+  }
+}

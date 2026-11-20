@@ -1,0 +1,53 @@
+{
+  "definition_paraphrase": {
+    "classification": "SEMANTIC",
+    "provider_calls": 0,
+    "diagnostics": {
+      "state": "executed",
+      "rejections": {},
+      "candidates": [
+        {
+          "rank": 1,
+          "cosine": 0.918757,
+          "scope": "matched",
+          "requirements": "passed",
+          "answer_sufficiency_label": null,
+          "pair_scores": [
+            0.9853240766300797,
+            0.9490302754050877
+          ],
+          "answer_score": 0.9998877496302867,
+          "result": "verified_candidate"
+        }
+      ],
+      "embedding_ms": 11.027418004232459,
+      "cross_encoder_ms": 112.83918800472748,
+      "verification_ms": 129.74584198673256,
+      "outcome": "verified"
+    }
+  },
+  "different_concept": {
+    "classification": null,
+    "provider_calls": 1,
+    "diagnostics": {
+      "state": "executed",
+      "rejections": {
+        "below_cosine_threshold": 1
+      },
+      "candidates": [
+        {
+          "rank": 1,
+          "cosine": 0.309978,
+          "scope": "matched",
+          "requirements": "passed",
+          "answer_sufficiency_label": null,
+          "result": "below_cosine_threshold"
+        }
+      ],
+      "embedding_ms": 10.192578993155621,
+      "cross_encoder_ms": 0.0,
+      "verification_ms": 11.319487006403506,
+      "outcome": "no_close_candidate"
+    }
+  }
+}

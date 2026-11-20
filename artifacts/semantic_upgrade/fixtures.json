@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "development": [
+    ["tuple_to_list", "Python containers", "How do I convert a tuple to a list?", "Use list(my_tuple) to convert the tuple.", "How can I make a list from a tuple?", true],
+    ["tuple_direction", "Python containers", "How do I convert a tuple to a list?", "Use list(my_tuple) to convert the tuple.", "How can I make a tuple from a list?", false],
+    ["conversion_answer", "Python containers", "How to convert a tuple to a list?", "A tuple and a list are both Python containers.", "How can I convert to a list from a tuple?", false],
+    ["profile_generic", "Python profiling", "Why should I benchmark asyncio?", "A wall-clock timer records elapsed time.", "How should I benchmark asyncio using cProfile?", false],
+    ["profile_name_only", "Python profiling", "How do I measure an asyncio task using cProfile?", "cProfile is a built-in profiler. Profiling is useful.", "Show me how to measure an asyncio task using cProfile.", false],
+    ["profile_usage", "Python profiling", "How do I measure an asyncio task using cProfile?", "Run the entry point:\n```python\nimport cProfile\ncProfile.run('main()')\n```", "Show me how to measure an asyncio task using cProfile.", true],
+    ["risk_definition", "Risk glossary", "What is risk management?", "Risk management is identifying, assessing and controlling risks.", "Explain the meaning of risk management.", true],
+    ["risk_added_example", "Risk glossary", "What is risk management?", "Risk management is identifying, assessing and controlling risks.", "Explain the meaning of risk management with a worked example.", false]
+  ],
+  "reserved": [
+    ["list_to_tuple", "Python immutability", "How do I convert a list into a tuple?", "Use tuple(my_list) to convert the list to a tuple.", "How can I build a tuple out of a list?", true],
+    ["list_to_tuple_bad_code", "Python immutability", "How to convert a list to a tuple?", "Use list(my_tuple) for the conversion.", "How can I convert to a tuple from a list?", false],
+    ["group_order", "Data preparation", "How to sort rows by revenue then region?", "Sort by revenue, then use region to break ties.", "How to sort rows by region then revenue?", false],
+    ["head_inflection", "Data glossary", "What are confidence intervals?", "A confidence interval is a range computed from sample data.", "Define a confidence interval.", true],
+    ["sample_deviation", "Statistical estimation", "How do I compute sample standard deviation?", "Take the square root of the sum of squared deviations divided by n minus one.", "How is sample standard deviation calculated?", true],
+    ["population_deviation", "Statistical estimation", "How do I compute sample standard deviation?", "Take the square root of the sum of squared deviations divided by n minus one.", "How is population standard deviation calculated?", false],
+    ["reporting_period", "Risk reporting", "Explain the default rate for retail loans in 2021.", "The fixture rate for 2021 is 2%.", "Explain the default rate for retail loans in 2022.", false],
+    ["reporting_entity", "Risk reporting", "Explain the default rate for retail loans in 2021.", "The fixture rate for retail loans in 2021 is 2%.", "Explain the default rate for corporate loans in 2021.", false],
+    ["profiling_cli", "Python batch jobs", "How to measure a CSV import with cProfile?", "Run the job with the profiler.\n```powershell\npython -m cProfile csv_import.py\n```", "How can one measure a CSV import with cProfile?", true],
+    ["profiling_glossary", "Python batch jobs", "How to measure a CSV import with cProfile?", "cProfile is a profiler in the Python standard library.", "How can one measure a CSV import with cProfile?", false],
+    ["active_passive", "Public buildings", "Who designed the National Congress building in Brasília?", "Oscar Niemeyer designed the building.", "Who was the National Congress building in Brasília designed by?", true],
+    ["same_entity_new_relation", "Public buildings", "Who designed the National Congress building in Brasília?", "Oscar Niemeyer designed the building.", "Who was the National Congress building in Brasília named by?", false]
+  ]
+}

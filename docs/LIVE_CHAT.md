@@ -2,6 +2,8 @@
 
 Ask about risk management, SQL, or any other topic. New questions go to a free OpenRouter model. The local SQLite cache stores complete eligible answers for one hour. Automatic context handles short follow-ups such as “Give me an example” and can recover the scope of a ranked officeholder question from the preceding turn. Set **Context** to **Include recent turns** or **Standalone question** when you want explicit control.
 
+The live receipt includes semantic-check timing and the number of ranked neural candidates considered. The API also records rejection reasons, model scores and whether checks ran. The [semantic upgrade report](SEMANTIC_UPGRADE_RESULTS.md) separates those observations from authored answer labels and from the offline workbench campaign.
+
 ## PowerShell
 
 In your existing repository checkout:

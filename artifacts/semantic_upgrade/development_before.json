@@ -1,0 +1,414 @@
+{
+  "split": "development",
+  "revision": "98bd87e",
+  "fixture_sha256": "6bd58d482e5e2e62dc0131db812dc5875c10bf0bb5d1dbc88ecda1609d25a769",
+  "results": {
+    "no_cache": {
+      "exact_hits": 0,
+      "correct_semantic": 0,
+      "unsuitable_semantic": 0,
+      "probe_fallbacks": 8,
+      "provider_calls": 16,
+      "synthetic_completion_tokens": 113,
+      "shadow_correct": 0,
+      "shadow_unsuitable": 0,
+      "requests_excluding_priming": 16,
+      "probes": 8,
+      "suitable_probes": 3,
+      "suitable_capture_interval": [
+        0.0,
+        0.707598
+      ],
+      "precision_interval": null,
+      "unsuitable_rate_interval": [
+        0.0,
+        0.521824
+      ],
+      "end_to_end": {
+        "p50_ms": 4.177,
+        "p95_ms": 4.9
+      },
+      "probe_end_to_end": {
+        "p50_ms": 4.245,
+        "p95_ms": 4.9
+      },
+      "total_probe_verification_ms": null,
+      "maximum_cache_file_bytes": 28672,
+      "rejections": {},
+      "cases": [
+        {
+          "case": "tuple_to_list",
+          "group": "Python containers",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "tuple_direction",
+          "group": "Python containers",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "conversion_answer",
+          "group": "Python containers",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "profile_generic",
+          "group": "Python profiling",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "profile_name_only",
+          "group": "Python profiling",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "profile_usage",
+          "group": "Python profiling",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "risk_definition",
+          "group": "Risk glossary",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        },
+        {
+          "case": "risk_added_example",
+          "group": "Risk glossary",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "cache_disabled_by_caller",
+          "rejections": {}
+        }
+      ],
+      "net_calls_avoided": 0,
+      "synthetic_tokens_avoided": 0
+    },
+    "exact": {
+      "exact_hits": 7,
+      "correct_semantic": 0,
+      "unsuitable_semantic": 0,
+      "probe_fallbacks": 8,
+      "provider_calls": 9,
+      "synthetic_completion_tokens": 59,
+      "shadow_correct": 0,
+      "shadow_unsuitable": 0,
+      "requests_excluding_priming": 16,
+      "probes": 8,
+      "suitable_probes": 3,
+      "suitable_capture_interval": [
+        0.0,
+        0.707598
+      ],
+      "precision_interval": null,
+      "unsuitable_rate_interval": [
+        0.0,
+        0.521824
+      ],
+      "end_to_end": {
+        "p50_ms": 4.066,
+        "p95_ms": 7.673
+      },
+      "probe_end_to_end": {
+        "p50_ms": 6.708,
+        "p95_ms": 7.673
+      },
+      "total_probe_verification_ms": null,
+      "maximum_cache_file_bytes": 28672,
+      "rejections": {},
+      "cases": [
+        {
+          "case": "tuple_to_list",
+          "group": "Python containers",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "not_rule_confirmed_static",
+          "rejections": {}
+        },
+        {
+          "case": "tuple_direction",
+          "group": "Python containers",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "not_rule_confirmed_static",
+          "rejections": {}
+        },
+        {
+          "case": "conversion_answer",
+          "group": "Python containers",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "profile_generic",
+          "group": "Python profiling",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "not_rule_confirmed_static",
+          "rejections": {}
+        },
+        {
+          "case": "profile_name_only",
+          "group": "Python profiling",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "profile_usage",
+          "group": "Python profiling",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "risk_definition",
+          "group": "Risk glossary",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "risk_added_example",
+          "group": "Risk glossary",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        }
+      ],
+      "net_calls_avoided": 7,
+      "synthetic_tokens_avoided": 54
+    },
+    "guarded": {
+      "exact_hits": 7,
+      "correct_semantic": 2,
+      "unsuitable_semantic": 2,
+      "probe_fallbacks": 4,
+      "provider_calls": 5,
+      "synthetic_completion_tokens": 30,
+      "shadow_correct": 0,
+      "shadow_unsuitable": 0,
+      "requests_excluding_priming": 16,
+      "probes": 8,
+      "suitable_probes": 3,
+      "suitable_capture_interval": [
+        0.094299,
+        0.991596
+      ],
+      "precision_interval": [
+        0.067586,
+        0.932414
+      ],
+      "unsuitable_rate_interval": [
+        0.052745,
+        0.853367
+      ],
+      "end_to_end": {
+        "p50_ms": 2.801,
+        "p95_ms": 9.809
+      },
+      "probe_end_to_end": {
+        "p50_ms": 4.29,
+        "p95_ms": 9.809
+      },
+      "total_probe_verification_ms": null,
+      "maximum_cache_file_bytes": 28672,
+      "rejections": {},
+      "cases": [
+        {
+          "case": "tuple_to_list",
+          "group": "Python containers",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "not_rule_confirmed_static",
+          "rejections": {}
+        },
+        {
+          "case": "tuple_direction",
+          "group": "Python containers",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "not_rule_confirmed_static",
+          "rejections": {}
+        },
+        {
+          "case": "conversion_answer",
+          "group": "Python containers",
+          "probe_suitable": false,
+          "probe_tier": "SEMANTIC",
+          "reason": "ordered_keyword_hit",
+          "rejections": {}
+        },
+        {
+          "case": "profile_generic",
+          "group": "Python profiling",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "not_rule_confirmed_static",
+          "rejections": {}
+        },
+        {
+          "case": "profile_name_only",
+          "group": "Python profiling",
+          "probe_suitable": false,
+          "probe_tier": "SEMANTIC",
+          "reason": "ordered_keyword_hit",
+          "rejections": {}
+        },
+        {
+          "case": "profile_usage",
+          "group": "Python profiling",
+          "probe_suitable": true,
+          "probe_tier": "SEMANTIC",
+          "reason": "ordered_keyword_hit",
+          "rejections": {}
+        },
+        {
+          "case": "risk_definition",
+          "group": "Risk glossary",
+          "probe_suitable": true,
+          "probe_tier": "SEMANTIC",
+          "reason": "definition_reuse_hit",
+          "rejections": {}
+        },
+        {
+          "case": "risk_added_example",
+          "group": "Risk glossary",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        }
+      ],
+      "net_calls_avoided": 11,
+      "synthetic_tokens_avoided": 83
+    },
+    "shadow": {
+      "exact_hits": 7,
+      "correct_semantic": 0,
+      "unsuitable_semantic": 0,
+      "probe_fallbacks": 8,
+      "provider_calls": 9,
+      "synthetic_completion_tokens": 59,
+      "shadow_correct": 2,
+      "shadow_unsuitable": 2,
+      "requests_excluding_priming": 16,
+      "probes": 8,
+      "suitable_probes": 3,
+      "suitable_capture_interval": [
+        0.0,
+        0.707598
+      ],
+      "precision_interval": null,
+      "unsuitable_rate_interval": [
+        0.0,
+        0.521824
+      ],
+      "end_to_end": {
+        "p50_ms": 4.992,
+        "p95_ms": 9.802
+      },
+      "probe_end_to_end": {
+        "p50_ms": 8.904,
+        "p95_ms": 9.802
+      },
+      "total_probe_verification_ms": null,
+      "maximum_cache_file_bytes": 28672,
+      "rejections": {},
+      "cases": [
+        {
+          "case": "tuple_to_list",
+          "group": "Python containers",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "not_rule_confirmed_static",
+          "rejections": {}
+        },
+        {
+          "case": "tuple_direction",
+          "group": "Python containers",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "not_rule_confirmed_static",
+          "rejections": {}
+        },
+        {
+          "case": "conversion_answer",
+          "group": "Python containers",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "profile_generic",
+          "group": "Python profiling",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "not_rule_confirmed_static",
+          "rejections": {}
+        },
+        {
+          "case": "profile_name_only",
+          "group": "Python profiling",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "profile_usage",
+          "group": "Python profiling",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "risk_definition",
+          "group": "Risk glossary",
+          "probe_suitable": true,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        },
+        {
+          "case": "risk_added_example",
+          "group": "Risk glossary",
+          "probe_suitable": false,
+          "probe_tier": null,
+          "reason": "generated_and_stored",
+          "rejections": {}
+        }
+      ],
+      "net_calls_avoided": 7,
+      "synthetic_tokens_avoided": 54
+    }
+  }
+}

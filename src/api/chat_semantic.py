@@ -1,8 +1,9 @@
 """Local reuse for stable requests in live chat."""
-from collections import OrderedDict
+from collections import Counter, OrderedDict
 from difflib import SequenceMatcher
 from functools import lru_cache
 import json
+from math import isfinite
 import re
 import sqlite3
 from threading import Lock
@@ -10,7 +11,8 @@ import time
 
 from src.api.chat_intents import direct_question, question_intent, reusable_fact_answer, wording_key
 from src.api.chat_keywords import keyword_signature
-from src.policy.decomposed_applicability import answer_satisfies_requirements, requirement_guard
+from src.api.chat_reuse_checks import semantic_answer_reason
+from src.policy.decomposed_applicability import requirement_guard
 from src.policy.encoders import normalize
 from src.policy.hybrid_cache import request_boundary
 from src.policy.response_cache import ResponseCacheResult, ScopedResponseCache, _serialize
@@ -20,6 +22,7 @@ SIMILARITY_MIN = .84
 CANDIDATE_MARGIN = .035
 PAIR_MIN = .80
 ANSWER_MIN = .85
+VERIFY_TOP_K = 3
 MAX_CANDIDATES = 128
 MAX_BYTES = 4 * 1024 * 1024
 _DEFINITION = re.compile(
@@ -245,7 +248,7 @@ class ChatSemanticReuse:
         except sqlite3.Error:
             pass  # Old records can be indexed when their exact questions are asked again.
 
-    def _lookup_keywords(self, checked, tenant_id, signature, tag, epoch):
+    def _lookup_keywords(self, checked, tenant_id, signature, tag, epoch, rejections):
         question = checked["messages"][-1]["content"]
         for identity, key, token, raw_request, raw_answer, namespace in self.storage.recover_tagged_candidates(
             tag, tenant_id, epoch,
@@ -265,15 +268,22 @@ class ChatSemanticReuse:
             if not self.exact._admissible(answer, checked):
                 continue
             content = answer["choices"][0]["message"]["content"]
-            if not _usable_keyword_answer(content) or answer_satisfies_requirements(question, content):
+            rejection = semantic_answer_reason(saved, question, content, signature)
+            if rejection or not _usable_keyword_answer(content):
+                rejections[rejection or "unusable_answer"] += 1
                 continue
             if self.storage.candidate_current(identity, key, token, namespace, tenant_id, epoch):
                 return saved, answer
         return None
 
-    def process(self, body, *, tenant_id, provider, bypass=False):
+    def process(self, body, *, tenant_id, provider, bypass=False, diagnostics=None, mode="guarded"):
+        if diagnostics is None:
+            diagnostics = {}
+        rejections = Counter()
+        diagnostics.update(state="skipped", rejections=rejections, candidates=[],
+                           embedding_ms=0.0, cross_encoder_ms=0.0, verification_ms=0.0)
         question = body["messages"][-1]["content"]
-        if len(body["messages"]) != 2 or bypass:
+        if len(body["messages"]) != 2 or bypass or mode == "exact":
             return self.exact.process(body, tenant_id=tenant_id, provider=provider, bypass=bypass), None, None
         intent = question_intent(question)
         comparison = None if intent else comparison_subjects(question)
@@ -293,18 +303,19 @@ class ChatSemanticReuse:
             boundary.update(contract="live-definition-reuse-v1", models=[model.identity for model in self.models or ()])
         namespace = digest(boundary)
         source_key = self.exact.request_key(body, tenant_id)
+        scope = request_boundary(body)
         explicit = definition_subject(question) if subject else None
         canonical = "what is a " + " ".join(subject or ())
         subject_terms = frozenset(subject or ())
         started = time.perf_counter()
         epoch, vector, match, decision = None, None, None, None
 
-        def resolve(checked):
+        def assess(checked):
             nonlocal epoch, vector, match, decision
             try:
                 epoch = self.storage.invalidation_epoch
                 if tag and not comparison:
-                    keyword_hit = self._lookup_keywords(checked, tenant_id, signature, tag, epoch)
+                    keyword_hit = self._lookup_keywords(checked, tenant_id, signature, tag, epoch, rejections)
                     if keyword_hit:
                         saved, answer = keyword_hit
                         decision = "keyword_verified"
@@ -316,15 +327,27 @@ class ChatSemanticReuse:
                 for record in self.storage.recover_candidates(namespace, tenant_id, epoch):
                     identity, key, token, candidate_json, vector_json, response_json, _ = record
                     original = json.loads(candidate_json)
-                    if self.exact.request_key(original, tenant_id) != key:
+                    if (self.exact.request_key(original, tenant_id) != key
+                            or request_boundary(original) != scope):
+                        rejections["source_binding_mismatch"] += 1
+                        continue
+                    if self.exact._eligibility_reason(original) is not None:
+                        rejections["ineligible_source"] += 1
                         continue
                     saved_question = original["messages"][-1]["content"]
-                    if intent is None and requirement_guard(saved_question, question):
+                    guard = requirement_guard(saved_question, question) if intent is None else None
+                    if guard:
+                        rejections[guard] += 1
                         continue
                     answer = json.loads(response_json)
                     if not self.exact._admissible(answer, checked):
+                        rejections["inadmissible_answer"] += 1
                         continue
                     content = answer["choices"][0]["message"]["content"]
+                    failure = semantic_answer_reason(saved_question, question, content, signature)
+                    if failure:
+                        rejections[failure] += 1
+                        continue
                     equal_intent = intent is not None and intent.accepts(question_intent(saved_question), content)
                     if intent is not None and not equal_intent:
                         continue
@@ -348,15 +371,14 @@ class ChatSemanticReuse:
                             if before != after and [w.casefold() for w in before] == [w.casefold() for w in after]:
                                 continue  # Acronyms and mixed-case identifiers are distinct keywords.
                     alias = definition_alias(content)
-                    if (alias and alias[1] == subject and definition_subject(saved_question, shorthand=True) == alias[0]
-                            and not answer_satisfies_requirements(question, content)):
+                    if alias and alias[1] == subject and definition_subject(saved_question, shorthand=True) == alias[0]:
                         matches_by_topic[alias[0]] = (2, identity, key, token, saved_question, answer)
                         continue
                     confirmed = confirmed_definition(saved_question, content)
                     if confirmed:
                         source_topic = definition_subject(saved_question, shorthand=True)
                         strength = _topic_match(subject, confirmed, source_topic=source_topic)
-                        if strength and not answer_satisfies_requirements(question, content):
+                        if strength:
                             matches_by_topic[confirmed] = (strength, identity, key, token, saved_question, answer)
                     other_subject = definition_subject(saved_question)
                     if not self.models or not explicit or not other_subject:
@@ -395,35 +417,71 @@ class ChatSemanticReuse:
                     return None
                 encoder, pair_scorer, answer_scorer = self.models
                 with self._model_lock:
+                    clock = time.perf_counter()
                     vector = normalize(encoder.encode(canonical))
+                    diagnostics["embedding_ms"] += (time.perf_counter() - clock) * 1_000
                 scored = []
                 for vector_json, identity, key, token, saved_question, other_subject, answer in ranked:
                     existing = normalize(json.loads(vector_json))
                     similarity = sum(a * b for a, b in zip(vector, existing, strict=True))
                     scored.append((similarity, identity, key, token, saved_question, other_subject, answer))
                 scored.sort(key=lambda item: item[0], reverse=True)
-                if scored[0][0] < SIMILARITY_MIN:
-                    decision = "no_close_candidate"
+                verified = []
+                for rank, candidate in enumerate(scored[:VERIFY_TOP_K], 1):
+                    similarity, identity, key, token, saved_question, other_subject, answer = candidate
+                    if verified and verified[0][0] - similarity >= CANDIDATE_MARGIN:
+                        break
+                    trace = {"rank": rank, "candidate": identity, "cosine": round(similarity, 6),
+                             "scope": "matched", "requirements": "passed", "answer_sufficiency_label": None}
+                    diagnostics["candidates"].append(trace)
+                    if similarity < SIMILARITY_MIN:
+                        trace["result"] = "below_cosine_threshold"
+                        rejections["below_cosine_threshold"] += 1
+                        continue
+                    canonical_source = "what is a " + " ".join(other_subject)
+                    content = answer["choices"][0]["message"]["content"]
+                    with self._model_lock:
+                        clock = time.perf_counter()
+                        try:
+                            forward = pair_scorer.score(canonical, canonical_source)["pair_score"]
+                            reverse = pair_scorer.score(canonical_source, canonical)["pair_score"]
+                            if not (isfinite(forward) and isfinite(reverse)):
+                                raise ValueError("non-finite question score")
+                            trace["pair_scores"] = [forward, reverse]
+                            if not (forward >= PAIR_MIN and reverse >= PAIR_MIN):
+                                decision = trace["result"] = "meaning_not_verified"
+                                rejections[decision] += 1
+                                continue
+                            score = answer_scorer.score(question, content)["probability"]
+                            if not isfinite(score):
+                                raise ValueError("non-finite answer score")
+                            trace["answer_score"] = score
+                            if not score >= ANSWER_MIN:
+                                decision = trace["result"] = "answer_not_verified"
+                                rejections[decision] += 1
+                                continue
+                        finally:
+                            diagnostics["cross_encoder_ms"] += (time.perf_counter() - clock) * 1_000
+                    trace["result"] = "verified_candidate"
+                    verified.append(candidate)
+                if not verified:
+                    decision = decision or "no_close_candidate"
                     return None
-                if len(scored) > 1 and scored[0][0] - scored[1][0] < CANDIDATE_MARGIN:
+                # Ambiguity is a reason to abstain when both candidates independently
+                # pass verification. A rejected answer does not block a qualified one.
+                if len(verified) > 1 and verified[0][0] - verified[1][0] < CANDIDATE_MARGIN:
                     decision = "ambiguous_candidates"
+                    rejections[decision] += 1
                     return None
-                similarity, identity, key, token, saved_question, other_subject, answer = scored[0]
-                content = answer["choices"][0]["message"]["content"]
-                if answer_satisfies_requirements(question, content):
-                    decision = "answer_not_verified"
+                similarity, identity, key, token, saved_question, _, answer = verified[0]
+                # A capped search cannot rule out an unexamined close candidate.
+                if len(scored) > VERIFY_TOP_K and similarity - scored[VERIFY_TOP_K][0] < CANDIDATE_MARGIN:
+                    decision = "ambiguous_candidates"
+                    rejections["unexamined_close_candidate"] += 1
                     return None
-                canonical_source = "what is a " + " ".join(other_subject)
-                with self._model_lock:
-                    pair = min(pair_scorer.score(canonical, canonical_source)["pair_score"],
-                               pair_scorer.score(canonical_source, canonical)["pair_score"])
-                    if not pair >= PAIR_MIN:
-                        decision = "meaning_not_verified"
-                        return None
-                    if not answer_scorer.score(question, content)["probability"] >= ANSWER_MIN:
-                        decision = "answer_not_verified"
-                        return None
                 if not self.storage.candidate_current(identity, key, token, namespace, tenant_id, epoch):
+                    decision = "source_expired_or_revoked"
+                    rejections[decision] += 1
                     return None
                 decision = "verified"
                 match = {"matched_question": saved_question, "similarity": round(similarity, 4)}
@@ -432,7 +490,23 @@ class ChatSemanticReuse:
             except Exception:
                 # Any local model, shape or storage failure takes the fresh path.
                 decision = "local_check_unavailable"
+                rejections[decision] += 1
                 return None
+
+        def resolve(checked):
+            nonlocal match
+            diagnostics["state"] = "executed"
+            clock = time.perf_counter()
+            try:
+                candidate = assess(checked)
+            finally:
+                diagnostics["verification_ms"] = (time.perf_counter() - clock) * 1_000
+            diagnostics["outcome"] = decision or "no_qualified_candidate"
+            if mode == "shadow" and candidate is not None:
+                diagnostics["shadow_recommendation"] = True
+                match = None
+                return None
+            return candidate
 
         result = self.exact.process(body, tenant_id=tenant_id, provider=provider, on_miss=resolve)
         warm_key = namespace, source_key

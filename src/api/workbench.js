@@ -25,6 +25,8 @@ function renderCacheReceipt(state) {
     detail = {
       ineligible: "This request could not use the answer cache. The workbench ran the normal workflow.",
       no_qualified_answer: "No approved answer matched this request and its current context.",
+      added_cprofile_requirement: "The request added a cProfile requirement. The workbench ran fresh.",
+      answer_lacks_cprofile_usage: "The cached answer did not demonstrate cProfile usage. The workbench ran fresh.",
       invalid_cached_evidence: "The stored evidence could not be verified. The workbench fell back to fresh execution.",
       task_scope_revoked: "The task context changed. The workbench fell back to fresh execution.",
       cache_unavailable: "The answer cache was unavailable. The workbench fell back to fresh execution.",

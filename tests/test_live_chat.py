@@ -576,3 +576,52 @@ def test_definition_reuse_preserves_lexicalized_plurals(tmp_path):
         assert c.post("/api/chat", json={"question": seed}).json()["stored"]
         result = c.post("/api/chat", json={"question": "What are safety glasses?"}).json()
         assert result["provider_calls"] == 1 and result["cache_tier"] is None
+
+
+def test_second_dense_candidate_is_verified_after_first_answer_fails(tmp_path):
+    class ScoresByAnswer(AnswerScorer):
+        def score(self, question, answer):
+            return {"probability": 0.99 if "light sensor" in answer else 0.1}
+
+    transport = AnswersTransport({
+        "What is a picture?": "Pictures can include paintings and drawings.",
+        "What is a photo?": "A photo is an image captured with a light sensor.",
+    })
+    with client(tmp_path, transport, (Encoder(), PairScorer(), ScoresByAnswer())) as c:
+        for question in ("What is a picture?", "What is a photo?"):
+            assert c.post("/api/chat", json={"question": question}).json()["provider_calls"] == 1
+        hit = c.post("/api/chat", json={"question": "What is a photograph?"}).json()
+        assert hit["provider_calls"] == 0
+        assert hit["semantic_match"]["matched_question"] == "What is a photo?"
+        assert [row["result"] for row in hit["semantic_verification"]["candidates"]] == [
+            "answer_not_verified", "verified_candidate",
+        ]
+
+
+def test_dense_candidates_that_both_pass_keep_ambiguity_fallback(tmp_path):
+    transport = AnswersTransport({
+        "What is a picture?": "Pictures can include paintings and drawings.",
+        "What is a photo?": "A photo is an image captured with a light sensor.",
+    })
+    questions = ("What is a picture?", "What is a photo?")
+    with client(tmp_path, transport) as c:
+        for question in questions:
+            assert c.post("/api/chat", json={"question": question}).json()["provider_calls"] == 1
+    with client(tmp_path, transport, (Encoder(), PairScorer(), AnswerScorer())) as c:
+        for question in questions:
+            assert c.post("/api/chat", json={"question": question}).json()["cache_tier"] == "EXACT"
+        result = c.post("/api/chat", json={"question": "What is a photograph?"}).json()
+        assert result["provider_calls"] == 1
+        assert result["semantic_decision"] == "ambiguous_candidates"
+
+
+@pytest.mark.parametrize(("source", "saved", "expected"), [
+    ("How do I measure asyncio timing?", "Use a wall-clock timer.", "added_cprofile_requirement"),
+    ("How do I measure asyncio timing using cProfile?", "The module cProfile measures time.", "answer_lacks_cprofile_usage"),
+    ("How do I measure asyncio timing using cProfile?",
+     "```python\nimport cProfile\ncProfile.run('main()')\n```", None),
+])
+def test_profiling_verification_requires_actual_tool_usage(source, saved, expected):
+    from src.policy.procedural_evidence import profiling_reuse_reason
+
+    assert profiling_reuse_reason(source, "Explain how to benchmark asyncio using cProfile.", saved) == expected

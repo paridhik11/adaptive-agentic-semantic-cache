@@ -153,6 +153,17 @@ async function send(question, includeHistory, {clearDraft = true, autoContext = 
       `${result.provider_calls} provider call${result.provider_calls === 1 ? "" : "s"}`,
       `Response ${time(result.latency_ms)}`,
     ];
+    if (result.semantic_verification) {
+      const verification = result.semantic_verification;
+      if (verification.state === "skipped") {
+        details.push("Semantic checks skipped");
+      } else {
+        details.push(`Semantic checks ${time(verification.verification_ms)}`);
+        if (verification.candidates.length) {
+          details.push(`${verification.candidates.length} ranked candidates checked`);
+        }
+      }
+    }
     if (result.provider_ms !== null) details.push(`Provider ${time(result.provider_ms)}`);
     if (result.generated_tokens !== null) details.push(`${result.generated_tokens} generated tokens`);
     const effectiveQuestion = result.resolved_question || question;

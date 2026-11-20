@@ -94,7 +94,9 @@ def open_chat_journal(path):
     return PilotJournal(path, run_id="general-chat-v1", fingerprint="general-chat-free-v1", max_calls=RUN_LIMIT)
 
 
-def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODEL, benchmark_directory=None, transport=None, semantic_models=None):
+def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODEL, benchmark_directory=None, transport=None, semantic_models=None, semantic_mode="guarded"):
+    if semantic_mode not in {"exact", "guarded", "shadow"}:
+        raise ValueError("Invalid chat semantic mode.")
     if not isinstance(api_key, str) or not api_key.strip():
         raise ValueError("Set OPENROUTER_API_KEY in PowerShell before launching live chat.")
     upstream = FreeOpenRouterProvider(api_key, models={model}, reasoning_enabled=False, transport=transport)
@@ -206,8 +208,10 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
                     upstream_ms = (time.perf_counter() - contact) * 1_000
 
         try:
+            verification = {}
             result, match, semantic_decision = semantic.process(
-                body, tenant_id=TENANT, provider=generate, bypass=not enabled)
+                body, tenant_id=TENANT, provider=generate, bypass=not enabled,
+                diagnostics=verification, mode=semantic_mode)
         except RunPaused as exc:
             code = (exc.diagnostics or {}).get("code", exc.reason)
             message = _MESSAGES.get(code) or _MESSAGES.get(exc.reason)
@@ -229,6 +233,7 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
             "cache_status": result.status, "cache_reason": result.reason, "stored": result.stored,
             "cache_tier": "SEMANTIC" if match else "EXACT" if result.status == "HIT" else None,
             "semantic_match": match, "semantic_decision": semantic_decision,
+            "semantic_verification": verification,
             "resolved_question": resolved_question,
             "provider_calls": calls, "provider_ms": upstream_ms if calls else None,
             "latency_ms": (time.perf_counter() - started) * 1_000,

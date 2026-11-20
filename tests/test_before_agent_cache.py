@@ -338,3 +338,24 @@ def test_embedding_failure_retains_approved_exact_answer_and_reports_it(tmp_path
     assert completed['trace'][-1]['stored'] is True
     assert any(e['stage']=='embedding' and e['error']=='RuntimeError' for e in completed['work'])
     assert run(agent)['provider_calls']==0
+
+
+def test_document_answer_blocks_approved_match_that_only_names_profiling_tool(tmp_path):
+    seed_question = "Benchmark asyncio using cProfile."
+    new_question = "Benchmark an asyncio task with cProfile."
+    agent, _ = build(tmp_path, mode="guarded")
+    approved = approve(agent, run(agent, seed_question))
+    request = agent.answer_cache.request(agent, approved, "alice")
+    variant = agent.answer_cache.request(agent, {**approved, "question": new_question}, "alice")
+    response = agent.answer_cache.response(agent, approved)
+    response["choices"][0]["message"]["content"] = "cProfile is a Python profiler [tuples]."
+    binding = approval_binding(variant, request, response, tenant_id="a", scope=asdict(KNOWLEDGE))
+    policy = AnswerBoundApprovals({"schema_version": "answer-bound-approvals-v1", "provenance": "authored_fixture",
+                                   "approvals": [{**binding, "approved": True}]})
+    agent, provider = build(tmp_path, mode="guarded", approver=policy)
+    assert agent.answer_cache.admit(request, response, "a", agent.answer_cache.epoch())
+    fresh = run(agent, new_question)
+    lookup = next(entry for entry in fresh["trace"] if entry["stage"] == "CACHE_LOOKUP")
+    assert lookup["reason"] == "answer_lacks_cprofile_usage"
+    assert fresh["provider_calls"] == len(provider.calls) == 3
+    assert not fresh.get("answer_cache_hit", False)

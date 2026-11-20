@@ -67,6 +67,9 @@ _WHY = re.compile(r"(?:explain )?why (.+)", re.I)
 _COPULA = re.compile(r"\b(?:is|are|was|were)\b", re.I)
 _COMPARATIVE = re.compile(r"\b(?:more|less|better|worse|lower|higher|different|similar)\b", re.I)
 
+_REVERSE_CONTAINER = re.compile(
+    r"(?:make|build) (?:a |an )?(tuple|list) (?:out of|from) (?:a |an )?(tuple|list)", re.I
+)
 _CONVERSION = (
     re.compile(r"from (.+?) to (.+)", re.I),
     re.compile(r"to (.+?) from (.+)", re.I),
@@ -89,6 +92,9 @@ def _ordered_words(phrase):
 
 
 def _method_keywords(text):
+    match = _REVERSE_CONTAINER.fullmatch(text)
+    if match and match[1].casefold() != match[2].casefold():
+        return "method", ("convert", (match[2].casefold(),), (match[1].casefold(),))
     action, _, target = text.partition(" ")
     action = action.casefold()
     if action == "compute":

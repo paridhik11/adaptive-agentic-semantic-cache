@@ -1137,3 +1137,10 @@ Telemetry: `artifacts/metrics_campaign/repeat_rich/` (and root), `artifacts/metr
 | ID | Evidence | Source and reproduction |
 | --- | --- | --- |
 | LC-01 | Public ComQA test offline replay on `49fa7de`. The gallery contained 1,434 seeds and 422 probes. Full-question MiniLM cosine at 0.84 yielded 279 exact-answer-set matches, 19 disjoint hits and three overlapping hits in the gallery. Cosine selected 47/422 disjoint controls. Full verification yielded 9 supported main hits and zero disjoint hits in both cohorts. Both API modes yielded zero supported hits on paired seeds and flagged one disjoint control, an answer date that correctly supplied the requested year. Counts, dependency limits and exact intervals are documented with the protocol. | [Aggregate JSON](../artifacts/live_chat/comqa_cosine_49fa7de.json) · [Protocol and reproduction](LIVE_CHAT_COSINE_EVALUATION.md) |
+
+## Semantic reuse upgrade
+
+| ID | Evidence | Source and reproduction |
+| --- | --- | --- |
+| SU-01 | Offline authored reserved replay with 12 matched probes and 12 exact repeats per policy. Guarded supported semantic hits rose from 4/5 to 5/5. Unsuitable hits fell from 2/7 to 0/7. Fixture calls excluding priming changed from 8 to 9, as blocking unsuitable reuse gave up two previous call savings while newly supported reuse avoided one. Exact hits stayed at 10. | [Before](../artifacts/semantic_upgrade/reserved_before.json) · [After](../artifacts/semantic_upgrade/reserved_after.json) · [Methods and intervals](SEMANTIC_UPGRADE_RESULTS.md) |
+| SU-02 | A single local neural definition receipt recorded 11.03 ms embedding, 112.84 ms cross-encoder work, and 129.75 ms total verification. This was a stage measurement using an offline provider fixture. | [Local stage receipt](../artifacts/semantic_upgrade/local_model_trace.json) |

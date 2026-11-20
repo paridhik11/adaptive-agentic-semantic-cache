@@ -10,6 +10,7 @@ import sqlite3
 from contextlib import nullcontext
 
 from src.policy.encoders import normalize
+from src.policy.procedural_evidence import profiling_reuse_reason
 from src.policy.response_cache import ScopedResponseCache, _serialize
 from src.policy.semantic_runtime import GuardedSemanticCache, PinnedContextPolicy
 from src.policy.sqlite_store import SQLiteResponseStore
@@ -71,6 +72,12 @@ class CompletedDocumentCache:
             result = self.cache.process(request, tenant_id=tenant, provider=missing, ledger=ledger)
             if result.status != 'HIT' or result.provider_calls != 0:
                 raise ValueError('lookup-only cache attempted provider work')
+            if result.reason != "scoped_exact_hit":
+                saved = result.response.get("documentation", {}).get("original_question", "")
+                content = result.response["choices"][0]["message"]["content"]
+                reason = profiling_reuse_reason(saved, request["messages"][-1]["content"], content)
+                if reason:
+                    return None, reason
             return result, result.reason
         except _LookupMiss:
             return None, 'no_qualified_answer'
