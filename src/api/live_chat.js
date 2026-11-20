@@ -111,7 +111,10 @@ function stats(data) {
   byId("quota").textContent = `${data.used ?? "—"} / ${data.limit}`;
   byId("hits").textContent = data.hits;
   byId("hit-label").textContent = `${data.exact_hits} exact · ${data.semantic_hits} semantic`;
-  byId("model").textContent = `Live · ${data.model} · ${data.semantic_enabled ? "local models on" : "local reuse on"}`;
+  let mode = data.semantic_enabled ? "local models on" : "guarded rules";
+  if (data.semantic_mode === "exact") mode = "exact only";
+  if (data.semantic_mode === "shadow") mode = "semantic shadow";
+  byId("model").textContent = `Live · ${data.model} · ${mode}`;
 }
 
 const bypassLabels = {

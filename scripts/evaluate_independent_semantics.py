@@ -417,12 +417,31 @@ def improves(panels, config):
     return gained > 0
 
 
+def runtime_summary(events):
+    metrics = summarize(events)
+    probes = [e for e in events if e["kind"] != "exact"]
+    metrics.update(
+        measured_fixture_calls=sum(e["calls"] for e in events),
+        measured_probe_calls=sum(e["calls"] for e in probes),
+        probe_latency_p50_p95_ms=np.percentile(
+            [e["latency_ms"] for e in probes], [50, 95]
+        ).tolist(),
+        mean_probe_verification_ms=np.mean([e["verification_ms"] for e in probes]),
+    )
+    return metrics
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("directory", type=Path)
     ap.add_argument("output", type=Path)
     ap.add_argument("--split", choices=["development", "holdout"], required=True)
     ap.add_argument("--download", action="store_true")
+    ap.add_argument(
+        "--default-only",
+        action="store_true",
+        help="Replay the unmodified lightweight live policy",
+    )
     args = ap.parse_args()
     pinned(args.directory, args.download)
     args.output.mkdir(parents=True, exist_ok=True)
@@ -431,6 +450,14 @@ def main():
     if split == "holdout" and not lock.is_file():
         ap.error("Generate development selection before holdout")
     selection = json.loads(lock.read_bytes()) if split == "holdout" else {}
+    if args.default_only:
+        result = {}
+        for name, get_data in [("comqa", comqa), ("python", python_docs)]:
+            rows = [r for r in get_data(args.directory) if r[1] == split][: CAP[name]]
+            events = runtime(rows, None, "guarded")
+            result[name] = {"metrics": runtime_summary(events), "events": events}
+        dump(args.output / (split + "-live-default.json"), result)
+        return
     models = load_chat_models()
     panels, details, result = (
         {},
@@ -471,18 +498,7 @@ def main():
             if arm.startswith("live"):
                 mode = "exact" if arm == "live_exact" else "guarded"
                 events = runtime(rows, models, mode)
-                metrics = summarize(events)
-                probes = [e for e in events if e["kind"] != "exact"]
-                metrics.update(
-                    measured_fixture_calls=sum(e["calls"] for e in events),
-                    measured_probe_calls=sum(e["calls"] for e in probes),
-                    probe_latency_p50_p95_ms=np.percentile(
-                        [e["latency_ms"] for e in probes], [50, 95]
-                    ).tolist(),
-                    mean_probe_verification_ms=np.mean(
-                        [e["verification_ms"] for e in probes]
-                    ),
-                )
+                metrics = runtime_summary(events)
             else:
                 config = selection["combined"] if arm == "combined" else [arm]
                 t = perf_counter()

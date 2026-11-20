@@ -31,7 +31,9 @@ def main():
     parser.add_argument("--whole-answer-cache", action="store_true", help="Offline exact reuse of approved answers.")
     parser.add_argument("--task-memory", action="store_true", help="Offline scoped local task retrieval.")
     parser.add_argument("--journal", type=Path, help="Existing shared journal, required in live mode.")
-    parser.add_argument("--experimental-semantic", action="store_true", help="Opt in to guarded semantic reuse.")
+    reuse = parser.add_mutually_exclusive_group()
+    reuse.add_argument("--guarded-rules", action="store_true", help="Opt in to lightweight paraphrase matching in live chat.")
+    reuse.add_argument("--experimental-semantic", action="store_true", help="Opt in to guarded semantic reuse.")
     parser.add_argument("--fresh", action="store_true", help="Use temporary storage for this offline web session.")
     args = parser.parse_args()
     if args.resolve_interrupted is not None:
@@ -54,6 +56,8 @@ def main():
         parser.error("--fresh applies to the offline web demo")
     offline_options = args.fresh or args.whole_answer_cache or args.task_memory
     live_chat = args.live_chat or not (args.live or args.offline or args.interview or args.cli or offline_options)
+    if args.guarded_rules and not live_chat:
+        parser.error("--guarded-rules applies to live chat")
     if args.model and not live_chat:
         parser.error("--model applies to live chat")
     if args.live_chat and (args.whole_answer_cache or args.task_memory):
@@ -104,6 +108,7 @@ def main():
                 args.directory / "live-chat", api_key=key, model=args.model or DEFAULT_MODEL,
                 journal_path=args.journal or DEFAULT_JOURNAL,
                 benchmark_directory=benchmark_directory, semantic_models=semantic_models,
+                semantic_mode="guarded" if args.guarded_rules or args.experimental_semantic else "exact",
             )
         except ValueError as exc:
             parser.error(str(exc))

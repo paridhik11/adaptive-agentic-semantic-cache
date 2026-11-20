@@ -1144,3 +1144,10 @@ Telemetry: `artifacts/metrics_campaign/repeat_rich/` (and root), `artifacts/metr
 | --- | --- | --- |
 | SU-01 | Offline authored reserved replay with 12 matched probes and 12 exact repeats per policy. Guarded supported semantic hits rose from 4/5 to 5/5. Unsuitable hits fell from 2/7 to 0/7. Fixture calls excluding priming changed from 8 to 9, as blocking unsuitable reuse gave up two previous call savings while newly supported reuse avoided one. Exact hits stayed at 10. | [Before](../artifacts/semantic_upgrade/reserved_before.json) · [After](../artifacts/semantic_upgrade/reserved_after.json) · [Methods and intervals](SEMANTIC_UPGRADE_RESULTS.md) |
 | SU-02 | A single local neural definition receipt recorded 11.03 ms embedding, 112.84 ms cross-encoder work, and 129.75 ms total verification. This was a stage measurement using an offline provider fixture. | [Local stage receipt](../artifacts/semantic_upgrade/local_model_trace.json) |
+
+## Independent semantic evaluation
+
+| ID | Offline evidence | Receipts |
+| --- | --- | --- |
+| IE-01 | In 128 held-out ComQA clusters the intended source ranked first for 127. The frozen short-answer rule increased correct hits from 4 to 20 and introduced one disjoint-answer hit across 256 nonexact requests. It accepted 11/128 deliberately corrupted entries versus 0/128 for the full-question baseline. | [Holdout](../artifacts/independent_semantic/holdout.json) · [Corruption](../artifacts/independent_semantic/holdout-answer-audit.json) · [Method, precision and intervals](INDEPENDENT_SEMANTIC_EVALUATION.md) |
+| IE-02 | The research arms used 252 versus 235 fixture calls across 384 requests including exact repeats. One of the 17 additional avoided calls was a wrong substitution. Each timed research decision was checked against the batch trace. | [Measured local profile](../artifacts/independent_semantic/holdout-profile.json) |

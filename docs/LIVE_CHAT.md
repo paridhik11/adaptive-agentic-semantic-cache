@@ -9,9 +9,9 @@ The live receipt includes semantic-check timing and the number of ranked neural 
 In your existing repository checkout:
 
 ```powershell
-git fetch origin optimize-v2:refs/remotes/origin/optimize-v2
-git switch optimize-v2
-git pull --ff-only origin optimize-v2
+git fetch origin experiment/independent-semantic-evaluation
+git switch experiment/independent-semantic-evaluation
+git pull --ff-only origin experiment/independent-semantic-evaluation
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r deploy\requirements-gateway.txt
 .\.venv\Scripts\python.exe scripts\run_demo.py
@@ -19,13 +19,15 @@ py -3.12 -m venv .venv
 
 If you already created `.venv`, keep it and run the install line after updating the branch to pick up the spelling dictionary. Stop any earlier server with **Ctrl+C** first. The launcher uses `OPENROUTER_API_KEY` when set, or prompts for it with hidden input. Open [Live chat](http://127.0.0.1:8765/) and look for **Live** next to the model name.
 
+On this experiment branch, the default launcher displays **exact only**. To try the paraphrase examples below, run `.\.venv\Scripts\python.exe scripts\run_demo.py --live-chat --guarded-rules`. The broader relative-score experiment runs offline. [Independent evaluation](INDEPENDENT_SEMANTIC_EVALUATION.md)
+
 1. Ask **what is risk managemnet**. A cache miss shows **1 provider call**, elapsed time and completion tokens if reported by OpenRouter.
 2. Select **Repeat as new question**. An eligible exact hit shows **0 provider calls**, **0 generated tokens**, and the new response time alongside the earlier fresh response.
 3. Ask **what do u mean by risk managemgcnt** and then **risk management?** as standalone questions. If the stored answer opens by defining risk management, both show **Semantic hit · 0 provider calls**. An earlier exact answer enters the definition index when its original question is asked again.
 4. Ask **What is risk measurement?** or **What is risk management? Give a worked example.** These take the fresh path. Try **Compare precision and recall** followed by **Precision vs recall?** to show comparison reuse. Reversing the terms, changing a term, or adding a population or period asks the model again.
 5. Select **Benchmark analysis** to open the historical offline evidence and workload projections.
 
-Definition reuse is enabled by default. The cache checks that the saved answer opens by defining the same short topic. It can account for a spelling variation in one long word and a singular or plural form of the final noun in the same prompt. For rare spellings outside the local dictionary, the answer opening can corroborate the intended topic and an incoming prompt can reuse it with the same spelling or the spelling used in the answer. The chat falls back to the model when the match is ambiguous.
+Guarded rules enable definition reuse. The cache checks that the saved answer opens by defining the same short topic. It can account for a spelling variation in one long word and a singular or plural form of the final noun in the same prompt. For rare spellings outside the local dictionary, the answer opening can corroborate the intended topic and an incoming prompt can reuse it with the same spelling or the spelling used in the answer. The chat falls back to the model when the match is ambiguous.
 
 If the three prompts already have separate exact answers, add `--directory runs\definition-reuse-demo` when starting the server to demonstrate the sequence with a separate cache. The provider quota journal stays shared.
 
@@ -39,7 +41,7 @@ Ask **what do u mean by bioluminiscent beaches** and then **what is a bioluminis
 
 The offline regression replay reused the seed answer on all 11 tested rephrasings. All 11 changed requests took the fresh path. [Recorded results](FACTS.md#live-chat-definition-replay)
 
-## See a semantic hit in the default chat
+## See a semantic hit with guarded rules
 
 Leave **Context** on **Automatic** and keep cache reuse enabled.
 
@@ -52,7 +54,7 @@ The local checks compare the requested fact, named subject, rank, qualifiers and
 
 ## Keyword lookup
 
-The default chat indexes the request type and ordered keywords when it saves an eligible answer. It recognizes common changes in framing, such as “How does a heat pump work?” and “Explain how a heat pump operates.” It also recognizes grammatical changes that preserve roles, such as asking who designed a building in either the active or passive voice.
+The guarded chat indexes the request type and ordered keywords when it saves an eligible answer. It recognizes common changes in framing, such as “How does a heat pump work?” and “Explain how a heat pump operates.” It also recognizes grammatical changes that preserve roles, such as asking who designed a building in either the active or passive voice.
 
 Try **How to convert a tuple to a list?** and then **How can I convert to a list from a tuple?**. The cache recognizes the same source and destination and shows **Semantic hit · 0 provider calls** with the original question. **How to convert a list to a tuple?** reverses the operation and gets a fresh answer. Changed values, named subjects, word order that changes the request, and added instructions can also require a fresh answer.
 

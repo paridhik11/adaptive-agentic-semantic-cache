@@ -1,0 +1,1355 @@
+{
+  "at_most_three_answer_words": 130,
+  "matched_rejections": 168,
+  "passage_quartiles": [
+    0.00014721157676694433,
+    0.001689485963238876,
+    0.019954447700797823
+  ],
+  "records": [
+    {
+      "answer_words": 1,
+      "cosine": 0.9047994017601013,
+      "gallery_index": 2,
+      "pair_min": 0.9664041397508705,
+      "passage": 9.104881236586922e-05,
+      "probe_index": 0
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.97830730676651,
+      "gallery_index": 11,
+      "pair_min": 0.9828277419644645,
+      "passage": 0.012059436522033971,
+      "probe_index": 7
+    },
+    {
+      "answer_words": 5,
+      "cosine": 0.9606595039367676,
+      "gallery_index": 16,
+      "pair_min": 0.9612258872796438,
+      "passage": 3.036958498590457e-05,
+      "probe_index": 9
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.8897691965103149,
+      "gallery_index": 19,
+      "pair_min": 0.9890251183502201,
+      "passage": 0.00031824278417262386,
+      "probe_index": 10
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9769206047058105,
+      "gallery_index": 21,
+      "pair_min": 0.9888807086934829,
+      "passage": 0.00010159359738527624,
+      "probe_index": 11
+    },
+    {
+      "answer_words": 4,
+      "cosine": 0.9940747022628784,
+      "gallery_index": 22,
+      "pair_min": 0.9969071500932618,
+      "passage": 1.528095235295488e-05,
+      "probe_index": 12
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9873265027999878,
+      "gallery_index": 24,
+      "pair_min": 0.9859630462316756,
+      "passage": 0.002364223626824395,
+      "probe_index": 13
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9901790618896484,
+      "gallery_index": 28,
+      "pair_min": 0.9838116093217321,
+      "passage": 0.003623358383655047,
+      "probe_index": 16
+    },
+    {
+      "answer_words": 14,
+      "cosine": 0.9413340091705322,
+      "gallery_index": 39,
+      "pair_min": 0.9792799698672265,
+      "passage": 0.0033935516301526456,
+      "probe_index": 20
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9845142364501953,
+      "gallery_index": 42,
+      "pair_min": 0.980839748527903,
+      "passage": 0.0034816535348439737,
+      "probe_index": 22
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9391233325004578,
+      "gallery_index": 60,
+      "pair_min": 0.9830480014780852,
+      "passage": 0.00010438300183949783,
+      "probe_index": 29
+    },
+    {
+      "answer_words": 4,
+      "cosine": 0.9833056926727295,
+      "gallery_index": 63,
+      "pair_min": 0.9931376132795195,
+      "passage": 0.2409493650645044,
+      "probe_index": 31
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.931134045124054,
+      "gallery_index": 66,
+      "pair_min": 0.9838094372188139,
+      "passage": 6.715811257925821e-05,
+      "probe_index": 33
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9614366292953491,
+      "gallery_index": 80,
+      "pair_min": 0.9881264153391436,
+      "passage": 0.0019539561143782336,
+      "probe_index": 37
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9217098355293274,
+      "gallery_index": 82,
+      "pair_min": 0.9961047204046549,
+      "passage": 0.0005091963031532688,
+      "probe_index": 38
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9561672806739807,
+      "gallery_index": 89,
+      "pair_min": 0.9956373113404973,
+      "passage": 0.0013656476116883916,
+      "probe_index": 41
+    },
+    {
+      "answer_words": 16,
+      "cosine": 0.9629805088043213,
+      "gallery_index": 93,
+      "pair_min": 0.9909781390084716,
+      "passage": 0.6198624010220621,
+      "probe_index": 43
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9607080221176147,
+      "gallery_index": 94,
+      "pair_min": 0.9431553392856471,
+      "passage": 0.0006335890079312046,
+      "probe_index": 44
+    },
+    {
+      "answer_words": 9,
+      "cosine": 0.8943567872047424,
+      "gallery_index": 97,
+      "pair_min": 0.9368582618788784,
+      "passage": 0.025869540464840662,
+      "probe_index": 45
+    },
+    {
+      "answer_words": 4,
+      "cosine": 0.9280203580856323,
+      "gallery_index": 105,
+      "pair_min": 0.9961342408804228,
+      "passage": 5.042631079170629e-05,
+      "probe_index": 50
+    },
+    {
+      "answer_words": 4,
+      "cosine": 0.9877279996871948,
+      "gallery_index": 107,
+      "pair_min": 0.9978856864123782,
+      "passage": 0.6746084729862994,
+      "probe_index": 51
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9863936901092529,
+      "gallery_index": 121,
+      "pair_min": 0.9945832005541162,
+      "passage": 5.530186926703928e-05,
+      "probe_index": 59
+    },
+    {
+      "answer_words": 6,
+      "cosine": 0.981515109539032,
+      "gallery_index": 127,
+      "pair_min": 0.9317850732763436,
+      "passage": 0.00022999915553634454,
+      "probe_index": 62
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9437206983566284,
+      "gallery_index": 144,
+      "pair_min": 0.9879348811149602,
+      "passage": 0.0004487844433558823,
+      "probe_index": 68
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9798276424407959,
+      "gallery_index": 147,
+      "pair_min": 0.9768714940632122,
+      "passage": 1.9623329016245572e-05,
+      "probe_index": 69
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9720401763916016,
+      "gallery_index": 153,
+      "pair_min": 0.9557760331046982,
+      "passage": 0.013568338548265887,
+      "probe_index": 73
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9647791385650635,
+      "gallery_index": 160,
+      "pair_min": 0.9877956331732325,
+      "passage": 0.010880860140379969,
+      "probe_index": 76
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9760681390762329,
+      "gallery_index": 171,
+      "pair_min": 0.9950888440850777,
+      "passage": 0.0007607086879618061,
+      "probe_index": 79
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9177206754684448,
+      "gallery_index": 174,
+      "pair_min": 0.9779845230343857,
+      "passage": 0.14351230711254592,
+      "probe_index": 81
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9757225513458252,
+      "gallery_index": 176,
+      "pair_min": 0.9167193452134466,
+      "passage": 0.013642172655712699,
+      "probe_index": 82
+    },
+    {
+      "answer_words": 13,
+      "cosine": 0.9490377902984619,
+      "gallery_index": 177,
+      "pair_min": 0.9838999961981217,
+      "passage": 0.6984918105245296,
+      "probe_index": 83
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9603625535964966,
+      "gallery_index": 181,
+      "pair_min": 0.9588552854158617,
+      "passage": 0.013844039477717795,
+      "probe_index": 84
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9871854782104492,
+      "gallery_index": 185,
+      "pair_min": 0.9744263864269398,
+      "passage": 2.4471587689228655e-05,
+      "probe_index": 85
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.8748705387115479,
+      "gallery_index": 186,
+      "pair_min": 0.9929331774645339,
+      "passage": 0.0017550721578268355,
+      "probe_index": 86
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9981396794319153,
+      "gallery_index": 192,
+      "pair_min": 0.9820692673555658,
+      "passage": 0.00028878012233321586,
+      "probe_index": 89
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9705147743225098,
+      "gallery_index": 193,
+      "pair_min": 0.9843054207442038,
+      "passage": 0.013825238283347002,
+      "probe_index": 90
+    },
+    {
+      "answer_words": 4,
+      "cosine": 0.979999303817749,
+      "gallery_index": 199,
+      "pair_min": 0.9754347632559814,
+      "passage": 0.06630105524124943,
+      "probe_index": 91
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9887468218803406,
+      "gallery_index": 200,
+      "pair_min": 0.9924833810140521,
+      "passage": 0.283604393158389,
+      "probe_index": 92
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9926663637161255,
+      "gallery_index": 203,
+      "pair_min": 0.9766148259547149,
+      "passage": 0.005677267921911033,
+      "probe_index": 93
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.899921178817749,
+      "gallery_index": 205,
+      "pair_min": 0.9701387416503503,
+      "passage": 0.015483035091224038,
+      "probe_index": 94
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9718081951141357,
+      "gallery_index": 211,
+      "pair_min": 0.9822283434749157,
+      "passage": 0.0016510511090734527,
+      "probe_index": 98
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9865068197250366,
+      "gallery_index": 214,
+      "pair_min": 0.9977255018979567,
+      "passage": 0.0032344640453146186,
+      "probe_index": 99
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9681919813156128,
+      "gallery_index": 242,
+      "pair_min": 0.9788289032292695,
+      "passage": 0.001360317095645868,
+      "probe_index": 111
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9316467046737671,
+      "gallery_index": 245,
+      "pair_min": 0.8315221523745139,
+      "passage": 0.0004912018646417405,
+      "probe_index": 113
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9770963191986084,
+      "gallery_index": 246,
+      "pair_min": 0.9949965120357128,
+      "passage": 4.0612311027793124e-05,
+      "probe_index": 114
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.8814452886581421,
+      "gallery_index": 250,
+      "pair_min": 0.9931128315811432,
+      "passage": 0.0002264617928755472,
+      "probe_index": 117
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9504956007003784,
+      "gallery_index": 251,
+      "pair_min": 0.9873071506327443,
+      "passage": 0.0008093061910790091,
+      "probe_index": 118
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9642879366874695,
+      "gallery_index": 257,
+      "pair_min": 0.9848773913926866,
+      "passage": 9.305768258029409e-05,
+      "probe_index": 121
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.982456624507904,
+      "gallery_index": 270,
+      "pair_min": 0.9898405610661052,
+      "passage": 0.28256126964040973,
+      "probe_index": 124
+    },
+    {
+      "answer_words": 6,
+      "cosine": 0.9644299745559692,
+      "gallery_index": 276,
+      "pair_min": 0.991433909683424,
+      "passage": 5.904998470590217e-05,
+      "probe_index": 126
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9789767265319824,
+      "gallery_index": 277,
+      "pair_min": 0.9963387239813947,
+      "passage": 0.5895825633094115,
+      "probe_index": 127
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9671639204025269,
+      "gallery_index": 280,
+      "pair_min": 0.9613949888319308,
+      "passage": 0.0001107390852832233,
+      "probe_index": 128
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9364286661148071,
+      "gallery_index": 284,
+      "pair_min": 0.9847195255466494,
+      "passage": 5.8499478814445216e-05,
+      "probe_index": 131
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9015618562698364,
+      "gallery_index": 291,
+      "pair_min": 0.9943466493047056,
+      "passage": 0.00013521035511138545,
+      "probe_index": 134
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9739853143692017,
+      "gallery_index": 293,
+      "pair_min": 0.9400307109356956,
+      "passage": 4.591808919568195e-05,
+      "probe_index": 136
+    },
+    {
+      "answer_words": 6,
+      "cosine": 0.9622930288314819,
+      "gallery_index": 300,
+      "pair_min": 0.9339261714669221,
+      "passage": 0.00045418385679406174,
+      "probe_index": 140
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9617554545402527,
+      "gallery_index": 307,
+      "pair_min": 0.9934025417740359,
+      "passage": 0.00012761611502551862,
+      "probe_index": 144
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9978489875793457,
+      "gallery_index": 316,
+      "pair_min": 0.9857510559087189,
+      "passage": 0.003078210245805086,
+      "probe_index": 149
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9596081972122192,
+      "gallery_index": 333,
+      "pair_min": 0.9886990933228632,
+      "passage": 0.00042397081905225285,
+      "probe_index": 155
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9735349416732788,
+      "gallery_index": 337,
+      "pair_min": 0.950802963527129,
+      "passage": 1.746530956961664e-05,
+      "probe_index": 157
+    },
+    {
+      "answer_words": 5,
+      "cosine": 0.9527987241744995,
+      "gallery_index": 344,
+      "pair_min": 0.9844066206900072,
+      "passage": 3.624655091420944e-05,
+      "probe_index": 159
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9485931396484375,
+      "gallery_index": 364,
+      "pair_min": 0.9900644584679301,
+      "passage": 0.0008101217491178632,
+      "probe_index": 167
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.905936598777771,
+      "gallery_index": 368,
+      "pair_min": 0.9886218093318662,
+      "passage": 0.017384948139209242,
+      "probe_index": 169
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9325327277183533,
+      "gallery_index": 373,
+      "pair_min": 0.9868699086013344,
+      "passage": 0.001060498910083951,
+      "probe_index": 170
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.8939976692199707,
+      "gallery_index": 380,
+      "pair_min": 0.9351581018783536,
+      "passage": 0.0015350532424659518,
+      "probe_index": 175
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.8504884243011475,
+      "gallery_index": 394,
+      "pair_min": 0.975325329305137,
+      "passage": 0.029634885419868827,
+      "probe_index": 179
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9613103866577148,
+      "gallery_index": 396,
+      "pair_min": 0.997593552889491,
+      "passage": 0.08567199488023892,
+      "probe_index": 181
+    },
+    {
+      "answer_words": 4,
+      "cosine": 0.9707223176956177,
+      "gallery_index": 397,
+      "pair_min": 0.9659591826988351,
+      "passage": 0.003852220530583583,
+      "probe_index": 182
+    },
+    {
+      "answer_words": 5,
+      "cosine": 0.9227449893951416,
+      "gallery_index": 400,
+      "pair_min": 0.9410329854768223,
+      "passage": 0.0001312644013828493,
+      "probe_index": 185
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9796034097671509,
+      "gallery_index": 405,
+      "pair_min": 0.9774293314853675,
+      "passage": 0.006405435584603613,
+      "probe_index": 186
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9767522811889648,
+      "gallery_index": 410,
+      "pair_min": 0.8232647173631731,
+      "passage": 0.0011662440444121036,
+      "probe_index": 188
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9363534450531006,
+      "gallery_index": 424,
+      "pair_min": 0.9720371512715132,
+      "passage": 0.001045999026453493,
+      "probe_index": 194
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9827797412872314,
+      "gallery_index": 435,
+      "pair_min": 0.9957484966281936,
+      "passage": 2.686234136035531e-05,
+      "probe_index": 198
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9592189192771912,
+      "gallery_index": 438,
+      "pair_min": 0.9915537061722753,
+      "passage": 0.0025465653446211842,
+      "probe_index": 199
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.99345862865448,
+      "gallery_index": 448,
+      "pair_min": 0.9976554147657375,
+      "passage": 0.006858718686417889,
+      "probe_index": 202
+    },
+    {
+      "answer_words": 78,
+      "cosine": 0.9712402820587158,
+      "gallery_index": 451,
+      "pair_min": 0.993162073268945,
+      "passage": 0.0008750769632166362,
+      "probe_index": 204
+    },
+    {
+      "answer_words": 4,
+      "cosine": 0.9425365328788757,
+      "gallery_index": 458,
+      "pair_min": 0.9870652584040145,
+      "passage": 4.2038231614266537e-05,
+      "probe_index": 206
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9934600591659546,
+      "gallery_index": 459,
+      "pair_min": 0.9976620306987642,
+      "passage": 2.5332503981711738e-05,
+      "probe_index": 207
+    },
+    {
+      "answer_words": 5,
+      "cosine": 0.9463037252426147,
+      "gallery_index": 461,
+      "pair_min": 0.9779960393079233,
+      "passage": 0.058074131852968426,
+      "probe_index": 209
+    },
+    {
+      "answer_words": 4,
+      "cosine": 0.9533677101135254,
+      "gallery_index": 479,
+      "pair_min": 0.9859665368795003,
+      "passage": 9.485916059367369e-05,
+      "probe_index": 216
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.8498972058296204,
+      "gallery_index": 495,
+      "pair_min": 0.97799102603935,
+      "passage": 4.834730284737356e-05,
+      "probe_index": 223
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.8969087600708008,
+      "gallery_index": 518,
+      "pair_min": 0.9678624193898927,
+      "passage": 0.010878284206003033,
+      "probe_index": 228
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9620367288589478,
+      "gallery_index": 519,
+      "pair_min": 0.9861494360239053,
+      "passage": 0.02792618633117369,
+      "probe_index": 229
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.943191409111023,
+      "gallery_index": 524,
+      "pair_min": 0.9914611329398502,
+      "passage": 0.018191480877336356,
+      "probe_index": 230
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9757720232009888,
+      "gallery_index": 529,
+      "pair_min": 0.9931133664366708,
+      "passage": 0.00034302437340563404,
+      "probe_index": 231
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9125521183013916,
+      "gallery_index": 543,
+      "pair_min": 0.9582364346414958,
+      "passage": 0.0209076296831111,
+      "probe_index": 234
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.8783068656921387,
+      "gallery_index": 547,
+      "pair_min": 0.9738153801581311,
+      "passage": 0.29604599653068303,
+      "probe_index": 236
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9666991233825684,
+      "gallery_index": 549,
+      "pair_min": 0.9907549841788629,
+      "passage": 6.539213684214158e-05,
+      "probe_index": 238
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.8497536182403564,
+      "gallery_index": 553,
+      "pair_min": 0.9799325112589913,
+      "passage": 0.009792222666151556,
+      "probe_index": 240
+    },
+    {
+      "answer_words": 4,
+      "cosine": 0.9974191784858704,
+      "gallery_index": 559,
+      "pair_min": 0.994303313053085,
+      "passage": 0.08859673808526357,
+      "probe_index": 242
+    },
+    {
+      "answer_words": 8,
+      "cosine": 0.9187676906585693,
+      "gallery_index": 566,
+      "pair_min": 0.8569907640481356,
+      "passage": 0.008344442684668184,
+      "probe_index": 243
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9884754419326782,
+      "gallery_index": 567,
+      "pair_min": 0.9893848283502397,
+      "passage": 1.8535973654484807e-05,
+      "probe_index": 244
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9758797883987427,
+      "gallery_index": 581,
+      "pair_min": 0.9188872379186961,
+      "passage": 5.9237911774989896e-05,
+      "probe_index": 250
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9849838018417358,
+      "gallery_index": 585,
+      "pair_min": 0.9938189633780872,
+      "passage": 0.007079384116938379,
+      "probe_index": 251
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.8852530121803284,
+      "gallery_index": 591,
+      "pair_min": 0.9904916798042745,
+      "passage": 0.0004257836964328905,
+      "probe_index": 255
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9313908815383911,
+      "gallery_index": 592,
+      "pair_min": 0.989125835008801,
+      "passage": 0.038101585401608774,
+      "probe_index": 256
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.932132363319397,
+      "gallery_index": 608,
+      "pair_min": 0.9765720657703504,
+      "passage": 3.187034667454292e-05,
+      "probe_index": 264
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9025696516036987,
+      "gallery_index": 610,
+      "pair_min": 0.9962453301179135,
+      "passage": 8.68529073909343e-05,
+      "probe_index": 265
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9930789470672607,
+      "gallery_index": 614,
+      "pair_min": 0.9918528769639584,
+      "passage": 0.47464875303857673,
+      "probe_index": 266
+    },
+    {
+      "answer_words": 4,
+      "cosine": 0.9606549739837646,
+      "gallery_index": 615,
+      "pair_min": 0.9656894596889704,
+      "passage": 0.00010887801262662111,
+      "probe_index": 267
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9685764312744141,
+      "gallery_index": 616,
+      "pair_min": 0.9853562705341051,
+      "passage": 0.6292730935752492,
+      "probe_index": 268
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9618422985076904,
+      "gallery_index": 622,
+      "pair_min": 0.9182592387140468,
+      "passage": 0.0021431921553826954,
+      "probe_index": 271
+    },
+    {
+      "answer_words": 9,
+      "cosine": 0.8426560759544373,
+      "gallery_index": 625,
+      "pair_min": 0.9752807135244748,
+      "passage": 0.0017279208174042992,
+      "probe_index": 272
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9617695808410645,
+      "gallery_index": 642,
+      "pair_min": 0.9966887878216791,
+      "passage": 0.18319860685708436,
+      "probe_index": 275
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9742317199707031,
+      "gallery_index": 647,
+      "pair_min": 0.9882306734677058,
+      "passage": 0.0004523613521224364,
+      "probe_index": 276
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9704333543777466,
+      "gallery_index": 652,
+      "pair_min": 0.8841665352561814,
+      "passage": 0.022975346806234472,
+      "probe_index": 278
+    },
+    {
+      "answer_words": 5,
+      "cosine": 0.9447535276412964,
+      "gallery_index": 659,
+      "pair_min": 0.9370936781584638,
+      "passage": 0.0007651249531545695,
+      "probe_index": 279
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.989058256149292,
+      "gallery_index": 672,
+      "pair_min": 0.9797106000410992,
+      "passage": 0.0004075016455349971,
+      "probe_index": 282
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9630891680717468,
+      "gallery_index": 682,
+      "pair_min": 0.9741284406960674,
+      "passage": 0.1555443896393132,
+      "probe_index": 285
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.8775538206100464,
+      "gallery_index": 690,
+      "pair_min": 0.9002017605539165,
+      "passage": 0.012335711173932935,
+      "probe_index": 287
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9707605838775635,
+      "gallery_index": 704,
+      "pair_min": 0.9505190853939455,
+      "passage": 0.3893740689561713,
+      "probe_index": 291
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9173232316970825,
+      "gallery_index": 718,
+      "pair_min": 0.9332151394964185,
+      "passage": 0.0581498208851019,
+      "probe_index": 294
+    },
+    {
+      "answer_words": 6,
+      "cosine": 0.8881970643997192,
+      "gallery_index": 720,
+      "pair_min": 0.9635944487443197,
+      "passage": 0.019899393337741347,
+      "probe_index": 295
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9433127641677856,
+      "gallery_index": 721,
+      "pair_min": 0.9864755066800748,
+      "passage": 0.00017796118290686907,
+      "probe_index": 296
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.8862543106079102,
+      "gallery_index": 726,
+      "pair_min": 0.9941485500828149,
+      "passage": 0.02485146243206341,
+      "probe_index": 297
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9816216230392456,
+      "gallery_index": 733,
+      "pair_min": 0.9596596656102961,
+      "passage": 9.269580261733649e-05,
+      "probe_index": 299
+    },
+    {
+      "answer_words": 6,
+      "cosine": 0.9722128510475159,
+      "gallery_index": 736,
+      "pair_min": 0.9257277565467832,
+      "passage": 0.7253126971558694,
+      "probe_index": 300
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.911396324634552,
+      "gallery_index": 748,
+      "pair_min": 0.9944072727087618,
+      "passage": 0.0002387148526943422,
+      "probe_index": 304
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.8942519426345825,
+      "gallery_index": 749,
+      "pair_min": 0.9923956671881773,
+      "passage": 0.13034728517090916,
+      "probe_index": 305
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9660542011260986,
+      "gallery_index": 755,
+      "pair_min": 0.9951163998136282,
+      "passage": 0.00010186939336114297,
+      "probe_index": 307
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.852485179901123,
+      "gallery_index": 759,
+      "pair_min": 0.9793371609495846,
+      "passage": 4.2740337559204913e-05,
+      "probe_index": 308
+    },
+    {
+      "answer_words": 5,
+      "cosine": 0.9713549613952637,
+      "gallery_index": 770,
+      "pair_min": 0.9925764142324813,
+      "passage": 0.00023185547124115156,
+      "probe_index": 311
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.967188835144043,
+      "gallery_index": 783,
+      "pair_min": 0.9541412063404033,
+      "passage": 0.001629430606853683,
+      "probe_index": 317
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9926113486289978,
+      "gallery_index": 806,
+      "pair_min": 0.9723110831834079,
+      "passage": 0.0045674772587670324,
+      "probe_index": 322
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9860992431640625,
+      "gallery_index": 808,
+      "pair_min": 0.9657012439410806,
+      "passage": 0.5818663990649148,
+      "probe_index": 323
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9843536615371704,
+      "gallery_index": 822,
+      "pair_min": 0.9977837304940035,
+      "passage": 0.005671830459190724,
+      "probe_index": 327
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9357062578201294,
+      "gallery_index": 845,
+      "pair_min": 0.945568736987402,
+      "passage": 0.0001216276828754767,
+      "probe_index": 332
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9154775142669678,
+      "gallery_index": 852,
+      "pair_min": 0.9397558185017549,
+      "passage": 0.00027974731218494923,
+      "probe_index": 334
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9002126455307007,
+      "gallery_index": 860,
+      "pair_min": 0.9817637744788144,
+      "passage": 0.0048004765983127255,
+      "probe_index": 336
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9812371730804443,
+      "gallery_index": 882,
+      "pair_min": 0.9872877032908166,
+      "passage": 0.020119610789967247,
+      "probe_index": 342
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9141900539398193,
+      "gallery_index": 893,
+      "pair_min": 0.9756944058771256,
+      "passage": 0.02444128059143432,
+      "probe_index": 345
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9705479145050049,
+      "gallery_index": 894,
+      "pair_min": 0.8596855804269473,
+      "passage": 0.00023265688100863261,
+      "probe_index": 346
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9655163288116455,
+      "gallery_index": 915,
+      "pair_min": 0.9893247856151818,
+      "passage": 5.8717058040741674e-05,
+      "probe_index": 349
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9745956659317017,
+      "gallery_index": 917,
+      "pair_min": 0.9878659088412849,
+      "passage": 0.0276009553295952,
+      "probe_index": 351
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9334748983383179,
+      "gallery_index": 922,
+      "pair_min": 0.9620578851150622,
+      "passage": 0.020365290337490394,
+      "probe_index": 353
+    },
+    {
+      "answer_words": 5,
+      "cosine": 0.9940087199211121,
+      "gallery_index": 924,
+      "pair_min": 0.9915924663867592,
+      "passage": 0.0017391233515931576,
+      "probe_index": 354
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.8988279700279236,
+      "gallery_index": 947,
+      "pair_min": 0.9807468465226046,
+      "passage": 0.0005825267927198596,
+      "probe_index": 356
+    },
+    {
+      "answer_words": 4,
+      "cosine": 0.9687027931213379,
+      "gallery_index": 959,
+      "pair_min": 0.9366538464079571,
+      "passage": 0.00041972950578851164,
+      "probe_index": 359
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9400578737258911,
+      "gallery_index": 963,
+      "pair_min": 0.9641418220787636,
+      "passage": 0.15970891250998387,
+      "probe_index": 360
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9616047143936157,
+      "gallery_index": 970,
+      "pair_min": 0.9913256421480394,
+      "passage": 0.002068683635286962,
+      "probe_index": 362
+    },
+    {
+      "answer_words": 12,
+      "cosine": 0.9798980951309204,
+      "gallery_index": 980,
+      "pair_min": 0.9943977947777225,
+      "passage": 0.001992174945377888,
+      "probe_index": 364
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9981729984283447,
+      "gallery_index": 1000,
+      "pair_min": 0.995997954665778,
+      "passage": 0.00014109442676305155,
+      "probe_index": 366
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9776124954223633,
+      "gallery_index": 1001,
+      "pair_min": 0.9964075053544581,
+      "passage": 7.608462835461739e-05,
+      "probe_index": 367
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9370150566101074,
+      "gallery_index": 1008,
+      "pair_min": 0.9786225049364077,
+      "passage": 0.0029064627533450663,
+      "probe_index": 369
+    },
+    {
+      "answer_words": 6,
+      "cosine": 0.9761778116226196,
+      "gallery_index": 1029,
+      "pair_min": 0.9909656564918727,
+      "passage": 0.0015390950128803637,
+      "probe_index": 371
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9970273375511169,
+      "gallery_index": 1033,
+      "pair_min": 0.9906264638645155,
+      "passage": 0.019573863414429554,
+      "probe_index": 372
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9248986840248108,
+      "gallery_index": 1046,
+      "pair_min": 0.9231568429525868,
+      "passage": 0.15787334141163953,
+      "probe_index": 375
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9409847259521484,
+      "gallery_index": 1048,
+      "pair_min": 0.9874146301595292,
+      "passage": 0.012474535339124253,
+      "probe_index": 376
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9498754739761353,
+      "gallery_index": 1077,
+      "pair_min": 0.979459207108738,
+      "passage": 0.01603148649561483,
+      "probe_index": 381
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9679975509643555,
+      "gallery_index": 1078,
+      "pair_min": 0.9619183759192056,
+      "passage": 0.1447878483779189,
+      "probe_index": 382
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9635323286056519,
+      "gallery_index": 1091,
+      "pair_min": 0.9330717228527938,
+      "passage": 0.00024391678640023443,
+      "probe_index": 384
+    },
+    {
+      "answer_words": 26,
+      "cosine": 0.8952274322509766,
+      "gallery_index": 1109,
+      "pair_min": 0.9651997743605485,
+      "passage": 0.002603988911049719,
+      "probe_index": 388
+    },
+    {
+      "answer_words": 13,
+      "cosine": 0.9173011779785156,
+      "gallery_index": 1111,
+      "pair_min": 0.9897482294684198,
+      "passage": 0.37426145241038555,
+      "probe_index": 390
+    },
+    {
+      "answer_words": 5,
+      "cosine": 0.9009259343147278,
+      "gallery_index": 1114,
+      "pair_min": 0.929279953781266,
+      "passage": 0.5321095719219346,
+      "probe_index": 392
+    },
+    {
+      "answer_words": 4,
+      "cosine": 0.9247395396232605,
+      "gallery_index": 1155,
+      "pair_min": 0.8668199425707719,
+      "passage": 0.00016732901943008425,
+      "probe_index": 397
+    },
+    {
+      "answer_words": 1,
+      "cosine": 0.9493726491928101,
+      "gallery_index": 1162,
+      "pair_min": 0.9944125024851419,
+      "passage": 0.004386270548926292,
+      "probe_index": 398
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9852254986763,
+      "gallery_index": 1180,
+      "pair_min": 0.9948575818160876,
+      "passage": 0.06507426312293686,
+      "probe_index": 400
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9967301487922668,
+      "gallery_index": 1188,
+      "pair_min": 0.9935125418293512,
+      "passage": 0.08743298662243014,
+      "probe_index": 403
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9515271782875061,
+      "gallery_index": 1193,
+      "pair_min": 0.9856110182036715,
+      "passage": 4.6292690224646674e-05,
+      "probe_index": 405
+    },
+    {
+      "answer_words": 10,
+      "cosine": 0.9505933523178101,
+      "gallery_index": 1197,
+      "pair_min": 0.9897706259513785,
+      "passage": 0.00022356168626727393,
+      "probe_index": 406
+    },
+    {
+      "answer_words": 4,
+      "cosine": 0.9770607948303223,
+      "gallery_index": 1248,
+      "pair_min": 0.9874269377047816,
+      "passage": 0.03477627280895242,
+      "probe_index": 410
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9532387852668762,
+      "gallery_index": 1273,
+      "pair_min": 0.9959996744191387,
+      "passage": 0.00032094813336278175,
+      "probe_index": 412
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.8852044343948364,
+      "gallery_index": 1284,
+      "pair_min": 0.8121030480406235,
+      "passage": 0.11445515315353602,
+      "probe_index": 413
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9625722169876099,
+      "gallery_index": 1285,
+      "pair_min": 0.9647054906770882,
+      "passage": 6.789088672058336e-05,
+      "probe_index": 414
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9709666967391968,
+      "gallery_index": 1289,
+      "pair_min": 0.9842668114857114,
+      "passage": 0.0001492506267682419,
+      "probe_index": 415
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.9665796160697937,
+      "gallery_index": 1311,
+      "pair_min": 0.9653298980851046,
+      "passage": 0.00017190232408950389,
+      "probe_index": 417
+    },
+    {
+      "answer_words": 3,
+      "cosine": 0.9593968391418457,
+      "gallery_index": 1353,
+      "pair_min": 0.9934827327814186,
+      "passage": 0.00018936482368718047,
+      "probe_index": 420
+    },
+    {
+      "answer_words": 2,
+      "cosine": 0.935057520866394,
+      "gallery_index": 1376,
+      "pair_min": 0.9933252257159314,
+      "passage": 2.384199485039013e-05,
+      "probe_index": 421
+    }
+  ]
+}

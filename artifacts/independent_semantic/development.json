@@ -1,0 +1,1812 @@
+{
+  "comqa": {
+    "arms": {
+      "combined": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.028408
+          ],
+          "d": 128,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 20,
+        "coverage": {
+          "ci95": [
+            0.048372,
+            0.11808
+          ],
+          "d": 256,
+          "n": 20,
+          "rate": 0.078125
+        },
+        "exact_hits": null,
+        "fallback": {
+          "ci95": [
+            0.88192,
+            0.951628
+          ],
+          "d": 256,
+          "n": 236,
+          "rate": 0.921875
+        },
+        "incorrect": 0,
+        "measured_fixture_calls": null,
+        "potential_semantic_calls_avoided": 20,
+        "precision": {
+          "ci95": [
+            0.831567,
+            1.0
+          ],
+          "d": 20,
+          "n": 20,
+          "rate": 1.0
+        },
+        "probes": 256,
+        "reasons_absent": {
+          "cosine": 127,
+          "question_pair": 1
+        },
+        "reasons_present": {
+          "added_explicit_requirement": 1,
+          "cosine": 21,
+          "dropped_explicit_requirement": 2,
+          "incoming_numeric_requirement_unmet_in_answer": 8,
+          "numeric_or_version_requirement_changed": 1,
+          "passage": 43,
+          "question_pair": 32
+        },
+        "recall": {
+          "ci95": [
+            0.098132,
+            0.23095
+          ],
+          "d": 128,
+          "n": 20,
+          "rate": 0.15625
+        },
+        "shared_score_decision_ms": 1.2698490027105436
+      },
+      "dense5": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.028408
+          ],
+          "d": 128,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 2,
+        "coverage": {
+          "ci95": [
+            0.000948,
+            0.027935
+          ],
+          "d": 256,
+          "n": 2,
+          "rate": 0.0078125
+        },
+        "exact_hits": null,
+        "fallback": {
+          "ci95": [
+            0.972065,
+            0.999052
+          ],
+          "d": 256,
+          "n": 254,
+          "rate": 0.9921875
+        },
+        "incorrect": 0,
+        "measured_fixture_calls": null,
+        "potential_semantic_calls_avoided": 2,
+        "precision": {
+          "ci95": [
+            0.158114,
+            1.0
+          ],
+          "d": 2,
+          "n": 2,
+          "rate": 1.0
+        },
+        "probes": 256,
+        "reasons_absent": {
+          "cosine": 127,
+          "question_pair": 1
+        },
+        "reasons_present": {
+          "added_explicit_requirement": 1,
+          "cosine": 21,
+          "dropped_explicit_requirement": 2,
+          "incoming_numeric_requirement_unmet_in_answer": 8,
+          "numeric_or_version_requirement_changed": 1,
+          "passage": 61,
+          "question_pair": 32
+        },
+        "recall": {
+          "ci95": [
+            0.001898,
+            0.055303
+          ],
+          "d": 128,
+          "n": 2,
+          "rate": 0.015625
+        },
+        "shared_score_decision_ms": 1.2297639914322644
+      },
+      "hybrid5": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.028408
+          ],
+          "d": 128,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 2,
+        "coverage": {
+          "ci95": [
+            0.000948,
+            0.027935
+          ],
+          "d": 256,
+          "n": 2,
+          "rate": 0.0078125
+        },
+        "exact_hits": null,
+        "fallback": {
+          "ci95": [
+            0.972065,
+            0.999052
+          ],
+          "d": 256,
+          "n": 254,
+          "rate": 0.9921875
+        },
+        "incorrect": 0,
+        "measured_fixture_calls": null,
+        "potential_semantic_calls_avoided": 2,
+        "precision": {
+          "ci95": [
+            0.158114,
+            1.0
+          ],
+          "d": 2,
+          "n": 2,
+          "rate": 1.0
+        },
+        "probes": 256,
+        "reasons_absent": {
+          "cosine": 127,
+          "question_pair": 1
+        },
+        "reasons_present": {
+          "added_explicit_requirement": 1,
+          "cosine": 21,
+          "dropped_explicit_requirement": 2,
+          "incoming_numeric_requirement_unmet_in_answer": 8,
+          "numeric_or_version_requirement_changed": 1,
+          "passage": 61,
+          "question_pair": 32
+        },
+        "recall": {
+          "ci95": [
+            0.001898,
+            0.055303
+          ],
+          "d": 128,
+          "n": 2,
+          "rate": 0.015625
+        },
+        "shared_score_decision_ms": 1.2750790046993643
+      },
+      "live_exact": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.028408
+          ],
+          "d": 128,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 0,
+        "coverage": {
+          "ci95": [
+            0.0,
+            0.014306
+          ],
+          "d": 256,
+          "n": 0,
+          "rate": 0.0
+        },
+        "exact_hits": 60,
+        "fallback": {
+          "ci95": [
+            0.985694,
+            1.0
+          ],
+          "d": 256,
+          "n": 256,
+          "rate": 1.0
+        },
+        "incorrect": 0,
+        "mean_probe_verification_ms": 0.0,
+        "measured_fixture_calls": 324,
+        "measured_probe_calls": 256,
+        "potential_semantic_calls_avoided": 0,
+        "precision": {
+          "ci95": null,
+          "d": 0,
+          "n": 0,
+          "rate": null
+        },
+        "probe_latency_p50_p95_ms": [
+          7.973546998982783,
+          12.033962997520575
+        ],
+        "probes": 256,
+        "reasons_absent": {
+          "freshness_requires_provider": 9,
+          "generated_and_stored": 61,
+          "not_rule_confirmed_static": 53,
+          "personal_or_generative_request": 1,
+          "response_not_admitted": 4
+        },
+        "reasons_present": {
+          "freshness_requires_provider": 9,
+          "generated_and_stored": 61,
+          "not_rule_confirmed_static": 53,
+          "personal_or_generative_request": 1,
+          "response_not_admitted": 4
+        },
+        "recall": {
+          "ci95": [
+            0.0,
+            0.028408
+          ],
+          "d": 128,
+          "n": 0,
+          "rate": 0.0
+        }
+      },
+      "live_optional": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.028408
+          ],
+          "d": 128,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 0,
+        "coverage": {
+          "ci95": [
+            0.0,
+            0.014306
+          ],
+          "d": 256,
+          "n": 0,
+          "rate": 0.0
+        },
+        "exact_hits": 60,
+        "fallback": {
+          "ci95": [
+            0.985694,
+            1.0
+          ],
+          "d": 256,
+          "n": 256,
+          "rate": 1.0
+        },
+        "incorrect": 0,
+        "mean_probe_verification_ms": 3.371223210763219,
+        "measured_fixture_calls": 324,
+        "measured_probe_calls": 256,
+        "potential_semantic_calls_avoided": 0,
+        "precision": {
+          "ci95": null,
+          "d": 0,
+          "n": 0,
+          "rate": null
+        },
+        "probe_latency_p50_p95_ms": [
+          10.191399996983819,
+          33.723310745699564
+        ],
+        "probes": 256,
+        "reasons_absent": {
+          "freshness_requires_provider": 9,
+          "generated_and_stored": 55,
+          "no_close_candidate": 6,
+          "not_rule_confirmed_static": 53,
+          "personal_or_generative_request": 1,
+          "response_not_admitted": 4
+        },
+        "reasons_present": {
+          "answer_not_verified": 1,
+          "freshness_requires_provider": 9,
+          "generated_and_stored": 55,
+          "no_close_candidate": 5,
+          "not_rule_confirmed_static": 53,
+          "personal_or_generative_request": 1,
+          "response_not_admitted": 4
+        },
+        "recall": {
+          "ci95": [
+            0.0,
+            0.028408
+          ],
+          "d": 128,
+          "n": 0,
+          "rate": 0.0
+        }
+      },
+      "relative5": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.028408
+          ],
+          "d": 128,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 20,
+        "coverage": {
+          "ci95": [
+            0.048372,
+            0.11808
+          ],
+          "d": 256,
+          "n": 20,
+          "rate": 0.078125
+        },
+        "exact_hits": null,
+        "fallback": {
+          "ci95": [
+            0.88192,
+            0.951628
+          ],
+          "d": 256,
+          "n": 236,
+          "rate": 0.921875
+        },
+        "incorrect": 0,
+        "measured_fixture_calls": null,
+        "potential_semantic_calls_avoided": 20,
+        "precision": {
+          "ci95": [
+            0.831567,
+            1.0
+          ],
+          "d": 20,
+          "n": 20,
+          "rate": 1.0
+        },
+        "probes": 256,
+        "reasons_absent": {
+          "cosine": 127,
+          "question_pair": 1
+        },
+        "reasons_present": {
+          "added_explicit_requirement": 1,
+          "cosine": 21,
+          "dropped_explicit_requirement": 2,
+          "incoming_numeric_requirement_unmet_in_answer": 8,
+          "numeric_or_version_requirement_changed": 1,
+          "passage": 43,
+          "question_pair": 32
+        },
+        "recall": {
+          "ci95": [
+            0.098132,
+            0.23095
+          ],
+          "d": 128,
+          "n": 20,
+          "rate": 0.15625
+        },
+        "shared_score_decision_ms": 1.2731750030070543
+      },
+      "top1": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.028408
+          ],
+          "d": 128,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 2,
+        "coverage": {
+          "ci95": [
+            0.000948,
+            0.027935
+          ],
+          "d": 256,
+          "n": 2,
+          "rate": 0.0078125
+        },
+        "exact_hits": null,
+        "fallback": {
+          "ci95": [
+            0.972065,
+            0.999052
+          ],
+          "d": 256,
+          "n": 254,
+          "rate": 0.9921875
+        },
+        "incorrect": 0,
+        "measured_fixture_calls": null,
+        "potential_semantic_calls_avoided": 2,
+        "precision": {
+          "ci95": [
+            0.158114,
+            1.0
+          ],
+          "d": 2,
+          "n": 2,
+          "rate": 1.0
+        },
+        "probes": 256,
+        "reasons_absent": {
+          "cosine": 127,
+          "question_pair": 1
+        },
+        "reasons_present": {
+          "added_explicit_requirement": 1,
+          "cosine": 19,
+          "dropped_explicit_requirement": 2,
+          "incoming_numeric_requirement_unmet_in_answer": 8,
+          "numeric_or_version_requirement_changed": 1,
+          "outside_top_k": 2,
+          "passage": 61,
+          "question_pair": 32
+        },
+        "recall": {
+          "ci95": [
+            0.001898,
+            0.055303
+          ],
+          "d": 128,
+          "n": 2,
+          "rate": 0.015625
+        },
+        "shared_score_decision_ms": 0.7348119979724288
+      },
+      "typed5": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.028408
+          ],
+          "d": 128,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 2,
+        "coverage": {
+          "ci95": [
+            0.000948,
+            0.027935
+          ],
+          "d": 256,
+          "n": 2,
+          "rate": 0.0078125
+        },
+        "exact_hits": null,
+        "fallback": {
+          "ci95": [
+            0.972065,
+            0.999052
+          ],
+          "d": 256,
+          "n": 254,
+          "rate": 0.9921875
+        },
+        "incorrect": 0,
+        "measured_fixture_calls": null,
+        "potential_semantic_calls_avoided": 2,
+        "precision": {
+          "ci95": [
+            0.158114,
+            1.0
+          ],
+          "d": 2,
+          "n": 2,
+          "rate": 1.0
+        },
+        "probes": 256,
+        "reasons_absent": {
+          "cosine": 127,
+          "question_pair": 1
+        },
+        "reasons_present": {
+          "added_explicit_requirement": 1,
+          "cosine": 21,
+          "dropped_explicit_requirement": 2,
+          "incoming_numeric_requirement_unmet_in_answer": 8,
+          "numeric_or_version_requirement_changed": 1,
+          "passage": 61,
+          "question_pair": 32
+        },
+        "recall": {
+          "ci95": [
+            0.001898,
+            0.055303
+          ],
+          "d": 128,
+          "n": 2,
+          "rate": 0.015625
+        },
+        "shared_score_decision_ms": 27.29120799631346
+      }
+    },
+    "groups": 128,
+    "scoring": {
+      "bidirectional_batch_ms": 228628.91577499977,
+      "embedding_batch_ms": 2218.128342006821,
+      "passage_batch_ms": 20092.39937599341,
+      "source_passage_batch_ms": 2668.1409040029394,
+      "unique_scored_pairs": 1443
+    }
+  },
+  "equivalence": {
+    "paws": {
+      "bidirectional_batch_ms": 49519.27477499703,
+      "ids": [
+        "1487",
+        "7758",
+        "6477",
+        "5839",
+        "5893",
+        "1505",
+        "3446",
+        "6800",
+        "2401",
+        "5202",
+        "7349",
+        "7318",
+        "6327",
+        "6175",
+        "972",
+        "4000",
+        "2567",
+        "5543",
+        "6752",
+        "888",
+        "2940",
+        "1974",
+        "5309",
+        "6099",
+        "4670",
+        "2982",
+        "2573",
+        "1358",
+        "6161",
+        "3653",
+        "3512",
+        "4922",
+        "1153",
+        "6116",
+        "7682",
+        "1122",
+        "5365",
+        "4705",
+        "1130",
+        "7576",
+        "594",
+        "466",
+        "3915",
+        "7417",
+        "6821",
+        "1533",
+        "2613",
+        "683",
+        "4977",
+        "7942",
+        "6737",
+        "1438",
+        "3999",
+        "2716",
+        "6608",
+        "3781",
+        "4429",
+        "6380",
+        "3072",
+        "848",
+        "2194",
+        "1834",
+        "7501",
+        "6941",
+        "5304",
+        "4980",
+        "3339",
+        "4330",
+        "4288",
+        "1681",
+        "7881",
+        "1705",
+        "3142",
+        "1911",
+        "7119",
+        "4587",
+        "1945",
+        "3340",
+        "5676",
+        "2185",
+        "7458",
+        "4236",
+        "1653",
+        "3838",
+        "7936",
+        "3384",
+        "4116",
+        "2618",
+        "7603",
+        "1670",
+        "6661",
+        "4704",
+        "5881",
+        "7811",
+        "5648",
+        "7899",
+        "5146",
+        "6000",
+        "1135",
+        "7460",
+        "7891",
+        "419",
+        "784",
+        "1663",
+        "1146",
+        "3316",
+        "4422",
+        "5666",
+        "5884",
+        "2582",
+        "616",
+        "324",
+        "6773",
+        "5150",
+        "3471",
+        "5138",
+        "6277",
+        "3472",
+        "7767",
+        "7367",
+        "2753",
+        "2061",
+        "816",
+        "4629",
+        "6712",
+        "6180",
+        "1080",
+        "2571",
+        "6052",
+        "7444",
+        "1222",
+        "3567",
+        "6230",
+        "7729",
+        "1112",
+        "1009",
+        "2677",
+        "2899",
+        "3490",
+        "2272",
+        "2149",
+        "3468",
+        "7168",
+        "6638",
+        "5449",
+        "7625",
+        "418",
+        "1982",
+        "5143",
+        "7269",
+        "4483",
+        "2036",
+        "7896",
+        "4121",
+        "1071",
+        "1738",
+        "6841",
+        "6586",
+        "6446",
+        "1101",
+        "4488",
+        "6007",
+        "1218",
+        "2472",
+        "739",
+        "7673",
+        "4715",
+        "4681",
+        "2623",
+        "5439",
+        "995",
+        "7604",
+        "3948",
+        "3147",
+        "5378",
+        "1486",
+        "1675",
+        "4899",
+        "1160",
+        "7848",
+        "2902",
+        "1586",
+        "425",
+        "2782",
+        "3292",
+        "5333",
+        "7722",
+        "7362",
+        "3537",
+        "5519",
+        "1917",
+        "7737",
+        "7510",
+        "389",
+        "6500",
+        "4106",
+        "7259",
+        "1633",
+        "4140",
+        "7843",
+        "7361",
+        "5246",
+        "4196",
+        "3128",
+        "3127",
+        "7883",
+        "3330",
+        "3839",
+        "6158",
+        "7245",
+        "7701",
+        "7934",
+        "394",
+        "2862",
+        "2175",
+        "3937",
+        "2158",
+        "7394",
+        "7169",
+        "6593",
+        "3553",
+        "5050",
+        "608",
+        "757",
+        "1328",
+        "1763",
+        "5521",
+        "997",
+        "3374",
+        "6379",
+        "5604",
+        "1254",
+        "1042",
+        "6900",
+        "4295",
+        "5452",
+        "5350",
+        "6302",
+        "4267",
+        "6213",
+        "5874",
+        "4608",
+        "2376",
+        "4259",
+        "7684",
+        "2188",
+        "7496",
+        "4336",
+        "4525",
+        "4826",
+        "1593",
+        "6673",
+        "2608",
+        "4992",
+        "2432",
+        "2660"
+      ],
+      "metrics": {
+        "cosine": {
+          "fn": 2,
+          "fp": 122,
+          "precision": {
+            "ci95": [
+              0.444056,
+              0.571878
+            ],
+            "d": 248,
+            "n": 126,
+            "rate": 0.5080645161290323
+          },
+          "recall": {
+            "ci95": [
+              0.944697,
+              0.998102
+            ],
+            "d": 128,
+            "n": 126,
+            "rate": 0.984375
+          },
+          "specificity": {
+            "ci95": [
+              0.017394,
+              0.099235
+            ],
+            "d": 128,
+            "n": 6,
+            "rate": 0.046875
+          },
+          "tn": 6,
+          "tp": 126
+        },
+        "guarded_pair": {
+          "fn": 21,
+          "fp": 97,
+          "precision": {
+            "ci95": [
+              0.453607,
+              0.59469
+            ],
+            "d": 204,
+            "n": 107,
+            "rate": 0.5245098039215687
+          },
+          "recall": {
+            "ci95": [
+              0.760212,
+              0.89548
+            ],
+            "d": 128,
+            "n": 107,
+            "rate": 0.8359375
+          },
+          "specificity": {
+            "ci95": [
+              0.170868,
+              0.325811
+            ],
+            "d": 128,
+            "n": 31,
+            "rate": 0.2421875
+          },
+          "tn": 31,
+          "tp": 107
+        },
+        "pair": {
+          "fn": 20,
+          "fp": 104,
+          "precision": {
+            "ci95": [
+              0.440063,
+              0.578537
+            ],
+            "d": 212,
+            "n": 108,
+            "rate": 0.5094339622641509
+          },
+          "recall": {
+            "ci95": [
+              0.76905,
+              0.901868
+            ],
+            "d": 128,
+            "n": 108,
+            "rate": 0.84375
+          },
+          "specificity": {
+            "ci95": [
+              0.123985,
+              0.266016
+            ],
+            "d": 128,
+            "n": 24,
+            "rate": 0.1875
+          },
+          "tn": 24,
+          "tp": 108
+        }
+      }
+    },
+    "qqp": {
+      "bidirectional_batch_ms": 53296.30089800048,
+      "ids": [
+        "2857",
+        "26075",
+        "36629",
+        "11463",
+        "38584",
+        "23921",
+        "20744",
+        "37368",
+        "24564",
+        "28825",
+        "1446",
+        "39266",
+        "28223",
+        "33915",
+        "6988",
+        "25838",
+        "5316",
+        "5952",
+        "30702",
+        "14839",
+        "39166",
+        "31732",
+        "39220",
+        "14988",
+        "2542",
+        "18689",
+        "6243",
+        "23957",
+        "15809",
+        "14260",
+        "171",
+        "38505",
+        "17966",
+        "32491",
+        "27794",
+        "22520",
+        "33276",
+        "20441",
+        "27578",
+        "15788",
+        "23115",
+        "14084",
+        "17707",
+        "17792",
+        "1435",
+        "22074",
+        "24661",
+        "31370",
+        "34982",
+        "29027",
+        "21294",
+        "29582",
+        "62",
+        "6778",
+        "19687",
+        "25514",
+        "33134",
+        "35970",
+        "37417",
+        "17835",
+        "20645",
+        "2016",
+        "10432",
+        "15628",
+        "32919",
+        "18639",
+        "27562",
+        "33283",
+        "30998",
+        "4520",
+        "4344",
+        "11402",
+        "13251",
+        "14237",
+        "23904",
+        "10101",
+        "4522",
+        "8079",
+        "18614",
+        "9029",
+        "16438",
+        "19658",
+        "25919",
+        "17661",
+        "20164",
+        "8654",
+        "32002",
+        "21283",
+        "25703",
+        "7783",
+        "23529",
+        "25548",
+        "33104",
+        "765",
+        "26640",
+        "19828",
+        "19310",
+        "15154",
+        "5393",
+        "16564",
+        "24884",
+        "25265",
+        "6160",
+        "9785",
+        "19560",
+        "32239",
+        "16110",
+        "5565",
+        "3884",
+        "39313",
+        "19091",
+        "11199",
+        "15897",
+        "36824",
+        "32533",
+        "37132",
+        "20837",
+        "15511",
+        "16201",
+        "19927",
+        "5051",
+        "3764",
+        "1596",
+        "13165",
+        "31056",
+        "4519",
+        "23159",
+        "19361",
+        "31901",
+        "22639",
+        "12070",
+        "36991",
+        "8069",
+        "35175",
+        "39130",
+        "35052",
+        "1295",
+        "4427",
+        "18635",
+        "14573",
+        "21774",
+        "22241",
+        "11830",
+        "31869",
+        "23468",
+        "10203",
+        "26502",
+        "1221",
+        "33192",
+        "30984",
+        "3724",
+        "28098",
+        "15419",
+        "31741",
+        "1819",
+        "32159",
+        "28974",
+        "29615",
+        "28661",
+        "12256",
+        "30491",
+        "29594",
+        "38235",
+        "13202",
+        "1287",
+        "16144",
+        "8154",
+        "24568",
+        "28073",
+        "5645",
+        "28170",
+        "19660",
+        "3993",
+        "10671",
+        "38036",
+        "17561",
+        "38232",
+        "20245",
+        "6863",
+        "37599",
+        "1546",
+        "15786",
+        "13415",
+        "32886",
+        "10275",
+        "15602",
+        "6205",
+        "14815",
+        "7075",
+        "34436",
+        "12073",
+        "10839",
+        "3587",
+        "21064",
+        "3108",
+        "18090",
+        "821",
+        "18771",
+        "4913",
+        "17270",
+        "9179",
+        "27737",
+        "28273",
+        "6102",
+        "30954",
+        "16649",
+        "29224",
+        "20357",
+        "5244",
+        "25513",
+        "10958",
+        "4034",
+        "33377",
+        "38990",
+        "23374",
+        "19077",
+        "5071",
+        "7958",
+        "5647",
+        "19637",
+        "25842",
+        "14003",
+        "39848",
+        "13075",
+        "31458",
+        "491",
+        "23495",
+        "10439",
+        "28132",
+        "14811",
+        "28244",
+        "20618",
+        "32450",
+        "18418",
+        "24078",
+        "24032",
+        "6081",
+        "38360",
+        "31474",
+        "21439",
+        "6311",
+        "30436",
+        "37921",
+        "27321",
+        "15488",
+        "34822",
+        "19062",
+        "5011",
+        "23141",
+        "30817",
+        "33076",
+        "36804",
+        "8807",
+        "36318",
+        "871",
+        "23873"
+      ],
+      "metrics": {
+        "cosine": {
+          "fn": 37,
+          "fp": 21,
+          "precision": {
+            "ci95": [
+              0.727781,
+              0.880026
+            ],
+            "d": 112,
+            "n": 91,
+            "rate": 0.8125
+          },
+          "recall": {
+            "ci95": [
+              0.624222,
+              0.78762
+            ],
+            "d": 128,
+            "n": 91,
+            "rate": 0.7109375
+          },
+          "specificity": {
+            "ci95": [
+              0.760212,
+              0.89548
+            ],
+            "d": 128,
+            "n": 107,
+            "rate": 0.8359375
+          },
+          "tn": 107,
+          "tp": 91
+        },
+        "guarded_pair": {
+          "fn": 49,
+          "fp": 2,
+          "precision": {
+            "ci95": [
+              0.913637,
+              0.996996
+            ],
+            "d": 81,
+            "n": 79,
+            "rate": 0.9753086419753086
+          },
+          "recall": {
+            "ci95": [
+              0.527153,
+              0.701669
+            ],
+            "d": 128,
+            "n": 79,
+            "rate": 0.6171875
+          },
+          "specificity": {
+            "ci95": [
+              0.944697,
+              0.998102
+            ],
+            "d": 128,
+            "n": 126,
+            "rate": 0.984375
+          },
+          "tn": 126,
+          "tp": 79
+        },
+        "pair": {
+          "fn": 21,
+          "fp": 2,
+          "precision": {
+            "ci95": [
+              0.935288,
+              0.99777
+            ],
+            "d": 109,
+            "n": 107,
+            "rate": 0.981651376146789
+          },
+          "recall": {
+            "ci95": [
+              0.760212,
+              0.89548
+            ],
+            "d": 128,
+            "n": 107,
+            "rate": 0.8359375
+          },
+          "specificity": {
+            "ci95": [
+              0.944697,
+              0.998102
+            ],
+            "d": 128,
+            "n": 126,
+            "rate": 0.984375
+          },
+          "tn": 126,
+          "tp": 107
+        }
+      }
+    }
+  },
+  "inputs": {
+    "comqa.json": [
+      "https://qa.mpi-inf.mpg.de/comqa/comqa_train.json",
+      "aa25b2747221a6147737066fa7f8509414a6333e6eebb20d7970fc50166eba9c"
+    ],
+    "comqa_dev.json": [
+      "https://qa.mpi-inf.mpg.de/comqa/comqa_dev.json",
+      "937f898f996e9a7317d311553cf5b43c4a53e0bb841ae8eed4d8cf15936fbc84"
+    ],
+    "comqa_test.json": [
+      "https://qa.mpi-inf.mpg.de/comqa/comqa_test.json",
+      "b81e19c4108198781167ddb30d26172571e76cc8e684aabb181537a45e816867"
+    ],
+    "cpython.zip": [
+      "https://codeload.github.com/python/cpython/zip/refs/tags/v3.12.10",
+      "156640ce1c4a58de57dc84f5cd1f6d50020edbc26f1e42de95fe8a1b765a3105"
+    ],
+    "paws.parquet": [
+      "https://huggingface.co/datasets/google-research-datasets/paws/resolve/161ece9501cf0a11f3e48bd356eaa82de46d6a09/labeled_final/test-00000-of-00001.parquet",
+      "ae342ff12bb84b84b95f468abf5db6cb7c7bd578271299fe9c99be75b8132f4d"
+    ],
+    "qqp.parquet": [
+      "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/qqp/validation-00000-of-00001.parquet",
+      "efd86a539c412d74874ee451573d7bd142f56c47fe36de033b9f367d8bb0fa71"
+    ]
+  },
+  "models": [
+    "sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "cross-encoder/quora-distilroberta-base@f62e7a4b20b97195c2868e53ec59126df5eac743",
+    "cross-encoder/ms-marco-MiniLM-L-6-v2@233902d25c440f23af6f7d6e94d2946bac0bee0a"
+  ],
+  "python": {
+    "arms": {
+      "combined": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 0,
+        "coverage": {
+          "ci95": [
+            0.0,
+            0.071122
+          ],
+          "d": 50,
+          "n": 0,
+          "rate": 0.0
+        },
+        "exact_hits": null,
+        "fallback": {
+          "ci95": [
+            0.928878,
+            1.0
+          ],
+          "d": 50,
+          "n": 50,
+          "rate": 1.0
+        },
+        "incorrect": 0,
+        "measured_fixture_calls": null,
+        "potential_semantic_calls_avoided": 0,
+        "precision": {
+          "ci95": null,
+          "d": 0,
+          "n": 0,
+          "rate": null
+        },
+        "probes": 50,
+        "reasons_absent": {
+          "cosine": 17,
+          "incoming_numeric_requirement_unmet_in_answer": 2,
+          "numeric_or_version_requirement_changed": 6
+        },
+        "reasons_present": {
+          "incoming_numeric_requirement_unmet_in_answer": 25
+        },
+        "recall": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        },
+        "shared_score_decision_ms": 0.25618099607527256
+      },
+      "dense5": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 0,
+        "coverage": {
+          "ci95": [
+            0.0,
+            0.071122
+          ],
+          "d": 50,
+          "n": 0,
+          "rate": 0.0
+        },
+        "exact_hits": null,
+        "fallback": {
+          "ci95": [
+            0.928878,
+            1.0
+          ],
+          "d": 50,
+          "n": 50,
+          "rate": 1.0
+        },
+        "incorrect": 0,
+        "measured_fixture_calls": null,
+        "potential_semantic_calls_avoided": 0,
+        "precision": {
+          "ci95": null,
+          "d": 0,
+          "n": 0,
+          "rate": null
+        },
+        "probes": 50,
+        "reasons_absent": {
+          "cosine": 17,
+          "incoming_numeric_requirement_unmet_in_answer": 2,
+          "numeric_or_version_requirement_changed": 6
+        },
+        "reasons_present": {
+          "incoming_numeric_requirement_unmet_in_answer": 25
+        },
+        "recall": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        },
+        "shared_score_decision_ms": 0.2922480052802712
+      },
+      "hybrid5": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 0,
+        "coverage": {
+          "ci95": [
+            0.0,
+            0.071122
+          ],
+          "d": 50,
+          "n": 0,
+          "rate": 0.0
+        },
+        "exact_hits": null,
+        "fallback": {
+          "ci95": [
+            0.928878,
+            1.0
+          ],
+          "d": 50,
+          "n": 50,
+          "rate": 1.0
+        },
+        "incorrect": 0,
+        "measured_fixture_calls": null,
+        "potential_semantic_calls_avoided": 0,
+        "precision": {
+          "ci95": null,
+          "d": 0,
+          "n": 0,
+          "rate": null
+        },
+        "probes": 50,
+        "reasons_absent": {
+          "cosine": 18,
+          "incoming_numeric_requirement_unmet_in_answer": 2,
+          "numeric_or_version_requirement_changed": 5
+        },
+        "reasons_present": {
+          "incoming_numeric_requirement_unmet_in_answer": 25
+        },
+        "recall": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        },
+        "shared_score_decision_ms": 0.2577340055722743
+      },
+      "live_exact": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 0,
+        "coverage": {
+          "ci95": [
+            0.0,
+            0.071122
+          ],
+          "d": 50,
+          "n": 0,
+          "rate": 0.0
+        },
+        "exact_hits": 0,
+        "fallback": {
+          "ci95": [
+            0.928878,
+            1.0
+          ],
+          "d": 50,
+          "n": 50,
+          "rate": 1.0
+        },
+        "incorrect": 0,
+        "mean_probe_verification_ms": 0.0,
+        "measured_fixture_calls": 75,
+        "measured_probe_calls": 50,
+        "potential_semantic_calls_avoided": 0,
+        "precision": {
+          "ci95": null,
+          "d": 0,
+          "n": 0,
+          "rate": null
+        },
+        "probe_latency_p50_p95_ms": [
+          4.746616003103554,
+          5.671320544206537
+        ],
+        "probes": 50,
+        "reasons_absent": {
+          "not_rule_confirmed_static": 24,
+          "personal_or_generative_request": 1
+        },
+        "reasons_present": {
+          "not_rule_confirmed_static": 24,
+          "personal_or_generative_request": 1
+        },
+        "recall": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        }
+      },
+      "live_optional": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 0,
+        "coverage": {
+          "ci95": [
+            0.0,
+            0.071122
+          ],
+          "d": 50,
+          "n": 0,
+          "rate": 0.0
+        },
+        "exact_hits": 0,
+        "fallback": {
+          "ci95": [
+            0.928878,
+            1.0
+          ],
+          "d": 50,
+          "n": 50,
+          "rate": 1.0
+        },
+        "incorrect": 0,
+        "mean_probe_verification_ms": 0.0,
+        "measured_fixture_calls": 75,
+        "measured_probe_calls": 50,
+        "potential_semantic_calls_avoided": 0,
+        "precision": {
+          "ci95": null,
+          "d": 0,
+          "n": 0,
+          "rate": null
+        },
+        "probe_latency_p50_p95_ms": [
+          5.738535495765973,
+          8.248009096860185
+        ],
+        "probes": 50,
+        "reasons_absent": {
+          "not_rule_confirmed_static": 24,
+          "personal_or_generative_request": 1
+        },
+        "reasons_present": {
+          "not_rule_confirmed_static": 24,
+          "personal_or_generative_request": 1
+        },
+        "recall": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        }
+      },
+      "relative5": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 0,
+        "coverage": {
+          "ci95": [
+            0.0,
+            0.071122
+          ],
+          "d": 50,
+          "n": 0,
+          "rate": 0.0
+        },
+        "exact_hits": null,
+        "fallback": {
+          "ci95": [
+            0.928878,
+            1.0
+          ],
+          "d": 50,
+          "n": 50,
+          "rate": 1.0
+        },
+        "incorrect": 0,
+        "measured_fixture_calls": null,
+        "potential_semantic_calls_avoided": 0,
+        "precision": {
+          "ci95": null,
+          "d": 0,
+          "n": 0,
+          "rate": null
+        },
+        "probes": 50,
+        "reasons_absent": {
+          "cosine": 17,
+          "incoming_numeric_requirement_unmet_in_answer": 2,
+          "numeric_or_version_requirement_changed": 6
+        },
+        "reasons_present": {
+          "incoming_numeric_requirement_unmet_in_answer": 25
+        },
+        "recall": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        },
+        "shared_score_decision_ms": 0.28142800147179514
+      },
+      "top1": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 0,
+        "coverage": {
+          "ci95": [
+            0.0,
+            0.071122
+          ],
+          "d": 50,
+          "n": 0,
+          "rate": 0.0
+        },
+        "exact_hits": null,
+        "fallback": {
+          "ci95": [
+            0.928878,
+            1.0
+          ],
+          "d": 50,
+          "n": 50,
+          "rate": 1.0
+        },
+        "incorrect": 0,
+        "measured_fixture_calls": null,
+        "potential_semantic_calls_avoided": 0,
+        "precision": {
+          "ci95": null,
+          "d": 0,
+          "n": 0,
+          "rate": null
+        },
+        "probes": 50,
+        "reasons_absent": {
+          "cosine": 17,
+          "incoming_numeric_requirement_unmet_in_answer": 2,
+          "numeric_or_version_requirement_changed": 6
+        },
+        "reasons_present": {
+          "incoming_numeric_requirement_unmet_in_answer": 25
+        },
+        "recall": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        },
+        "shared_score_decision_ms": 0.15240699576679617
+      },
+      "typed5": {
+        "absent_error": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        },
+        "correct": 0,
+        "coverage": {
+          "ci95": [
+            0.0,
+            0.071122
+          ],
+          "d": 50,
+          "n": 0,
+          "rate": 0.0
+        },
+        "exact_hits": null,
+        "fallback": {
+          "ci95": [
+            0.928878,
+            1.0
+          ],
+          "d": 50,
+          "n": 50,
+          "rate": 1.0
+        },
+        "incorrect": 0,
+        "measured_fixture_calls": null,
+        "potential_semantic_calls_avoided": 0,
+        "precision": {
+          "ci95": null,
+          "d": 0,
+          "n": 0,
+          "rate": null
+        },
+        "probes": 50,
+        "reasons_absent": {
+          "cosine": 17,
+          "incoming_numeric_requirement_unmet_in_answer": 2,
+          "numeric_or_version_requirement_changed": 6
+        },
+        "reasons_present": {
+          "incoming_numeric_requirement_unmet_in_answer": 25
+        },
+        "recall": {
+          "ci95": [
+            0.0,
+            0.137185
+          ],
+          "d": 25,
+          "n": 0,
+          "rate": 0.0
+        },
+        "shared_score_decision_ms": 0.2615209959913045
+      }
+    },
+    "groups": 25,
+    "scoring": {
+      "bidirectional_batch_ms": 48316.58314100059,
+      "embedding_batch_ms": 822.6645440008724,
+      "passage_batch_ms": 2653.6700440046843,
+      "source_passage_batch_ms": 298.1704409903614,
+      "unique_scored_pairs": 279
+    }
+  },
+  "split": "development"
+}

@@ -150,7 +150,7 @@ def create_live_chat_app(directory, *, journal_path, api_key, model=DEFAULT_MODE
         return {
             "model": model, "used": used, "limit": RUN_LIMIT,
             "hits": exact_hits + semantic_hits, "exact_hits": exact_hits, "semantic_hits": semantic_hits,
-            "semantic_enabled": semantic_models is not None,
+            "semantic_enabled": semantic_models is not None, "semantic_mode": semantic_mode,
         }
 
     @app.get("/", response_class=HTMLResponse)

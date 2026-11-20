@@ -1,0 +1,998 @@
+{
+  "positive_capture": {
+    "combined": {
+      "ci95": [
+        0.508705,
+        0.814271
+      ],
+      "d": 40,
+      "n": 27,
+      "rate": 0.675
+    },
+    "dense5": {
+      "ci95": [
+        0.508705,
+        0.814271
+      ],
+      "d": 40,
+      "n": 27,
+      "rate": 0.675
+    },
+    "hybrid5": {
+      "ci95": [
+        0.508705,
+        0.814271
+      ],
+      "d": 40,
+      "n": 27,
+      "rate": 0.675
+    },
+    "live_exact": {
+      "ci95": [
+        0.0,
+        0.088097
+      ],
+      "d": 40,
+      "n": 0,
+      "rate": 0.0
+    },
+    "live_optional": {
+      "ci95": [
+        0.015742,
+        0.203865
+      ],
+      "d": 40,
+      "n": 3,
+      "rate": 0.075
+    },
+    "relative5": {
+      "ci95": [
+        0.508705,
+        0.814271
+      ],
+      "d": 40,
+      "n": 27,
+      "rate": 0.675
+    },
+    "top1": {
+      "ci95": [
+        0.508705,
+        0.814271
+      ],
+      "d": 40,
+      "n": 27,
+      "rate": 0.675
+    },
+    "typed5": {
+      "ci95": [
+        0.508705,
+        0.814271
+      ],
+      "d": 40,
+      "n": 27,
+      "rate": 0.675
+    }
+  },
+  "records": [
+    {
+      "answer_words": 5,
+      "cosine": 0.9990895986557007,
+      "decisions": {
+        "combined": "passage",
+        "dense5": "passage",
+        "hybrid5": "passage",
+        "live_exact": "personal_or_generative_request",
+        "live_optional": "personal_or_generative_request",
+        "relative5": "passage",
+        "top1": "passage",
+        "typed5": "passage"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/extending.rst#103",
+      "pair_forward": 0.9839152923947698,
+      "pair_reverse": 0.9843766333979749,
+      "passage": 0.0005601349455259776,
+      "passage_logit": -7.486772537231445,
+      "source_passage_logit": -8.006145477294922,
+      "split": "holdout"
+    },
+    {
+      "answer_words": 28,
+      "cosine": 0.9980460405349731,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/general.rst#238",
+      "pair_forward": 0.9929679399495052,
+      "pair_reverse": 0.9931142403800969,
+      "passage": 0.9992277204970607,
+      "passage_logit": 7.165391445159912,
+      "source_passage_logit": 7.182165145874023,
+      "split": "development"
+    },
+    {
+      "answer_words": 38,
+      "cosine": 0.9985672831535339,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#1821",
+      "pair_forward": 0.9865076911733508,
+      "pair_reverse": 0.9867974209990849,
+      "passage": 0.9962455245300822,
+      "passage_logit": 5.581045150756836,
+      "source_passage_logit": 5.375417709350586,
+      "split": "development"
+    },
+    {
+      "answer_words": 69,
+      "cosine": 0.9980868101119995,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#393",
+      "pair_forward": 0.9802274877839539,
+      "pair_reverse": 0.9796943997872498,
+      "passage": 0.9961939223084971,
+      "passage_logit": 5.567342758178711,
+      "source_passage_logit": 5.601489543914795,
+      "split": "development"
+    },
+    {
+      "answer_words": 18,
+      "cosine": 0.9947460889816284,
+      "decisions": {
+        "combined": "passage",
+        "dense5": "passage",
+        "hybrid5": "passage",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "passage",
+        "top1": "passage",
+        "typed5": "passage"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/library.rst#616",
+      "pair_forward": 0.9861254412462315,
+      "pair_reverse": 0.9864092100625702,
+      "passage": 1.2987445182410167e-05,
+      "passage_logit": -11.251514434814453,
+      "source_passage_logit": -11.2001314163208,
+      "split": "development"
+    },
+    {
+      "answer_words": 51,
+      "cosine": 0.9978684186935425,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#1628",
+      "pair_forward": 0.9809652183872669,
+      "pair_reverse": 0.9813381273617824,
+      "passage": 0.9456933620565804,
+      "passage_logit": 2.857271909713745,
+      "source_passage_logit": 3.4869184494018555,
+      "split": "development"
+    },
+    {
+      "answer_words": 29,
+      "cosine": 0.9893947839736938,
+      "decisions": {
+        "combined": "passage",
+        "dense5": "passage",
+        "hybrid5": "passage",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "passage",
+        "top1": "passage",
+        "typed5": "passage"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/library.rst#236",
+      "pair_forward": 0.9910598949739391,
+      "pair_reverse": 0.991434889640937,
+      "passage": 0.10560327413397584,
+      "passage_logit": -2.136460065841675,
+      "source_passage_logit": -1.3859000205993652,
+      "split": "development"
+    },
+    {
+      "answer_words": 60,
+      "cosine": 0.99856036901474,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "freshness_requires_provider",
+        "live_optional": "freshness_requires_provider",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#1643",
+      "pair_forward": 0.9785034213441377,
+      "pair_reverse": 0.9784760976463351,
+      "passage": 0.9753239063052995,
+      "passage_logit": 3.6769347190856934,
+      "source_passage_logit": 3.345914840698242,
+      "split": "development"
+    },
+    {
+      "answer_words": 109,
+      "cosine": 0.9985735416412354,
+      "decisions": {
+        "combined": "passage",
+        "dense5": "passage",
+        "hybrid5": "passage",
+        "live_exact": "freshness_requires_provider",
+        "live_optional": "freshness_requires_provider",
+        "relative5": "passage",
+        "top1": "passage",
+        "typed5": "passage"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/windows.rst#255",
+      "pair_forward": 0.9812747192489345,
+      "pair_reverse": 0.9822123634633583,
+      "passage": 0.7603422851177893,
+      "passage_logit": 1.1545569896697998,
+      "source_passage_logit": 1.6223490238189697,
+      "split": "holdout"
+    },
+    {
+      "answer_words": 33,
+      "cosine": 0.9977610111236572,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#1189",
+      "pair_forward": 0.9809598576064424,
+      "pair_reverse": 0.9810233703513603,
+      "passage": 0.9973445572871209,
+      "passage_logit": 5.928484916687012,
+      "source_passage_logit": 5.9775071144104,
+      "split": "development"
+    },
+    {
+      "answer_words": 53,
+      "cosine": 0.9975985288619995,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/general.rst#185",
+      "pair_forward": 0.9900687353511336,
+      "pair_reverse": 0.9905273243923687,
+      "passage": 0.9972006202107017,
+      "passage_logit": 5.875554084777832,
+      "source_passage_logit": 6.018439292907715,
+      "split": "development"
+    },
+    {
+      "answer_words": 66,
+      "cosine": 0.9979636073112488,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/extending.rst#203",
+      "pair_forward": 0.9851344795567949,
+      "pair_reverse": 0.9850670686451611,
+      "passage": 0.8772009565770962,
+      "passage_logit": 1.9661868810653687,
+      "source_passage_logit": 2.6792707443237305,
+      "split": "holdout"
+    },
+    {
+      "answer_words": 121,
+      "cosine": 0.9898260235786438,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/extending.rst#256",
+      "pair_forward": 0.9583205655415324,
+      "pair_reverse": 0.9577668599159059,
+      "passage": 0.9806011575624618,
+      "passage_logit": 3.92295241355896,
+      "source_passage_logit": 4.473336696624756,
+      "split": "holdout"
+    },
+    {
+      "answer_words": 67,
+      "cosine": 0.9981473088264465,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "generated_and_stored",
+        "live_optional": "accepted",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#1443",
+      "pair_forward": 0.9790812055880167,
+      "pair_reverse": 0.9788751039163225,
+      "passage": 0.9711733791721805,
+      "passage_logit": 3.5172057151794434,
+      "source_passage_logit": 2.163064479827881,
+      "split": "development"
+    },
+    {
+      "answer_words": 71,
+      "cosine": 0.9977012872695923,
+      "decisions": {
+        "combined": "passage",
+        "dense5": "passage",
+        "hybrid5": "passage",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "passage",
+        "top1": "passage",
+        "typed5": "passage"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/extending.rst#223",
+      "pair_forward": 0.987983170614679,
+      "pair_reverse": 0.9887044731296352,
+      "passage": 0.003984369924507035,
+      "passage_logit": -5.521383762359619,
+      "source_passage_logit": -5.088007926940918,
+      "split": "holdout"
+    },
+    {
+      "answer_words": 113,
+      "cosine": 0.9974163770675659,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "personal_or_generative_request",
+        "live_optional": "personal_or_generative_request",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/library.rst#819",
+      "pair_forward": 0.9922188747368449,
+      "pair_reverse": 0.992610295846317,
+      "passage": 0.9949914316746936,
+      "passage_logit": 5.291584014892578,
+      "source_passage_logit": 5.878844261169434,
+      "split": "development"
+    },
+    {
+      "answer_words": 107,
+      "cosine": 0.9978587627410889,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#259",
+      "pair_forward": 0.9864622996684762,
+      "pair_reverse": 0.9868075433214792,
+      "passage": 0.9993814755514843,
+      "passage_logit": 7.387555122375488,
+      "source_passage_logit": 7.78843355178833,
+      "split": "development"
+    },
+    {
+      "answer_words": 52,
+      "cosine": 0.9972573518753052,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/general.rst#226",
+      "pair_forward": 0.9893078312123081,
+      "pair_reverse": 0.9894346518657564,
+      "passage": 0.9237626141379551,
+      "passage_logit": 2.494603157043457,
+      "source_passage_logit": 2.068803310394287,
+      "split": "development"
+    },
+    {
+      "answer_words": 33,
+      "cosine": 0.9979647397994995,
+      "decisions": {
+        "combined": "passage",
+        "dense5": "passage",
+        "hybrid5": "passage",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "passage",
+        "top1": "passage",
+        "typed5": "passage"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/windows.rst#273",
+      "pair_forward": 0.9802977050340649,
+      "pair_reverse": 0.9810363619852971,
+      "passage": 9.279839570139377e-05,
+      "passage_logit": -9.284988403320312,
+      "source_passage_logit": -8.611333847045898,
+      "split": "holdout"
+    },
+    {
+      "answer_words": 29,
+      "cosine": 0.9970791339874268,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#651",
+      "pair_forward": 0.9882988873199058,
+      "pair_reverse": 0.9883996260684811,
+      "passage": 0.9238247332398395,
+      "passage_logit": 2.495485544204712,
+      "source_passage_logit": 1.5787444114685059,
+      "split": "development"
+    },
+    {
+      "answer_words": 34,
+      "cosine": 0.9982064962387085,
+      "decisions": {
+        "combined": "passage",
+        "dense5": "passage",
+        "hybrid5": "passage",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "passage",
+        "top1": "passage",
+        "typed5": "passage"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/extending.rst#274",
+      "pair_forward": 0.9829104616316336,
+      "pair_reverse": 0.9831440503243881,
+      "passage": 0.00833856164482968,
+      "passage_logit": -4.778491020202637,
+      "source_passage_logit": -3.93264102935791,
+      "split": "holdout"
+    },
+    {
+      "answer_words": 14,
+      "cosine": 0.9970257878303528,
+      "decisions": {
+        "combined": "passage",
+        "dense5": "passage",
+        "hybrid5": "passage",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "passage",
+        "top1": "passage",
+        "typed5": "passage"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/windows.rst#140",
+      "pair_forward": 0.9852431617307333,
+      "pair_reverse": 0.9854496255543347,
+      "passage": 0.19091136834350797,
+      "passage_logit": -1.4440991878509521,
+      "source_passage_logit": -2.255037784576416,
+      "split": "holdout"
+    },
+    {
+      "answer_words": 85,
+      "cosine": 0.997442364692688,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/general.rst#168",
+      "pair_forward": 0.9867339857737017,
+      "pair_reverse": 0.9868845996347505,
+      "passage": 0.968750315647113,
+      "passage_logit": 3.433997631072998,
+      "source_passage_logit": 3.238372564315796,
+      "split": "development"
+    },
+    {
+      "answer_words": 101,
+      "cosine": 0.9960607290267944,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#905",
+      "pair_forward": 0.9857223281360857,
+      "pair_reverse": 0.9858070797695802,
+      "passage": 0.9991481325293398,
+      "passage_logit": 7.067227363586426,
+      "source_passage_logit": 6.9383697509765625,
+      "split": "development"
+    },
+    {
+      "answer_words": 63,
+      "cosine": 0.9971027374267578,
+      "decisions": {
+        "combined": "passage",
+        "dense5": "passage",
+        "hybrid5": "passage",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "passage",
+        "top1": "passage",
+        "typed5": "passage"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#1324",
+      "pair_forward": 0.9857344832217076,
+      "pair_reverse": 0.9855697223459543,
+      "passage": 0.10784777875203669,
+      "passage_logit": -2.1129159927368164,
+      "source_passage_logit": -1.138082504272461,
+      "split": "development"
+    },
+    {
+      "answer_words": 55,
+      "cosine": 0.9995877742767334,
+      "decisions": {
+        "combined": "incoming_numeric_requirement_unmet_in_answer",
+        "dense5": "incoming_numeric_requirement_unmet_in_answer",
+        "hybrid5": "incoming_numeric_requirement_unmet_in_answer",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "incoming_numeric_requirement_unmet_in_answer",
+        "top1": "incoming_numeric_requirement_unmet_in_answer",
+        "typed5": "incoming_numeric_requirement_unmet_in_answer"
+      },
+      "extra_guard": "incoming_numeric_requirement_unmet_in_answer",
+      "guard": "incoming_numeric_requirement_unmet_in_answer",
+      "id": "cpython-3.12.10/Doc/faq/windows.rst#280",
+      "pair_forward": 0.9738574594455134,
+      "pair_reverse": 0.9736985725121484,
+      "passage": 0.00033313105911419625,
+      "passage_logit": -8.006641387939453,
+      "source_passage_logit": -7.649434566497803,
+      "split": "holdout"
+    },
+    {
+      "answer_words": 65,
+      "cosine": 0.9979163408279419,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "freshness_requires_provider",
+        "live_optional": "freshness_requires_provider",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#2127",
+      "pair_forward": 0.9895957517634958,
+      "pair_reverse": 0.9901078412722188,
+      "passage": 0.9979215054853681,
+      "passage_logit": 6.174030780792236,
+      "source_passage_logit": 6.314733028411865,
+      "split": "development"
+    },
+    {
+      "answer_words": 34,
+      "cosine": 0.9986927509307861,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "personal_or_generative_request",
+        "live_optional": "personal_or_generative_request",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/library.rst#178",
+      "pair_forward": 0.9859413573441864,
+      "pair_reverse": 0.9865740887035589,
+      "passage": 0.9993074147557834,
+      "passage_logit": 7.274386405944824,
+      "source_passage_logit": 6.7641096115112305,
+      "split": "development"
+    },
+    {
+      "answer_words": 91,
+      "cosine": 0.9962148666381836,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#805",
+      "pair_forward": 0.9848562555975344,
+      "pair_reverse": 0.9850449998130616,
+      "passage": 0.9998404272844514,
+      "passage_logit": 8.742851257324219,
+      "source_passage_logit": 8.952299118041992,
+      "split": "development"
+    },
+    {
+      "answer_words": 51,
+      "cosine": 0.9974773526191711,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/extending.rst#60",
+      "pair_forward": 0.9871962219202618,
+      "pair_reverse": 0.9868184705510034,
+      "passage": 0.9108139199920902,
+      "passage_logit": 2.3236136436462402,
+      "source_passage_logit": 1.3848984241485596,
+      "split": "holdout"
+    },
+    {
+      "answer_words": 60,
+      "cosine": 0.9983270168304443,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#847",
+      "pair_forward": 0.9824462804218064,
+      "pair_reverse": 0.9826112963077235,
+      "passage": 0.9915961507062879,
+      "passage_logit": 4.770626068115234,
+      "source_passage_logit": 5.364378929138184,
+      "split": "development"
+    },
+    {
+      "answer_words": 48,
+      "cosine": 0.9957096576690674,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "generated_and_stored",
+        "live_optional": "accepted",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#894",
+      "pair_forward": 0.9879756275406529,
+      "pair_reverse": 0.988077245311435,
+      "passage": 0.9972759152411209,
+      "passage_logit": 5.902894973754883,
+      "source_passage_logit": 6.408816337585449,
+      "split": "development"
+    },
+    {
+      "answer_words": 115,
+      "cosine": 0.9977253675460815,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#1707",
+      "pair_forward": 0.989288273431915,
+      "pair_reverse": 0.9887970119589579,
+      "passage": 0.9244211396115202,
+      "passage_logit": 2.50399112701416,
+      "source_passage_logit": 2.1810970306396484,
+      "split": "development"
+    },
+    {
+      "answer_words": 55,
+      "cosine": 0.9906691908836365,
+      "decisions": {
+        "combined": "passage",
+        "dense5": "passage",
+        "hybrid5": "passage",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "passage",
+        "top1": "passage",
+        "typed5": "passage"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/library.rst#483",
+      "pair_forward": 0.9859866590367767,
+      "pair_reverse": 0.9872248914609102,
+      "passage": 0.013651017213882665,
+      "passage_logit": -4.280196189880371,
+      "source_passage_logit": -3.3677406311035156,
+      "split": "development"
+    },
+    {
+      "answer_words": 43,
+      "cosine": 0.9965841770172119,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#635",
+      "pair_forward": 0.9912457735895837,
+      "pair_reverse": 0.9917475546101,
+      "passage": 0.9366962293117664,
+      "passage_logit": 2.6944141387939453,
+      "source_passage_logit": 2.2362701892852783,
+      "split": "development"
+    },
+    {
+      "answer_words": 66,
+      "cosine": 0.9968830943107605,
+      "decisions": {
+        "combined": "passage",
+        "dense5": "passage",
+        "hybrid5": "passage",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "passage",
+        "top1": "passage",
+        "typed5": "passage"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/library.rst#14",
+      "pair_forward": 0.9769869456610609,
+      "pair_reverse": 0.976958518023359,
+      "passage": 0.002117522301466529,
+      "passage_logit": -6.155388832092285,
+      "source_passage_logit": -5.716414928436279,
+      "split": "development"
+    },
+    {
+      "answer_words": 95,
+      "cosine": 0.99772709608078,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/extending.rst#181",
+      "pair_forward": 0.9871406656064596,
+      "pair_reverse": 0.9873517883822872,
+      "passage": 0.9946052614824623,
+      "passage_logit": 5.216921806335449,
+      "source_passage_logit": 5.510520935058594,
+      "split": "holdout"
+    },
+    {
+      "answer_words": 120,
+      "cosine": 0.9978351593017578,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "generated_and_stored",
+        "live_optional": "accepted",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/programming.rst#1159",
+      "pair_forward": 0.9834098486003364,
+      "pair_reverse": 0.9839691904574758,
+      "passage": 0.9863662366237095,
+      "passage_logit": 4.281478404998779,
+      "source_passage_logit": 4.9395575523376465,
+      "split": "development"
+    },
+    {
+      "answer_words": 23,
+      "cosine": 0.9982725381851196,
+      "decisions": {
+        "combined": "passage",
+        "dense5": "passage",
+        "hybrid5": "passage",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "passage",
+        "top1": "passage",
+        "typed5": "passage"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/extending.rst#71",
+      "pair_forward": 0.9899659595654623,
+      "pair_reverse": 0.9896556874797996,
+      "passage": 0.30759751350555015,
+      "passage_logit": -0.8113752603530884,
+      "source_passage_logit": -1.85344398021698,
+      "split": "holdout"
+    },
+    {
+      "answer_words": 71,
+      "cosine": 0.995699405670166,
+      "decisions": {
+        "combined": "accepted",
+        "dense5": "accepted",
+        "hybrid5": "accepted",
+        "live_exact": "not_rule_confirmed_static",
+        "live_optional": "not_rule_confirmed_static",
+        "relative5": "accepted",
+        "top1": "accepted",
+        "typed5": "accepted"
+      },
+      "extra_guard": null,
+      "guard": null,
+      "id": "cpython-3.12.10/Doc/faq/windows.rst#113",
+      "pair_forward": 0.9882428961269438,
+      "pair_reverse": 0.9886038695094664,
+      "passage": 0.9997004853298066,
+      "passage_logit": 8.11304759979248,
+      "source_passage_logit": 8.288618087768555,
+      "split": "holdout"
+    }
+  ]
+}

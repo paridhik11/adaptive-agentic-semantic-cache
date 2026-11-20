@@ -233,3 +233,111 @@ def pair_data(directory, dataset, split):
         seen.add(group)
         chosen[label].append((index, a, b, label))
     return chosen[0] + chosen[1]
+
+
+if __name__ == "__main__":
+    import argparse
+    import importlib.metadata as metadata
+    import platform
+
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("directory", type=Path)
+    ap.add_argument("manifest", type=Path)
+    ap.add_argument("--download", action="store_true")
+    args = ap.parse_args()
+    pinned(args.directory, args.download)
+    source_notes = {
+        "paws.parquet": [
+            "PAWS-Wiki labeled_final test",
+            8000,
+            "Sentence equivalence",
+            "Google dataset-specific permission for any purpose with acknowledgement appreciated",
+            "https://github.com/google-research-datasets/paws/blob/master/LICENSE",
+        ],
+        "qqp.parquet": [
+            "GLUE QQP validation",
+            40430,
+            "Question equivalence",
+            "GLUE defers to the original Quora terms. Publish IDs and derived scores.",
+            "https://huggingface.co/datasets/nyu-mll/glue/blob/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/README.md",
+        ],
+        "comqa.json": [
+            "ComQA train",
+            3966,
+            "Cluster membership and official normalized short answer sets",
+            "Publisher offers research download and citation. No explicit open redistribution licence identified.",
+            "https://qa.mpi-inf.mpg.de/comqa/",
+        ],
+        "comqa_dev.json": [
+            "ComQA dev",
+            966,
+            "Prior exposure exclusion",
+            "Same terms as train",
+            "https://qa.mpi-inf.mpg.de/comqa/",
+        ],
+        "comqa_test.json": [
+            "ComQA test",
+            2243,
+            "Prior exposure exclusion and spent reproduction",
+            "Same terms as train",
+            "https://qa.mpi-inf.mpg.de/comqa/",
+        ],
+        "cpython.zip": [
+            "CPython v3.12.10 documentation",
+            None,
+            "Publisher-displayed Python output and FAQ answers",
+            "PSF License. Documentation examples also available under the Zero-Clause BSD licence.",
+            "https://docs.python.org/3.12/license.html",
+        ],
+    }
+    inputs = {
+        name: dict(
+            url=url,
+            sha256=digest,
+            bytes=(args.directory / name).stat().st_size,
+            source=source_notes[name][0],
+            source_rows=source_notes[name][1],
+            labels=source_notes[name][2],
+            terms=source_notes[name][3],
+            terms_url=source_notes[name][4],
+        )
+        for name, (url, digest) in INPUTS.items()
+    }
+    groups = {}
+    for split in ["development", "holdout"]:
+        groups[split] = {}
+        for name, loader, cap in [("python", python_docs, 40), ("comqa", comqa, 128)]:
+            rows = [r for r in loader(args.directory) if r[1] == split][:cap]
+            groups[split][name] = [
+                {"group": r[0], "shard": i % 2} for i, r in enumerate(rows)
+            ]
+        for name in ["paws", "qqp"]:
+            groups[split][name] = [r[0] for r in pair_data(args.directory, name, split)]
+    manifest = dict(
+        inputs=inputs,
+        baseline="b6b9a946f52aea4a723573ce19196a66edc9f6ac",
+        frozen_selection_commit="ba3755b",
+        grouping_protocol="docs/INDEPENDENT_SEMANTIC_PROTOCOL.md",
+        grouping_implementation="scripts/independent_semantic_data.py",
+        groups=groups,
+        excluded_prior_sources={
+            p: sha256((ROOT / p).read_bytes()).hexdigest() for p in EXPOSED
+        },
+        python=platform.python_version(),
+        packages={
+            pkg: metadata.version(pkg)
+            for pkg in [
+                "pyarrow",
+                "numpy",
+                "scipy",
+                "scikit-learn",
+                "torch",
+                "transformers",
+                "sentence-transformers",
+                "fastapi",
+            ]
+        },
+    )
+    args.manifest.write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )

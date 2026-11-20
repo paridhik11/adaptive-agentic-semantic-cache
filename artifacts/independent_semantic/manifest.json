@@ -1,0 +1,2291 @@
+{
+  "baseline": "b6b9a946f52aea4a723573ce19196a66edc9f6ac",
+  "excluded_prior_sources": {
+    "data/candidate_b_train_pairs.json": "984c41fa174251ff641eab1e348e31ee40e59c7f7b893128c62ec89dd28acfe0",
+    "data/phase8_tuning_val.json": "a2a8d6ad264d38413ac03953b15a42d9fcf5e80c524711513d209b429ffd1b2f",
+    "data/raw/phase8_sealed_test_stream.json": "ed6a75c34e7c53b81978fdc9db0acf74670264a678ee9e229355ba6c66106fd9",
+    "data/raw/phaseA_sealed_test_stream.json": "f685beccb75c5544dd8d786402e7e20c52cf83bb2520fe5c31ccf22811c17b44"
+  },
+  "frozen_selection_commit": "ba3755b",
+  "grouping_implementation": "scripts/independent_semantic_data.py",
+  "grouping_protocol": "docs/INDEPENDENT_SEMANTIC_PROTOCOL.md",
+  "groups": {
+    "development": {
+      "comqa": [
+        {
+          "group": "cluster-2635",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2081",
+          "shard": 1
+        },
+        {
+          "group": "cluster-302",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1533",
+          "shard": 1
+        },
+        {
+          "group": "cluster-685",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1845",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1567",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1840",
+          "shard": 1
+        },
+        {
+          "group": "cluster-184",
+          "shard": 0
+        },
+        {
+          "group": "cluster-476",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1667",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2937",
+          "shard": 1
+        },
+        {
+          "group": "cluster-3609",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1415",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2415",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2602",
+          "shard": 1
+        },
+        {
+          "group": "cluster-647",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1643",
+          "shard": 1
+        },
+        {
+          "group": "cluster-499",
+          "shard": 0
+        },
+        {
+          "group": "cluster-324",
+          "shard": 1
+        },
+        {
+          "group": "cluster-683",
+          "shard": 0
+        },
+        {
+          "group": "cluster-570",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1993",
+          "shard": 0
+        },
+        {
+          "group": "cluster-651",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2998",
+          "shard": 0
+        },
+        {
+          "group": "cluster-662",
+          "shard": 1
+        },
+        {
+          "group": "cluster-376",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1119",
+          "shard": 1
+        },
+        {
+          "group": "cluster-512",
+          "shard": 0
+        },
+        {
+          "group": "cluster-342",
+          "shard": 1
+        },
+        {
+          "group": "cluster-54",
+          "shard": 0
+        },
+        {
+          "group": "cluster-3393",
+          "shard": 1
+        },
+        {
+          "group": "cluster-195",
+          "shard": 0
+        },
+        {
+          "group": "cluster-449",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2324",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2844",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2572",
+          "shard": 0
+        },
+        {
+          "group": "cluster-790",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1963",
+          "shard": 0
+        },
+        {
+          "group": "cluster-719",
+          "shard": 1
+        },
+        {
+          "group": "cluster-857",
+          "shard": 0
+        },
+        {
+          "group": "cluster-447",
+          "shard": 1
+        },
+        {
+          "group": "cluster-3043",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2900",
+          "shard": 1
+        },
+        {
+          "group": "cluster-91",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2386",
+          "shard": 1
+        },
+        {
+          "group": "cluster-766",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2938",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2433",
+          "shard": 0
+        },
+        {
+          "group": "cluster-661",
+          "shard": 1
+        },
+        {
+          "group": "cluster-880",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2341",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2426",
+          "shard": 0
+        },
+        {
+          "group": "cluster-954",
+          "shard": 1
+        },
+        {
+          "group": "cluster-800",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1443",
+          "shard": 1
+        },
+        {
+          "group": "cluster-229",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2758",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1172",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1376",
+          "shard": 1
+        },
+        {
+          "group": "cluster-279",
+          "shard": 0
+        },
+        {
+          "group": "cluster-3257",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1714",
+          "shard": 0
+        },
+        {
+          "group": "cluster-3037",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1463",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1102",
+          "shard": 1
+        },
+        {
+          "group": "cluster-193",
+          "shard": 0
+        },
+        {
+          "group": "cluster-3347",
+          "shard": 1
+        },
+        {
+          "group": "cluster-3061",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1237",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1600",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2352",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2213",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2474",
+          "shard": 1
+        },
+        {
+          "group": "cluster-968",
+          "shard": 0
+        },
+        {
+          "group": "cluster-235",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1175",
+          "shard": 0
+        },
+        {
+          "group": "cluster-190",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2194",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1766",
+          "shard": 1
+        },
+        {
+          "group": "cluster-715",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2334",
+          "shard": 1
+        },
+        {
+          "group": "cluster-3163",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1502",
+          "shard": 1
+        },
+        {
+          "group": "cluster-769",
+          "shard": 0
+        },
+        {
+          "group": "cluster-3170",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1882",
+          "shard": 0
+        },
+        {
+          "group": "cluster-27",
+          "shard": 1
+        },
+        {
+          "group": "cluster-547",
+          "shard": 0
+        },
+        {
+          "group": "cluster-613",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2199",
+          "shard": 0
+        },
+        {
+          "group": "cluster-724",
+          "shard": 1
+        },
+        {
+          "group": "cluster-698",
+          "shard": 0
+        },
+        {
+          "group": "cluster-131",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1964",
+          "shard": 0
+        },
+        {
+          "group": "cluster-3174",
+          "shard": 1
+        },
+        {
+          "group": "cluster-459",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2859",
+          "shard": 1
+        },
+        {
+          "group": "cluster-3053",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1250",
+          "shard": 1
+        },
+        {
+          "group": "cluster-717",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2769",
+          "shard": 1
+        },
+        {
+          "group": "cluster-3406",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2331",
+          "shard": 1
+        },
+        {
+          "group": "cluster-66",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2749",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1706",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2599",
+          "shard": 1
+        },
+        {
+          "group": "cluster-15",
+          "shard": 0
+        },
+        {
+          "group": "cluster-3549",
+          "shard": 1
+        },
+        {
+          "group": "cluster-3481",
+          "shard": 0
+        },
+        {
+          "group": "cluster-509",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1818",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1846",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2604",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2526",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2319",
+          "shard": 0
+        },
+        {
+          "group": "cluster-708",
+          "shard": 1
+        },
+        {
+          "group": "cluster-443",
+          "shard": 0
+        },
+        {
+          "group": "cluster-354",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2939",
+          "shard": 0
+        },
+        {
+          "group": "cluster-411",
+          "shard": 1
+        },
+        {
+          "group": "cluster-962",
+          "shard": 0
+        },
+        {
+          "group": "cluster-433",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2112",
+          "shard": 0
+        },
+        {
+          "group": "cluster-350",
+          "shard": 1
+        },
+        {
+          "group": "cluster-383",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1973",
+          "shard": 1
+        }
+      ],
+      "paws": [
+        "1487",
+        "7758",
+        "6477",
+        "5839",
+        "5893",
+        "1505",
+        "3446",
+        "6800",
+        "2401",
+        "5202",
+        "7349",
+        "7318",
+        "6327",
+        "6175",
+        "972",
+        "4000",
+        "2567",
+        "5543",
+        "6752",
+        "888",
+        "2940",
+        "1974",
+        "5309",
+        "6099",
+        "4670",
+        "2982",
+        "2573",
+        "1358",
+        "6161",
+        "3653",
+        "3512",
+        "4922",
+        "1153",
+        "6116",
+        "7682",
+        "1122",
+        "5365",
+        "4705",
+        "1130",
+        "7576",
+        "594",
+        "466",
+        "3915",
+        "7417",
+        "6821",
+        "1533",
+        "2613",
+        "683",
+        "4977",
+        "7942",
+        "6737",
+        "1438",
+        "3999",
+        "2716",
+        "6608",
+        "3781",
+        "4429",
+        "6380",
+        "3072",
+        "848",
+        "2194",
+        "1834",
+        "7501",
+        "6941",
+        "5304",
+        "4980",
+        "3339",
+        "4330",
+        "4288",
+        "1681",
+        "7881",
+        "1705",
+        "3142",
+        "1911",
+        "7119",
+        "4587",
+        "1945",
+        "3340",
+        "5676",
+        "2185",
+        "7458",
+        "4236",
+        "1653",
+        "3838",
+        "7936",
+        "3384",
+        "4116",
+        "2618",
+        "7603",
+        "1670",
+        "6661",
+        "4704",
+        "5881",
+        "7811",
+        "5648",
+        "7899",
+        "5146",
+        "6000",
+        "1135",
+        "7460",
+        "7891",
+        "419",
+        "784",
+        "1663",
+        "1146",
+        "3316",
+        "4422",
+        "5666",
+        "5884",
+        "2582",
+        "616",
+        "324",
+        "6773",
+        "5150",
+        "3471",
+        "5138",
+        "6277",
+        "3472",
+        "7767",
+        "7367",
+        "2753",
+        "2061",
+        "816",
+        "4629",
+        "6712",
+        "6180",
+        "1080",
+        "2571",
+        "6052",
+        "7444",
+        "1222",
+        "3567",
+        "6230",
+        "7729",
+        "1112",
+        "1009",
+        "2677",
+        "2899",
+        "3490",
+        "2272",
+        "2149",
+        "3468",
+        "7168",
+        "6638",
+        "5449",
+        "7625",
+        "418",
+        "1982",
+        "5143",
+        "7269",
+        "4483",
+        "2036",
+        "7896",
+        "4121",
+        "1071",
+        "1738",
+        "6841",
+        "6586",
+        "6446",
+        "1101",
+        "4488",
+        "6007",
+        "1218",
+        "2472",
+        "739",
+        "7673",
+        "4715",
+        "4681",
+        "2623",
+        "5439",
+        "995",
+        "7604",
+        "3948",
+        "3147",
+        "5378",
+        "1486",
+        "1675",
+        "4899",
+        "1160",
+        "7848",
+        "2902",
+        "1586",
+        "425",
+        "2782",
+        "3292",
+        "5333",
+        "7722",
+        "7362",
+        "3537",
+        "5519",
+        "1917",
+        "7737",
+        "7510",
+        "389",
+        "6500",
+        "4106",
+        "7259",
+        "1633",
+        "4140",
+        "7843",
+        "7361",
+        "5246",
+        "4196",
+        "3128",
+        "3127",
+        "7883",
+        "3330",
+        "3839",
+        "6158",
+        "7245",
+        "7701",
+        "7934",
+        "394",
+        "2862",
+        "2175",
+        "3937",
+        "2158",
+        "7394",
+        "7169",
+        "6593",
+        "3553",
+        "5050",
+        "608",
+        "757",
+        "1328",
+        "1763",
+        "5521",
+        "997",
+        "3374",
+        "6379",
+        "5604",
+        "1254",
+        "1042",
+        "6900",
+        "4295",
+        "5452",
+        "5350",
+        "6302",
+        "4267",
+        "6213",
+        "5874",
+        "4608",
+        "2376",
+        "4259",
+        "7684",
+        "2188",
+        "7496",
+        "4336",
+        "4525",
+        "4826",
+        "1593",
+        "6673",
+        "2608",
+        "4992",
+        "2432",
+        "2660"
+      ],
+      "python": [
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/2.3.rst#1135",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/3.8.rst#492",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/3.5.rst#375",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/2.3.rst#1133",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/tutorial/floatingpoint.rst#64",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/tutorial/introduction.rst#112",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/2.3.rst#602",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/2.3.rst#600",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/3.5.rst#389",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/faq/programming.rst#1064",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/tutorial/introduction.rst#63",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/tutorial/introduction.rst#224",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/faq/programming.rst#1051",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/2.3.rst#596",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/faq/programming.rst#705",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/faq/design.rst#58",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/tutorial/introduction.rst#59",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/tutorial/introduction.rst#61",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/tutorial/floatingpoint.rst#331",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/tutorial/introduction.rst#166",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/3.5.rst#378",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/tutorial/introduction.rst#168",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/3.5.rst#347",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/tutorial/introduction.rst#218",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/tutorial/floatingpoint.rst#339",
+          "shard": 0
+        }
+      ],
+      "qqp": [
+        "2857",
+        "26075",
+        "36629",
+        "11463",
+        "38584",
+        "23921",
+        "20744",
+        "37368",
+        "24564",
+        "28825",
+        "1446",
+        "39266",
+        "28223",
+        "33915",
+        "6988",
+        "25838",
+        "5316",
+        "5952",
+        "30702",
+        "14839",
+        "39166",
+        "31732",
+        "39220",
+        "14988",
+        "2542",
+        "18689",
+        "6243",
+        "23957",
+        "15809",
+        "14260",
+        "171",
+        "38505",
+        "17966",
+        "32491",
+        "27794",
+        "22520",
+        "33276",
+        "20441",
+        "27578",
+        "15788",
+        "23115",
+        "14084",
+        "17707",
+        "17792",
+        "1435",
+        "22074",
+        "24661",
+        "31370",
+        "34982",
+        "29027",
+        "21294",
+        "29582",
+        "62",
+        "6778",
+        "19687",
+        "25514",
+        "33134",
+        "35970",
+        "37417",
+        "17835",
+        "20645",
+        "2016",
+        "10432",
+        "15628",
+        "32919",
+        "18639",
+        "27562",
+        "33283",
+        "30998",
+        "4520",
+        "4344",
+        "11402",
+        "13251",
+        "14237",
+        "23904",
+        "10101",
+        "4522",
+        "8079",
+        "18614",
+        "9029",
+        "16438",
+        "19658",
+        "25919",
+        "17661",
+        "20164",
+        "8654",
+        "32002",
+        "21283",
+        "25703",
+        "7783",
+        "23529",
+        "25548",
+        "33104",
+        "765",
+        "26640",
+        "19828",
+        "19310",
+        "15154",
+        "5393",
+        "16564",
+        "24884",
+        "25265",
+        "6160",
+        "9785",
+        "19560",
+        "32239",
+        "16110",
+        "5565",
+        "3884",
+        "39313",
+        "19091",
+        "11199",
+        "15897",
+        "36824",
+        "32533",
+        "37132",
+        "20837",
+        "15511",
+        "16201",
+        "19927",
+        "5051",
+        "3764",
+        "1596",
+        "13165",
+        "31056",
+        "4519",
+        "23159",
+        "19361",
+        "31901",
+        "22639",
+        "12070",
+        "36991",
+        "8069",
+        "35175",
+        "39130",
+        "35052",
+        "1295",
+        "4427",
+        "18635",
+        "14573",
+        "21774",
+        "22241",
+        "11830",
+        "31869",
+        "23468",
+        "10203",
+        "26502",
+        "1221",
+        "33192",
+        "30984",
+        "3724",
+        "28098",
+        "15419",
+        "31741",
+        "1819",
+        "32159",
+        "28974",
+        "29615",
+        "28661",
+        "12256",
+        "30491",
+        "29594",
+        "38235",
+        "13202",
+        "1287",
+        "16144",
+        "8154",
+        "24568",
+        "28073",
+        "5645",
+        "28170",
+        "19660",
+        "3993",
+        "10671",
+        "38036",
+        "17561",
+        "38232",
+        "20245",
+        "6863",
+        "37599",
+        "1546",
+        "15786",
+        "13415",
+        "32886",
+        "10275",
+        "15602",
+        "6205",
+        "14815",
+        "7075",
+        "34436",
+        "12073",
+        "10839",
+        "3587",
+        "21064",
+        "3108",
+        "18090",
+        "821",
+        "18771",
+        "4913",
+        "17270",
+        "9179",
+        "27737",
+        "28273",
+        "6102",
+        "30954",
+        "16649",
+        "29224",
+        "20357",
+        "5244",
+        "25513",
+        "10958",
+        "4034",
+        "33377",
+        "38990",
+        "23374",
+        "19077",
+        "5071",
+        "7958",
+        "5647",
+        "19637",
+        "25842",
+        "14003",
+        "39848",
+        "13075",
+        "31458",
+        "491",
+        "23495",
+        "10439",
+        "28132",
+        "14811",
+        "28244",
+        "20618",
+        "32450",
+        "18418",
+        "24078",
+        "24032",
+        "6081",
+        "38360",
+        "31474",
+        "21439",
+        "6311",
+        "30436",
+        "37921",
+        "27321",
+        "15488",
+        "34822",
+        "19062",
+        "5011",
+        "23141",
+        "30817",
+        "33076",
+        "36804",
+        "8807",
+        "36318",
+        "871",
+        "23873"
+      ]
+    },
+    "holdout": {
+      "comqa": [
+        {
+          "group": "cluster-2411",
+          "shard": 0
+        },
+        {
+          "group": "cluster-43",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1136",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1159",
+          "shard": 1
+        },
+        {
+          "group": "cluster-25",
+          "shard": 0
+        },
+        {
+          "group": "cluster-132",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1211",
+          "shard": 0
+        },
+        {
+          "group": "cluster-710",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1092",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1718",
+          "shard": 1
+        },
+        {
+          "group": "cluster-166",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1794",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1203",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2851",
+          "shard": 1
+        },
+        {
+          "group": "cluster-3539",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2184",
+          "shard": 1
+        },
+        {
+          "group": "cluster-3505",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2121",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2322",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2641",
+          "shard": 1
+        },
+        {
+          "group": "cluster-480",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2592",
+          "shard": 1
+        },
+        {
+          "group": "cluster-403",
+          "shard": 0
+        },
+        {
+          "group": "cluster-473",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1222",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1442",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1002",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1243",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1260",
+          "shard": 0
+        },
+        {
+          "group": "cluster-399",
+          "shard": 1
+        },
+        {
+          "group": "cluster-591",
+          "shard": 0
+        },
+        {
+          "group": "cluster-995",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2625",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1162",
+          "shard": 1
+        },
+        {
+          "group": "cluster-3445",
+          "shard": 0
+        },
+        {
+          "group": "cluster-819",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1878",
+          "shard": 0
+        },
+        {
+          "group": "cluster-3123",
+          "shard": 1
+        },
+        {
+          "group": "cluster-38",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2027",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1405",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1981",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2130",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2603",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2040",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1671",
+          "shard": 1
+        },
+        {
+          "group": "cluster-3010",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2759",
+          "shard": 1
+        },
+        {
+          "group": "cluster-982",
+          "shard": 0
+        },
+        {
+          "group": "cluster-3118",
+          "shard": 1
+        },
+        {
+          "group": "cluster-577",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2453",
+          "shard": 1
+        },
+        {
+          "group": "cluster-789",
+          "shard": 0
+        },
+        {
+          "group": "cluster-458",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1543",
+          "shard": 0
+        },
+        {
+          "group": "cluster-895",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1240",
+          "shard": 0
+        },
+        {
+          "group": "cluster-3399",
+          "shard": 1
+        },
+        {
+          "group": "cluster-779",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2030",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2661",
+          "shard": 0
+        },
+        {
+          "group": "cluster-97",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1396",
+          "shard": 0
+        },
+        {
+          "group": "cluster-534",
+          "shard": 1
+        },
+        {
+          "group": "cluster-554",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2466",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1335",
+          "shard": 0
+        },
+        {
+          "group": "cluster-475",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2266",
+          "shard": 0
+        },
+        {
+          "group": "cluster-3423",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1132",
+          "shard": 0
+        },
+        {
+          "group": "cluster-3680",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2067",
+          "shard": 0
+        },
+        {
+          "group": "cluster-865",
+          "shard": 1
+        },
+        {
+          "group": "cluster-768",
+          "shard": 0
+        },
+        {
+          "group": "cluster-3782",
+          "shard": 1
+        },
+        {
+          "group": "cluster-3713",
+          "shard": 0
+        },
+        {
+          "group": "cluster-261",
+          "shard": 1
+        },
+        {
+          "group": "cluster-3093",
+          "shard": 0
+        },
+        {
+          "group": "cluster-398",
+          "shard": 1
+        },
+        {
+          "group": "cluster-667",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2793",
+          "shard": 1
+        },
+        {
+          "group": "cluster-108",
+          "shard": 0
+        },
+        {
+          "group": "cluster-770",
+          "shard": 1
+        },
+        {
+          "group": "cluster-775",
+          "shard": 0
+        },
+        {
+          "group": "cluster-294",
+          "shard": 1
+        },
+        {
+          "group": "cluster-783",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2490",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2808",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1604",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1270",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1564",
+          "shard": 1
+        },
+        {
+          "group": "cluster-612",
+          "shard": 0
+        },
+        {
+          "group": "cluster-177",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1881",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2280",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1085",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2518",
+          "shard": 1
+        },
+        {
+          "group": "cluster-792",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1122",
+          "shard": 1
+        },
+        {
+          "group": "cluster-105",
+          "shard": 0
+        },
+        {
+          "group": "cluster-287",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1607",
+          "shard": 0
+        },
+        {
+          "group": "cluster-810",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1266",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2085",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2327",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2097",
+          "shard": 1
+        },
+        {
+          "group": "cluster-369",
+          "shard": 0
+        },
+        {
+          "group": "cluster-258",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2200",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1424",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1965",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2347",
+          "shard": 1
+        },
+        {
+          "group": "cluster-2837",
+          "shard": 0
+        },
+        {
+          "group": "cluster-377",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1805",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2756",
+          "shard": 1
+        },
+        {
+          "group": "cluster-117",
+          "shard": 0
+        },
+        {
+          "group": "cluster-498",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1482",
+          "shard": 0
+        },
+        {
+          "group": "cluster-95",
+          "shard": 1
+        },
+        {
+          "group": "cluster-1763",
+          "shard": 0
+        },
+        {
+          "group": "cluster-2704",
+          "shard": 1
+        },
+        {
+          "group": "cluster-71",
+          "shard": 0
+        },
+        {
+          "group": "cluster-1870",
+          "shard": 1
+        },
+        {
+          "group": "cluster-482",
+          "shard": 0
+        },
+        {
+          "group": "cluster-90",
+          "shard": 1
+        }
+      ],
+      "paws": [
+        "1348",
+        "3738",
+        "6720",
+        "5558",
+        "5047",
+        "6627",
+        "6803",
+        "6864",
+        "3170",
+        "4952",
+        "1850",
+        "1468",
+        "3996",
+        "3647",
+        "7685",
+        "1743",
+        "4132",
+        "7917",
+        "5106",
+        "5644",
+        "5288",
+        "3093",
+        "2577",
+        "4193",
+        "2507",
+        "5466",
+        "2624",
+        "1575",
+        "6328",
+        "5036",
+        "3205",
+        "767",
+        "3628",
+        "519",
+        "7545",
+        "1243",
+        "3687",
+        "1294",
+        "4876",
+        "6250",
+        "333",
+        "6450",
+        "6733",
+        "2224",
+        "6521",
+        "1916",
+        "1307",
+        "3925",
+        "3993",
+        "5045",
+        "6672",
+        "1512",
+        "7011",
+        "7894",
+        "1496",
+        "1171",
+        "6306",
+        "2735",
+        "666",
+        "1879",
+        "845",
+        "6933",
+        "2087",
+        "841",
+        "1125",
+        "6792",
+        "4284",
+        "488",
+        "2926",
+        "2214",
+        "525",
+        "4392",
+        "4853",
+        "4690",
+        "1141",
+        "7739",
+        "4183",
+        "6404",
+        "474",
+        "5987",
+        "3014",
+        "5776",
+        "2183",
+        "2803",
+        "2501",
+        "6334",
+        "4497",
+        "1265",
+        "6373",
+        "6834",
+        "3500",
+        "2034",
+        "6612",
+        "6337",
+        "4537",
+        "3545",
+        "7407",
+        "3356",
+        "2335",
+        "1393",
+        "5420",
+        "7290",
+        "1594",
+        "4544",
+        "2211",
+        "3239",
+        "4455",
+        "2876",
+        "1592",
+        "2589",
+        "2980",
+        "6662",
+        "7456",
+        "1898",
+        "4754",
+        "1657",
+        "3579",
+        "5308",
+        "1703",
+        "4407",
+        "2253",
+        "918",
+        "1370",
+        "779",
+        "3809",
+        "7220",
+        "3699",
+        "7046",
+        "2099",
+        "943",
+        "4425",
+        "6585",
+        "2575",
+        "4241",
+        "5770",
+        "3141",
+        "5084",
+        "3304",
+        "4289",
+        "2475",
+        "2886",
+        "6987",
+        "6130",
+        "937",
+        "684",
+        "7385",
+        "5057",
+        "6911",
+        "7702",
+        "7039",
+        "2365",
+        "391",
+        "5613",
+        "6787",
+        "2276",
+        "5148",
+        "4923",
+        "7714",
+        "6607",
+        "4223",
+        "5069",
+        "5895",
+        "6041",
+        "5323",
+        "871",
+        "7340",
+        "5775",
+        "2713",
+        "563",
+        "3055",
+        "486",
+        "3101",
+        "7091",
+        "3179",
+        "7374",
+        "6642",
+        "1138",
+        "1837",
+        "7023",
+        "6495",
+        "3569",
+        "5593",
+        "4942",
+        "456",
+        "7707",
+        "7247",
+        "1463",
+        "4825",
+        "4612",
+        "2908",
+        "4901",
+        "6926",
+        "4599",
+        "7859",
+        "7295",
+        "6820",
+        "7797",
+        "5247",
+        "4253",
+        "5029",
+        "3225",
+        "3587",
+        "4110",
+        "1871",
+        "3385",
+        "6417",
+        "1762",
+        "960",
+        "2371",
+        "6030",
+        "2415",
+        "4694",
+        "2893",
+        "1386",
+        "5885",
+        "4435",
+        "2306",
+        "5608",
+        "1432",
+        "7061",
+        "4938",
+        "6200",
+        "6194",
+        "1903",
+        "6364",
+        "524",
+        "880",
+        "5629",
+        "873",
+        "5819",
+        "6640",
+        "6991",
+        "5742",
+        "843",
+        "6613",
+        "416",
+        "7030",
+        "5223",
+        "4598",
+        "1814",
+        "3257",
+        "3281",
+        "1868",
+        "3306",
+        "529",
+        "3455",
+        "4990",
+        "1262",
+        "7914",
+        "6819",
+        "1198",
+        "4480",
+        "2706",
+        "7597",
+        "7920",
+        "772"
+      ],
+      "python": [
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/2.6.rst#1315",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/2.4.rst#180",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/library/decimal.rst#427",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/3.6.rst#255",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/tutorial/stdlib2.rst#392",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/2.4.rst#518",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/3.6.rst#253",
+          "shard": 0
+        },
+        {
+          "group": "cpython-3.12.10/Doc/whatsnew/2.6.rst#1317",
+          "shard": 1
+        },
+        {
+          "group": "cpython-3.12.10/Doc/faq/windows.rst#81",
+          "shard": 0
+        }
+      ],
+      "qqp": [
+        "25170",
+        "2093",
+        "16233",
+        "2556",
+        "30309",
+        "36410",
+        "7599",
+        "1545",
+        "18402",
+        "3702",
+        "1249",
+        "35924",
+        "1765",
+        "10112",
+        "32426",
+        "31125",
+        "16358",
+        "23555",
+        "35293",
+        "39021",
+        "30305",
+        "6889",
+        "7751",
+        "25947",
+        "20911",
+        "18204",
+        "16727",
+        "1604",
+        "28014",
+        "10251",
+        "15658",
+        "8100",
+        "18915",
+        "29537",
+        "13273",
+        "16716",
+        "16611",
+        "9513",
+        "20266",
+        "7627",
+        "36542",
+        "31819",
+        "34386",
+        "6647",
+        "18420",
+        "12026",
+        "18222",
+        "14796",
+        "37108",
+        "15723",
+        "13705",
+        "4204",
+        "1108",
+        "25064",
+        "23853",
+        "4111",
+        "17392",
+        "35350",
+        "21642",
+        "367",
+        "4458",
+        "11609",
+        "8262",
+        "285",
+        "8302",
+        "35699",
+        "39231",
+        "4187",
+        "24282",
+        "1577",
+        "7696",
+        "8148",
+        "25106",
+        "18141",
+        "5221",
+        "2936",
+        "6503",
+        "2399",
+        "8636",
+        "35601",
+        "35121",
+        "11741",
+        "15030",
+        "4452",
+        "24472",
+        "17670",
+        "29058",
+        "8282",
+        "32243",
+        "4480",
+        "9027",
+        "15918",
+        "31478",
+        "20077",
+        "30748",
+        "26179",
+        "22589",
+        "1253",
+        "37220",
+        "30925",
+        "24583",
+        "40326",
+        "7650",
+        "35527",
+        "8992",
+        "16583",
+        "36076",
+        "180",
+        "5609",
+        "34241",
+        "12705",
+        "36842",
+        "24914",
+        "34272",
+        "5166",
+        "33126",
+        "14081",
+        "16507",
+        "12681",
+        "30445",
+        "20825",
+        "16543",
+        "22190",
+        "19821",
+        "16354",
+        "16070",
+        "17744",
+        "13299",
+        "32308",
+        "18306",
+        "10827",
+        "30426",
+        "34203",
+        "5691",
+        "2560",
+        "30403",
+        "6098",
+        "3501",
+        "1713",
+        "189",
+        "12686",
+        "9492",
+        "26559",
+        "32658",
+        "38397",
+        "18652",
+        "28421",
+        "17292",
+        "4339",
+        "39052",
+        "35422",
+        "1675",
+        "4257",
+        "22238",
+        "26778",
+        "34717",
+        "31446",
+        "32443",
+        "5631",
+        "10128",
+        "18902",
+        "23397",
+        "3925",
+        "27018",
+        "24318",
+        "31492",
+        "30211",
+        "16619",
+        "4818",
+        "23123",
+        "24475",
+        "36653",
+        "22981",
+        "8670",
+        "2698",
+        "17316",
+        "4492",
+        "20521",
+        "36707",
+        "19815",
+        "11964",
+        "28670",
+        "26037",
+        "15460",
+        "21708",
+        "37924",
+        "13697",
+        "17019",
+        "2241",
+        "12201",
+        "9831",
+        "34744",
+        "28666",
+        "18118",
+        "21575",
+        "8126",
+        "14530",
+        "13900",
+        "11442",
+        "18821",
+        "15884",
+        "29387",
+        "1979",
+        "35701",
+        "25263",
+        "17137",
+        "23805",
+        "5940",
+        "31692",
+        "12523",
+        "38434",
+        "12803",
+        "15508",
+        "20085",
+        "4537",
+        "31031",
+        "17477",
+        "20947",
+        "31158",
+        "33323",
+        "23177",
+        "6246",
+        "14074",
+        "14735",
+        "11849",
+        "13633",
+        "14048",
+        "16974",
+        "10833",
+        "27610",
+        "29214",
+        "36608",
+        "34732",
+        "32600",
+        "29046",
+        "17367",
+        "17858",
+        "40139",
+        "30786",
+        "30941",
+        "17613",
+        "26317",
+        "11702",
+        "15012",
+        "4539",
+        "25332",
+        "38045",
+        "8751",
+        "16566",
+        "20455",
+        "22219",
+        "22866",
+        "17940",
+        "36957",
+        "33642",
+        "22820"
+      ]
+    }
+  },
+  "inputs": {
+    "comqa.json": {
+      "bytes": 1054334,
+      "labels": "Cluster membership and official normalized short answer sets",
+      "sha256": "aa25b2747221a6147737066fa7f8509414a6333e6eebb20d7970fc50166eba9c",
+      "source": "ComQA train",
+      "source_rows": 3966,
+      "terms": "Publisher offers research download and citation. No explicit open redistribution licence identified.",
+      "terms_url": "https://qa.mpi-inf.mpg.de/comqa/",
+      "url": "https://qa.mpi-inf.mpg.de/comqa/comqa_train.json"
+    },
+    "comqa_dev.json": {
+      "bytes": 213246,
+      "labels": "Prior exposure exclusion",
+      "sha256": "937f898f996e9a7317d311553cf5b43c4a53e0bb841ae8eed4d8cf15936fbc84",
+      "source": "ComQA dev",
+      "source_rows": 966,
+      "terms": "Same terms as train",
+      "terms_url": "https://qa.mpi-inf.mpg.de/comqa/",
+      "url": "https://qa.mpi-inf.mpg.de/comqa/comqa_dev.json"
+    },
+    "comqa_test.json": {
+      "bytes": 404104,
+      "labels": "Prior exposure exclusion and spent reproduction",
+      "sha256": "b81e19c4108198781167ddb30d26172571e76cc8e684aabb181537a45e816867",
+      "source": "ComQA test",
+      "source_rows": 2243,
+      "terms": "Same terms as train",
+      "terms_url": "https://qa.mpi-inf.mpg.de/comqa/",
+      "url": "https://qa.mpi-inf.mpg.de/comqa/comqa_test.json"
+    },
+    "cpython.zip": {
+      "bytes": 29826715,
+      "labels": "Publisher-displayed Python output and FAQ answers",
+      "sha256": "156640ce1c4a58de57dc84f5cd1f6d50020edbc26f1e42de95fe8a1b765a3105",
+      "source": "CPython v3.12.10 documentation",
+      "source_rows": null,
+      "terms": "PSF License. Documentation examples also available under the Zero-Clause BSD licence.",
+      "terms_url": "https://docs.python.org/3.12/license.html",
+      "url": "https://codeload.github.com/python/cpython/zip/refs/tags/v3.12.10"
+    },
+    "paws.parquet": {
+      "bytes": 1235128,
+      "labels": "Sentence equivalence",
+      "sha256": "ae342ff12bb84b84b95f468abf5db6cb7c7bd578271299fe9c99be75b8132f4d",
+      "source": "PAWS-Wiki labeled_final test",
+      "source_rows": 8000,
+      "terms": "Google dataset-specific permission for any purpose with acknowledgement appreciated",
+      "terms_url": "https://github.com/google-research-datasets/paws/blob/master/LICENSE",
+      "url": "https://huggingface.co/datasets/google-research-datasets/paws/resolve/161ece9501cf0a11f3e48bd356eaa82de46d6a09/labeled_final/test-00000-of-00001.parquet"
+    },
+    "qqp.parquet": {
+      "bytes": 3729274,
+      "labels": "Question equivalence",
+      "sha256": "efd86a539c412d74874ee451573d7bd142f56c47fe36de033b9f367d8bb0fa71",
+      "source": "GLUE QQP validation",
+      "source_rows": 40430,
+      "terms": "GLUE defers to the original Quora terms. Publish IDs and derived scores.",
+      "terms_url": "https://huggingface.co/datasets/nyu-mll/glue/blob/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/README.md",
+      "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/qqp/validation-00000-of-00001.parquet"
+    }
+  },
+  "packages": {
+    "fastapi": "0.143.1",
+    "numpy": "2.5.5",
+    "pyarrow": "26.0.1",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "sentence-transformers": "6.3.0",
+    "torch": "2.7.1+cpu",
+    "transformers": "5.23.0"
+  },
+  "python": "3.12.14"
+}
